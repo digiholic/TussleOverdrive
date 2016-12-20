@@ -15,6 +15,7 @@ public class AbstractFighter : MonoBehaviour {
     private int _jumps;
     private float _ySpeed;
     private CharacterController _charController;
+
     // Use this for initialization
     void Start () {
         _ySpeed = min_fall_speed;
@@ -29,6 +30,10 @@ public class AbstractFighter : MonoBehaviour {
             _jumps = max_jumps;
             {
                 _ySpeed = min_fall_speed;
+            }
+            if (Input.GetAxis("Vertical") < -0.3)
+            {
+
             }
         }
         else
@@ -58,5 +63,21 @@ public class AbstractFighter : MonoBehaviour {
         movement.y = _ySpeed;
         movement *= Time.deltaTime;
         _charController.Move(movement);
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "DropDown" && Input.GetAxis("Vertical") < -0.3)
+        {
+            Physics.IgnoreCollision(GetComponent<CharacterController>(), other.transform.parent.GetComponent<Collider>(), true);
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "DropDown")
+        {
+            Physics.IgnoreCollision(GetComponent<CharacterController>(), other.transform.parent.GetComponent<Collider>(), false);
+        }
     }
 }

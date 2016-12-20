@@ -46,10 +46,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Behavior\Death.cs" />
+     <Compile Include="Assets\Behavior\PlatformPhase.cs" />
      <Compile Include="Assets\Engine\AbstractFighter.cs" />
      <Compile Include="Assets\Engine\Hitbox.cs" />
      <Compile Include="Assets\Engine\Hurtbox.cs" />
-     <Compile Include="Assets\Engine\PlatformPhase.cs" />
      <Compile Include="Assets\Movement.cs" />
      <Compile Include="Assets\Sandbag.cs" />
      <Compile Include="Assets\controller.cs" />

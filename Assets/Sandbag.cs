@@ -35,7 +35,8 @@ public class Sandbag : MonoBehaviour {
         Vector3 launchVector = new Vector3(hitbox.base_knockback, 0, 0);
         launchVector = Quaternion.Euler(0, 0, hitbox.trajectory) * launchVector;
         Debug.Log(launchVector);
-        GetComponent<CharacterController>().Move(launchVector);
+        rb.AddForce(launchVector);
+        //GetComponent<CharacterController>().Move(launchVector);
         launching = true;
     }
 }
