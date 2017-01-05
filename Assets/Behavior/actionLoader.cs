@@ -15,6 +15,9 @@ public class actionLoader : MonoBehaviour {
             case "Crouch": return ScriptableObject.CreateInstance<Crouch>();
             case "CrouchGetup": return ScriptableObject.CreateInstance<CrouchGetup>();
             case "Move": return ScriptableObject.CreateInstance<Move>();
+            case "Stop": return ScriptableObject.CreateInstance<Stop>();
+            case "Land": return ScriptableObject.CreateInstance<Land>();
+            case "Dash": return ScriptableObject.CreateInstance<Dash>();
             default: return ScriptableObject.CreateInstance<Action>();
         }
     }

@@ -61,10 +61,13 @@
      <Compile Include="Assets\Engine\baseActions\AirJump.cs" />
      <Compile Include="Assets\Engine\baseActions\Crouch.cs" />
      <Compile Include="Assets\Engine\baseActions\CrouchGetup.cs" />
+     <Compile Include="Assets\Engine\baseActions\Dash.cs" />
      <Compile Include="Assets\Engine\baseActions\Fall.cs" />
      <Compile Include="Assets\Engine\baseActions\Jump.cs" />
+     <Compile Include="Assets\Engine\baseActions\Land.cs" />
      <Compile Include="Assets\Engine\baseActions\Move.cs" />
      <Compile Include="Assets\Engine\baseActions\NeutralAction.cs" />
+     <Compile Include="Assets\Engine\baseActions\Stop.cs" />
      <Compile Include="Assets\Moments Recorder\Scripts\Gif\GifEncoder.cs" />
      <Compile Include="Assets\Moments Recorder\Scripts\Gif\GifFrame.cs" />
      <Compile Include="Assets\Moments Recorder\Scripts\Gif\LzwEncoder.cs" />

@@ -48,7 +48,14 @@ public class AbstractFighter : MonoBehaviour {
     public Action _current_action;
     [HideInInspector]
     public int facing = 1;
-
+    [HideInInspector]
+    public int landing_lag = 0;
+    [HideInInspector]
+    public float ground_elasticity = 0.0f;
+    [HideInInspector]
+    public int tech_window = 0;
+    [HideInInspector]
+    public int air_dodges = 1;
     // Use this for initialization
     void Start () {
         _ySpeed = 0;
@@ -64,6 +71,7 @@ public class AbstractFighter : MonoBehaviour {
         {
             grounded = true;
             jumps = max_jumps;
+            _ySpeed = -1.0f;
         }
         else
         {
@@ -97,6 +105,7 @@ public class AbstractFighter : MonoBehaviour {
         //Debug.Log("Action: "+_actionName);
         Action old_action = _current_action;
         _current_action = GetComponent<actionLoader>().LoadAction(_actionName);
+        old_action.TearDown(_current_action);
         Destroy(old_action);
         _current_action.SetUp(this);
     }

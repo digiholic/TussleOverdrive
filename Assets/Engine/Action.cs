@@ -43,10 +43,11 @@ public class Action : ScriptableObject {
         current_frame++;
     }
 
-    public virtual void OnDestroy() //Replaces TearDown from TUSSLE 1.0
+    public virtual void TearDown(Action new_action)
     {
 
     }
+
     public virtual void stateTransitions()
     {
         

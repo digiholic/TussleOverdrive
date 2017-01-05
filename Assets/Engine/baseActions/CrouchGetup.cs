@@ -13,9 +13,9 @@ public class CrouchGetup : Action {
         Debug.Log("CrouchGetupAction Created");
     }
 
-    public override void OnDestroy()
+    public override void TearDown(Action new_action)
     {
-        base.OnDestroy();
+        base.TearDown(new_action);
         //Delete crouch cancel armor
     }
 

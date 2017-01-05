@@ -14,13 +14,14 @@ public class Move : Action {
         sprite_rate = 3;
         loop = false;
         base.SetUp(_actor);
+        Debug.Log("MoveAction Created");
         direction = actor.facing;
     }
 
-    public override void OnDestroy()
+    public override void TearDown(Action new_action)
     {
-        base.OnDestroy();
-        //Next action direction? Do we still need this?
+        base.TearDown(new_action);
+        //TODO Next action direction? Do we still need this?
         if (actor.facing != direction)
             actor.flip();
         actor._xPreferred = 0;
@@ -50,6 +51,5 @@ public class Move : Action {
         //Check for dashing
         if (current_frame > last_frame)
             current_frame -= 1;
-        actor.GetComponent<SpriteLoader>().printSprite();
     }
 }

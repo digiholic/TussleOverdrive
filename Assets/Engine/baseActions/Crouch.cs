@@ -30,9 +30,9 @@ public class Crouch : Action {
          */
     }
 
-    public override void OnDestroy()
+    public override void TearDown(Action new_action)
     {
-        base.OnDestroy();
+        base.TearDown(new_action);
         actor._xPreferred = 0;
         //Remove crouch armor
     }
