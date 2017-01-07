@@ -57,6 +57,7 @@ public class AbstractFighter : MonoBehaviour {
     [HideInInspector]
     public int air_dodges = 1;
     // Use this for initialization
+
     void Start () {
         _ySpeed = 0;
         _charController = GetComponent<CharacterController>();
@@ -110,6 +111,15 @@ public class AbstractFighter : MonoBehaviour {
         _current_action.SetUp(this);
     }
 
+    /// <summary>
+    /// Gets the horizontal direction relative to the direction of facing, so that positive is forward and negative is backward.
+    /// </summary>
+    /// <returns> The float value of the direction relative to facing</returns>
+    public float GetDirectionRelative()
+    {
+        return Input.GetAxis("Horizontal") * facing;
+    }
+
     void OnTriggerStay(Collider other)
     {
         if (other.tag == "DropDown" && Input.GetAxis("Vertical") < -0.3)
@@ -149,5 +159,28 @@ public class AbstractFighter : MonoBehaviour {
         SpriteRenderer SpriteRender = GetComponent<SpriteRenderer>();
         SpriteRender.flipX = !SpriteRender.flipX;
         facing *= -1;
+    }
+
+    public void doGroundAttack()
+    {
+        if (GetDirectionRelative() > 0.0f)
+            doAction("ForwardAttack");
+        else if (GetDirectionRelative() < 0.0f)
+        {
+            flip();
+            doAction("ForwardAttack");
+        }
+        else if (Input.GetAxis("Vertical") > 0.0f)
+            doAction("UpAttack");
+        else if (Input.GetAxis("Vertical") < 0.0f)
+            doAction("DownAttack");
+        else
+            doAction("NeutralAttack");
+    }
+
+    public void activateHitbox()
+    {
+        //THIS IS SOME SERIOUSLY HACKY SHIT CHANGE THIS ASAP
+        transform.GetChild(0).GetComponent<Hitbox>().Activate(5);
     }
 }

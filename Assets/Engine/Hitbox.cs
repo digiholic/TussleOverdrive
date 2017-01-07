@@ -9,6 +9,9 @@ public class Hitbox : MonoBehaviour {
     public int trajectory = 0;
 
     private Collider col;
+    private bool active = false;
+    private int _life = -1; //If Life is -1. last until deactivated
+
 	// Use this for initialization
 	void Start () {
         col = GetComponent<Collider>();
@@ -16,16 +19,30 @@ public class Hitbox : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        if (active)
+        {
+            Debug.Log("Checking for hitbox connections");
+            Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents, col.transform.rotation, LayerMask.GetMask("Hurtbox"));
+            foreach (Collider c in cols)
+            {
+                c.SendMessage("onHit", this);
+            }
+
+            if (_life > 0)
+                _life--;
+            if (_life == 0)
+                Deactivate();
+        }
 	}
 
-    public void LaunchAttack()
+    public void Activate(int life = -1)
     {
-        Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents, col.transform.rotation, LayerMask.GetMask("Hurtbox"));
+        _life = life;
+        active = true;
+    }
 
-        foreach (Collider c in cols)
-        {
-            c.SendMessage("onHit",this);
-        }
+    public void Deactivate()
+    {
+        active = false;
     }
 }

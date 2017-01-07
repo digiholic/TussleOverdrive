@@ -8,7 +8,8 @@ public class StateTransitions : ScriptableObject {
     public static void NeutralState(AbstractFighter actor)
     {
         //shield
-        //attack
+        if (Input.GetButtonDown("Attack"))
+            actor.doGroundAttack();
         //special
         if (Input.GetButtonDown("Jump"))
             actor.doAction("Jump");
@@ -99,6 +100,7 @@ public class StateTransitions : ScriptableObject {
 
     public static void JumpState(AbstractFighter actor)
     {
+        /*
         AirControl(actor);
         TapReversible(actor);
         if (Input.GetButton("Shield") && actor.air_dodges >= 1)
@@ -108,6 +110,7 @@ public class StateTransitions : ScriptableObject {
         //if (Input.GetButton("Special"))
         //actor.doAirAttack();
         //Platform Phase and fastfall
+        */
     }
 
     public static void ShieldState(AbstractFighter actor)

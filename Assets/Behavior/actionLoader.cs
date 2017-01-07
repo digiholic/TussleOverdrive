@@ -18,6 +18,7 @@ public class actionLoader : MonoBehaviour {
             case "Stop": return ScriptableObject.CreateInstance<Stop>();
             case "Land": return ScriptableObject.CreateInstance<Land>();
             case "Dash": return ScriptableObject.CreateInstance<Dash>();
+            case "NeutralAttack": return ScriptableObject.CreateInstance<NeutralAttack>();
             default: return ScriptableObject.CreateInstance<Action>();
         }
     }

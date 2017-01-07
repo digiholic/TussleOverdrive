@@ -73,7 +73,6 @@ public class SpriteLoader : MonoBehaviour {
 
     public void ChangeSubimage(int _frame, bool _loop=true)
     {
-        //Debug.Log(current_sprite + " " + _frame);
         if (_frame < 0)
             _frame += sprites[current_sprite].Count;
         if (_loop)

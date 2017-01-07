@@ -19,7 +19,7 @@ public class Movement : MonoBehaviour {
         transform.Translate(movex*Speed*Time.deltaTime,0,0,Space.World);
         //GetComponent<Animator>().SetFloat("Speed", Mathf.Abs(movex));
         if (Input.GetKeyDown(KeyCode.Z))
-            hitbox.LaunchAttack();
+            hitbox.Activate();
     }
 
     void LaunchAttack(Collider col)
