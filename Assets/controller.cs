@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class controller : MonoBehaviour {
+public class GameController : MonoBehaviour {
     public Transform target = null;
     private GameObject bullet;
     private bool recording = false;

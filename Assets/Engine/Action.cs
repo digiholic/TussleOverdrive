@@ -13,12 +13,14 @@ public class Action : ScriptableObject {
     protected int last_frame;
 
     protected AbstractFighter actor;
-    
+
+    protected GameObject game_controller;
 
     public virtual void SetUp (AbstractFighter _actor) { //Replaces SetUp from TUSSLE 1.0
         last_frame = length;
         actor = _actor;
         actor.GetComponent<SpriteLoader>().ChangeSprite(sprite_name);
+        game_controller = actor.game_controller;
     }
 
     // Update is called once per frame

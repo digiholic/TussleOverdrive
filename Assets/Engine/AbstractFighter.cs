@@ -56,7 +56,9 @@ public class AbstractFighter : MonoBehaviour {
     public int tech_window = 0;
     [HideInInspector]
     public int air_dodges = 1;
-    // Use this for initialization
+    [HideInInspector]
+    public GameObject game_controller;
+
 
     void Start () {
         _ySpeed = 0;
@@ -64,10 +66,11 @@ public class AbstractFighter : MonoBehaviour {
         jumps = max_jumps;
         _current_action = ScriptableObject.CreateInstance<NeutralAction>();
         _current_action.SetUp(this);
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        game_controller = GameObject.Find("Controller");
+}
+
+// Update is called once per frame
+void Update () {
         if (_charController.isGrounded)
         {
             grounded = true;
@@ -181,6 +184,5 @@ public class AbstractFighter : MonoBehaviour {
     public void activateHitbox()
     {
         //THIS IS SOME SERIOUSLY HACKY SHIT CHANGE THIS ASAP
-        transform.GetChild(0).GetComponent<Hitbox>().Activate(5);
     }
 }

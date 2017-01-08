@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NeutralAttack : Action {
+public class NeutralAttack : BaseAttack {
 
     public override void SetUp(AbstractFighter _actor)
     {
@@ -11,6 +11,8 @@ public class NeutralAttack : Action {
         sprite_rate = 1;
         base.SetUp(_actor);
         Debug.Log("NeutralAttack Created");
+        Hitbox hbox = game_controller.GetComponent<HitboxLoader>().LoadHitbox(actor,0,0,64,64);
+        hitboxes.Add("hitbox",hbox);
     }
 
     public override void Update()
@@ -18,14 +20,7 @@ public class NeutralAttack : Action {
         base.Update();
         if (current_frame == 4)
         {
-            actor.activateHitbox();
+            hitboxes["hitbox"].Activate(5);
         }
-    }
-
-    public override void stateTransitions()
-    {
-        base.stateTransitions();
-        if (current_frame > last_frame)
-            actor.doAction("NeutralAction");
     }
 }

@@ -55,10 +55,13 @@
      <Compile Include="Assets\Engine\Action.cs" />
      <Compile Include="Assets\Engine\FPSDisplay.cs" />
      <Compile Include="Assets\Engine\Hitbox.cs" />
+     <Compile Include="Assets\Engine\HitboxLoader.cs" />
      <Compile Include="Assets\Engine\Hurtbox.cs" />
      <Compile Include="Assets\Engine\IMG2Sprite.cs" />
      <Compile Include="Assets\Engine\StateTransitions.cs" />
      <Compile Include="Assets\Engine\baseActions\AirJump.cs" />
+     <Compile Include="Assets\Engine\baseActions\Attacks\BaseAttack.cs" />
+     <Compile Include="Assets\Engine\baseActions\Attacks\NeutralAttack.cs" />
      <Compile Include="Assets\Engine\baseActions\Crouch.cs" />
      <Compile Include="Assets\Engine\baseActions\CrouchGetup.cs" />
      <Compile Include="Assets\Engine\baseActions\Dash.cs" />

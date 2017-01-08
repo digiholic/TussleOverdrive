@@ -26,6 +26,7 @@ public class Hitbox : MonoBehaviour {
             foreach (Collider c in cols)
             {
                 c.SendMessage("onHit", this);
+                active = false;
             }
 
             if (_life > 0)

@@ -8,6 +8,7 @@ public class SpriteLoader : MonoBehaviour {
     public string directory;
     public int width;
     public string prefix = "";
+    public float pixelsPerUnit = 100.0f;
 
     private Dictionary<string,List<Sprite>> sprites = new Dictionary<string,List<Sprite>>();
     private string current_sprite = "idle";
@@ -83,7 +84,7 @@ public class SpriteLoader : MonoBehaviour {
         GetComponent<SpriteRenderer>().sprite = sprites[current_sprite][current_frame];
     }
 
-    private Sprite LoadNewSprite(string FilePath, int frameNo, float PixelsPerUnit = 100.0f)
+    private Sprite LoadNewSprite(string FilePath, int frameNo)
     {
 
         // Load a PNG or JPG image from disk to a Texture2D, assign this texture to a new sprite and return its reference
@@ -97,7 +98,7 @@ public class SpriteLoader : MonoBehaviour {
         }
         else
         {
-            NewSprite = Sprite.Create(SpriteTexture, new Rect(width * frameNo, 0, width, SpriteTexture.height), new Vector2(0.5f, 0.5f), PixelsPerUnit);
+            NewSprite = Sprite.Create(SpriteTexture, new Rect(width * frameNo, 0, width, SpriteTexture.height), new Vector2(0.5f, 0.5f), pixelsPerUnit);
             return NewSprite;
         }
     }
