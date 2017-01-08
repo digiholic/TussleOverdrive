@@ -11,7 +11,7 @@ public class Land : Action {
         sprite_rate = 2;
         loop = false;
         base.SetUp(_actor);
-        Debug.Log("LandAction created");
+        //Debug.Log("LandAction created");
         //Set speed to platform speed
         /*block = reduce(lambda x, y: y if x is None or y.rect.top <= x.rect.top else x, _actor.checkGround(), None)
         if not block is None:

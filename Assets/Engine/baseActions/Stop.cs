@@ -12,7 +12,7 @@ public class Stop : Action {
         sprite_name = "pivot";
         sprite_rate = 3;
         base.SetUp(_actor);
-        Debug.Log("StopAction Created");
+        //Debug.Log("StopAction Created");
         //Overrides given length if the pivot grip won't allow it
         int num_frames = Mathf.FloorToInt((actor._xSpeed * actor.facing) / actor.pivot_grip);
         if (num_frames < last_frame)

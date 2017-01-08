@@ -23,7 +23,7 @@ public class Dash : Action {
         if (current_frame == 0)
             actor._xPreferred = actor.run_speed * actor.facing;
         StateTransitions.CheckGround(actor);
-        if ((Input.GetAxis("Horizontal") * actor.facing) < 0.0f) //If you are holding the opposite direction of movement
+        if ((actor.GetControllerAxis("Horizontal") * actor.facing) < 0.0f) //If you are holding the opposite direction of movement
             direction = actor.facing * -1;
         else
             direction = actor.facing;

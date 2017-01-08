@@ -25,7 +25,7 @@ public class Sandbag : MonoBehaviour {
     {
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Terrain"))
         {
-            Debug.Log("Landed");
+            //Debug.Log("Landed");
             launching = false;
         }
     }
@@ -34,7 +34,7 @@ public class Sandbag : MonoBehaviour {
     {
         Vector3 launchVector = new Vector3(hitbox.base_knockback, 0, 0);
         launchVector = Quaternion.Euler(0, 0, hitbox.trajectory) * launchVector;
-        Debug.Log(launchVector);
+        //Debug.Log(launchVector);
         rb.AddForce(launchVector);
         //GetComponent<CharacterController>().Move(launchVector);
         launching = true;

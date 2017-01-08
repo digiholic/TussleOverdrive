@@ -8,16 +8,16 @@ public class StateTransitions : ScriptableObject {
     public static void NeutralState(AbstractFighter actor)
     {
         //shield
-        if (Input.GetButtonDown("Attack"))
+        if (actor.GetControllerButtonDown("Attack"))
             actor.doGroundAttack();
         //special
-        if (Input.GetButtonDown("Jump"))
+        if (actor.GetControllerButtonDown("Jump"))
             actor.doAction("Jump");
-        if (Input.GetAxis("Vertical") < -0.5f)
+        if (actor.GetControllerAxis("Vertical") < -0.5f)
             actor.doAction("Crouch");
-        if (Input.GetAxis("Horizontal") != 0.0f)
+        if (actor.GetControllerAxis("Horizontal") != 0.0f)
         {
-            float direction = Input.GetAxis("Horizontal");
+            float direction = actor.GetControllerAxis("Horizontal");
             if (direction * actor.facing < 0.0f) //If the movement and facing do not match
                 actor.flip();
             actor.doAction("Move");
@@ -26,36 +26,36 @@ public class StateTransitions : ScriptableObject {
 
     public static void CrouchState(AbstractFighter actor)
     {
-        if (Input.GetButton("Shield"))
+        if (actor.GetControllerButton("Shield"))
         {
             //TODO forward backward roll
         }
-        //if (Input.GetButton("Attack"))
+        //if (actor.GetControllerButton("Attack"))
         //doAction("DownTilt")
-        //if (Input.GetButton("Special"))
+        //if (actor.GetControllerButton("Special"))
         //doAction("DownSpecial")
-        if (Input.GetButton("Jump"))
+        if (actor.GetControllerButton("Jump"))
             actor.doAction("Jump");
-        if (Input.GetAxis("Vertical") >= -0.5f && actor._current_action.GetType() != typeof(CrouchGetup))
+        if (actor.GetControllerAxis("Vertical") >= -0.5f && actor._current_action.GetType() != typeof(CrouchGetup))
             actor.doAction("CrouchGetup");
     }
 
     public static void AirState(AbstractFighter actor)
     {
         StateTransitions.AirControl(actor);
-        if (Input.GetButton("Shield") && actor.air_dodges >= 1)
+        if (actor.GetControllerButton("Shield") && actor.air_dodges >= 1)
         {
             //actor.doAction("AirDodge");
         }
-        if (Input.GetButton("Attack"))
+        if (actor.GetControllerButton("Attack"))
         {
             //attacks TODO
         }
-        if (Input.GetButton("Special"))
+        if (actor.GetControllerButton("Special"))
         {
             //specials TODO
         }
-        if (Input.GetButtonDown("Jump") && actor.jumps > 0)
+        if (actor.GetControllerButtonDown("Jump") && actor.jumps > 0)
         {
             actor.doAction("AirJump");
         }
@@ -64,15 +64,15 @@ public class StateTransitions : ScriptableObject {
 
     public static void MoveState(AbstractFighter actor)
     {
-        float direction = Input.GetAxis("Horizontal") * actor.facing;
+        float direction = actor.GetControllerAxis("Horizontal") * actor.facing;
         //shield
         //attack
         //special
-        if (Input.GetButtonDown("Jump"))
+        if (actor.GetControllerButtonDown("Jump"))
             actor.doAction("Jump");
-        else if (Input.GetAxis("Vertical") < -0.5f)
+        else if (actor.GetControllerAxis("Vertical") < -0.5f)
             actor.doAction("Crouch");
-        else if (Input.GetAxis("Horizontal") == 0.0f)
+        else if (actor.GetControllerAxis("Horizontal") == 0.0f)
             actor.doAction("Stop");
         //Two other kinds of stop? Not sure if these are needed
     }
@@ -82,7 +82,7 @@ public class StateTransitions : ScriptableObject {
         //shield
         //attack
         //special
-        if (Input.GetButtonDown("Jump"))
+        if (actor.GetControllerButtonDown("Jump"))
             actor.doAction("Jump");
         //if repeated, dash
         //pivot
@@ -103,11 +103,11 @@ public class StateTransitions : ScriptableObject {
         /*
         AirControl(actor);
         TapReversible(actor);
-        if (Input.GetButton("Shield") && actor.air_dodges >= 1)
+        if (actor.GetControllerButton("Shield") && actor.air_dodges >= 1)
             actor.doAction("AirDodge");
-        //if (Input.GetButton("Attack"))
+        //if (actor.GetControllerButton("Attack"))
         //actor.doAirAttack();
-        //if (Input.GetButton("Special"))
+        //if (actor.GetControllerButton("Special"))
         //actor.doAirAttack();
         //Platform Phase and fastfall
         */
@@ -135,7 +135,7 @@ public class StateTransitions : ScriptableObject {
 
     public static void AirControl(AbstractFighter actor)
     {
-        actor._xPreferred = Input.GetAxis("Horizontal") * actor.max_air_speed;
+        actor._xPreferred = actor.GetControllerAxis("Horizontal") * actor.max_air_speed;
         if (Mathf.Abs(actor._xSpeed) > actor.max_air_speed)
             actor.accel(actor.air_control);
         if (Mathf.Abs(actor._ySpeed) > Mathf.Abs(actor.max_fall_speed))

@@ -12,7 +12,7 @@ public class Fall : Action
         base.SetUp(_actor);
         actor._xPreferred = 0;
         actor._yPreferred = actor.max_fall_speed;
-        Debug.Log("FallAction Created");
+        //Debug.Log("FallAction Created");
     }
     
     public override void stateTransitions()

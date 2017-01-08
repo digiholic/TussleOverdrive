@@ -17,7 +17,7 @@ public class GameController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         /*
-        if (Input.GetButtonDown("Fire1"))
+        if (actor.GetControllerButtonDown("Fire1"))
         {
             Vector3 objectPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,Input.mousePosition.y, 10));
             objectPos.z = 0;

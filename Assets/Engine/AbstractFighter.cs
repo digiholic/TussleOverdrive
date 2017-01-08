@@ -5,6 +5,8 @@ using UnityEngine;
 public class AbstractFighter : MonoBehaviour {
     private CharacterController _charController;
 
+    public int player_num = 0;
+
     public float weight = 10.0f;
     public float gravity = -9.8f;
     public float max_fall_speed = -20.0f;
@@ -81,7 +83,7 @@ void Update () {
         {
             grounded = false;
             _ySpeed += gravity * 5 * Time.deltaTime;
-            if (_ySpeed < max_fall_speed || (_ySpeed < 0 && Input.GetAxis("Vertical") < -0.3))
+            if (_ySpeed < max_fall_speed || (_ySpeed < 0 && GetControllerAxis("Vertical") < -0.3))
             {
                 _ySpeed = max_fall_speed;
             } 
@@ -120,12 +122,12 @@ void Update () {
     /// <returns> The float value of the direction relative to facing</returns>
     public float GetDirectionRelative()
     {
-        return Input.GetAxis("Horizontal") * facing;
+        return GetControllerAxis("Horizontal") * facing;
     }
 
     void OnTriggerStay(Collider other)
     {
-        if (other.tag == "DropDown" && Input.GetAxis("Vertical") < -0.3)
+        if (other.tag == "DropDown" && GetControllerAxis("Vertical") < -0.3)
         {
             Physics.IgnoreCollision(GetComponent<CharacterController>(), other.transform.parent.GetComponent<Collider>(), true);
         }
@@ -173,9 +175,9 @@ void Update () {
             flip();
             doAction("ForwardAttack");
         }
-        else if (Input.GetAxis("Vertical") > 0.0f)
+        else if (GetControllerAxis("Vertical") > 0.0f)
             doAction("UpAttack");
-        else if (Input.GetAxis("Vertical") < 0.0f)
+        else if (GetControllerAxis("Vertical") < 0.0f)
             doAction("DownAttack");
         else
             doAction("NeutralAttack");
@@ -185,4 +187,26 @@ void Update () {
     {
         //THIS IS SOME SERIOUSLY HACKY SHIT CHANGE THIS ASAP
     }
+
+    
+    public float GetControllerAxis(string axisName)
+    {
+        return Input.GetAxis(player_num + "_" + axisName);
+    }
+
+    public bool GetControllerButton(string buttonName)
+    {
+        return Input.GetButton(player_num + "_" + buttonName);
+    }
+
+    public bool GetControllerButtonDown(string buttonName)
+    {
+        return Input.GetButtonDown(player_num + "_" + buttonName);
+    }
+
+    public bool GetControllerButtonUp(string buttonName)
+    {
+        return Input.GetButtonUp(player_num + "_" + buttonName);
+    }
+    
 }

@@ -10,8 +10,8 @@ public class NeutralAttack : BaseAttack {
         sprite_name = "neutral";
         sprite_rate = 1;
         base.SetUp(_actor);
-        Debug.Log("NeutralAttack Created");
-        Hitbox hbox = game_controller.GetComponent<HitboxLoader>().LoadHitbox(actor,0,0,64,64);
+        //Debug.Log("NeutralAttack Created");
+        Hitbox hbox = game_controller.GetComponent<HitboxLoader>().LoadHitbox(actor,0,0,92,92);
         hitboxes.Add("hitbox",hbox);
     }
 

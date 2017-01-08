@@ -9,7 +9,7 @@ public class Crouch : Action {
         length = 3;
         base.SetUp(_actor);
         //TODO enable crouch cancel armor
-        Debug.Log("CrouchAction Created");
+        //Debug.Log("CrouchAction Created");
     }
 
     public override void stateTransitions()
@@ -41,7 +41,7 @@ public class Crouch : Action {
     {
         base.Update();
         actor.accel(actor.pivot_grip);
-        actor._xPreferred = Input.GetAxis("Horizontal") * actor.crawl_speed;
+        actor._xPreferred = actor.GetControllerAxis("Horizontal") * actor.crawl_speed;
         //actor.GetComponent<SpriteLoader>().printSprite();
     }
 

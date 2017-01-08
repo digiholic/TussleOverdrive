@@ -10,7 +10,7 @@ public class CrouchGetup : Action {
         length = 6;
         sprite_rate = -2;
         base.SetUp(_actor);
-        Debug.Log("CrouchGetupAction Created");
+        //Debug.Log("CrouchGetupAction Created");
     }
 
     public override void TearDown(Action new_action)

@@ -12,7 +12,7 @@ public class Jump : Action
         jump_frame = 5;
         length = 6;
         base.SetUp(_actor);
-        Debug.Log("JumpAction Created");
+        //Debug.Log("JumpAction Created");
     }
 
     public override void Update()
@@ -20,7 +20,7 @@ public class Jump : Action
         base.Update();
         if (current_frame == jump_frame)
         {
-            if (Input.GetButton("Jump"))
+            if (actor.GetControllerButton("Jump"))
                 actor._ySpeed = actor.jump_height;
             else
                 actor._ySpeed = actor.short_hop_height;
@@ -38,11 +38,11 @@ public class Jump : Action
     public override void stateTransitions()
     {
         base.stateTransitions();
-        //if (Input.GetButton("Shield"))
+        //if (actor.GetControllerButton("Shield"))
         //actor.doAction("AirDodge");
-        //if (Input.GetButton("Attack")) //&& actor.CheckSmash("Up")
+        //if (actor.GetControllerButton("Attack")) //&& actor.CheckSmash("Up")
         //actor.doAction("UpSmash")
-        //if (Input.GetButton("Special")) //&& actor.CheckSmash("Up")
+        //if (actor.GetControllerButton("Special")) //&& actor.CheckSmash("Up")
         //actor.doAction("UpSpecial")
         if (current_frame < jump_frame)
             StateTransitions.JumpState(actor);

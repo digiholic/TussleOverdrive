@@ -21,7 +21,7 @@ public class Hitbox : MonoBehaviour {
 	void Update () {
         if (active)
         {
-            Debug.Log("Checking for hitbox connections");
+            //Debug.Log("Checking for hitbox connections");
             Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents, col.transform.rotation, LayerMask.GetMask("Hurtbox"));
             foreach (Collider c in cols)
             {

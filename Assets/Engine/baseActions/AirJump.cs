@@ -12,7 +12,7 @@ public class AirJump : Action {
         sprite_rate = 2;
         length = 8;
         base.SetUp(_actor);
-        Debug.Log("AirJumpAction Created");
+        //Debug.Log("AirJumpAction Created");
     }
 
     public override void Update()
@@ -32,9 +32,9 @@ public class AirJump : Action {
     public override void stateTransitions()
     {
         base.stateTransitions();
-        //if (Input.GetButton("Attack")) //&& actor.CheckSmash("Up")
+        //if (actor.GetControllerButton("Attack")) //&& actor.CheckSmash("Up")
         //actor.doAction("UpSmash")
-        //if (Input.GetButton("Special")) //&& actor.CheckSmash("Up")
+        //if (actor.GetControllerButton("Special")) //&& actor.CheckSmash("Up")
         //actor.doAction("UpSpecial")
         StateTransitions.JumpState(actor);
         if (current_frame > last_frame)

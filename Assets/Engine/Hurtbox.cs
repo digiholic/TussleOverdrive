@@ -17,7 +17,7 @@ public class Hurtbox : MonoBehaviour {
 
     void onHit(Hitbox hitbox)
     {
-        Debug.Log("Hurtbox has been hit");
+        //Debug.Log("Hurtbox has been hit");
         fighter.SendMessage("getLaunched",hitbox);
     }
 }

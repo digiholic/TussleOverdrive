@@ -14,7 +14,7 @@ public class Move : Action {
         sprite_rate = 3;
         loop = false;
         base.SetUp(_actor);
-        Debug.Log("MoveAction Created");
+        //Debug.Log("MoveAction Created");
         direction = actor.facing;
     }
 
@@ -36,7 +36,7 @@ public class Move : Action {
         {
             actor.accel(actor.static_grip);
         }
-        if ((Input.GetAxis("Horizontal") * actor.facing) < 0.0f) //If you are holding the opposite direction of movement
+        if ((actor.GetControllerAxis("Horizontal") * actor.facing) < 0.0f) //If you are holding the opposite direction of movement
             direction = actor.facing * -1;
         else
             direction = actor.facing;

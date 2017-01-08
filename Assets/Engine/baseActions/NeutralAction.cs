@@ -7,7 +7,7 @@ public class NeutralAction : Action {
     {
         sprite_name = "idle";
         base.SetUp(_actor);
-        Debug.Log("NeutralAction Created");
+        //Debug.Log("NeutralAction Created");
     }
 
     public override void OnLastFrame()
