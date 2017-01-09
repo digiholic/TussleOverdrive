@@ -31,7 +31,7 @@ public class Jump : Action
                 else
                     actor._xSpeed = actor.aerial_transition_speed;
             }
-            actor.GetComponent<SpriteLoader>().ChangeSprite("jump");
+            actor.ChangeSprite("jump");
         }
     }
 

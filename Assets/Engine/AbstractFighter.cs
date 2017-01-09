@@ -162,7 +162,10 @@ void Update () {
     public void flip()
     {
         SpriteRenderer SpriteRender = GetComponent<SpriteRenderer>();
-        SpriteRender.flipX = !SpriteRender.flipX;
+        if (SpriteRender != null)
+            SpriteRender.flipX = !SpriteRender.flipX;
+        //else
+        //Flip Renderer
         facing *= -1;
     }
 
@@ -183,12 +186,27 @@ void Update () {
             doAction("NeutralAttack");
     }
 
-    public void activateHitbox()
+    public void ChangeSprite(string sprite_name, int frame=0)
     {
-        //THIS IS SOME SERIOUSLY HACKY SHIT CHANGE THIS ASAP
+        if (GetComponent<SpriteLoader>() != null)
+            GetComponent<SpriteLoader>().ChangeSprite(sprite_name, frame);
     }
 
-    
+    public void ChangeSubimage(int frame, bool loop=true)
+    {
+        if (GetComponent<SpriteLoader>() != null)
+            GetComponent<SpriteLoader>().ChangeSubimage(frame,loop);
+    }
+
+
+    public void GetHit(Hitbox hitbox)
+    {
+        Debug.Log("Got Hit");
+    }
+
+    /**
+     * Shorthand for getting the input axis that this fighter is reading from.
+     **/
     public float GetControllerAxis(string axisName)
     {
         return Input.GetAxis(player_num + "_" + axisName);

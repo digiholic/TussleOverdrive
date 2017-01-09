@@ -19,7 +19,7 @@ public class Action : ScriptableObject {
     public virtual void SetUp (AbstractFighter _actor) { //Replaces SetUp from TUSSLE 1.0
         last_frame = length;
         actor = _actor;
-        actor.GetComponent<SpriteLoader>().ChangeSprite(sprite_name);
+        actor.ChangeSprite(sprite_name);
         game_controller = actor.game_controller;
     }
 
@@ -28,7 +28,7 @@ public class Action : ScriptableObject {
         int sprite_number = Mathf.FloorToInt(current_frame / sprite_rate);
         if (sprite_rate < 0)
             sprite_number = Mathf.FloorToInt(current_frame / sprite_rate) - 1;
-        actor.GetComponent<SpriteLoader>().ChangeSubimage(sprite_number,loop);
+        actor.ChangeSubimage(sprite_number,loop);
         if (current_frame >= last_frame)
         {
             this.OnLastFrame();
