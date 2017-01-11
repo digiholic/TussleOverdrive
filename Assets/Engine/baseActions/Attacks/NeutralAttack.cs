@@ -12,7 +12,7 @@ public class NeutralAttack : BaseAttack {
         base.SetUp(_actor);
         //Debug.Log("NeutralAttack Created");
         Hitbox hbox = game_controller.GetComponent<HitboxLoader>().LoadHitbox(actor,0,0,92,92);
-        hitboxes.Add("hitbox",hbox);
+        hitboxes.Add("hitbox", hbox);
     }
 
     public override void Update()

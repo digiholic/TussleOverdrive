@@ -60,7 +60,8 @@ public class AbstractFighter : MonoBehaviour {
     public int air_dodges = 1;
     [HideInInspector]
     public GameObject game_controller;
-
+    [HideInInspector]
+    public float damage_percent = 0;
 
     void Start () {
         _ySpeed = 0;
@@ -77,7 +78,6 @@ void Update () {
         {
             grounded = true;
             jumps = max_jumps;
-            _ySpeed = -1.0f;
         }
         else
         {
@@ -201,7 +201,9 @@ void Update () {
 
     public void GetHit(Hitbox hitbox)
     {
-        Debug.Log("Got Hit");
+        _ySpeed = 12.0f;
+        damage_percent += 10; //damage_percent += hitbox.damage;
+        Debug.Log("GetHit");
     }
 
     /**
