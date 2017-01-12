@@ -14,8 +14,11 @@ public class SpriteLoader : MonoBehaviour {
     private string current_sprite = "idle";
     private int current_frame = 0;
 
-	// Use this for initialization
+    private SpriteRenderer sprite_renderer;
+
+    // Use this for initialization
 	void Awake () {
+        sprite_renderer = GetComponent<SpriteRenderer>();
 
         DirectoryInfo info = new DirectoryInfo(directory);
         FileInfo[] fileInfo = info.GetFiles();
@@ -64,7 +67,7 @@ public class SpriteLoader : MonoBehaviour {
         {
             current_sprite = _sprite_name;
             current_frame = _frame;
-            GetComponent<SpriteRenderer>().sprite = sprites[current_sprite][current_frame];
+            sprite_renderer.sprite = sprites[current_sprite][current_frame];
         }
         else
         {
@@ -81,7 +84,7 @@ public class SpriteLoader : MonoBehaviour {
         else
             current_frame = Mathf.Min(_frame, sprites[current_sprite].Count-1);
 
-        GetComponent<SpriteRenderer>().sprite = sprites[current_sprite][current_frame];
+        sprite_renderer.sprite = sprites[current_sprite][current_frame];
     }
 
     private Sprite LoadNewSprite(string FilePath, int frameNo)

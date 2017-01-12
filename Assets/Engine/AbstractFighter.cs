@@ -63,7 +63,16 @@ public class AbstractFighter : MonoBehaviour {
     [HideInInspector]
     public float damage_percent = 0;
 
+
+    private SpriteRenderer sprite;
+    private SpriteLoader sprite_loader;
+    private actionLoader action_loader;
+
     void Start () {
+        sprite = GetComponent<SpriteRenderer>();
+        sprite_loader = GetComponent<SpriteLoader>();
+        action_loader = GetComponent<actionLoader>();
+
         _ySpeed = 0;
         _charController = GetComponent<CharacterController>();
         jumps = max_jumps;
@@ -110,7 +119,7 @@ void Update () {
     {
         //Debug.Log("Action: "+_actionName);
         Action old_action = _current_action;
-        _current_action = GetComponent<actionLoader>().LoadAction(_actionName);
+        _current_action = action_loader.LoadAction(_actionName);
         old_action.TearDown(_current_action);
         Destroy(old_action);
         _current_action.SetUp(this);
@@ -129,7 +138,7 @@ void Update () {
     {
         if (other.tag == "DropDown" && GetControllerAxis("Vertical") < -0.3)
         {
-            Physics.IgnoreCollision(GetComponent<CharacterController>(), other.transform.parent.GetComponent<Collider>(), true);
+            Physics.IgnoreCollision(_charController, other.transform.parent.GetComponent<Collider>(), true);
         }
     }
 
@@ -137,7 +146,7 @@ void Update () {
     {
         if (other.tag == "DropDown")
         {
-            Physics.IgnoreCollision(GetComponent<CharacterController>(), other.transform.parent.GetComponent<Collider>(), false);
+            Physics.IgnoreCollision(_charController, other.transform.parent.GetComponent<Collider>(), false);
         }
     }
 
@@ -161,9 +170,8 @@ void Update () {
 
     public void flip()
     {
-        SpriteRenderer SpriteRender = GetComponent<SpriteRenderer>();
-        if (SpriteRender != null)
-            SpriteRender.flipX = !SpriteRender.flipX;
+        if (sprite != null)
+            sprite.flipX = !sprite.flipX;
         //else
         //Flip Renderer
         facing *= -1;
@@ -188,14 +196,15 @@ void Update () {
 
     public void ChangeSprite(string sprite_name, int frame=0)
     {
-        if (GetComponent<SpriteLoader>() != null)
-            GetComponent<SpriteLoader>().ChangeSprite(sprite_name, frame);
+
+        if (sprite_loader != null)
+            sprite_loader.ChangeSprite(sprite_name, frame);
     }
 
     public void ChangeSubimage(int frame, bool loop=true)
     {
-        if (GetComponent<SpriteLoader>() != null)
-            GetComponent<SpriteLoader>().ChangeSubimage(frame,loop);
+        if (sprite_loader != null)
+            sprite_loader.ChangeSubimage(frame,loop);
     }
 
 

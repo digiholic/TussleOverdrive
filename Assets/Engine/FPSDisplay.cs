@@ -29,8 +29,5 @@ public class FPSDisplay : MonoBehaviour
         float fps = 1.0f / deltaTime;
         string text = string.Format("{0:0.0} ms ({1:0.} fps)", msec, fps);
         GUI.Label(rect, text, style);
-        Rect rect2 = new Rect(0, 20, w, h * 2 / 100);
-        string text2 = Input.GetAxis("0_Horizontal").ToString();
-        GUI.Label(rect2, text2, style);
     }
 }
