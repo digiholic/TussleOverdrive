@@ -170,10 +170,11 @@ void Update () {
 
     public void flip()
     {
-        if (sprite != null)
-            sprite.flipX = !sprite.flipX;
+        //if (sprite != null)
+        //    sprite.flipX = !sprite.flipX;
         //else
-        //Flip Renderer
+        Debug.Log("Flipping");
+        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y,1.0f);
         facing *= -1;
     }
 

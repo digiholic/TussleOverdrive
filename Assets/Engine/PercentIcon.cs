@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PercentIcon : MonoBehaviour {
-    public AbstractFighter fighter;
+    public AbstractFighter fighter = null;
 
     private Text textComponent;
 	// Use this for initialization
@@ -14,6 +14,8 @@ public class PercentIcon : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (fighter == null)
+            Destroy(this.gameObject);
         int damage = Mathf.FloorToInt(fighter.damage_percent);
         textComponent.text = damage.ToString() + "%";
         float r = Mathf.Min(1.0f, damage / 300.0f);
