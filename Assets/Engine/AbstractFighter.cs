@@ -71,6 +71,8 @@ public class AbstractFighter : MonoBehaviour {
         sprite_loader = GetComponent<SpriteLoader>();
         action_loader = GetComponent<actionLoader>();
 
+        facing *= -1 * player_num;
+
         _ySpeed = 0;
         _charController = GetComponent<CharacterController>();
         jumps = max_jumps;
@@ -172,8 +174,10 @@ public class AbstractFighter : MonoBehaviour {
         //    sprite.flipX = !sprite.flipX;
         //else
         Debug.Log("Flipping");
-        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y,1.0f);
+        //transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y,transform.localScale.z);
+        transform.Rotate(transform.rotation.x, 180, transform.rotation.z);
         facing *= -1;
+
     }
 
     public void doGroundAttack()
