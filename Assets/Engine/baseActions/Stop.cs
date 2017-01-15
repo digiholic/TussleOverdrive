@@ -47,7 +47,7 @@ public class Stop : Action {
     {
         base.TearDown(new_action);
         //Setting direction
-        if (actor.facing != direction)
-            actor.flip();
+        //if (actor.facing != direction)
+        //    actor.flip();
     }
 }

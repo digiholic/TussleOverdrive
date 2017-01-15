@@ -13,6 +13,8 @@ public class HitboxLoader : MonoBehaviour {
         float scale = owner.GetComponent<SpriteLoader>().pixelsPerUnit;
         hbox.transform.localPosition = new Vector3(centerx/scale, centery/scale, 0.0f);
         hbox.transform.localScale = new Vector3(width/scale, height/scale, 1.0f);
+        if (owner.facing == -1)
+            hbox.trajectory = 180 - hbox.trajectory;
         //Debug.Log(hbox.transform.position);
         return hbox;
     }

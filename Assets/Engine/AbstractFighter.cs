@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AbstractFighter : MonoBehaviour {
-    private CharacterController _charController;
-
     public int player_num = 0;
 
     public float weight = 10.0f;
@@ -33,7 +31,7 @@ public class AbstractFighter : MonoBehaviour {
     public float aerial_transition_speed = 9.0f;
 
 
-    //Public varialbes that other classes need, but aren't set in the editor:
+    //Public variables that other classes need, but aren't set in the editor:
     [HideInInspector]
     public bool grounded = false;
     [HideInInspector]
@@ -63,7 +61,7 @@ public class AbstractFighter : MonoBehaviour {
     [HideInInspector]
     public float damage_percent = 0;
 
-
+    private CharacterController _charController;
     private SpriteRenderer sprite;
     private SpriteLoader sprite_loader;
     private actionLoader action_loader;
@@ -79,10 +77,10 @@ public class AbstractFighter : MonoBehaviour {
         _current_action = ScriptableObject.CreateInstance<NeutralAction>();
         _current_action.SetUp(this);
         game_controller = GameObject.Find("Controller");
-}
+    }
 
-// Update is called once per frame
-void Update () {
+    // Update is called once per frame
+    void Update () {
         if (_charController.isGrounded)
         {
             grounded = true;
@@ -211,11 +209,54 @@ void Update () {
 
     public void GetHit(Hitbox hitbox)
     {
-        _ySpeed = 12.0f;
-        damage_percent += 10; //damage_percent += hitbox.damage;
         Debug.Log("GetHit");
+
+        float weight_constant = 1.4f;
+        float flat_constant = 5.0f;
+
+        float percent_portion = (damage_percent / 10.0f) + ((damage_percent * hitbox.damage) / 20.0f);
+        float weight_portion = 200.0f / (weight * hitbox.weight_influence + 100);
+        float scaled_kb = (((percent_portion * weight_portion * weight_constant) + flat_constant) * hitbox.knockback_growth);
+        ApplyKnockback(scaled_kb + hitbox.base_knockback, hitbox.trajectory);
+        DealDamage(hitbox.damage);
     }
 
+    public void DealDamage(float _damage)
+    {
+        damage_percent += _damage;
+        damage_percent = Mathf.Min(999, damage_percent);
+
+        //TODO log damage data
+    }
+
+    public void ApplyHitstop(float _damage, float _hitlagMultiplier)
+    {
+
+    }
+
+    public void ApplyKnockback(float _total_kb, float _trajectory)
+    {
+        //Debug.Log(_total_kb);
+        _trajectory *= Mathf.Deg2Rad;
+        Vector2 trajectory_vec = new Vector2(Mathf.Cos(_trajectory), Mathf.Sin(_trajectory));
+
+        //DI
+        //Vector2 trajectory_vec = new Vector2(Mathf.Cos(_trajectory / 180 * Mathf.PI), Mathf.Sin(_trajectory / 180 * Mathf.PI));
+        //di_vec = self.getSmoothedInput(int(self.key_bindings.timing_window['smoothing_window']))
+        //di_multiplier = 1 + numpy.dot(di_vec, trajectory_vec) * .05
+        //_trajectory += numpy.cross(di_vec, trajectory_vec) * 13.5
+
+        trajectory_vec *= _total_kb;
+        //Debug.Log(trajectory_vec);
+        _xSpeed = trajectory_vec.x;
+        _ySpeed = trajectory_vec.y;
+        //self.setSpeed((_total_kb) * di_multiplier, _trajectory)
+    }
+
+    public void ApplyHitstun(float _total_kb, float _hitstunMultiplier, float _baseHitstun, float _trajectory)
+    {
+
+    }
     /**
      * Shorthand for getting the input axis that this fighter is reading from.
      **/

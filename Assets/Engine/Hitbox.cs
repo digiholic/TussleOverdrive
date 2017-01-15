@@ -8,6 +8,8 @@ public class Hitbox : MonoBehaviour {
     public float knockback_growth = 0.0f;
     public int trajectory = 0;
 
+    public float weight_influence = 1.0f;
+
     private Collider col;
     private bool active = false;
     private int _life = -1; //If Life is -1. last until deactivated
