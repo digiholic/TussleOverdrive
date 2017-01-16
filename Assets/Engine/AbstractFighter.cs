@@ -65,6 +65,7 @@ public class AbstractFighter : MonoBehaviour {
     private SpriteRenderer sprite;
     private SpriteLoader sprite_loader;
     private actionLoader action_loader;
+    private Animator anim;
     private float last_x_axis;
     private float x_axis_delta;
     private float last_y_axis;
@@ -75,6 +76,7 @@ public class AbstractFighter : MonoBehaviour {
         sprite = GetComponent<SpriteRenderer>();
         sprite_loader = GetComponent<SpriteLoader>();
         action_loader = GetComponent<actionLoader>();
+        anim = GetComponent<Animator>();
 
         if (player_num % 2 == 0)
             facing = 1;
@@ -233,6 +235,8 @@ public class AbstractFighter : MonoBehaviour {
 
         if (sprite_loader != null)
             sprite_loader.ChangeSprite(sprite_name, frame);
+        if (anim != null)
+            anim.CrossFade(sprite_name, 0f);   
     }
 
     public void ChangeSubimage(int frame, bool loop=true)

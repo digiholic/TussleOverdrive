@@ -1,0 +1,167 @@
+fileFormatVersion: 2
+guid: 372eaca4f551e494fa8f637de800017b
+timeCreated: 1484542811
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Arm_L
+    100004: Arm_R
+    100006: Armature
+    100008: Body
+    100010: Fingers1_L
+    100012: Fingers1_R
+    100014: Fingers2_L
+    100016: Fingers2_R
+    100018: Foot1_L
+    100020: Foot1_R
+    100022: Foot2_L
+    100024: Foot2_R
+    100026: ForeArm_L
+    100028: ForeArm_R
+    100030: Hair
+    100032: Hair1
+    100034: Hair2
+    100036: Hand_L
+    100038: Hand_R
+    100040: Head
+    100042: Leg_L
+    100044: Leg_R
+    100046: LegControl_L
+    100048: LegControl_R
+    100050: Lower_back
+    100052: Neck
+    100054: Shoulder_L
+    100056: Shoulder_R
+    100058: Strand1_L
+    100060: Strand1_R
+    100062: Strand2_L
+    100064: Strand2_R
+    100066: StrandCenter
+    100068: Thigh_L
+    100070: Thigh_R
+    100072: Toe_L
+    100074: Toe_R
+    100076: Twintail1_L
+    100078: Twintail1_R
+    100080: Twintail2_L
+    100082: Twintail2_R
+    100084: Upper_back
+    400000: //RootNode
+    400002: Arm_L
+    400004: Arm_R
+    400006: Armature
+    400008: Body
+    400010: Fingers1_L
+    400012: Fingers1_R
+    400014: Fingers2_L
+    400016: Fingers2_R
+    400018: Foot1_L
+    400020: Foot1_R
+    400022: Foot2_L
+    400024: Foot2_R
+    400026: ForeArm_L
+    400028: ForeArm_R
+    400030: Hair
+    400032: Hair1
+    400034: Hair2
+    400036: Hand_L
+    400038: Hand_R
+    400040: Head
+    400042: Leg_L
+    400044: Leg_R
+    400046: LegControl_L
+    400048: LegControl_R
+    400050: Lower_back
+    400052: Neck
+    400054: Shoulder_L
+    400056: Shoulder_R
+    400058: Strand1_L
+    400060: Strand1_R
+    400062: Strand2_L
+    400064: Strand2_R
+    400066: StrandCenter
+    400068: Thigh_L
+    400070: Thigh_R
+    400072: Toe_L
+    400074: Toe_R
+    400076: Twintail1_L
+    400078: Twintail1_R
+    400080: Twintail2_L
+    400082: Twintail2_R
+    400084: Upper_back
+    4300000: Hair
+    4300002: Body
+    7400000: Default Take
+    9500000: //RootNode
+    13700000: Body
+    13700002: Hair
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
