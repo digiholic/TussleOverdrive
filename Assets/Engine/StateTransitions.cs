@@ -30,8 +30,8 @@ public class StateTransitions : ScriptableObject {
         {
             //TODO forward backward roll
         }
-        //if (actor.GetControllerButton("Attack"))
-        //doAction("DownTilt")
+        if (actor.GetControllerButton("Attack"))
+            actor.doAction("DownAttack");
         //if (actor.GetControllerButton("Special"))
         //doAction("DownSpecial")
         if (actor.GetControllerButton("Jump"))
@@ -49,7 +49,7 @@ public class StateTransitions : ScriptableObject {
         }
         if (actor.GetControllerButton("Attack"))
         {
-            //attacks TODO
+            actor.doAirAttack();
         }
         if (actor.GetControllerButton("Special"))
         {
@@ -64,9 +64,10 @@ public class StateTransitions : ScriptableObject {
 
     public static void MoveState(AbstractFighter actor)
     {
-        float direction = actor.GetControllerAxis("Horizontal") * actor.facing;
+        //float direction = actor.GetControllerAxis("Horizontal") * actor.facing;
         //shield
-        //attack
+        if (actor.GetControllerButtonDown("Attack"))
+            actor.doGroundAttack();
         //special
         if (actor.GetControllerButtonDown("Jump"))
             actor.doAction("Jump");

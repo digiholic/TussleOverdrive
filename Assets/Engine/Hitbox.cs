@@ -38,6 +38,14 @@ public class Hitbox : MonoBehaviour {
         }
 	}
 
+    public void LoadValuesFromDict(Dictionary<string,float> dict)
+    {
+        damage           = dict["damage"];
+        base_knockback   = dict["base_knockback"];
+        knockback_growth = dict["knockback_growth"];
+        trajectory       = Mathf.FloorToInt(dict["trajectory"]);
+    }
+
     public void Activate(int life = -1)
     {
         _life = life;

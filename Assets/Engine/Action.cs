@@ -6,7 +6,7 @@ public class Action : ScriptableObject {
 
     public string sprite_name;
     public int sprite_rate = 1;
-    public bool loop = true;
+    public bool loop = false;
     public int length = 1;
 
     public int current_frame;
@@ -25,10 +25,14 @@ public class Action : ScriptableObject {
 
     // Update is called once per frame
     public virtual void Update() {
-        int sprite_number = Mathf.FloorToInt(current_frame / sprite_rate);
-        if (sprite_rate < 0)
-            sprite_number = Mathf.FloorToInt(current_frame / sprite_rate) - 1;
-        actor.ChangeSubimage(sprite_number,loop);
+        if (sprite_rate != 0) // if it's zero, no need to animate
+        {
+            int sprite_number = Mathf.FloorToInt(current_frame / sprite_rate);
+            if (sprite_rate < 0)
+                sprite_number = Mathf.FloorToInt(current_frame / sprite_rate) - 1;
+            actor.ChangeSubimage(sprite_number, loop);
+        }
+
         if (current_frame >= last_frame)
         {
             this.OnLastFrame();

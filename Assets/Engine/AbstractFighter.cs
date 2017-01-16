@@ -65,14 +65,22 @@ public class AbstractFighter : MonoBehaviour {
     private SpriteRenderer sprite;
     private SpriteLoader sprite_loader;
     private actionLoader action_loader;
+    private float last_x_axis;
+    private float x_axis_delta;
+    private float last_y_axis;
+    private float y_axis_delta;
+
 
     void Start () {
         sprite = GetComponent<SpriteRenderer>();
         sprite_loader = GetComponent<SpriteLoader>();
         action_loader = GetComponent<actionLoader>();
 
-        facing *= -1 * player_num;
-
+        if (player_num % 2 == 0)
+            facing = 1;
+        else
+            facing = -1;
+        
         _ySpeed = 0;
         _charController = GetComponent<CharacterController>();
         jumps = max_jumps;
@@ -97,6 +105,16 @@ public class AbstractFighter : MonoBehaviour {
                 _ySpeed = max_fall_speed;
             } 
         }
+        float current_x = GetControllerAxis("Horizontal");
+        x_axis_delta = Mathf.Abs(current_x) - Mathf.Abs(last_x_axis);
+        last_x_axis = current_x;
+
+        float current_y = GetControllerAxis("Vertical");
+        y_axis_delta = Mathf.Abs(current_y) - Mathf.Abs(last_y_axis);
+        last_y_axis = current_y;
+
+        //if (x_axis_delta != 0 || y_axis_delta != 0)
+        //    Debug.Log(x_axis_delta.ToString() + ',' + y_axis_delta.ToString());
 
         _current_action.stateTransitions();
         _current_action.Update();
@@ -170,12 +188,12 @@ public class AbstractFighter : MonoBehaviour {
 
     public void flip()
     {
-        //if (sprite != null)
         //    sprite.flipX = !sprite.flipX;
         //else
-        Debug.Log("Flipping");
-        //transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y,transform.localScale.z);
-        transform.Rotate(transform.rotation.x, 180, transform.rotation.z);
+        if (sprite != null) //Sprites get flipped
+            transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y,transform.localScale.z);
+        else //Models get rotated
+            transform.Rotate(transform.rotation.x, 180, transform.rotation.z);
         facing *= -1;
 
     }
@@ -197,6 +215,19 @@ public class AbstractFighter : MonoBehaviour {
             doAction("NeutralAttack");
     }
 
+    public void doAirAttack()
+    {
+        if (GetDirectionRelative() > 0.0f)
+            doAction("ForwardAir");
+        else if (GetDirectionRelative() < 0.0f)
+            doAction("BackAir");
+        else if (GetControllerAxis("Vertical") > 0.0f)
+            doAction("UpAir");
+        else if (GetControllerAxis("Vertical") < 0.0f)
+            doAction("DownAir");
+        else
+            doAction("NeutralAir");
+    }
     public void ChangeSprite(string sprite_name, int frame=0)
     {
 
@@ -266,7 +297,7 @@ public class AbstractFighter : MonoBehaviour {
      **/
     public float GetControllerAxis(string axisName)
     {
-        return Input.GetAxis(player_num + "_" + axisName);
+        return Input.GetAxisRaw(player_num + "_" + axisName);
     }
 
     public bool GetControllerButton(string buttonName)
@@ -283,5 +314,12 @@ public class AbstractFighter : MonoBehaviour {
     {
         return Input.GetButtonUp(player_num + "_" + buttonName);
     }
-    
+
+    public bool CheckSmash(string axisName)
+    {
+        if (axisName == "Horizontal")
+            return (x_axis_delta > 0.3);
+        else
+            return (y_axis_delta > 0.3);
+    }
 }
