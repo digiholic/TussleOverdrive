@@ -12,7 +12,7 @@ public class HitboxLoader : MonoBehaviour {
         hbox.LoadValuesFromDict(dict);
         hbox.transform.parent = owner.transform; //The Fighter Rig keeps the fighter and hitboxes scales from affecting eachother
         float scale = owner.GetComponent<SpriteLoader>().pixelsPerUnit;
-        hbox.transform.localPosition = new Vector3(centerx/scale, centery/scale, 0.0f);
+        hbox.transform.localPosition = new Vector3(centerx/scale, centery/scale, -0.5f);
         hbox.transform.localScale = new Vector3(width/scale, height/scale, 1.0f);
         if (owner.facing == -1)
             hbox.trajectory = 180 - hbox.trajectory;

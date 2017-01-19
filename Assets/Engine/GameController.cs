@@ -20,6 +20,8 @@ public class GameController : MonoBehaviour {
             icon.transform.position = new Vector3(num * 300, 64, 0);
             num++;
         }
+
+        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Fighters"), LayerMask.NameToLayer("Fighters"), true);
 	}
 	
 	// Update is called once per frame
