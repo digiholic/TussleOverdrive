@@ -18,6 +18,7 @@ public class BaseAttack : Action {
     public override void stateTransitions()
     {
         base.stateTransitions();
+        StateTransitions.CheckGround(actor);
         if (current_frame >= last_frame)
             if(actor.grounded)
                 actor.doAction("NeutralAction");

@@ -20,7 +20,7 @@ public class Ftilt : BaseAttack {
             {"trajectory", 50 }
         };
 
-        Hitbox hbox = game_controller.GetComponent<HitboxLoader>().LoadHitbox(actor, dict, 0, 0, 92, 92);
+        Hitbox hbox = game_controller.GetComponent<HitboxLoader>().LoadHitbox(actor, dict, 20, 0, 120, 40);
         hitboxes.Add("hitbox", hbox);
     }
 

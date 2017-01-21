@@ -13,10 +13,12 @@ public class Hitbox : MonoBehaviour {
     private Collider col;
     private bool active = false;
     private int _life = -1; //If Life is -1. last until deactivated
+    private MeshRenderer mesh;
 
 	// Use this for initialization
 	void Start () {
         col = GetComponent<Collider>();
+        mesh = GetComponent<MeshRenderer>();
 	}
 	
 	// Update is called once per frame
@@ -50,10 +52,12 @@ public class Hitbox : MonoBehaviour {
     {
         _life = life;
         active = true;
+        mesh.enabled = true;
     }
 
     public void Deactivate()
     {
         active = false;
+        mesh.enabled = false;
     }
 }
