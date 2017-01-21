@@ -155,7 +155,7 @@ public class StateTransitions : ScriptableObject {
 
     }
 
-    public static void GrabLedges(AbstractFighter actor)
+    public static void CheckLedges(AbstractFighter actor)
     {
         //TODO
     }
@@ -196,5 +196,78 @@ public class StateTransitions : ScriptableObject {
     public static void JumpCancellable(AbstractFighter actor)
     {
 
+    }
+
+    public static void LoadTransitionState(string state, AbstractFighter actor)
+    {
+        switch (state)
+        {
+            case "NeutralState":
+                NeutralState(actor);
+                break;
+            case "CrouchState":
+                CrouchState(actor);
+                break;
+            case "AirState":
+                AirState(actor);
+                break;
+            case "MoveState":
+                MoveState(actor);
+                break;
+            case "StopState":
+                StopState(actor);
+                break;
+            case "RunStopState":
+                RunStopState(actor);
+                break;
+            case "DashState":
+                DashState(actor);
+                break;
+            case "JumpState":
+                JumpState(actor);
+                break;
+            case "ShieldState":
+                ShieldState(actor);
+                break;
+            case "LedgeState":
+                LedgeState(actor);
+                break;
+            case "GrabbingState":
+                GrabbingState(actor);
+                break;
+            case "ProneState":
+                ProneState(actor);
+                break;
+            case "AirControl":
+                AirControl(actor);
+                break;
+            case "HelplessControl":
+                HelplessControl(actor);
+                break;
+            case "CheckLedges":
+                CheckLedges(actor);
+                break;
+            case "CheckGround":
+                CheckGround(actor);
+                break;
+            case "TiltReversible":
+                TiltReversible(actor);
+                break;
+            case "TapReversible":
+                TapReversible(actor);
+                break;
+            case "ShieldCancellable":
+                ShieldCancellable(actor);
+                break;
+            case "DodgeCancellable":
+                DodgeCancellable(actor);
+                break;
+            case "AutoDodgeCancellable":
+                AutoDodgeCancellable(actor);
+                break;
+            case "JumpCancellable":
+                JumpCancellable(actor);
+                break;
+        }
     }
 }
