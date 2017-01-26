@@ -19,6 +19,6 @@ public class Fall : Action
     {
         base.stateTransitions();
         StateTransitions.AirState(actor);
-        StateTransitions.GrabLedges(actor);
+        StateTransitions.CheckLedges(actor);
     }
 }

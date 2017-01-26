@@ -80,6 +80,45 @@ public class SubactionLoader : ScriptableObject {
                  */
                 //TODO
                 break;
+            // ====== CONTROL SUBACTIONS ======\\
+            case "changeAnim":
+                /* changeAnim animName:string
+                 *      Changes to the specified animation.
+                 */
+                actor.ChangeSprite(args[1]);
+                break;
+            case "changeSpriteSubimage":
+                /* changeSpriteSubimage index:int
+                 *      SPRITE MODE ONLY
+                 *      Changes to the sprite subimage of the current animation with the given index
+                 */
+                actor.ChangeSubimage(int.Parse(args[1]));
+                break;
+            case "flipFighter":
+                /* flipFighter
+                 *      Flips the fighter horizontally, so they are facing the other direction
+                 */
+                actor.flip();
+                break;
+            case "rotateFighter":
+                /* rotateFighter deg:int
+                 *      Rotates the fighter by the given degrees
+                 */
+                //TODO
+                break;
+            case "unrotateFighter":
+                /* unrotateFighter
+                 *      Sets the fighter back to upright, no matter how many times it has been rotated
+                 */
+                //TODO
+                break;
+            case "shiftSprite":
+                /* shiftSprite x:float y:float
+                 *      Shifts the sprite by the given X and Y without moving the fighter
+                 */
+                //TODO
+                break;
+
         }
     }
 }

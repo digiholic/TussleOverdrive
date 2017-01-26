@@ -56,9 +56,10 @@ public class Action : ScriptableObject {
             if (cond)
                 SubactionLoader.executeSubaction(subaction, actor, this);
 
-        foreach (string subaction in actions_at_frame[current_frame])
-            if (cond)
-                SubactionLoader.executeSubaction(subaction, actor, this);
+        if (actions_at_frame.ContainsKey(current_frame))
+            foreach (string subaction in actions_at_frame[current_frame])
+                if (cond)
+                    SubactionLoader.executeSubaction(subaction, actor, this);
 
         if (current_frame >= last_frame)
             this.OnLastFrame();
