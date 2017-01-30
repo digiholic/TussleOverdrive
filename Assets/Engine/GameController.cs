@@ -9,7 +9,7 @@ public class GameController : MonoBehaviour {
     private bool recording = false;
     [SerializeField] private Camera cam;
 
-    private int current_game_frame = 0;
+    public int current_game_frame = 0;
 
     // Use this for initialization
     void Start () {
@@ -29,8 +29,6 @@ public class GameController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         current_game_frame++;
-        if (current_game_frame % 60 == 0)
-            Debug.Log(current_game_frame);
         if (Input.GetKeyDown(KeyCode.P))
         {
             if (recording)

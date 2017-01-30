@@ -57,7 +57,7 @@ public class AbstractFighter : MonoBehaviour {
     public Action _current_action;
 
     [HideInInspector]
-    public GameObject game_controller;
+    public GameController game_controller;
     
     private CharacterController _charController;
     private SpriteRenderer sprite;
@@ -129,7 +129,7 @@ public class AbstractFighter : MonoBehaviour {
         sprite_loader = GetComponent<SpriteLoader>();
         action_loader = GetComponent<actionLoader>();
         anim = GetComponent<Animator>();
-
+        
         if (player_num % 2 == 0)
             facing = 1;
         else
@@ -140,7 +140,7 @@ public class AbstractFighter : MonoBehaviour {
         jumps = max_jumps;
         _current_action = ScriptableObject.CreateInstance<NeutralAction>();
         _current_action.SetUp(this);
-        game_controller = GameObject.Find("Controller");
+        game_controller = GameObject.Find("Controller").GetComponent<GameController>();
     }
 
     private float GetFromXml(string stat_name, float default_value)
@@ -386,16 +386,5 @@ public class AbstractFighter : MonoBehaviour {
             return (x_axis_delta > 0.3);
         else
             return (y_axis_delta > 0.3);
-    }
-}
-
-[System.Serializable]
-public class InputBuffer:ScriptableObject
-{
-    private Queue<KeyValuePair<int, List<KeyValuePair<string, float>>>> inputList; //Sweet christmas that type declaration
-
-    private void Start()
-    {
-        
     }
 }

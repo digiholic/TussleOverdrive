@@ -7,7 +7,7 @@ public class SubactionLoader : ScriptableObject {
     public static void executeSubaction(string subact, AbstractFighter actor, Action action)
     {
         string[] args = subact.Split(' ');
-
+        
         switch (args[0])
         {
             // ====== CONTROL SUBACTIONS ======\\

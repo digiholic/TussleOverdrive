@@ -24,11 +24,11 @@ public class Action : ScriptableObject {
 
     protected int last_frame;
     protected AbstractFighter actor;
-    protected GameObject game_controller;
+    protected GameController game_controller;
 
     public bool cond = true;
 
-    public virtual void SetUp (AbstractFighter _actor) { //Replaces SetUp from TUSSLE 1.0
+    public virtual void SetUp (AbstractFighter _actor) {
         last_frame = length;
         actor = _actor;
         actor.ChangeSprite(sprite_name);

@@ -41,3 +41,22 @@ shiftPosition x:float|0 y:float|0 relative:bool|true
 	
 
 ====== ANIMATION SUBACTIONS ======
+changeAnim animName:string
+	Changes to the specified animation.
+	
+changeSpriteSubimage index:int
+	SPRITE MODE ONLY
+	Changes to the sprite subimage of the current animation with the given index
+	
+flipFighter
+	Flips the fighter horizontally, so they are facing the other direction
+	
+rotateFighter deg:int
+	Rotates the fighter by the given degrees
+
+unrotateFighter
+	Sets the fighter back to upright, no matter how many times it has been rotated
+	
+shiftSprite x:float y:float
+	Shifts the sprite by the given X and Y without moving the fighter
+	
