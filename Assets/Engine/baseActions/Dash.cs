@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dash : Action {
+public class Dash : GameAction {
 
     public int run_start_frame = 0;
     public int direction = 1;
     public bool accel = true;
 
-    public override void TearDown(Action new_action)
+    public override void TearDown(GameAction new_action)
     {
         base.TearDown(new_action);
         //if next action has direction, set it

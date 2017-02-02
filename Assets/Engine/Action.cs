@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Action : ScriptableObject {
+public class GameAction : ScriptableObject {
 
     public string sprite_name;
     public int sprite_rate = 1;
@@ -80,7 +80,7 @@ public class Action : ScriptableObject {
         current_frame++;
     }
 
-    public virtual void TearDown(Action new_action)
+    public virtual void TearDown(GameAction new_action)
     {
         foreach (string subaction in tear_down_actions)
             if (cond)

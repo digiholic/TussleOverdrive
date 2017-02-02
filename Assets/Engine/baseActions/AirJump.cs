@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AirJump : Action {
+public class AirJump : GameAction {
 
     private int jump_frame = 6;
 

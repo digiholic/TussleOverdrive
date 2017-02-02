@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fall : Action
+public class Fall : GameAction
 {
 
     // Use this for initialization

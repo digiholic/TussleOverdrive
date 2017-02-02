@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Crouch : Action {
+public class Crouch : GameAction {
     public override void SetUp(AbstractFighter _actor)
     {
         sprite_name = "land";
@@ -30,7 +30,7 @@ public class Crouch : Action {
          */
     }
 
-    public override void TearDown(Action new_action)
+    public override void TearDown(GameAction new_action)
     {
         base.TearDown(new_action);
         actor._xPreferred = 0;

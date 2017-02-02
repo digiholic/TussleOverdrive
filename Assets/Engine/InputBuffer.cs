@@ -5,66 +5,143 @@ using UnityEngine;
 public class InputBuffer : MonoBehaviour {
     public int playerNum = 0;
 
-    private Queue<KeyValuePair<int, List<KeyValuePair<string, float>>>> inputList; //Sweet christmas that type declaration
-    private List<List<KeyValuePair<string, float>>> keyBuffer = new List<List<KeyValuePair<string, float>>>();
-
     private List<InputValue> inputBuffer = new List<InputValue>();
-
     private GameController game_controller;
 
+    private float last_horizontal = 0.0f;
+    private float last_vertical = 0.0f;
     void Start()
     {
         game_controller = GameObject.Find("Controller").GetComponent<GameController>();
     }
 
-    public void PushToQueue(int frame, List<KeyValuePair<string, float>> buttonInputList)
-    {
-        keyBuffer.Insert(0, buttonInputList);
-        while (keyBuffer.Count > 12) //Unmagic this number
-            keyBuffer.RemoveAt(keyBuffer.Count - 1);
-    }
-
+    
     /// <summary>
     /// Late Update will gather the inputs for the next frame
     /// </summary>
     void LateUpdate()
     {
-        Debug.Log("LateUpdate");
         //BUTTON PRESS
         if (Input.GetButtonDown(playerNum + "_Attack"))
-            inputBuffer.Add(new InputValue("attack", 1.0f, game_controller.current_game_frame));
+            inputBuffer.Add(new InputValue(InputType.Attack, 1.0f, game_controller.current_game_frame));
         if (Input.GetButtonDown(playerNum + "_Special"))
-            inputBuffer.Add(new InputValue("special", 1.0f, game_controller.current_game_frame));
+            inputBuffer.Add(new InputValue(InputType.Special, 1.0f, game_controller.current_game_frame));
         if (Input.GetButtonDown(playerNum + "_Jump"))
-            inputBuffer.Add(new InputValue("jump", 1.0f, game_controller.current_game_frame));
+            inputBuffer.Add(new InputValue(InputType.Jump, 1.0f, game_controller.current_game_frame));
         if (Input.GetButtonDown(playerNum + "_Shield"))
-            inputBuffer.Add(new InputValue("shield", 1.0f, game_controller.current_game_frame));
+            inputBuffer.Add(new InputValue(InputType.Shield, 1.0f, game_controller.current_game_frame));
         //BUTTON RELEASE
         if (Input.GetButtonUp(playerNum + "_Attack"))
-            inputBuffer.Add(new InputValue("attack", 0.0f, game_controller.current_game_frame));
+            inputBuffer.Add(new InputValue(InputType.Attack, 0.0f, game_controller.current_game_frame));
         if (Input.GetButtonUp(playerNum + "_Special"))
-            inputBuffer.Add(new InputValue("special", 0.0f, game_controller.current_game_frame));
+            inputBuffer.Add(new InputValue(InputType.Special, 0.0f, game_controller.current_game_frame));
         if (Input.GetButtonUp(playerNum + "_Jump"))
-            inputBuffer.Add(new InputValue("jump", 0.0f, game_controller.current_game_frame));
+            inputBuffer.Add(new InputValue(InputType.Jump, 0.0f, game_controller.current_game_frame));
         if (Input.GetButtonUp(playerNum + "_Shield"))
-            inputBuffer.Add(new InputValue("shield", 0.0f, game_controller.current_game_frame));
+            inputBuffer.Add(new InputValue(InputType.Shield, 0.0f, game_controller.current_game_frame));
+        //HORIZONTAL AXIS MOTION
+        float haxis = Input.GetAxis(playerNum + "_Horizontal");
+        float hdiff = Mathf.Abs(haxis - last_horizontal);
+        if (hdiff >= 0.5) //If it's big enough, that's a smash
+        {
+            if (haxis < 0.0f) //Left
+            {
+                inputBuffer.Add(new InputValue(InputType.LeftSmash, Mathf.Abs(haxis), game_controller.current_game_frame));
+                inputBuffer.Add(new InputValue(InputType.RightSmash, 0.0f, game_controller.current_game_frame));
+            }
+            else
+            {
+                inputBuffer.Add(new InputValue(InputType.RightSmash, Mathf.Abs(haxis), game_controller.current_game_frame));
+                inputBuffer.Add(new InputValue(InputType.LeftSmash, 0.0f, game_controller.current_game_frame));
+            }
+            last_horizontal = haxis;   
+        }
+        else if (hdiff >= 0.1) //if it's smaller, it's a tilt
+        {
+            if (haxis < 0.0f) //Left
+            {
+                inputBuffer.Add(new InputValue(InputType.Left, Mathf.Abs(haxis), game_controller.current_game_frame));
+                inputBuffer.Add(new InputValue(InputType.Right, 0.0f, game_controller.current_game_frame));
+            }
+            else
+            {
+                inputBuffer.Add(new InputValue(InputType.Right, Mathf.Abs(haxis), game_controller.current_game_frame));
+                inputBuffer.Add(new InputValue(InputType.Left, 0.0f, game_controller.current_game_frame));
+            }
+
+            last_horizontal = haxis;
+        }
+        
+        //VERTICAL AXIS MOTION
+        float vaxis = Input.GetAxis(playerNum + "_Vertical");
+        float vdiff = Mathf.Abs(vaxis - last_vertical);
+        if (vdiff >= 0.5) //If it's big enough, that's a smash
+        {
+            if (vaxis < 0.0f) //Left
+            {
+                inputBuffer.Add(new InputValue(InputType.DownSmash, Mathf.Abs(vaxis), game_controller.current_game_frame));
+                inputBuffer.Add(new InputValue(InputType.UpSmash, 0.0f, game_controller.current_game_frame));
+            }
+            else
+            {
+                inputBuffer.Add(new InputValue(InputType.UpSmash, Mathf.Abs(vaxis), game_controller.current_game_frame));
+                inputBuffer.Add(new InputValue(InputType.DownSmash, 0.0f, game_controller.current_game_frame));
+            }
+            last_vertical = vaxis;
+        }
+        else if (vdiff >= 0.1) //if it's smaller, it's a tilt
+        {
+            if (vaxis < 0.0f) //Left
+            {
+                inputBuffer.Add(new InputValue(InputType.Down, Mathf.Abs(vaxis), game_controller.current_game_frame));
+                inputBuffer.Add(new InputValue(InputType.Up, 0.0f, game_controller.current_game_frame));
+            }
+            else
+            {
+                inputBuffer.Add(new InputValue(InputType.Up, Mathf.Abs(vaxis), game_controller.current_game_frame));
+                inputBuffer.Add(new InputValue(InputType.Down, 0.0f, game_controller.current_game_frame));
+            }
+            last_vertical = vaxis;
+        }
+    }
+
+    public bool KeyBuffered(InputType input, int distance = 12, float threshold = 0.1f)
+    {
+        foreach (InputValue bufferedInput in inputBuffer)
+        {
+            if (bufferedInput.frame >= game_controller.current_game_frame - distance)
+                {
+                    if (bufferedInput.key == input && bufferedInput.value >= threshold)
+                    {
+                        return true;
+                    }
+                }
+        }
+        return false;
     }
 }
+
 
 [System.Serializable]
 public class InputValue
 {
-    public string command;
+    public InputType key;
     public float value;
     public int frame;
     public bool active;
 
-    public InputValue(string _command, float _value, int _frame)
+    public InputValue(InputType _key, float _value, int _frame)
     {
-        command = _command;
+        key = _key;
         value = _value;
         frame = _frame;
         active = true;
-        Debug.Log(_command);
     }
+}
+
+public enum InputType
+{
+    Attack, Special, Jump, Shield,
+    Left, Right, Up, Down,
+    LeftSmash, RightSmash, UpSmash, DownSmash, Grab
 }

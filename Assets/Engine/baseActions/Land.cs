@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Land : Action {
+public class Land : GameAction {
 
     public override void SetUp(AbstractFighter _actor)
     {

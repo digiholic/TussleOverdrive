@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Move : Action {
+public class Move : GameAction {
 
     public bool accel = true;
     public int direction = 1;
@@ -18,7 +18,7 @@ public class Move : Action {
         direction = actor.facing;
     }
 
-    public override void TearDown(Action new_action)
+    public override void TearDown(GameAction new_action)
     {
         base.TearDown(new_action);
         //TODO Next action direction? Do we still need this?

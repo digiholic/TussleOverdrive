@@ -54,7 +54,7 @@ public class AbstractFighter : MonoBehaviour {
     public float _xSpeed, _ySpeed, _xPreferred, _yPreferred, ground_elasticity = 0.0f, damage_percent = 0;
 
     [HideInInspector]
-    public Action _current_action;
+    public GameAction _current_action;
 
     [HideInInspector]
     public GameController game_controller;
@@ -69,7 +69,8 @@ public class AbstractFighter : MonoBehaviour {
     private float last_y_axis;
     private float y_axis_delta;
     private XmlDocument data_xml;
-    
+    private InputBuffer inputBuffer;
+
     void Awake()
     {
         if (File.Exists(fighter_xml_file))
@@ -129,6 +130,7 @@ public class AbstractFighter : MonoBehaviour {
         sprite_loader = GetComponent<SpriteLoader>();
         action_loader = GetComponent<actionLoader>();
         anim = GetComponent<Animator>();
+        inputBuffer = GetComponent<InputBuffer>();
         
         if (player_num % 2 == 0)
             facing = 1;
@@ -198,8 +200,8 @@ public class AbstractFighter : MonoBehaviour {
     
     public void doAction(string _actionName)
     {
-        //Debug.Log("Action: "+_actionName);
-        Action old_action = _current_action;
+        //Debug.Log("GameAction: "+_actionName);
+        GameAction old_action = _current_action;
         _current_action = action_loader.LoadAction(_actionName);
         old_action.TearDown(_current_action);
         Destroy(old_action);
@@ -309,8 +311,6 @@ public class AbstractFighter : MonoBehaviour {
 
     public void GetHit(Hitbox hitbox)
     {
-        Debug.Log("GetHit");
-
         float weight_constant = 1.4f;
         float flat_constant = 5.0f;
 
@@ -378,6 +378,11 @@ public class AbstractFighter : MonoBehaviour {
     public bool GetControllerButtonUp(string buttonName)
     {
         return Input.GetButtonUp(player_num + "_" + buttonName);
+    }
+
+    public bool KeyBuffered(InputType key, int distance = 12, float threshold = 0.1f)
+    {
+        return inputBuffer.KeyBuffered(key, distance, threshold);
     }
 
     public bool CheckSmash(string axisName)

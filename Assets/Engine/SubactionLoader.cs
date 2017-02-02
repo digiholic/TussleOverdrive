@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SubactionLoader : ScriptableObject {
     
-    public static void executeSubaction(string subact, AbstractFighter actor, Action action)
+    public static void executeSubaction(string subact, AbstractFighter actor, GameAction action)
     {
         string[] args = subact.Split(' ');
         
@@ -35,7 +35,7 @@ public class SubactionLoader : ScriptableObject {
                 break;
             case "setVar":
                 /* setVar source:string name:string type:string value:dynamic relative:bool|false
-                 *      Sets the variable from Action, Fighter, Global with the given name to the given value and type.
+                 *      Sets the variable from GameAction, Fighter, Global with the given name to the given value and type.
                  *      If relative is set and type is something that can be relative, such as integer, it will increment
                  *      the variable instead of changing it
                  */

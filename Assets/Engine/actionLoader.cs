@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class actionLoader : MonoBehaviour {
 
-    public Action LoadAction(string _name)
+    public GameAction LoadAction(string _name)
     {
         switch (_name)
         {
@@ -27,7 +27,7 @@ public class actionLoader : MonoBehaviour {
             case "BackAir": return ScriptableObject.CreateInstance<Bair>();
             case "UpAir": return ScriptableObject.CreateInstance<Uair>();
             case "DownAir": return ScriptableObject.CreateInstance<Dair>();
-            default: return ScriptableObject.CreateInstance<Action>();
+            default: return ScriptableObject.CreateInstance<GameAction>();
         }
     }
 }

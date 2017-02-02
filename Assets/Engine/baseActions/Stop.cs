@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stop : Action {
+public class Stop : GameAction {
     
     public int direction = 1;
 
@@ -43,7 +43,7 @@ public class Stop : Action {
             actor.doAction("NeutralAction");
     }
 
-    public override void TearDown(Action new_action)
+    public override void TearDown(GameAction new_action)
     {
         base.TearDown(new_action);
         //Setting direction

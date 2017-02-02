@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CrouchGetup : Action {
+public class CrouchGetup : GameAction {
 
     public override void SetUp(AbstractFighter _actor)
     {
@@ -13,7 +13,7 @@ public class CrouchGetup : Action {
         //Debug.Log("CrouchGetupAction Created");
     }
 
-    public override void TearDown(Action new_action)
+    public override void TearDown(GameAction new_action)
     {
         base.TearDown(new_action);
         //Delete crouch cancel armor

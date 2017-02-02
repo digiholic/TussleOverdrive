@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Jump : Action
+public class Jump : GameAction
 {
     private int jump_frame = 0;
     

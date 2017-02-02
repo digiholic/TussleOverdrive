@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NeutralAction : Action {
+public class NeutralAction : GameAction {
     public override void SetUp(AbstractFighter _actor)
     {
         sprite_name = "idle";

@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseAttack : Action {
+public class BaseAttack : GameAction {
 
     public Dictionary<string,Hitbox> hitboxes = new Dictionary<string,Hitbox>();
 
-    public override void TearDown(Action new_action)
+    public override void TearDown(GameAction new_action)
     {
         base.TearDown(new_action);
         foreach (KeyValuePair<string,Hitbox> entry in hitboxes)
@@ -27,12 +27,12 @@ public class BaseAttack : Action {
     }
 }
 
-public class AirAttack : Action
+public class AirAttack : GameAction
 {
 
     public Dictionary<string, Hitbox> hitboxes = new Dictionary<string, Hitbox>();
 
-    public override void TearDown(Action new_action)
+    public override void TearDown(GameAction new_action)
     {
         base.TearDown(new_action);
         foreach (KeyValuePair<string, Hitbox> entry in hitboxes)
