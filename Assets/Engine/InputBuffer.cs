@@ -23,22 +23,22 @@ public class InputBuffer : MonoBehaviour {
     {
         //BUTTON PRESS
         if (Input.GetButtonDown(playerNum + "_Attack"))
-            inputBuffer.Add(new InputValue(InputType.Attack, 1.0f, game_controller.current_game_frame));
+            inputBuffer.Insert(0,new InputValue(InputType.Attack, 1.0f, game_controller.current_game_frame));
         if (Input.GetButtonDown(playerNum + "_Special"))
-            inputBuffer.Add(new InputValue(InputType.Special, 1.0f, game_controller.current_game_frame));
+            inputBuffer.Insert(0,new InputValue(InputType.Special, 1.0f, game_controller.current_game_frame));
         if (Input.GetButtonDown(playerNum + "_Jump"))
-            inputBuffer.Add(new InputValue(InputType.Jump, 1.0f, game_controller.current_game_frame));
+            inputBuffer.Insert(0,new InputValue(InputType.Jump, 1.0f, game_controller.current_game_frame));
         if (Input.GetButtonDown(playerNum + "_Shield"))
-            inputBuffer.Add(new InputValue(InputType.Shield, 1.0f, game_controller.current_game_frame));
+            inputBuffer.Insert(0,new InputValue(InputType.Shield, 1.0f, game_controller.current_game_frame));
         //BUTTON RELEASE
         if (Input.GetButtonUp(playerNum + "_Attack"))
-            inputBuffer.Add(new InputValue(InputType.Attack, 0.0f, game_controller.current_game_frame));
+            inputBuffer.Insert(0,new InputValue(InputType.Attack, 0.0f, game_controller.current_game_frame));
         if (Input.GetButtonUp(playerNum + "_Special"))
-            inputBuffer.Add(new InputValue(InputType.Special, 0.0f, game_controller.current_game_frame));
+            inputBuffer.Insert(0,new InputValue(InputType.Special, 0.0f, game_controller.current_game_frame));
         if (Input.GetButtonUp(playerNum + "_Jump"))
-            inputBuffer.Add(new InputValue(InputType.Jump, 0.0f, game_controller.current_game_frame));
+            inputBuffer.Insert(0,new InputValue(InputType.Jump, 0.0f, game_controller.current_game_frame));
         if (Input.GetButtonUp(playerNum + "_Shield"))
-            inputBuffer.Add(new InputValue(InputType.Shield, 0.0f, game_controller.current_game_frame));
+            inputBuffer.Insert(0,new InputValue(InputType.Shield, 0.0f, game_controller.current_game_frame));
         //HORIZONTAL AXIS MOTION
         float haxis = Input.GetAxis(playerNum + "_Horizontal");
         float hdiff = Mathf.Abs(haxis - last_horizontal);
@@ -46,13 +46,13 @@ public class InputBuffer : MonoBehaviour {
         {
             if (haxis < 0.0f) //Left
             {
-                inputBuffer.Add(new InputValue(InputType.LeftSmash, Mathf.Abs(haxis), game_controller.current_game_frame));
-                inputBuffer.Add(new InputValue(InputType.RightSmash, 0.0f, game_controller.current_game_frame));
+                inputBuffer.Insert(0,new InputValue(InputType.LeftSmash, Mathf.Abs(haxis), game_controller.current_game_frame));
+                inputBuffer.Insert(0,new InputValue(InputType.RightSmash, 0.0f, game_controller.current_game_frame));
             }
             else
             {
-                inputBuffer.Add(new InputValue(InputType.RightSmash, Mathf.Abs(haxis), game_controller.current_game_frame));
-                inputBuffer.Add(new InputValue(InputType.LeftSmash, 0.0f, game_controller.current_game_frame));
+                inputBuffer.Insert(0,new InputValue(InputType.RightSmash, Mathf.Abs(haxis), game_controller.current_game_frame));
+                inputBuffer.Insert(0,new InputValue(InputType.LeftSmash, 0.0f, game_controller.current_game_frame));
             }
             last_horizontal = haxis;   
         }
@@ -60,13 +60,13 @@ public class InputBuffer : MonoBehaviour {
         {
             if (haxis < 0.0f) //Left
             {
-                inputBuffer.Add(new InputValue(InputType.Left, Mathf.Abs(haxis), game_controller.current_game_frame));
-                inputBuffer.Add(new InputValue(InputType.Right, 0.0f, game_controller.current_game_frame));
+                inputBuffer.Insert(0,new InputValue(InputType.Left, Mathf.Abs(haxis), game_controller.current_game_frame));
+                inputBuffer.Insert(0,new InputValue(InputType.Right, 0.0f, game_controller.current_game_frame));
             }
             else
             {
-                inputBuffer.Add(new InputValue(InputType.Right, Mathf.Abs(haxis), game_controller.current_game_frame));
-                inputBuffer.Add(new InputValue(InputType.Left, 0.0f, game_controller.current_game_frame));
+                inputBuffer.Insert(0,new InputValue(InputType.Right, Mathf.Abs(haxis), game_controller.current_game_frame));
+                inputBuffer.Insert(0,new InputValue(InputType.Left, 0.0f, game_controller.current_game_frame));
             }
 
             last_horizontal = haxis;
@@ -79,13 +79,13 @@ public class InputBuffer : MonoBehaviour {
         {
             if (vaxis < 0.0f) //Left
             {
-                inputBuffer.Add(new InputValue(InputType.DownSmash, Mathf.Abs(vaxis), game_controller.current_game_frame));
-                inputBuffer.Add(new InputValue(InputType.UpSmash, 0.0f, game_controller.current_game_frame));
+                inputBuffer.Insert(0,new InputValue(InputType.DownSmash, Mathf.Abs(vaxis), game_controller.current_game_frame));
+                inputBuffer.Insert(0,new InputValue(InputType.UpSmash, 0.0f, game_controller.current_game_frame));
             }
             else
             {
-                inputBuffer.Add(new InputValue(InputType.UpSmash, Mathf.Abs(vaxis), game_controller.current_game_frame));
-                inputBuffer.Add(new InputValue(InputType.DownSmash, 0.0f, game_controller.current_game_frame));
+                inputBuffer.Insert(0,new InputValue(InputType.UpSmash, Mathf.Abs(vaxis), game_controller.current_game_frame));
+                inputBuffer.Insert(0,new InputValue(InputType.DownSmash, 0.0f, game_controller.current_game_frame));
             }
             last_vertical = vaxis;
         }
@@ -93,13 +93,13 @@ public class InputBuffer : MonoBehaviour {
         {
             if (vaxis < 0.0f) //Left
             {
-                inputBuffer.Add(new InputValue(InputType.Down, Mathf.Abs(vaxis), game_controller.current_game_frame));
-                inputBuffer.Add(new InputValue(InputType.Up, 0.0f, game_controller.current_game_frame));
+                inputBuffer.Insert(0,new InputValue(InputType.Down, Mathf.Abs(vaxis), game_controller.current_game_frame));
+                inputBuffer.Insert(0,new InputValue(InputType.Up, 0.0f, game_controller.current_game_frame));
             }
             else
             {
-                inputBuffer.Add(new InputValue(InputType.Up, Mathf.Abs(vaxis), game_controller.current_game_frame));
-                inputBuffer.Add(new InputValue(InputType.Down, 0.0f, game_controller.current_game_frame));
+                inputBuffer.Insert(0,new InputValue(InputType.Up, Mathf.Abs(vaxis), game_controller.current_game_frame));
+                inputBuffer.Insert(0,new InputValue(InputType.Down, 0.0f, game_controller.current_game_frame));
             }
             last_vertical = vaxis;
         }
@@ -108,15 +108,28 @@ public class InputBuffer : MonoBehaviour {
     public bool KeyBuffered(InputType input, int distance = 12, float threshold = 0.1f)
     {
         foreach (InputValue bufferedInput in inputBuffer)
-        {
-            if (bufferedInput.frame >= game_controller.current_game_frame - distance)
-                {
-                    if (bufferedInput.key == input && bufferedInput.value >= threshold)
-                    {
-                        return true;
-                    }
-                }
-        }
+            if (bufferedInput.frame < game_controller.current_game_frame - distance) //If we've fallen off our distance value
+                break;
+            else
+                if (bufferedInput.key == input && bufferedInput.value >= threshold)
+                return true;
+        return false;
+    }
+
+    public bool SequenceBuffered(List<KeyValuePair<InputType,float>> inputList, int distance = 12)
+    {
+        int index = 0;
+        foreach (InputValue bufferedInput in inputBuffer)
+            if (bufferedInput.frame < game_controller.current_game_frame - distance) //If we've fallen off our distance value
+                break;
+            else if (index >= inputList.Count)
+                break;
+            else
+                if (bufferedInput.key == inputList[index].Key && bufferedInput.value >= inputList[index].Value)
+                index++;
+
+        if (index >= inputList.Count) //if we've gotten through the list
+            return true;
         return false;
     }
 }
@@ -144,4 +157,39 @@ public enum InputType
     Attack, Special, Jump, Shield,
     Left, Right, Up, Down,
     LeftSmash, RightSmash, UpSmash, DownSmash, Grab
+}
+
+public static class InputTypeUtil
+{
+    public static InputType GetForward(AbstractFighter actor)
+    {
+        if (actor.facing == 1) //facing right
+            return InputType.Right;
+        else
+            return InputType.Left;
+    }
+
+    public static InputType GetBackward(AbstractFighter actor)
+    {
+        if (actor.facing == 1) //facing right
+            return InputType.Left;
+        else
+            return InputType.Right;
+    }
+
+    public static InputType GetForwardSmash(AbstractFighter actor)
+    {
+        if (actor.facing == 1) //facing right
+            return InputType.RightSmash;
+        else
+            return InputType.LeftSmash;
+    }
+
+    public static InputType GetBackwardSmash(AbstractFighter actor)
+    {
+        if (actor.facing == 1) //facing right
+            return InputType.LeftSmash;
+        else
+            return InputType.RightSmash;
+    }
 }

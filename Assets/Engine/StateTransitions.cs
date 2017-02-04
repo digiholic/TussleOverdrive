@@ -64,6 +64,14 @@ public class StateTransitions : ScriptableObject {
 
     public static void MoveState(AbstractFighter actor)
     {
+        List<KeyValuePair<InputType, float>> sequence = new List<KeyValuePair<InputType, float>>()
+        {
+            new KeyValuePair<InputType, float>(InputTypeUtil.GetForward(actor),0.1f),
+            new KeyValuePair<InputType, float>(InputTypeUtil.GetForward(actor),0.0f),
+            new KeyValuePair<InputType, float>(InputTypeUtil.GetForward(actor),0.1f)
+        };
+        if (actor.SequenceBuffered(sequence,120))
+            Debug.Log("Running!");
         //float direction = actor.GetControllerAxis("Horizontal") * actor.facing;
         //shield
         if (actor.GetControllerButtonDown("Attack"))

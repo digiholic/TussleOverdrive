@@ -385,6 +385,11 @@ public class AbstractFighter : MonoBehaviour {
         return inputBuffer.KeyBuffered(key, distance, threshold);
     }
 
+    public bool SequenceBuffered(List<KeyValuePair<InputType,float>> inputList, int distance = 12)
+    {
+        return inputBuffer.SequenceBuffered(inputList, distance);
+    }
+
     public bool CheckSmash(string axisName)
     {
         if (axisName == "Horizontal")
