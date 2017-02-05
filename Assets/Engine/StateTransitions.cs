@@ -8,13 +8,22 @@ public class StateTransitions : ScriptableObject {
     public static void NeutralState(AbstractFighter actor)
     {
         //shield
-        if (actor.GetControllerButtonDown("Attack"))
+        if (actor.KeyBuffered(InputType.Attack))
             actor.doGroundAttack();
         //special
-        if (actor.GetControllerButtonDown("Jump"))
+        if (actor.KeyBuffered(InputType.Jump))
             actor.doAction("Jump");
-        if (actor.GetControllerAxis("Vertical") < -0.5f)
+        if (actor.KeyBuffered(InputType.Down,threshold: 0.5f))
             actor.doAction("Crouch");
+        if (actor.KeyBuffered(InputTypeUtil.GetForward(actor)))
+            actor.doAction("Move");
+        if (actor.KeyBuffered(InputTypeUtil.GetBackward(actor)))
+        {
+            actor.flip(); //TODO PIVOT
+            actor.doAction("Move");
+        }
+
+        /*
         if (actor.GetControllerAxis("Horizontal") != 0.0f)
         {
             float direction = actor.GetControllerAxis("Horizontal");
@@ -22,21 +31,22 @@ public class StateTransitions : ScriptableObject {
                 actor.flip();
             actor.doAction("Move");
         }
+        */
     }
 
     public static void CrouchState(AbstractFighter actor)
     {
-        if (actor.GetControllerButton("Shield"))
+        if (actor.KeyBuffered(InputType.Shield))
         {
             //TODO forward backward roll
         }
-        if (actor.GetControllerButton("Attack"))
+        if (actor.KeyBuffered(InputType.Attack))
             actor.doAction("DownAttack");
         //if (actor.GetControllerButton("Special"))
         //doAction("DownSpecial")
-        if (actor.GetControllerButton("Jump"))
+        if (actor.KeyBuffered(InputType.Jump))
             actor.doAction("Jump");
-        if (actor.GetControllerAxis("Vertical") >= -0.5f && actor._current_action.GetType() != typeof(CrouchGetup))
+        if (actor.KeyBuffered(InputType.Down,threshold:-0.1f) && actor._current_action.GetType() != typeof(CrouchGetup))
             actor.doAction("CrouchGetup");
     }
 
@@ -47,7 +57,7 @@ public class StateTransitions : ScriptableObject {
         {
             //actor.doAction("AirDodge");
         }
-        if (actor.GetControllerButton("Attack"))
+        if (actor.KeyBuffered(InputType.Attack))
         {
             actor.doAirAttack();
         }
@@ -55,7 +65,7 @@ public class StateTransitions : ScriptableObject {
         {
             //specials TODO
         }
-        if (actor.GetControllerButtonDown("Jump") && actor.jumps > 0)
+        if (actor.KeyBuffered(InputType.Jump) && actor.jumps > 0)
         {
             actor.doAction("AirJump");
         }
@@ -66,11 +76,10 @@ public class StateTransitions : ScriptableObject {
     {
         List<KeyValuePair<InputType, float>> sequence = new List<KeyValuePair<InputType, float>>()
         {
-            new KeyValuePair<InputType, float>(InputTypeUtil.GetForward(actor),0.1f),
             new KeyValuePair<InputType, float>(InputTypeUtil.GetForward(actor),0.0f),
-            new KeyValuePair<InputType, float>(InputTypeUtil.GetForward(actor),0.1f)
+            new KeyValuePair<InputType, float>(InputTypeUtil.GetForward(actor),0.5f)
         };
-        if (actor.SequenceBuffered(sequence,120))
+        if (actor.SequenceBuffered(sequence))
             Debug.Log("Running!");
         //float direction = actor.GetControllerAxis("Horizontal") * actor.facing;
         //shield
@@ -83,6 +92,8 @@ public class StateTransitions : ScriptableObject {
             actor.doAction("Crouch");
         else if (actor.GetControllerAxis("Horizontal") == 0.0f)
             actor.doAction("Stop");
+        if (actor.KeyBuffered(InputTypeUtil.GetBackward(actor)))
+            actor.flip(); //TODO PIVOT
         //Two other kinds of stop? Not sure if these are needed
     }
 

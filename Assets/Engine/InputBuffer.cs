@@ -107,26 +107,42 @@ public class InputBuffer : MonoBehaviour {
 
     public bool KeyBuffered(InputType input, int distance = 12, float threshold = 0.1f)
     {
+        bool threshValue;
         foreach (InputValue bufferedInput in inputBuffer)
             if (bufferedInput.frame < game_controller.current_game_frame - distance) //If we've fallen off our distance value
                 break;
             else
-                if (bufferedInput.key == input && bufferedInput.value >= threshold)
-                return true;
+            {
+                if (threshold > 0.0f)
+                    threshValue = (bufferedInput.value >= threshold);
+                else
+                    threshValue = (bufferedInput.value <= Mathf.Abs(threshold));
+                if (bufferedInput.key == input && threshValue)
+                    if (bufferedInput.active)
+                        return bufferedInput.Consume();
+            }
         return false;
     }
 
     public bool SequenceBuffered(List<KeyValuePair<InputType,float>> inputList, int distance = 12)
     {
         int index = 0;
+        bool threshValue;
         foreach (InputValue bufferedInput in inputBuffer)
             if (bufferedInput.frame < game_controller.current_game_frame - distance) //If we've fallen off our distance value
                 break;
             else if (index >= inputList.Count)
                 break;
             else
-                if (bufferedInput.key == inputList[index].Key && bufferedInput.value >= inputList[index].Value)
-                index++;
+            {
+                if (inputList[index].Value > 0.0f)
+                    threshValue = (bufferedInput.value >= inputList[index].Value);
+                else
+                    threshValue = (bufferedInput.value <= Mathf.Abs(inputList[index].Value));
+                if (bufferedInput.key == inputList[index].Key && threshValue)
+                    if (bufferedInput.active)
+                        index++;
+            }
 
         if (index >= inputList.Count) //if we've gotten through the list
             return true;
@@ -149,6 +165,16 @@ public class InputValue
         value = _value;
         frame = _frame;
         active = true;
+    }
+
+    public bool Consume()
+    {
+        if (active)
+        {
+            active = false;
+            return true;
+        }
+        return false;
     }
 }
 

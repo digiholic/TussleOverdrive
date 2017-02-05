@@ -13,7 +13,7 @@ public class star : MonoBehaviour {
     private SpriteRenderer sprite;
     public float speed = 0.0f;
 
-    private int life = 100;
+    private int life = 150;
 
 	// Use this for initialization
 	void Start () {
