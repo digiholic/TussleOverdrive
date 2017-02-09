@@ -2,43 +2,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class star : MonoBehaviour {
-
-    private float h = 0.0f;
-    private float s = 0.8f;
-    private float v = 1.0f;
-
+public class Star : MonoBehaviour {
     private Light mylight;
     private Material mat;
     private SpriteRenderer sprite;
-    public float speed = 0.0f;
+    private float speed = -1.0f;
 
-    private int life = 150;
+    private starSpawner spawner;
+    private Color hsvColor;
 
 	// Use this for initialization
 	void Start () {
         mylight = GetComponent<Light>();
         //mat = GetComponent<Renderer>().material;
         sprite = GetComponent<SpriteRenderer>();
-        //speed = Random.Range(0.1f, 2.0f);
     }
 	
 	// Update is called once per frame
 	void Update () {
-        h = (h + 0.1f * Time.deltaTime) % 1.0f;
-        mylight.color = Color.HSVToRGB(h, s, v);
-        sprite.color = Color.HSVToRGB(h, s, v);
+        hsvColor = spawner.getColor();
+
+        mylight.color = hsvColor;
+        sprite.color = hsvColor;
 
         transform.Translate(speed, 0, 0);
-        life -= 1;
-        if (life == 0)
-        {
-            Destroy(this.gameObject);
-        }
 	}
 
-    public void setHue(float _h)
+    public void OnBecameInvisible()
     {
-        h = _h;
+        Destroy(gameObject);
+    }
+    
+    public void setSpawner(starSpawner _spawner)
+    {
+        spawner = _spawner;
     }
 }

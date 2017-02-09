@@ -43,8 +43,6 @@ public class GameController : MonoBehaviour {
                 Debug.Log("Started recording");
             }
         }
-        if (Input.GetKeyDown(KeyCode.LeftBracket))
-            Application.CaptureScreenshot("screenshot");
     }
 
     /// <summary>

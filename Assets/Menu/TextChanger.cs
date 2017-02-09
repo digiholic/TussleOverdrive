@@ -11,11 +11,7 @@ public class TextChanger : MonoBehaviour
     private Image imageComponent;
     private starSpawner stars;
 
-
-    private float h = 0.0f;
-    private float s = 0.8f;
-    private float v = 1.0f;
-
+    private Color hsvColor;
 
     // Use this for initialization
     void Start()
@@ -29,20 +25,20 @@ public class TextChanger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        h = stars.getHue();
+        hsvColor = stars.getColor();
         if (buttonComponent != null)
         {
             ColorBlock cb = buttonComponent.colors;
-            cb.highlightedColor = Color.HSVToRGB(h, s, v);
+            cb.highlightedColor = hsvColor;
             buttonComponent.colors = cb;
         }
         if (imageComponent != null)
         {
-            imageComponent.color = Color.HSVToRGB(h, s, v);
+            imageComponent.color = hsvColor;
         }
         //if (textComponent != null)
         //{
-        //    textComponent.color = Color.HSVToRGB(h, s, v);
+        //    textComponent.color = hsvColor;
         //}
     }
 }

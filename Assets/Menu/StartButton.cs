@@ -18,7 +18,6 @@ public class StartButton : MonoBehaviour {
 	void Update () {
         alpha = 127 * Mathf.Sin(alpha_rad) + 128;
         alpha_rad += 0.05f;
-        Debug.Log(alpha);
         textComponent.color = new Color(0, 0, 0, alpha / 255.0f);
 	}
 }
