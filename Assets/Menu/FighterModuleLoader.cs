@@ -8,7 +8,7 @@ public class FighterModuleLoader : MonoBehaviour {
     public GameObject fighterButtonPrefab;
 
     private DirectoryInfo fightersDirectory = new DirectoryInfo("Assets/Fighters");
-    private float lastYPos = -30f;
+    private float lastYPos = -0f;
 
 	// Use this for initialization
 	void Start () {

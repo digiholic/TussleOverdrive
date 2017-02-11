@@ -6,7 +6,7 @@ public class Star : MonoBehaviour {
     private Light mylight;
     private Material mat;
     private SpriteRenderer sprite;
-    private float speed = -1.0f;
+    private float speed = -50.0f;
 
     private starSpawner spawner;
     private Color hsvColor;
@@ -25,7 +25,7 @@ public class Star : MonoBehaviour {
         mylight.color = hsvColor;
         sprite.color = hsvColor;
 
-        transform.Translate(speed, 0, 0);
+        transform.Translate(speed * Time.deltaTime, 0, 0);
 	}
 
     public void OnBecameInvisible()

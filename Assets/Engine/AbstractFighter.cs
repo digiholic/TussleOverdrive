@@ -299,7 +299,11 @@ public class AbstractFighter : MonoBehaviour {
         if (sprite_loader != null)
             sprite_loader.ChangeSprite(sprite_name, frame);
         if (anim != null)
-            anim.CrossFade(sprite_name, 0f);
+        {
+            if (anim.HasState(0,Animator.StringToHash(sprite_name)))
+                anim.CrossFade(sprite_name, 0f);
+        }
+            
     }
 
     public void ChangeSubimage(int frame, bool loop=true)

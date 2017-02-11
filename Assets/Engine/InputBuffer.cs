@@ -40,8 +40,9 @@ public class InputBuffer : MonoBehaviour {
         if (Input.GetButtonUp(playerNum + "_Shield"))
             inputBuffer.Insert(0,new InputValue(InputType.Shield, 0.0f, game_controller.current_game_frame));
         //HORIZONTAL AXIS MOTION
-        float haxis = Input.GetAxis(playerNum + "_Horizontal");
+        float haxis = Input.GetAxisRaw(playerNum + "_Horizontal");
         float hdiff = Mathf.Abs(haxis - last_horizontal);
+        /*
         if (hdiff >= 0.5) //If it's big enough, that's a smash
         {
             if (haxis < 0.0f) //Left
@@ -56,7 +57,8 @@ public class InputBuffer : MonoBehaviour {
             }
             last_horizontal = haxis;   
         }
-        else if (hdiff >= 0.1) //if it's smaller, it's a tilt
+        */
+        if (hdiff >= 0.1) //if it's smaller, it's a tilt
         {
             if (haxis < 0.0f) //Left
             {
@@ -73,7 +75,7 @@ public class InputBuffer : MonoBehaviour {
         }
         
         //VERTICAL AXIS MOTION
-        float vaxis = Input.GetAxis(playerNum + "_Vertical");
+        float vaxis = Input.GetAxisRaw(playerNum + "_Vertical");
         float vdiff = Mathf.Abs(vaxis - last_vertical);
         if (vdiff >= 0.5) //If it's big enough, that's a smash
         {
