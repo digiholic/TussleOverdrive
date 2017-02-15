@@ -68,31 +68,31 @@ public class AbstractFighter : MonoBehaviour {
     private float x_axis_delta;
     private float last_y_axis;
     private float y_axis_delta;
-    private XmlDocument data_xml;
     private InputBuffer inputBuffer;
+    private XMLLoader data_xml;
 
     void Awake()
     {
         if (File.Exists(fighter_xml_file))
         {
-            data_xml = new XmlDocument();
-            data_xml.Load(fighter_xml_file);
+            data_xml = GetComponent<XMLLoader>();
+            data_xml.LoadXML(fighter_xml_file);
+            
+            fighter_name = data_xml.SelectSingleNode("//fighter/name").GetString();
+            franchise_icon = data_xml.SelectSingleNode("//fighter/icon").GetString();
+            css_icon = data_xml.SelectSingleNode("//fighter/css_icon").GetString();
+            css_portrait = data_xml.SelectSingleNode("//fighter/css_portrait").GetString();
 
-            fighter_name = data_xml.SelectSingleNode("//fighter/name").InnerText;
-            franchise_icon = data_xml.SelectSingleNode("//fighter/icon").InnerText;
-            css_icon = data_xml.SelectSingleNode("//fighter/css_icon").InnerText;
-            css_portrait = data_xml.SelectSingleNode("//fighter/css_portrait").InnerText;
+            sprite_directory = data_xml.SelectSingleNode("//fighter/sprite_directory").GetString();
+            sprite_prefix = data_xml.SelectSingleNode("//fighter/sprite_prefix").GetString();
+            default_sprite = data_xml.SelectSingleNode("//fighter/default_sprite").GetString();
+            pixels_per_unit = data_xml.SelectSingleNode("//fighter/pixels_per_unit").GetString();
 
-            sprite_directory = data_xml.SelectSingleNode("//fighter/sprite_directory").InnerText;
-            sprite_prefix = data_xml.SelectSingleNode("//fighter/sprite_prefix").InnerText;
-            default_sprite = data_xml.SelectSingleNode("//fighter/default_sprite").InnerText;
-            pixels_per_unit = data_xml.SelectSingleNode("//fighter/pixels_per_unit").InnerText;
+            article_path = data_xml.SelectSingleNode("//fighter/article_path").GetString();
+            article_file = data_xml.SelectSingleNode("//fighter/articles").GetString();
+            sound_path = data_xml.SelectSingleNode("//fighter/sound_path").GetString();
 
-            article_path = data_xml.SelectSingleNode("//fighter/article_path").InnerText;
-            article_file = data_xml.SelectSingleNode("//fighter/articles").InnerText;
-            sound_path = data_xml.SelectSingleNode("//fighter/sound_path").InnerText;
-
-            action_file = data_xml.SelectSingleNode("//fighter/actions").InnerText;
+            action_file = data_xml.SelectSingleNode("//fighter/actions").GetString();
 
             //Load the stats
             weight = GetFromXml("weight", weight);
@@ -121,7 +121,7 @@ public class AbstractFighter : MonoBehaviour {
         }
         else
         {
-            Debug.Log("Could not find Fighter XML for player " + player_num);
+            Debug.LogWarning("Could not find Fighter XML for player " + player_num);
         }
     }
 
@@ -147,9 +147,9 @@ public class AbstractFighter : MonoBehaviour {
 
     private float GetFromXml(string stat_name, float default_value)
     {
-        XmlNode data_node = data_xml.SelectSingleNode("//fighter/stats/" + stat_name);
+        DataNode data_node = data_xml.SelectSingleNode("//fighter/stats/" + stat_name);
         if (data_node != null)
-            return float.Parse(data_node.InnerText);
+            return data_node.GetFloat();
         else
             return default_value;
     }

@@ -13,7 +13,11 @@
 	<articles>hitboxie_articles.xml</articles>
 	<sound_path>sfx/</sound_path>
 	<actions>hitboxie_actions.xml</actions>
-	
+
+  <bio>Angered by the mistreatment of his kind, Hitboxie rose up to fight for Hitbox-kind.
+
+No one tell him that he's actually using a bunch of invisible Hitboxes to fight with anyway; it would break his square heart.</bio>
+  <!--
 	<color_palette id='0' displayColor='#202020'>
 	</color_palette>
 	
@@ -46,7 +50,7 @@
 	</color_palette>
 	
 	<costume>hitolantern_</costume>
-	
+	-->
 	<stats>
 		<weight>10</weight>
 		<gravity>-5.0</gravity>

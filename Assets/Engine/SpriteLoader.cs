@@ -26,49 +26,46 @@ public class SpriteLoader : MonoBehaviour {
         sprite_renderer = GetComponent<SpriteRenderer>();
 
         DirectoryInfo info = new DirectoryInfo(directory);
-        FileInfo[] fileInfo = info.GetFiles();
-        
-        
         string sprite_json_path = Path.Combine(info.FullName, "sprites.json");
         
         if (File.Exists(sprite_json_path))
         {
             string sprite_json = File.ReadAllText(sprite_json_path);
-            Debug.Log(sprite_json);
-
-            SpriteDataCollection col = new SpriteDataCollection();
-            Debug.Log(JsonUtility.ToJson(col));
-            
             SpriteDataCollection sprite_list = JsonUtility.FromJson<SpriteDataCollection>(sprite_json);
-            Debug.Log(sprite_list.sprites);
 
-            Dictionary<string, SpriteData> sprite_data_dict = new Dictionary<string,SpriteData>();
-            foreach (SpriteData data in sprite_list.sprites)
-            {
-                sprite_data_dict[data.sprite_name] = data;
-                Sprite NewSprite = new Sprite();
-                string filename = prefix + data.sprite_name + ".png";
-                Texture2D SpriteTexture = LoadTexture(Path.Combine(directory,filename));
-
-                List<Sprite> spriteFrames = new List<Sprite>();
-                foreach (Vector2 startPos in data.subimage)
-                {
-                    Sprite newSprite = Sprite.Create(SpriteTexture, new Rect(startPos.x, startPos.y, data.sprite_size.x, data.sprite_size.y), new Vector2(0.5f, 0.5f), pixelsPerUnit);
-                    spriteFrames.Add(newSprite);
-                }
-                sprites.Add(data.sprite_name, spriteFrames);
-            }
+            LoadSpritesFromData(sprite_list);
         }
         
         //For testing purposes at the moment
         ChangeSprite("idle");
     }
 
+    public void LoadSpritesFromData(SpriteDataCollection sprite_list)
+    {
+        sprites = new Dictionary<string, List<Sprite>>();
+
+        Dictionary<string, SpriteData> sprite_data_dict = new Dictionary<string, SpriteData>();
+        foreach (SpriteData data in sprite_list.sprites)
+        {
+            sprite_data_dict[data.sprite_name] = data;
+            string filename = prefix + data.sprite_name + ".png";
+            Texture2D SpriteTexture = LoadTexture(Path.Combine(directory, filename));
+
+            List<Sprite> spriteFrames = new List<Sprite>();
+            foreach (Vector2 startPos in data.subimage)
+            {
+                Sprite newSprite = Sprite.Create(SpriteTexture, new Rect(startPos.x, startPos.y, data.sprite_size.x, data.sprite_size.y), new Vector2(0.5f, 0.5f), pixelsPerUnit);
+                spriteFrames.Add(newSprite);
+            }
+            sprites.Add(data.sprite_name, spriteFrames);
+        }
+    }
+
     public void ChangeSprite(string _sprite_name, int _frame = 0)
     {
         if (_sprite_name == null)
         {
-            Debug.Log("No Sprite found");
+            Debug.LogWarning("No Sprite found");
             _sprite_name = "idle";
         }
         if (sprites.ContainsKey(_sprite_name))
@@ -79,7 +76,7 @@ public class SpriteLoader : MonoBehaviour {
         }
         else
         {
-            Debug.Log("Attempted to load illegal sprite: " + _sprite_name);
+            Debug.LogWarning("Attempted to load illegal sprite: " + _sprite_name);
         }
     }
 
@@ -99,7 +96,6 @@ public class SpriteLoader : MonoBehaviour {
     {
         // Load a PNG or JPG image from disk to a Texture2D, assign this texture to a new sprite and return its reference
 
-        Sprite NewSprite = new Sprite();
         Texture2D SpriteTexture = LoadTexture(FilePath);
 
         if ((width * (frameNo+1)) > SpriteTexture.width)

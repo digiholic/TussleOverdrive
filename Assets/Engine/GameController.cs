@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
     public List<AbstractFighter> fighters;
@@ -42,6 +43,10 @@ public class GameController : MonoBehaviour {
                 recording = true;
                 Debug.Log("Started recording");
             }
+        }
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
         }
     }
 

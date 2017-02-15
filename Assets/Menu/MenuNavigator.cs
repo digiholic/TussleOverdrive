@@ -10,7 +10,6 @@ public class MenuNavigator : MonoBehaviour {
     public enum MenuState { Title, Main, Tussle, Settings, Modules }
 
     private GameObject currentMenu;
-    private EventSystem events;
     private Dictionary<string, GameObject> menuDict;
 
     void Awake()
@@ -31,8 +30,6 @@ public class MenuNavigator : MonoBehaviour {
         currentMenu = menuDict["Title"];
         currentMenu.SetActive(true);
         currentMenu.GetComponent<MenuManager>().ActivateMenu();
-        
-        events = GameObject.Find("EventSystem").GetComponent<EventSystem>();
     }           
                         
 	// Update is called     once per frame
@@ -49,11 +46,15 @@ public class MenuNavigator : MonoBehaviour {
 
     public void SwitchToString(string menuName)
     {
-        Debug.Log(menuName);
         currentMenu.SendMessage("DeactivateMenu");
         currentMenu = menuDict[menuName];
         currentMenu.SetActive(true);
         currentMenu.SendMessage("ActivateMenu");
+    }
+
+    public GameObject GetByString(string menuName)
+    {
+        return menuDict[menuName];
     }
 }
 

@@ -7,7 +7,7 @@ public class TextChanger : MonoBehaviour
 {
 
     private Button buttonComponent;
-    private Text textComponent;
+    //private Text textComponent;
     private Image imageComponent;
     private starSpawner stars;
 
@@ -17,7 +17,7 @@ public class TextChanger : MonoBehaviour
     void Start()
     {
         buttonComponent = GetComponent<Button>();
-        textComponent = GetComponent<Text>();
+        //textComponent = GetComponent<Text>();
         imageComponent = GetComponent<Image>();
         stars = Camera.main.GetComponent<starSpawner>();
     }

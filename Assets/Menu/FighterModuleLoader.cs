@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class FighterModuleLoader : MonoBehaviour {
     public GameObject fighterButtonPrefab;
@@ -28,11 +29,13 @@ public class FighterModuleLoader : MonoBehaviour {
             string combinedPath = Path.Combine(fighterDir.FullName, "fighter.xml");
             if (File.Exists(combinedPath))
             {
-                Debug.Log(combinedPath);
                 GameObject fighterName = Instantiate(fighterButtonPrefab) as GameObject;
+                fighterName.GetComponent<OnClickOpenFighter>().xml_data = combinedPath;
                 RectTransform fighterNameTransform = fighterName.GetComponent<RectTransform>();
+                //Place it properly
                 fighterNameTransform.SetParent(gameObject.transform,false);
                 fighterNameTransform.Translate(new Vector3(0.0f, lastYPos, 0.0f));
+                //Set its name
                 fighterName.GetComponent<Text>().text = fighterDir.Name;
             }
         }

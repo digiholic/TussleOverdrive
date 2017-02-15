@@ -8,11 +8,11 @@ public class camera_motion : MonoBehaviour
     private float minX, maxX, minY, maxY;
     public Transform[] follows;
 
-    private Camera camera;
+    
     // Use this for initialization
     void Start()
     {
-        camera = GetComponent<Camera>();
+
     }
 
     // Update is called once per frame
