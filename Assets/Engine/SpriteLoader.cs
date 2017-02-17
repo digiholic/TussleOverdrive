@@ -22,7 +22,7 @@ public class SpriteLoader : MonoBehaviour {
         directory = actor.sprite_directory;
         prefix = actor.sprite_prefix;
         pixelsPerUnit = float.Parse(actor.pixels_per_unit);
-
+        
         sprite_renderer = GetComponent<SpriteRenderer>();
 
         DirectoryInfo info = new DirectoryInfo(directory);
