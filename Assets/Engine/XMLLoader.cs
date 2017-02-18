@@ -7,12 +7,16 @@ using System.IO;
 public class XMLLoader : MonoBehaviour {
     private XmlDocument data_xml;
 
+    public string xml_file;
+
     [HideInInspector]
     public Dictionary<string,DataNode> nodemap;
 
     void Start()
     {
         nodemap = new Dictionary<string, DataNode>();
+        if (xml_file != "")
+            LoadXML(xml_file);
     }
 
     public void LoadXML(string xml_file_path, bool overwrite = true)

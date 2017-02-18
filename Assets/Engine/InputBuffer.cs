@@ -7,6 +7,7 @@ public class InputBuffer : MonoBehaviour {
 
     private List<InputValue> inputBuffer = new List<InputValue>();
     private GameController game_controller;
+    private List<InputType> heldButtons = new List<InputType>();
 
     private float last_horizontal = 0.0f;
     private float last_vertical = 0.0f;
@@ -23,22 +24,51 @@ public class InputBuffer : MonoBehaviour {
     {
         //BUTTON PRESS
         if (Input.GetButtonDown(playerNum + "_Attack"))
-            inputBuffer.Insert(0,new InputValue(InputType.Attack, 1.0f, game_controller.current_game_frame));
+        {
+            inputBuffer.Insert(0, new InputValue(InputType.Attack, 1.0f, game_controller.current_game_frame));
+            heldButtons.Add(InputType.Attack);
+        }   
         if (Input.GetButtonDown(playerNum + "_Special"))
-            inputBuffer.Insert(0,new InputValue(InputType.Special, 1.0f, game_controller.current_game_frame));
+        {
+            inputBuffer.Insert(0, new InputValue(InputType.Special, 1.0f, game_controller.current_game_frame));
+            heldButtons.Add(InputType.Special);
+        }
         if (Input.GetButtonDown(playerNum + "_Jump"))
-            inputBuffer.Insert(0,new InputValue(InputType.Jump, 1.0f, game_controller.current_game_frame));
+        {
+            inputBuffer.Insert(0, new InputValue(InputType.Jump, 1.0f, game_controller.current_game_frame));
+            heldButtons.Add(InputType.Jump);
+        }
         if (Input.GetButtonDown(playerNum + "_Shield"))
-            inputBuffer.Insert(0,new InputValue(InputType.Shield, 1.0f, game_controller.current_game_frame));
+        {
+            inputBuffer.Insert(0, new InputValue(InputType.Shield, 1.0f, game_controller.current_game_frame));
+            heldButtons.Add(InputType.Shield);
+        }
+            
         //BUTTON RELEASE
         if (Input.GetButtonUp(playerNum + "_Attack"))
-            inputBuffer.Insert(0,new InputValue(InputType.Attack, 0.0f, game_controller.current_game_frame));
+        {
+            inputBuffer.Insert(0, new InputValue(InputType.Attack, 0.0f, game_controller.current_game_frame));
+            heldButtons.Remove(InputType.Attack);
+        }
+            
         if (Input.GetButtonUp(playerNum + "_Special"))
-            inputBuffer.Insert(0,new InputValue(InputType.Special, 0.0f, game_controller.current_game_frame));
+        {
+            inputBuffer.Insert(0, new InputValue(InputType.Special, 0.0f, game_controller.current_game_frame));
+            heldButtons.Remove(InputType.Special);
+        }
+            
         if (Input.GetButtonUp(playerNum + "_Jump"))
-            inputBuffer.Insert(0,new InputValue(InputType.Jump, 0.0f, game_controller.current_game_frame));
+        {
+            inputBuffer.Insert(0, new InputValue(InputType.Jump, 0.0f, game_controller.current_game_frame));
+            heldButtons.Remove(InputType.Jump);
+        }
+            
         if (Input.GetButtonUp(playerNum + "_Shield"))
-            inputBuffer.Insert(0,new InputValue(InputType.Shield, 0.0f, game_controller.current_game_frame));
+        {
+            inputBuffer.Insert(0, new InputValue(InputType.Shield, 0.0f, game_controller.current_game_frame));
+            heldButtons.Remove(InputType.Shield);
+        }
+            
         //HORIZONTAL AXIS MOTION
         float haxis = Input.GetAxisRaw(playerNum + "_Horizontal");
         float hdiff = Mathf.Abs(haxis - last_horizontal);
@@ -77,6 +107,7 @@ public class InputBuffer : MonoBehaviour {
         //VERTICAL AXIS MOTION
         float vaxis = Input.GetAxisRaw(playerNum + "_Vertical");
         float vdiff = Mathf.Abs(vaxis - last_vertical);
+        /*
         if (vdiff >= 0.5) //If it's big enough, that's a smash
         {
             if (vaxis < 0.0f) //Left
@@ -91,7 +122,8 @@ public class InputBuffer : MonoBehaviour {
             }
             last_vertical = vaxis;
         }
-        else if (vdiff >= 0.1) //if it's smaller, it's a tilt
+        */
+        if (vdiff >= 0.1) //if it's smaller, it's a tilt
         {
             if (vaxis < 0.0f) //Left
             {
@@ -124,6 +156,11 @@ public class InputBuffer : MonoBehaviour {
                         return bufferedInput.Consume();
             }
         return false;
+    }
+
+    public bool KeyHeld(InputType input)
+    {
+        return heldButtons.Contains(input);
     }
 
     public bool SequenceBuffered(List<KeyValuePair<InputType,float>> inputList, int distance = 12)

@@ -18,11 +18,11 @@ public class SpriteLoader : MonoBehaviour {
 
     // Use this for initialization
 	void Start() {
-        AbstractFighter actor = GetComponent<AbstractFighter>();
-        directory = actor.sprite_directory;
-        prefix = actor.sprite_prefix;
-        pixelsPerUnit = float.Parse(actor.pixels_per_unit);
-        
+        XMLLoader data_xml = GetComponent<XMLLoader>();
+        directory = data_xml.SelectSingleNode("//fighter/sprite_directory").GetString();
+        prefix = data_xml.SelectSingleNode("//fighter/sprite_prefix").GetString();
+        pixelsPerUnit = data_xml.SelectSingleNode("//fighter/pixels_per_unit").GetFloat();
+
         sprite_renderer = GetComponent<SpriteRenderer>();
 
         DirectoryInfo info = new DirectoryInfo(directory);

@@ -15,9 +15,9 @@ public class StateTransitions : ScriptableObject {
             actor.doAction("Jump");
         if (actor.KeyBuffered(InputType.Down,threshold: 0.5f))
             actor.doAction("Crouch");
-        if (actor.KeyBuffered(InputTypeUtil.GetForward(actor)))
+        if (actor.KeyHeld(InputTypeUtil.GetForward(actor)))
             actor.doAction("Move");
-        if (actor.KeyBuffered(InputTypeUtil.GetBackward(actor)))
+        if (actor.KeyHeld(InputTypeUtil.GetBackward(actor)))
         {
             actor.flip(); //TODO PIVOT
             actor.doAction("Move");
