@@ -1,0 +1,3636 @@
+{
+    "actions": [
+        {
+            "name": "NeutralAction",
+            "length": 1,
+            "sprite": "idle",
+            "sprite_rate": 0,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": [
+                    "setVar fighter int 1 false"
+                ]
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": [
+                {
+                    "frames": "1",
+                    "subactions": [
+                        "setFrame 1"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Stop",
+            "length": 9,
+            "sprite": "pivot",
+            "sprite_rate": 3,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": []
+        },
+        {
+            "name": "RunStop",
+            "length": 18,
+            "sprite": "pivot",
+            "sprite_rate": 6,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": []
+        },
+        {
+            "name": "Crouch",
+            "length": 3,
+            "sprite": "land",
+            "sprite_rate": 1,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": [
+                    "setFrame 2"
+                ]
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": []
+        },
+        {
+            "name": "CrouchGetup",
+            "length": 9,
+            "sprite": "land",
+            "sprite_rate": -3,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": []
+        },
+        {
+            "name": "Fall",
+            "length": 1,
+            "sprite": "jump",
+            "sprite_rate": 0,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": [
+                    "setVar action always bool true false"
+                ]
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": [
+                    "<ifButton>\n\t\t\t\t<button check=\"keysContain\">forward</button>\n\t\t\t\t<pass>check_cling</pass>\n\t\t\t\t<fail>fast_fall</fail>\n\t\t\t</ifButton>\n\t\t"
+                ]
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": [
+                    "<if function=\"true\">\n\t\t\t\t<variable source=\"action\">always</variable>\n\t\t\t\t<value type=\"boolean\">True</value>\n\t\t\t\t<pass>fast_fall</pass>\n\t\t\t</if>\n\t\t"
+                ]
+            },
+            "actions_at_frame": []
+        },
+        {
+            "name": "Jump",
+            "length": 6,
+            "sprite": "land",
+            "sprite_rate": 1,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": [
+                {
+                    "frames": "5",
+                    "subactions": [
+                        "<changeSprite>jump</changeSprite>\n\t\t"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "AirJump",
+            "length": 8,
+            "sprite": "airjump",
+            "sprite_rate": 2,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": []
+        },
+        {
+            "name": "Helpless",
+            "length": 2,
+            "sprite": "jump",
+            "sprite_rate": 0,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": []
+        },
+        {
+            "name": "Land",
+            "length": 6,
+            "sprite": "land",
+            "sprite_rate": 3,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": [
+                    "<setFighterVar var=\"sideSpecialUses\">\n\t\t\t\t<value type=\"int\">1</value>\n\t\t\t</setFighterVar>\n\t\t"
+                ]
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": []
+        },
+        {
+            "name": "HelplessLand",
+            "length": 6,
+            "sprite": "land",
+            "sprite_rate": 3,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": [
+                    "<setFighterVar var=\"sideSpecialUses\">\n\t\t\t\t<value type=\"int\">1</value>\n\t\t\t</setFighterVar>\n\t\t"
+                ]
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": []
+        },
+        {
+            "name": "PlatformDrop",
+            "length": 12,
+            "sprite": "airjump",
+            "sprite_rate": -2,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": []
+        },
+        {
+            "name": "Move",
+            "length": 15,
+            "sprite": "run",
+            "sprite_rate": 3,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": [
+                    "<setFrame>12</setFrame>\n\t\t"
+                ]
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": [
+                {
+                    "frames": "0",
+                    "subactions": [
+                        "<if>\n\t\t\t\t<variable source=\"action\">accel</variable>\n\t\t\t\t<value type=\"bool\">False</value>\n\t\t\t\t<pass>noAccel</pass>\n\t\t\t</if>\n\t\t"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Dash",
+            "length": 10,
+            "sprite": "run",
+            "sprite_rate": 2,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": []
+        },
+        {
+            "name": "Pivot",
+            "length": 10,
+            "sprite": "pivot",
+            "sprite_rate": -2,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": []
+        },
+        {
+            "name": "RunPivot",
+            "length": 20,
+            "sprite": "pivot",
+            "sprite_rate": -4,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": []
+        },
+        {
+            "name": "Grabbing",
+            "length": 1,
+            "sprite": "pivot",
+            "sprite_rate": 0,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": [
+                    "<changeSubimage>4</changeSubimage>\n\t\t\t",
+                    "<changeFighterSpeed>\n\t\t\t\t<xSpeed>0</xSpeed>\n\t\t\t</changeFighterSpeed>\n\t\t"
+                ]
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": []
+        },
+        {
+            "name": "Getup",
+            "length": 16,
+            "sprite": "land",
+            "sprite_rate": -4,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": []
+        },
+        {
+            "name": "Shield",
+            "length": 12,
+            "sprite": "jump",
+            "sprite_rate": 0,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": []
+        },
+        {
+            "name": "Parry",
+            "length": 16,
+            "sprite": "jump",
+            "sprite_rate": 0,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": []
+        },
+        {
+            "name": "ForwardRoll",
+            "length": 32,
+            "sprite": "land",
+            "sprite_rate": 0,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": [
+                    "<changeSubimage>1</changeSubimage>\n\t\t"
+                ]
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": [
+                {
+                    "frames": "2",
+                    "subactions": [
+                        "<playSound>dashroll</playSound>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "22",
+                    "subactions": [
+                        "<playSound>dashroll</playSound>\n\t\t"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "BackwardRoll",
+            "length": 32,
+            "sprite": "land",
+            "sprite_rate": 0,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": [
+                    "<changeSubimage>1</changeSubimage>\n\t\t"
+                ]
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": [
+                {
+                    "frames": "2",
+                    "subactions": [
+                        "<playSound>dashroll</playSound>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "22",
+                    "subactions": [
+                        "<playSound>dashroll</playSound>\n\t\t"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "SpotDodge",
+            "length": 24,
+            "sprite": "land",
+            "sprite_rate": 1,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": [
+                {
+                    "frames": "3",
+                    "subactions": [
+                        "<changeSubimage>3</changeSubimage>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "18",
+                    "subactions": [
+                        "<changeSubimage>3</changeSubimage>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "20",
+                    "subactions": [
+                        "<changeSubimage>3</changeSubimage>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "22",
+                    "subactions": [
+                        "<changeSubimage>3</changeSubimage>\n\t\t"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "ForwardTech",
+            "length": 32,
+            "sprite": "land",
+            "sprite_rate": 0,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": [
+                    "<changeSubimage>1</changeSubimage>\n\t\t"
+                ]
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": [
+                {
+                    "frames": "2",
+                    "subactions": [
+                        "<playSound>dashroll</playSound>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "22",
+                    "subactions": [
+                        "<playSound>dashroll</playSound>\n\t\t"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "BackwardTech",
+            "length": 32,
+            "sprite": "land",
+            "sprite_rate": 0,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": [
+                    "<changeSubimage>1</changeSubimage>\n\t\t"
+                ]
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": [
+                {
+                    "frames": "2",
+                    "subactions": [
+                        "<playSound>dashroll</playSound>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "22",
+                    "subactions": [
+                        "<playSound>dashroll</playSound>\n\t\t"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "DodgeTech",
+            "length": 24,
+            "sprite": "land",
+            "sprite_rate": 1,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": [
+                {
+                    "frames": "3",
+                    "subactions": [
+                        "<changeSubimage>3</changeSubimage>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "18",
+                    "subactions": [
+                        "<changeSubimage>3</changeSubimage>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "20",
+                    "subactions": [
+                        "<changeSubimage>3</changeSubimage>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "22",
+                    "subactions": [
+                        "<changeSubimage>3</changeSubimage>\n\t\t"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "AirDodge",
+            "length": 30,
+            "sprite": "nair",
+            "sprite_rate": 0,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": [
+                {
+                    "frames": "4",
+                    "subactions": [
+                        "<changeSubimage>2</changeSubimage>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "20",
+                    "subactions": [
+                        "<changeSubimage>2</changeSubimage>\n\t\t"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "LedgeGrab",
+            "length": 1,
+            "sprite": "jump",
+            "sprite_rate": 0,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": []
+        },
+        {
+            "name": "HitStun",
+            "length": 1,
+            "sprite": "jump",
+            "sprite_rate": 1,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": []
+        },
+        {
+            "name": "Tumble",
+            "length": 1,
+            "sprite": "jump",
+            "sprite_rate": 1,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": [
+                    "<setFighterVar var=\"sideSpecialUses\">\n\t\t\t\t<value type=\"int\">1</value>\n\t\t\t</setFighterVar>\n\t\t"
+                ]
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": []
+        },
+        {
+            "name": "Prone",
+            "length": 25,
+            "sprite": "land",
+            "sprite_rate": 2,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": [
+                    "<setFighterVar var=\"sideSpecialUses\">\n\t\t\t\t<value type=\"int\">1</value>\n\t\t\t</setFighterVar>\n\t\t"
+                ]
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": [
+                {
+                    "frames": "6",
+                    "subactions": [
+                        "<changeSubimage>3</changeSubimage>\n\t\t"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "SlowGetup",
+            "length": 50,
+            "sprite": "land",
+            "sprite_rate": 2,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": [
+                    "<setFighterVar var=\"sideSpecialUses\">\n\t\t\t\t<value type=\"int\">1</value>\n\t\t\t</setFighterVar>\n\t\t"
+                ]
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": [
+                {
+                    "frames": "6",
+                    "subactions": [
+                        "<changeSubimage>3</changeSubimage>\n\t\t"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Respawn",
+            "length": 360,
+            "sprite": "idle",
+            "sprite_rate": 0,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": [
+                    "<setFighterVar var=\"sideSpecialUses\">\n\t\t\t\t<value type=\"int\">1</value>\n\t\t\t</setFighterVar>\n\t\t"
+                ]
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": []
+        },
+        {
+            "name": "Stunned",
+            "length": 1,
+            "sprite": "jump",
+            "sprite_rate": 0,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": [
+                    "<removeMask />\n\t\t"
+                ]
+            },
+            "actions_at_frame": [
+                {
+                    "frames": "0",
+                    "subactions": [
+                        "<createMask>\n\t\t\t\t<color>#FF00FF</color>\n\t\t\t\t<duration>999</duration>\n\t\t\t\t<pulse>8</pulse>\n\t\t\t</createMask>\n\t\t"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "ShieldStun",
+            "length": 1,
+            "sprite": "jump",
+            "sprite_rate": 0,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": [
+                    "<createMask>\n\t\t\t\t<color>#bf3fbf</color>\n\t\t\t\t<duration>999</duration>\n\t\t\t\t<pulse>8</pulse>\n\t\t\t</createMask>\n\t\t"
+                ]
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": [
+                    "<removeMask />\n\t\t"
+                ]
+            },
+            "actions_at_frame": []
+        },
+        {
+            "name": "Trapped",
+            "length": 1,
+            "sprite": "idle",
+            "sprite_rate": 0,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": [
+                    "<setFighterVar var=\"sideSpecialUses\">\n\t\t\t\t<value type=\"int\">1</value>\n\t\t\t</setFighterVar>\n\t\t"
+                ]
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": []
+        },
+        {
+            "name": "Grabbed",
+            "length": 1,
+            "sprite": "idle",
+            "sprite_rate": 0,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": [
+                    "<setFighterVariable var=\"sideSpecialUses\">\n\t\t\t\t<value type=\"int\">1</value>\n\t\t\t</setFighterVariable>\n\t\t"
+                ]
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": []
+        },
+        {
+            "name": "Release",
+            "length": 14,
+            "sprite": "pivot",
+            "sprite_rate": -2,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": [
+                {
+                    "frames": "0",
+                    "subactions": [
+                        "<changeSubimage>4</changeSubimage>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "2",
+                    "subactions": [
+                        "<changeSubimage>4</changeSubimage>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "4",
+                    "subactions": [
+                        "<changeSubimage>4</changeSubimage>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "10",
+                    "subactions": [
+                        "<changeSubimage>4</changeSubimage>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "12",
+                    "subactions": [
+                        "<changeSubimage>4</changeSubimage>\n\t\t"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Released",
+            "length": 1,
+            "sprite": "jump",
+            "sprite_rate": 0,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": []
+        },
+        {
+            "name": "LedgeGetup",
+            "length": 27,
+            "sprite": "getup",
+            "sprite_rate": 1,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": [
+                {
+                    "frames": "6,8,10,12,14,17,20,23,26",
+                    "subactions": [
+                        "<changeSubimage relative=\"True\">1</changeSubimage>\n\t\t"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "LedgeRoll",
+            "length": 37,
+            "sprite": "getup",
+            "sprite_rate": 1,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": [
+                {
+                    "frames": "8,10,12,14",
+                    "subactions": [
+                        "<changeSubimage relative=\"True\">1</changeSubimage>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "15",
+                    "subactions": [
+                        "<changeSubimage relative=\"True\">1</changeSubimage>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "17",
+                    "subactions": [
+                        "<changeSubimage relative=\"True\">1</changeSubimage>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "33",
+                    "subactions": [
+                        "<changeSubimage relative=\"True\">1</changeSubimage>\n\t\t"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "LedgeAttack",
+            "length": 37,
+            "sprite": "getup",
+            "sprite_rate": 1,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": [
+                    "<createHitbox>\n\t\t\t\t<name>dashHitbox</name>\n\t\t\t\t<center>0,0</center>\n\t\t\t\t<size>70,70</size>\n\t\t\t\t<damage>2</damage>\n\t\t\t\t<base_knockback>10</base_knockback>\n\t\t\t\t<knockback_growth>0.1</knockback_growth>\n\t\t\t\t<trajectory>20</trajectory>\n\t\t\t</createHitbox>\n\t\t\t\n\t\t\t",
+                    "<createHitbox type=\"autolink\">\n\t\t\t\t<name>chainHitbox</name>\n\t\t\t\t<center>0,0</center>\n\t\t\t\t<size>70,70</size>\n\t\t\t\t<damage>2</damage>\n\t\t\t\t<x_bias>1</x_bias>\n\t\t\t\t<y_bias>-1</y_bias>\n\t\t\t</createHitbox>\n\t\t\t\n\t\t\t",
+                    "<setFighterVar var=\"invulnerable\">\n\t\t\t\t<value type=\"int\">21</value>\n\t\t\t</setFighterVar>\n\t\t"
+                ]
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": [
+                    "<modifyHurtbox>\n\t\t\t\t<center>0,0</center>\n\t\t\t\t<size>64,64</size>\n\t\t\t\t<fix_rect>bounding_rect</fix_rect>\n\t\t\t</modifyHurtbox>\n\t\t"
+                ]
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": [
+                {
+                    "frames": "8",
+                    "subactions": [
+                        "<modifyHurtbox>\n\t\t\t\t<center>0,0</center>\n\t\t\t\t<size>64,64</size>\n\t\t\t\t<fix_rect>bounding_rect</fix_rect>\n\t\t\t</modifyHurtbox>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "10",
+                    "subactions": [
+                        "<modifyHurtbox>\n\t\t\t\t<center>0,0</center>\n\t\t\t\t<size>64,64</size>\n\t\t\t\t<fix_rect>bounding_rect</fix_rect>\n\t\t\t</modifyHurtbox>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "12",
+                    "subactions": [
+                        "<modifyHurtbox>\n\t\t\t\t<center>0,0</center>\n\t\t\t\t<size>64,64</size>\n\t\t\t\t<fix_rect>bounding_rect</fix_rect>\n\t\t\t</modifyHurtbox>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "14",
+                    "subactions": [
+                        "<modifyHurtbox>\n\t\t\t\t<center>0,0</center>\n\t\t\t\t<size>64,64</size>\n\t\t\t\t<fix_rect>bounding_rect</fix_rect>\n\t\t\t</modifyHurtbox>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "15",
+                    "subactions": [
+                        "<modifyHurtbox>\n\t\t\t\t<center>0,0</center>\n\t\t\t\t<size>64,64</size>\n\t\t\t\t<fix_rect>bounding_rect</fix_rect>\n\t\t\t</modifyHurtbox>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "16-22",
+                    "subactions": [
+                        "<modifyHurtbox>\n\t\t\t\t<center>0,0</center>\n\t\t\t\t<size>64,64</size>\n\t\t\t\t<fix_rect>bounding_rect</fix_rect>\n\t\t\t</modifyHurtbox>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "24, 26, 28, 30, 32, 34, 36",
+                    "subactions": [
+                        "<modifyHurtbox>\n\t\t\t\t<center>0,0</center>\n\t\t\t\t<size>64,64</size>\n\t\t\t\t<fix_rect>bounding_rect</fix_rect>\n\t\t\t</modifyHurtbox>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "17",
+                    "subactions": [
+                        "<modifyHurtbox>\n\t\t\t\t<center>0,0</center>\n\t\t\t\t<size>64,64</size>\n\t\t\t\t<fix_rect>bounding_rect</fix_rect>\n\t\t\t</modifyHurtbox>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "21,25",
+                    "subactions": [
+                        "<modifyHurtbox>\n\t\t\t\t<center>0,0</center>\n\t\t\t\t<size>64,64</size>\n\t\t\t\t<fix_rect>bounding_rect</fix_rect>\n\t\t\t</modifyHurtbox>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "29",
+                    "subactions": [
+                        "<modifyHurtbox>\n\t\t\t\t<center>0,0</center>\n\t\t\t\t<size>64,64</size>\n\t\t\t\t<fix_rect>bounding_rect</fix_rect>\n\t\t\t</modifyHurtbox>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "33",
+                    "subactions": [
+                        "<modifyHurtbox>\n\t\t\t\t<center>0,0</center>\n\t\t\t\t<size>64,64</size>\n\t\t\t\t<fix_rect>bounding_rect</fix_rect>\n\t\t\t</modifyHurtbox>\n\t\t"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "NeutralAttack",
+            "length": 22,
+            "sprite": "neutral",
+            "sprite_rate": 1,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": [
+                    "<createHitbox type=\"funnel\">\n\t\t\t\t<name>jab</name>\n\t\t\t\t<center>0,0</center>\n\t\t\t\t<size>80,80</size>\n\t\t\t\t<damage>2</damage>\n\t\t\t\t<base_knockback>6.5</base_knockback>\n\t\t\t\t<knockback_growth>0</knockback_growth>\n\t\t\t\t<velocity_multiplier>0</velocity_multiplier>\n\t\t\t\t<base_hitstun>20</base_hitstun>\n\t\t\t\t<hitstun_growth>2</hitstun_growth>\n\t\t\t\t<y_bias>-16</y_bias>\n\t\t\t\t<x_draw>-.1</x_draw>\n\t\t\t\t<y_draw>-.1</y_draw>\n\t\t\t\t<onHitOther>test</onHitOther>\n\t\t\t</createHitbox>\n\t\t"
+                ]
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": [
+                    "<transitionState>checkGrounded</transitionState>\n\t\t"
+                ]
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": [
+                    "<ifButton>\n\t\t\t\t<button check=\"keysContain\">attack</button>\n\t\t\t\t<fail>setFinisher</fail>\n\t\t\t</ifButton>\n\t\t"
+                ]
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": [
+                {
+                    "frames": "4",
+                    "subactions": [
+                        "<ifButton>\n\t\t\t\t<button check=\"keysContain\">attack</button>\n\t\t\t\t<fail>setFinisher</fail>\n\t\t\t</ifButton>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "5",
+                    "subactions": [
+                        "<ifButton>\n\t\t\t\t<button check=\"keysContain\">attack</button>\n\t\t\t\t<fail>setFinisher</fail>\n\t\t\t</ifButton>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "9",
+                    "subactions": [
+                        "<ifButton>\n\t\t\t\t<button check=\"keysContain\">attack</button>\n\t\t\t\t<fail>setFinisher</fail>\n\t\t\t</ifButton>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "11-14",
+                    "subactions": [
+                        "<ifButton>\n\t\t\t\t<button check=\"keysContain\">attack</button>\n\t\t\t\t<fail>setFinisher</fail>\n\t\t\t</ifButton>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "14",
+                    "subactions": [
+                        "<ifButton>\n\t\t\t\t<button check=\"keysContain\">attack</button>\n\t\t\t\t<fail>setFinisher</fail>\n\t\t\t</ifButton>\n\t\t"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "ForwardAttack",
+            "length": 24,
+            "sprite": "fsmash",
+            "sprite_rate": 2,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": [
+                    "<createHitbox type=\"damage\">\n\t\t\t\t<name>fTilt0</name>\n\t\t\t\t<center>20,0</center>\n\t\t\t\t<size>120,40</size>\n\t\t\t\t<damage>10</damage>\n\t\t\t\t<base_knockback>1.5</base_knockback>\n\t\t\t\t<knockback_growth>0.2</knockback_growth>\n\t\t\t\t<trajectory>50</trajectory>\n\t\t\t\t<trail_color>#bfbf00</trail_color>\n\t\t\t</createHitbox>\n\t\t"
+                ]
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": [
+                    "<if function=\"&lt;\">\n\t\t\t\t<variable source=\"action\">frame</variable>\n\t\t\t\t<value type=\"int\">14</value>\n\t\t\t\t<pass>transition</pass>\n\t\t\t</if>\n\t\t"
+                ]
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": [
+                {
+                    "frames": "10",
+                    "subactions": [
+                        "<playSound>ftilt</playSound>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "14",
+                    "subactions": [
+                        "<playSound>ftilt</playSound>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "16",
+                    "subactions": [
+                        "<playSound>ftilt</playSound>\n\t\t"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "ForwardSmash",
+            "length": 46,
+            "sprite": "fsmash",
+            "sprite_rate": 2,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": [
+                    "<createHitbox>\n\t\t\t\t<name>fSmash0</name>\n\t\t\t\t<center>20,0</center>\n\t\t\t\t<size>120,40</size>\n\t\t\t\t<damage>16</damage>\n\t\t\t\t<base_knockback>8</base_knockback>\n\t\t\t\t<knockback_growth>0.23</knockback_growth>\n\t\t\t\t<trajectory>40</trajectory>\n\t\t\t\t<charge_damage>.426</charge_damage>\n\t\t\t\t<charge_base_knockback>0.04</charge_base_knockback>\n\t\t\t\t<hitstun_multiplier type=\"float\">1.6</hitstun_multiplier>\n\t\t\t\t<trail_color>#ffff00</trail_color>\n\t\t\t</createHitbox>\n\t\t"
+                ]
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": [
+                    "<if function=\"&lt;\">\n\t\t\t\t<variable source=\"action\">frame</variable>\n\t\t\t\t<value type=\"int\">16</value>\n\t\t\t\t<pass>transition</pass>\n\t\t\t</if>\n\t\t"
+                ]
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": [
+                {
+                    "frames": "8",
+                    "subactions": [
+                        "<charge maxCharge=\"15\">6</charge>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "14",
+                    "subactions": [
+                        "<charge maxCharge=\"15\">6</charge>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "16",
+                    "subactions": [
+                        "<charge maxCharge=\"15\">6</charge>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "32",
+                    "subactions": [
+                        "<charge maxCharge=\"15\">6</charge>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "40",
+                    "subactions": [
+                        "<charge maxCharge=\"15\">6</charge>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "43",
+                    "subactions": [
+                        "<charge maxCharge=\"15\">6</charge>\n\t\t"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "UpAttack",
+            "length": 28,
+            "sprite": "utilt",
+            "sprite_rate": 4,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": [
+                    "<createHitbox>\n\t\t\t\t<name>sweet</name>\n\t\t\t\t<center>30,-20</center>\n\t\t\t\t<size>6,20</size>\n\t\t\t\t<damage>7</damage>\n\t\t\t\t<base_knockback>8</base_knockback>\n\t\t\t\t<knockback_growth>0.08</knockback_growth>\n\t\t\t\t<trajectory>100</trajectory>\n\t\t\t\t<hitboxLock>main</hitboxLock>\n\t\t\t</createHitbox>\n\t\t\t\n\t\t\t",
+                    "<createHitbox>\n\t\t\t\t<name>tangy</name>\n\t\t\t\t<center>27,-25</center>\n\t\t\t\t<size>12,35</size>\n\t\t\t\t<damage>5</damage>\n\t\t\t\t<base_knockback>7</base_knockback>\n\t\t\t\t<knockback_growth>0.08</knockback_growth>\n\t\t\t\t<trajectory>110</trajectory>\n\t\t\t\t<hitboxLock>main</hitboxLock>\n\t\t\t</createHitbox>\n\t\t\t\n\t\t\t",
+                    "<createHitbox>\n\t\t\t\t<name>sour</name>\n\t\t\t\t<center>21,-15</center>\n\t\t\t\t<size>24,60</size>\n\t\t\t\t<damage>3</damage>\n\t\t\t\t<base_knockback>6</base_knockback>\n\t\t\t\t<knockback_growth>0.08</knockback_growth>\n\t\t\t\t<trajectory>120</trajectory>\n\t\t\t\t<hitboxLock>main</hitboxLock>\n\t\t\t</createHitbox>\n\t\t"
+                ]
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": [
+                    "<transitionState>checkGrounded</transitionState>\n\t\t"
+                ]
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": [
+                {
+                    "frames": "0-4",
+                    "subactions": [
+                        "<modifyHurtbox>\n\t\t\t\t<center>0,16</center>\n\t\t\t\t<size>64,32</size>\n\t\t\t\t<fix_rect>bounding_rect</fix_rect>\n\t\t\t</modifyHurtbox>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "5-8",
+                    "subactions": [
+                        "<modifyHurtbox>\n\t\t\t\t<center>0,16</center>\n\t\t\t\t<size>64,32</size>\n\t\t\t\t<fix_rect>bounding_rect</fix_rect>\n\t\t\t</modifyHurtbox>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "0",
+                    "subactions": [
+                        "<modifyHurtbox>\n\t\t\t\t<center>0,16</center>\n\t\t\t\t<size>64,32</size>\n\t\t\t\t<fix_rect>bounding_rect</fix_rect>\n\t\t\t</modifyHurtbox>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "4",
+                    "subactions": [
+                        "<modifyHurtbox>\n\t\t\t\t<center>0,16</center>\n\t\t\t\t<size>64,32</size>\n\t\t\t\t<fix_rect>bounding_rect</fix_rect>\n\t\t\t</modifyHurtbox>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "6",
+                    "subactions": [
+                        "<modifyHurtbox>\n\t\t\t\t<center>0,16</center>\n\t\t\t\t<size>64,32</size>\n\t\t\t\t<fix_rect>bounding_rect</fix_rect>\n\t\t\t</modifyHurtbox>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "8",
+                    "subactions": [
+                        "<modifyHurtbox>\n\t\t\t\t<center>0,16</center>\n\t\t\t\t<size>64,32</size>\n\t\t\t\t<fix_rect>bounding_rect</fix_rect>\n\t\t\t</modifyHurtbox>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "12",
+                    "subactions": [
+                        "<modifyHurtbox>\n\t\t\t\t<center>0,16</center>\n\t\t\t\t<size>64,32</size>\n\t\t\t\t<fix_rect>bounding_rect</fix_rect>\n\t\t\t</modifyHurtbox>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "16",
+                    "subactions": [
+                        "<modifyHurtbox>\n\t\t\t\t<center>0,16</center>\n\t\t\t\t<size>64,32</size>\n\t\t\t\t<fix_rect>bounding_rect</fix_rect>\n\t\t\t</modifyHurtbox>\n\t\t"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "UpSmash",
+            "length": 45,
+            "sprite": "usmash",
+            "sprite_rate": 2,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": [
+                    "<createHitbox>\n\t\t\t\t<name>popup</name>\n\t\t\t\t<center>0,0</center>\n\t\t\t\t<size>100,100</size>\n\t\t\t\t<damage>0</damage>\n\t\t\t\t<base_knockback>10</base_knockback>\n\t\t\t\t<knockback_growth>0</knockback_growth>\n\t\t\t\t<trajectory>90</trajectory>\n\t\t\t\t<base_hitstun>8</base_hitstun>\n\t\t\t</createHitbox>\n\t\t\t\n\t\t\t",
+                    "<createHitbox>\n\t\t\t\t<name>weakL</name>\n\t\t\t\t<center>0,-80</center>\n\t\t\t\t<size>80,80</size>\n\t\t\t\t<damage>2</damage>\n\t\t\t\t<base_knockback>5</base_knockback>\n\t\t\t\t<knockback_growth>0</knockback_growth>\n\t\t\t\t<trajectory>150</trajectory>\n\t\t\t\t<charge_damage>.027</charge_damage>\n\t\t\t\t<base_hitstun>6</base_hitstun>\n\t\t\t</createHitbox>\n\t\t\t\n\t\t\t",
+                    "<createHitbox>\n\t\t\t\t<name>weakR</name>\n\t\t\t\t<center>0,-80</center>\n\t\t\t\t<size>80,80</size>\n\t\t\t\t<damage>2</damage>\n\t\t\t\t<base_knockback>5</base_knockback>\n\t\t\t\t<knockback_growth>0</knockback_growth>\n\t\t\t\t<trajectory>30</trajectory>\n\t\t\t\t<charge_damage>.027</charge_damage>\n\t\t\t\t<base_hitstun>2</base_hitstun>\n\t\t\t</createHitbox>\n\t\t\t\n\t\t\t",
+                    "<createHitbox>\n\t\t\t\t<name>uSmash</name>\n\t\t\t\t<center>0,-80</center>\n\t\t\t\t<size>120,120</size>\n\t\t\t\t<damage>8</damage>\n\t\t\t\t<base_knockback>2</base_knockback>\n\t\t\t\t<knockback_growth>0.25</knockback_growth>\n\t\t\t\t<trajectory>80</trajectory>\n\t\t\t\t<charge_damage>.1</charge_damage>\n\t\t\t\t<charge_base_knockback>0.02</charge_base_knockback>\n\t\t\t\t<trail_color>#ff0000</trail_color>\n\t\t\t</createHitbox>\n\t\t\t\n\t\t\t",
+                    "<loadArticle name=\"firework\">firework</loadArticle>\n\t\t"
+                ]
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": [
+                    "<transitionState>checkGrounded</transitionState>\n\t\t"
+                ]
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": [
+                    "<deactivateHitbox>uSmash</deactivateHitbox>\n\t\t"
+                ]
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": [
+                {
+                    "frames": "8",
+                    "subactions": [
+                        "<charge maxCharge=\"15\">6</charge>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "12",
+                    "subactions": [
+                        "<charge maxCharge=\"15\">6</charge>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "15",
+                    "subactions": [
+                        "<charge maxCharge=\"15\">6</charge>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "18",
+                    "subactions": [
+                        "<charge maxCharge=\"15\">6</charge>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "21",
+                    "subactions": [
+                        "<charge maxCharge=\"15\">6</charge>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "24",
+                    "subactions": [
+                        "<charge maxCharge=\"15\">6</charge>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "27",
+                    "subactions": [
+                        "<charge maxCharge=\"15\">6</charge>\n\t\t"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "DownAttack",
+            "length": 32,
+            "sprite": "dtilt",
+            "sprite_rate": 2,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": [
+                    "<createHitbox type=\"funnel\">\n\t\t\t\t<name>spikeBox</name>\n\t\t\t\t<center>0,26</center>\n\t\t\t\t<size>90,40</size>\n\t\t\t\t<damage>1</damage>\n                                <y_bias>-2</y_bias>\n\t\t\t\t<hitstun_multiplier>4</hitstun_multiplier>\n\t\t\t\t<x_draw>0.05</x_draw>\n\t\t\t\t<y_draw>0</y_draw>\n\t\t\t\t<base_hitstun>8</base_hitstun>\n\t\t\t</createHitbox>\n\t\t\t\n\t\t\t",
+                    "<createHitbox>\n\t\t\t\t<name>rightHbox</name>\n\t\t\t\t<center>23,26</center>\n\t\t\t\t<size>46,40</size>\n\t\t\t\t<damage>6</damage>\n\t\t\t\t<base_knockback>6</base_knockback>\n\t\t\t\t<knockback_growth>0.12</knockback_growth>\n\t\t\t\t<trajectory>45</trajectory>\n\t\t\t\t<hitboxLock>main</hitboxLock>\n\t\t\t</createHitbox>\n\t\t\t\n\t\t\t",
+                    "<createHitbox>\n\t\t\t\t<name>leftHbox</name>\n\t\t\t\t<center>-23,26</center>\n\t\t\t\t<size>46,40</size>\n\t\t\t\t<damage>6</damage>\n\t\t\t\t<base_knockback>6</base_knockback>\n\t\t\t\t<knockback_growth>0.12</knockback_growth>\n\t\t\t\t<trajectory>135</trajectory>\n\t\t\t\t<hitboxLock>main</hitboxLock>\n\t\t\t</createHitbox>\n\t\t"
+                ]
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": [
+                    "<if function=\"&lt;\">\n\t\t\t\t<variable source=\"action\">frame</variable>\n\t\t\t\t<value type=\"int\">8</value>\n\t\t\t\t<pass>transition</pass>\n\t\t\t</if>\n\t\t"
+                ]
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": [
+                {
+                    "frames": "0",
+                    "subactions": [
+                        "<playSound>dtilt</playSound>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "8",
+                    "subactions": [
+                        "<playSound>dtilt</playSound>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "14",
+                    "subactions": [
+                        "<playSound>dtilt</playSound>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "20",
+                    "subactions": [
+                        "<playSound>dtilt</playSound>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "26",
+                    "subactions": [
+                        "<playSound>dtilt</playSound>\n\t\t"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "DownSmash",
+            "length": 48,
+            "sprite": "dsmash",
+            "sprite_rate": 2,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": [
+                    "<changeFighterPreferredSpeed>\n\t\t\t\t<xSpeed>0</xSpeed>\n\t\t\t</changeFighterPreferredSpeed>\n\t\t\t\n\t\t\t",
+                    "<createHitbox type=\"sakurai\">\n\t\t\t\t<name>rightHbox</name>\n\t\t\t\t<center>14,0</center>\n\t\t\t\t<size>24,52</size>\n\t\t\t\t<damage>8</damage>\n\t\t\t\t<base_knockback>8</base_knockback>\n\t\t\t\t<knockback_growth>0.11</knockback_growth>\n\t\t\t\t<trajectory>45</trajectory>\n\t\t\t\t<charge_damage>0.1</charge_damage>\n\t\t\t\t<hitboxLock>main</hitboxLock>\n\t\t\t</createHitbox>\n\t\t\t\n\t\t\t",
+                    "<createHitbox type=\"sakurai\">\n\t\t\t\t<name>leftHbox</name>\n\t\t\t\t<center>-14,0</center>\n\t\t\t\t<size>24,52</size>\n\t\t\t\t<damage>8</damage>\n\t\t\t\t<base_knockback>8</base_knockback>\n\t\t\t\t<knockback_growth>0.11</knockback_growth>\n\t\t\t\t<trajectory>135</trajectory>\n\t\t\t\t<charge_damage>0.1</charge_damage>\n\t\t\t\t<hitboxLock>main</hitboxLock>\n\t\t\t</createHitbox>\n\t\t"
+                ]
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": [
+                    "<transitionState>checkGrounded</transitionState>\n\t\t"
+                ]
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": [
+                {
+                    "frames": "9",
+                    "subactions": [
+                        "<charge maxCharge=\"15\">7</charge>\n\t\t\t",
+                        "<changeSubimage>5</changeSubimage>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "10",
+                    "subactions": [
+                        "<charge maxCharge=\"15\">7</charge>\n\t\t\t",
+                        "<changeSubimage>5</changeSubimage>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "11",
+                    "subactions": [
+                        "<charge maxCharge=\"15\">7</charge>\n\t\t\t",
+                        "<changeSubimage>5</changeSubimage>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "12",
+                    "subactions": [
+                        "<charge maxCharge=\"15\">7</charge>\n\t\t\t",
+                        "<changeSubimage>5</changeSubimage>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "14",
+                    "subactions": [
+                        "<charge maxCharge=\"15\">7</charge>\n\t\t\t",
+                        "<changeSubimage>5</changeSubimage>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "16",
+                    "subactions": [
+                        "<charge maxCharge=\"15\">7</charge>\n\t\t\t",
+                        "<changeSubimage>5</changeSubimage>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "20,24,28,33,38,44",
+                    "subactions": [
+                        "<charge maxCharge=\"15\">7</charge>\n\t\t\t",
+                        "<changeSubimage>5</changeSubimage>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "33",
+                    "subactions": [
+                        "<charge maxCharge=\"15\">7</charge>\n\t\t\t",
+                        "<changeSubimage>5</changeSubimage>\n\t\t"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "NeutralAir",
+            "length": 40,
+            "sprite": "nair",
+            "sprite_rate": 1,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": [
+                    "<changeECB>\n\t\t\t\t<offset>0,7</offset>\n\t\t\t\t<size>64,78</size>\n\t\t\t</changeECB>\n\t\t\t",
+                    "<changeFighterPreferredSpeed>\n\t\t\t\t<xSpeed>0</xSpeed>\n\t\t\t</changeFighterPreferredSpeed>\n\t\t\t\n\t\t\t",
+                    "<createHitbox type=\"sakurai\">\n\t\t\t\t<name>nairBox</name>\n\t\t\t\t<center>0,0</center>\n\t\t\t\t<size>72,72</size>\n\t\t\t\t<damage>10</damage>\n\t\t\t\t<base_knockback>4</base_knockback>\n\t\t\t\t<knockback_growth>0.1</knockback_growth>\n\t\t\t\t<trajectory>40</trajectory>\n\t\t\t\t<transcendence>1</transcendence>\n\t\t\t</createHitbox>\n\t\t"
+                ]
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": [
+                    "<transitionState>airControl</transitionState>\n\t\t"
+                ]
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": [
+                    "<modifyHurtbox>\n\t\t\t\t<center>0,0</center>\n\t\t\t\t<size>64,64</size>\n\t\t\t\t<fix_rect>bounding_rect</fix_rect>\n\t\t\t</modifyHurtbox>\n\t\t"
+                ]
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": [
+                {
+                    "frames": "2",
+                    "subactions": [
+                        "<modifyHurtbox>\n\t\t\t\t<center>0,0</center>\n\t\t\t\t<size>64,64</size>\n\t\t\t\t<fix_rect>bounding_rect</fix_rect>\n\t\t\t</modifyHurtbox>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "4",
+                    "subactions": [
+                        "<modifyHurtbox>\n\t\t\t\t<center>0,0</center>\n\t\t\t\t<size>64,64</size>\n\t\t\t\t<fix_rect>bounding_rect</fix_rect>\n\t\t\t</modifyHurtbox>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "12",
+                    "subactions": [
+                        "<modifyHurtbox>\n\t\t\t\t<center>0,0</center>\n\t\t\t\t<size>64,64</size>\n\t\t\t\t<fix_rect>bounding_rect</fix_rect>\n\t\t\t</modifyHurtbox>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "18",
+                    "subactions": [
+                        "<modifyHurtbox>\n\t\t\t\t<center>0,0</center>\n\t\t\t\t<size>64,64</size>\n\t\t\t\t<fix_rect>bounding_rect</fix_rect>\n\t\t\t</modifyHurtbox>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "24",
+                    "subactions": [
+                        "<modifyHurtbox>\n\t\t\t\t<center>0,0</center>\n\t\t\t\t<size>64,64</size>\n\t\t\t\t<fix_rect>bounding_rect</fix_rect>\n\t\t\t</modifyHurtbox>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "28",
+                    "subactions": [
+                        "<modifyHurtbox>\n\t\t\t\t<center>0,0</center>\n\t\t\t\t<size>64,64</size>\n\t\t\t\t<fix_rect>bounding_rect</fix_rect>\n\t\t\t</modifyHurtbox>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "32",
+                    "subactions": [
+                        "<modifyHurtbox>\n\t\t\t\t<center>0,0</center>\n\t\t\t\t<size>64,64</size>\n\t\t\t\t<fix_rect>bounding_rect</fix_rect>\n\t\t\t</modifyHurtbox>\n\t\t"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "BackAir",
+            "length": 35,
+            "sprite": "bair",
+            "sprite_rate": 1,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": [
+                    "<createHitbox>\n\t\t\t\t<name>bairBox</name>\n\t\t\t\t<center>-14,0</center>\n\t\t\t\t<size>64,46</size>\n\t\t\t\t<damage>10</damage>\n\t\t\t\t<base_knockback>8</base_knockback>\n\t\t\t\t<knockback_growth>0.2</knockback_growth>\n\t\t\t\t<trajectory>180</trajectory>\n\t\t\t</createHitbox>\n\t\t"
+                ]
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": [
+                    "<if function=\"&gt;=\">\n\t\t\t\t<variable source=\"action\">frame</variable>\n\t\t\t\t<value type=\"int\">15</value>\n\t\t\t\t<pass>transition</pass>\n\t\t\t</if>\n\t\t"
+                ]
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": [
+                {
+                    "frames": "2",
+                    "subactions": [
+                        "<updateLandingLag>10</updateLandingLag>\n\t\t\t",
+                        "<changeFighterSpeed>\n\t\t\t\t<xSpeed>0</xSpeed>\n\t\t\t</changeFighterSpeed>\n\t\t\t",
+                        "<changeSubimage>2</changeSubimage>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "4",
+                    "subactions": [
+                        "<updateLandingLag>10</updateLandingLag>\n\t\t\t",
+                        "<changeFighterSpeed>\n\t\t\t\t<xSpeed>0</xSpeed>\n\t\t\t</changeFighterSpeed>\n\t\t\t",
+                        "<changeSubimage>2</changeSubimage>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "6",
+                    "subactions": [
+                        "<updateLandingLag>10</updateLandingLag>\n\t\t\t",
+                        "<changeFighterSpeed>\n\t\t\t\t<xSpeed>0</xSpeed>\n\t\t\t</changeFighterSpeed>\n\t\t\t",
+                        "<changeSubimage>2</changeSubimage>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "8",
+                    "subactions": [
+                        "<updateLandingLag>10</updateLandingLag>\n\t\t\t",
+                        "<changeFighterSpeed>\n\t\t\t\t<xSpeed>0</xSpeed>\n\t\t\t</changeFighterSpeed>\n\t\t\t",
+                        "<changeSubimage>2</changeSubimage>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "12",
+                    "subactions": [
+                        "<updateLandingLag>10</updateLandingLag>\n\t\t\t",
+                        "<changeFighterSpeed>\n\t\t\t\t<xSpeed>0</xSpeed>\n\t\t\t</changeFighterSpeed>\n\t\t\t",
+                        "<changeSubimage>2</changeSubimage>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "16",
+                    "subactions": [
+                        "<updateLandingLag>10</updateLandingLag>\n\t\t\t",
+                        "<changeFighterSpeed>\n\t\t\t\t<xSpeed>0</xSpeed>\n\t\t\t</changeFighterSpeed>\n\t\t\t",
+                        "<changeSubimage>2</changeSubimage>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "20",
+                    "subactions": [
+                        "<updateLandingLag>10</updateLandingLag>\n\t\t\t",
+                        "<changeFighterSpeed>\n\t\t\t\t<xSpeed>0</xSpeed>\n\t\t\t</changeFighterSpeed>\n\t\t\t",
+                        "<changeSubimage>2</changeSubimage>\n\t\t"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "ForwardAir",
+            "length": 44,
+            "sprite": "fair",
+            "sprite_rate": 2,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": [
+                    "<createHitbox>\n\t\t\t\t<name>sourSpot</name>\n\t\t\t\t<center>-30,-2</center>\n\t\t\t\t<size>40,40</size>\n\t\t\t\t<damage>10</damage>\n\t\t\t\t<base_knockback>8</base_knockback>\n\t\t\t\t<knockback_growth>0.2</knockback_growth>\n\t\t\t\t<trajectory>30</trajectory>\n\t\t\t\t<hitboxLock>sharedLock</hitboxLock>\n\t\t\t</createHitbox>\n\t\t\t\n\t\t\t",
+                    "<createHitbox>\n\t\t\t\t<name>sweetSpot</name>\n\t\t\t\t<center>30,10</center>\n\t\t\t\t<size>40,40</size>\n\t\t\t\t<damage>14</damage>\n\t\t\t\t<base_knockback>12</base_knockback>\n\t\t\t\t<knockback_growth>0.3</knockback_growth>\n\t\t\t\t<trajectory>270</trajectory>\n\t\t\t\t<hitboxLock>sharedLock</hitboxLock>\n\t\t\t\t<trail_color>#ffffff</trail_color>\n\t\t\t</createHitbox>\n\t\t"
+                ]
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": [
+                    "<transitionState>airControl</transitionState>\n\t\t"
+                ]
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": [
+                {
+                    "frames": "0",
+                    "subactions": [
+                        "<updateLandingLag>20</updateLandingLag>\n\t\t\t",
+                        "<playSound>fair</playSound>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "12",
+                    "subactions": [
+                        "<updateLandingLag>20</updateLandingLag>\n\t\t\t",
+                        "<playSound>fair</playSound>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "14",
+                    "subactions": [
+                        "<updateLandingLag>20</updateLandingLag>\n\t\t\t",
+                        "<playSound>fair</playSound>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "16",
+                    "subactions": [
+                        "<updateLandingLag>20</updateLandingLag>\n\t\t\t",
+                        "<playSound>fair</playSound>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "18",
+                    "subactions": [
+                        "<updateLandingLag>20</updateLandingLag>\n\t\t\t",
+                        "<playSound>fair</playSound>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "20",
+                    "subactions": [
+                        "<updateLandingLag>20</updateLandingLag>\n\t\t\t",
+                        "<playSound>fair</playSound>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "22",
+                    "subactions": [
+                        "<updateLandingLag>20</updateLandingLag>\n\t\t\t",
+                        "<playSound>fair</playSound>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "26",
+                    "subactions": [
+                        "<updateLandingLag>20</updateLandingLag>\n\t\t\t",
+                        "<playSound>fair</playSound>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "33",
+                    "subactions": [
+                        "<updateLandingLag>20</updateLandingLag>\n\t\t\t",
+                        "<playSound>fair</playSound>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "36",
+                    "subactions": [
+                        "<updateLandingLag>20</updateLandingLag>\n\t\t\t",
+                        "<playSound>fair</playSound>\n\t\t"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "UpAir",
+            "length": 34,
+            "sprite": "uair",
+            "sprite_rate": 3,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": [
+                    "<createHitbox>\n\t\t\t\t<name>sour</name>\n\t\t\t\t<center>0,18</center>\n\t\t\t\t<size>60,47</size>\n\t\t\t\t<damage>6</damage>\n\t\t\t\t<base_knockback>8</base_knockback>\n\t\t\t\t<knockback_growth>0.05</knockback_growth>\n\t\t\t\t<trajectory>60</trajectory>\n\t\t\t\t<hitboxLock>shared</hitboxLock>\n\t\t\t\t<transcendence>1</transcendence>\n\t\t\t</createHitbox>\n\t\t\t\n\t\t\t",
+                    "<createHitbox>\n\t\t\t\t<name>tangy</name>\n\t\t\t\t<center>0,-27</center>\n\t\t\t\t<size>30,46</size>\n\t\t\t\t<damage>8</damage>\n\t\t\t\t<base_knockback>8</base_knockback>\n\t\t\t\t<knockback_growth>0.1</knockback_growth>\n\t\t\t\t<trajectory>75</trajectory>\n\t\t\t\t<hitboxLock>shared</hitboxLock>\n\t\t\t\t<transcendence>1</transcendence>\n\t\t\t</createHitbox>\n\t\t\t\n\t\t\t",
+                    "<createHitbox>\n\t\t\t\t<name>sweet</name>\n\t\t\t\t<center>0,-25</center>\n\t\t\t\t<size>20,42</size>\n\t\t\t\t<damage>12</damage>\n\t\t\t\t<base_knockback>8</base_knockback>\n\t\t\t\t<knockback_growth>0.2</knockback_growth>\n\t\t\t\t<trajectory>90</trajectory>\n\t\t\t\t<hitboxLock>shared</hitboxLock>\n\t\t\t\t<transcendence>1</transcendence>\n\t\t\t\t<trail_color>#00ffff</trail_color>\n\t\t\t</createHitbox>\n\t\t"
+                ]
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": [
+                    "<transitionState>airControl</transitionState>\n\t\t"
+                ]
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": [
+                    "<updateLandingLag reset=\"True\">6</updateLandingLag>\n\t\t"
+                ]
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": [
+                {
+                    "frames": "0",
+                    "subactions": [
+                        "<updateLandingLag>16</updateLandingLag>\n\t\t\t",
+                        "<playSound>uair</playSound>\t\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "6",
+                    "subactions": [
+                        "<updateLandingLag>16</updateLandingLag>\n\t\t\t",
+                        "<playSound>uair</playSound>\t\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "9",
+                    "subactions": [
+                        "<updateLandingLag>16</updateLandingLag>\n\t\t\t",
+                        "<playSound>uair</playSound>\t\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "18",
+                    "subactions": [
+                        "<updateLandingLag>16</updateLandingLag>\n\t\t\t",
+                        "<playSound>uair</playSound>\t\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "21",
+                    "subactions": [
+                        "<updateLandingLag>16</updateLandingLag>\n\t\t\t",
+                        "<playSound>uair</playSound>\t\n\t\t"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "DownAir",
+            "length": 39,
+            "sprite": "dair",
+            "sprite_rate": 3,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": [
+                    "<createHitbox>\n\t\t\t\t<name>downHbox</name>\n\t\t\t\t<center>0,80</center>\n\t\t\t\t<size>10,50</size>\n\t\t\t\t<damage>9</damage>\n\t\t\t\t<base_knockback>8</base_knockback>\n\t\t\t\t<knockback_growth>0.08</knockback_growth>\n\t\t\t\t<trajectory>270</trajectory>\n\t\t\t\t<hitboxLock>allLock</hitboxLock>\n\t\t\t\t<transcendence>1</transcendence>\n\t\t\t</createHitbox>\n\t\t\t\n\t\t\t",
+                    "<createHitbox>\n\t\t\t\t<name>leftDiagHbox</name>\n\t\t\t\t<center>-10,70</center>\n\t\t\t\t<size>10,30</size>\n\t\t\t\t<damage>7</damage>\n\t\t\t\t<base_knockback>7</base_knockback>\n\t\t\t\t<knockback_growth>0.06</knockback_growth>\n\t\t\t\t<trajectory>225</trajectory>\n\t\t\t\t<hitboxLock>allLock</hitboxLock>\n\t\t\t\t<transcendence>1</transcendence>\n\t\t\t</createHitbox>\n\t\t\t\n\t\t\t",
+                    "<createHitbox>\n\t\t\t\t<name>rightDiagHbox</name>\n\t\t\t\t<center>10,70</center>\n\t\t\t\t<size>10,30</size>\n\t\t\t\t<damage>7</damage>\n\t\t\t\t<base_knockback>7</base_knockback>\n\t\t\t\t<knockback_growth>0.06</knockback_growth>\n\t\t\t\t<trajectory>315</trajectory>\n\t\t\t\t<hitboxLock>allLock</hitboxLock>\n\t\t\t\t<transcendence>1</transcendence>\n\t\t\t</createHitbox>\n\t\t\t\n\t\t\t",
+                    "<createHitbox>\n\t\t\t\t<name>leftSourHbox</name>\n\t\t\t\t<center>-20,60</center>\n\t\t\t\t<size>10,10</size>\n\t\t\t\t<damage>5</damage>\n\t\t\t\t<base_knockback>6</base_knockback>\n\t\t\t\t<knockback_growth>0.04</knockback_growth>\n\t\t\t\t<trajectory>180</trajectory>\n\t\t\t\t<hitboxLock>allLock</hitboxLock>\n\t\t\t\t<transcendence>1</transcendence>\n\t\t\t</createHitbox>\n\t\t\t\n\t\t\t",
+                    "<createHitbox>\n\t\t\t\t<name>rightSourHbox</name>\n\t\t\t\t<center>20,60</center>\n\t\t\t\t<size>10,10</size>\n\t\t\t\t<damage>5</damage>\n\t\t\t\t<base_knockback>6</base_knockback>\n\t\t\t\t<knockback_growth>0.04</knockback_growth>\n\t\t\t\t<trajectory>0</trajectory>\n\t\t\t\t<hitboxLock>allLock</hitboxLock>\n\t\t\t\t<transcendence>1</transcendence>\n\t\t\t</createHitbox>\n\t\t"
+                ]
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": [
+                    "<transitionState>airControl</transitionState>\n\t\t"
+                ]
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": [
+                    "<if function=\"&lt;\">\n\t\t\t\t<variable source=\"action\">frame</variable>\n\t\t\t\t<value type=\"int\">13</value>\n\t\t\t\t<pass>stopAir</pass>\n\t\t\t</if>\n\t\t"
+                ]
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": [
+                    "<updateLandingLag reset=\"true\">8</updateLandingLag>\n\t\t"
+                ]
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": [
+                {
+                    "frames": "3",
+                    "subactions": [
+                        "<updateLandingLag>16</updateLandingLag>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "13",
+                    "subactions": [
+                        "<updateLandingLag>16</updateLandingLag>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "30",
+                    "subactions": [
+                        "<updateLandingLag>16</updateLandingLag>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "31",
+                    "subactions": [
+                        "<updateLandingLag>16</updateLandingLag>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "33",
+                    "subactions": [
+                        "<updateLandingLag>16</updateLandingLag>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "36",
+                    "subactions": [
+                        "<updateLandingLag>16</updateLandingLag>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "39",
+                    "subactions": [
+                        "<updateLandingLag>16</updateLandingLag>\n\t\t"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "DashAttack",
+            "length": 32,
+            "sprite": "nair",
+            "sprite_rate": 2,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": [
+                    "<changeECB>\n\t\t\t\t<offset>0,7</offset>\n\t\t\t\t<size>64,78</size>\n\t\t\t</changeECB>\n\t\t\t",
+                    "<createHitbox type=\"sakurai\">\n\t\t\t\t<name>dashHitbox</name>\n\t\t\t\t<center>0,0</center>\n\t\t\t\t<size>70,70</size>\n\t\t\t\t<damage>2</damage>\n\t\t\t\t<base_knockback>5</base_knockback>\n\t\t\t\t<knockback_growth>0.15</knockback_growth>\n\t\t\t\t<trajectory>20</trajectory>\n\t\t\t</createHitbox>\n\t\t\t\n\t\t\t",
+                    "<createHitbox type=\"autolink\">\n\t\t\t\t<name>chainHitbox</name>\n\t\t\t\t<center>0,0</center>\n\t\t\t\t<size>70,70</size>\n\t\t\t\t<damage>2</damage>\n\t\t\t\t<x_bias>1</x_bias>\n\t\t\t\t<y_bias>-1</y_bias>\n\t\t\t</createHitbox>\n\t\t"
+                ]
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": [
+                    "<modifyHurtbox>\n\t\t\t\t<center>0,0</center>\n\t\t\t\t<size>64,64</size>\n\t\t\t\t<fix_rect>bounding_rect</fix_rect>\n\t\t\t</modifyHurtbox>\n\t\t"
+                ]
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": [
+                {
+                    "frames": "8",
+                    "subactions": [
+                        "<modifyHurtbox>\n\t\t\t\t<center>0,0</center>\n\t\t\t\t<size>64,64</size>\n\t\t\t\t<fix_rect>bounding_rect</fix_rect>\n\t\t\t</modifyHurtbox>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "12,16",
+                    "subactions": [
+                        "<modifyHurtbox>\n\t\t\t\t<center>0,0</center>\n\t\t\t\t<size>64,64</size>\n\t\t\t\t<fix_rect>bounding_rect</fix_rect>\n\t\t\t</modifyHurtbox>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "20",
+                    "subactions": [
+                        "<modifyHurtbox>\n\t\t\t\t<center>0,0</center>\n\t\t\t\t<size>64,64</size>\n\t\t\t\t<fix_rect>bounding_rect</fix_rect>\n\t\t\t</modifyHurtbox>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "24",
+                    "subactions": [
+                        "<modifyHurtbox>\n\t\t\t\t<center>0,0</center>\n\t\t\t\t<size>64,64</size>\n\t\t\t\t<fix_rect>bounding_rect</fix_rect>\n\t\t\t</modifyHurtbox>\n\t\t"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "NeutralGroundSpecial",
+            "length": 36,
+            "sprite": "nspecial",
+            "sprite_rate": 2,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": [
+                    "<loadArticle name=\"projectile\">SplatArticle</loadArticle>\n\t\t\t",
+                    "<changeFighterPreferredSpeed>\n\t\t\t\t<xSpeed>0</xSpeed>\n\t\t\t</changeFighterPreferredSpeed>\n\t\t"
+                ]
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": [
+                    "<transitionState>checkGrounded</transitionState>\n\t\t\t",
+                    "<transitionState>tiltReversible</transitionState>\n\t\t"
+                ]
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": [
+                {
+                    "frames": "6",
+                    "subactions": [
+                        "<playSound>laser</playSound>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "12",
+                    "subactions": [
+                        "<playSound>laser</playSound>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "14",
+                    "subactions": [
+                        "<playSound>laser</playSound>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "20",
+                    "subactions": [
+                        "<playSound>laser</playSound>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "22-36",
+                    "subactions": [
+                        "<playSound>laser</playSound>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "26",
+                    "subactions": [
+                        "<playSound>laser</playSound>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "32",
+                    "subactions": [
+                        "<playSound>laser</playSound>\n\t\t"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "NeutralAirSpecial",
+            "length": 36,
+            "sprite": "nspecial",
+            "sprite_rate": 2,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": [
+                    "<loadArticle name=\"projectile\">SplatArticle</loadArticle>\n\t\t"
+                ]
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": [
+                    "<transitionState>tiltReversible</transitionState>\n\t\t"
+                ]
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": [
+                    "<updateLandingLag reset=\"true\">12</updateLandingLag>\n\t\t"
+                ]
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": [
+                {
+                    "frames": "0",
+                    "subactions": [
+                        "<updateLandingLag>18</updateLandingLag>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "6",
+                    "subactions": [
+                        "<updateLandingLag>18</updateLandingLag>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "12",
+                    "subactions": [
+                        "<updateLandingLag>18</updateLandingLag>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "14",
+                    "subactions": [
+                        "<updateLandingLag>18</updateLandingLag>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "15-36",
+                    "subactions": [
+                        "<updateLandingLag>18</updateLandingLag>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "20",
+                    "subactions": [
+                        "<updateLandingLag>18</updateLandingLag>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "26",
+                    "subactions": [
+                        "<updateLandingLag>18</updateLandingLag>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "32",
+                    "subactions": [
+                        "<updateLandingLag>18</updateLandingLag>\n\t\t"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "DownSpecial",
+            "length": 13,
+            "sprite": "getup",
+            "sprite_rate": 0,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": [
+                    "<loadArticle name=\"shine\">ShineArticle</loadArticle>\n\t\t\t",
+                    "<createHitbox>\n\t\t\t\t<name>damage</name>\n\t\t\t\t<center>0,0</center>\n\t\t\t\t<size>64,64</size>\n\t\t\t\t<damage>4</damage>\n\t\t\t\t<base_knockback>2</base_knockback>\n\t\t\t\t<knockback_growth>0</knockback_growth>\n\t\t\t\t<trajectory>330</trajectory>\n\t\t\t\t<base_hitstun>0</base_hitstun>\n\t\t\t\t<hitstun_multiplier type=\"float\">7</hitstun_multiplier>\n\t\t\t\t<hitlag_multiplier>2</hitlag_multiplier>\n\t\t\t\t<transcendence>5</transcendence>\n\t\t\t\t<trail_color>#00ffff</trail_color>\n\t\t\t</createHitbox>\n\t\t\t\n\t\t\t",
+                    "<createHitbox type=\"reflector\">\n\t\t\t\t<name>reflect</name>\n\t\t\t\t<center>0,0</center>\n\t\t\t\t<size>92,92</size>\n\t\t\t\t<damage_multiplier>1.3</damage_multiplier>\n\t\t\t\t<velocity_multiplier>1.1</velocity_multiplier>\n\t\t\t\t<hp>100</hp>\n\t\t\t\t<transcendence>-5</transcendence>\n\t\t\t</createHitbox>\n\t\t"
+                ]
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": [
+                    "<deactivateArticle>shine</deactivateArticle>\n\t\t\t",
+                    "<changeFighterPreferredSpeed>\n\t\t\t\t<ySpeed><var from=\"actor\">max_fall_speed</var></ySpeed>\n\t\t\t</changeFighterPreferredSpeed>\n\t\t\t",
+                    "<removeMask />\n\t\t"
+                ]
+            },
+            "actions_at_frame": [
+                {
+                    "frames": "0",
+                    "subactions": [
+                        "<changeFighterSpeed>\n\t\t\t\t<ySpeed>0</ySpeed>\n\t\t\t</changeFighterSpeed>\n\t\t\t",
+                        "<changeFighterPreferredSpeed>\n\t\t\t\t<ySpeed>1</ySpeed>\n\t\t\t</changeFighterPreferredSpeed>\n\t\t\t",
+                        "<changeSubimage>12</changeSubimage>\n\t\t\t",
+                        "<activateArticle>shine</activateArticle>\n\t\t\t",
+                        "<activateHitbox>damage</activateHitbox>\n\t\t\t",
+                        "<activateHitbox>reflect</activateHitbox>\n\t\t\t",
+                        "<createMask>\n\t\t\t\t<color>#00FFFF</color>\n\t\t\t\t<duration>-1</duration>\n\t\t\t\t<pulse>8</pulse>\n\t\t\t</createMask>\n\t\t\t",
+                        "<playSound>shine</playSound>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "7",
+                    "subactions": [
+                        "<changeFighterSpeed>\n\t\t\t\t<ySpeed>0</ySpeed>\n\t\t\t</changeFighterSpeed>\n\t\t\t",
+                        "<changeFighterPreferredSpeed>\n\t\t\t\t<ySpeed>1</ySpeed>\n\t\t\t</changeFighterPreferredSpeed>\n\t\t\t",
+                        "<changeSubimage>12</changeSubimage>\n\t\t\t",
+                        "<activateArticle>shine</activateArticle>\n\t\t\t",
+                        "<activateHitbox>damage</activateHitbox>\n\t\t\t",
+                        "<activateHitbox>reflect</activateHitbox>\n\t\t\t",
+                        "<createMask>\n\t\t\t\t<color>#00FFFF</color>\n\t\t\t\t<duration>-1</duration>\n\t\t\t\t<pulse>8</pulse>\n\t\t\t</createMask>\n\t\t\t",
+                        "<playSound>shine</playSound>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "8",
+                    "subactions": [
+                        "<changeFighterSpeed>\n\t\t\t\t<ySpeed>0</ySpeed>\n\t\t\t</changeFighterSpeed>\n\t\t\t",
+                        "<changeFighterPreferredSpeed>\n\t\t\t\t<ySpeed>1</ySpeed>\n\t\t\t</changeFighterPreferredSpeed>\n\t\t\t",
+                        "<changeSubimage>12</changeSubimage>\n\t\t\t",
+                        "<activateArticle>shine</activateArticle>\n\t\t\t",
+                        "<activateHitbox>damage</activateHitbox>\n\t\t\t",
+                        "<activateHitbox>reflect</activateHitbox>\n\t\t\t",
+                        "<createMask>\n\t\t\t\t<color>#00FFFF</color>\n\t\t\t\t<duration>-1</duration>\n\t\t\t\t<pulse>8</pulse>\n\t\t\t</createMask>\n\t\t\t",
+                        "<playSound>shine</playSound>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "12",
+                    "subactions": [
+                        "<changeFighterSpeed>\n\t\t\t\t<ySpeed>0</ySpeed>\n\t\t\t</changeFighterSpeed>\n\t\t\t",
+                        "<changeFighterPreferredSpeed>\n\t\t\t\t<ySpeed>1</ySpeed>\n\t\t\t</changeFighterPreferredSpeed>\n\t\t\t",
+                        "<changeSubimage>12</changeSubimage>\n\t\t\t",
+                        "<activateArticle>shine</activateArticle>\n\t\t\t",
+                        "<activateHitbox>damage</activateHitbox>\n\t\t\t",
+                        "<activateHitbox>reflect</activateHitbox>\n\t\t\t",
+                        "<createMask>\n\t\t\t\t<color>#00FFFF</color>\n\t\t\t\t<duration>-1</duration>\n\t\t\t\t<pulse>8</pulse>\n\t\t\t</createMask>\n\t\t\t",
+                        "<playSound>shine</playSound>\n\t\t"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "GetupAttack",
+            "length": 36,
+            "sprite": "nair",
+            "sprite_rate": 2,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": [
+                    "<changeFighterPreferredSpeed>\n\t\t\t\t<xSpeed>0</xSpeed>\n\t\t\t</changeFighterPreferredSpeed>\n\t\t\t",
+                    "<changeECB>\n\t\t\t\t<offset>0,7</offset>\n\t\t\t\t<size>64,78</size>\n\t\t\t</changeECB>\n\t\t\t",
+                    "<createHitbox>\n\t\t\t\t<name>dashHitbox</name>\n\t\t\t\t<center>0,0</center>\n\t\t\t\t<size>70,70</size>\n\t\t\t\t<damage>2</damage>\n\t\t\t\t<base_knockback>5</base_knockback>\n\t\t\t\t<knockback_growth>0.1</knockback_growth>\n\t\t\t\t<trajectory>90</trajectory>\n\t\t\t\t<hitstun_multiplier>2</hitstun_multiplier>\n\t\t\t</createHitbox>\n\t\t\t",
+                    "<createHitbox>\n\t\t\t\t<name>chainHitbox</name>\n\t\t\t\t<center>0,0</center>\n\t\t\t\t<size>70,70</size>\n\t\t\t\t<damage>2</damage>\n\t\t\t\t<trajectory>90</trajectory>\n\t\t\t\t<base_knockback>2</base_knockback>\n\t\t\t</createHitbox>\n\t\t"
+                ]
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": [
+                {
+                    "frames": "12",
+                    "subactions": [
+                        "<activateHitbox>chainHitbox</activateHitbox>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "16,20",
+                    "subactions": [
+                        "<activateHitbox>chainHitbox</activateHitbox>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "24",
+                    "subactions": [
+                        "<activateHitbox>chainHitbox</activateHitbox>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "28",
+                    "subactions": [
+                        "<activateHitbox>chainHitbox</activateHitbox>\n\t\t"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "ForwardThrow",
+            "length": 20,
+            "sprite": "fsmash",
+            "sprite_rate": 2,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": [
+                    "<createHitbox>\n\t\t\t\t<name>throwBox</name>\n\t\t\t\t<center>(20,0)</center>\n\t\t\t\t<size>(120,40)</size>\n\t\t\t\t<damage>13</damage>\n\t\t\t\t<base_knockback>12</base_knockback>\n\t\t\t\t<knockback_growth>0.2</knockback_growth>\n\t\t\t\t<trajectory>40</trajectory>\n\t\t\t</createHitbox>\n\t\t"
+                ]
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": [
+                {
+                    "frames": "14",
+                    "subactions": [
+                        "<activateHitbox>throwBox</activateHitbox>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "16",
+                    "subactions": [
+                        "<activateHitbox>throwBox</activateHitbox>\n\t\t"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "DownThrow",
+            "length": 32,
+            "sprite": "nair",
+            "sprite_rate": 1,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": [
+                    "<createHitbox>\n\t\t\t\t<name>throwBox</name>\n\t\t\t\t<center>(20,20)</center>\n\t\t\t\t<size>(50,50)</size>\n\t\t\t\t<damage>1</damage>\n\t\t\t\t<base_knockback>3</base_knockback>\n\t\t\t\t<knockback_growth>0</knockback_growth>\n\t\t\t\t<trajectory>260</trajectory>\n\t\t\t</createHitbox>\n\t\t\t",
+                    "<changeECB>\n\t\t\t\t<offset>0,7</offset>\n\t\t\t\t<size>64,78</size>\n\t\t\t</changeECB>\n\t\t"
+                ]
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": [
+                    "<transitionState>checkGrounded</transitionState>\n\t\t"
+                ]
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": [
+                    "<modifyHurtbox>\n\t\t\t\t<center>0,16</center>\n\t\t\t\t<size>64,64</size>\n\t\t\t\t<fix_rect>bounding_rect</fix_rect>\n\t\t\t</modifyHurtbox>\n\t\t"
+                ]
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": [
+                {
+                    "frames": "0",
+                    "subactions": [
+                        "<modifyHurtbox>\n\t\t\t\t<center>0,16</center>\n\t\t\t\t<size>64,64</size>\n\t\t\t\t<fix_rect>bounding_rect</fix_rect>\n\t\t\t</modifyHurtbox>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "4,8,12,16,20,24,28",
+                    "subactions": [
+                        "<modifyHurtbox>\n\t\t\t\t<center>0,16</center>\n\t\t\t\t<size>64,64</size>\n\t\t\t\t<fix_rect>bounding_rect</fix_rect>\n\t\t\t</modifyHurtbox>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "28",
+                    "subactions": [
+                        "<modifyHurtbox>\n\t\t\t\t<center>0,16</center>\n\t\t\t\t<size>64,64</size>\n\t\t\t\t<fix_rect>bounding_rect</fix_rect>\n\t\t\t</modifyHurtbox>\n\t\t"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "UpThrow",
+            "length": 12,
+            "sprite": "land",
+            "sprite_rate": -2,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": [
+                    "<setFighterVar var=\"flinch_knockback_threshold\">\n\t\t\t\t<value type=\"int\">10000</value>\n\t\t\t</setFighterVar>\n\t\t\t",
+                    "<setFighterVar var=\"flinch_damage_threshold\">\n\t\t\t\t<value type=\"int\">10000</value>\n\t\t\t</setFighterVar>\n\t\t\t\n\t\t\t",
+                    "<createHitbox type=\"throw\">\n\t\t\t\t<name>ThrowBox</name>\n\t\t\t\t<damage>11</damage>\n\t\t\t\t<base_knockback>12</base_knockback>\n\t\t\t\t<knockback_growth>0.15</knockback_growth>\n\t\t\t\t<trajectory>70</trajectory>\n\t\t\t</createHitbox>\n\t\t"
+                ]
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": [
+                {
+                    "frames": "8",
+                    "subactions": [
+                        "<changeFighterSpeed>\n\t\t\t\t<ySpeed>-45</ySpeed>\n\t\t\t</changeFighterSpeed>\n\t\t\t",
+                        "<updateLandingLag reset=\"True\">12</updateLandingLag>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "10",
+                    "subactions": [
+                        "<changeFighterSpeed>\n\t\t\t\t<ySpeed>-45</ySpeed>\n\t\t\t</changeFighterSpeed>\n\t\t\t",
+                        "<updateLandingLag reset=\"True\">12</updateLandingLag>\n\t\t"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "BackThrow",
+            "length": 22,
+            "sprite": "bthrow",
+            "sprite_rate": 2,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": [
+                    "<createHitbox type=\"throw\">\n\t\t\t\t<name>ThrowBox</name>\n\t\t\t\t<damage>7</damage>\n\t\t\t\t<base_knockback>10</base_knockback>\n\t\t\t\t<knockback_growth>0.05</knockback_growth>\n\t\t\t\t<trajectory>170</trajectory>\n\t\t\t\t<weight_influence>0.5</weight_influence>\n\t\t\t</createHitbox>\n\t\t"
+                ]
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": [
+                    "<transitionState>checkGrounded</transitionState>\n\t\t"
+                ]
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": [
+                    "<flip />\n\t\t"
+                ]
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": [
+                {
+                    "frames": "1",
+                    "subactions": [
+                        "<activateHitbox>ThrowBox</activateHitbox>\n\t\t"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "UpSpecial",
+            "length": 32,
+            "sprite": "dsmash",
+            "sprite_rate": 0,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": [
+                    "<createHitbox>\n\t\t\t\t<name>launchHitbox</name>\n\t\t\t\t<center>0,0</center>\n\t\t\t\t<size>64,64</size>\n\t\t\t\t<damage>14</damage>\n\t\t\t\t<base_knockback>12</base_knockback>\n\t\t\t\t<knockback_growth>0.1</knockback_growth>\n\t\t\t\t<trajectory>90</trajectory>\n\t\t\t\t<hitstun_multiplier>2.8</hitstun_multiplier>\n\t\t\t</createHitbox>\n\t\t"
+                ]
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": [
+                    "<updateLandingLag>10</updateLandingLag>\n\t\t\t",
+                    "<unrotate />\n\t\t\t\n\t\t\t",
+                    "<changeFighterSpeed>\n\t\t\t\t<xSpeed>0</xSpeed>\n\t\t\t\t<ySpeed>0</ySpeed>\n\t\t\t</changeFighterSpeed>\n\t\t\t\n\t\t\t\n\t\t\t",
+                    "<setVar source=\"action\">\n\t\t\t\t<variable>angle</variable>\n\t\t\t\t<value type=\"int\">\n\t\t\t\t\t<function>\n\t\t\t\t\t\t<functionName>getSmoothedAngle</functionName>\n\t\t\t\t\t</function>\n\t\t\t\t</value>\n\t\t\t</setVar>\n\t\t\t\n\t\t\t",
+                    "<rotateSprite>\n\t\t\t\t<var source=\"action\">angle</var>\n\t\t\t</rotateSprite>\n\t\t\t\n\t\t"
+                ]
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": [
+                {
+                    "frames": "0",
+                    "subactions": [
+                        "<updateLandingLag>10</updateLandingLag>\n\t\t\t",
+                        "<unrotate />\n\t\t\t\n\t\t\t",
+                        "<changeFighterSpeed>\n\t\t\t\t<xSpeed>0</xSpeed>\n\t\t\t\t<ySpeed>0</ySpeed>\n\t\t\t</changeFighterSpeed>\n\t\t\t\n\t\t\t\n\t\t\t",
+                        "<setVar source=\"action\">\n\t\t\t\t<variable>angle</variable>\n\t\t\t\t<value type=\"int\">\n\t\t\t\t\t<function>\n\t\t\t\t\t\t<functionName>getSmoothedAngle</functionName>\n\t\t\t\t\t</function>\n\t\t\t\t</value>\n\t\t\t</setVar>\n\t\t\t\n\t\t\t",
+                        "<rotateSprite>\n\t\t\t\t<var source=\"action\">angle</var>\n\t\t\t</rotateSprite>\n\t\t\t\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "3",
+                    "subactions": [
+                        "<updateLandingLag>10</updateLandingLag>\n\t\t\t",
+                        "<unrotate />\n\t\t\t\n\t\t\t",
+                        "<changeFighterSpeed>\n\t\t\t\t<xSpeed>0</xSpeed>\n\t\t\t\t<ySpeed>0</ySpeed>\n\t\t\t</changeFighterSpeed>\n\t\t\t\n\t\t\t\n\t\t\t",
+                        "<setVar source=\"action\">\n\t\t\t\t<variable>angle</variable>\n\t\t\t\t<value type=\"int\">\n\t\t\t\t\t<function>\n\t\t\t\t\t\t<functionName>getSmoothedAngle</functionName>\n\t\t\t\t\t</function>\n\t\t\t\t</value>\n\t\t\t</setVar>\n\t\t\t\n\t\t\t",
+                        "<rotateSprite>\n\t\t\t\t<var source=\"action\">angle</var>\n\t\t\t</rotateSprite>\n\t\t\t\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "6,9,12,15",
+                    "subactions": [
+                        "<updateLandingLag>10</updateLandingLag>\n\t\t\t",
+                        "<unrotate />\n\t\t\t\n\t\t\t",
+                        "<changeFighterSpeed>\n\t\t\t\t<xSpeed>0</xSpeed>\n\t\t\t\t<ySpeed>0</ySpeed>\n\t\t\t</changeFighterSpeed>\n\t\t\t\n\t\t\t\n\t\t\t",
+                        "<setVar source=\"action\">\n\t\t\t\t<variable>angle</variable>\n\t\t\t\t<value type=\"int\">\n\t\t\t\t\t<function>\n\t\t\t\t\t\t<functionName>getSmoothedAngle</functionName>\n\t\t\t\t\t</function>\n\t\t\t\t</value>\n\t\t\t</setVar>\n\t\t\t\n\t\t\t",
+                        "<rotateSprite>\n\t\t\t\t<var source=\"action\">angle</var>\n\t\t\t</rotateSprite>\n\t\t\t\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "30",
+                    "subactions": [
+                        "<updateLandingLag>10</updateLandingLag>\n\t\t\t",
+                        "<unrotate />\n\t\t\t\n\t\t\t",
+                        "<changeFighterSpeed>\n\t\t\t\t<xSpeed>0</xSpeed>\n\t\t\t\t<ySpeed>0</ySpeed>\n\t\t\t</changeFighterSpeed>\n\t\t\t\n\t\t\t\n\t\t\t",
+                        "<setVar source=\"action\">\n\t\t\t\t<variable>angle</variable>\n\t\t\t\t<value type=\"int\">\n\t\t\t\t\t<function>\n\t\t\t\t\t\t<functionName>getSmoothedAngle</functionName>\n\t\t\t\t\t</function>\n\t\t\t\t</value>\n\t\t\t</setVar>\n\t\t\t\n\t\t\t",
+                        "<rotateSprite>\n\t\t\t\t<var source=\"action\">angle</var>\n\t\t\t</rotateSprite>\n\t\t\t\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "31",
+                    "subactions": [
+                        "<updateLandingLag>10</updateLandingLag>\n\t\t\t",
+                        "<unrotate />\n\t\t\t\n\t\t\t",
+                        "<changeFighterSpeed>\n\t\t\t\t<xSpeed>0</xSpeed>\n\t\t\t\t<ySpeed>0</ySpeed>\n\t\t\t</changeFighterSpeed>\n\t\t\t\n\t\t\t\n\t\t\t",
+                        "<setVar source=\"action\">\n\t\t\t\t<variable>angle</variable>\n\t\t\t\t<value type=\"int\">\n\t\t\t\t\t<function>\n\t\t\t\t\t\t<functionName>getSmoothedAngle</functionName>\n\t\t\t\t\t</function>\n\t\t\t\t</value>\n\t\t\t</setVar>\n\t\t\t\n\t\t\t",
+                        "<rotateSprite>\n\t\t\t\t<var source=\"action\">angle</var>\n\t\t\t</rotateSprite>\n\t\t\t\n\t\t"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "UpSpecialFlight",
+            "length": 50,
+            "sprite": "airjump",
+            "sprite_rate": 2,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": [
+                    "<createHitbox>\n\t\t\t\t<name>flyingHitbox</name>\n\t\t\t\t<center>0,0</center>\n\t\t\t\t<size>64,64</size>\n\t\t\t\t<damage>8</damage>\n\t\t\t\t<base_knockback>10</base_knockback>\n\t\t\t\t<base_hitstun>20</base_hitstun>\n\t\t\t\t<knockback_growth>0.05</knockback_growth>\n\t\t\t\t<trajectory>70</trajectory>\n\t\t\t\t<hitstun_multiplier>2</hitstun_multiplier>\n\t\t\t</createHitbox>\n\t\t\t\n\t\t\t",
+                    "<activateHitbox>flyingHitbox</activateHitbox>\n\t\t"
+                ]
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": [
+                    "<transitionState>grabLedges</transitionState>\n\t\t\t\n\t\t\t",
+                    "<if function=\"&gt;=\">\n\t\t\t\t<variable source=\"action\">frame</variable>\n\t\t\t\t<value type=\"int\">26</value>\n\t\t\t\t<pass>control</pass>\n\t\t\t</if>\n\t\t"
+                ]
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": [
+                    "<unrotate />\n\t\t"
+                ]
+            },
+            "actions_at_frame": [
+                {
+                    "frames": "26",
+                    "subactions": [
+                        "<deactivateHitbox>flyingHitbox</deactivateHitbox>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "49",
+                    "subactions": [
+                        "<deactivateHitbox>flyingHitbox</deactivateHitbox>\n\t\t"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "GroundGrab",
+            "length": 30,
+            "sprite": "pivot",
+            "sprite_rate": 2,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": [
+                    "<createHitbox type=\"grab\">\n\t\t\t\t<name>grabHitbox</name>\n\t\t\t\t<center>30,0</center>\n\t\t\t\t<size>30,30</size>\n\t\t\t\t<transcendence>-1</transcendence>\n\t\t\t</createHitbox>\n\t\t"
+                ]
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": [
+                    "<transitionState>checkGrounded</transitionState>\n\t\t"
+                ]
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": [
+                {
+                    "frames": "6",
+                    "subactions": [
+                        "<activateHitbox>grabHitbox</activateHitbox>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "8",
+                    "subactions": [
+                        "<activateHitbox>grabHitbox</activateHitbox>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "11",
+                    "subactions": [
+                        "<activateHitbox>grabHitbox</activateHitbox>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "15",
+                    "subactions": [
+                        "<activateHitbox>grabHitbox</activateHitbox>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "20",
+                    "subactions": [
+                        "<activateHitbox>grabHitbox</activateHitbox>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "26",
+                    "subactions": [
+                        "<activateHitbox>grabHitbox</activateHitbox>\n\t\t"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "ForwardSpecial",
+            "length": 1,
+            "sprite": "idle",
+            "sprite_rate": 1,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": []
+        },
+        {
+            "name": "DashGrab",
+            "length": 35,
+            "sprite": "pivot",
+            "sprite_rate": 3,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": [
+                    "<createHitbox type=\"grab\">\n\t\t\t\t<name>grabHitbox</name>\n\t\t\t\t<center>40,0</center>\n\t\t\t\t<size>50,30</size>\n\t\t\t\t<transcendence>-1</transcendence>\n\t\t\t</createHitbox>\n\t\t"
+                ]
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": [
+                    "<transitionState>checkGrounded</transitionState>\n\t\t"
+                ]
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": [
+                {
+                    "frames": "10",
+                    "subactions": [
+                        "<activateHitbox>grabHitbox</activateHitbox>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "13",
+                    "subactions": [
+                        "<activateHitbox>grabHitbox</activateHitbox>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "18",
+                    "subactions": [
+                        "<activateHitbox>grabHitbox</activateHitbox>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "22",
+                    "subactions": [
+                        "<activateHitbox>grabHitbox</activateHitbox>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "26",
+                    "subactions": [
+                        "<activateHitbox>grabHitbox</activateHitbox>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "30",
+                    "subactions": [
+                        "<activateHitbox>grabHitbox</activateHitbox>\n\t\t"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Pummel",
+            "length": 22,
+            "sprite": "neutral",
+            "sprite_rate": 1,
+            "loop": false,
+            "set_up_actions": {
+                "frames": "",
+                "subactions": [
+                    "<createHitbox type=\"throw\">\n\t\t\t\t<name>jab</name>\n\t\t\t\t<damage>3</damage>\n\t\t\t\t<base_hitstun>0</base_hitstun>\n\t\t\t\t<hitlag_multiplier>0</hitlag_multiplier>\n\t\t\t</createHitbox>\n\t\t"
+                ]
+            },
+            "state_transition_actions": {
+                "frames": "",
+                "subactions": [
+                    "<transitionState>checkGrounded</transitionState>\n\t\t"
+                ]
+            },
+            "actions_before_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_after_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_last_frame": {
+                "frames": "",
+                "subactions": []
+            },
+            "tear_down_actions": {
+                "frames": "",
+                "subactions": []
+            },
+            "actions_at_frame": [
+                {
+                    "frames": "4",
+                    "subactions": [
+                        "<activateHitbox>jab</activateHitbox>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "5",
+                    "subactions": [
+                        "<activateHitbox>jab</activateHitbox>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "9",
+                    "subactions": [
+                        "<activateHitbox>jab</activateHitbox>\n\t\t"
+                    ]
+                },
+                {
+                    "frames": "11-14",
+                    "subactions": [
+                        "<activateHitbox>jab</activateHitbox>\n\t\t"
+                    ]
+                }
+            ]
+        }
+    ]
+}

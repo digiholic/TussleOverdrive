@@ -23,15 +23,17 @@ public class SubactionLoader : ScriptableObject {
                  */
                 StateTransitions.LoadTransitionState(args[1], actor);
                 break;
-            case "changeFrame":
-                /* changeFrame frameNumber:int|1 relative:boolean|true
-                 *      Changes the action frame. If relative is set, will change the action by that many frames.
-                 *      If it is not set, will set directly to the given number. If given no arguments, defaults to incrementing the frame.
+            case "setFrame":
+                /* setFrame frameNumber:int
+                 *      Sets the current frame to the given number
                  */
-                if (args[2] == "true")
-                    action.current_frame += int.Parse(args[1]);
-                else
-                    action.current_frame = int.Parse(args[1]);
+                action.current_frame = int.Parse(args[1]);
+                break;
+            case "changeFrame":
+                /* changeFrame frameNumber:int|1
+                 *      Changes the action frame by the specified amount.
+                 */
+                action.current_frame += int.Parse(args[1]);
                 break;
             case "setVar":
                 /* setVar source:string name:string type:string value:dynamic relative:bool|false
@@ -118,7 +120,120 @@ public class SubactionLoader : ScriptableObject {
                  */
                 //TODO
                 break;
+            default:
+                //Debug.LogWarning("Could not load subaction " + args[0]);
+                break;
 
         }
     }
+}
+
+[System.Serializable]
+public class ActionFile
+{
+    public List<DynamicAction> actions = new List<DynamicAction>();
+
+    public void Add(DynamicAction newAction) //Overwrites an action with the given name if it exists. Otherwise, adds it
+    {
+        actions.RemoveAll(s => s.name == newAction.name); //Removes all objects that have the same name as the new action
+        actions.Add(newAction);
+    }
+
+    public DynamicAction Get(string name)
+    {
+        foreach (DynamicAction action in actions)
+        {
+            if (action.name == name)
+                return action;
+        }
+        //Debug.LogWarning("Could not find action " + name + " in ActionFile");
+        return new DynamicAction("Null");
+    }
+}
+
+[System.Serializable]
+public class DynamicAction
+{
+    public string name;
+    public int length;
+    public string sprite;
+    public int sprite_rate;
+    public bool loop;
+
+    public ActionGroup set_up_actions = new ActionGroup();
+    public ActionGroup state_transition_actions = new ActionGroup();
+    public ActionGroup actions_before_frame = new ActionGroup();
+    public ActionGroup actions_after_frame = new ActionGroup();
+    public ActionGroup actions_at_last_frame = new ActionGroup();
+    public ActionGroup tear_down_actions = new ActionGroup();
+    public List<ActionGroup> actions_at_frame = new List<ActionGroup>();
+
+    private Dictionary<int, ActionGroup> actions_at_frame_dict = new Dictionary<int, ActionGroup>();
+
+    public DynamicAction(string _name, int _length=1, string _sprite="idle", int _sprite_rate=1,bool _loop=false)
+    {
+        name = _name;
+        length = _length;
+        sprite = _sprite;
+        sprite_rate = _sprite_rate;
+        loop = _loop;
+    }
+
+    public void BuildDict()
+    {
+        foreach (ActionGroup group in actions_at_frame)
+        {
+            actions_at_frame_dict[int.Parse(group.frames)] = group;
+        }
+    }
+
+    public void ExecuteGroup(string group, AbstractFighter actor, GameAction action)
+    {
+        switch (group)
+        {
+            case "SetUp":
+                foreach (string subaction in set_up_actions.subactions)
+                    SubactionLoader.executeSubaction(subaction, actor, action);
+                break;
+            case "StateTransitions":
+                foreach (string subaction in state_transition_actions.subactions)
+                    SubactionLoader.executeSubaction(subaction, actor, action);
+                break;
+            case "BeforeFrame":
+                foreach (string subaction in actions_before_frame.subactions)
+                    SubactionLoader.executeSubaction(subaction, actor, action);
+                break;
+            case "AfterFrame":
+                foreach (string subaction in actions_after_frame.subactions)
+                    SubactionLoader.executeSubaction(subaction, actor, action);
+                break;
+            case "LastFrame":
+                foreach (string subaction in actions_at_last_frame.subactions)
+                    SubactionLoader.executeSubaction(subaction, actor, action);
+                break;
+            case "TearDown":
+                foreach (string subaction in tear_down_actions.subactions)
+                    SubactionLoader.executeSubaction(subaction, actor, action);
+                break;
+        }
+    }
+
+    public void ExecuteFrame(AbstractFighter actor, GameAction action)
+    {
+        //TODO parse the action frames field to see if the frame number falls into range, function, etc.
+        //  Like if the frames field is 0-2, execute subactions for frames 0,1,2
+
+        int frame = int.Parse(action.current_frame.ToString());
+        foreach (string subaction in actions_at_frame_dict[frame].subactions)
+        {
+            SubactionLoader.executeSubaction(subaction, actor, action);
+        }
+    }
+}
+
+[System.Serializable]
+public class ActionGroup
+{
+    public string frames; //Used only for actions_at_frame, parses the string to see if the current frame is in the allowed list
+    public List<string> subactions = new List<string>();
 }

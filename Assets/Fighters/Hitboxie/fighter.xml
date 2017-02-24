@@ -4,7 +4,7 @@
 	<css_icon>sprites/icon_hitboxie.png</css_icon>
 	<css_portrait></css_portrait>
 
-  <sprite_directory>Assets\Fighters\Hitboxie\sprites</sprite_directory>
+  <sprite_directory>sprites/</sprite_directory>
 	<sprite_prefix>hitboxie_</sprite_prefix>
   <default_sprite>idle</default_sprite>
   <pixels_per_unit>50.0</pixels_per_unit>
@@ -12,12 +12,12 @@
 	<article_path>sprites/articles</article_path>
 	<articles>hitboxie_articles.xml</articles>
 	<sound_path>sfx/</sound_path>
-	<actions>hitboxie_actions.xml</actions>
+	<actions>hitboxie_actions.json</actions>
 
   <bio>Angered by the mistreatment of his kind, Hitboxie rose up to fight for Hitbox-kind.
 
 No one tell him that he's actually using a bunch of invisible Hitboxes to fight with anyway; it would break his square heart.</bio>
-  <!--
+  
 	<color_palette id='0' displayColor='#202020'>
 	</color_palette>
 	
@@ -50,7 +50,7 @@ No one tell him that he's actually using a bunch of invisible Hitboxes to fight 
 	</color_palette>
 	
 	<costume>hitolantern_</costume>
-	-->
+	
 	<stats>
 		<weight>10</weight>
 		<gravity>-5.0</gravity>

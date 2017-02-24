@@ -22,8 +22,8 @@ public class FighterPanel : MonoBehaviour {
 
     public void ChangeFighter(string xml_data)
     {
-        loader.LoadXML(xml_data, true);
-        nameplate.text = loader.nodemap["name"].GetString();
-        //bio.text = loader.nodemap["bio"].GetString();
+        loader.LoadXML(xml_data);
+        nameplate.text = loader.SelectSingleNode("//fighter/name").GetString();
+        //bio.text = loader.SelectSingleNode("//fighter/bio").GetString();
     }
 }

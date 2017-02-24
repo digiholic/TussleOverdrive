@@ -83,10 +83,10 @@ public class StateTransitions : ScriptableObject {
             Debug.Log("Running!");
         //float direction = actor.GetControllerAxis("Horizontal") * actor.facing;
         //shield
-        if (actor.GetControllerButtonDown("Attack"))
+        if (actor.KeyBuffered(InputType.Attack))
             actor.doGroundAttack();
         //special
-        if (actor.GetControllerButtonDown("Jump"))
+        if (actor.KeyBuffered(InputType.Jump))
             actor.doAction("Jump");
         else if (actor.GetControllerAxis("Vertical") < -0.5f)
             actor.doAction("Crouch");

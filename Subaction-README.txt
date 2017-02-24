@@ -36,6 +36,18 @@ endif
 changeSpeed x:float|_ y:float|_ xpref:float|_ ypref:float|_ relative:bool|false
 	changes the xSpeed, ySpeed, xPreffered, yPreferred speeds. If set to null, value will remain the same
 	
+changeXSpeed x:float relative:bool
+	changes xSpeed
+
+changeYSpeed y:float relative:bool
+	changes ySpeed
+	
+changeXPref x:float relative:bool
+	changes xPreferred
+	
+changeYPref y:float relative:bool
+	changes yPref
+	
 shiftPosition x:float|0 y:float|0 relative:bool|true
 	Displaces the fighter by a certain amount in either direction
 	

@@ -19,7 +19,7 @@ public class SpriteLoader : MonoBehaviour {
     // Use this for initialization
 	void Start() {
         XMLLoader data_xml = GetComponent<XMLLoader>();
-        directory = data_xml.SelectSingleNode("//fighter/sprite_directory").GetString();
+        directory = Path.Combine(data_xml.root_directory.FullName,data_xml.SelectSingleNode("//fighter/sprite_directory").GetString());
         prefix = data_xml.SelectSingleNode("//fighter/sprite_prefix").GetString();
         pixelsPerUnit = data_xml.SelectSingleNode("//fighter/pixels_per_unit").GetFloat();
 

@@ -71,6 +71,9 @@ public class AbstractFighter : MonoBehaviour {
     private InputBuffer inputBuffer;
     private XMLLoader data_xml;
 
+    private ActionFile actions_file_json = new ActionFile();
+    private DynamicAction current_dynamic_action;
+
     void Awake()
     {
         if (File.Exists(fighter_xml_file))
@@ -118,11 +121,19 @@ public class AbstractFighter : MonoBehaviour {
             max_jumps = Mathf.FloorToInt(GetFromXml("max_jumps", max_jumps));
             heavy_land_lag = Mathf.FloorToInt(GetFromXml("heavy_land_lag", heavy_land_lag));
             wavedash_lag = Mathf.FloorToInt(GetFromXml("wavedash_lag", wavedash_lag));
+
+            string action_json_path = Path.Combine(data_xml.root_directory.FullName, action_file);
+            if (File.Exists(action_json_path))
+            {
+                string action_json = File.ReadAllText(action_json_path);
+                actions_file_json = JsonUtility.FromJson<ActionFile>(action_json);
+            }
         }
         else
         {
             Debug.LogWarning("Could not find Fighter XML for player " + player_num);
         }
+
     }
 
     void Start() {
@@ -136,12 +147,14 @@ public class AbstractFighter : MonoBehaviour {
             facing = 1;
         else
             facing = -1;
-        
+
         _ySpeed = 0;
         _charController = GetComponent<CharacterController>();
         jumps = max_jumps;
         _current_action = ScriptableObject.CreateInstance<NeutralAction>();
         _current_action.SetUp(this);
+        current_dynamic_action = actions_file_json.Get("NeutralAction");
+        //current_dynamic_action.ExecuteGroup("SetUp",this,_current_action);
         game_controller = GameObject.Find("Controller").GetComponent<GameController>();
     }
 
@@ -182,8 +195,12 @@ public class AbstractFighter : MonoBehaviour {
         //    Debug.Log(x_axis_delta.ToString() + ',' + y_axis_delta.ToString());
 
         _current_action.stateTransitions();
+        //current_dynamic_action.ExecuteGroup("StateTransitions",this,_current_action);
+        //current_dynamic_action.ExecuteGroup("BeforeFrame", this, _current_action);
         _current_action.Update();
+        //current_dynamic_action.ExecuteFrame(this, _current_action);
         _current_action.LateUpdate();
+        //current_dynamic_action.ExecuteGroup("AfterFrame", this, _current_action);
 
 
         if (grounded)
@@ -203,9 +220,12 @@ public class AbstractFighter : MonoBehaviour {
         //Debug.Log("GameAction: "+_actionName);
         GameAction old_action = _current_action;
         _current_action = action_loader.LoadAction(_actionName);
+        //current_dynamic_action.ExecuteGroup("TearDown", this, old_action);
         old_action.TearDown(_current_action);
         Destroy(old_action);
+        current_dynamic_action = actions_file_json.Get(_actionName);
         _current_action.SetUp(this);
+        //current_dynamic_action.ExecuteGroup("SetUp", this, _current_action);
     }
 
     /// <summary>
@@ -391,7 +411,7 @@ public class AbstractFighter : MonoBehaviour {
 
     public bool KeyHeld(InputType key)
     {
-        return inputBuffer.KeyHeld(key);
+        return inputBuffer.ControllerState[key] > 0.0f;
     }
 
     public bool SequenceBuffered(List<KeyValuePair<InputType,float>> inputList, int distance = 12)
@@ -406,5 +426,24 @@ public class AbstractFighter : MonoBehaviour {
             return (x_axis_delta > 0.3);
         else
             return (y_axis_delta > 0.3);
+    }
+
+    public void TestActionJSON()
+    {
+        string action_json_path = Path.Combine(data_xml.root_directory.FullName, action_file);
+        if (File.Exists(action_json_path))
+        {
+            string action_json = File.ReadAllText(action_json_path);
+            actions_file_json = JsonUtility.FromJson<ActionFile>(action_json);
+        }
+        /*
+        ActionGroup testSetUp = new ActionGroup();
+        testSetUp.subactions = new List<string>() { "Test String" };
+        DynamicAction testAction = new DynamicAction("Test Action 2");
+        testAction.tear_down_actions = testSetUp;
+        testAction.actions_at_frame.Add(testSetUp);
+        actions_file_json.Add(testAction);
+        */
+        File.WriteAllText(action_json_path, JsonUtility.ToJson(actions_file_json, true));
     }
 }

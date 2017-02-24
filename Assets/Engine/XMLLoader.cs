@@ -8,34 +8,21 @@ public class XMLLoader : MonoBehaviour {
     private XmlDocument data_xml;
 
     public string xml_file;
-
-    [HideInInspector]
-    public Dictionary<string,DataNode> nodemap;
+    public DirectoryInfo root_directory;
 
     void Start()
     {
-        nodemap = new Dictionary<string, DataNode>();
         if (xml_file != "")
             LoadXML(xml_file);
     }
 
-    public void LoadXML(string xml_file_path, bool overwrite = true)
+    public void LoadXML(string xml_file_path)
     {
-        if (overwrite)
-            nodemap = new Dictionary<string, DataNode>();
-
         if (File.Exists(xml_file_path))
         {
             data_xml = new XmlDocument();
             data_xml.Load(xml_file_path);
-
-            foreach (XmlNode node in data_xml)
-            {
-                foreach (XmlNode childNode in node.ChildNodes)
-                {
-                    nodemap.Add(childNode.Name, new DataNode(childNode));
-                }
-            }
+            root_directory = new DirectoryInfo(xml_file_path).Parent;
         }
         else
         {

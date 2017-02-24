@@ -5,12 +5,10 @@ using UnityEngine;
 
 public class InputRecorder : MonoBehaviour {
 
-    private GameController controller;
-	
     // Use this for initialization
 	void Start () {
-        controller = GetComponent<GameController>();
-	}
+
+    }
 	
 	// Update is called once per frame
 	void Update () {

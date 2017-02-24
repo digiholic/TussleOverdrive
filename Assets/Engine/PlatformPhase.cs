@@ -29,4 +29,5 @@ public class PlatformPhase : MonoBehaviour {
             Physics.IgnoreCollision(GetComponent<CharacterController>(), other.transform.parent.GetComponent<Collider>(), false);
         }
     }
+
 }
