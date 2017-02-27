@@ -2005,7 +2005,7 @@
                     "frames": "15",
                     "subactions": [
                         "<charge maxCharge=\"15\">6</charge>\n\t\t"
-                    ]
+					]
                 },
                 {
                     "frames": "18",
@@ -2156,8 +2156,8 @@
                 {
                     "frames": "11",
                     "subactions": [
-						"<modifyHitbox name="rightHbox"><center>24,13</center><damage>12</damage><knockback_growth>0.13</knockback_growth><trajectory>30</trajectory><charge_damage>0.15</charge_damage></modifyHitbox>",
-						"<modifyHitbox name="leftHbox"><center>-24,13</center><damage>12</damage><knockback_growth>0.13</knockback_growth><trajectory>150</trajectory><charge_damage>0.15</charge_damage></modifyHitbox>",
+						"<modifyHitbox name=\"rightHbox\"><center>24,13</center><damage>12</damage><knockback_growth>0.13</knockback_growth><trajectory>30</trajectory><charge_damage>0.15</charge_damage></modifyHitbox>",
+						"<modifyHitbox name=\"leftHbox\"><center>-24,13</center><damage>12</damage><knockback_growth>0.13</knockback_growth><trajectory>150</trajectory><charge_damage>0.15</charge_damage></modifyHitbox>",
 						"<playSound>dsmash</playSound>",
                         "changeSpriteSubimage 6"
                     ]
@@ -2165,8 +2165,8 @@
                 {
                     "frames": "12",
                     "subactions": [
-                        "<modifyHitbox name="rightHbox"><center>34,26</center><damage>16</damage><knockback_growth>0.15</knockback_growth><trajectory>15</trajectory><charge_damage>0.2</charge_damage></modifyHitbox>",
-						"<modifyHitbox name="leftHbox"><center>-34,26</center><damage>16</damage><knockback_growth>0.15</knockback_growth><trajectory>135</trajectory><charge_damage>0.2</charge_damage></modifyHitbox>",
+                        "<modifyHitbox name=\"rightHbox\"><center>34,26</center><damage>16</damage><knockback_growth>0.15</knockback_growth><trajectory>15</trajectory><charge_damage>0.2</charge_damage></modifyHitbox>",
+						"<modifyHitbox name=\"leftHbox\"><center>-34,26</center><damage>16</damage><knockback_growth>0.15</knockback_growth><trajectory>135</trajectory><charge_damage>0.2</charge_damage></modifyHitbox>",
 						"changeSpriteSubimage 7"
                     ]
                 },
@@ -2179,8 +2179,8 @@
                 {
                     "frames": "16",
                     "subactions": [
-                        "<modifyHitbox name="rightHbox"><damage>12</damage><knockback_growth>0.12</knockback_growth><trajectory>30</trajectory><charge_damage>0.15</charge_damage></modifyHitbox>",
-						"<modifyHitbox name="leftHbox"><damage>12</damage><knockback_growth>0.12</knockback_growth><trajectory>150</trajectory><charge_damage>0.15</charge_damage></modifyHitbox>",
+                        "<modifyHitbox name=\"rightHbox\"><damage>12</damage><knockback_growth>0.12</knockback_growth><trajectory>30</trajectory><charge_damage>0.15</charge_damage></modifyHitbox>",
+						"<modifyHitbox name=\"leftHbox\"><damage>12</damage><knockback_growth>0.12</knockback_growth><trajectory>150</trajectory><charge_damage>0.15</charge_damage></modifyHitbox>",
 						"changeSpriteSubimage 9"
                     ]
                 },
@@ -2321,7 +2321,7 @@
                     "frames": "2",
                     "subactions": [
                         "<updateLandingLag>10</updateLandingLag>\n\t\t\t",
-                        "changeXSpeed 0"
+                        "changeXSpeed 0",
                         "changeSpriteSubimage 2"
                     ]
                 },
