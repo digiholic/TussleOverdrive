@@ -243,7 +243,7 @@
                 {
                     "frames": "5",
                     "subactions": [
-                        "<changeSprite>jump</changeSprite>\n\t\t"
+                        "changeAnim jump"
                     ]
                 }
             ]
@@ -437,7 +437,7 @@
             "actions_at_last_frame": {
                 "frames": "",
                 "subactions": [
-                    "<setFrame>12</setFrame>\n\t\t"
+                    "changeFrame 12"
                 ]
             },
             "tear_down_actions": {
@@ -558,8 +558,8 @@
             "set_up_actions": {
                 "frames": "",
                 "subactions": [
-                    "<changeSubimage>4</changeSubimage>\n\t\t\t",
-                    "<changeFighterSpeed>\n\t\t\t\t<xSpeed>0</xSpeed>\n\t\t\t</changeFighterSpeed>\n\t\t"
+                    "changeSpriteSubimage 4",
+					"changeXSpeed 0"
                 ]
             },
             "state_transition_actions": {
@@ -689,7 +689,7 @@
             "set_up_actions": {
                 "frames": "",
                 "subactions": [
-                    "<changeSubimage>1</changeSubimage>\n\t\t"
+                    "changeSpriteSubimage 1"
                 ]
             },
             "state_transition_actions": {
@@ -736,7 +736,7 @@
             "set_up_actions": {
                 "frames": "",
                 "subactions": [
-                    "<changeSubimage>1</changeSubimage>\n\t\t"
+                    "changeSpriteSubimage 1"
                 ]
             },
             "state_transition_actions": {
@@ -808,25 +808,25 @@
                 {
                     "frames": "3",
                     "subactions": [
-                        "<changeSubimage>3</changeSubimage>\n\t\t"
+                        "changeSpriteSubimage 3"
                     ]
                 },
-                {
+				{
                     "frames": "18",
                     "subactions": [
-                        "<changeSubimage>3</changeSubimage>\n\t\t"
+                        "changeSpriteSubimage 2"
                     ]
                 },
-                {
+				{
                     "frames": "20",
                     "subactions": [
-                        "<changeSubimage>3</changeSubimage>\n\t\t"
+                        "changeSpriteSubimage 1"
                     ]
                 },
-                {
+				{
                     "frames": "22",
                     "subactions": [
-                        "<changeSubimage>3</changeSubimage>\n\t\t"
+                        "changeSpriteSubimage 0"
                     ]
                 }
             ]
@@ -840,7 +840,7 @@
             "set_up_actions": {
                 "frames": "",
                 "subactions": [
-                    "<changeSubimage>1</changeSubimage>\n\t\t"
+                    "changeSpriteSubimage 1"
                 ]
             },
             "state_transition_actions": {
@@ -887,7 +887,7 @@
             "set_up_actions": {
                 "frames": "",
                 "subactions": [
-                    "<changeSubimage>1</changeSubimage>\n\t\t"
+                    "changeSpriteSubimage 1"
                 ]
             },
             "state_transition_actions": {
@@ -959,25 +959,25 @@
                 {
                     "frames": "3",
                     "subactions": [
-                        "<changeSubimage>3</changeSubimage>\n\t\t"
+                        "changeSpriteSubimage 3"
                     ]
                 },
-                {
+				{
                     "frames": "18",
                     "subactions": [
-                        "<changeSubimage>3</changeSubimage>\n\t\t"
+                        "changeSpriteSubimage 2"
                     ]
                 },
-                {
+				{
                     "frames": "20",
                     "subactions": [
-                        "<changeSubimage>3</changeSubimage>\n\t\t"
+                        "changeSpriteSubimage 1"
                     ]
                 },
-                {
+				{
                     "frames": "22",
                     "subactions": [
-                        "<changeSubimage>3</changeSubimage>\n\t\t"
+                        "changeSpriteSubimage 0"
                     ]
                 }
             ]
@@ -1016,13 +1016,13 @@
                 {
                     "frames": "4",
                     "subactions": [
-                        "<changeSubimage>2</changeSubimage>\n\t\t"
+                        "changeSpriteSubimage 2"
                     ]
                 },
-                {
+				{
                     "frames": "20",
                     "subactions": [
-                        "<changeSubimage>2</changeSubimage>\n\t\t"
+                        "changeSpriteSubimage 0"
                     ]
                 }
             ]
@@ -1161,7 +1161,7 @@
                 {
                     "frames": "6",
                     "subactions": [
-                        "<changeSubimage>3</changeSubimage>\n\t\t"
+                        "changeSpriteSubimage 3"
                     ]
                 }
             ]
@@ -1202,7 +1202,7 @@
                 {
                     "frames": "6",
                     "subactions": [
-                        "<changeSubimage>3</changeSubimage>\n\t\t"
+                        "changeSpriteSubimage 3"
                     ]
                 }
             ]
@@ -1420,31 +1420,31 @@
                 {
                     "frames": "0",
                     "subactions": [
-                        "<changeSubimage>4</changeSubimage>\n\t\t"
+                        "changeSpriteSubimage 4"
                     ]
                 },
-                {
+				{
                     "frames": "2",
                     "subactions": [
-                        "<changeSubimage>4</changeSubimage>\n\t\t"
+                        "changeSpriteSubimage 3"
                     ]
                 },
-                {
+				{
                     "frames": "4",
                     "subactions": [
-                        "<changeSubimage>4</changeSubimage>\n\t\t"
+                        "changeSpriteSubimage 2"
                     ]
                 },
-                {
+				{
                     "frames": "10",
                     "subactions": [
-                        "<changeSubimage>4</changeSubimage>\n\t\t"
+                        "changeSpriteSubimage 3"
                     ]
                 },
-                {
+				{
                     "frames": "12",
                     "subactions": [
-                        "<changeSubimage>4</changeSubimage>\n\t\t"
+                        "changeSpriteSubimage 4"
                     ]
                 }
             ]
@@ -1515,7 +1515,7 @@
                 {
                     "frames": "6,8,10,12,14,17,20,23,26",
                     "subactions": [
-                        "<changeSubimage relative=\"True\">1</changeSubimage>\n\t\t"
+                        "changeSpriteSubimageBy 1"
                     ]
                 }
             ]
@@ -1552,27 +1552,9 @@
             },
             "actions_at_frame": [
                 {
-                    "frames": "8,10,12,14",
+                    "frames": "8,10,12,14,15,17,33",
                     "subactions": [
-                        "<changeSubimage relative=\"True\">1</changeSubimage>\n\t\t"
-                    ]
-                },
-                {
-                    "frames": "15",
-                    "subactions": [
-                        "<changeSubimage relative=\"True\">1</changeSubimage>\n\t\t"
-                    ]
-                },
-                {
-                    "frames": "17",
-                    "subactions": [
-                        "<changeSubimage relative=\"True\">1</changeSubimage>\n\t\t"
-                    ]
-                },
-                {
-                    "frames": "33",
-                    "subactions": [
-                        "<changeSubimage relative=\"True\">1</changeSubimage>\n\t\t"
+                        "changeSpriteSubimageBy 1"
                     ]
                 }
             ]
@@ -1697,7 +1679,7 @@
             "state_transition_actions": {
                 "frames": "",
                 "subactions": [
-                    "<transitionState>checkGrounded</transitionState>\n\t\t"
+                    "doTransition checkGround"
                 ]
             },
             "actions_before_frame": {
@@ -1896,7 +1878,7 @@
             "state_transition_actions": {
                 "frames": "",
                 "subactions": [
-                    "<transitionState>checkGrounded</transitionState>\n\t\t"
+                    "doTransition checkGround"
                 ]
             },
             "actions_before_frame": {
@@ -1985,7 +1967,7 @@
             "state_transition_actions": {
                 "frames": "",
                 "subactions": [
-                    "<transitionState>checkGrounded</transitionState>\n\t\t"
+                    "doTransition checkGround"
                 ]
             },
             "actions_before_frame": {
@@ -2137,7 +2119,7 @@
             "state_transition_actions": {
                 "frames": "",
                 "subactions": [
-                    "<transitionState>checkGrounded</transitionState>\n\t\t"
+                    "doTransition checkGround"
                 ]
             },
             "actions_before_frame": {
@@ -2161,56 +2143,58 @@
                     "frames": "9",
                     "subactions": [
                         "<charge maxCharge=\"15\">7</charge>\n\t\t\t",
-                        "<changeSubimage>5</changeSubimage>\n\t\t"
+                        "changeSpriteSubimage 5"
                     ]
                 },
                 {
                     "frames": "10",
                     "subactions": [
-                        "<charge maxCharge=\"15\">7</charge>\n\t\t\t",
-                        "<changeSubimage>5</changeSubimage>\n\t\t"
+                        "<activateHitbox>rightHbox</activateHitbox>",
+						"<activateHitbox>leftHbox</activateHitbox>"
                     ]
                 },
                 {
                     "frames": "11",
                     "subactions": [
-                        "<charge maxCharge=\"15\">7</charge>\n\t\t\t",
-                        "<changeSubimage>5</changeSubimage>\n\t\t"
+						"<modifyHitbox name="rightHbox"><center>24,13</center><damage>12</damage><knockback_growth>0.13</knockback_growth><trajectory>30</trajectory><charge_damage>0.15</charge_damage></modifyHitbox>",
+						"<modifyHitbox name="leftHbox"><center>-24,13</center><damage>12</damage><knockback_growth>0.13</knockback_growth><trajectory>150</trajectory><charge_damage>0.15</charge_damage></modifyHitbox>",
+						"<playSound>dsmash</playSound>",
+                        "changeSpriteSubimage 6"
                     ]
                 },
                 {
                     "frames": "12",
                     "subactions": [
-                        "<charge maxCharge=\"15\">7</charge>\n\t\t\t",
-                        "<changeSubimage>5</changeSubimage>\n\t\t"
+                        "<modifyHitbox name="rightHbox"><center>34,26</center><damage>16</damage><knockback_growth>0.15</knockback_growth><trajectory>15</trajectory><charge_damage>0.2</charge_damage></modifyHitbox>",
+						"<modifyHitbox name="leftHbox"><center>-34,26</center><damage>16</damage><knockback_growth>0.15</knockback_growth><trajectory>135</trajectory><charge_damage>0.2</charge_damage></modifyHitbox>",
+						"changeSpriteSubimage 7"
                     ]
                 },
                 {
                     "frames": "14",
                     "subactions": [
-                        "<charge maxCharge=\"15\">7</charge>\n\t\t\t",
-                        "<changeSubimage>5</changeSubimage>\n\t\t"
+                        "changeSpriteSubimage 8"
                     ]
                 },
                 {
                     "frames": "16",
                     "subactions": [
-                        "<charge maxCharge=\"15\">7</charge>\n\t\t\t",
-                        "<changeSubimage>5</changeSubimage>\n\t\t"
+                        "<modifyHitbox name="rightHbox"><damage>12</damage><knockback_growth>0.12</knockback_growth><trajectory>30</trajectory><charge_damage>0.15</charge_damage></modifyHitbox>",
+						"<modifyHitbox name="leftHbox"><damage>12</damage><knockback_growth>0.12</knockback_growth><trajectory>150</trajectory><charge_damage>0.15</charge_damage></modifyHitbox>",
+						"changeSpriteSubimage 9"
                     ]
                 },
                 {
                     "frames": "20,24,28,33,38,44",
                     "subactions": [
-                        "<charge maxCharge=\"15\">7</charge>\n\t\t\t",
-                        "<changeSubimage>5</changeSubimage>\n\t\t"
+                        "changeSpriteSubimageBy 1"
                     ]
                 },
                 {
                     "frames": "33",
                     "subactions": [
-                        "<charge maxCharge=\"15\">7</charge>\n\t\t\t",
-                        "<changeSubimage>5</changeSubimage>\n\t\t"
+                        "<deactivateHitbox>rightHbox</deactivateHitbox>",
+						"<deactivateHitbox>leftHbox</deactivateHitbox>"
                     ]
                 }
             ]
@@ -2232,7 +2216,7 @@
             "state_transition_actions": {
                 "frames": "",
                 "subactions": [
-                    "<transitionState>airControl</transitionState>\n\t\t"
+                    "doTransition airControl"
                 ]
             },
             "actions_before_frame": {
@@ -2337,8 +2321,8 @@
                     "frames": "2",
                     "subactions": [
                         "<updateLandingLag>10</updateLandingLag>\n\t\t\t",
-                        "<changeFighterSpeed>\n\t\t\t\t<xSpeed>0</xSpeed>\n\t\t\t</changeFighterSpeed>\n\t\t\t",
-                        "<changeSubimage>2</changeSubimage>\n\t\t"
+                        "changeXSpeed 0"
+                        "changeSpriteSubimage 2"
                     ]
                 },
                 {

@@ -149,6 +149,12 @@ public class ActionFile
         //Debug.LogWarning("Could not find action " + name + " in ActionFile");
         return new DynamicAction("Null");
     }
+
+    public void BuildDict()
+    {
+        foreach (DynamicAction action in actions)
+            action.BuildDict();
+    }
 }
 
 [System.Serializable]
@@ -181,9 +187,11 @@ public class DynamicAction
 
     public void BuildDict()
     {
+        actions_at_frame_dict = new Dictionary<int, ActionGroup>();
         foreach (ActionGroup group in actions_at_frame)
         {
-            actions_at_frame_dict[int.Parse(group.frames)] = group;
+            foreach (int frame in group.GetFrameNumbers())
+                actions_at_frame_dict[frame] = group;
         }
     }
 
@@ -224,9 +232,12 @@ public class DynamicAction
         //  Like if the frames field is 0-2, execute subactions for frames 0,1,2
 
         int frame = int.Parse(action.current_frame.ToString());
-        foreach (string subaction in actions_at_frame_dict[frame].subactions)
+        if (actions_at_frame_dict.ContainsKey(frame)) //We only need to execute things that exist. Frames with no entry have no subactions and can be safely ignored
         {
-            SubactionLoader.executeSubaction(subaction, actor, action);
+            foreach (string subaction in actions_at_frame_dict[frame].subactions)
+            {
+                SubactionLoader.executeSubaction(subaction, actor, action);
+            }
         }
     }
 }
@@ -236,4 +247,26 @@ public class ActionGroup
 {
     public string frames; //Used only for actions_at_frame, parses the string to see if the current frame is in the allowed list
     public List<string> subactions = new List<string>();
+
+    public List<int> GetFrameNumbers()
+    {
+        List<int> frameNo = new List<int>();
+        if (frames.Contains(",")) //If it's a comma seperated list
+        {
+            string[] frameStrings = frames.Split(',');
+            foreach (string frameString in frameStrings)
+            {
+                frameNo.Add(int.Parse(frameString));
+            }
+        }
+        else if (frames.Contains("-")) //If it's a range
+        {
+            string[] endPoints = frames.Split('-');
+            for (int i = int.Parse(endPoints[0]); i <= int.Parse(endPoints[1]); i++)
+            {
+                frameNo.Add(i);
+            }
+        }
+        return frameNo;
+    }
 }
