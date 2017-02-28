@@ -6,11 +6,31 @@ public class HitboxLoader : MonoBehaviour {
 
     public Hitbox hitbox_prefab;
 
-    public Hitbox LoadHitbox(AbstractFighter owner, Dictionary<string, float> dict, float centerx = 0.0f, float centery = 0.0f, float width = 1, float height = 1)
+    public Hitbox LoadHitbox(AbstractFighter owner, GameAction action, Dictionary<string, float> dict, float centerx = 0.0f, float centery = 0.0f, float width = 1, float height = 1)
     {
         Hitbox hbox = Instantiate(hitbox_prefab);
         hbox.LoadValuesFromDict(dict);
-        hbox.transform.parent = owner.transform; //The Fighter Rig keeps the fighter and hitboxes scales from affecting eachother
+        hbox.transform.parent = owner.transform;
+        
+        //Set up the hitbox lock, if applicable
+        if (hbox.lock_name != "") //If it has a name, we need to check if it's got a lock already
+        {
+            if (action.hitbox_locks.ContainsKey(hbox.lock_name)) //If it's already there, just assign it to the hitbox
+            {
+                hbox.hitbox_lock = action.hitbox_locks[hbox.lock_name];
+            }
+            else //If it has a name, but isn't in the list, we need to add it
+            {
+                HitboxLock new_lock = new HitboxLock(hbox.lock_name);
+                hbox.hitbox_lock = new_lock;
+                action.hitbox_locks.Add(hbox.lock_name, new_lock);
+            }
+         }
+        else //If it's unnamed, we just need to create a new lock for this hitbox
+        {
+            hbox.hitbox_lock = new HitboxLock(hbox.lock_name);
+        }
+
         float scale = owner.GetComponent<SpriteLoader>().pixelsPerUnit;
         hbox.transform.localPosition = new Vector3(centerx/scale, centery/scale, -0.5f);
         hbox.transform.localScale = new Vector3(width/scale, height/scale, 1.0f);

@@ -20,7 +20,7 @@ public class Utilt : BaseAttack {
             {"trajectory", 100 }
         };
 
-        Hitbox sweet = game_controller.GetComponent<HitboxLoader>().LoadHitbox(actor, sweetdict, 30, 20, 6, 20);
+        Hitbox sweet = game_controller.GetComponent<HitboxLoader>().LoadHitbox(actor, this, sweetdict, 30, 20, 6, 20);
         hitboxes.Add("sweet", sweet);
 
         Dictionary<string, float> tangydict = new Dictionary<string, float>()
@@ -31,7 +31,7 @@ public class Utilt : BaseAttack {
             {"trajectory", 110 }
         };
 
-        Hitbox tangy = game_controller.GetComponent<HitboxLoader>().LoadHitbox(actor, tangydict, 27, 25, 12, 35);
+        Hitbox tangy = game_controller.GetComponent<HitboxLoader>().LoadHitbox(actor, this, tangydict, 27, 25, 12, 35);
         hitboxes.Add("tangy", tangy);
 
         Dictionary<string, float> sourdict = new Dictionary<string, float>()
@@ -42,7 +42,7 @@ public class Utilt : BaseAttack {
             {"trajectory", 120 }
         };
 
-        Hitbox sour = game_controller.GetComponent<HitboxLoader>().LoadHitbox(actor, sourdict, 21, 15, 24, 60);
+        Hitbox sour = game_controller.GetComponent<HitboxLoader>().LoadHitbox(actor, this, sourdict, 21, 15, 24, 60);
         hitboxes.Add("sour", sour);
     }
 

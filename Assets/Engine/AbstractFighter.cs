@@ -75,6 +75,8 @@ public class AbstractFighter : MonoBehaviour {
     private ActionFile actions_file_json = new ActionFile();
     private DynamicAction current_dynamic_action;
 
+    private List<HitboxLock> hitbox_locks = new List<HitboxLock>();
+
     void Awake()
     {
         if (File.Exists(fighter_xml_file))
@@ -193,9 +195,6 @@ public class AbstractFighter : MonoBehaviour {
         float current_y = GetControllerAxis("Vertical");
         y_axis_delta = Mathf.Abs(current_y) - Mathf.Abs(last_y_axis);
         last_y_axis = current_y;
-
-        //if (x_axis_delta != 0 || y_axis_delta != 0)
-        //    Debug.Log(x_axis_delta.ToString() + ',' + y_axis_delta.ToString());
 
         _current_action.stateTransitions();
         current_dynamic_action.ExecuteGroup("StateTransitions",this,_current_action);
@@ -334,17 +333,38 @@ public class AbstractFighter : MonoBehaviour {
             sprite_loader.ChangeSubimage(frame,loop);
     }
 
+    /// <summary>
+    /// If the Hitbox is not "locked" from the fighter, locks it and returns True, allow it to affect the fighter.
+    /// If it is locked, returns false.
+    /// </summary>
+    /// <param name="hitbox"></param>
+    /// <returns></returns>
+    public bool LockHitbox(Hitbox hitbox)
+    {
+        if (hitbox_locks.Contains(hitbox.hitbox_lock)) //If it's in the locks, return false and do nothing else.
+            return false;
+        else
+        {
+            hitbox.hitbox_lock.PutInList(hitbox_locks);
+            StartCoroutine(RemoveLock(hitbox.hitbox_lock));
+            return true;
+        }
+
+    }
 
     public void GetHit(Hitbox hitbox)
     {
-        float weight_constant = 1.4f;
-        float flat_constant = 5.0f;
+        if (LockHitbox(hitbox)) //If the hitbox is not already locked to us
+        {
+            float weight_constant = 1.4f;
+            float flat_constant = 5.0f;
 
-        float percent_portion = (damage_percent / 10.0f) + ((damage_percent * hitbox.damage) / 20.0f);
-        float weight_portion = 200.0f / (weight * hitbox.weight_influence + 100);
-        float scaled_kb = (((percent_portion * weight_portion * weight_constant) + flat_constant) * hitbox.knockback_growth);
-        ApplyKnockback(scaled_kb + hitbox.base_knockback, hitbox.trajectory);
-        DealDamage(hitbox.damage);
+            float percent_portion = (damage_percent / 10.0f) + ((damage_percent * hitbox.damage) / 20.0f);
+            float weight_portion = 200.0f / (weight * hitbox.weight_influence + 100);
+            float scaled_kb = (((percent_portion * weight_portion * weight_constant) + flat_constant) * hitbox.knockback_growth);
+            ApplyKnockback(scaled_kb + hitbox.base_knockback, hitbox.trajectory);
+            DealDamage(hitbox.damage);
+        }
     }
 
     public void DealDamage(float _damage)
@@ -447,5 +467,16 @@ public class AbstractFighter : MonoBehaviour {
         actions_file_json.Add(testAction);
         */
         File.WriteAllText(action_json_path, JsonUtility.ToJson(actions_file_json, true));
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////
+    //                              PRIVATE HELPER METHODS                                 //
+    /////////////////////////////////////////////////////////////////////////////////////////
+
+    private IEnumerator RemoveLock(HitboxLock hitbox_lock)
+    {
+        yield return new WaitForSeconds(2);
+        if (hitbox_locks.Contains(hitbox_lock)) //It can be unlocked later
+            hitbox_locks.Remove(hitbox_lock);
     }
 }

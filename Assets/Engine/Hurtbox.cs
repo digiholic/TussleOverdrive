@@ -5,6 +5,7 @@ using UnityEngine;
 public class Hurtbox : MonoBehaviour {
 
     private Transform fighter;
+    
 	// Use this for initialization
 	void Start () {
         fighter = GetComponent<Collider>().transform.root;

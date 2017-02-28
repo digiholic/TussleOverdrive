@@ -20,7 +20,7 @@ public class NeutralAttack : BaseAttack {
             {"trajectory", 90 }
         };
 
-        Hitbox hbox = game_controller.GetComponent<HitboxLoader>().LoadHitbox(actor, dict, 0,0,92,92);
+        Hitbox hbox = game_controller.GetComponent<HitboxLoader>().LoadHitbox(actor, this, dict, 0,0,92,92);
         hitboxes.Add("hitbox", hbox);
     }
 
