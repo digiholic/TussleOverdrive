@@ -76,6 +76,30 @@ public class SubactionLoader : ScriptableObject {
                 if (args[4] != "_")
                     actor._yPreferred = float.Parse(args[4]);
                 break;
+            case "changeXSpeed":
+                /* changeXSpeed x:float
+                 *      changes the xSpeed of the fighter
+                 */
+                actor._xSpeed = float.Parse(args[1]);
+                break;
+            case "changeYSpeed":
+                /* changeYSpeed y:float
+                 *      changes the ySpeed of the fighter
+                 */
+                actor._ySpeed = float.Parse(args[1]);
+                break;
+            case "changeXPreferred":
+                /* changeXPreferred x:float
+                 *      changes the preferred xSpeed of the fighter
+                 */
+                actor._xPreferred = float.Parse(args[1]);
+                break;
+            case "changeYPreferred":
+                /* changeXPreferred y:float
+                 *      changes the yPreferred of the fighter
+                 */
+                actor._yPreferred = float.Parse(args[1]);
+                break;
             case "shiftPosition":
                 /* shiftPosition x:float|0 y:float|0 relative:bool|true
                  *      Displaces the fighter by a certain amount in either direction
@@ -120,6 +144,32 @@ public class SubactionLoader : ScriptableObject {
                  */
                 //TODO
                 break;
+            // ====== HITBOX SUBACTIONS ======\\
+            case "createHitbox":
+                /* createHitbox name:string [argumentName:string value:dynamic]
+                 *      Creates a hitbox with the given name. Every pair of arguments from then after is the name of a value, and what to set it to.
+                 *      Hitboxes will be able to parse the property name and extract the right value out.
+                 */
+                string name = args[1];
+                Dictionary<string, string> hbox_dict = new Dictionary<string, string>();
+                for (int i = 2; i < args.Length; i = i + 2)
+                {
+                    hbox_dict[args[i]] = args[i + 1];
+                }
+                Hitbox hbox = FindObjectOfType<HitboxLoader>().LoadHitbox(actor, action, hbox_dict);
+                action.hitboxes.Add(name, hbox);
+                break;
+            case "activateHitbox":
+                /* activateHitbox name:string life:int
+                 *      Activates the named hitbox, if it exists, for the given number of frames.
+                 */
+                name = args[1];
+                if (action.hitboxes.ContainsKey(args[1]))
+                    action.hitboxes[args[1]].Activate(int.Parse(args[2]));
+                else
+                    Debug.LogWarning("Current action has no hitbox named " + name);
+                break;
+            
             default:
                 //Debug.LogWarning("Could not load subaction " + args[0]);
                 break;
@@ -230,12 +280,12 @@ public class DynamicAction
     {
         //TODO parse the action frames field to see if the frame number falls into range, function, etc.
         //  Like if the frames field is 0-2, execute subactions for frames 0,1,2
-
         int frame = int.Parse(action.current_frame.ToString());
         if (actions_at_frame_dict.ContainsKey(frame)) //We only need to execute things that exist. Frames with no entry have no subactions and can be safely ignored
         {
             foreach (string subaction in actions_at_frame_dict[frame].subactions)
             {
+                //Debug.Log(frame + ": " + subaction);
                 SubactionLoader.executeSubaction(subaction, actor, action);
             }
         }
@@ -267,6 +317,8 @@ public class ActionGroup
                 frameNo.Add(i);
             }
         }
+        else
+            frameNo.Add(int.Parse(frames));
         return frameNo;
     }
 }

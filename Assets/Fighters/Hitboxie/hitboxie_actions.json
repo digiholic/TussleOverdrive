@@ -1673,7 +1673,7 @@
             "set_up_actions": {
                 "frames": "",
                 "subactions": [
-                    "<createHitbox type=\"funnel\">\n\t\t\t\t<name>jab</name>\n\t\t\t\t<center>0,0</center>\n\t\t\t\t<size>80,80</size>\n\t\t\t\t<damage>2</damage>\n\t\t\t\t<base_knockback>6.5</base_knockback>\n\t\t\t\t<knockback_growth>0</knockback_growth>\n\t\t\t\t<velocity_multiplier>0</velocity_multiplier>\n\t\t\t\t<base_hitstun>20</base_hitstun>\n\t\t\t\t<hitstun_growth>2</hitstun_growth>\n\t\t\t\t<y_bias>-16</y_bias>\n\t\t\t\t<x_draw>-.1</x_draw>\n\t\t\t\t<y_draw>-.1</y_draw>\n\t\t\t\t<onHitOther>test</onHitOther>\n\t\t\t</createHitbox>\n\t\t"
+                    "createHitbox jab type funnel center 0,0 size 80,80 damage 2 base_knockback 10 knockback_growth 0.1 trajectory 90"
                 ]
             },
             "state_transition_actions": {
@@ -1704,6 +1704,7 @@
                 {
                     "frames": "4",
                     "subactions": [
+						"activateHitbox jab 5",
                         "<ifButton>\n\t\t\t\t<button check=\"keysContain\">attack</button>\n\t\t\t\t<fail>setFinisher</fail>\n\t\t\t</ifButton>\n\t\t"
                     ]
                 },
@@ -3564,7 +3565,8 @@
             "set_up_actions": {
                 "frames": "",
                 "subactions": [
-                    "<createHitbox type=\"throw\">\n\t\t\t\t<name>jab</name>\n\t\t\t\t<damage>3</damage>\n\t\t\t\t<base_hitstun>0</base_hitstun>\n\t\t\t\t<hitlag_multiplier>0</hitlag_multiplier>\n\t\t\t</createHitbox>\n\t\t"
+                    "<createHitbox type=\"throw\"><name>jab</name><damage>3</damage><base_hitstun>0</base_hitstun><hitlag_multiplier>0</hitlag_multiplier>\n\t\t\t</createHitbox>\n\t\t"
+					
                 ]
             },
             "state_transition_actions": {

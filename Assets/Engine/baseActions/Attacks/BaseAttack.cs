@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class BaseAttack : GameAction {
 
-    public Dictionary<string,Hitbox> hitboxes = new Dictionary<string,Hitbox>();
-
     public override void TearDown(GameAction new_action)
     {
         base.TearDown(new_action);

@@ -12,15 +12,15 @@ public class Ftilt : BaseAttack {
         base.SetUp(_actor);
         //Debug.Log("NeutralAttack Created");
 
-        Dictionary<string, float> dict = new Dictionary<string, float>()
+        Dictionary<string, string> dict = new Dictionary<string, string>()
         {
-            {"damage", 10 },
-            {"base_knockback", 1.5f },
-            {"knockback_growth", 0.2f },
-            {"trajectory", 50 }
+            {"damage", "10" },
+            {"base_knockback", "1.5" },
+            {"knockback_growth", "0.2" },
+            {"trajectory", "50" }
         };
 
-        Hitbox hbox = game_controller.GetComponent<HitboxLoader>().LoadHitbox(actor, this, dict, 20, 0, 120, 40);
+        Hitbox hbox = game_controller.GetComponent<HitboxLoader>().LoadHitbox(actor, this, dict);
         hitboxes.Add("hitbox", hbox);
     }
 

@@ -12,6 +12,7 @@ public class Utilt : BaseAttack {
         base.SetUp(_actor);
         //Debug.Log("NeutralAttack Created");
 
+        /*
         Dictionary<string, float> sweetdict = new Dictionary<string, float>()
         {
             {"damage", 7 },
@@ -44,6 +45,7 @@ public class Utilt : BaseAttack {
 
         Hitbox sour = game_controller.GetComponent<HitboxLoader>().LoadHitbox(actor, this, sourdict, 21, 15, 24, 60);
         hitboxes.Add("sour", sour);
+        */
     }
 
     public override void Update()

@@ -22,6 +22,7 @@ public class GameAction : ScriptableObject {
     public List<string> state_transition_actions = new List<string>();
     public List<string> tear_down_actions = new List<string>();
 
+    public Dictionary<string, Hitbox> hitboxes = new Dictionary<string, Hitbox>();
     public Dictionary<string, HitboxLock> hitbox_locks = new Dictionary<string, HitboxLock>();
 
     protected int last_frame;

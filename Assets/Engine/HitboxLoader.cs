@@ -6,7 +6,7 @@ public class HitboxLoader : MonoBehaviour {
 
     public Hitbox hitbox_prefab;
 
-    public Hitbox LoadHitbox(AbstractFighter owner, GameAction action, Dictionary<string, float> dict, float centerx = 0.0f, float centery = 0.0f, float width = 1, float height = 1)
+    public Hitbox LoadHitbox(AbstractFighter owner, GameAction action, Dictionary<string, string> dict)
     {
         Hitbox hbox = Instantiate(hitbox_prefab);
         hbox.LoadValuesFromDict(dict);
@@ -32,8 +32,8 @@ public class HitboxLoader : MonoBehaviour {
         }
 
         float scale = owner.GetComponent<SpriteLoader>().pixelsPerUnit;
-        hbox.transform.localPosition = new Vector3(centerx/scale, centery/scale, -0.5f);
-        hbox.transform.localScale = new Vector3(width/scale, height/scale, 1.0f);
+        hbox.transform.localPosition = new Vector3(hbox.centerx/scale, hbox.centery /scale, -0.5f);
+        hbox.transform.localScale = new Vector3(hbox.width /scale, hbox.height /scale, 1.0f);
         if (owner.facing == -1)
             hbox.trajectory = 180 - hbox.trajectory;
         //Debug.Log(hbox.transform.position);

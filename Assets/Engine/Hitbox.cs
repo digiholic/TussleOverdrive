@@ -10,8 +10,12 @@ public class Hitbox : MonoBehaviour {
     public float weight_influence = 1.0f;
     public string lock_name = "";
 
-    public HitboxLock hitbox_lock;
+    public int centerx = 0;
+    public int centery = 0;
+    public int width = 0;
+    public int height = 0;
 
+    public HitboxLock hitbox_lock;
     private Collider col;
     private bool active = false;
     private int _life = -1; //If Life is -1. last until deactivated
@@ -42,12 +46,29 @@ public class Hitbox : MonoBehaviour {
         }
 	}
 
-    public void LoadValuesFromDict(Dictionary<string,float> dict)
+    public void LoadValuesFromDict(Dictionary<string,string> dict)
     {
-        damage           = dict["damage"];
-        base_knockback   = dict["base_knockback"];
-        knockback_growth = dict["knockback_growth"];
-        trajectory       = Mathf.FloorToInt(dict["trajectory"]);
+        if (dict.ContainsKey("center"))
+        {
+            string[] center = dict["center"].Split(',');
+            centerx = int.Parse(center[0]);
+            centery = int.Parse(center[1]);
+        }
+        if (dict.ContainsKey("size"))
+        {
+            string[] size = dict["size"].Split(',');
+            width = int.Parse(size[0]);
+            height = int.Parse(size[1]);
+        }
+
+        if (dict.ContainsKey("damage"))
+            damage           = float.Parse(dict["damage"]);
+        if (dict.ContainsKey("base_knockback"))
+            base_knockback = float.Parse(dict["base_knockback"]);
+        if (dict.ContainsKey("knockback_growth"))
+            knockback_growth = float.Parse(dict["knockback_growth"]);
+        if (dict.ContainsKey("trajectory"))
+            trajectory = int.Parse(dict["trajectory"]);
     }
 
     public void Activate(int life = -1)
@@ -69,6 +90,21 @@ public class Hitbox : MonoBehaviour {
         hitbox_lock.Destroy();
     }
 
+    /// <summary>
+    /// For debugging purposes, here's a better printout of a hitbox
+    /// </summary>
+    /// <returns></returns>
+    public override string ToString()
+    {
+        string retString = "Hitbox object" + "\n";
+        retString += "Center: " + centerx + "," + centery + "\n";
+        retString += "Size: " + width + "," + height + "\n";
+        retString += "Damage: " + damage + "\n";
+        retString += "Base KB: " + base_knockback + "\n";
+        retString += "Knockback_growth: " + knockback_growth + "\n";
+        retString += "Trajectory: " + trajectory + "\n";
+        return retString;
+    }
 
 }
 
