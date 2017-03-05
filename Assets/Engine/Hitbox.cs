@@ -48,12 +48,14 @@ public class Hitbox : MonoBehaviour {
 
     public void LoadValuesFromDict(Dictionary<string,string> dict)
     {
+        //Set the centerpoint
         if (dict.ContainsKey("center"))
         {
             string[] center = dict["center"].Split(',');
             centerx = int.Parse(center[0]);
             centery = int.Parse(center[1]);
         }
+        //Set the size
         if (dict.ContainsKey("size"))
         {
             string[] size = dict["size"].Split(',');
@@ -61,6 +63,7 @@ public class Hitbox : MonoBehaviour {
             height = int.Parse(size[1]);
         }
 
+        //Hitbox stats
         if (dict.ContainsKey("damage"))
             damage           = float.Parse(dict["damage"]);
         if (dict.ContainsKey("base_knockback"))
