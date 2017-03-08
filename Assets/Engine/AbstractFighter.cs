@@ -156,8 +156,9 @@ public class AbstractFighter : MonoBehaviour {
         jumps = max_jumps;
         actions_file_json.BuildDict();
         _current_action = ScriptableObject.CreateInstance<NeutralAction>();
-        _current_action.SetUp(this);
         current_dynamic_action = actions_file_json.Get("NeutralAction");
+        current_dynamic_action.StartAnim(_current_action); //Sets the animation state in the current action
+        _current_action.SetUp(this);
         current_dynamic_action.ExecuteGroup("SetUp",this,_current_action);
         game_controller = GameObject.Find("Controller").GetComponent<GameController>();
 
@@ -225,6 +226,7 @@ public class AbstractFighter : MonoBehaviour {
         old_action.TearDown(_current_action);
         Destroy(old_action);
         current_dynamic_action = actions_file_json.Get(_actionName);
+        current_dynamic_action.StartAnim(_current_action); //Sets the animation state in the current action
         _current_action.SetUp(this);
         current_dynamic_action.ExecuteGroup("SetUp", this, _current_action);
     }

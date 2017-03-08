@@ -11,31 +11,31 @@ public class SubactionLoader : ScriptableObject {
         switch (args[0])
         {
             // ====== CONTROL SUBACTIONS ======\\
-            case "doAction":
+            case "DoAction":
                 /* doAction actionName:string
                  *      Switches the fighter's action to actionName
                  */
                 actor.doAction(args[1]);
                 break;
-            case "doTransition":
+            case "DoTransition":
                 /* doTransition transitionState:string
                  * 	    Executes the named helper StateTransition
                  */
                 StateTransitions.LoadTransitionState(args[1], actor);
                 break;
-            case "setFrame":
+            case "SetFrame":
                 /* setFrame frameNumber:int
                  *      Sets the current frame to the given number
                  */
                 action.current_frame = int.Parse(args[1]);
                 break;
-            case "changeFrame":
+            case "ChangeFrame":
                 /* changeFrame frameNumber:int|1
                  *      Changes the action frame by the specified amount.
                  */
                 action.current_frame += int.Parse(args[1]);
                 break;
-            case "setVar":
+            case "SetVar":
                 /* setVar source:string name:string type:string value:dynamic relative:bool|false
                  *      Sets the variable from GameAction, Fighter, Global with the given name to the given value and type.
                  *      If relative is set and type is something that can be relative, such as integer, it will increment
@@ -43,19 +43,19 @@ public class SubactionLoader : ScriptableObject {
                  */
                  //TODO
                 break;
-            case "ifVar":
+            case "IfVar":
                 /* ifVar source:string name:string compare:string|== value:dynamic|true
                  *      Sets the action condition to the result of the logical equation compare(source|name, value)
                  */
                 //TODO
                 break;
-            case "else":
+            case "Else":
                 /* else
                  *      inverts the current action condition
                  */
                 //TODO
                 break;
-            case "endif":
+            case "Endif":
                 /* endif
                  *      unsets the current action condition
                  */
@@ -63,7 +63,7 @@ public class SubactionLoader : ScriptableObject {
                 break;
             
             // ====== CONTROL SUBACTIONS ======\\
-            case "changeSpeed":
+            case "ChangeSpeed":
                 /* changeSpeed x:float|_ y:float|_ xpref:float|_ ypref:float|_ relative:bool|false
                  *      changes the xSpeed, ySpeed, xPreffered, yPreferred speeds. If set to null, value will remain the same
                  */
@@ -76,76 +76,76 @@ public class SubactionLoader : ScriptableObject {
                 if (args[4] != "_")
                     actor._yPreferred = float.Parse(args[4]);
                 break;
-            case "changeXSpeed":
+            case "ChangeXSpeed":
                 /* changeXSpeed x:float
                  *      changes the xSpeed of the fighter
                  */
                 actor._xSpeed = float.Parse(args[1]);
                 break;
-            case "changeYSpeed":
+            case "ChangeYSpeed":
                 /* changeYSpeed y:float
                  *      changes the ySpeed of the fighter
                  */
                 actor._ySpeed = float.Parse(args[1]);
                 break;
-            case "changeXPreferred":
+            case "ChangeXPreferred":
                 /* changeXPreferred x:float
                  *      changes the preferred xSpeed of the fighter
                  */
                 actor._xPreferred = float.Parse(args[1]);
                 break;
-            case "changeYPreferred":
+            case "ChangeYPreferred":
                 /* changeXPreferred y:float
                  *      changes the yPreferred of the fighter
                  */
                 actor._yPreferred = float.Parse(args[1]);
                 break;
-            case "shiftPosition":
+            case "ShiftPosition":
                 /* shiftPosition x:float|0 y:float|0 relative:bool|true
                  *      Displaces the fighter by a certain amount in either direction
                  */
                 //TODO
                 break;
             // ====== CONTROL SUBACTIONS ======\\
-            case "changeAnim":
+            case "ChangeAnim":
                 /* changeAnim animName:string
                  *      Changes to the specified animation.
                  */
                 actor.ChangeSprite(args[1]);
                 break;
-            case "changeSpriteSubimage":
+            case "ChangeSpriteSubimage":
                 /* changeSpriteSubimage index:int
                  *      SPRITE MODE ONLY
                  *      Changes to the sprite subimage of the current animation with the given index
                  */
                 actor.ChangeSubimage(int.Parse(args[1]));
                 break;
-            case "flipFighter":
+            case "Flip":
                 /* flipFighter
                  *      Flips the fighter horizontally, so they are facing the other direction
                  */
                 actor.flip();
                 break;
-            case "rotateFighter":
+            case "RotateSprite":
                 /* rotateFighter deg:int
                  *      Rotates the fighter by the given degrees
                  */
                 //TODO
                 break;
-            case "unrotateFighter":
+            case "Unrotate":
                 /* unrotateFighter
                  *      Sets the fighter back to upright, no matter how many times it has been rotated
                  */
                 //TODO
                 break;
-            case "shiftSprite":
+            case "ShiftSprite":
                 /* shiftSprite x:float y:float
                  *      Shifts the sprite by the given X and Y without moving the fighter
                  */
                 //TODO
                 break;
             // ====== HITBOX SUBACTIONS ======\\
-            case "createHitbox":
+            case "CreateHitbox":
                 /* createHitbox name:string [argumentName:string value:dynamic]
                  *      Creates a hitbox with the given name. Every pair of arguments from then after is the name of a value, and what to set it to.
                  *      Hitboxes will be able to parse the property name and extract the right value out.
@@ -159,9 +159,10 @@ public class SubactionLoader : ScriptableObject {
                 Hitbox hbox = FindObjectOfType<HitboxLoader>().LoadHitbox(actor, action, hbox_dict);
                 action.hitboxes.Add(name, hbox);
                 break;
-            case "activateHitbox":
+            case "ActivateHitbox":
                 /* activateHitbox name:string life:int
                  *      Activates the named hitbox, if it exists, for the given number of frames.
+                 *      If life is -1, hitbox will persist until manually deactivated.
                  */
                 name = args[1];
                 if (action.hitboxes.ContainsKey(args[1]))
@@ -169,7 +170,16 @@ public class SubactionLoader : ScriptableObject {
                 else
                     Debug.LogWarning("Current action has no hitbox named " + name);
                 break;
-            
+            case "DeactivateHitbox":
+                /* activateHitbox name:string life:int
+                 *      Activates the named hitbox, if it exists, for the given number of frames.
+                 */
+                name = args[1];
+                if (action.hitboxes.ContainsKey(args[1]))
+                    action.hitboxes[args[1]].Deactivate();
+                else
+                    Debug.LogWarning("Current action has no hitbox names " + name);
+                break;
             default:
                 //Debug.LogWarning("Could not load subaction " + args[0]);
                 break;
@@ -243,6 +253,14 @@ public class DynamicAction
             foreach (int frame in group.GetFrameNumbers())
                 actions_at_frame_dict[frame] = group;
         }
+    }
+
+    public void StartAnim(GameAction action)
+    {
+        action.length = length;
+        action.sprite_name = sprite;
+        action.sprite_rate = sprite_rate;
+        action.loop = loop;
     }
 
     public void ExecuteGroup(string group, AbstractFighter actor, GameAction action)
