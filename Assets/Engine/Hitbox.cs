@@ -18,7 +18,7 @@ public class Hitbox : MonoBehaviour {
     public HitboxLock hitbox_lock;
     private Collider col;
     private bool active = false;
-    private int _life = -1; //If Life is -1. last until deactivated
+    private int _life = -1; //If Life is -1. last until deactivated manually
     private MeshRenderer mesh;
 
 	// Use this for initialization
@@ -62,6 +62,9 @@ public class Hitbox : MonoBehaviour {
             width = int.Parse(size[0]);
             height = int.Parse(size[1]);
         }
+        //The all-important lock name
+        if (dict.ContainsKey("lock_name"))
+            lock_name = dict["lock_name"];
 
         //Hitbox stats
         if (dict.ContainsKey("damage"))
@@ -72,6 +75,7 @@ public class Hitbox : MonoBehaviour {
             knockback_growth = float.Parse(dict["knockback_growth"]);
         if (dict.ContainsKey("trajectory"))
             trajectory = int.Parse(dict["trajectory"]);
+        
     }
 
     public void Activate(int life = -1)
@@ -83,9 +87,12 @@ public class Hitbox : MonoBehaviour {
 
     public void Deactivate()
     {
-        active = false;
-        mesh.enabled = false;
-        hitbox_lock.Destroy();
+        if (active)
+        {
+            active = false;
+            mesh.enabled = false;
+            hitbox_lock.Destroy();
+        }
     }
 
     public void UnlockAll() //Allows anything to be hit by this hitbox again, even if it's locked

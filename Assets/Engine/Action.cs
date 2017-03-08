@@ -83,6 +83,12 @@ public class GameAction : ScriptableObject {
 
     public virtual void TearDown(GameAction new_action)
     {
+        //Deactivate and destroy hitboxes at the end of the action
+        foreach (Hitbox hbox in hitboxes.Values)
+        {
+            hbox.Deactivate();
+            Destroy(hbox.gameObject);
+        }
         foreach (string subaction in tear_down_actions)
             if (cond)
                 SubactionLoader.executeSubaction(subaction, actor, this);
