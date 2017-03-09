@@ -46,7 +46,7 @@ public class Hitbox : MonoBehaviour {
         }
 	}
 
-    public void LoadValuesFromDict(Dictionary<string,string> dict)
+    public void LoadValuesFromDict(AbstractFighter owner, Dictionary<string,string> dict)
     {
         //Set the centerpoint
         if (dict.ContainsKey("center"))
@@ -62,6 +62,11 @@ public class Hitbox : MonoBehaviour {
             width = int.Parse(size[0]);
             height = int.Parse(size[1]);
         }
+
+        float scale = owner.GetComponent<SpriteLoader>().pixelsPerUnit;
+        transform.localPosition = new Vector3(centerx / scale, centery / scale, -0.5f);
+        transform.localScale = new Vector3(width / scale, height / scale, 1.0f);
+        
         //The all-important lock name
         if (dict.ContainsKey("lock_name"))
             lock_name = dict["lock_name"];

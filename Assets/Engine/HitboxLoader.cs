@@ -9,9 +9,13 @@ public class HitboxLoader : MonoBehaviour {
     public Hitbox LoadHitbox(AbstractFighter owner, GameAction action, Dictionary<string, string> dict)
     {
         Hitbox hbox = Instantiate(hitbox_prefab);
-        hbox.LoadValuesFromDict(dict);
         hbox.transform.parent = owner.transform;
-        
+        hbox.LoadValuesFromDict(owner, dict);
+
+        //Flip it if the fighter is flipped
+        if (owner.facing == -1)
+            hbox.trajectory = 180 - hbox.trajectory;
+
         //Set up the hitbox lock, if applicable
         if (hbox.lock_name != "") //If it has a name, we need to check if it's got a lock already
         {
@@ -31,12 +35,8 @@ public class HitboxLoader : MonoBehaviour {
             hbox.hitbox_lock = new HitboxLock(hbox.lock_name);
         }
 
-        float scale = owner.GetComponent<SpriteLoader>().pixelsPerUnit;
-        hbox.transform.localPosition = new Vector3(hbox.centerx/scale, hbox.centery /scale, -0.5f);
-        hbox.transform.localScale = new Vector3(hbox.width /scale, hbox.height /scale, 1.0f);
-        if (owner.facing == -1)
-            hbox.trajectory = 180 - hbox.trajectory;
-        //Debug.Log(hbox.transform.position);
+        
         return hbox;
     }
+    
 }

@@ -180,6 +180,22 @@ public class SubactionLoader : ScriptableObject {
                 else
                     Debug.LogWarning("Current action has no hitbox names " + name);
                 break;
+            case "ModifyHitbox":
+                /* createHitbox name:string [argumentName:string value:dynamic]
+                 *      Creates a hitbox with the given name. Every pair of arguments from then after is the name of a value, and what to set it to.
+                 *      Hitboxes will be able to parse the property name and extract the right value out.
+                 */
+                name = args[1];
+                hbox_dict = new Dictionary<string, string>();
+                for (int i = 2; i < args.Length; i = i + 2)
+                {
+                    hbox_dict[args[i]] = args[i + 1];
+                }
+                if (action.hitboxes.ContainsKey(name))
+                {
+                    action.hitboxes[name].LoadValuesFromDict(actor,hbox_dict);
+                }
+                break;
             default:
                 //Debug.LogWarning("Could not load subaction " + args[0]);
                 break;
