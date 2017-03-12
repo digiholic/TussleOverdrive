@@ -3,13 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class NeutralAction : GameAction {
-    public override void SetUp(AbstractFighter _actor)
-    {
-        sprite_name = "idle";
-        base.SetUp(_actor);
-        //Debug.Log("NeutralAction Created");
-    }
-
     public override void OnLastFrame()
     {
         base.OnLastFrame();

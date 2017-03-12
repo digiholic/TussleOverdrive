@@ -1,7 +1,13 @@
 {
     "actions":[
         {
-            "actions_after_frame":{
+            "name":"TestEverything",
+            "length":1,
+            "sprite":"idle",
+            "sprite_rate":0,
+            "loop":false,
+			
+			"actions_after_frame":{
                 "frames":"",
                 "subactions":[]
             },
@@ -14,9 +20,6 @@
                 "frames":"",
                 "subactions":[]
             },
-            "length":1,
-            "loop":false,
-            "name":"TestEverything",
             "set_up_actions":{
                 "frames":"",
                 "subactions":[
@@ -28,10 +31,12 @@
                     "DealDamage 5.0",
                     "SetInvuln 10",
                     "SetLandingLag 5",
-                    "<TODO>Change Fighter Speed: 0.0 X0.0 Y",
-                    "<TODO>Change Preferred Speed: 0.0 X0.0 Y",
-                    "<TODO>Shift Position: 0 X, 0Y",
-                    "<TODO>Shift Sprite: None X, 0Y",
+                    "ChangeXSpeed 0",
+					"ChangeYSpeed 0",
+                    "ChangeXPreferred 0",
+					"ChangeYPreferred 0",
+					"<TODO>Shift Position: 0 X, 0Y",
+					"<TODO>Shift Sprite: None X, 0Y",
                     "CreateColorMask: #FFFFFF 0 0",
                     "ApplyHitstop 10 5.0 80.0",
                     "ChangeECB 0,0 0,0",
@@ -43,8 +48,6 @@
                     "CreateHitbox dashHitbox type damage center 0,0 trajectory 20 damage 2.0 base_knockback 10.0 knockback_growth 0.1 size 70,70"
                 ]
             },
-            "sprite":"idle",
-            "sprite_rate":0,
             "state_transition_actions":{
                 "frames":"",
                 "subactions":[]
@@ -656,7 +659,7 @@
                 "frames":"",
                 "subactions":[
                     "ChangeSubimage 4",
-                    "<TODO>Change Fighter Speed: 0.0 X"
+                    "ChangeXSpeed 0"
                 ]
             },
             "sprite":"pivot",
@@ -2310,7 +2313,7 @@
             "set_up_actions":{
                 "frames":"",
                 "subactions":[
-                    "<TODO>Change Preferred Speed: 0.0 X",
+                    "ChangeXSpeed 0",
                     "CreateHitbox rightHbox type sakurai lock_name main center 14,0 trajectory 45 damage 8.0 base_knockback 8.0 charge_damage 0.1 knockback_growth 0.11 size 24,52",
                     "CreateHitbox leftHbox type sakurai lock_name main center -14,0 trajectory 135 damage 8.0 base_knockback 8.0 charge_damage 0.1 knockback_growth 0.11 size 24,52"
                 ]
@@ -2397,7 +2400,7 @@
                 "frames":"",
                 "subactions":[
                     "ChangeECB 64,78 0,7",
-                    "<TODO>Change Preferred Speed: 0.0 X",
+                    "ChangeXPreferred 0",
                     "CreateHitbox nairBox type sakurai center 0,0 trajectory 40 damage 10.0 base_knockback 4.0 transcendence 1 knockback_growth 0.1 size 72,72"
                 ]
             },
@@ -2424,7 +2427,7 @@
                     "frames":"2",
                     "subactions":[
                         "SetLandingLag 10",
-                        "<TODO>Change Fighter Speed: 0.0 X",
+                        "ChangeXSpeed 0",
                         "ChangeSubimage 2"
                     ]
                 },
@@ -2446,7 +2449,7 @@
                     "subactions":[
                         "ChangeSubimage 5",
                         "ActivateHitbox bairBox -1",
-                        "<TODO>Change Fighter Speed: 10.0 X"
+                        "ChangeXSpeed 10 true"
                     ]
                 },
                 {
@@ -2692,6 +2695,12 @@
                         "SetLandingLag 16"
                     ]
                 },
+				{
+					"frames": "1-12",
+					"subactions":[
+						"ChangeYSpeed 0"
+					]
+				},
                 {
                     "frames":"13",
                     "subactions":[
@@ -2700,7 +2709,7 @@
                         "ActivateHitbox rightDiagHbox -1",
                         "ActivateHitbox leftSourHbox -1",
                         "ActivateHitbox rightSourHbox -1",
-                        "<TODO>Change Fighter Speed: 20.0 Y"
+						"ChangeYSpeed -20"
                     ]
                 },
                 {
@@ -2903,7 +2912,7 @@
                 "frames":"",
                 "subactions":[
                     "LoadArticle projectile",
-                    "<TODO>Change Preferred Speed: 0.0 X"
+                    "ChangeXSpeed 0"
                 ]
             },
             "sprite":"nspecial",
@@ -3016,8 +3025,8 @@
                 {
                     "frames":"0",
                     "subactions":[
-                        "<TODO>Change Fighter Speed: 0.0 Y",
-                        "<TODO>Change Preferred Speed: 1.0 Y",
+                        "ChangeYSpeed 0",
+						"ChangeYPreferred -1",
                         "ChangeSubimage 12",
                         "ActivateArticle: shine",
                         "ActivateHitbox damage -1",
@@ -3111,7 +3120,7 @@
                     "frames":"28",
                     "subactions":[
                         "DeactivateHitbox dashHitbox",
-                        "<TODO>Change Preferred Speed: 0.0 X"
+						"ChangeXPreferred 0"
                     ]
                 }
             ],
@@ -3129,7 +3138,7 @@
             "set_up_actions":{
                 "frames":"",
                 "subactions":[
-                    "<TODO>Change Preferred Speed: 0.0 X",
+                    "ChangeXPreferred 0",
                     "ChangeECB 64,78 0,7",
                     "CreateHitbox dashHitbox type damage center 0,0 trajectory 90 damage 2.0 base_knockback 5.0 hitstun_multiplier 2.0 knockback_growth 0.1 size 70,70",
                     "CreateHitbox chainHitbox type damage damage 2.0 trajectory 90 center 0,0 base_knockback 2.0 size 70,70"
@@ -3260,7 +3269,7 @@
                 {
                     "frames":"8",
                     "subactions":[
-                        "<TODO>Change Fighter Speed: -45.0 Y",
+                        "ChangeYSpeed 45",
                         "SetLandingLag 12"
                     ]
                 },
@@ -3398,7 +3407,8 @@
                 "subactions":[
                     "SetLandingLag 10",
                     "Unrotate",
-                    "<TODO>Change Fighter Speed: 0.0 X0.0 Y",
+                    "ChangeXSpeed 0",
+					"ChangeYSpeed 0",
                     "SetVar action angle <engine.subaction.FuncData instance at 0x08B73F58>",
                     "RotateSprite <engine.subaction.VarData instance at 0x08B73F08>"
                 ]

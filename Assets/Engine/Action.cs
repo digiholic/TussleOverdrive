@@ -31,7 +31,15 @@ public class GameAction : ScriptableObject {
     
     public bool cond = true;
 
-    public virtual void SetUp (AbstractFighter _actor) {
+    public virtual void SetUp (AbstractFighter _actor, DynamicAction _extraData = null) {
+        if (_extraData != null)
+        {
+            length = _extraData.length;
+            sprite_name = _extraData.sprite;
+            sprite_rate = _extraData.sprite_rate;
+            loop = _extraData.loop;
+        }
+
         last_frame = length;
         actor = _actor;
         actor.ChangeSprite(sprite_name);

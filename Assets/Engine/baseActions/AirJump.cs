@@ -6,15 +6,6 @@ public class AirJump : GameAction {
 
     private int jump_frame = 6;
 
-    public override void SetUp(AbstractFighter _actor)
-    {
-        sprite_name = "airjump";
-        sprite_rate = 2;
-        length = 8;
-        base.SetUp(_actor);
-        //Debug.Log("AirJumpAction Created");
-    }
-
     public override void Update()
     {
         base.Update();

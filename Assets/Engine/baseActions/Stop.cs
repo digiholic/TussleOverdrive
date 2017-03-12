@@ -6,12 +6,9 @@ public class Stop : GameAction {
     
     public int direction = 1;
 
-    public override void SetUp(AbstractFighter _actor)
+    public override void SetUp(AbstractFighter _actor, DynamicAction _extraData)
     {
-        length = 9;
-        sprite_name = "pivot";
-        sprite_rate = 3;
-        base.SetUp(_actor);
+        base.SetUp(_actor,_extraData);
         //Debug.Log("StopAction Created");
         //Overrides given length if the pivot grip won't allow it
         int num_frames = Mathf.FloorToInt((actor._xSpeed * actor.facing) / actor.pivot_grip);

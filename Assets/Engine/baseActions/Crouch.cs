@@ -3,14 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Crouch : GameAction {
-    public override void SetUp(AbstractFighter _actor)
-    {
-        sprite_name = "land";
-        length = 3;
-        base.SetUp(_actor);
-        //TODO enable crouch cancel armor
-        //Debug.Log("CrouchAction Created");
-    }
 
     public override void stateTransitions()
     {

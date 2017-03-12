@@ -77,28 +77,40 @@ public class SubactionLoader : ScriptableObject {
                     actor._yPreferred = float.Parse(args[4]);
                 break;
             case "ChangeXSpeed":
-                /* changeXSpeed x:float
+                /* changeXSpeed x:float rel:bool
                  *      changes the xSpeed of the fighter
                  */
-                actor._xSpeed = float.Parse(args[1]);
+                if (args.Length >= 2)
+                    actor._xSpeed += float.Parse(args[1]) * actor.facing;
+                else
+                    actor._xSpeed = float.Parse(args[1]);
                 break;
             case "ChangeYSpeed":
-                /* changeYSpeed y:float
+                /* changeYSpeed y:float rel:bool
                  *      changes the ySpeed of the fighter
                  */
-                actor._ySpeed = float.Parse(args[1]);
+                if (args.Length >= 2)
+                    actor._ySpeed += float.Parse(args[1]);
+                else
+                    actor._ySpeed = float.Parse(args[1]);
                 break;
             case "ChangeXPreferred":
-                /* changeXPreferred x:float
+                /* changeXPreferred x:float rel:bool
                  *      changes the preferred xSpeed of the fighter
                  */
-                actor._xPreferred = float.Parse(args[1]);
+                if (args.Length >= 2)
+                    actor._xPreferred += float.Parse(args[1]) * actor.facing;
+                else
+                    actor._xPreferred = float.Parse(args[1]);
                 break;
             case "ChangeYPreferred":
-                /* changeXPreferred y:float
+                /* changeXPreferred y:float rel:bool
                  *      changes the yPreferred of the fighter
                  */
-                actor._yPreferred = float.Parse(args[1]);
+                if (args.Length >= 2)
+                    actor._yPreferred += float.Parse(args[1]);
+                else
+                    actor._yPreferred = float.Parse(args[1]);
                 break;
             case "ShiftPosition":
                 /* shiftPosition x:float|0 y:float|0 relative:bool|true
@@ -110,14 +122,24 @@ public class SubactionLoader : ScriptableObject {
             case "ChangeAnim":
                 /* changeAnim animName:string
                  *      Changes to the specified animation.
+                 *      ALIAS: ChangeSprite
                  */
                 actor.ChangeSprite(args[1]);
                 break;
-            case "ChangeSpriteSubimage":
+            case "ChangeSprite":
+                /* changeSprite animName:string
+                 *      Changes to the specified animation.
+                 *      ALIAS: ChangeAnim
+                 */
+                actor.ChangeSprite(args[1]);
+                break;
+
+            case "ChangeSubimage":
                 /* changeSpriteSubimage index:int
                  *      SPRITE MODE ONLY
                  *      Changes to the sprite subimage of the current animation with the given index
                  */
+                action.sprite_rate = 0; //We've broken the integrity of the sprite_rate calculator, so we have to turn it off
                 actor.ChangeSubimage(int.Parse(args[1]));
                 break;
             case "Flip":

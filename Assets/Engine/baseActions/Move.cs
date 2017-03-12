@@ -7,13 +7,9 @@ public class Move : GameAction {
     public bool accel = true;
     public int direction = 1;
 
-    public override void SetUp(AbstractFighter _actor)
+    public override void SetUp(AbstractFighter _actor,DynamicAction _extraData)
     {
-        length = 15;
-        sprite_name = "run";
-        sprite_rate = 3;
-        loop = false;
-        base.SetUp(_actor);
+        base.SetUp(_actor,_extraData);
         //Debug.Log("MoveAction Created");
         direction = actor.facing;
     }

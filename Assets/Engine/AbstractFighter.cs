@@ -158,7 +158,7 @@ public class AbstractFighter : MonoBehaviour {
         _current_action = ScriptableObject.CreateInstance<NeutralAction>();
         current_dynamic_action = actions_file_json.Get("NeutralAction");
         current_dynamic_action.StartAnim(_current_action); //Sets the animation state in the current action
-        _current_action.SetUp(this);
+        _current_action.SetUp(this,current_dynamic_action);
         current_dynamic_action.ExecuteGroup("SetUp",this,_current_action);
         game_controller = GameObject.Find("Controller").GetComponent<GameController>();
 
@@ -227,7 +227,7 @@ public class AbstractFighter : MonoBehaviour {
         Destroy(old_action);
         current_dynamic_action = actions_file_json.Get(_actionName);
         current_dynamic_action.StartAnim(_current_action); //Sets the animation state in the current action
-        _current_action.SetUp(this);
+        _current_action.SetUp(this,current_dynamic_action);
         current_dynamic_action.ExecuteGroup("SetUp", this, _current_action);
     }
 
@@ -289,16 +289,28 @@ public class AbstractFighter : MonoBehaviour {
     public void doGroundAttack()
     {
         if (GetDirectionRelative() > 0.0f)
-            doAction("ForwardAttack");
+            if (KeyBuffered(InputTypeUtil.GetForward(this), 2))
+                doAction("ForwardSmash");
+            else
+                doAction("ForwardAttack");
         else if (GetDirectionRelative() < 0.0f)
         {
             flip();
-            doAction("ForwardAttack");
+            if (KeyBuffered(InputTypeUtil.GetForward(this), 2))
+                doAction("ForwardSmash");
+            else
+                doAction("ForwardAttack");
         }
         else if (GetControllerAxis("Vertical") > 0.0f)
-            doAction("UpAttack");
+            if (KeyBuffered(InputType.Up, 2))
+                doAction("UpSmash");
+            else
+                doAction("UpAttack");
         else if (GetControllerAxis("Vertical") < 0.0f)
-            doAction("DownAttack");
+            if (KeyBuffered(InputType.Down, 2))
+                doAction("DownSmash");
+            else
+                doAction("DownAttack");
         else
             doAction("NeutralAttack");
     }
@@ -460,14 +472,6 @@ public class AbstractFighter : MonoBehaviour {
             string action_json = File.ReadAllText(action_json_path);
             actions_file_json = JsonUtility.FromJson<ActionFile>(action_json);
         }
-        /*
-        ActionGroup testSetUp = new ActionGroup();
-        testSetUp.subactions = new List<string>() { "Test String" };
-        DynamicAction testAction = new DynamicAction("Test Action 2");
-        testAction.tear_down_actions = testSetUp;
-        testAction.actions_at_frame.Add(testSetUp);
-        actions_file_json.Add(testAction);
-        */
         File.WriteAllText(action_json_path, JsonUtility.ToJson(actions_file_json, true));
     }
 

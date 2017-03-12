@@ -6,15 +6,6 @@ public class Jump : GameAction
 {
     private int jump_frame = 0;
     
-    public override void SetUp(AbstractFighter _actor)
-    {
-        sprite_name = "land";
-        jump_frame = 5;
-        length = 6;
-        base.SetUp(_actor);
-        //Debug.Log("JumpAction Created");
-    }
-
     public override void Update()
     {
         base.Update();
