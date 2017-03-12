@@ -196,6 +196,7 @@ public class SubactionLoader : ScriptableObject {
                 /* activateHitbox name:string life:int
                  *      Activates the named hitbox, if it exists, for the given number of frames.
                  */
+                Debug.Log(subact);
                 name = args[1];
                 if (action.hitboxes.ContainsKey(args[1]))
                     action.hitboxes[args[1]].Deactivate();

@@ -80,7 +80,7 @@ public class StateTransitions : ScriptableObject {
             new KeyValuePair<InputType, float>(InputTypeUtil.GetForward(actor),0.5f)
         };
         if (actor.SequenceBuffered(sequence))
-            Debug.Log("Running!");
+            actor.doAction("Dash");
         //float direction = actor.GetControllerAxis("Horizontal") * actor.facing;
         //shield
         if (actor.KeyBuffered(InputType.Attack))
@@ -115,7 +115,38 @@ public class StateTransitions : ScriptableObject {
 
     public static void DashState(AbstractFighter actor)
     {
-
+        /*
+         * (key,invkey) = _actor.getForwardBackwardKeys()
+            if _actor.keyHeld('attack'):
+                if _actor.keysContain('shield'):
+                    _actor.doAction('DashGrab')
+                elif _actor.checkSmash(key):
+                    print("Dash cancelled into forward smash")
+                    _actor.doAction('ForwardSmash')
+                else:
+                    _actor.doAction('DashAttack')
+            elif _actor.keyHeld('special'):
+                _actor.doGroundSpecial()
+            elif _actor.keysContain('down', 0.5):
+                _actor.doAction('RunStop')
+            elif not _actor.keysContain('left') and not _actor.keysContain('right') and not _actor.keysContain('down'):
+                _actor.doAction('RunStop')
+            elif _actor.preferred_xspeed < 0 and not _actor.keysContain('left',1) and _actor.keysContain('right',1):
+                _actor.doAction('RunStop')
+            elif _actor.preferred_xspeed > 0 and not _actor.keysContain('right',1) and _actor.keysContain('left',1):
+                _actor.doAction('RunStop')
+        */
+        //float direction = actor.GetControllerAxis("Horizontal") * actor.facing;
+        //shield
+        if (actor.KeyBuffered(InputType.Attack))
+            actor.doGroundAttack();
+        //special
+        if (actor.KeyBuffered(InputType.Jump))
+            actor.doAction("Jump");
+        else if (actor.GetControllerAxis("Horizontal") == 0.0f)
+            actor.doAction("Stop");
+        if (actor.KeyBuffered(InputTypeUtil.GetBackward(actor)))
+            actor.flip(); //TODO PIVOT
     }
 
     public static void JumpState(AbstractFighter actor)

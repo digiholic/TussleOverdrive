@@ -145,11 +145,14 @@ public class AbstractFighter : MonoBehaviour {
         action_loader = GetComponent<actionLoader>();
         anim = GetComponent<Animator>();
         inputBuffer = GetComponent<InputBuffer>();
-        
+
         if (player_num % 2 == 0)
             facing = 1;
         else
+        {
+            flip();
             facing = -1;
+        }
 
         _ySpeed = 0;
         _charController = GetComponent<CharacterController>();

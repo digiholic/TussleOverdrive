@@ -20,9 +20,15 @@ public class Death : MonoBehaviour {
         {
             GetComponent<Transform>().position = new Vector3(0, 10);
             //TODO send death signal, handle respawning in-object
-            if (GetComponent<Rigidbody>() != null)
+            Rigidbody rb = GetComponent<Rigidbody>();
+            if (rb != null)
             {
-                GetComponent<Rigidbody>().velocity = Vector3.zero;
+                rb.velocity = Vector3.zero;
+            }
+            AbstractFighter fighter = GetComponent<AbstractFighter>();
+            if (fighter != null)
+            {
+                fighter.damage_percent = 0;
             }
         }
     }

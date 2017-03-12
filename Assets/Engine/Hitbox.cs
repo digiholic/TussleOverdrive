@@ -35,8 +35,11 @@ public class Hitbox : MonoBehaviour {
             Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents, col.transform.rotation, LayerMask.GetMask("Hurtbox"));
             foreach (Collider c in cols)
             {
-                c.SendMessage("onHit", this);
-                active = false;
+                //Ignore hurtboxes and hitboxes from the same source
+                if (c.transform.parent != transform.parent)
+                {
+                    c.SendMessage("onHit", this);
+                }
             }
 
             if (_life > 0)

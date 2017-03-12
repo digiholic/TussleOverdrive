@@ -29,7 +29,9 @@ public class Dash : GameAction {
             direction = actor.facing;
 
         if (current_frame > last_frame)
-            current_frame = run_start_frame;
+            //current_frame = run_start_frame;
+            //VERY TODO UNTIL VARIABLES IN ACTION
+            current_frame = last_frame;
     }
 
     public override void stateTransitions()
