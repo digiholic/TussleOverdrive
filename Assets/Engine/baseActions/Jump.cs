@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Jump : GameAction
 {
-    private int jump_frame = 0;
+    private int jump_frame = 3;
     
     public override void Update()
     {
