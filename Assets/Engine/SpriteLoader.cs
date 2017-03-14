@@ -18,12 +18,14 @@ public class SpriteLoader : MonoBehaviour {
 
     // Use this for initialization
 	void Start() {
-        XMLLoader data_xml = GetComponent<XMLLoader>();
-        directory = Path.Combine(data_xml.root_directory.FullName,data_xml.SelectSingleNode("//fighter/sprite_directory").GetString());
-        prefix = data_xml.SelectSingleNode("//fighter/sprite_prefix").GetString();
-        pixelsPerUnit = data_xml.SelectSingleNode("//fighter/pixels_per_unit").GetFloat();
-
         sprite_renderer = GetComponent<SpriteRenderer>();
+    }
+
+    public void Initialize(string dirname,string pref,float ppu)
+    {
+        directory = dirname;
+        prefix = pref;
+        pixelsPerUnit = ppu;
 
         DirectoryInfo info = new DirectoryInfo(directory);
         string sprite_json_path = Path.Combine(info.FullName, "sprites.json");
@@ -32,12 +34,12 @@ public class SpriteLoader : MonoBehaviour {
         {
             string sprite_json = File.ReadAllText(sprite_json_path);
             SpriteDataCollection sprite_list = JsonUtility.FromJson<SpriteDataCollection>(sprite_json);
-
             LoadSpritesFromData(sprite_list);
         }
-        
-        //For testing purposes at the moment
-        ChangeSprite("idle");
+        else
+        {
+            Debug.LogError("No sprites JSON found: "+sprite_json_path);
+        }
     }
 
     public void LoadSpritesFromData(SpriteDataCollection sprite_list)
@@ -45,6 +47,7 @@ public class SpriteLoader : MonoBehaviour {
         sprites = new Dictionary<string, List<Sprite>>();
 
         Dictionary<string, SpriteData> sprite_data_dict = new Dictionary<string, SpriteData>();
+        
         foreach (SpriteData data in sprite_list.sprites)
         {
             sprite_data_dict[data.sprite_name] = data;
@@ -87,7 +90,10 @@ public class SpriteLoader : MonoBehaviour {
         if (_loop)
             current_frame = _frame % sprites[current_sprite].Count;
         else
-            current_frame = Mathf.Min(_frame, sprites[current_sprite].Count-1);
+        {
+            current_frame = Mathf.Min(_frame, sprites[current_sprite].Count - 1);
+        }
+           
 
         sprite_renderer.sprite = sprites[current_sprite][current_frame];
     }

@@ -7,19 +7,20 @@ using UnityEngine.Profiling;
 
 public class AbstractFighter : MonoBehaviour {
     public string fighter_xml_file = "";
+    public string resource_path = "";
     public int player_num = 0;
 
     [HideInInspector]
     public string fighter_name = "Unknown", franchise_icon = "Assets/Sprites/Defaults/franchise_icon.png", css_icon = "Assets/Sprites/Defaults/css_icon.png", css_portrait = "Assets/Sprites/Default/css_portrait.png";
     [HideInInspector]
-    public string sprite_directory = "./sprites/", sprite_prefix = "", default_sprite = "idle",pixels_per_unit = "100";
+    public string sprite_directory = "./sprites/", sprite_prefix = "", default_sprite = "idle";
     [HideInInspector]
     public string article_path = "", article_file = "", sound_path = "";
     [HideInInspector]
     public string action_file = "";
     
     [HideInInspector]
-    public float weight = 10.0f, gravity = -9.8f, max_fall_speed = -20.0f, max_ground_speed = 7.0f, run_speed = 11.0f, max_air_speed = 5.5f, crawl_speed = 2.5f, dodge_sepeed = 8.5f, friction = 0.3f, static_grip = 0.3f, pivot_grip = 0.6f, air_resistance = 0.2f, air_control = 0.2f, jump_height = 15.0f, short_hop_height = 8.5f, air_jump_height = 18.0f, fastfall_multiplier = 2.0f, hitstun_elasticity = 0.8f, shield_size = 1.0f, aerial_transition_speed = 9.0f;
+    public float weight = 10.0f, gravity = -9.8f, max_fall_speed = -20.0f, max_ground_speed = 7.0f, run_speed = 11.0f, max_air_speed = 5.5f, crawl_speed = 2.5f, dodge_sepeed = 8.5f, friction = 0.3f, static_grip = 0.3f, pivot_grip = 0.6f, air_resistance = 0.2f, air_control = 0.2f, jump_height = 15.0f, short_hop_height = 8.5f, air_jump_height = 18.0f, fastfall_multiplier = 2.0f, hitstun_elasticity = 0.8f, shield_size = 1.0f, aerial_transition_speed = 9.0f, pixels_per_unit = 100;
     /* Editor visible version
     public float weight = 10.0f;
     public float gravity = -9.8f;
@@ -72,17 +73,23 @@ public class AbstractFighter : MonoBehaviour {
     private InputBuffer inputBuffer;
     private XMLLoader data_xml;
 
+    private AudioSource sound_player;
+
     private ActionFile actions_file_json = new ActionFile();
     private DynamicAction current_dynamic_action;
 
     private List<HitboxLock> hitbox_locks = new List<HitboxLock>();
 
+    private Dictionary<string, AudioClip> sounds = new Dictionary<string, AudioClip>();
+
     void Awake()
     {
-        if (File.Exists(fighter_xml_file))
+        TextAsset xml_asset = Resources.Load<TextAsset>(resource_path + "fighter");
+
+        if (xml_asset != null)
         {
             data_xml = GetComponent<XMLLoader>();
-            data_xml.LoadXML(fighter_xml_file);
+            data_xml.LoadXML(xml_asset.text);
             
             fighter_name = data_xml.SelectSingleNode("//fighter/name").GetString();
             franchise_icon = data_xml.SelectSingleNode("//fighter/icon").GetString();
@@ -92,7 +99,7 @@ public class AbstractFighter : MonoBehaviour {
             sprite_directory = data_xml.SelectSingleNode("//fighter/sprite_directory").GetString();
             sprite_prefix = data_xml.SelectSingleNode("//fighter/sprite_prefix").GetString();
             default_sprite = data_xml.SelectSingleNode("//fighter/default_sprite").GetString();
-            pixels_per_unit = data_xml.SelectSingleNode("//fighter/pixels_per_unit").GetString();
+            pixels_per_unit = float.Parse(data_xml.SelectSingleNode("//fighter/pixels_per_unit").GetString());
 
             article_path = data_xml.SelectSingleNode("//fighter/article_path").GetString();
             article_file = data_xml.SelectSingleNode("//fighter/articles").GetString();
@@ -125,7 +132,7 @@ public class AbstractFighter : MonoBehaviour {
             heavy_land_lag = Mathf.FloorToInt(GetFromXml("heavy_land_lag", heavy_land_lag));
             wavedash_lag = Mathf.FloorToInt(GetFromXml("wavedash_lag", wavedash_lag));
 
-            string action_json_path = Path.Combine(data_xml.root_directory.FullName, action_file);
+            string action_json_path = Path.Combine("Assets/Resources/"+resource_path, action_file);
             if (File.Exists(action_json_path))
             {
                 string action_json = File.ReadAllText(action_json_path);
@@ -142,9 +149,11 @@ public class AbstractFighter : MonoBehaviour {
     void Start() {
         sprite = GetComponent<SpriteRenderer>();
         sprite_loader = GetComponent<SpriteLoader>();
+        sprite_loader.Initialize("Assets/Resources/" + resource_path + sprite_directory,sprite_prefix,pixels_per_unit);
         action_loader = GetComponent<actionLoader>();
         anim = GetComponent<Animator>();
         inputBuffer = GetComponent<InputBuffer>();
+        sound_player = GetComponent<AudioSource>();
 
         if (player_num % 2 == 0)
             facing = 1;
@@ -165,6 +174,21 @@ public class AbstractFighter : MonoBehaviour {
         current_dynamic_action.ExecuteGroup("SetUp",this,_current_action);
         game_controller = GameObject.Find("Controller").GetComponent<GameController>();
 
+        //Load SFX
+        string directory = Path.Combine("Assets/Resources/"+resource_path, sound_path);
+        DirectoryInfo directory_info = new DirectoryInfo(directory);
+        if (directory_info.Exists)
+        {
+            foreach (FileInfo filename in directory_info.GetFiles())
+            {
+                if (filename.Extension != ".meta")
+                {
+                    string name_no_ext = filename.Name.Split('.')[0];
+                    sounds.Add(name_no_ext, Resources.Load<AudioClip>(resource_path + sound_path + name_no_ext));
+                }
+                //Resources.Load<AudioClip>(filename);
+            }
+        }
     }
 
     private float GetFromXml(string stat_name, float default_value)
@@ -350,6 +374,11 @@ public class AbstractFighter : MonoBehaviour {
             sprite_loader.ChangeSubimage(frame,loop);
     }
 
+    public void PlaySound(string sound_name)
+    {
+        if (sounds.ContainsKey(sound_name))
+            sound_player.PlayOneShot(sounds[sound_name]);
+    }
     /// <summary>
     /// If the Hitbox is not "locked" from the fighter, locks it and returns True, allow it to affect the fighter.
     /// If it is locked, returns false.
@@ -469,10 +498,11 @@ public class AbstractFighter : MonoBehaviour {
 
     public void TestActionJSON()
     {
-        string action_json_path = Path.Combine(data_xml.root_directory.FullName, action_file);
+        string action_json_path = Path.Combine("Assets/Resources/"+resource_path, action_file);
         if (File.Exists(action_json_path))
         {
             string action_json = File.ReadAllText(action_json_path);
+            Debug.Log(action_json);
             actions_file_json = JsonUtility.FromJson<ActionFile>(action_json);
         }
         File.WriteAllText(action_json_path, JsonUtility.ToJson(actions_file_json, true));

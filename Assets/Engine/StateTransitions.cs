@@ -69,6 +69,12 @@ public class StateTransitions : ScriptableObject {
         {
             actor.doAction("AirJump");
         }
+        if (actor.grounded && actor.ground_elasticity == 0 && actor.tech_window == 0)
+        {
+            actor._xPreferred = 0;
+            actor._yPreferred = actor.max_fall_speed;
+            actor.doAction("Land");
+        }
         //TODO fastfal
     }
 
@@ -151,17 +157,15 @@ public class StateTransitions : ScriptableObject {
 
     public static void JumpState(AbstractFighter actor)
     {
-        /*
-        AirControl(actor);
+        //AirControl(actor);
         TapReversible(actor);
-        if (actor.GetControllerButton("Shield") && actor.air_dodges >= 1)
-            actor.doAction("AirDodge");
-        //if (actor.GetControllerButton("Attack"))
-        //actor.doAirAttack();
+        //if (actor.GetControllerButton("Shield") && actor.air_dodges >= 1)
+        //    actor.doAction("AirDodge");
+        //if (actor.KeyBuffered(InputType.Attack))
+        //    actor.doAirAttack();
         //if (actor.GetControllerButton("Special"))
         //actor.doAirAttack();
         //Platform Phase and fastfall
-        */
     }
 
     public static void ShieldState(AbstractFighter actor)
@@ -191,13 +195,6 @@ public class StateTransitions : ScriptableObject {
             actor.accel(actor.air_control);
         if (Mathf.Abs(actor._ySpeed) > Mathf.Abs(actor.max_fall_speed))
             actor.landing_lag = actor.heavy_land_lag;
-        if (actor.grounded && actor.ground_elasticity == 0 && actor.tech_window == 0)
-        {
-            actor._xPreferred = 0;
-            actor._yPreferred = actor.max_fall_speed;
-            actor.doAction("Land");
-        }
-
     }
     
     public static void HelplessControl(AbstractFighter actor)

@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
     public List<AbstractFighter> fighters;
+    public List<PercentIcon> icons;
+
     public PercentIcon iconPrefab;
 
     private bool recording = false;
@@ -12,23 +14,42 @@ public class GameController : MonoBehaviour {
 
     public int current_game_frame = 0;
 
+    int screen_width; //Used to decide when to redraw icons
+
     // Use this for initialization
     void Start () {
-        int num = 1;
-		foreach (AbstractFighter fighter in fighters)
+        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Fighters"), LayerMask.NameToLayer("Fighters"), true);
+        screen_width = Screen.width;
+        Canvas canv = FindObjectOfType<Canvas>();
+
+        foreach (AbstractFighter fighter in fighters)
         {
             PercentIcon icon = Instantiate(iconPrefab);
             icon.fighter = fighter;
-            icon.transform.SetParent(FindObjectOfType<Canvas>().transform,false);
-            icon.transform.position = new Vector3(num * 300, 64, 0);
+            icon.transform.SetParent(canv.transform, false);
+            icons.Add(icon);
+        }
+        LoadFighterIcons();
+        //Resources res = Resources.Load("Fighters");
+        //Debug.Log(res);
+    }
+
+    void LoadFighterIcons()
+    {
+        int num = 1;
+        Canvas canv = FindObjectOfType<Canvas>();
+        float width = canv.GetComponent<RectTransform>().rect.width;
+        float dist = width / (fighters.Count + 1);
+        
+        foreach (PercentIcon icon in icons)
+        {
+            icon.transform.position = new Vector3(num * dist, 64, 0);
             num++;
         }
+    }
 
-        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Fighters"), LayerMask.NameToLayer("Fighters"), true);
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update () {
         current_game_frame++;
         if (Input.GetKeyDown(KeyCode.P))
         {
@@ -47,6 +68,11 @@ public class GameController : MonoBehaviour {
         if (Input.GetKeyUp(KeyCode.Escape))
         {
             SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+        }
+        if (screen_width != Screen.width)
+        {
+            screen_width = Screen.width;
+            LoadFighterIcons();
         }
     }
 

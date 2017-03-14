@@ -22,7 +22,7 @@ public class Hitbox : MonoBehaviour {
     private MeshRenderer mesh;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         col = GetComponent<Collider>();
         mesh = GetComponent<MeshRenderer>();
 	}
@@ -67,6 +67,7 @@ public class Hitbox : MonoBehaviour {
         }
 
         float scale = owner.GetComponent<SpriteLoader>().pixelsPerUnit;
+        //float scale = 50;
         transform.localPosition = new Vector3(centerx / scale, centery / scale, -0.5f);
         transform.localScale = new Vector3(width / scale, height / scale, 1.0f);
         
@@ -90,7 +91,11 @@ public class Hitbox : MonoBehaviour {
     {
         _life = life;
         active = true;
-        mesh.enabled = true;
+        if (GameObject.FindObjectOfType<Settings>().display_hitboxes)
+        {
+            mesh.enabled = true;
+        }
+        
     }
 
     public void Deactivate()
@@ -98,7 +103,8 @@ public class Hitbox : MonoBehaviour {
         if (active)
         {
             active = false;
-            mesh.enabled = false;
+            if (mesh.enabled)
+                mesh.enabled = false;
             hitbox_lock.Destroy();
         }
     }

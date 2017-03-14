@@ -22,7 +22,7 @@ public class Jump : GameAction
                 else
                     actor._xSpeed = actor.aerial_transition_speed;
             }
-            actor.ChangeSprite("jump");
+            //actor.ChangeSprite("jump");
         }
     }
 
@@ -35,8 +35,10 @@ public class Jump : GameAction
         //actor.doAction("UpSmash")
         //if (actor.GetControllerButton("Special")) //&& actor.CheckSmash("Up")
         //actor.doAction("UpSpecial")
-        if (current_frame < jump_frame)
+        if (current_frame <= jump_frame)
             StateTransitions.JumpState(actor);
+        if (current_frame > jump_frame)
+            StateTransitions.AirState(actor);
         if (current_frame > last_frame)
             actor.doAction("Fall");
 

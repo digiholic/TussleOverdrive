@@ -166,6 +166,12 @@ public class SubactionLoader : ScriptableObject {
                  */
                 //TODO
                 break;
+            case "PlaySound":
+                /* Playsound sound:string
+                 *      Plays the sound with the given name from the fighter's sound library
+                 */
+                actor.PlaySound(args[1]);
+                break;
             // ====== HITBOX SUBACTIONS ======\\
             case "CreateHitbox":
                 /* createHitbox name:string [argumentName:string value:dynamic]

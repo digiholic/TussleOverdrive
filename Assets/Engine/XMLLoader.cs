@@ -8,26 +8,17 @@ public class XMLLoader : MonoBehaviour {
     private XmlDocument data_xml;
 
     public string xml_file;
-    public DirectoryInfo root_directory;
-
+    
     void Start()
     {
         if (xml_file != "")
             LoadXML(xml_file);
     }
 
-    public void LoadXML(string xml_file_path)
+    public void LoadXML(string xml_string)
     {
-        if (File.Exists(xml_file_path))
-        {
-            data_xml = new XmlDocument();
-            data_xml.Load(xml_file_path);
-            root_directory = new DirectoryInfo(xml_file_path).Parent;
-        }
-        else
-        {
-            Debug.LogWarning("Could not find XML File "+xml_file_path);
-        }
+        data_xml = new XmlDocument();
+        data_xml.LoadXml(xml_string); 
     }
 
     public DataNode SelectSingleNode(string nodePath)
@@ -80,5 +71,4 @@ public class DataNode
     {
         return bool.Parse(node.InnerText);
     }
-
 }

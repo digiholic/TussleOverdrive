@@ -1,0 +1,311 @@
+<articles>
+
+	<FSmashSplash>
+		<sprite>zero_fsmashsplash.png</sprite>
+		<length>24</length>
+		<sprite_rate>4</sprite_rate>
+		<img_width>160</img_width>
+		<origin_point>(40,-10)</origin_point>
+		<facing_direction>1</facing_direction>
+		
+		<frame number="before">
+			<recenterOnOrigin />
+		</frame>
+	</FSmashSplash>
+	
+	<Shot1>
+		<sprite>zero_shot1.png</sprite>
+		<sprite_rate>0</sprite_rate>
+		<length>120</length>
+		<img_width>16</img_width>
+		<origin_point>(48,14)</origin_point>
+		<facing_direction>1</facing_direction>
+		<tags>
+			<reflectable />
+			<absorbable />
+		</tags>
+		
+		<setUp>
+			<createHitbox>
+				<name>shotBox</name>
+				<center>(0,0)</center>
+				<size>(16,14)</size>
+				<damage>2</damage>
+				<base_knockback>2</base_knockback>
+				<knockback_growth>0</knockback_growth>
+				<trajectory>0</trajectory>
+				<hitstun_multiplier>1</hitstun_multiplier>
+				<transcendence>-1</transcendence>
+			</createHitbox>
+		</setUp>
+		
+		<collision other="AbstractFighter">
+			<deactivateSelf />
+		</collision>
+		
+		<frame number = "0">
+			<recenterOnOrigin />
+			<playSound>shot1</playSound>
+		</frame>
+		<frame number = "1">
+			<recenterOnOrigin />
+		</frame>
+		<frame number = "2">
+			<recenterOnOrigin />
+		</frame>
+		<frame number = "3">
+			<recenterOnOrigin />
+		</frame>
+		<frame number="4">
+			<changeSubimage>1</changeSubimage>
+			<changeFighterSpeed>
+				<xSpeed relative="True">18</xSpeed>
+			</changeFighterSpeed>
+			<activateHitbox>shotBox</activateHitbox>
+		</frame>
+		
+	</Shot1>
+	
+	<MidShot>
+		<sprite>zero_midShot.png</sprite>
+		<sprite_rate>2</sprite_rate>
+		<length>14</length>
+		<img_width>80</img_width>
+		<origin_point>(40,14)</origin_point>
+		<facing_direction>1</facing_direction>
+		<tags>
+			<reflectable />
+			<absorbable />
+		</tags>
+		
+		<setUp>
+			<createHitbox>
+				<name>shotBox</name>
+				<center>(0,0)</center>
+				<size>(80,40)</size>
+				<damage>6</damage>
+				<base_knockback>6</base_knockback>
+				<knockback_growth>0.2</knockback_growth>
+				<trajectory>20</trajectory>
+				<hitstun_multiplier>1</hitstun_multiplier>
+				<transcendence>-1</transcendence>
+			</createHitbox>
+		</setUp>
+		
+		<collision other="AbstractFighter">
+			<deactivateSelf />
+		</collision>
+		
+		<frame number="5">
+			<changeFighterSpeed>
+				<xSpeed relative="True">12</xSpeed>
+			</changeFighterSpeed>
+			<activateHitbox>shotBox</activateHitbox>
+		</frame>
+		
+		<frame number="last">
+			<setFrame>6</setFrame>
+		</frame>
+		
+	</MidShot>
+	
+	<FireShot>
+		<sprite>zero_fireshot.png</sprite>
+		<sprite_rate>2</sprite_rate>
+		<length>16</length>
+		<img_width>80</img_width>
+		<origin_point>(80,14)</origin_point>
+		<facing_direction>1</facing_direction>
+		<tags>
+			<reflectable />
+			<absorbable />
+		</tags>
+		
+		<setUp>
+			<createHitbox>
+				<name>shotBox</name>
+				<center>(0,0)</center>
+				<size>(80,40)</size>
+				<damage>12</damage>
+				<base_knockback>6</base_knockback>
+				<knockback_growth>0.2</knockback_growth>
+				<trajectory>30</trajectory>
+				<hitstun_multiplier>1</hitstun_multiplier>
+				<transcendence>-1</transcendence>
+			</createHitbox>
+		</setUp>
+		
+		<collision other="AbstractFighter">
+			<deactivateSelf />
+		</collision>
+		
+		<frame number="0">
+			<playSound>fire</playSound>
+		</frame>
+		<frame number="7">
+			<changeFighterSpeed>
+				<xSpeed relative="True">12</xSpeed>
+			</changeFighterSpeed>
+			<activateHitbox>shotBox</activateHitbox>
+		</frame>
+		
+		<frame number="last">
+			<setFrame>8</setFrame>
+		</frame>
+	</FireShot>
+	
+	<IceShot>
+		<sprite>zero_iceshot.png</sprite>
+		<sprite_rate>2</sprite_rate>
+		<length>16</length>
+		<img_width>80</img_width>
+		<origin_point>(80,14)</origin_point>
+		<facing_direction>1</facing_direction>
+		<tags>
+			<reflectable />
+			<absorbable />
+		</tags>
+		
+		<setUp>
+			<createHitbox>
+				<name>shotBox</name>
+				<center>(0,0)</center>
+				<size>(80,40)</size>
+				<damage>10</damage>
+				<base_knockback>8</base_knockback>
+				<knockback_growth>0.3</knockback_growth>
+				<trajectory>30</trajectory>
+				<hitstun_multiplier>1</hitstun_multiplier>
+				<transcendence>-1</transcendence>
+			</createHitbox>
+		</setUp>
+		
+		<collision other="AbstractFighter">
+			<deactivateSelf />
+		</collision>
+		
+		<frame number="0">
+			<playSound>ice</playSound>
+		</frame>
+		
+		<frame number="7">
+			<changeFighterSpeed>
+				<xSpeed relative="True">12</xSpeed>
+			</changeFighterSpeed>
+			<activateHitbox>shotBox</activateHitbox>
+		</frame>
+		
+		<frame number="last">
+			<setFrame>8</setFrame>
+		</frame>
+	</IceShot>
+	
+	<ElecShot>
+		<sprite>zero_elecshot.png</sprite>
+		<sprite_rate>2</sprite_rate>
+		<length>16</length>
+		<img_width>80</img_width>
+		<origin_point>(80,14)</origin_point>
+		<facing_direction>1</facing_direction>
+		<tags>
+			<reflectable />
+			<absorbable />
+		</tags>
+		
+		<setUp>
+			<createHitbox>
+				<name>shotBox</name>
+				<center>(0,0)</center>
+				<size>(80,40)</size>
+				<damage>10</damage>
+				<base_knockback>12</base_knockback>
+				<knockback_growth>0</knockback_growth>
+				<trajectory>60</trajectory>
+				<hitstun_multiplier>1</hitstun_multiplier>
+				<hitlag_multiplier>8</hitlag_multiplier>
+				<transcendence>-1</transcendence>
+			</createHitbox>
+		</setUp>
+		
+		<collision other="AbstractFighter">
+			<deactivateSelf />
+		</collision>
+		
+		<frame number="0">
+			<playSound>elec</playSound>
+		</frame>
+		<frame number="7">
+			<changeFighterSpeed>
+				<xSpeed relative="True">12</xSpeed>
+			</changeFighterSpeed>
+			<activateHitbox>shotBox</activateHitbox>
+		</frame>
+		
+		<frame number="last">
+			<setFrame>8</setFrame>
+		</frame>
+	</ElecShot>
+	
+	<ElementIcon>
+		<sprite>zero_elements.png</sprite>
+		<sprite_rate>0</sprite_rate>
+		<length>20</length>
+		<img_width>32</img_width>
+		<origin_point>(0,-40)</origin_point>
+		
+		<frame number="0">
+			<playSound>switch</playSound>
+			<changeSubimage>0</changeSubimage>
+			<if>
+				<variable source="fighter">element</variable>
+				<value>Ice</value>
+				<pass>ice</pass>
+			</if>
+			<if>
+				<variable source="fighter">element</variable>
+				<value>Elec</value>
+				<pass>elec</pass>
+			</if>
+		</frame>
+		
+		<frame number="after">
+			<recenterOnOrigin />
+		</frame>
+		
+		<conditional name="ice">
+			<print>changing to ice</print>
+			<changeSubimage>1</changeSubimage>
+		</conditional>
+		
+		<conditional name="elec">
+			<print>changing to elec</print>
+			<changeSubimage>2</changeSubimage>
+		</conditional>
+	</ElementIcon>
+	
+	<chargeAnim>
+		<sprite>zero_chargeSwirl.png</sprite>
+		<sprite_rate>3</sprite_rate>
+		<length>33</length>
+		<img_width>82</img_width>
+		<origin_point>(-8,20)</origin_point>
+		
+		<frame number="last">
+			<setFrame>11</setFrame>
+		</frame>
+	</chargeAnim>
+	
+	<elecDash>
+		<sprite>zero_elecdash.png</sprite>
+		<sprite_rate>4</sprite_rate>
+		<length>28</length>
+		<img_width>80</img_width>
+		<origin_point>(56,34)</origin_point>
+		<facing_direction>1</facing_direction>
+		<draw_depth>-1</draw_depth>
+		
+		<frame number="before">
+			<recenterOnOrigin />
+		</frame>
+	</elecDash>
+</articles>
