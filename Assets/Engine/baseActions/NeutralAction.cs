@@ -6,7 +6,7 @@ public class NeutralAction : GameAction {
     public override void OnLastFrame()
     {
         base.OnLastFrame();
-        current_frame = 0;
+        actor.doAction("NeutralAction");
     }
 
     public override void stateTransitions()

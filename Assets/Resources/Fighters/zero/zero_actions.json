@@ -13,7 +13,6 @@
             "actions_at_last_frame":{
                 "frames":"",
                 "subactions":[
-                    "DoAction: NeutralAction"
                 ]
             },
             "length":54,
@@ -118,7 +117,7 @@
             "actions_at_last_frame":{
                 "frames":"",
                 "subactions":[
-                    "ChangeFrame: 2"
+                    "SetFrame 2"
                 ]
             },
             "length":3,
@@ -184,7 +183,7 @@
             "actions_at_last_frame":{
                 "frames":"",
                 "subactions":[
-                    "ChangeFrame: 4"
+                    "SetFrame 4"
                 ]
             },
             "length":20,
@@ -419,7 +418,7 @@
             "actions_at_last_frame":{
                 "frames":"",
                 "subactions":[
-                    "ChangeFrame: 6"
+                    "SetFrame 6"
                 ]
             },
             "length":66,
@@ -2326,7 +2325,7 @@
             "actions_at_last_frame":{
                 "frames":"",
                 "subactions":[
-                    "ChangeFrame: 11"
+                    "SetFrame 11"
                 ]
             },
             "length":24,

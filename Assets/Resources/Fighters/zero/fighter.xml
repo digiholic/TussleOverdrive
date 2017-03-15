@@ -80,7 +80,7 @@
         <weight>1.1</weight>
         <gravity>-7.0</gravity>
         <max_fall_speed>-25.0</max_fall_speed>
-        <max_ground_speed>7.5</max_ground_speed>
+        <max_ground_speed>5</max_ground_speed>
         <run_speed>14.0</run_speed>
         <max_air_speed>7.5</max_air_speed>
         <aerial_transition_speed>7.5</aerial_transition_speed>
