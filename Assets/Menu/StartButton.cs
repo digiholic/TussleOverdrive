@@ -5,13 +5,13 @@ using UnityEngine.UI;
 
 public class StartButton : MonoBehaviour {
 
-    private Text textComponent;
+    private UILabel textComponent;
 
     private float alpha = 144.0f;
     private float alpha_rad = 0.0f;
 	// Use this for initialization
 	void Start () {
-        textComponent = GetComponent<Text>();	
+        textComponent = GetComponent<UILabel>();	
 	}
 	
 	// Update is called once per frame

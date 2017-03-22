@@ -27,7 +27,8 @@ public class AirJump : GameAction {
         //actor.doAction("UpSmash")
         //if (actor.GetControllerButton("Special")) //&& actor.CheckSmash("Up")
         //actor.doAction("UpSpecial")
-        StateTransitions.JumpState(actor);
+        if (current_frame > jump_frame)
+            StateTransitions.AirState(actor);
         if (current_frame > last_frame)
             actor.doAction("Fall");
 

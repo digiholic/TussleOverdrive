@@ -143,6 +143,10 @@ public class UIButtonColor : MonoBehaviour
             if (!mStarted) Start();
 			TweenColor.Begin(tweenTarget, duration, isOver ? hover : mColor);
 			mHighlighted = isOver;
+            if (isOver)
+            {
+                UICamera.selectedObject = gameObject;
+            }
 
 		}
 	}
