@@ -30,7 +30,7 @@ public class FighterModuleLoader : MonoBehaviour {
             if (File.Exists(combinedPath))
             {
                 GameObject fighterName = Instantiate(fighterButtonPrefab) as GameObject;
-                fighterName.GetComponent<OnClickOpenFighter>().xml_data = combinedPath;
+                //fighterName.GetComponent<OnClickOpenFighter>().xml_data = combinedPath;
                 RectTransform fighterNameTransform = fighterName.GetComponent<RectTransform>();
                 //Place it properly
                 fighterNameTransform.SetParent(gameObject.transform,false);

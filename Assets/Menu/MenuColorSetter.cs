@@ -13,6 +13,8 @@ public class MenuColorSetter : MonoBehaviour {
     private UIButton[] ui_buttons;
     private ParticleSystem particles;
 
+    public bool ChangePressed;
+
 	// Use this for initialization
 	void Start () {
         menu_color = GameObject.FindObjectOfType<MenuColorChanger>();
@@ -32,6 +34,8 @@ public class MenuColorSetter : MonoBehaviour {
         foreach(UIButton ui_button in ui_buttons) //Buttons that have this component have their hover color set
         {   
             ui_button.hover = menu_color.getColor();
+            if (ChangePressed)
+                ui_button.pressed = menu_color.getColor();
         }
         if (particles != null)
         {
