@@ -6,8 +6,8 @@ using UnityEngine;
 using UnityEngine.Profiling;
 
 public class AbstractFighter : MonoBehaviour {
-    public string fighter_xml_file = "";
-    public string resource_path = "";
+    //public string fighter_xml_file = "";
+    private string resource_path = "";
     public int player_num = 0;
 
     [HideInInspector]
@@ -82,71 +82,63 @@ public class AbstractFighter : MonoBehaviour {
 
     private Dictionary<string, AudioClip> sounds = new Dictionary<string, AudioClip>();
 
-    void Awake()
+    void LoadFighterXML()
     {
-        TextAsset xml_asset = Resources.Load<TextAsset>(resource_path + "fighter");
+        data_xml = GetComponent<XMLLoader>();
+        resource_path = data_xml.resource_path;   
 
-        if (xml_asset != null)
+        fighter_name = data_xml.SelectSingleNode("//fighter/name").GetString();
+        franchise_icon = data_xml.SelectSingleNode("//fighter/icon").GetString();
+        css_icon = data_xml.SelectSingleNode("//fighter/css_icon").GetString();
+        css_portrait = data_xml.SelectSingleNode("//fighter/css_portrait").GetString();
+
+        sprite_directory = data_xml.SelectSingleNode("//fighter/sprite_directory").GetString();
+        sprite_prefix = data_xml.SelectSingleNode("//fighter/sprite_prefix").GetString();
+        default_sprite = data_xml.SelectSingleNode("//fighter/default_sprite").GetString();
+        pixels_per_unit = float.Parse(data_xml.SelectSingleNode("//fighter/pixels_per_unit").GetString());
+
+        article_path = data_xml.SelectSingleNode("//fighter/article_path").GetString();
+        article_file = data_xml.SelectSingleNode("//fighter/articles").GetString();
+        sound_path = data_xml.SelectSingleNode("//fighter/sound_path").GetString();
+
+        action_file = data_xml.SelectSingleNode("//fighter/actions").GetString();
+
+        //Load the stats
+        weight = GetFromXml("weight", weight);
+        gravity = GetFromXml("gravity", gravity);
+        max_fall_speed = GetFromXml("max_fall_speed", max_fall_speed);
+        max_ground_speed = GetFromXml("max_ground_speed", max_ground_speed);
+        run_speed = GetFromXml("run_speed", run_speed);
+        max_air_speed = GetFromXml("max_air_speed", max_air_speed);
+        aerial_transition_speed = GetFromXml("aerial_transition_speed", aerial_transition_speed);
+        crawl_speed = GetFromXml("crawl_speed", crawl_speed);
+        dodge_sepeed = GetFromXml("dodge_speed", dodge_sepeed);
+        friction = GetFromXml("friction", friction);
+        static_grip = GetFromXml("static_grip", static_grip);
+        pivot_grip = GetFromXml("pivot_grip", pivot_grip);
+        air_resistance = GetFromXml("air_resistance", air_resistance);
+        air_control = GetFromXml("air_control", air_control);
+        jump_height = GetFromXml("jump_height", jump_height);
+        short_hop_height = GetFromXml("short_hop_height", short_hop_height);
+        air_jump_height = GetFromXml("air_jump_height", air_jump_height);
+        fastfall_multiplier = GetFromXml("fastfall_multiplier", fastfall_multiplier);
+        hitstun_elasticity = GetFromXml("hitstun_elasticity", hitstun_elasticity);
+        shield_size = GetFromXml("shield_size", shield_size);
+        max_jumps = Mathf.FloorToInt(GetFromXml("max_jumps", max_jumps));
+        heavy_land_lag = Mathf.FloorToInt(GetFromXml("heavy_land_lag", heavy_land_lag));
+        wavedash_lag = Mathf.FloorToInt(GetFromXml("wavedash_lag", wavedash_lag));
+
+        string action_json_path = Path.Combine("Assets/Resources/"+resource_path, action_file);
+        if (File.Exists(action_json_path))
         {
-            data_xml = GetComponent<XMLLoader>();
-            data_xml.LoadXML(xml_asset.text);
-            
-            fighter_name = data_xml.SelectSingleNode("//fighter/name").GetString();
-            franchise_icon = data_xml.SelectSingleNode("//fighter/icon").GetString();
-            css_icon = data_xml.SelectSingleNode("//fighter/css_icon").GetString();
-            css_portrait = data_xml.SelectSingleNode("//fighter/css_portrait").GetString();
-
-            sprite_directory = data_xml.SelectSingleNode("//fighter/sprite_directory").GetString();
-            sprite_prefix = data_xml.SelectSingleNode("//fighter/sprite_prefix").GetString();
-            default_sprite = data_xml.SelectSingleNode("//fighter/default_sprite").GetString();
-            pixels_per_unit = float.Parse(data_xml.SelectSingleNode("//fighter/pixels_per_unit").GetString());
-
-            article_path = data_xml.SelectSingleNode("//fighter/article_path").GetString();
-            article_file = data_xml.SelectSingleNode("//fighter/articles").GetString();
-            sound_path = data_xml.SelectSingleNode("//fighter/sound_path").GetString();
-
-            action_file = data_xml.SelectSingleNode("//fighter/actions").GetString();
-
-            //Load the stats
-            weight = GetFromXml("weight", weight);
-            gravity = GetFromXml("gravity", gravity);
-            max_fall_speed = GetFromXml("max_fall_speed", max_fall_speed);
-            max_ground_speed = GetFromXml("max_ground_speed", max_ground_speed);
-            run_speed = GetFromXml("run_speed", run_speed);
-            max_air_speed = GetFromXml("max_air_speed", max_air_speed);
-            aerial_transition_speed = GetFromXml("aerial_transition_speed", aerial_transition_speed);
-            crawl_speed = GetFromXml("crawl_speed", crawl_speed);
-            dodge_sepeed = GetFromXml("dodge_speed", dodge_sepeed);
-            friction = GetFromXml("friction", friction);
-            static_grip = GetFromXml("static_grip", static_grip);
-            pivot_grip = GetFromXml("pivot_grip", pivot_grip);
-            air_resistance = GetFromXml("air_resistance", air_resistance);
-            air_control = GetFromXml("air_control", air_control);
-            jump_height = GetFromXml("jump_height", jump_height);
-            short_hop_height = GetFromXml("short_hop_height", short_hop_height);
-            air_jump_height = GetFromXml("air_jump_height", air_jump_height);
-            fastfall_multiplier = GetFromXml("fastfall_multiplier", fastfall_multiplier);
-            hitstun_elasticity = GetFromXml("hitstun_elasticity", hitstun_elasticity);
-            shield_size = GetFromXml("shield_size", shield_size);
-            max_jumps = Mathf.FloorToInt(GetFromXml("max_jumps", max_jumps));
-            heavy_land_lag = Mathf.FloorToInt(GetFromXml("heavy_land_lag", heavy_land_lag));
-            wavedash_lag = Mathf.FloorToInt(GetFromXml("wavedash_lag", wavedash_lag));
-
-            string action_json_path = Path.Combine("Assets/Resources/"+resource_path, action_file);
-            if (File.Exists(action_json_path))
-            {
-                string action_json = File.ReadAllText(action_json_path);
-                actions_file_json = JsonUtility.FromJson<ActionFile>(action_json);
-            }
+            string action_json = File.ReadAllText(action_json_path);
+            actions_file_json = JsonUtility.FromJson<ActionFile>(action_json);
         }
-        else
-        {
-            Debug.LogWarning("Could not find Fighter XML for player " + player_num);
-        }
-
     }
 
     void Start() {
+        LoadFighterXML();
+
         sprite = GetComponent<SpriteRenderer>();
         sprite_loader = GetComponent<SpriteLoader>();
         sprite_loader.Initialize("Assets/Resources/" + resource_path + sprite_directory,sprite_prefix,pixels_per_unit);

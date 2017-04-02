@@ -42,11 +42,11 @@ public class Settings : MonoBehaviour {
     public bool display_platforms = false;
 
     //Player Colors
-    public string[] player_colors = new string[] { "#f54e4e", "#4e54f5", "#f5f54e", "#67f54e" };
+    //public string[] player_colors = new string[] { "#f54e4e", "#4e54f5", "#f5f54e", "#67f54e" };
+    public Color[] player_colors = new Color[4];
 
     //Used for static access of settings
     public static Settings current_settings = null;
-
 
     //Private variables
     private AudioManager audio_manager;

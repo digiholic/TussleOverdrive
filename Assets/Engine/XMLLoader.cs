@@ -7,12 +7,16 @@ using System.IO;
 public class XMLLoader : MonoBehaviour {
     private XmlDocument data_xml;
 
-    public string xml_file;
-    
-    void Start()
+    public string resource_path;
+
+    void Awake()
     {
-        if (xml_file != "")
-            LoadXML(xml_file);
+        TextAsset xml_asset = Resources.Load<TextAsset>(resource_path + "fighter");
+
+        if (xml_asset != null)
+            LoadXML(xml_asset.text);
+        else
+            throw new System.Exception("Illegal Fighter at " + resource_path);
     }
 
     public void LoadXML(string xml_string)
@@ -38,6 +42,18 @@ public class XMLLoader : MonoBehaviour {
         }
     }
 
+    public T LoadResource<T>(string resourcePath, bool relative = true) where T : Object
+    {
+        if (relative)
+            resourcePath = resource_path + resourcePath;
+        T res_asset = Resources.Load<T>(resourcePath);
+        if (res_asset == null)
+        {
+            Debug.LogError("Could not load resource " + resourcePath + ". Make sure not to include file extensions.");
+            return null;
+        }
+        return res_asset;
+    }
 }
 
 public class DataNode

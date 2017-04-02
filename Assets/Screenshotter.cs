@@ -12,6 +12,10 @@ public class Screenshotter : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if (Input.GetKeyDown(KeyCode.LeftBracket))
+        {
             Application.CaptureScreenshot("screenshot.png");
+            Debug.Log("Screenshot captured");
+        }
+            
     }
 }
