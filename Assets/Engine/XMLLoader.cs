@@ -12,7 +12,7 @@ public class XMLLoader : MonoBehaviour {
     void Awake()
     {
         TextAsset xml_asset = Resources.Load<TextAsset>(resource_path + "fighter");
-
+        
         if (xml_asset != null)
             LoadXML(xml_asset.text);
         else
@@ -53,6 +53,17 @@ public class XMLLoader : MonoBehaviour {
             return null;
         }
         return res_asset;
+    }
+
+    void ChangeXML(string newXml)
+    {
+        resource_path = newXml;
+        TextAsset xml_asset = Resources.Load<TextAsset>(resource_path + "fighter");
+
+        if (xml_asset != null)
+            LoadXML(xml_asset.text);
+        else
+            throw new System.Exception("Illegal Fighter at " + resource_path);
     }
 }
 

@@ -11,6 +11,7 @@ public class CSSPanel : MonoBehaviour {
         data_xml = GetComponent<XMLLoader>();
         portraitTexture = GetComponentInChildren<UITexture>();
         portraitTexture.mainTexture = data_xml.LoadResource<Texture>(data_xml.SelectSingleNode("//fighter/css_icon").GetString());
+
     }
 	
 	// Update is called once per frame

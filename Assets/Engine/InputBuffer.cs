@@ -6,7 +6,7 @@ public class InputBuffer : MonoBehaviour {
     public int playerNum = 0;
 
     private List<InputEvent> inputBuffer = new List<InputEvent>();
-    private GameController game_controller;
+    private BattleController game_controller;
     
     private float last_horizontal = 0.0f;
     private float last_vertical = 0.0f;
@@ -25,7 +25,7 @@ public class InputBuffer : MonoBehaviour {
 
     void Start()
     {
-        game_controller = GameObject.Find("Controller").GetComponent<GameController>();
+        game_controller = BattleController.current_battle;
     }
 
     

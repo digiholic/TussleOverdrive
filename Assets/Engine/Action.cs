@@ -27,7 +27,7 @@ public class GameAction : ScriptableObject {
 
     protected int last_frame;
     protected AbstractFighter actor;
-    protected GameController game_controller;
+    protected BattleController game_controller;
     
     public bool cond = true;
 

@@ -4,16 +4,16 @@ using UnityEngine;
 
 
 public class InputRecorder : MonoBehaviour {
-
+    
     // Use this for initialization
-	void Start () {
+    void Start () {
 
     }
 	
 	// Update is called once per frame
 	void Update () {
-	    	
-	}
+
+    }
 
     public float GetControllerAxis(int player_num, string axisName)
     {
