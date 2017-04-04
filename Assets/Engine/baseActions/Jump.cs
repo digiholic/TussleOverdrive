@@ -9,6 +9,7 @@ public class Jump : GameAction
     public override void Update()
     {
         base.Update();
+        
         if (current_frame == jump_frame)
         {
             if (actor.GetControllerButton("Jump"))

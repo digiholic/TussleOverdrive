@@ -46,7 +46,7 @@ public class StateTransitions : ScriptableObject {
         //doAction("DownSpecial")
         if (actor.KeyBuffered(InputType.Jump))
             actor.doAction("Jump");
-        if (actor.KeyBuffered(InputType.Down,threshold:-0.1f) && actor._current_action.GetType() != typeof(CrouchGetup))
+        if (actor.KeyBuffered(InputType.Down,threshold:-0.1f) && actor.CurrentAction.GetType() != typeof(CrouchGetup))
             actor.doAction("CrouchGetup");
     }
 

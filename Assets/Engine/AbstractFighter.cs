@@ -54,17 +54,13 @@ public class AbstractFighter : MonoBehaviour {
 
     [HideInInspector]
     public float _xSpeed, _ySpeed, _xPreferred, _yPreferred, ground_elasticity = 0.0f, damage_percent = 0;
-
-    [HideInInspector]
-    public GameAction _current_action;
-
+    
     [HideInInspector]
     public BattleController game_controller;
     
     private CharacterController _charController;
     private SpriteRenderer sprite;
     private SpriteLoader sprite_loader;
-    private actionLoader action_loader;
     private Animator anim;
     private float last_x_axis;
     private float x_axis_delta;
@@ -74,13 +70,11 @@ public class AbstractFighter : MonoBehaviour {
     private XMLLoader data_xml;
 
     private AudioSource sound_player;
-
-    private ActionFile actions_file_json = new ActionFile();
-    private DynamicAction current_dynamic_action;
-
     private List<HitboxLock> hitbox_locks = new List<HitboxLock>();
-
     private Dictionary<string, AudioClip> sounds = new Dictionary<string, AudioClip>();
+    private BattleObject battleObject;
+
+    public GameAction CurrentAction { get { return battleObject.CurrentAction; } }
 
     void LoadFighterXML()
     {
@@ -134,7 +128,8 @@ public class AbstractFighter : MonoBehaviour {
             if (File.Exists(action_json_path))
             {
                 string action_json = File.ReadAllText(action_json_path);
-                actions_file_json = JsonUtility.FromJson<ActionFile>(action_json);
+                battleObject.actions_file_json = JsonUtility.FromJson<ActionFile>(action_json);
+                battleObject.actions_file_json.BuildDict();
             }
         }
         else
@@ -144,12 +139,11 @@ public class AbstractFighter : MonoBehaviour {
     }
 
     void Start() {
+        battleObject = GetComponent<BattleObject>();
         LoadFighterXML();
-
         sprite = GetComponent<SpriteRenderer>();
         sprite_loader = GetComponent<SpriteLoader>();
         sprite_loader.Initialize("Assets/Resources/" + resource_path + sprite_directory,sprite_prefix,pixels_per_unit);
-        action_loader = GetComponent<actionLoader>();
         anim = GetComponent<Animator>();
         inputBuffer = GetComponent<InputBuffer>();
         sound_player = GetComponent<AudioSource>();
@@ -165,12 +159,7 @@ public class AbstractFighter : MonoBehaviour {
         _ySpeed = 0;
         _charController = GetComponent<CharacterController>();
         jumps = max_jumps;
-        actions_file_json.BuildDict();
-        _current_action = ScriptableObject.CreateInstance<NeutralAction>();
-        current_dynamic_action = actions_file_json.Get("NeutralAction");
-        current_dynamic_action.StartAnim(_current_action); //Sets the animation state in the current action
-        _current_action.SetUp(this,current_dynamic_action);
-        current_dynamic_action.ExecuteGroup("SetUp",this,_current_action);
+        
         game_controller = BattleController.current_battle;
 
         //Load SFX
@@ -223,13 +212,7 @@ public class AbstractFighter : MonoBehaviour {
         y_axis_delta = Mathf.Abs(current_y) - Mathf.Abs(last_y_axis);
         last_y_axis = current_y;
 
-        _current_action.stateTransitions();
-        current_dynamic_action.ExecuteGroup("StateTransitions",this,_current_action);
-        current_dynamic_action.ExecuteGroup("BeforeFrame", this, _current_action);
-        _current_action.Update();
-        current_dynamic_action.ExecuteFrame(this, _current_action);
-        _current_action.LateUpdate();
-        current_dynamic_action.ExecuteGroup("AfterFrame", this, _current_action);
+        battleObject.ManualUpdate();
         
         if (grounded)
             accel(friction);
@@ -242,19 +225,10 @@ public class AbstractFighter : MonoBehaviour {
         movement *= Time.deltaTime;
         _charController.Move(movement);
     }
-    
+
     public void doAction(string _actionName)
     {
-        //Debug.Log("GameAction: "+_actionName);
-        GameAction old_action = _current_action;
-        _current_action = action_loader.LoadAction(_actionName);
-        current_dynamic_action.ExecuteGroup("TearDown", this, old_action);
-        old_action.TearDown(_current_action);
-        Destroy(old_action);
-        current_dynamic_action = actions_file_json.Get(_actionName);
-        current_dynamic_action.StartAnim(_current_action); //Sets the animation state in the current action
-        _current_action.SetUp(this,current_dynamic_action);
-        current_dynamic_action.ExecuteGroup("SetUp", this, _current_action);
+        battleObject.doAction(_actionName);
     }
 
     /// <summary>
@@ -495,6 +469,7 @@ public class AbstractFighter : MonoBehaviour {
             return (y_axis_delta > 0.3);
     }
 
+    /*
     public void TestActionJSON()
     {
         string action_json_path = Path.Combine("Assets/Resources/"+resource_path, action_file);
@@ -506,6 +481,7 @@ public class AbstractFighter : MonoBehaviour {
         }
         File.WriteAllText(action_json_path, JsonUtility.ToJson(actions_file_json, true));
     }
+    */
 
     /////////////////////////////////////////////////////////////////////////////////////////
     //                              PRIVATE HELPER METHODS                                 //
