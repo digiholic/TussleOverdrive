@@ -24,7 +24,7 @@ public class Land : GameAction {
         {
             actor._yPreferred = actor.max_fall_speed;
             last_frame = Mathf.Max(last_frame,actor.landing_lag);
-            actor._ySpeed = -1.0f;
+            actor.battleObject.YSpeed = -1.0f;
             //L Cancel
             /* lcancel = settingsManager.getSetting('lagCancel')
             if lcancel == 'normal':

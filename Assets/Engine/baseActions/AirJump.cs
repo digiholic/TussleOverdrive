@@ -11,11 +11,11 @@ public class AirJump : GameAction {
         base.Update();
         if (current_frame < jump_frame)
         {
-            actor._ySpeed = 0;
+            actor.battleObject.YSpeed = 0;
         }
         if (current_frame == jump_frame)
         {
-            actor._ySpeed = actor.air_jump_height;
+            actor.battleObject.YSpeed = actor.air_jump_height;
             actor.jumps--;
         }
     }

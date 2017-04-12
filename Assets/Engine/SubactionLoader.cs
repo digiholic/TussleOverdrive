@@ -68,9 +68,9 @@ public class SubactionLoader : ScriptableObject {
                  *      changes the xSpeed, ySpeed, xPreffered, yPreferred speeds. If set to null, value will remain the same
                  */
                 if (args[1] != "_")
-                    actor._xSpeed = float.Parse(args[1]);
+                    actor.battleObject.XSpeed = float.Parse(args[1]);
                 if (args[2] != "_")
-                    actor._ySpeed = float.Parse(args[2]);
+                    actor.battleObject.YSpeed = float.Parse(args[2]);
                 if (args[3] != "_")
                     actor._xPreferred = float.Parse(args[3]);
                 if (args[4] != "_")
@@ -81,18 +81,18 @@ public class SubactionLoader : ScriptableObject {
                  *      changes the xSpeed of the fighter
                  */
                 if (args.Length >= 2)
-                    actor._xSpeed += float.Parse(args[1]) * actor.facing;
+                    actor.battleObject.XSpeed += float.Parse(args[1]) * actor.facing;
                 else
-                    actor._xSpeed = float.Parse(args[1]);
+                    actor.battleObject.XSpeed = float.Parse(args[1]);
                 break;
             case "ChangeYSpeed":
                 /* changeYSpeed y:float rel:bool
                  *      changes the ySpeed of the fighter
                  */
                 if (args.Length >= 2)
-                    actor._ySpeed += float.Parse(args[1]);
+                    actor.battleObject.YSpeed += float.Parse(args[1]);
                 else
-                    actor._ySpeed = float.Parse(args[1]);
+                    actor.battleObject.YSpeed = float.Parse(args[1]);
                 break;
             case "ChangeXPreferred":
                 /* changeXPreferred x:float rel:bool

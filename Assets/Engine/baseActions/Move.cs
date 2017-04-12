@@ -27,8 +27,8 @@ public class Move : GameAction {
     {
         base.Update();
         actor._xPreferred = actor.max_ground_speed * direction;
-        if (((actor._xSpeed >= -actor.max_ground_speed) && actor.facing == -1) || 
-            ((actor._xSpeed <=  actor.max_ground_speed) && actor.facing ==  1))
+        if (((actor.battleObject.XSpeed >= -actor.max_ground_speed) && actor.facing == -1) || 
+            ((actor.battleObject.XSpeed <=  actor.max_ground_speed) && actor.facing ==  1))
         {
             actor.accel(actor.static_grip);
         }

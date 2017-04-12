@@ -53,12 +53,12 @@ public class AbstractFighter : MonoBehaviour {
     public int jumps = 0, facing = 1, landing_lag = 0, tech_window = 0, air_dodges = 1;
 
     [HideInInspector]
-    public float _xSpeed, _ySpeed, _xPreferred, _yPreferred, ground_elasticity = 0.0f, damage_percent = 0;
+    public float _xPreferred, _yPreferred, ground_elasticity = 0.0f, damage_percent = 0;
     
     [HideInInspector]
     public BattleController game_controller;
     
-    private CharacterController _charController;
+    
     private SpriteRenderer sprite;
     private SpriteLoader sprite_loader;
     private Animator anim;
@@ -72,9 +72,10 @@ public class AbstractFighter : MonoBehaviour {
     private AudioSource sound_player;
     private List<HitboxLock> hitbox_locks = new List<HitboxLock>();
     private Dictionary<string, AudioClip> sounds = new Dictionary<string, AudioClip>();
-    private BattleObject battleObject;
+    public BattleObject battleObject;
 
     public GameAction CurrentAction { get { return battleObject.CurrentAction; } }
+    private PlatformPhase platform_phaser;
 
     void LoadFighterXML()
     {
@@ -147,6 +148,7 @@ public class AbstractFighter : MonoBehaviour {
         anim = GetComponent<Animator>();
         inputBuffer = GetComponent<InputBuffer>();
         sound_player = GetComponent<AudioSource>();
+        platform_phaser = GetComponent<PlatformPhase>();
 
         if (player_num % 2 == 0)
             facing = 1;
@@ -156,8 +158,7 @@ public class AbstractFighter : MonoBehaviour {
             facing = -1;
         }
 
-        _ySpeed = 0;
-        _charController = GetComponent<CharacterController>();
+        battleObject.YSpeed = 0;
         jumps = max_jumps;
         
         game_controller = BattleController.current_battle;
@@ -190,20 +191,21 @@ public class AbstractFighter : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        if (_charController.isGrounded)
+        //Set gravity, or reset jumps
+        if (grounded)
         {
-            grounded = true;
             jumps = max_jumps;
         }
         else
         {
-            grounded = false;
-            _ySpeed += gravity * 5 * Time.deltaTime;
-            if (_ySpeed < max_fall_speed || (_ySpeed < 0 && GetControllerAxis("Vertical") < -0.3))
+            battleObject.YSpeed += gravity * 5 * Time.deltaTime;
+            if (battleObject.YSpeed < max_fall_speed || (battleObject.YSpeed < 0 && GetControllerAxis("Vertical") < -0.3))
             {
-                _ySpeed = max_fall_speed;
+                battleObject.YSpeed = max_fall_speed;
             } 
         }
+
+        //Set horizontal and vertical deltas
         float current_x = GetControllerAxis("Horizontal");
         x_axis_delta = Mathf.Abs(current_x) - Mathf.Abs(last_x_axis);
         last_x_axis = current_x;
@@ -212,6 +214,12 @@ public class AbstractFighter : MonoBehaviour {
         y_axis_delta = Mathf.Abs(current_y) - Mathf.Abs(last_y_axis);
         last_y_axis = current_y;
 
+        //Enable Phasing
+        if (GetControllerAxis("Vertical") < -0.3)
+            platform_phaser.EnableDownPhase = true;
+        else
+            platform_phaser.EnableDownPhase = false;
+
         battleObject.ManualUpdate();
         
         if (grounded)
@@ -219,11 +227,7 @@ public class AbstractFighter : MonoBehaviour {
         else
             accel(air_resistance);
 
-        Vector3 movement = new Vector3(0, 0, 0);
-        movement.y = _ySpeed;
-        movement.x = _xSpeed;
-        movement *= Time.deltaTime;
-        _charController.Move(movement);
+        
     }
 
     public void doAction(string _actionName)
@@ -240,22 +244,6 @@ public class AbstractFighter : MonoBehaviour {
         return GetControllerAxis("Horizontal") * facing;
     }
 
-    void OnTriggerStay(Collider other)
-    {
-        if (other.tag == "DropDown" && GetControllerAxis("Vertical") < -0.3)
-        {
-            Physics.IgnoreCollision(_charController, other.transform.parent.GetComponent<Collider>(), true);
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "DropDown")
-        {
-            Physics.IgnoreCollision(_charController, other.transform.parent.GetComponent<Collider>(), false);
-        }
-    }
-
     public void accel(float _xFactor)
     {
         //TODO global friction/airControl values
@@ -263,14 +251,14 @@ public class AbstractFighter : MonoBehaviour {
         if (!grounded)
             accel_fric = 1.0f; //air control
 
-        if (_xSpeed > _xPreferred)
+        if (battleObject.XSpeed > _xPreferred)
         {
-            float diff = _xSpeed - _xPreferred;
-            _xSpeed -= Mathf.Min(diff, _xFactor * accel_fric);
-        } else if (_xSpeed < _xPreferred)
+            float diff = battleObject.XSpeed - _xPreferred;
+            battleObject.XSpeed -= Mathf.Min(diff, _xFactor * accel_fric);
+        } else if (battleObject.XSpeed < _xPreferred)
         {
-            float diff = _xPreferred - _xSpeed;
-            _xSpeed += Mathf.Min(diff, _xFactor * accel_fric);
+            float diff = _xPreferred - battleObject.XSpeed;
+            battleObject.XSpeed += Mathf.Min(diff, _xFactor * accel_fric);
         }
     }
 
@@ -413,8 +401,8 @@ public class AbstractFighter : MonoBehaviour {
 
         trajectory_vec *= _total_kb;
         //Debug.Log(trajectory_vec);
-        _xSpeed = trajectory_vec.x;
-        _ySpeed = trajectory_vec.y;
+        battleObject.XSpeed = trajectory_vec.x;
+        battleObject.YSpeed = trajectory_vec.y;
         //self.setSpeed((_total_kb) * di_multiplier, _trajectory)
     }
 
@@ -492,5 +480,13 @@ public class AbstractFighter : MonoBehaviour {
         yield return new WaitForSeconds(2);
         if (hitbox_locks.Contains(hitbox_lock)) //It can be unlocked later
             hitbox_locks.Remove(hitbox_lock);
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////
+    //                               BROADCAST RECEIVERS                                   //
+    /////////////////////////////////////////////////////////////////////////////////////////
+    void SetGrounded(bool groundedval)
+    {
+        grounded = groundedval;
     }
 }

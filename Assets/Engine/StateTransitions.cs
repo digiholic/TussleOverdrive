@@ -191,9 +191,9 @@ public class StateTransitions : ScriptableObject {
     public static void AirControl(AbstractFighter actor)
     {
         actor._xPreferred = actor.GetControllerAxis("Horizontal") * actor.max_air_speed;
-        if (Mathf.Abs(actor._xSpeed) > actor.max_air_speed)
+        if (Mathf.Abs(actor.battleObject.XSpeed) > actor.max_air_speed)
             actor.accel(actor.air_control);
-        if (Mathf.Abs(actor._ySpeed) > Mathf.Abs(actor.max_fall_speed))
+        if (Mathf.Abs(actor.battleObject.YSpeed) > Mathf.Abs(actor.max_fall_speed))
             actor.landing_lag = actor.heavy_land_lag;
     }
     

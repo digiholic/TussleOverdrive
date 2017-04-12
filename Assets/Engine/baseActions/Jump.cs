@@ -13,15 +13,16 @@ public class Jump : GameAction
         if (current_frame == jump_frame)
         {
             if (actor.GetControllerButton("Jump"))
-                actor._ySpeed = actor.jump_height;
+                actor.battleObject.YSpeed = actor.jump_height;
             else
-                actor._ySpeed = actor.short_hop_height;
-            if (Mathf.Abs(actor._xSpeed) > actor.aerial_transition_speed)
+                actor.battleObject.YSpeed = actor.short_hop_height;
+
+            if (Mathf.Abs(actor.battleObject.XSpeed) > actor.aerial_transition_speed)
             {
-                if (actor._xSpeed < 0) //negative speed
-                    actor._xSpeed = -actor.aerial_transition_speed;
+                if (actor.battleObject.XSpeed < 0) //negative speed
+                    actor.battleObject.XSpeed = -actor.aerial_transition_speed;
                 else
-                    actor._xSpeed = actor.aerial_transition_speed;
+                    actor.battleObject.XSpeed = actor.aerial_transition_speed;
             }
             //actor.ChangeSprite("jump");
         }

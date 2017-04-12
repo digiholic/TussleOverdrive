@@ -11,7 +11,7 @@ public class Stop : GameAction {
         base.SetUp(_actor,_extraData);
         //Debug.Log("StopAction Created");
         //Overrides given length if the pivot grip won't allow it
-        int num_frames = Mathf.FloorToInt((actor._xSpeed * actor.facing) / actor.pivot_grip);
+        int num_frames = Mathf.FloorToInt((actor.battleObject.XSpeed * actor.facing) / actor.pivot_grip);
         if (num_frames < last_frame)
             current_frame = Mathf.Min(last_frame - num_frames, last_frame - 1);
         else
