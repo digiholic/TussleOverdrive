@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameAction : ScriptableObject {
+public class GameAction {
 
     public string sprite_name;
     public int sprite_rate = 1;
@@ -11,40 +11,31 @@ public class GameAction : ScriptableObject {
 
     public int current_frame;
 
-    public List<string> set_up_actions = new List<string>();
-
-    public List<string> actions_before_frame = new List<string>();
-    public Dictionary<int,List<string>> actions_at_frame = new Dictionary<int,List<string>>();
-    public List<string> actions_after_frame = new List<string>();
-    public List<string> actions_at_last_frame = new List<string>();
-    public List<string> actions_on_clank = new List<string>();
-    public List<string> actions_on_prevail = new List<string>();
-    public List<string> state_transition_actions = new List<string>();
-    public List<string> tear_down_actions = new List<string>();
+    public ActionGroup set_up_actions = new ActionGroup();
+    public ActionGroup actions_before_frame = new ActionGroup();
+    public Dictionary<int,ActionGroup> actions_at_frame = new Dictionary<int,ActionGroup>();
+    public ActionGroup actions_after_frame = new ActionGroup();
+    public ActionGroup actions_at_last_frame = new ActionGroup();
+    public ActionGroup actions_on_clank = new ActionGroup();
+    public ActionGroup actions_on_prevail = new ActionGroup();
+    public ActionGroup state_transition_actions = new ActionGroup();
+    public ActionGroup tear_down_actions = new ActionGroup();
 
     public Dictionary<string, Hitbox> hitboxes = new Dictionary<string, Hitbox>();
     public Dictionary<string, HitboxLock> hitbox_locks = new Dictionary<string, HitboxLock>();
 
     protected int last_frame;
-    protected AbstractFighter actor;
+    protected BattleObject actor;
     protected BattleController game_controller;
     
     public bool cond = true;
 
-    public virtual void SetUp (AbstractFighter _actor, DynamicAction _extraData = null) {
-        if (_extraData != null)
-        {
-            length = _extraData.length;
-            sprite_name = _extraData.sprite;
-            sprite_rate = _extraData.sprite_rate;
-            loop = _extraData.loop;
-        }
-
+    public virtual void SetUp (BattleObject obj) {
         last_frame = length;
-        actor = _actor;
-        actor.ChangeSprite(sprite_name);
-        game_controller = actor.game_controller;
-        foreach (string subaction in set_up_actions)
+        actor = obj;
+        actor.BroadcastMessage("ChangeSprite",sprite_name);
+        game_controller = BattleController.current_battle;
+        foreach (string subaction in set_up_actions.subactions)
         {
             if (cond)
                 SubactionLoader.executeSubaction(subaction, actor, this);
@@ -58,15 +49,15 @@ public class GameAction : ScriptableObject {
             int sprite_number = Mathf.FloorToInt(current_frame / sprite_rate);
             if (sprite_rate < 0)
                 sprite_number = Mathf.FloorToInt(current_frame / sprite_rate) - 1;
-            actor.ChangeSubimage(sprite_number, loop);
+            actor.GetSpriteHandler().ChangeSubimage(sprite_number, loop);
         }
 
-        foreach (string subaction in actions_before_frame)
+        foreach (string subaction in actions_before_frame.subactions)
             if (cond)
                 SubactionLoader.executeSubaction(subaction, actor, this);
 
         if (actions_at_frame.ContainsKey(current_frame))
-            foreach (string subaction in actions_at_frame[current_frame])
+            foreach (string subaction in actions_at_frame[current_frame].subactions)
                 if (cond)
                     SubactionLoader.executeSubaction(subaction, actor, this);
 
@@ -76,14 +67,14 @@ public class GameAction : ScriptableObject {
 
     public virtual void OnLastFrame()
     {
-        foreach (string subaction in actions_at_last_frame)
+        foreach (string subaction in actions_at_last_frame.subactions)
             if (cond)
                 SubactionLoader.executeSubaction(subaction, actor, this);
     }
 
     public virtual void LateUpdate() //This way the frame gets incremented after everything else
     {
-        foreach (string subaction in actions_after_frame)
+        foreach (string subaction in actions_after_frame.subactions)
             if (cond)
                 SubactionLoader.executeSubaction(subaction, actor, this);
         current_frame++;
@@ -95,31 +86,47 @@ public class GameAction : ScriptableObject {
         foreach (Hitbox hbox in hitboxes.Values)
         {
             hbox.Deactivate();
-            Destroy(hbox.gameObject);
+            GameObject.Destroy(hbox.gameObject);
         }
-        foreach (string subaction in tear_down_actions)
+        foreach (string subaction in tear_down_actions.subactions)
             if (cond)
                 SubactionLoader.executeSubaction(subaction, actor, this);
     }
 
     public virtual void stateTransitions()
     {
-        foreach (string subaction in state_transition_actions)
+        foreach (string subaction in state_transition_actions.subactions)
             if (cond)
                 SubactionLoader.executeSubaction(subaction, actor, this);
     }
 
     public virtual void onClank()
     {
-        foreach (string subaction in actions_on_clank)
+        foreach (string subaction in actions_on_clank.subactions)
             if (cond)
                 SubactionLoader.executeSubaction(subaction, actor, this);
     }
 
     public virtual void onPrevail()
     {
-        foreach (string subaction in actions_on_prevail)
+        foreach (string subaction in actions_on_prevail.subactions)
             if (cond)
                 SubactionLoader.executeSubaction(subaction, actor, this);
+    }
+
+    public void SetDynamicAction(DynamicAction dynAction)
+    {
+        length = dynAction.length;
+        sprite_name = dynAction.sprite;
+        sprite_rate = dynAction.sprite_rate;
+        loop = dynAction.loop;
+
+        set_up_actions = dynAction.set_up_actions;
+        actions_before_frame = dynAction.actions_before_frame;
+        actions_at_frame = dynAction.actions_at_frame_dict;
+        actions_after_frame = dynAction.actions_after_frame;
+        actions_at_last_frame = dynAction.actions_at_last_frame;
+        state_transition_actions = dynAction.state_transition_actions;
+        tear_down_actions = dynAction.tear_down_actions;
     }
 }

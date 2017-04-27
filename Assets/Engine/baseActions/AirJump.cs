@@ -11,12 +11,12 @@ public class AirJump : GameAction {
         base.Update();
         if (current_frame < jump_frame)
         {
-            actor.battleObject.YSpeed = 0;
+            actor.BroadcastMessage("ChangeYSpeed", 0.0f);
         }
         if (current_frame == jump_frame)
         {
-            actor.battleObject.YSpeed = actor.air_jump_height;
-            actor.jumps--;
+            actor.BroadcastMessage("ChangeYSpeed", actor.GetAbstractFighter().air_jump_height);
+            actor.GetAbstractFighter().jumps--;
         }
     }
 
@@ -28,9 +28,9 @@ public class AirJump : GameAction {
         //if (actor.GetControllerButton("Special")) //&& actor.CheckSmash("Up")
         //actor.doAction("UpSpecial")
         if (current_frame > jump_frame)
-            StateTransitions.AirState(actor);
+            StateTransitions.AirState(actor.GetAbstractFighter());
         if (current_frame > last_frame)
-            actor.doAction("Fall");
+            actor.BroadcastMessage("DoAction", "Fall");
 
     }
 }

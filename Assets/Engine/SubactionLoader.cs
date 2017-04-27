@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SubactionLoader : ScriptableObject {
     
-    public static void executeSubaction(string subact, AbstractFighter actor, GameAction action)
+    public static void executeSubaction(string subact, BattleObject actor, GameAction action)
     {
         string[] args = subact.Split(' ');
         
@@ -15,13 +15,13 @@ public class SubactionLoader : ScriptableObject {
                 /* doAction actionName:string
                  *      Switches the fighter's action to actionName
                  */
-                actor.doAction(args[1]);
+                actor.BroadcastMessage("DoAction",args[1]);
                 break;
             case "DoTransition":
                 /* doTransition transitionState:string
                  * 	    Executes the named helper StateTransition
                  */
-                StateTransitions.LoadTransitionState(args[1], actor);
+                StateTransitions.LoadTransitionState(args[1], actor.GetAbstractFighter());
                 break;
             case "SetFrame":
                 /* setFrame frameNumber:int
@@ -65,52 +65,52 @@ public class SubactionLoader : ScriptableObject {
             // ====== CONTROL SUBACTIONS ======\\
             case "ChangeSpeed":
                 /* changeSpeed x:float|_ y:float|_ xpref:float|_ ypref:float|_ relative:bool|false
-                 *      changes the xSpeed, ySpeed, xPreffered, yPreferred speeds. If set to null, value will remain the same
+                 *      changes the xSpeed, ySpeed, xPreferred, yPreferred speeds. If set to null, value will remain the same
                  */
                 if (args[1] != "_")
-                    actor.battleObject.XSpeed = float.Parse(args[1]);
+                    actor.GetMotionHandler().ChangeXSpeed(float.Parse(args[1]));
                 if (args[2] != "_")
-                    actor.battleObject.YSpeed = float.Parse(args[2]);
+                    actor.GetMotionHandler().ChangeYSpeed(float.Parse(args[2]));
                 if (args[3] != "_")
-                    actor._xPreferred = float.Parse(args[3]);
+                    actor.GetMotionHandler().ChangeXPreferred(float.Parse(args[3]));
                 if (args[4] != "_")
-                    actor._yPreferred = float.Parse(args[4]);
+                    actor.GetMotionHandler().ChangeYPreferred(float.Parse(args[4]));
                 break;
             case "ChangeXSpeed":
                 /* changeXSpeed x:float rel:bool
                  *      changes the xSpeed of the fighter
                  */
                 if (args.Length >= 2)
-                    actor.battleObject.XSpeed += float.Parse(args[1]) * actor.facing;
+                    actor.GetMotionHandler().ChangeXSpeedBy(float.Parse(args[1]) * actor.GetAbstractFighter().facing);
                 else
-                    actor.battleObject.XSpeed = float.Parse(args[1]);
+                    actor.GetMotionHandler().ChangeXSpeed(float.Parse(args[1]) * actor.GetAbstractFighter().facing);
                 break;
             case "ChangeYSpeed":
                 /* changeYSpeed y:float rel:bool
                  *      changes the ySpeed of the fighter
                  */
                 if (args.Length >= 2)
-                    actor.battleObject.YSpeed += float.Parse(args[1]);
+                    actor.GetMotionHandler().ChangeYSpeedBy(float.Parse(args[2]));
                 else
-                    actor.battleObject.YSpeed = float.Parse(args[1]);
+                    actor.GetMotionHandler().ChangeYSpeed(float.Parse(args[2]));
                 break;
             case "ChangeXPreferred":
                 /* changeXPreferred x:float rel:bool
                  *      changes the preferred xSpeed of the fighter
                  */
                 if (args.Length >= 2)
-                    actor._xPreferred += float.Parse(args[1]) * actor.facing;
+                    actor.GetMotionHandler().ChangeXPreferredBy(float.Parse(args[1]) * actor.GetAbstractFighter().facing);
                 else
-                    actor._xPreferred = float.Parse(args[1]);
+                    actor.GetMotionHandler().ChangeXPreferred(float.Parse(args[1]) * actor.GetAbstractFighter().facing);
                 break;
             case "ChangeYPreferred":
                 /* changeXPreferred y:float rel:bool
                  *      changes the yPreferred of the fighter
                  */
                 if (args.Length >= 2)
-                    actor._yPreferred += float.Parse(args[1]);
+                    actor.GetMotionHandler().ChangeYPreferredBy(float.Parse(args[1]) * actor.GetAbstractFighter().facing);
                 else
-                    actor._yPreferred = float.Parse(args[1]);
+                    actor.GetMotionHandler().ChangeYPreferred(float.Parse(args[1]) * actor.GetAbstractFighter().facing);
                 break;
             case "ShiftPosition":
                 /* shiftPosition x:float|0 y:float|0 relative:bool|true
@@ -124,14 +124,14 @@ public class SubactionLoader : ScriptableObject {
                  *      Changes to the specified animation.
                  *      ALIAS: ChangeSprite
                  */
-                actor.ChangeSprite(args[1]);
+                actor.BroadcastMessage("ChangeSprite",args[1]);
                 break;
             case "ChangeSprite":
                 /* changeSprite animName:string
                  *      Changes to the specified animation.
                  *      ALIAS: ChangeAnim
                  */
-                actor.ChangeSprite(args[1]);
+                actor.BroadcastMessage("ChangeSprite",args[1]);
                 break;
 
             case "ChangeSubimage":
@@ -140,13 +140,13 @@ public class SubactionLoader : ScriptableObject {
                  *      Changes to the sprite subimage of the current animation with the given index
                  */
                 action.sprite_rate = 0; //We've broken the integrity of the sprite_rate calculator, so we have to turn it off
-                actor.ChangeSubimage(int.Parse(args[1]));
+                actor.BroadcastMessage("ChangeSubimage",int.Parse(args[1]));
                 break;
             case "Flip":
                 /* flipFighter
                  *      Flips the fighter horizontally, so they are facing the other direction
                  */
-                actor.flip();
+                actor.BroadcastMessage("flip");
                 break;
             case "RotateSprite":
                 /* rotateFighter deg:int
@@ -170,7 +170,7 @@ public class SubactionLoader : ScriptableObject {
                 /* Playsound sound:string
                  *      Plays the sound with the given name from the fighter's sound library
                  */
-                actor.PlaySound(args[1]);
+                actor.BroadcastMessage("PlaySound",args[1]);
                 break;
             // ====== HITBOX SUBACTIONS ======\\
             case "CreateHitbox":
@@ -184,7 +184,7 @@ public class SubactionLoader : ScriptableObject {
                 {
                     hbox_dict[args[i]] = args[i + 1];
                 }
-                Hitbox hbox = FindObjectOfType<HitboxLoader>().LoadHitbox(actor, action, hbox_dict);
+                Hitbox hbox = FindObjectOfType<HitboxLoader>().LoadHitbox(actor.GetAbstractFighter(), action, hbox_dict);
                 action.hitboxes.Add(name, hbox);
                 break;
             case "ActivateHitbox":
@@ -221,7 +221,7 @@ public class SubactionLoader : ScriptableObject {
                 }
                 if (action.hitboxes.ContainsKey(name))
                 {
-                    action.hitboxes[name].LoadValuesFromDict(actor,hbox_dict);
+                    action.hitboxes[name].LoadValuesFromDict(actor.GetAbstractFighter(),hbox_dict);
                 }
                 break;
             default:
@@ -278,7 +278,7 @@ public class DynamicAction
     public ActionGroup tear_down_actions = new ActionGroup();
     public List<ActionGroup> actions_at_frame = new List<ActionGroup>();
 
-    private Dictionary<int, ActionGroup> actions_at_frame_dict = new Dictionary<int, ActionGroup>();
+    public Dictionary<int, ActionGroup> actions_at_frame_dict = new Dictionary<int, ActionGroup>();
 
     public DynamicAction(string _name, int _length=1, string _sprite="idle", int _sprite_rate=1,bool _loop=false)
     {
@@ -299,15 +299,7 @@ public class DynamicAction
         }
     }
 
-    public void StartAnim(GameAction action)
-    {
-        action.length = length;
-        action.sprite_name = sprite;
-        action.sprite_rate = sprite_rate;
-        action.loop = loop;
-    }
-
-    public void ExecuteGroup(string group, AbstractFighter actor, GameAction action)
+    public void ExecuteGroup(string group, BattleObject actor, GameAction action)
     {
         switch (group)
         {
@@ -338,7 +330,7 @@ public class DynamicAction
         }
     }
 
-    public void ExecuteFrame(AbstractFighter actor, GameAction action)
+    public void ExecuteFrame(BattleObject actor, GameAction action)
     {
         //TODO parse the action frames field to see if the frame number falls into range, function, etc.
         //  Like if the frames field is 0-2, execute subactions for frames 0,1,2

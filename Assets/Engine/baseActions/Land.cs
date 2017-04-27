@@ -9,12 +9,12 @@ public class Land : GameAction {
         base.stateTransitions();
         if (current_frame >= last_frame)
         {
-            actor.landing_lag = 0;
-            actor.doAction("NeutralAction");
+            actor.GetAbstractFighter().landing_lag = 0;
+            actor.BroadcastMessage("DoAction", "NeutralAction");
             //platform phase reset
-            actor._xPreferred = 0;
+            actor.BroadcastMessage("ChangeXPreferred", 0.0f);
         }
-        StateTransitions.CheckGround(actor);
+        StateTransitions.CheckGround(actor.GetAbstractFighter());
     }
 
     public override void Update()
@@ -22,9 +22,9 @@ public class Land : GameAction {
         base.Update();
         if (current_frame == 0)
         {
-            actor._yPreferred = actor.max_fall_speed;
-            last_frame = Mathf.Max(last_frame,actor.landing_lag);
-            actor.battleObject.YSpeed = -1.0f;
+            actor.BroadcastMessage("ChangeYPreferred", actor.GetAbstractFighter().max_fall_speed);
+            last_frame = Mathf.Max(last_frame,actor.GetAbstractFighter().landing_lag);
+            actor.BroadcastMessage("ChangeYSpeed", -1.0f);
             //L Cancel
             /* lcancel = settingsManager.getSetting('lagCancel')
             if lcancel == 'normal':

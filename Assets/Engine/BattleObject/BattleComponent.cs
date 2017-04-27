@@ -6,7 +6,7 @@ public class BattleComponent : MonoBehaviour {
     protected BattleObject battleObject;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         battleObject = GetComponent<BattleObject>();
 	}
 	

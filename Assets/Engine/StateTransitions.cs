@@ -46,7 +46,7 @@ public class StateTransitions : ScriptableObject {
         //doAction("DownSpecial")
         if (actor.KeyBuffered(InputType.Jump))
             actor.doAction("Jump");
-        if (actor.KeyBuffered(InputType.Down,threshold:-0.1f) && actor.CurrentAction.GetType() != typeof(CrouchGetup))
+        if (actor.KeyBuffered(InputType.Down,threshold:-0.1f) && actor.battleObject.GetActionHandler().CurrentAction.GetType() != typeof(CrouchGetup))
             actor.doAction("CrouchGetup");
     }
 
@@ -71,8 +71,8 @@ public class StateTransitions : ScriptableObject {
         }
         if (actor.grounded && actor.ground_elasticity == 0 && actor.tech_window == 0)
         {
-            actor._xPreferred = 0;
-            actor._yPreferred = actor.max_fall_speed;
+            actor.BroadcastMessage("ChangeXPreferred", 0.0f);
+            actor.BroadcastMessage("ChangeYPreferred", actor.max_fall_speed);
             actor.doAction("Land");
         }
         //TODO fastfal
@@ -190,10 +190,10 @@ public class StateTransitions : ScriptableObject {
 
     public static void AirControl(AbstractFighter actor)
     {
-        actor._xPreferred = actor.GetControllerAxis("Horizontal") * actor.max_air_speed;
-        if (Mathf.Abs(actor.battleObject.XSpeed) > actor.max_air_speed)
-            actor.accel(actor.air_control);
-        if (Mathf.Abs(actor.battleObject.YSpeed) > Mathf.Abs(actor.max_fall_speed))
+        actor.BroadcastMessage("ChangeXPreferred", actor.GetControllerAxis("Horizontal") * actor.max_air_speed);
+        if (Mathf.Abs(actor.battleObject.GetMotionHandler().XSpeed) > actor.max_air_speed)
+            actor.battleObject.GetMotionHandler().accel(actor.air_control);
+        if (Mathf.Abs(actor.battleObject.GetMotionHandler().YSpeed) > Mathf.Abs(actor.max_fall_speed))
             actor.landing_lag = actor.heavy_land_lag;
     }
     

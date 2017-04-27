@@ -66,7 +66,7 @@ public class Hitbox : MonoBehaviour {
             height = int.Parse(size[1]);
         }
 
-        float scale = owner.GetComponent<SpriteLoader>().pixelsPerUnit;
+        float scale = owner.GetComponent<SpriteHandler>().pixelsPerUnit;
         //float scale = 50;
         transform.localPosition = new Vector3(centerx / scale, centery / scale, -0.5f);
         transform.localScale = new Vector3(width / scale, height / scale, 1.0f);

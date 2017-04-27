@@ -12,16 +12,16 @@ public class CrouchGetup : GameAction {
     public override void stateTransitions()
     {
         base.stateTransitions();
-        StateTransitions.CrouchState(actor);
-        StateTransitions.CheckGround(actor);
+        StateTransitions.CrouchState(actor.GetAbstractFighter());
+        StateTransitions.CheckGround(actor.GetAbstractFighter());
         //TODO platform phase
         if (current_frame >= last_frame)
-            actor.doAction("NeutralAction");
+            actor.BroadcastMessage("DoAction", "NeutralAction");
     }
 
     public override void Update()
     {
         base.Update();
-        actor._xPreferred = 0;
+        actor.BroadcastMessage("ChangeXPreferred", 0.0f);
     }
 }

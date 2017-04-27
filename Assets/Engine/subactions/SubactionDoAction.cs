@@ -14,20 +14,11 @@ public class SubactionDoAction : Subaction {
     {
         obj.BroadcastMessage("DoAction", actionName);
     }
-}
 
-public class SubactionDoTransition : Subaction
-{
-    public string transitionState;
-
-
-    public override void Execute(BattleObject obj, GameAction action)
+    public override List<string> GetRequirements()
     {
-        obj.BroadcastMessage("DoTransition", transitionState);
+        List<string> retList = new List<string>();
+        retList.Add("ActionHandler");
+        return retList;
     }
-}
-
-public class SubactionSetFrame : Subaction
-{
-
 }

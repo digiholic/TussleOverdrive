@@ -6,13 +6,13 @@ public class NeutralAction : GameAction {
     public override void OnLastFrame()
     {
         base.OnLastFrame();
-        actor.doAction("NeutralAction");
+        actor.BroadcastMessage("DoAction","NeutralAction");
     }
 
     public override void stateTransitions()
     {
         base.stateTransitions();
-        StateTransitions.NeutralState(actor);
-        StateTransitions.CheckGround(actor);
+        StateTransitions.NeutralState(actor.GetAbstractFighter());
+        StateTransitions.CheckGround(actor.GetAbstractFighter());
     }
 }

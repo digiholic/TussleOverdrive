@@ -2,12 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Subaction {
-    public string[] RequiredComponents; //TODO
+public class Subaction
+{
+    public List<string> Requirements = new List<string>(); //TODO
 
     public virtual void Execute(BattleObject obj, GameAction action)
     {
 
+    }
+
+    public virtual List<string> GetRequirements()
+    {
+        return new List<string>();
     }
 
     /// <summary>
@@ -19,7 +25,7 @@ public class Subaction {
     /// <returns>The corresponding Subaction object to the string that is given</returns>
     public static Subaction FromString(string subactionString)
     {
-        string[] args = subact.Split(' ');
+        string[] args = subactionString.Split(' ');
 
         switch (args[0])
         {
@@ -37,7 +43,7 @@ public class Subaction {
                  *      If relative is set and type is something that can be relative, such as integer, it will increment
                  *      the variable instead of changing it
                  */
-                return new SubactionSetVar(args[1], args[2], args[3], args[4], args[5]);
+                return new SubactionSetVar(args[1], args[2], args[3], args[4], bool.Parse(args[5]));
             case "IfVar":
                 /* ifVar source:string name:string compare:string|== value:dynamic|true
                  *      Sets the action condition to the result of the logical equation compare(source|name, value)
@@ -57,7 +63,7 @@ public class Subaction {
             // ====== CONTROL SUBACTIONS ======\\
             case "ChangeSpeed":
                 /* changeSpeed x:float|_ y:float|_ xpref:float|_ ypref:float|_ relative:bool|false
-                 *      changes the xSpeed, ySpeed, xPreffered, yPreferred speeds. If set to null, value will remain the same
+                 *      changes the xSpeed, ySpeed, xPreferred, yPreferred speeds. If set to null, value will remain the same
                  */
                 throw new System.Exception("Deprecated Subaction ChangeSpeed, please use ChangeXSpeed and ChangeYSpeed instead.");
                 return null;
@@ -65,27 +71,27 @@ public class Subaction {
                 /* changeXSpeed x:float rel:bool
                  *      changes the xSpeed of the fighter
                  */
-                return new SubactionChangeXSpeed(args[1], args[2]);
+                return new SubactionChangeXSpeed(int.Parse(args[1]), bool.Parse(args[2]));
             case "ChangeYSpeed":
                 /* changeYSpeed y:float rel:bool
                  *      changes the ySpeed of the fighter
                  */
-                return new SubactionChangeYSpeed(args[1], args[2]);
+                return new SubactionChangeYSpeed(int.Parse(args[1]), bool.Parse(args[2]));
             case "ChangeXPreferred":
                 /* changeXPreferred x:float rel:bool
                  *      changes the preferred xSpeed of the fighter
                  */
-                return new SubactionChangeXPreferred(args[1], args[2]);
+                return new SubactionChangeXPreferred(int.Parse(args[1]), bool.Parse(args[2]));
             case "ChangeYPreferred":
                 /* changeXPreferred y:float rel:bool
                  *      changes the yPreferred of the fighter
                  */
-                return new SubactionChangeYPreferred(args[1], args[2]);
+                return new SubactionChangeYPreferred(int.Parse(args[1]), bool.Parse(args[2]));
             case "ShiftPosition":
                 /* shiftPosition x:float|0 y:float|0 relative:bool|true
                  *      Displaces the fighter by a certain amount in either direction
                  */
-                return new SubactionShiftPosition(float.Parse(args[1]),float.Parse(args[2]),bool.Parse(args[3]))
+                return new SubactionShiftPosition(float.Parse(args[1]), float.Parse(args[2]), bool.Parse(args[3]));
             // ====== CONTROL SUBACTIONS ======\\
             case "ChangeAnim":
                 /* changeAnim animName:string
@@ -136,7 +142,7 @@ public class Subaction {
                  *      Creates a hitbox with the given name. Every pair of arguments from then after is the name of a value, and what to set it to.
                  *      Hitboxes will be able to parse the property name and extract the right value out.
                  */
-                return new SubactionCreateHitbox(args);
+                return new SubactionCreateHitbox(subactionString);
             case "ActivateHitbox":
                 /* activateHitbox name:string life:int
                  *      Activates the named hitbox, if it exists, for the given number of frames.
@@ -153,10 +159,11 @@ public class Subaction {
                  *      Creates a hitbox with the given name. Every pair of arguments from then after is the name of a value, and what to set it to.
                  *      Hitboxes will be able to parse the property name and extract the right value out.
                  */
-                return new SubactionModifyHitbox(args);
+                return new SubactionModifyHitbox(subactionString);
             default:
-                //Debug.LogWarning("Could not load subaction " + args[0]);
-                break;
+                Debug.LogWarning("Could not load subaction " + args[0]);
+                return null;
 
         }
     }
+}

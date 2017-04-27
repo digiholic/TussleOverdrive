@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
-public class SpriteLoader : MonoBehaviour {
+public class SpriteHandler : BattleComponent {
 
     public string directory;
     public int width;
@@ -64,7 +64,7 @@ public class SpriteLoader : MonoBehaviour {
         }
     }
 
-    public void ChangeSprite(string _sprite_name, int _frame = 0)
+    public void ChangeSprite(string _sprite_name)
     {
         if (_sprite_name == null)
         {
@@ -74,7 +74,7 @@ public class SpriteLoader : MonoBehaviour {
         if (sprites.ContainsKey(_sprite_name))
         {
             current_sprite = _sprite_name;
-            current_frame = _frame;
+            current_frame = 0;
             sprite_renderer.sprite = sprites[current_sprite][current_frame];
         }
         else
@@ -83,7 +83,16 @@ public class SpriteLoader : MonoBehaviour {
         }
     }
 
-    public void ChangeSubimage(int _frame, bool _loop=true)
+    public void ChangeSubimage(int _frame)
+    {
+        if (_frame < 0)
+            _frame += sprites[current_sprite].Count;
+        current_frame = Mathf.Min(_frame, sprites[current_sprite].Count - 1);
+        
+        sprite_renderer.sprite = sprites[current_sprite][current_frame];
+    }
+
+    public void ChangeSubimage(int _frame, bool _loop)
     {
         if (_frame < 0)
             _frame += sprites[current_sprite].Count;

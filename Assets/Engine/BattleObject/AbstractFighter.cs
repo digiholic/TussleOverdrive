@@ -21,27 +21,7 @@ public class AbstractFighter : MonoBehaviour {
     
     [HideInInspector]
     public float weight = 10.0f, gravity = -9.8f, max_fall_speed = -20.0f, max_ground_speed = 7.0f, run_speed = 11.0f, max_air_speed = 5.5f, crawl_speed = 2.5f, dodge_sepeed = 8.5f, friction = 0.3f, static_grip = 0.3f, pivot_grip = 0.6f, air_resistance = 0.2f, air_control = 0.2f, jump_height = 15.0f, short_hop_height = 8.5f, air_jump_height = 18.0f, fastfall_multiplier = 2.0f, hitstun_elasticity = 0.8f, shield_size = 1.0f, aerial_transition_speed = 9.0f, pixels_per_unit = 100;
-    /* Editor visible version
-    public float weight = 10.0f;
-    public float gravity = -9.8f;
-    public float max_fall_speed = -20.0f;
-    public float max_ground_speed = 7.0f;
-    public float run_speed = 11.0f;
-    public float max_air_speed = 5.5f;
-    public float crawl_speed = 2.5f;
-    public float dodge_sepeed = 8.5f;
-    public float friction = 0.3f;
-    public float static_grip = 0.3f;
-    public float pivot_grip = 0.6f;
-    public float air_resistance = 0.2f;
-    public float air_control = 0.2f;
-    public float jump_height = 15.0f;
-    public float short_hop_height = 8.5f;
-    public float air_jump_height = 18.0f;
-    public float fastfall_multiplier = 2.0f;
-    public float hitstun_elasticity = 0.8f;
-    public float shield_size = 1.0f;
-    */
+
     [HideInInspector]
     public int max_jumps = 1, heavy_land_lag = 4, wavedash_lag = 12;
 
@@ -53,14 +33,14 @@ public class AbstractFighter : MonoBehaviour {
     public int jumps = 0, facing = 1, landing_lag = 0, tech_window = 0, air_dodges = 1;
 
     [HideInInspector]
-    public float _xPreferred, _yPreferred, ground_elasticity = 0.0f, damage_percent = 0;
+    public float ground_elasticity = 0.0f, damage_percent = 0;
     
     [HideInInspector]
     public BattleController game_controller;
     
     
     private SpriteRenderer sprite;
-    private SpriteLoader sprite_loader;
+    private SpriteHandler sprite_loader;
     private Animator anim;
     private float last_x_axis;
     private float x_axis_delta;
@@ -74,11 +54,13 @@ public class AbstractFighter : MonoBehaviour {
     private Dictionary<string, AudioClip> sounds = new Dictionary<string, AudioClip>();
     public BattleObject battleObject;
 
-    public GameAction CurrentAction { get { return battleObject.CurrentAction; } }
     private PlatformPhase platform_phaser;
+
+    private MotionHandler motionHandler;
 
     void LoadFighterXML()
     {
+        battleObject = GetComponent<BattleObject>();
         data_xml = GetComponent<XMLLoader>();
         resource_path = data_xml.resource_path;   
 
@@ -129,8 +111,8 @@ public class AbstractFighter : MonoBehaviour {
             if (File.Exists(action_json_path))
             {
                 string action_json = File.ReadAllText(action_json_path);
-                battleObject.actions_file_json = JsonUtility.FromJson<ActionFile>(action_json);
-                battleObject.actions_file_json.BuildDict();
+                battleObject.GetActionHandler().actions_file_json = JsonUtility.FromJson<ActionFile>(action_json);
+                battleObject.GetActionHandler().actions_file_json.BuildDict();
             }
         }
         else
@@ -140,16 +122,15 @@ public class AbstractFighter : MonoBehaviour {
     }
 
     void Start() {
-        battleObject = GetComponent<BattleObject>();
         LoadFighterXML();
         sprite = GetComponent<SpriteRenderer>();
-        sprite_loader = GetComponent<SpriteLoader>();
+        sprite_loader = GetComponent<SpriteHandler>();
         sprite_loader.Initialize("Assets/Resources/" + resource_path + sprite_directory,sprite_prefix,pixels_per_unit);
         anim = GetComponent<Animator>();
         inputBuffer = GetComponent<InputBuffer>();
         sound_player = GetComponent<AudioSource>();
         platform_phaser = GetComponent<PlatformPhase>();
-
+        motionHandler = GetComponent<MotionHandler>();
         if (player_num % 2 == 0)
             facing = 1;
         else
@@ -157,8 +138,8 @@ public class AbstractFighter : MonoBehaviour {
             flip();
             facing = -1;
         }
-
-        battleObject.YSpeed = 0;
+        
+        motionHandler.ChangeYSpeed(0);
         jumps = max_jumps;
         
         game_controller = BattleController.current_battle;
@@ -198,10 +179,10 @@ public class AbstractFighter : MonoBehaviour {
         }
         else
         {
-            battleObject.YSpeed += gravity * 5 * Time.deltaTime;
-            if (battleObject.YSpeed < max_fall_speed || (battleObject.YSpeed < 0 && GetControllerAxis("Vertical") < -0.3))
+            motionHandler.ChangeYSpeedBy(gravity * 5 * Time.deltaTime);
+            if (motionHandler.YSpeed < max_fall_speed || (motionHandler.YSpeed < 0 && GetControllerAxis("Vertical") < -0.3))
             {
-                battleObject.YSpeed = max_fall_speed;
+                motionHandler.ChangeYSpeed(max_fall_speed);
             } 
         }
 
@@ -223,16 +204,16 @@ public class AbstractFighter : MonoBehaviour {
         battleObject.ManualUpdate();
         
         if (grounded)
-            accel(friction);
+            battleObject.GetMotionHandler().accel(friction);
         else
-            accel(air_resistance);
+            battleObject.GetMotionHandler().accel(air_resistance);
 
         
     }
 
     public void doAction(string _actionName)
     {
-        battleObject.doAction(_actionName);
+        BroadcastMessage("DoAction", _actionName);
     }
 
     /// <summary>
@@ -242,24 +223,6 @@ public class AbstractFighter : MonoBehaviour {
     public float GetDirectionRelative()
     {
         return GetControllerAxis("Horizontal") * facing;
-    }
-
-    public void accel(float _xFactor)
-    {
-        //TODO global friction/airControl values
-        float accel_fric = 1.0f; //friction
-        if (!grounded)
-            accel_fric = 1.0f; //air control
-
-        if (battleObject.XSpeed > _xPreferred)
-        {
-            float diff = battleObject.XSpeed - _xPreferred;
-            battleObject.XSpeed -= Mathf.Min(diff, _xFactor * accel_fric);
-        } else if (battleObject.XSpeed < _xPreferred)
-        {
-            float diff = _xPreferred - battleObject.XSpeed;
-            battleObject.XSpeed += Mathf.Min(diff, _xFactor * accel_fric);
-        }
     }
 
     public void flip()
@@ -316,25 +279,7 @@ public class AbstractFighter : MonoBehaviour {
         else
             doAction("NeutralAir");
     }
-    public void ChangeSprite(string sprite_name, int frame=0)
-    {
-
-        if (sprite_loader != null)
-            sprite_loader.ChangeSprite(sprite_name, frame);
-        if (anim != null)
-        {
-            if (anim.HasState(0,Animator.StringToHash(sprite_name)))
-                anim.CrossFade(sprite_name, 0f);
-        }
-            
-    }
-
-    public void ChangeSubimage(int frame, bool loop=true)
-    {
-        if (sprite_loader != null)
-            sprite_loader.ChangeSubimage(frame,loop);
-    }
-
+    
     public void PlaySound(string sound_name)
     {
         if (sounds.ContainsKey(sound_name))
@@ -401,8 +346,8 @@ public class AbstractFighter : MonoBehaviour {
 
         trajectory_vec *= _total_kb;
         //Debug.Log(trajectory_vec);
-        battleObject.XSpeed = trajectory_vec.x;
-        battleObject.YSpeed = trajectory_vec.y;
+        battleObject.BroadcastMessage("ChangeXSpeed",trajectory_vec.x);
+        battleObject.BroadcastMessage("ChangeYSpeed", trajectory_vec.y);
         //self.setSpeed((_total_kb) * di_multiplier, _trajectory)
     }
 

@@ -8,7 +8,7 @@ public class Fall : GameAction
     public override void stateTransitions()
     {
         base.stateTransitions();
-        StateTransitions.AirState(actor);
-        StateTransitions.CheckLedges(actor);
+        StateTransitions.AirState(actor.GetAbstractFighter());
+        StateTransitions.CheckLedges(actor.GetAbstractFighter());
     }
 }

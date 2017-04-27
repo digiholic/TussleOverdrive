@@ -7,8 +7,8 @@ public class Crouch : GameAction {
     public override void stateTransitions()
     {
         base.stateTransitions();
-        StateTransitions.CrouchState(actor);
-        StateTransitions.CheckGround(actor);
+        StateTransitions.CrouchState(actor.GetAbstractFighter());
+        StateTransitions.CheckGround(actor.GetAbstractFighter());
         //Platform Phase? See if it's better as it's own thing or better off here.
         /* Python code:
          * if self.frame > 0 and _actor.keyBuffered('down', _state = 1):
@@ -25,15 +25,15 @@ public class Crouch : GameAction {
     public override void TearDown(GameAction new_action)
     {
         base.TearDown(new_action);
-        actor._xPreferred = 0;
+        actor.BroadcastMessage("ChangeXPreferred", 0.0f);
         //Remove crouch armor
     }
 
     public override void Update()
     {
         base.Update();
-        actor.accel(actor.pivot_grip);
-        actor._xPreferred = actor.GetControllerAxis("Horizontal") * actor.crawl_speed;
+        actor.GetMotionHandler().accel(actor.GetAbstractFighter().pivot_grip);
+        actor.BroadcastMessage("ChangeXPreferred", actor.GetAbstractFighter().GetControllerAxis("Horizontal") * actor.GetAbstractFighter().crawl_speed);
         //actor.GetComponent<SpriteLoader>().printSprite();
     }
 

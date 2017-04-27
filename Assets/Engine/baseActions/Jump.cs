@@ -9,20 +9,20 @@ public class Jump : GameAction
     public override void Update()
     {
         base.Update();
-        
         if (current_frame == jump_frame)
         {
-            if (actor.GetControllerButton("Jump"))
-                actor.battleObject.YSpeed = actor.jump_height;
+            actor.BroadcastMessage("SetGrounded", false);
+            if (actor.GetAbstractFighter().GetControllerButton("Jump"))
+                actor.BroadcastMessage("ChangeYSpeed", actor.GetAbstractFighter().jump_height);
             else
-                actor.battleObject.YSpeed = actor.short_hop_height;
+                actor.BroadcastMessage("ChangeYSpeed", actor.GetAbstractFighter().short_hop_height);
 
-            if (Mathf.Abs(actor.battleObject.XSpeed) > actor.aerial_transition_speed)
+            if (Mathf.Abs(actor.GetMotionHandler().XSpeed) > actor.GetAbstractFighter().aerial_transition_speed)
             {
-                if (actor.battleObject.XSpeed < 0) //negative speed
-                    actor.battleObject.XSpeed = -actor.aerial_transition_speed;
+                if (actor.GetMotionHandler().XSpeed < 0) //negative speed
+                    actor.BroadcastMessage("ChangeXSpeed", -actor.GetAbstractFighter().aerial_transition_speed);
                 else
-                    actor.battleObject.XSpeed = actor.aerial_transition_speed;
+                    actor.BroadcastMessage("ChangeXSpeed", actor.GetAbstractFighter().aerial_transition_speed);
             }
             //actor.ChangeSprite("jump");
         }
@@ -38,11 +38,10 @@ public class Jump : GameAction
         //if (actor.GetControllerButton("Special")) //&& actor.CheckSmash("Up")
         //actor.doAction("UpSpecial")
         if (current_frame <= jump_frame)
-            StateTransitions.JumpState(actor);
+            StateTransitions.JumpState(actor.GetAbstractFighter());
         if (current_frame > jump_frame)
-            StateTransitions.AirState(actor);
+            StateTransitions.AirControl(actor.GetAbstractFighter());
         if (current_frame > last_frame)
-            actor.doAction("Fall");
-
+            actor.BroadcastMessage("DoAction", "Fall");
     }
 }

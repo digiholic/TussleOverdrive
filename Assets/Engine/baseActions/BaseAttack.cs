@@ -9,19 +9,19 @@ public class BaseAttack : GameAction {
         base.TearDown(new_action);
         foreach (KeyValuePair<string,Hitbox> entry in hitboxes)
         {
-            Destroy(entry.Value.gameObject);
+            GameObject.Destroy(entry.Value.gameObject);
         }
     }
 
     public override void stateTransitions()
     {
         base.stateTransitions();
-        StateTransitions.CheckGround(actor);
+        StateTransitions.CheckGround(actor.GetAbstractFighter());
         if (current_frame >= last_frame)
-            if(actor.grounded)
-                actor.doAction("NeutralAction");
+            if (actor.GetAbstractFighter().grounded)
+                actor.BroadcastMessage("DoAction", "NeutralAction");
             else
-                actor.doAction("Fall");
+                actor.BroadcastMessage("DoAction", "Fall");
     }
 }
 
@@ -35,7 +35,7 @@ public class AirAttack : GameAction
         base.TearDown(new_action);
         foreach (KeyValuePair<string, Hitbox> entry in hitboxes)
         {
-            Destroy(entry.Value.gameObject);
+            GameObject.Destroy(entry.Value.gameObject);
         }
     }
 
@@ -43,11 +43,11 @@ public class AirAttack : GameAction
     {
         base.stateTransitions();
         if (current_frame >= last_frame)
-            if (actor.grounded)
-                actor.doAction("NeutralAction");
+            if (actor.GetAbstractFighter().grounded)
+                actor.BroadcastMessage("DoAction", "NeutralAction");
             else
-                actor.doAction("Fall");
-        if (actor.grounded)
-            actor.doAction("Land");
+                actor.BroadcastMessage("DoAction", "Fall");
+        if (actor.GetAbstractFighter().grounded)
+            actor.BroadcastMessage("DoAction", "Land");
     }
 }
