@@ -28,7 +28,8 @@ public class GameAction {
     protected BattleObject actor;
     protected BattleController game_controller;
     
-    public bool cond = true;
+    public List<bool> cond_list = new List<bool> { true };
+    public int cond_depth = 0;
 
     public virtual void SetUp (BattleObject obj) {
         last_frame = length;
@@ -37,7 +38,7 @@ public class GameAction {
         game_controller = BattleController.current_battle;
         foreach (string subaction in set_up_actions.subactions)
         {
-            if (cond)
+            if (cond_list[cond_depth])
                 SubactionLoader.executeSubaction(subaction, actor, this);
         }
     }
@@ -53,12 +54,12 @@ public class GameAction {
         }
 
         foreach (string subaction in actions_before_frame.subactions)
-            if (cond)
+            if (cond_list[cond_depth])
                 SubactionLoader.executeSubaction(subaction, actor, this);
 
         if (actions_at_frame.ContainsKey(current_frame))
             foreach (string subaction in actions_at_frame[current_frame].subactions)
-                if (cond)
+                if (cond_list[cond_depth])
                     SubactionLoader.executeSubaction(subaction, actor, this);
 
         if (current_frame >= last_frame)
@@ -68,14 +69,14 @@ public class GameAction {
     public virtual void OnLastFrame()
     {
         foreach (string subaction in actions_at_last_frame.subactions)
-            if (cond)
+            if (cond_list[cond_depth])
                 SubactionLoader.executeSubaction(subaction, actor, this);
     }
 
     public virtual void LateUpdate() //This way the frame gets incremented after everything else
     {
         foreach (string subaction in actions_after_frame.subactions)
-            if (cond)
+            if (cond_list[cond_depth])
                 SubactionLoader.executeSubaction(subaction, actor, this);
         current_frame++;
     }
@@ -89,28 +90,28 @@ public class GameAction {
             GameObject.Destroy(hbox.gameObject);
         }
         foreach (string subaction in tear_down_actions.subactions)
-            if (cond)
+            if (cond_list[cond_depth])
                 SubactionLoader.executeSubaction(subaction, actor, this);
     }
 
     public virtual void stateTransitions()
     {
         foreach (string subaction in state_transition_actions.subactions)
-            if (cond)
+            if (cond_list[cond_depth])
                 SubactionLoader.executeSubaction(subaction, actor, this);
     }
 
     public virtual void onClank()
     {
         foreach (string subaction in actions_on_clank.subactions)
-            if (cond)
+            if (cond_list[cond_depth])
                 SubactionLoader.executeSubaction(subaction, actor, this);
     }
 
     public virtual void onPrevail()
     {
         foreach (string subaction in actions_on_prevail.subactions)
-            if (cond)
+            if (cond_list[cond_depth])
                 SubactionLoader.executeSubaction(subaction, actor, this);
     }
 

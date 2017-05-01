@@ -107,6 +107,47 @@ public class AbstractFighter : MonoBehaviour {
             heavy_land_lag = Mathf.FloorToInt(GetFromXml("heavy_land_lag", heavy_land_lag));
             wavedash_lag = Mathf.FloorToInt(GetFromXml("wavedash_lag", wavedash_lag));
 
+            /*
+            battleObject.SetVar("fighter_name", data_xml.SelectSingleNode("//fighter/name").GetString());
+            battleObject.SetVar("franchise_icon", data_xml.SelectSingleNode("//fighter/icon").GetString());
+            battleObject.SetVar("css_icon", data_xml.SelectSingleNode("//fighter/css_icon").GetString());
+            battleObject.SetVar("css_portrait", data_xml.SelectSingleNode("//fighter/css_portrait").GetString());
+
+            article_path = data_xml.SelectSingleNode("//fighter/article_path").GetString();
+            article_file = data_xml.SelectSingleNode("//fighter/articles").GetString();
+            sound_path = data_xml.SelectSingleNode("//fighter/sound_path").GetString();
+
+            action_file = data_xml.SelectSingleNode("//fighter/actions").GetString();
+
+            //Load the stats
+            battleObject.SetVar("weight", data_xml.SelectSingleNode("//fighter/stats/weight"));
+            battleObject.SetVar("gravity", data_xml.SelectSingleNode("//fighter/stats/gravity"));
+            battleObject.SetVar("max_fall_speed", data_xml.SelectSingleNode("//fighter/stats/max_fall_speed"));
+            battleObject.SetVar("max_ground_speed", data_xml.SelectSingleNode("//fighter/stats/max_ground_speed"));
+            battleObject.SetVar("run_speed", data_xml.SelectSingleNode("//fighter/stats/run_speed"));
+            battleObject.SetVar("max_air_speed", data_xml.SelectSingleNode("//fighter/stats/max_air_speed"));
+            battleObject.SetVar("aerial_transition_speed", data_xml.SelectSingleNode("//fighter/stats/aerial_transition_speed"));
+            battleObject.SetVar("crawl_speed", data_xml.SelectSingleNode("//fighter/stats/crawl_speed"));
+            battleObject.SetVar("dodge_speed", data_xml.SelectSingleNode("//fighter/stats/dodge_speed"));
+            battleObject.SetVar("friction", data_xml.SelectSingleNode("//fighter/stats/friction"));
+            battleObject.SetVar("static_grip", data_xml.SelectSingleNode("//fighter/stats/static_grip"));
+            battleObject.SetVar("pivot_grip", data_xml.SelectSingleNode("//fighter/stats/pivot_grip"));
+            battleObject.SetVar("air_resistance", data_xml.SelectSingleNode("//fighter/stats/air_resistance"));
+            battleObject.SetVar("air_control", data_xml.SelectSingleNode("//fighter/stats/air_control"));
+            battleObject.SetVar("jump_height", data_xml.SelectSingleNode("//fighter/stats/jump_height"));
+            battleObject.SetVar("short_hop_height", data_xml.SelectSingleNode("//fighter/stats/short_hop_height"));
+            battleObject.SetVar("air_jump_height", data_xml.SelectSingleNode("//fighter/stats/air_jump_height"));
+            battleObject.SetVar("fastfall_multiplier", data_xml.SelectSingleNode("//fighter/stats/fastfall_multiplier"));
+
+            battleObject.SetVar("hitstun_elasticity", data_xml.SelectSingleNode("//fighter/stats/hitstun_elasticity"));
+            battleObject.SetVar("shield_size", data_xml.SelectSingleNode("//fighter/stats/shield_size"));
+            battleObject.SetVar("max_jumps", data_xml.SelectSingleNode("//fighter/stats/max_jumps"));
+            battleObject.SetVar("heavy_landing_lag", data_xml.SelectSingleNode("//fighter/stats/heavy_landing_lag"));
+            battleObject.SetVar("wavedash_lag", data_xml.SelectSingleNode("//fighter/stats/wavedash_lag"));
+
+            */
+
+
             string action_json_path = Path.Combine("Assets/Resources/" + resource_path, action_file);
             if (File.Exists(action_json_path))
             {

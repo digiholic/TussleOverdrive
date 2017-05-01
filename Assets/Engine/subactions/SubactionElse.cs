@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class SubactionElse : Subaction {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public SubactionElse()
+    {
+    }
+
+    public override void Execute(BattleObject obj, GameAction action)
+    {
+        action.cond_list[action.cond_depth] = !action.cond_list[action.cond_depth];
+    }
+
+    public override List<string> GetRequirements()
+    {
+        List<string> retList = new List<string>();
+        retList.Add("ActionHandler");
+        return retList;
+    }
 }

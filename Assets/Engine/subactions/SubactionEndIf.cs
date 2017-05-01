@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class SubactionEndIf : Subaction {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public SubactionEndIf()
+    {
+    }
+
+    public override void Execute(BattleObject obj, GameAction action)
+    {
+        action.cond_depth--;
+        if (action.cond_depth < 0) action.cond_depth = 0;
+    }
+
+    public override List<string> GetRequirements()
+    {
+        List<string> retList = new List<string>();
+        retList.Add("ActionHandler");
+        return retList;
+    }
 }

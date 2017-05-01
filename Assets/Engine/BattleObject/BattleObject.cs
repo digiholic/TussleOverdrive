@@ -9,7 +9,8 @@ using UnityEngine;
 /// fighters to projectiles to stage hazards.
 /// </summary>
 /// 
-public class BattleObject : MonoBehaviour {
+public class BattleObject : MonoBehaviour
+{
     /* Each component has a public accessor that will route commands to the right objects for the purposes of reading data,
      * but most methods should be called via the BroadcastMessage function, so that it could potentially hit multiple Components.
      */
@@ -26,7 +27,8 @@ public class BattleObject : MonoBehaviour {
     public Dictionary<string, object> variable = new Dictionary<string, object>();
 
     // Use this for initialization
-    void Awake () {
+    void Awake()
+    {
         abstractFighter = GetComponent<AbstractFighter>();
         actionHandler = GetComponent<ActionHandler>();
         environmentCollider = GetComponent<EnvironmentCollider>();
@@ -36,16 +38,17 @@ public class BattleObject : MonoBehaviour {
         motionHandler = GetComponent<MotionHandler>();
         platform = GetComponent<Platform>();
         spriteHandler = GetComponent<SpriteHandler>();
-}
-	
-	// ManualUpdate is called once per frame by the calling object
-	public void ManualUpdate () {
-        
+    }
+
+    // ManualUpdate is called once per frame by the calling object
+    public void ManualUpdate()
+    {
+
     }
 
     public void Update()
     {
-        
+
     }
 
     /// <summary>
@@ -60,7 +63,8 @@ public class BattleObject : MonoBehaviour {
         bool ret = true;
         foreach (string req in subact.GetRequirements())
         {
-            switch (req) {
+            switch (req)
+            {
                 case "ActionHandler":
                     ret = ret && (actionHandler != null); //if ret is true, and the action handler is set, it stays true
                     break;
@@ -75,6 +79,28 @@ public class BattleObject : MonoBehaviour {
         return ret;
     }
 
+    public void SetVar(string var_name, object obj)
+    {
+        variable[var_name] = obj;
+    }
+
+    /// <summary>
+    /// Gets the variable with the given name from the variables list
+    /// </summary>
+    /// <param name="var_name">The name of the variable to pull</param>
+    /// <returns>The variable from the dict as an object</returns>
+    public object GetVar(string var_name)
+    {
+        if (variable.ContainsKey(var_name))
+        {
+            return variable[var_name];
+        }
+        else
+        {
+            Debug.LogWarning("Could not find variable " + var_name + " in BattleObject " + this.ToString());
+            return null;
+        }
+    }
 
     /// <summary>
     /// Gets the AbstractFighter component of the object.
