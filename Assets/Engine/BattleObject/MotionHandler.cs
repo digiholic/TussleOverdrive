@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class MotionHandler : BattleComponent {
     private CharacterController _charController;
 
@@ -14,7 +15,10 @@ public class MotionHandler : BattleComponent {
     // Use this for initialization
     void Start () {
         _charController = GetComponent<CharacterController>();
-
+        if (_charController == null)
+        {
+            _charController = gameObject.AddComponent<CharacterController>();
+        }
     }
 
     // Update is called once per frame
@@ -27,7 +31,10 @@ public class MotionHandler : BattleComponent {
         {
             BroadcastMessage("SetGrounded", false);
         }
+    }
 
+    void LateUpdate()
+    {
         Vector3 movement = new Vector3(0, 0, 0);
         movement.y = YSpeed;
         movement.x = XSpeed;
@@ -118,6 +125,24 @@ public class MotionHandler : BattleComponent {
         {
             float diff = XPreferred - XSpeed;
             XSpeed += Mathf.Min(diff, _xFactor);
+        }
+    }
+
+    /// <summary>
+    /// The Single-arguemtn version of CalcGrav, for use with SendMessage
+    /// </summary>
+    /// <param name="args">A list containing the gravity and the max_fall_speed, in that order</param>
+    public void CalcGrav(float[] args)
+    {
+        CalcGrav(args[0], args[1]);
+    }
+
+    public void CalcGrav(float gravity, float max_fall_speed)
+    {
+        ChangeYSpeedBy(gravity * 5 * Time.deltaTime);
+        if (YSpeed < max_fall_speed)
+        {
+            ChangeYSpeed(max_fall_speed);
         }
     }
 }

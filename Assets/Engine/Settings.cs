@@ -45,12 +45,14 @@ public class Settings : MonoBehaviour {
     //public string[] player_colors = new string[] { "#f54e4e", "#4e54f5", "#f5f54e", "#67f54e" };
     public Color[] player_colors = new Color[4];
 
+    public SettingsPreset preset;
+
     //Used for static access of settings
     public static Settings current_settings = null;
 
     //Private variables
     private AudioManager audio_manager;
-
+    
     public void SaveSettings()
     {
         string json = JsonUtility.ToJson(this);
@@ -80,6 +82,7 @@ public class Settings : MonoBehaviour {
     void Start()
     {
         audio_manager = GetComponent<AudioManager>();
+        preset = GetComponent<SettingsPreset>();
     }
 
     public void ChangeBGMVolume(float vol)

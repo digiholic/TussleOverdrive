@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class EnvironmentCollider : BattleComponent {
     public Vector3 center_offset;
     public float radius;

@@ -29,8 +29,8 @@ public class Death : MonoBehaviour {
             if (fighter != null)
             {
                 fighter.damage_percent = 0;
-                fighter.battleObject.BroadcastMessage("ChangeXSpeed",0.0f);
-                fighter.battleObject.BroadcastMessage("ChangeYSpeed",0.0f);
+                fighter.BattleObject.BroadcastMessage("ChangeXSpeed",0.0f);
+                fighter.BattleObject.BroadcastMessage("ChangeYSpeed",0.0f);
             }
         }
     }

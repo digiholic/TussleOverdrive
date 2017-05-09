@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
+[System.Serializable]
 public class SpriteHandler : BattleComponent {
 
     public string directory;
-    public int width;
+    public string default_sprite;
     public string prefix;
     public float pixelsPerUnit = 100.0f;
 
@@ -16,17 +17,35 @@ public class SpriteHandler : BattleComponent {
 
     private SpriteRenderer sprite_renderer;
 
+    void LoadSpriteXML()
+    {
+        XMLLoader data_xml = GetComponent<XMLLoader>();
+
+        if (data_xml != null)
+        {
+            string resource_path = data_xml.resource_path;
+            string sprite_directory = data_xml.SelectSingleNode("//fighter/sprite_directory").GetString();
+
+            directory = "Assets/Resources/" + resource_path + sprite_directory;
+            prefix = data_xml.SelectSingleNode("//fighter/sprite_prefix").GetString();
+            default_sprite = data_xml.SelectSingleNode("//fighter/default_sprite").GetString();
+            pixelsPerUnit = float.Parse(data_xml.SelectSingleNode("//fighter/pixels_per_unit").GetString());
+
+        }
+    }
+
     // Use this for initialization
 	void Start() {
         sprite_renderer = GetComponent<SpriteRenderer>();
+        if (sprite_renderer == null)
+        {
+            sprite_renderer = gameObject.AddComponent<SpriteRenderer>();
+        }
     }
 
-    public void Initialize(string dirname,string pref,float ppu)
+    public void Initialize()
     {
-        directory = dirname;
-        prefix = pref;
-        pixelsPerUnit = ppu;
-
+        LoadSpriteXML();
         DirectoryInfo info = new DirectoryInfo(directory);
         string sprite_json_path = Path.Combine(info.FullName, "sprites.json");
         
@@ -105,18 +124,6 @@ public class SpriteHandler : BattleComponent {
            
 
         sprite_renderer.sprite = sprites[current_sprite][current_frame];
-    }
-
-    private Sprite LoadNewSprite(string FilePath, int frameNo)
-    {
-        // Load a PNG or JPG image from disk to a Texture2D, assign this texture to a new sprite and return its reference
-
-        Texture2D SpriteTexture = LoadTexture(FilePath);
-
-        if ((width * (frameNo+1)) > SpriteTexture.width)
-            return null;
-        else
-            return Sprite.Create(SpriteTexture, new Rect(width * frameNo, 0, width, SpriteTexture.height), new Vector2(0.5f, 0.5f), pixelsPerUnit);
     }
 
     private Texture2D LoadTexture(string FilePath)

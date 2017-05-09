@@ -46,7 +46,7 @@ public class StateTransitions : ScriptableObject {
         //doAction("DownSpecial")
         if (actor.KeyBuffered(InputType.Jump))
             actor.doAction("Jump");
-        if (actor.KeyBuffered(InputType.Down,threshold:-0.1f) && actor.battleObject.GetActionHandler().CurrentAction.GetType() != typeof(CrouchGetup))
+        if (actor.KeyBuffered(InputType.Down,threshold:-0.1f) && actor.BattleObject.GetActionHandler().CurrentAction.GetType() != typeof(CrouchGetup))
             actor.doAction("CrouchGetup");
     }
 
@@ -175,7 +175,42 @@ public class StateTransitions : ScriptableObject {
 
     public static void LedgeState(AbstractFighter actor)
     {
-
+        /*
+         * (key,invkey) = _actor.getForwardBackwardKeys()
+    _actor.setSpeed(0, _actor.getFacingDirection())
+    if _actor.keyHeld('shield'):
+        _actor.ledge_lock = True
+        _actor.doAction('LedgeRoll')
+    elif _actor.keyHeld('attack'):
+        _actor.ledge_lock = True
+        _actor.doAction('LedgeAttack')
+    elif _actor.keyHeld('jump'):
+        _actor.ledge_lock = True
+        apply_invuln = statusEffect.TemporaryHitFilter(_actor,hurtbox.Intangibility(_actor),6)
+        apply_invuln.activate()
+        _actor.doAction('Jump')
+    elif _actor.keyHeld(key):
+        _actor.ledge_lock = True
+        _actor.doAction('LedgeGetup')
+    elif _actor.keyHeld(invkey):
+        _actor.ledge_lock = True
+        apply_invuln = statusEffect.TemporaryHitFilter(_actor,hurtbox.Intangibility(_actor),6)
+        apply_invuln.activate()
+        _actor.doAction('Fall')
+    elif _actor.keyHeld('down'):
+        _actor.ledge_lock = True
+        apply_invuln = statusEffect.TemporaryHitFilter(_actor,hurtbox.Intangibility(_actor),6)
+        apply_invuln.activate()
+        _actor.doAction('Fall')
+        */
+        if (actor.KeyBuffered(InputType.Jump))
+        {
+            actor.doAction("Jump");
+        }
+        else if (actor.KeyHeld(InputTypeUtil.GetBackward(actor)))
+        {
+            actor.doAction("Fall");
+        }
     }
 
     public static void GrabbingState(AbstractFighter actor)
@@ -191,9 +226,9 @@ public class StateTransitions : ScriptableObject {
     public static void AirControl(AbstractFighter actor)
     {
         actor.BroadcastMessage("ChangeXPreferred", actor.GetControllerAxis("Horizontal") * actor.max_air_speed);
-        if (Mathf.Abs(actor.battleObject.GetMotionHandler().XSpeed) > actor.max_air_speed)
-            actor.battleObject.GetMotionHandler().accel(actor.air_control);
-        if (Mathf.Abs(actor.battleObject.GetMotionHandler().YSpeed) > Mathf.Abs(actor.max_fall_speed))
+        if (Mathf.Abs(actor.BattleObject.GetMotionHandler().XSpeed) > actor.max_air_speed)
+            actor.BattleObject.GetMotionHandler().accel(actor.air_control);
+        if (Mathf.Abs(actor.BattleObject.GetMotionHandler().YSpeed) > Mathf.Abs(actor.max_fall_speed))
             actor.landing_lag = actor.heavy_land_lag;
     }
     
@@ -204,7 +239,19 @@ public class StateTransitions : ScriptableObject {
 
     public static void CheckLedges(AbstractFighter actor)
     {
-        //TODO
+        if (!actor.LedgeLock) //If the lock is active, no need to bother calculating anything
+        {
+            foreach (Ledge ledge in actor.GetLedges())
+            {
+                if (!actor.KeyHeld(InputType.Down))
+                {
+                    if ((ledge.grabSide == Ledge.Side.LEFT) && actor.KeyHeld(InputType.Right))
+                        ledge.SendMessage("FighterGrabs", actor);
+                    else if ((ledge.grabSide == Ledge.Side.RIGHT) && actor.KeyHeld(InputType.Left))
+                        ledge.SendMessage("FighterGrabs", actor);
+                }
+            }
+        }
     }
 
     public static void CheckGround(AbstractFighter actor)

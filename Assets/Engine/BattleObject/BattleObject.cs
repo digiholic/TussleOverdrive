@@ -9,8 +9,19 @@ using UnityEngine;
 /// fighters to projectiles to stage hazards.
 /// </summary>
 /// 
+[System.Serializable]
 public class BattleObject : MonoBehaviour
 {
+    /// <summary>
+    /// DebugLevel will be checked against all throughout the object to determine when to log information.
+    /// 
+    /// 0: None - No information is printed.
+    /// 1: Error - Print when an error occurs.
+    /// 2: Debug - Prints various debug information as needed in code.
+    /// 3: All - Prints everything. WARNING: HUGE PERFORMANCE LOSS!
+    /// </summary>
+    public int DebugLevel = 2;
+
     /* Each component has a public accessor that will route commands to the right objects for the purposes of reading data,
      * but most methods should be called via the BroadcastMessage function, so that it could potentially hit multiple Components.
      */
@@ -26,6 +37,10 @@ public class BattleObject : MonoBehaviour
 
     public Dictionary<string, object> variable = new Dictionary<string, object>();
 
+    //These are used only when serializing the main object
+    [SerializeField,HideInInspector]
+    private string abstractFighterJSON, actionHandlerJSON, environmentColliderJSON, hitboxLoaderJSON, hurtboxLoaderJSON, modelHandlerJSON, motionHandlerJSON, platformJSON, spriteHandlerJSON = "";
+    
     // Use this for initialization
     void Awake()
     {
@@ -38,6 +53,53 @@ public class BattleObject : MonoBehaviour
         motionHandler = GetComponent<MotionHandler>();
         platform = GetComponent<Platform>();
         spriteHandler = GetComponent<SpriteHandler>();
+    }
+
+    public void Start()
+    {
+        //Debug.Log(ToJson(true));
+        FromJson(ToJson());
+    }
+
+    public string ToJson(bool prettyPrint = false)
+    {
+        if (abstractFighter != null)
+            abstractFighterJSON = JsonUtility.ToJson(abstractFighter);
+        if (actionHandler != null)
+            actionHandlerJSON = JsonUtility.ToJson(actionHandler);
+        if (environmentCollider != null)
+            environmentColliderJSON = JsonUtility.ToJson(environmentCollider);
+        if (hitboxLoader != null)
+            hitboxLoaderJSON = JsonUtility.ToJson(hitboxLoader);
+        if (hurtboxLoader != null)
+            hurtboxLoaderJSON = JsonUtility.ToJson(hurtboxLoader);
+        if (modelHandler != null)
+            modelHandlerJSON = JsonUtility.ToJson(modelHandler);
+        if (motionHandler != null)
+            motionHandlerJSON = JsonUtility.ToJson(motionHandler);
+        if (platform != null)
+            platformJSON = JsonUtility.ToJson(platform);
+        if (spriteHandler != null)
+            spriteHandlerJSON = JsonUtility.ToJson(spriteHandler);
+        PrintDebug(this, 2, JsonUtility.ToJson(this, true));
+        return JsonUtility.ToJson(this,prettyPrint);
+    }
+
+    public void FromJson(string JSONObject)
+    {
+        JsonUtility.FromJsonOverwrite(JSONObject, this);
+        if (abstractFighterJSON != "")
+        {
+            if (GetComponent<AbstractFighter>() == null)
+                abstractFighter = gameObject.AddComponent<AbstractFighter>();
+            JsonUtility.FromJsonOverwrite(abstractFighterJSON, abstractFighter);
+        }
+        if (actionHandlerJSON != "")
+        {
+            if (GetComponent<ActionHandler>() == null)
+                actionHandler = gameObject.AddComponent<ActionHandler>();
+            JsonUtility.FromJsonOverwrite(actionHandlerJSON, actionHandler);
+        }
     }
 
     // ManualUpdate is called once per frame by the calling object
@@ -181,5 +243,17 @@ public class BattleObject : MonoBehaviour
     public SpriteHandler GetSpriteHandler()
     {
         return spriteHandler;
+    }
+
+    public void PrintDebug(object callingObject, int debugLevel, string message)
+    {
+        if (DebugLevel >= debugLevel)
+        {
+            string retval = "[" + System.DateTime.Now.ToString(@"MM\/dd\/yyyy h\:mm tt") + "]";
+            retval += callingObject.GetType().Name;
+            retval += " - ";
+            retval += message;
+            Debug.Log(retval);
+        }
     }
 }

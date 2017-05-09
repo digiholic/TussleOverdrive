@@ -1,15 +1,36 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
+[System.Serializable]
 public class ActionHandler : BattleComponent {
     private GameAction _current_action;
     public GameAction CurrentAction { get { return _current_action; } }
 
-    public ActionFile actions_file_json = new ActionFile();
-    
+    private ActionFile actions_file_json = new ActionFile();
+
+    public string action_json_path;
+
+    void LoadActionXML()
+    {
+        XMLLoader data_xml = GetComponent<XMLLoader>();
+
+        if (data_xml != null)
+        {
+            action_json_path = Path.Combine("Assets/Resources/" + data_xml.resource_path, data_xml.SelectSingleNode("//fighter/actions").GetString());
+
+            if (File.Exists(action_json_path))
+            {
+                string action_json = File.ReadAllText(action_json_path);
+                LoadActionJSON(action_json);
+            }
+        }
+    }
+
     // Use this for initialization
     void Start () {
+        LoadActionXML();
         _current_action = new NeutralAction();
         _current_action.SetDynamicAction(actions_file_json.Get("NeutralAction"));
         _current_action.SetUp(battleObject);
@@ -31,6 +52,12 @@ public class ActionHandler : BattleComponent {
         old_action.TearDown(_current_action);
         _current_action.SetUp(battleObject);
     }
+    
+    public void LoadActionJSON(string action_json)
+    {
+        actions_file_json = JsonUtility.FromJson<ActionFile>(action_json);
+        actions_file_json.BuildDict();
+    }
 
     public static GameAction LoadAction(string _name)
     {
@@ -46,6 +73,7 @@ public class ActionHandler : BattleComponent {
             case "Stop": return new Stop();
             case "Land": return new Land();
             case "Dash": return new Dash();
+            case "LedgeGrab": return new LedgeGrab();
 
             //Attacks
             case "NeutralAttack": return new BaseAttack();

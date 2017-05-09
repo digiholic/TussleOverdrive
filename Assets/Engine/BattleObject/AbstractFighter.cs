@@ -5,19 +5,19 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.Profiling;
 
-public class AbstractFighter : MonoBehaviour {
+[System.Serializable]
+public class AbstractFighter : BattleComponent {
     //public string fighter_xml_file = "";
     private string resource_path = "";
     public int player_num = 0;
 
+    public string fighter_name = "Unknown";
+    public string franchise_icon = "Assets/Sprites/Defaults/franchise_icon.png";
+    public string css_icon = "Assets/Sprites/Defaults/css_icon.png";
+    public string css_portrait = "Assets/Sprites/Default/css_portrait.png";
+
     [HideInInspector]
-    public string fighter_name = "Unknown", franchise_icon = "Assets/Sprites/Defaults/franchise_icon.png", css_icon = "Assets/Sprites/Defaults/css_icon.png", css_portrait = "Assets/Sprites/Default/css_portrait.png";
-    [HideInInspector]
-    public string sprite_directory = "./sprites/", sprite_prefix = "", default_sprite = "idle";
-    [HideInInspector]
-    public string article_path = "", article_file = "", sound_path = "";
-    [HideInInspector]
-    public string action_file = "";
+    public string sound_path = "";
     
     [HideInInspector]
     public float weight = 10.0f, gravity = -9.8f, max_fall_speed = -20.0f, max_ground_speed = 7.0f, run_speed = 11.0f, max_air_speed = 5.5f, crawl_speed = 2.5f, dodge_sepeed = 8.5f, friction = 0.3f, static_grip = 0.3f, pivot_grip = 0.6f, air_resistance = 0.2f, air_control = 0.2f, jump_height = 15.0f, short_hop_height = 8.5f, air_jump_height = 18.0f, fastfall_multiplier = 2.0f, hitstun_elasticity = 0.8f, shield_size = 1.0f, aerial_transition_speed = 9.0f, pixels_per_unit = 100;
@@ -38,29 +38,30 @@ public class AbstractFighter : MonoBehaviour {
     [HideInInspector]
     public BattleController game_controller;
     
-    
     private SpriteRenderer sprite;
     private SpriteHandler sprite_loader;
     private Animator anim;
+    private InputBuffer inputBuffer;
+    private XMLLoader data_xml;
+    private AudioSource sound_player;
+    private PlatformPhase platform_phaser;
+    private Collider coll;
+    public BattleObject BattleObject { get { return battleObject; } set { battleObject = value; } }
+
     private float last_x_axis;
     private float x_axis_delta;
     private float last_y_axis;
     private float y_axis_delta;
-    private InputBuffer inputBuffer;
-    private XMLLoader data_xml;
-
-    private AudioSource sound_player;
     private List<HitboxLock> hitbox_locks = new List<HitboxLock>();
     private Dictionary<string, AudioClip> sounds = new Dictionary<string, AudioClip>();
-    public BattleObject battleObject;
 
-    private PlatformPhase platform_phaser;
+    private List<Collider> contacted_colliders = new List<Collider>();
+    private List<Ledge> contacted_ledges = new List<Ledge>();
 
-    private MotionHandler motionHandler;
+    public bool LedgeLock { get; set; }
 
     void LoadFighterXML()
     {
-        battleObject = GetComponent<BattleObject>();
         data_xml = GetComponent<XMLLoader>();
         resource_path = data_xml.resource_path;   
 
@@ -70,18 +71,9 @@ public class AbstractFighter : MonoBehaviour {
             franchise_icon = data_xml.SelectSingleNode("//fighter/icon").GetString();
             css_icon = data_xml.SelectSingleNode("//fighter/css_icon").GetString();
             css_portrait = data_xml.SelectSingleNode("//fighter/css_portrait").GetString();
-
-            sprite_directory = data_xml.SelectSingleNode("//fighter/sprite_directory").GetString();
-            sprite_prefix = data_xml.SelectSingleNode("//fighter/sprite_prefix").GetString();
-            default_sprite = data_xml.SelectSingleNode("//fighter/default_sprite").GetString();
-            pixels_per_unit = float.Parse(data_xml.SelectSingleNode("//fighter/pixels_per_unit").GetString());
-
-            article_path = data_xml.SelectSingleNode("//fighter/article_path").GetString();
-            article_file = data_xml.SelectSingleNode("//fighter/articles").GetString();
+            
             sound_path = data_xml.SelectSingleNode("//fighter/sound_path").GetString();
-
-            action_file = data_xml.SelectSingleNode("//fighter/actions").GetString();
-
+            
             //Load the stats
             weight = GetFromXml("weight", weight);
             gravity = GetFromXml("gravity", gravity);
@@ -147,14 +139,6 @@ public class AbstractFighter : MonoBehaviour {
 
             */
 
-
-            string action_json_path = Path.Combine("Assets/Resources/" + resource_path, action_file);
-            if (File.Exists(action_json_path))
-            {
-                string action_json = File.ReadAllText(action_json_path);
-                battleObject.GetActionHandler().actions_file_json = JsonUtility.FromJson<ActionFile>(action_json);
-                battleObject.GetActionHandler().actions_file_json.BuildDict();
-            }
         }
         else
         {
@@ -162,16 +146,39 @@ public class AbstractFighter : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// There are several pieces of AbstractFighter that are broken off into other scripts for
+    /// the sake of code organization. Make sure they're all loaded here.
+    /// </summary>
+    private void LoadComponents()
+    {
+
+        inputBuffer = GetComponent<InputBuffer>();
+        if (inputBuffer == null)
+        {
+            inputBuffer = gameObject.AddComponent<InputBuffer>();
+            inputBuffer.playerNum = player_num;
+        }
+            
+
+        platform_phaser = GetComponent<PlatformPhase>();
+        if (platform_phaser == null)
+            platform_phaser = gameObject.AddComponent<PlatformPhase>();
+
+        if (GetComponent<Death>() == null)
+            gameObject.AddComponent<Death>();
+    }
+
     void Start() {
+        LoadComponents();
         LoadFighterXML();
         sprite = GetComponent<SpriteRenderer>();
         sprite_loader = GetComponent<SpriteHandler>();
-        sprite_loader.Initialize("Assets/Resources/" + resource_path + sprite_directory,sprite_prefix,pixels_per_unit);
+        sprite_loader.Initialize();
         anim = GetComponent<Animator>();
-        inputBuffer = GetComponent<InputBuffer>();
         sound_player = GetComponent<AudioSource>();
-        platform_phaser = GetComponent<PlatformPhase>();
-        motionHandler = GetComponent<MotionHandler>();
+        coll = GetComponent<Collider>();
+
         if (player_num % 2 == 0)
             facing = 1;
         else
@@ -180,7 +187,7 @@ public class AbstractFighter : MonoBehaviour {
             facing = -1;
         }
         
-        motionHandler.ChangeYSpeed(0);
+        SendMessage("ChangeYSpeed", 0f);
         jumps = max_jumps;
         
         game_controller = BattleController.current_battle;
@@ -200,6 +207,8 @@ public class AbstractFighter : MonoBehaviour {
                 //Resources.Load<AudioClip>(filename);
             }
         }
+
+        //Debug.Log(JsonUtility.ToJson(this));
     }
 
     private float GetFromXml(string stat_name, float default_value)
@@ -215,16 +224,10 @@ public class AbstractFighter : MonoBehaviour {
     void Update () {
         //Set gravity, or reset jumps
         if (grounded)
-        {
-            jumps = max_jumps;
-        }
+            Rest();
         else
         {
-            motionHandler.ChangeYSpeedBy(gravity * 5 * Time.deltaTime);
-            if (motionHandler.YSpeed < max_fall_speed || (motionHandler.YSpeed < 0 && GetControllerAxis("Vertical") < -0.3))
-            {
-                motionHandler.ChangeYSpeed(max_fall_speed);
-            } 
+            SendMessage("CalcGrav",new float[] { gravity, max_fall_speed });
         }
 
         //Set horizontal and vertical deltas
@@ -248,8 +251,6 @@ public class AbstractFighter : MonoBehaviour {
             battleObject.GetMotionHandler().accel(friction);
         else
             battleObject.GetMotionHandler().accel(air_resistance);
-
-        
     }
 
     public void doAction(string _actionName)
@@ -456,6 +457,54 @@ public class AbstractFighter : MonoBehaviour {
         File.WriteAllText(action_json_path, JsonUtility.ToJson(actions_file_json, true));
     }
     */
+    /////////////////////////////////////////////////////////////////////////////////////////
+    //                                    TRIGGERS                                         //
+    /////////////////////////////////////////////////////////////////////////////////////////
+    void OnTriggerEnter(Collider other)
+    {
+        if (!other.transform.IsChildOf(this.transform))
+        {
+            contacted_colliders.Add(other);
+            battleObject.PrintDebug(this, 3, "Enterred Collider " + other);
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (!other.transform.IsChildOf(this.transform))
+        {
+            if (contacted_colliders.Contains(other))
+                contacted_colliders.Remove(other);
+            battleObject.PrintDebug(this, 3, "Left Collider " + other);
+        }
+    }
+
+    public List<Collider> GetCollisionsWithLayer(string layer)
+    {
+        List<Collider> retlist = new List<Collider>();
+        foreach (Collider col in contacted_colliders)
+        {
+            if (col.gameObject.layer == LayerMask.NameToLayer(layer))
+                retlist.Add(col);
+        }
+        return retlist;
+    }
+
+    public void EnterLedge(Ledge ledge)
+    {
+        contacted_ledges.Add(ledge);
+    }
+
+    public void ExitLedge(Ledge ledge)
+    {
+        if (contacted_ledges.Contains(ledge))
+            contacted_ledges.Remove(ledge);
+    }
+
+    public List<Ledge> GetLedges()
+    {
+        return contacted_ledges;
+    }
 
     /////////////////////////////////////////////////////////////////////////////////////////
     //                              PRIVATE HELPER METHODS                                 //
@@ -474,5 +523,29 @@ public class AbstractFighter : MonoBehaviour {
     void SetGrounded(bool groundedval)
     {
         grounded = groundedval;
+    }
+
+    /// <summary>
+    /// Recharge everything that happens on a "Rest", restoring jumps, airdodges, etc.
+    /// </summary>
+    void Rest()
+    {
+        jumps = max_jumps;
+        air_dodges = 1; //TODO change this based on settings
+
+    }
+
+    private Ledge grabbed_ledge;
+    public Ledge GrabbedLedge { get { return grabbed_ledge; } }
+
+    public void GrabLedge(Ledge ledgeToGrab)
+    {
+        grabbed_ledge = ledgeToGrab;
+        doAction("LedgeGrab");
+    }
+
+    public void GetTrumped(Ledge ledgeTrumpedFrom)
+    {
+        Debug.Log("CAN'T STUMP THE LEDGE TRUMP");
     }
 }

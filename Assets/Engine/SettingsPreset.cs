@@ -4,6 +4,8 @@ using UnityEngine;
 using System.IO;
 
 public class SettingsPreset : MonoBehaviour {
+    public enum ConflictType { SHARE,HOG,TRUMP }
+
     public string preset_name = "default";
 
     //Physics
@@ -16,7 +18,7 @@ public class SettingsPreset : MonoBehaviour {
     public float shieldstun_ratio = 1.0f;
 
     //Ledge Settings
-    public string conflict_type = "SHARE";
+    public ConflictType conflict_type = ConflictType.SHARE;
     public string sweetspot_size = "MEDIUM";
     public bool sweetspot_facing_only = false;
     public bool team_ledge_conflict = false;
