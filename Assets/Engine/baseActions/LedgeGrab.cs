@@ -9,11 +9,18 @@ public class LedgeGrab : GameAction {
     {
         base.SetUp(obj);
         grabbed_ledge = actor.GetAbstractFighter().GrabbedLedge;
+
     }
     public override void stateTransitions()
     {
         base.stateTransitions();
         StateTransitions.LedgeState(actor.GetAbstractFighter());
+    }
+
+    public override void TearDown(GameAction new_action)
+    {
+        base.TearDown(new_action);
+        actor.SendMessage("ReleaseLedge");
     }
 
     public override void Update()
@@ -30,6 +37,15 @@ public class LedgeGrab : GameAction {
             if (facingDir == 1)
                 actor.GetAbstractFighter().flip();
         //Snap to point
+
+        Vector3 snapPoint = grabbed_ledge.transform.GetChild(0).position;
+        snapPoint.x = snapPoint.x - (actor.transform.FindChild("Hang_Point").transform.localPosition.x*facingDir);
+        snapPoint.y = snapPoint.y - actor.transform.FindChild("Hang_Point").transform.localPosition.y;
+        actor.transform.localPosition = snapPoint;
+
+        //snapPoint.x = (grabbed_ledge.transform.localScale.x*actor.GetAbstractFighter().facing) + (0.5f * (actor.transform.localScale.x) * actor.GetAbstractFighter().facing);
+        //snapPoint.x = -0.5f*(actor.transform.localScale.x)*actor.GetAbstractFighter().facing;
+
         actor.SendMessage("ChangeXSpeed",0f);
         actor.SendMessage("ChangeYSpeed", 0f);
     }

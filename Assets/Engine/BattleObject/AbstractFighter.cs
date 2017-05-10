@@ -544,6 +544,11 @@ public class AbstractFighter : BattleComponent {
         doAction("LedgeGrab");
     }
 
+    public void ReleaseLedge()
+    {
+        grabbed_ledge = null;
+    }
+
     public void GetTrumped(Ledge ledgeTrumpedFrom)
     {
         Debug.Log("CAN'T STUMP THE LEDGE TRUMP");
