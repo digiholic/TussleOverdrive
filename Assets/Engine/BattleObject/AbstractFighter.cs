@@ -490,22 +490,6 @@ public class AbstractFighter : BattleComponent {
         return retlist;
     }
 
-    public void EnterLedge(Ledge ledge)
-    {
-        contacted_ledges.Add(ledge);
-    }
-
-    public void ExitLedge(Ledge ledge)
-    {
-        if (contacted_ledges.Contains(ledge))
-            contacted_ledges.Remove(ledge);
-    }
-
-    public List<Ledge> GetLedges()
-    {
-        return contacted_ledges;
-    }
-
     /////////////////////////////////////////////////////////////////////////////////////////
     //                              PRIVATE HELPER METHODS                                 //
     /////////////////////////////////////////////////////////////////////////////////////////
@@ -537,10 +521,31 @@ public class AbstractFighter : BattleComponent {
 
     private Ledge grabbed_ledge;
     public Ledge GrabbedLedge { get { return grabbed_ledge; } }
+    
+    public void EnterLedge(Ledge ledge)
+    {
+        contacted_ledges.Add(ledge);
+    }
+
+    public void ExitLedge(Ledge ledge)
+    {
+        if (contacted_ledges.Contains(ledge))
+        {
+            contacted_ledges.Remove(ledge);
+            if (contacted_ledges.Count == 0) LedgeLock = false;
+        }
+            
+    }
+
+    public List<Ledge> GetLedges()
+    {
+        return contacted_ledges;
+    }
 
     public void GrabLedge(Ledge ledgeToGrab)
     {
         grabbed_ledge = ledgeToGrab;
+        LedgeLock = true;
         doAction("LedgeGrab");
     }
 
