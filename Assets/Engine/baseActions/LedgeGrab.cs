@@ -38,11 +38,8 @@ public class LedgeGrab : GameAction {
                 actor.GetAbstractFighter().flip();
         //Snap to point
 
-        actor.transform.FindChild("Hang_Point").SendMessage("SnapAnchorToPoint", grabbed_ledge.transform.GetChild(0).position);
-        actor.transform.FindChild("Hang_Point").SendMessage("MoveAnchor", new Vector2(0.0f, 0.1f));
-        //snapPoint.x = (grabbed_ledge.transform.localScale.x*actor.GetAbstractFighter().facing) + (0.5f * (actor.transform.localScale.x) * actor.GetAbstractFighter().facing);
-        //snapPoint.x = -0.5f*(actor.transform.localScale.x)*actor.GetAbstractFighter().facing;
-
+        actor.GetAnchorPoint("Hang_Point").SendMessage("SnapAnchorToPoint", grabbed_ledge.hang_point);
+        
         actor.SendMessage("ChangeXSpeed",0f);
         actor.SendMessage("ChangeYSpeed", 0f);
     }

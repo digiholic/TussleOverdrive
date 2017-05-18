@@ -6,7 +6,7 @@ public class AnchorPoint : MonoBehaviour {
     private BattleObject parent;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         parent = transform.parent.gameObject.GetComponent<BattleObject>();
 	}
 	
@@ -24,8 +24,14 @@ public class AnchorPoint : MonoBehaviour {
         parent.transform.localPosition = snapPoint;
     }
 
-    void MoveAnchor(Vector2 motion)
+    public void MoveAnchor(Vector2 motion)
     {
         transform.Translate(new Vector3(motion.x, motion.y));
+    }
+
+    public void MoveAnchorPixel(int centerx, int centery)
+    {
+        float pixelsPerUnit = parent.GetSpriteHandler().pixelsPerUnit;
+        transform.localPosition = new Vector3(centerx / pixelsPerUnit, centery / pixelsPerUnit, 0.0f);
     }
 }

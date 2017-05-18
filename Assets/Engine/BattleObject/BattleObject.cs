@@ -36,6 +36,7 @@ public class BattleObject : MonoBehaviour
     private SpriteHandler spriteHandler;
 
     public Dictionary<string, object> variable = new Dictionary<string, object>();
+    private Dictionary<string, AnchorPoint> anchor_points = new Dictionary<string, AnchorPoint>();
 
     //These are used only when serializing the main object
     [SerializeField,HideInInspector]
@@ -243,6 +244,20 @@ public class BattleObject : MonoBehaviour
     public SpriteHandler GetSpriteHandler()
     {
         return spriteHandler;
+    }
+
+    public AnchorPoint GetAnchorPoint(string name)
+    {
+        if (!anchor_points.ContainsKey(name)) //If we don't have this anchor point
+        {
+            PrintDebug(this, 2, "Creating new Anchor Point Object: " + name);
+            GameObject anchorobject = new GameObject(name);
+            anchorobject.transform.parent = gameObject.transform;
+            AnchorPoint anchorpoint = anchorobject.AddComponent<AnchorPoint>();
+            anchorpoint.MoveAnchorPixel(0, 0);
+            anchor_points.Add(name, anchorpoint);
+        }
+        return anchor_points[name];
     }
 
     public void PrintDebug(object callingObject, int debugLevel, string message)

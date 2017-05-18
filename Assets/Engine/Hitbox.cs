@@ -68,7 +68,7 @@ public class Hitbox : MonoBehaviour {
 
         float scale = owner.GetComponent<SpriteHandler>().pixelsPerUnit;
         //float scale = 50;
-        transform.localPosition = new Vector3(centerx / scale, centery / scale, -0.5f);
+        transform.localPosition = new Vector3(centerx / scale, centery / scale, 0.0f);
         transform.localScale = new Vector3(width / scale, height / scale, 1.0f);
         
         //The all-important lock name

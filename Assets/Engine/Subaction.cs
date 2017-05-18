@@ -160,6 +160,11 @@ public class Subaction
                  *      Hitboxes will be able to parse the property name and extract the right value out.
                  */
                 return new SubactionModifyHitbox(subactionString);
+            case "SetAnchor":
+                /* setAnchor name:string centerx:int centery:string
+                 *      Sets the named anchor to the given pixel position. Creates the anchor there if it doesn't exist
+                 */
+                return new SubactionSetAnchor(args[1], int.Parse(args[2]), int.Parse(args[3]));
             default:
                 Debug.LogWarning("Could not load subaction " + args[0]);
                 return null;

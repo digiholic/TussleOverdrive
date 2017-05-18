@@ -7,6 +7,13 @@ public class Ledge : MonoBehaviour {
     public Side grabSide;
 
     private List<AbstractFighter> fighters_grabbed = new List<AbstractFighter>();
+    public Vector3 hang_point;
+
+    void Start()
+    {
+        hang_point = transform.GetChild(0).position;
+        //TODO don't hard code this
+    }
 
     /// <summary>
     /// Adds the fighter to this ledge's list of grabbed fighters, obeying rules set
