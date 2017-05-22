@@ -13,7 +13,7 @@ public class Dash : GameAction {
         base.TearDown(new_action);
         //if next action has direction, set it
         if (actor.GetIntVar("facing") != direction)
-            actor.GetAbstractFighter().flip();
+            actor.SendMessage("flip");
         actor.BroadcastMessage("ChangeXPreferred", 0.0f);
     }
 

@@ -32,10 +32,10 @@ public class LedgeGrab : GameAction {
 
         if (grabbed_ledge.grabSide == Ledge.Side.LEFT)
             if (facingDir == -1)
-                actor.GetAbstractFighter().flip();
+                actor.SendMessage("flip");
         if (grabbed_ledge.grabSide == Ledge.Side.RIGHT)
             if (facingDir == 1)
-                actor.GetAbstractFighter().flip();
+                actor.SendMessage("flip");
         //Snap to point
 
         actor.GetAnchorPoint("Hang_Point").SendMessage("SnapAnchorToPoint", grabbed_ledge.hang_point);

@@ -36,11 +36,10 @@ public class SpriteHandler : BattleComponent {
 
     // Use this for initialization
 	void Start() {
-        sprite_renderer = GetComponent<SpriteRenderer>();
-        if (sprite_renderer == null)
-        {
-            sprite_renderer = gameObject.AddComponent<SpriteRenderer>();
-        }
+        GameObject spriteComponent = new GameObject("Sprite");
+        spriteComponent.transform.parent = transform;
+        spriteComponent.transform.localPosition = Vector3.zero;
+        sprite_renderer = spriteComponent.AddComponent<SpriteRenderer>();
     }
 
     public void Initialize()
@@ -143,5 +142,22 @@ public class SpriteHandler : BattleComponent {
                 return Tex2D;                 // If data = readable -> return texture
         }
         return null;                     // Return null if load failed
+    }
+
+    public void RotateSprite(float degrees)
+    {
+        sprite_renderer.transform.Rotate(new Vector3(0, 0, degrees));
+    }
+
+    public void UnRotate()
+    {
+        sprite_renderer.transform.rotation = Quaternion.identity;
+    }
+
+    public void flip()
+    {
+        Vector3 transfVec = sprite_renderer.transform.localScale;
+        transfVec.x *= -1;
+        //sprite_renderer.transform.localScale = transfVec;
     }
 }

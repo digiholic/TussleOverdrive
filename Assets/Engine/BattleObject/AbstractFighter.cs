@@ -184,7 +184,7 @@ public class AbstractFighter : BattleComponent {
         
         else
         {
-            flip();
+            battleObject.SendMessage("flip");
             SetVar("facing", -1);
         }
         
@@ -273,21 +273,11 @@ public class AbstractFighter : BattleComponent {
         //    sprite.flipX = !sprite.flipX;
         //else
         if (battleObject.GetSpriteHandler() != null) //Sprites get flipped
-            transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y,transform.localScale.z);
+            transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
         else if (battleObject.GetModelHandler() != null) //Models get rotated
             transform.Rotate(transform.rotation.x, 180, transform.rotation.z);
         SetVar("facing", -1 * battleObject.GetIntVar("facing"));
 
-    }
-
-    public void RotateSprite(float degrees)
-    {
-        transform.Rotate(new Vector3(0,0,degrees));
-    }
-
-    public void UnRotate()
-    {
-        transform.rotation = Quaternion.identity;
     }
 
     public void doGroundAttack()
@@ -299,7 +289,7 @@ public class AbstractFighter : BattleComponent {
                 doAction("ForwardAttack");
         else if (GetDirectionRelative() < 0.0f)
         {
-            flip();
+            battleObject.SendMessage("flip");
             if (KeyBuffered(InputTypeUtil.GetForward(this), 2))
                 doAction("ForwardSmash");
             else

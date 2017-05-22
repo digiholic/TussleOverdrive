@@ -19,7 +19,7 @@ public class StateTransitions : ScriptableObject {
             actor.doAction("Move");
         if (actor.KeyHeld(InputTypeUtil.GetBackward(actor)))
         {
-            actor.flip(); //TODO PIVOT
+            actor.SendMessage("flip"); //TODO PIVOT
             actor.doAction("Move");
         }
 
@@ -99,7 +99,7 @@ public class StateTransitions : ScriptableObject {
         else if (actor.GetControllerAxis("Horizontal") == 0.0f)
             actor.doAction("Stop");
         if (actor.KeyBuffered(InputTypeUtil.GetBackward(actor)))
-            actor.flip(); //TODO PIVOT
+            actor.SendMessage("flip"); //TODO PIVOT
         //Two other kinds of stop? Not sure if these are needed
     }
 
@@ -152,7 +152,7 @@ public class StateTransitions : ScriptableObject {
         else if (actor.GetControllerAxis("Horizontal") == 0.0f)
             actor.doAction("Stop");
         if (actor.KeyBuffered(InputTypeUtil.GetBackward(actor)))
-            actor.flip(); //TODO PIVOT
+            actor.SendMessage("flip"); //TODO PIVOT
     }
 
     public static void JumpState(AbstractFighter actor)
