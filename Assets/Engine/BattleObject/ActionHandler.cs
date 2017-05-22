@@ -74,6 +74,7 @@ public class ActionHandler : BattleComponent {
             case "Land": return new Land();
             case "Dash": return new Dash();
             case "LedgeGrab": return new LedgeGrab();
+            case "HitStun": return new HitStun();
 
             //Attacks
             case "NeutralAttack": return new BaseAttack();
@@ -88,7 +89,9 @@ public class ActionHandler : BattleComponent {
             case "BackAir": return new AirAttack();
             case "UpAir": return new AirAttack();
             case "DownAir": return new AirAttack();
-            default: return new GameAction();
+            default:
+                Debug.LogWarning("Null action: " + _name);
+                return new GameAction();
         }
     }
 }

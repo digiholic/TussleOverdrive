@@ -32,8 +32,8 @@ public class Crouch : GameAction {
     public override void Update()
     {
         base.Update();
-        actor.GetMotionHandler().accel(actor.GetAbstractFighter().pivot_grip);
-        actor.BroadcastMessage("ChangeXPreferred", actor.GetAbstractFighter().GetControllerAxis("Horizontal") * actor.GetAbstractFighter().crawl_speed);
+        actor.GetMotionHandler().accel(actor.GetFloatVar("pivot_grip"));
+        actor.BroadcastMessage("ChangeXPreferred", actor.GetAbstractFighter().GetControllerAxis("Horizontal") * actor.GetFloatVar("crawl_speed"));
         //actor.GetComponent<SpriteLoader>().printSprite();
     }
 

@@ -11,18 +11,18 @@ public class Jump : GameAction
         base.Update();
         if (current_frame == jump_frame)
         {
-            actor.BroadcastMessage("SetGrounded", false);
+            actor.SetVar("grounded", false);
             if (actor.GetAbstractFighter().GetControllerButton("Jump"))
-                actor.BroadcastMessage("ChangeYSpeed", actor.GetAbstractFighter().jump_height);
+                actor.BroadcastMessage("ChangeYSpeed", actor.GetFloatVar("jump_height"));
             else
-                actor.BroadcastMessage("ChangeYSpeed", actor.GetAbstractFighter().short_hop_height);
+                actor.BroadcastMessage("ChangeYSpeed", actor.GetFloatVar("short_hop_height"));
 
-            if (Mathf.Abs(actor.GetMotionHandler().XSpeed) > actor.GetAbstractFighter().aerial_transition_speed)
+            if (Mathf.Abs(actor.GetMotionHandler().XSpeed) > actor.GetFloatVar("aerial_transition_speed"))
             {
                 if (actor.GetMotionHandler().XSpeed < 0) //negative speed
-                    actor.BroadcastMessage("ChangeXSpeed", -actor.GetAbstractFighter().aerial_transition_speed);
+                    actor.BroadcastMessage("ChangeXSpeed", -actor.GetFloatVar("aerial_transition_speed"));
                 else
-                    actor.BroadcastMessage("ChangeXSpeed", actor.GetAbstractFighter().aerial_transition_speed);
+                    actor.BroadcastMessage("ChangeXSpeed", actor.GetFloatVar("aerial_transition_speed"));
             }
             //actor.ChangeSprite("jump");
         }

@@ -31,6 +31,8 @@ public class GameAction {
     public List<bool> cond_list = new List<bool> { true };
     public int cond_depth = 0;
 
+    public Dictionary<string, object> variable = new Dictionary<string, object>();
+     
     public virtual void SetUp (BattleObject obj) {
         last_frame = length;
         actor = obj;
@@ -129,5 +131,53 @@ public class GameAction {
         actions_at_last_frame = dynAction.actions_at_last_frame;
         state_transition_actions = dynAction.state_transition_actions;
         tear_down_actions = dynAction.tear_down_actions;
+    }
+    
+    public void AdjustLength(int new_length)
+    {
+        last_frame = new_length;
+    }
+
+    public void SetVar(string var_name, object obj)
+    {
+        variable[var_name] = obj;
+    }
+
+    /// <summary>
+    /// Gets the variable with the given name from the variables list
+    /// </summary>
+    /// <param name="var_name">The name of the variable to pull</param>
+    /// <returns>The variable from the dict as an object</returns>
+    public object GetVar(string var_name)
+    {
+        if (variable.ContainsKey(var_name))
+        {
+            return variable[var_name];
+        }
+        else
+        {
+            Debug.LogWarning("Could not find variable " + var_name + " in Action " + this.ToString());
+            return null;
+        }
+    }
+
+    public int GetIntVar(string var_name)
+    {
+        return (int)GetVar(var_name);
+    }
+
+    public float GetFloatVar(string var_name)
+    {
+        return (float)GetVar(var_name);
+    }
+
+    public bool GetBoolVar(string var_name)
+    {
+        return (bool)GetVar(var_name);
+    }
+
+    public string GetStringVar(string var_name)
+    {
+        return (string)GetVar(var_name);
     }
 }

@@ -89,6 +89,7 @@
         <friction>0.6</friction>
         <static_grip>0.1</static_grip>
         <pivot_grip>0.4</pivot_grip>
+        <air_resistance>0.2</air_resistance>
         <air_control>0.8</air_control>
         <jumps>1</jumps>
         <jump_height>14.0</jump_height>

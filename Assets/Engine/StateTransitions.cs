@@ -53,7 +53,7 @@ public class StateTransitions : ScriptableObject {
     public static void AirState(AbstractFighter actor)
     {
         StateTransitions.AirControl(actor);
-        if (actor.GetControllerButton("Shield") && actor.air_dodges >= 1)
+        if (actor.GetControllerButton("Shield") && actor.GetIntVar("air_dodges") >= 1)
         {
             //actor.doAction("AirDodge");
         }
@@ -65,14 +65,14 @@ public class StateTransitions : ScriptableObject {
         {
             //specials TODO
         }
-        if (actor.KeyBuffered(InputType.Jump) && actor.jumps > 0)
+        if (actor.KeyBuffered(InputType.Jump) && actor.GetIntVar("jumps") > 0)
         {
             actor.doAction("AirJump");
         }
-        if (actor.grounded && actor.ground_elasticity == 0 && actor.tech_window == 0)
+        if (actor.GetBoolVar("grounded") && actor.ground_elasticity == 0 && actor.GetIntVar("tech_window") == 0)
         {
             actor.BroadcastMessage("ChangeXPreferred", 0.0f);
-            actor.BroadcastMessage("ChangeYPreferred", actor.max_fall_speed);
+            actor.BroadcastMessage("ChangeYPreferred", actor.GetFloatVar("max_fall_speed"));
             actor.doAction("Land");
         }
         //TODO fastfal
@@ -225,11 +225,11 @@ public class StateTransitions : ScriptableObject {
 
     public static void AirControl(AbstractFighter actor)
     {
-        actor.BroadcastMessage("ChangeXPreferred", actor.GetControllerAxis("Horizontal") * actor.max_air_speed);
-        if (Mathf.Abs(actor.BattleObject.GetMotionHandler().XSpeed) > actor.max_air_speed)
-            actor.BattleObject.GetMotionHandler().accel(actor.air_control);
-        if (Mathf.Abs(actor.BattleObject.GetMotionHandler().YSpeed) > Mathf.Abs(actor.max_fall_speed))
-            actor.landing_lag = actor.heavy_land_lag;
+        actor.BroadcastMessage("ChangeXPreferred", actor.GetControllerAxis("Horizontal") * actor.GetFloatVar("max_air_speed"));
+        if (Mathf.Abs(actor.BattleObject.GetMotionHandler().XSpeed) > actor.GetFloatVar("max_air_speed"))
+            actor.BattleObject.GetMotionHandler().accel(actor.GetFloatVar("air_control"));
+        if (Mathf.Abs(actor.BattleObject.GetMotionHandler().YSpeed) > Mathf.Abs(actor.GetFloatVar("max_fall_speed")))
+            actor.SetVar("landing_lag", actor.GetFloatVar("heavy_land_lag"));
     }
     
     public static void HelplessControl(AbstractFighter actor)
@@ -256,7 +256,7 @@ public class StateTransitions : ScriptableObject {
 
     public static void CheckGround(AbstractFighter actor)
     {
-        if (!actor.grounded)
+        if (!actor.GetBoolVar("grounded"))
         {
             actor.doAction("Fall");
         }

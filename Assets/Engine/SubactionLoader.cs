@@ -81,9 +81,9 @@ public class SubactionLoader : ScriptableObject {
                  *      changes the xSpeed of the fighter
                  */
                 if (args.Length >= 2)
-                    actor.GetMotionHandler().ChangeXSpeedBy(float.Parse(args[1]) * actor.GetAbstractFighter().facing);
+                    actor.GetMotionHandler().ChangeXSpeedBy(float.Parse(args[1]) * actor.GetIntVar("facing"));
                 else
-                    actor.GetMotionHandler().ChangeXSpeed(float.Parse(args[1]) * actor.GetAbstractFighter().facing);
+                    actor.GetMotionHandler().ChangeXSpeed(float.Parse(args[1]) * actor.GetIntVar("facing"));
                 break;
             case "ChangeYSpeed":
                 /* changeYSpeed y:float rel:bool
@@ -99,18 +99,18 @@ public class SubactionLoader : ScriptableObject {
                  *      changes the preferred xSpeed of the fighter
                  */
                 if (args.Length >= 2)
-                    actor.GetMotionHandler().ChangeXPreferredBy(float.Parse(args[1]) * actor.GetAbstractFighter().facing);
+                    actor.GetMotionHandler().ChangeXPreferredBy(float.Parse(args[1]) * actor.GetIntVar("facing"));
                 else
-                    actor.GetMotionHandler().ChangeXPreferred(float.Parse(args[1]) * actor.GetAbstractFighter().facing);
+                    actor.GetMotionHandler().ChangeXPreferred(float.Parse(args[1]) * actor.GetIntVar("facing"));
                 break;
             case "ChangeYPreferred":
                 /* changeXPreferred y:float rel:bool
                  *      changes the yPreferred of the fighter
                  */
                 if (args.Length >= 2)
-                    actor.GetMotionHandler().ChangeYPreferredBy(float.Parse(args[1]) * actor.GetAbstractFighter().facing);
+                    actor.GetMotionHandler().ChangeYPreferredBy(float.Parse(args[1]) * actor.GetIntVar("facing"));
                 else
-                    actor.GetMotionHandler().ChangeYPreferred(float.Parse(args[1]) * actor.GetAbstractFighter().facing);
+                    actor.GetMotionHandler().ChangeYPreferred(float.Parse(args[1]) * actor.GetIntVar("facing"));
                 break;
             case "ShiftPosition":
                 /* shiftPosition x:float|0 y:float|0 relative:bool|true

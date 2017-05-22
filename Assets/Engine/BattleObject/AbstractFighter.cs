@@ -7,6 +7,36 @@ using UnityEngine.Profiling;
 
 [System.Serializable]
 public class AbstractFighter : BattleComponent {
+    private static Dictionary<string, object> DefaultStats = new Dictionary<string, object>
+    {
+        {"weight", 10.0f },
+        {"gravity", -9.8f},
+        {"max_fall_speed", -20.0f},
+        {"max_ground_speed", 7.0f},
+        {"run_speed", 11.0f},
+        {"max_air_speed", 5.5f},
+        {"crawl_speed", 2.5f},
+        {"dodge_sepeed", 8.5f},
+        {"friction", 0.3f},
+        {"static_grip", 0.3f},
+        {"pivot_grip", 0.6f},
+        {"air_resistance", 0.2f},
+        {"air_control", 0.2f},
+        {"jump_height", 15.0f},
+        {"short_hop_height", 8.5f},
+        {"air_jump_height", 18.0f},
+        {"fastfall_multiplier", 2.0f},
+        {"hitstun_elasticity", 0.8f},
+        {"shield_size", 1.0f},
+        {"aerial_transition_speed", 9.0f},
+        {"pixels_per_unit", 100},
+        {"max_jumps", 1 },
+        {"heavy_land_lag", 4 },
+        {"wavedash_lag", 12 }
+    };
+
+
+
     //public string fighter_xml_file = "";
     private string resource_path = "";
     public int player_num = 0;
@@ -18,27 +48,22 @@ public class AbstractFighter : BattleComponent {
 
     [HideInInspector]
     public string sound_path = "";
-    
-    [HideInInspector]
-    public float weight = 10.0f, gravity = -9.8f, max_fall_speed = -20.0f, max_ground_speed = 7.0f, run_speed = 11.0f, max_air_speed = 5.5f, crawl_speed = 2.5f, dodge_sepeed = 8.5f, friction = 0.3f, static_grip = 0.3f, pivot_grip = 0.6f, air_resistance = 0.2f, air_control = 0.2f, jump_height = 15.0f, short_hop_height = 8.5f, air_jump_height = 18.0f, fastfall_multiplier = 2.0f, hitstun_elasticity = 0.8f, shield_size = 1.0f, aerial_transition_speed = 9.0f, pixels_per_unit = 100;
 
-    [HideInInspector]
-    public int max_jumps = 1, heavy_land_lag = 4, wavedash_lag = 12;
-
-    //Public variables that other classes need, but aren't set in the editor:
-    [HideInInspector]
-    public bool grounded = false;
-
-    [HideInInspector]
-    public int jumps = 0, facing = 1, landing_lag = 0, tech_window = 0, air_dodges = 1;
-
+    void SetVariables()
+    {
+        SetVar("jumps", 0);
+        SetVar("facing", 1);
+        SetVar("landing_lag", 0);
+        SetVar("tech_window", 0);
+        SetVar("air_dodges", 1);
+        SetVar("grounded", false);
+    }
     [HideInInspector]
     public float ground_elasticity = 0.0f, damage_percent = 0;
     
     [HideInInspector]
     public BattleController game_controller;
     
-    private SpriteRenderer sprite;
     private SpriteHandler sprite_loader;
     private Animator anim;
     private InputBuffer inputBuffer;
@@ -60,6 +85,7 @@ public class AbstractFighter : BattleComponent {
 
     public bool LedgeLock { get; set; }
 
+
     void LoadFighterXML()
     {
         data_xml = GetComponent<XMLLoader>();
@@ -74,70 +100,45 @@ public class AbstractFighter : BattleComponent {
             
             sound_path = data_xml.SelectSingleNode("//fighter/sound_path").GetString();
             
-            //Load the stats
-            weight = GetFromXml("weight", weight);
-            gravity = GetFromXml("gravity", gravity);
-            max_fall_speed = GetFromXml("max_fall_speed", max_fall_speed);
-            max_ground_speed = GetFromXml("max_ground_speed", max_ground_speed);
-            run_speed = GetFromXml("run_speed", run_speed);
-            max_air_speed = GetFromXml("max_air_speed", max_air_speed);
-            aerial_transition_speed = GetFromXml("aerial_transition_speed", aerial_transition_speed);
-            crawl_speed = GetFromXml("crawl_speed", crawl_speed);
-            dodge_sepeed = GetFromXml("dodge_speed", dodge_sepeed);
-            friction = GetFromXml("friction", friction);
-            static_grip = GetFromXml("static_grip", static_grip);
-            pivot_grip = GetFromXml("pivot_grip", pivot_grip);
-            air_resistance = GetFromXml("air_resistance", air_resistance);
-            air_control = GetFromXml("air_control", air_control);
-            jump_height = GetFromXml("jump_height", jump_height);
-            short_hop_height = GetFromXml("short_hop_height", short_hop_height);
-            air_jump_height = GetFromXml("air_jump_height", air_jump_height);
-            fastfall_multiplier = GetFromXml("fastfall_multiplier", fastfall_multiplier);
-            hitstun_elasticity = GetFromXml("hitstun_elasticity", hitstun_elasticity);
-            shield_size = GetFromXml("shield_size", shield_size);
-            max_jumps = Mathf.FloorToInt(GetFromXml("max_jumps", max_jumps));
-            heavy_land_lag = Mathf.FloorToInt(GetFromXml("heavy_land_lag", heavy_land_lag));
-            wavedash_lag = Mathf.FloorToInt(GetFromXml("wavedash_lag", wavedash_lag));
-
             /*
-            battleObject.SetVar("fighter_name", data_xml.SelectSingleNode("//fighter/name").GetString());
-            battleObject.SetVar("franchise_icon", data_xml.SelectSingleNode("//fighter/icon").GetString());
-            battleObject.SetVar("css_icon", data_xml.SelectSingleNode("//fighter/css_icon").GetString());
-            battleObject.SetVar("css_portrait", data_xml.SelectSingleNode("//fighter/css_portrait").GetString());
+            SetVar("fighter_name", data_xml.SelectSingleNode("//fighter/name").GetString());
+            SetVar("franchise_icon", data_xml.SelectSingleNode("//fighter/icon").GetString());
+            SetVar("css_icon", data_xml.SelectSingleNode("//fighter/css_icon").GetString());
+            SetVar("css_portrait", data_xml.SelectSingleNode("//fighter/css_portrait").GetString());
 
             article_path = data_xml.SelectSingleNode("//fighter/article_path").GetString();
             article_file = data_xml.SelectSingleNode("//fighter/articles").GetString();
             sound_path = data_xml.SelectSingleNode("//fighter/sound_path").GetString();
 
             action_file = data_xml.SelectSingleNode("//fighter/actions").GetString();
+            */
 
             //Load the stats
-            battleObject.SetVar("weight", data_xml.SelectSingleNode("//fighter/stats/weight"));
-            battleObject.SetVar("gravity", data_xml.SelectSingleNode("//fighter/stats/gravity"));
-            battleObject.SetVar("max_fall_speed", data_xml.SelectSingleNode("//fighter/stats/max_fall_speed"));
-            battleObject.SetVar("max_ground_speed", data_xml.SelectSingleNode("//fighter/stats/max_ground_speed"));
-            battleObject.SetVar("run_speed", data_xml.SelectSingleNode("//fighter/stats/run_speed"));
-            battleObject.SetVar("max_air_speed", data_xml.SelectSingleNode("//fighter/stats/max_air_speed"));
-            battleObject.SetVar("aerial_transition_speed", data_xml.SelectSingleNode("//fighter/stats/aerial_transition_speed"));
-            battleObject.SetVar("crawl_speed", data_xml.SelectSingleNode("//fighter/stats/crawl_speed"));
-            battleObject.SetVar("dodge_speed", data_xml.SelectSingleNode("//fighter/stats/dodge_speed"));
-            battleObject.SetVar("friction", data_xml.SelectSingleNode("//fighter/stats/friction"));
-            battleObject.SetVar("static_grip", data_xml.SelectSingleNode("//fighter/stats/static_grip"));
-            battleObject.SetVar("pivot_grip", data_xml.SelectSingleNode("//fighter/stats/pivot_grip"));
-            battleObject.SetVar("air_resistance", data_xml.SelectSingleNode("//fighter/stats/air_resistance"));
-            battleObject.SetVar("air_control", data_xml.SelectSingleNode("//fighter/stats/air_control"));
-            battleObject.SetVar("jump_height", data_xml.SelectSingleNode("//fighter/stats/jump_height"));
-            battleObject.SetVar("short_hop_height", data_xml.SelectSingleNode("//fighter/stats/short_hop_height"));
-            battleObject.SetVar("air_jump_height", data_xml.SelectSingleNode("//fighter/stats/air_jump_height"));
-            battleObject.SetVar("fastfall_multiplier", data_xml.SelectSingleNode("//fighter/stats/fastfall_multiplier"));
+            SetVar("weight", data_xml.SelectSingleNode("//fighter/stats/weight").GetFloat());
+            SetVar("gravity", data_xml.SelectSingleNode("//fighter/stats/gravity").GetFloat());
+            SetVar("max_fall_speed", data_xml.SelectSingleNode("//fighter/stats/max_fall_speed").GetFloat());
+            SetVar("max_ground_speed", data_xml.SelectSingleNode("//fighter/stats/max_ground_speed").GetFloat());
+            SetVar("run_speed", data_xml.SelectSingleNode("//fighter/stats/run_speed").GetFloat());
+            SetVar("max_air_speed", data_xml.SelectSingleNode("//fighter/stats/max_air_speed").GetFloat());
+            SetVar("aerial_transition_speed", data_xml.SelectSingleNode("//fighter/stats/aerial_transition_speed").GetFloat());
+            SetVar("crawl_speed", data_xml.SelectSingleNode("//fighter/stats/crawl_speed").GetFloat());
+            SetVar("dodge_speed", data_xml.SelectSingleNode("//fighter/stats/dodge_speed").GetFloat());
+            SetVar("friction", data_xml.SelectSingleNode("//fighter/stats/friction").GetFloat());
+            SetVar("static_grip", data_xml.SelectSingleNode("//fighter/stats/static_grip").GetFloat());
+            SetVar("pivot_grip", data_xml.SelectSingleNode("//fighter/stats/pivot_grip").GetFloat());
+            SetVar("air_resistance", data_xml.SelectSingleNode("//fighter/stats/air_resistance").GetFloat());
+            SetVar("air_control", data_xml.SelectSingleNode("//fighter/stats/air_control").GetFloat());
+            SetVar("jump_height", data_xml.SelectSingleNode("//fighter/stats/jump_height").GetFloat());
+            SetVar("short_hop_height", data_xml.SelectSingleNode("//fighter/stats/short_hop_height").GetFloat());
+            SetVar("air_jump_height", data_xml.SelectSingleNode("//fighter/stats/air_jump_height").GetFloat());
+            SetVar("fastfall_multiplier", data_xml.SelectSingleNode("//fighter/stats/fastfall_multiplier").GetFloat());
 
-            battleObject.SetVar("hitstun_elasticity", data_xml.SelectSingleNode("//fighter/stats/hitstun_elasticity"));
-            battleObject.SetVar("shield_size", data_xml.SelectSingleNode("//fighter/stats/shield_size"));
-            battleObject.SetVar("max_jumps", data_xml.SelectSingleNode("//fighter/stats/max_jumps"));
-            battleObject.SetVar("heavy_landing_lag", data_xml.SelectSingleNode("//fighter/stats/heavy_landing_lag"));
-            battleObject.SetVar("wavedash_lag", data_xml.SelectSingleNode("//fighter/stats/wavedash_lag"));
+            SetVar("hitstun_elasticity", data_xml.SelectSingleNode("//fighter/stats/hitstun_elasticity").GetFloat());
+            SetVar("shield_size", data_xml.SelectSingleNode("//fighter/stats/shield_size").GetFloat());
+            SetVar("max_jumps", data_xml.SelectSingleNode("//fighter/stats/jumps").GetInt());
+            SetVar("heavy_landing_lag", data_xml.SelectSingleNode("//fighter/stats/heavy_land_lag").GetInt());
+            SetVar("wavedash_lag", data_xml.SelectSingleNode("//fighter/stats/wavedash_lag").GetInt());
 
-            */
 
         }
         else
@@ -152,7 +153,6 @@ public class AbstractFighter : BattleComponent {
     /// </summary>
     private void LoadComponents()
     {
-
         inputBuffer = GetComponent<InputBuffer>();
         if (inputBuffer == null)
         {
@@ -172,7 +172,7 @@ public class AbstractFighter : BattleComponent {
     void Start() {
         LoadComponents();
         LoadFighterXML();
-        sprite = GetComponent<SpriteRenderer>();
+        SetVariables();
         sprite_loader = GetComponent<SpriteHandler>();
         sprite_loader.Initialize();
         anim = GetComponent<Animator>();
@@ -180,15 +180,16 @@ public class AbstractFighter : BattleComponent {
         coll = GetComponent<Collider>();
 
         if (player_num % 2 == 0)
-            facing = 1;
+            SetVar("facing", 1);
+        
         else
         {
             flip();
-            facing = -1;
+            SetVar("facing", -1);
         }
         
         SendMessage("ChangeYSpeed", 0f);
-        jumps = max_jumps;
+        SetVar("jumps",GetIntVar("max_jumps"));
         
         game_controller = BattleController.current_battle;
 
@@ -223,11 +224,11 @@ public class AbstractFighter : BattleComponent {
     // Update is called once per frame
     void Update () {
         //Set gravity, or reset jumps
-        if (grounded)
+        if (GetBoolVar("grounded"))
             Rest();
         else
         {
-            SendMessage("CalcGrav",new float[] { gravity, max_fall_speed });
+            SendMessage("CalcGrav",new float[] { GetFloatVar("gravity"), GetFloatVar("max_fall_speed") });
         }
 
         //Set horizontal and vertical deltas
@@ -247,10 +248,10 @@ public class AbstractFighter : BattleComponent {
 
         battleObject.ManualUpdate();
         
-        if (grounded)
-            battleObject.GetMotionHandler().accel(friction);
+        if (GetBoolVar("grounded"))
+            battleObject.GetMotionHandler().accel(GetFloatVar("friction"));
         else
-            battleObject.GetMotionHandler().accel(air_resistance);
+            battleObject.GetMotionHandler().accel(GetFloatVar("air_resistance"));
     }
 
     public void doAction(string _actionName)
@@ -264,19 +265,29 @@ public class AbstractFighter : BattleComponent {
     /// <returns> The float value of the direction relative to facing</returns>
     public float GetDirectionRelative()
     {
-        return GetControllerAxis("Horizontal") * facing;
+        return GetControllerAxis("Horizontal") * battleObject.GetIntVar("facing");
     }
 
     public void flip()
     {
         //    sprite.flipX = !sprite.flipX;
         //else
-        if (sprite != null) //Sprites get flipped
+        if (battleObject.GetSpriteHandler() != null) //Sprites get flipped
             transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y,transform.localScale.z);
-        else //Models get rotated
+        else if (battleObject.GetModelHandler() != null) //Models get rotated
             transform.Rotate(transform.rotation.x, 180, transform.rotation.z);
-        facing *= -1;
+        SetVar("facing", -1 * battleObject.GetIntVar("facing"));
 
+    }
+
+    public void RotateSprite(float degrees)
+    {
+        transform.Rotate(new Vector3(0,0,degrees));
+    }
+
+    public void UnRotate()
+    {
+        transform.rotation = Quaternion.identity;
     }
 
     public void doGroundAttack()
@@ -354,10 +365,12 @@ public class AbstractFighter : BattleComponent {
             float flat_constant = 5.0f;
 
             float percent_portion = (damage_percent / 10.0f) + ((damage_percent * hitbox.damage) / 20.0f);
-            float weight_portion = 200.0f / (weight * hitbox.weight_influence + 100);
+            float weight_portion = 200.0f / (GetFloatVar("weight") * hitbox.weight_influence + 100);
             float scaled_kb = (((percent_portion * weight_portion * weight_constant) + flat_constant) * hitbox.knockback_growth);
             ApplyKnockback(scaled_kb + hitbox.base_knockback, hitbox.trajectory);
             DealDamage(hitbox.damage);
+            //TODO ApplyHitstun(scaled_kb+hitbox.base_knockback,hitbox.hitstun_multiplier,hitbox.base_hitstun,hitbox.trajectory)
+            ApplyHitstun(scaled_kb + hitbox.base_knockback, 1.0f, 1.0f, hitbox.trajectory);
         }
     }
 
@@ -395,7 +408,14 @@ public class AbstractFighter : BattleComponent {
 
     public void ApplyHitstun(float _total_kb, float _hitstunMultiplier, float _baseHitstun, float _trajectory)
     {
+        float hitstun_frames = Mathf.Floor((_total_kb) * _hitstunMultiplier + _baseHitstun);
 
+        if (hitstun_frames > 0.5)
+        {
+            //if not isinstance(self.current_action, baseActions.HitStun) or (self.current_action.last_frame-self.current_action.frame) / float(settingsManager.getSetting('hitstun')) <= hitstun_frames+15:
+            DoHitStun(hitstun_frames * Settings.current_settings.preset.hitstun_ratio, _trajectory);
+            battleObject.GetActionHandler().CurrentAction.SetVar("tech_cooldown", Mathf.RoundToInt(_total_kb * _hitstunMultiplier));
+        }
     }
     /**
      * Shorthand for getting the input axis that this fighter is reading from.
@@ -504,18 +524,14 @@ public class AbstractFighter : BattleComponent {
     /////////////////////////////////////////////////////////////////////////////////////////
     //                               BROADCAST RECEIVERS                                   //
     /////////////////////////////////////////////////////////////////////////////////////////
-    void SetGrounded(bool groundedval)
-    {
-        grounded = groundedval;
-    }
 
     /// <summary>
     /// Recharge everything that happens on a "Rest", restoring jumps, airdodges, etc.
     /// </summary>
     void Rest()
     {
-        jumps = max_jumps;
-        air_dodges = 1; //TODO change this based on settings
+        SetVar("jumps", GetIntVar("max_jumps"));
+        SetVar("air_dodges", 1); //TODO change this based on settings
 
     }
 
@@ -557,5 +573,17 @@ public class AbstractFighter : BattleComponent {
     public void GetTrumped(Ledge ledgeTrumpedFrom)
     {
         Debug.Log("CAN'T STUMP THE LEDGE TRUMP");
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////
+    //                                  ACTION SETTERS                                     //
+    /////////////////////////////////////////////////////////////////////////////////////////
+
+    void DoHitStun(float hitstun, float trajectory)
+    {
+        doAction("HitStun");
+        battleObject.GetActionHandler().CurrentAction.SetVar("angle", trajectory);
+        battleObject.GetActionHandler().CurrentAction.AdjustLength(Mathf.RoundToInt(hitstun));
+
     }
 }

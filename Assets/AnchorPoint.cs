@@ -17,7 +17,7 @@ public class AnchorPoint : MonoBehaviour {
 
     void SnapAnchorToPoint(Vector3 snapPoint)
     {
-        int facingDir = parent.GetAbstractFighter().facing;
+        int facingDir = parent.GetIntVar("facing");
         snapPoint.x = snapPoint.x - (transform.localPosition.x * facingDir);
         snapPoint.y = snapPoint.y - transform.localPosition.y;
         snapPoint.z = parent.transform.localPosition.z;

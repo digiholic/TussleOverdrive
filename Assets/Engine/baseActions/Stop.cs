@@ -11,7 +11,7 @@ public class Stop : GameAction {
         base.SetUp(_actor);
         //Debug.Log("StopAction Created");
         //Overrides given length if the pivot grip won't allow it
-        int num_frames = Mathf.FloorToInt((actor.GetMotionHandler().XSpeed * actor.GetAbstractFighter().facing) / actor.GetAbstractFighter().pivot_grip);
+        int num_frames = Mathf.FloorToInt((actor.GetMotionHandler().XSpeed * actor.GetIntVar("facing")) / actor.GetFloatVar("pivot_grip"));
         if (num_frames < last_frame)
             current_frame = Mathf.Min(last_frame - num_frames, last_frame - 1);
         else
@@ -27,7 +27,7 @@ public class Stop : GameAction {
             _actor.accel(_actor.stats['static_grip'])
         else:*/
         actor.BroadcastMessage("ChangeXPreferred", 0.0f);
-        actor.GetMotionHandler().accel(actor.GetAbstractFighter().pivot_grip);
+        actor.GetMotionHandler().accel(actor.GetFloatVar("pivot_grip"));
     }
 
     public override void stateTransitions()

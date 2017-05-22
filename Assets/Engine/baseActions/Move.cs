@@ -11,31 +11,31 @@ public class Move : GameAction {
     {
         base.SetUp(_actor);
         //Debug.Log("MoveAction Created");
-        direction = actor.GetAbstractFighter().facing;
+        direction = actor.GetIntVar("facing");
     }
 
     public override void TearDown(GameAction new_action)
     {
         base.TearDown(new_action);
         //TODO Next action direction? Do we still need this?
-        if (actor.GetAbstractFighter().facing != direction)
-            actor.BroadcastMessage("Flip");
+        if (actor.GetIntVar("facing") != direction)
+            actor.BroadcastMessage("flip");
         actor.BroadcastMessage("ChangeXPreferred", 0.0f);
     }
 
     public override void Update()
     {
         base.Update();
-        actor.BroadcastMessage("ChangeXPreferred", actor.GetAbstractFighter().max_ground_speed * direction);
-        if (((actor.GetMotionHandler().XSpeed >= -actor.GetAbstractFighter().max_ground_speed) && actor.GetAbstractFighter().facing == -1) || 
-            ((actor.GetMotionHandler().XSpeed <=  actor.GetAbstractFighter().max_ground_speed) && actor.GetAbstractFighter().facing ==  1))
+        actor.BroadcastMessage("ChangeXPreferred", actor.GetFloatVar("max_ground_speed") * direction);
+        if (((actor.GetMotionHandler().XSpeed >= -actor.GetFloatVar("max_ground_speed")) && actor.GetIntVar("facing") == -1) || 
+            ((actor.GetMotionHandler().XSpeed <=  actor.GetFloatVar("max_ground_speed")) && actor.GetIntVar("facing") ==  1))
         {
-            actor.GetMotionHandler().accel(actor.GetAbstractFighter().static_grip);
+            actor.GetMotionHandler().accel(actor.GetFloatVar("static_grip"));
         }
-        if ((actor.GetAbstractFighter().GetControllerAxis("Horizontal") * actor.GetAbstractFighter().facing) < 0.0f) //If you are holding the opposite direction of movement
-            direction = actor.GetAbstractFighter().facing * -1;
+        if ((actor.GetAbstractFighter().GetControllerAxis("Horizontal") * actor.GetIntVar("facing")) < 0.0f) //If you are holding the opposite direction of movement
+            direction = actor.GetIntVar("facing") * -1;
         else
-            direction = actor.GetAbstractFighter().facing;
+            direction = actor.GetIntVar("facing");
         //If direction and sprite don't match up, flip. Pretty sure this is some moonwalk stuff.
     }
 

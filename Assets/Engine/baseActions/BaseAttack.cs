@@ -18,7 +18,7 @@ public class BaseAttack : GameAction {
         base.stateTransitions();
         StateTransitions.CheckGround(actor.GetAbstractFighter());
         if (current_frame >= last_frame)
-            if (actor.GetAbstractFighter().grounded)
+            if (actor.GetBoolVar("grounded"))
                 actor.BroadcastMessage("DoAction", "NeutralAction");
             else
                 actor.BroadcastMessage("DoAction", "Fall");
@@ -43,11 +43,11 @@ public class AirAttack : GameAction
     {
         base.stateTransitions();
         if (current_frame >= last_frame)
-            if (actor.GetAbstractFighter().grounded)
+            if (actor.GetBoolVar("grounded"))
                 actor.BroadcastMessage("DoAction", "NeutralAction");
             else
                 actor.BroadcastMessage("DoAction", "Fall");
-        if (actor.GetAbstractFighter().grounded)
+        if (actor.GetBoolVar("grounded"))
             actor.BroadcastMessage("DoAction", "Land");
     }
 }

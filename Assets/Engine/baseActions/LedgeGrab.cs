@@ -28,7 +28,7 @@ public class LedgeGrab : GameAction {
         base.Update();
         actor.SendMessage("Rest");
 
-        int facingDir = actor.GetAbstractFighter().facing;
+        int facingDir = actor.GetIntVar("facing");
 
         if (grabbed_ledge.grabSide == Ledge.Side.LEFT)
             if (facingDir == -1)

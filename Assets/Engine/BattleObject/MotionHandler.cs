@@ -23,14 +23,11 @@ public class MotionHandler : BattleComponent {
 
     // Update is called once per frame
     void Update () {
+        
         if (_charController.isGrounded)
-        {
-            BroadcastMessage("SetGrounded", true);
-        }
+            SetVar("grounded", true);
         else
-        {
-            BroadcastMessage("SetGrounded", false);
-        }
+            SetVar("grounded", false);
     }
 
     void LateUpdate()
@@ -144,5 +141,33 @@ public class MotionHandler : BattleComponent {
         {
             ChangeYSpeed(max_fall_speed);
         }
+    }
+
+    public Vector2 GetDirectionMagnitude()
+    {
+        float magnitude;
+        float direction;
+        if (XSpeed == 0) //Shortcut if xspeed is zero
+        {
+            magnitude = YSpeed;
+            if (YSpeed < 0)
+                direction = 270;
+            else
+                direction = 90;
+        }
+        if (YSpeed == 0) //Shortcut if yspeed is zero
+        {
+            magnitude = XSpeed;
+            if (XSpeed < 0)
+                direction = 180;
+            else
+                direction = 0;
+        }
+        direction = Mathf.Atan2(YSpeed,XSpeed) * Mathf.Rad2Deg;
+        direction = Mathf.Round(direction);
+        magnitude = new Vector2(XSpeed, YSpeed).magnitude;
+
+        Vector2 retVec = new Vector2(direction, magnitude);
+        return retVec;
     }
 }

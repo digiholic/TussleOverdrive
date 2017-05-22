@@ -255,7 +255,7 @@ public static class InputTypeUtil
 {
     public static InputType GetForward(AbstractFighter actor)
     {
-        if (actor.facing == 1) //facing right
+        if (actor.GetIntVar("facing") == 1) //facing right
             return InputType.Right;
         else
             return InputType.Left;
@@ -263,7 +263,7 @@ public static class InputTypeUtil
 
     public static InputType GetBackward(AbstractFighter actor)
     {
-        if (actor.facing == 1) //facing right
+        if (actor.GetIntVar("facing") == 1) //facing right
             return InputType.Left;
         else
             return InputType.Right;
@@ -271,7 +271,7 @@ public static class InputTypeUtil
 
     public static InputType GetForwardSmash(AbstractFighter actor)
     {
-        if (actor.facing == 1) //facing right
+        if (actor.GetIntVar("facing") == 1) //facing right
             return InputType.RightSmash;
         else
             return InputType.LeftSmash;
@@ -279,7 +279,7 @@ public static class InputTypeUtil
 
     public static InputType GetBackwardSmash(AbstractFighter actor)
     {
-        if (actor.facing == 1) //facing right
+        if (actor.GetIntVar("facing") == 1) //facing right
             return InputType.LeftSmash;
         else
             return InputType.RightSmash;
