@@ -15,9 +15,9 @@ public class StateTransitions : ScriptableObject {
             actor.doAction("Jump");
         if (actor.KeyBuffered(InputType.Down,threshold: 0.5f))
             actor.doAction("Crouch");
-        if (actor.KeyHeld(InputTypeUtil.GetForward(actor)))
+        if (actor.KeyHeld(InputTypeUtil.GetForward(actor.BattleObject)))
             actor.doAction("Move");
-        if (actor.KeyHeld(InputTypeUtil.GetBackward(actor)))
+        if (actor.KeyHeld(InputTypeUtil.GetBackward(actor.BattleObject)))
         {
             actor.SendMessage("flip"); //TODO PIVOT
             actor.doAction("Move");
@@ -82,8 +82,8 @@ public class StateTransitions : ScriptableObject {
     {
         List<KeyValuePair<InputType, float>> sequence = new List<KeyValuePair<InputType, float>>()
         {
-            new KeyValuePair<InputType, float>(InputTypeUtil.GetForward(actor),0.0f),
-            new KeyValuePair<InputType, float>(InputTypeUtil.GetForward(actor),0.5f)
+            new KeyValuePair<InputType, float>(InputTypeUtil.GetForward(actor.BattleObject),0.0f),
+            new KeyValuePair<InputType, float>(InputTypeUtil.GetForward(actor.BattleObject),0.5f)
         };
         if (actor.SequenceBuffered(sequence))
             actor.doAction("Dash");
@@ -98,7 +98,7 @@ public class StateTransitions : ScriptableObject {
             actor.doAction("Crouch");
         else if (actor.GetControllerAxis("Horizontal") == 0.0f)
             actor.doAction("Stop");
-        if (actor.KeyBuffered(InputTypeUtil.GetBackward(actor)))
+        if (actor.KeyBuffered(InputTypeUtil.GetBackward(actor.BattleObject)))
             actor.SendMessage("flip"); //TODO PIVOT
         //Two other kinds of stop? Not sure if these are needed
     }
@@ -151,7 +151,7 @@ public class StateTransitions : ScriptableObject {
             actor.doAction("Jump");
         else if (actor.GetControllerAxis("Horizontal") == 0.0f)
             actor.doAction("Stop");
-        if (actor.KeyBuffered(InputTypeUtil.GetBackward(actor)))
+        if (actor.KeyBuffered(InputTypeUtil.GetBackward(actor.BattleObject)))
             actor.SendMessage("flip"); //TODO PIVOT
     }
 
@@ -207,7 +207,7 @@ public class StateTransitions : ScriptableObject {
         {
             actor.doAction("Jump");
         }
-        else if (actor.KeyHeld(InputTypeUtil.GetBackward(actor)))
+        else if (actor.KeyHeld(InputTypeUtil.GetBackward(actor.BattleObject)))
         {
             actor.doAction("Fall");
         }

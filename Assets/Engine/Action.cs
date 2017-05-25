@@ -32,6 +32,7 @@ public class GameAction {
     public int cond_depth = 0;
 
     public Dictionary<string, object> variable = new Dictionary<string, object>();
+    public Dictionary<string, object> variables_to_pass = new Dictionary<string, object>();
      
     public virtual void SetUp (BattleObject obj) {
         last_frame = length;
@@ -85,6 +86,12 @@ public class GameAction {
 
     public virtual void TearDown(GameAction new_action)
     {
+        //Pass the variables we've set to pass to the next action
+        foreach (KeyValuePair<string,object> passvar in variables_to_pass)
+        {
+            new_action.SetVar(passvar.Key, passvar.Value);
+        }
+
         //Deactivate and destroy hitboxes at the end of the action
         foreach (Hitbox hbox in hitboxes.Values)
         {
@@ -179,5 +186,10 @@ public class GameAction {
     public string GetStringVar(string var_name)
     {
         return (string)GetVar(var_name);
+    }
+
+    public void PassVariable(string var_name, object var_value)
+    {
+        variables_to_pass[var_name] = var_value;
     }
 }

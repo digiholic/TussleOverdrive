@@ -253,7 +253,7 @@ public enum InputType
 
 public static class InputTypeUtil
 {
-    public static InputType GetForward(AbstractFighter actor)
+    public static InputType GetForward(BattleObject actor)
     {
         if (actor.GetIntVar("facing") == 1) //facing right
             return InputType.Right;
@@ -261,7 +261,7 @@ public static class InputTypeUtil
             return InputType.Left;
     }
 
-    public static InputType GetBackward(AbstractFighter actor)
+    public static InputType GetBackward(BattleObject actor)
     {
         if (actor.GetIntVar("facing") == 1) //facing right
             return InputType.Left;
@@ -269,7 +269,7 @@ public static class InputTypeUtil
             return InputType.Right;
     }
 
-    public static InputType GetForwardSmash(AbstractFighter actor)
+    public static InputType GetForwardSmash(BattleObject actor)
     {
         if (actor.GetIntVar("facing") == 1) //facing right
             return InputType.RightSmash;
@@ -277,7 +277,7 @@ public static class InputTypeUtil
             return InputType.LeftSmash;
     }
 
-    public static InputType GetBackwardSmash(AbstractFighter actor)
+    public static InputType GetBackwardSmash(BattleObject actor)
     {
         if (actor.GetIntVar("facing") == 1) //facing right
             return InputType.LeftSmash;

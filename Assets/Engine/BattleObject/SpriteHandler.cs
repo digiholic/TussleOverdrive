@@ -5,11 +5,13 @@ using System.IO;
 
 [System.Serializable]
 public class SpriteHandler : BattleComponent {
+    public enum SpriteOrientation { LEFT, RIGHT }
 
     public string directory;
     public string default_sprite;
     public string prefix;
     public float pixelsPerUnit = 100.0f;
+    public SpriteOrientation orientation;
 
     private Dictionary<string,List<Sprite>> sprites = new Dictionary<string,List<Sprite>>();
     private string current_sprite = "idle";
@@ -156,8 +158,23 @@ public class SpriteHandler : BattleComponent {
 
     public void flip()
     {
+        if (orientation == SpriteOrientation.LEFT)
+            orientation = SpriteOrientation.RIGHT;
+        else
+            orientation = SpriteOrientation.LEFT;
         Vector3 transfVec = sprite_renderer.transform.localScale;
         transfVec.x *= -1;
         //sprite_renderer.transform.localScale = transfVec;
+    }
+
+    public void ReconcileDirection()
+    {
+        if (GetVar("facing") != null)
+        {
+            int facing = GetIntVar("facing");
+            if ((facing == 1 && orientation == SpriteOrientation.LEFT) ||
+                    (facing == -1 && orientation == SpriteOrientation.RIGHT))
+                flip();
+        }
     }
 }
