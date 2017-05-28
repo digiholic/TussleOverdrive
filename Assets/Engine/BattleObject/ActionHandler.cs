@@ -71,6 +71,7 @@ public class ActionHandler : BattleComponent {
             case "CrouchGetup": return new CrouchGetup();
             case "Move": return new Move();
             case "Stop": return new Stop();
+            case "Pivot": return new Pivot();
             case "Land": return new Land();
             case "Dash": return new Dash();
             case "LedgeGrab": return new LedgeGrab();

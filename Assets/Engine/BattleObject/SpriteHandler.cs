@@ -169,7 +169,7 @@ public class SpriteHandler : BattleComponent {
 
     public void ReconcileDirection()
     {
-        if (GetVar("facing") != null)
+        if (HasVar("facing"))
         {
             int facing = GetIntVar("facing");
             if ((facing == 1 && orientation == SpriteOrientation.LEFT) ||

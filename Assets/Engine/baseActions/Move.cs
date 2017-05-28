@@ -18,7 +18,7 @@ public class Move : GameAction {
     public override void TearDown(GameAction new_action)
     {
         base.TearDown(new_action);
-        if (new_action.GetVar("direction") != null)
+        if (new_action.HasVar("direction"))
         {
             new_action.SetVar("direction", new_action.GetIntVar("direction") * GetIntVar("direction") * actor.GetIntVar("facing"));
         }

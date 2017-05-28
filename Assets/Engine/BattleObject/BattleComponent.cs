@@ -16,6 +16,11 @@ public class BattleComponent : MonoBehaviour {
         battleObject.SetVar(var_name, obj);
     }
 
+    public bool HasVar(string var_name)
+    {
+        return battleObject.HasVar(var_name);
+    }
+
     /// <summary>
     /// Gets the variable with the given name from the variables list
     /// </summary>

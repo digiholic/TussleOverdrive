@@ -18,7 +18,7 @@ public class Dash : GameAction {
     public override void TearDown(GameAction new_action)
     {
         base.TearDown(new_action);
-        if (new_action.GetVar("direction") != null)
+        if (new_action.HasVar("direction"))
         {
             new_action.SetVar("direction", GetIntVar("direction") * actor.GetIntVar("direction"));
         } else
@@ -47,7 +47,7 @@ public class Dash : GameAction {
         if (current_frame > last_frame)
             //current_frame = run_start_frame;
             //VERY TODO UNTIL VARIABLES IN ACTION
-            current_frame = last_frame;
+            current_frame = GetIntVar("run_start_frame");
     }
 
     public override void stateTransitions()

@@ -147,6 +147,14 @@ public class BattleObject : MonoBehaviour
         variable[var_name] = obj;
     }
 
+    public bool HasVar(string var_name)
+    {
+        if (variable.ContainsKey(var_name))
+            return true;
+        else
+            return false;
+    }
+
     /// <summary>
     /// Gets the variable with the given name from the variables list
     /// </summary>

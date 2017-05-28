@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Diagnostics;
 
 public class GameAction {
+    private StackTrace stackTrace = new StackTrace();
 
     public string sprite_name;
     public int sprite_rate = 1;
@@ -145,6 +147,14 @@ public class GameAction {
         last_frame = new_length;
     }
 
+    public bool HasVar(string var_name)
+    {
+        if (variable.ContainsKey(var_name))
+            return true;
+        else
+            return false;
+    }
+
     public void SetVar(string var_name, object obj)
     {
         variable[var_name] = obj;
@@ -163,7 +173,8 @@ public class GameAction {
         }
         else
         {
-            Debug.LogWarning("Could not find variable " + var_name + " in Action " + this.ToString());
+            UnityEngine.Debug.LogWarning("Could not find variable " + var_name + " in Action " + this.ToString());
+            UnityEngine.Debug.Log(stackTrace.GetFrame(1).GetMethod().Name);
             return null;
         }
     }
