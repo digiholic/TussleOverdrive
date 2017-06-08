@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class NeutralAction : GameAction {
-    public override void OnLastFrame()
+    public NeutralAction()
     {
-        base.OnLastFrame();
-        actor.BroadcastMessage("DoAction","NeutralAction");
+        exit_action = "NeutralAction";
     }
-
     public override void stateTransitions()
     {
         base.stateTransitions();

@@ -66,7 +66,7 @@ public class AbstractFighter : BattleComponent {
     
     private SpriteHandler sprite_loader;
     private Animator anim;
-    private InputBuffer inputBuffer;
+    private InputManager inputBuffer;
     private XMLLoader data_xml;
     private AudioSource sound_player;
     private PlatformPhase platform_phaser;
@@ -153,11 +153,12 @@ public class AbstractFighter : BattleComponent {
     /// </summary>
     private void LoadComponents()
     {
-        inputBuffer = GetComponent<InputBuffer>();
+        inputBuffer = GetComponent<InputManager>();
         if (inputBuffer == null)
         {
-            inputBuffer = gameObject.AddComponent<InputBuffer>();
-            inputBuffer.playerNum = player_num;
+            inputBuffer = gameObject.AddComponent<InputManager>();
+            inputBuffer.player_num = player_num;
+            inputBuffer.LoadAllKeys();
         }
             
 
@@ -222,7 +223,7 @@ public class AbstractFighter : BattleComponent {
     }
 
     // Update is called once per frame
-    void Update () {
+    public override void ManualUpdate () {
         //Set gravity, or reset jumps
         if (GetBoolVar("grounded"))
             Rest();
@@ -246,8 +247,6 @@ public class AbstractFighter : BattleComponent {
         else
             platform_phaser.EnableDownPhase = false;
 
-        battleObject.ManualUpdate();
-        
         if (GetBoolVar("grounded"))
             battleObject.GetMotionHandler().accel(GetFloatVar("friction"));
         else
@@ -427,28 +426,39 @@ public class AbstractFighter : BattleComponent {
         return Input.GetButtonUp(player_num + "_" + buttonName);
     }
 
-    public bool KeyBuffered(InputType key, int distance = 12, float threshold = 0.1f)
+    public bool KeyBuffered(InputType key, int distance = 12, float threshold = 1.0f)
     {
+        if (key == InputType.Forward) key = InputTypeUtil.GetForward(battleObject);
+        if (key == InputType.Backward) key = InputTypeUtil.GetBackward(battleObject);
         return inputBuffer.KeyBuffered(key, distance, threshold);
+    }
+
+    public bool CheckBuffer(InputType key, int distance = 12, float threshold = 1.0f)
+    {
+        if (key == InputType.Forward) key = InputTypeUtil.GetForward(battleObject);
+        if (key == InputType.Backward) key = InputTypeUtil.GetBackward(battleObject);
+        return inputBuffer.CheckBuffer(key, distance, threshold);
     }
 
     public bool KeyHeld(InputType key)
     {
-        return inputBuffer.ControllerState[key] > 0.0f;
+        if (key == InputType.Forward) key = InputTypeUtil.GetForward(battleObject);
+        if (key == InputType.Backward) key = InputTypeUtil.GetBackward(battleObject);
+        return inputBuffer.GetKey(key);
     }
 
-    public bool SequenceBuffered(List<KeyValuePair<InputType,float>> inputList, int distance = 12)
+    /*public bool SequenceBuffered(List<KeyValuePair<InputType,float>> inputList, int distance = 12)
     {
         return inputBuffer.SequenceBuffered(inputList, distance);
-    }
+    }*/
 
 
-    public bool CheckSmash(string axisName)
+    public bool CheckSmash(InputType key)
     {
-        if (axisName == "Horizontal")
-            return (x_axis_delta > 0.3);
-        else
-            return (y_axis_delta > 0.3);
+        if (key == InputType.Forward) key = InputTypeUtil.GetForward(battleObject);
+        if (key == InputType.Backward) key = InputTypeUtil.GetBackward(battleObject);
+
+        return inputBuffer.CheckDoubleTap(key,32);
     }
 
     /*

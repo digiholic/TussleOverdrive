@@ -22,6 +22,9 @@ public class BattleObject : MonoBehaviour
     /// </summary>
     public int DebugLevel = 2;
 
+
+    public bool UpdateOnFrame = true;
+    private int framesToUpdate = 0;
     /* Each component has a public accessor that will route commands to the right objects for the purposes of reading data,
      * but most methods should be called via the BroadcastMessage function, so that it could potentially hit multiple Components.
      */
@@ -104,14 +107,35 @@ public class BattleObject : MonoBehaviour
     }
 
     // ManualUpdate is called once per frame by the calling object
-    public void ManualUpdate()
+    public void StepFrame()
     {
-
+        if (motionHandler != null) motionHandler.ManualUpdate();
+        if (abstractFighter != null) abstractFighter.ManualUpdate();
+        if (actionHandler != null) actionHandler.ManualUpdate();
+        if (hitboxLoader != null) hitboxLoader.ManualUpdate();
+        if (hurtboxLoader != null) hurtboxLoader.ManualUpdate();
+        if (modelHandler != null) modelHandler.ManualUpdate();
+        if (platform != null) platform.ManualUpdate();
+        if (environmentCollider != null) environmentCollider.ManualUpdate();
+        if (spriteHandler != null) spriteHandler.ManualUpdate();
+        if (motionHandler != null) motionHandler.ExecuteMovement();
     }
 
     public void Update()
     {
+        if (UpdateOnFrame)
+            StepFrame();
+        else if (framesToUpdate > 0)
+        {
+            StepFrame();
+            framesToUpdate--;
+        }
 
+        if (Input.GetKey(KeyCode.Slash))
+        {
+            framesToUpdate += 1;
+        }
+            
     }
 
     /// <summary>

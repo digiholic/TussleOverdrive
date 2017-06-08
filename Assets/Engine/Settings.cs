@@ -83,6 +83,24 @@ public class Settings : MonoBehaviour {
     {
         audio_manager = GetComponent<AudioManager>();
         preset = GetComponent<SettingsPreset>();
+
+        PlayerPrefs.SetString("control_attack_0", "Z");
+        PlayerPrefs.SetString("control_special_0", "X");
+        PlayerPrefs.SetString("control_jump_0", "C");
+        PlayerPrefs.SetString("control_shield_0", "A");
+        PlayerPrefs.SetString("control_left_0", "LeftArrow");
+        PlayerPrefs.SetString("control_right_0", "RightArrow");
+        PlayerPrefs.SetString("control_up_0", "UpArrow");
+        PlayerPrefs.SetString("control_down_0", "DownArrow");
+
+        PlayerPrefs.SetString("control_attack_1", "U");
+        PlayerPrefs.SetString("control_special_1", "Y");
+        PlayerPrefs.SetString("control_jump_1", "Semicolon");
+        PlayerPrefs.SetString("control_shield_1", "O");
+        PlayerPrefs.SetString("control_left_1", "J");
+        PlayerPrefs.SetString("control_right_1", "L");
+        PlayerPrefs.SetString("control_up_1", "I");
+        PlayerPrefs.SetString("control_down_1", "K");
     }
 
     public void ChangeBGMVolume(float vol)

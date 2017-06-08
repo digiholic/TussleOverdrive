@@ -12,7 +12,7 @@ public class Pivot : GameAction {
     {
         base.SetUp(obj);
         SetVar("direction", actor.GetIntVar("facing"));
-        int num_frames = Mathf.FloorToInt(actor.GetMotionHandler().XSpeed * actor.GetIntVar("facing")) / actor.GetFloatVar("pivot_grip");
+        int num_frames = Mathf.FloorToInt((actor.GetMotionHandler().XSpeed * actor.GetIntVar("facing")) / actor.GetFloatVar("pivot_grip"));
         SetVar("num_frames", num_frames);
         //If the pivot grip would have us with a shorter amount than the length shows it should be
         //then we need to start partway through the pivot
@@ -44,21 +44,9 @@ public class Pivot : GameAction {
         AbstractFighter fighter = actor.GetAbstractFighter();
         if (current_frame == last_frame)
         {
-            //These are the sequences needed to check for double-tapping.
-            //I'm sorry.
-            List<KeyValuePair<InputType, float>> forward_sequence = new List<KeyValuePair<InputType, float>>()
-            {
-                new KeyValuePair<InputType, float>(InputTypeUtil.GetForward(actor),0.0f),
-                new KeyValuePair<InputType, float>(InputTypeUtil.GetForward(actor),0.5f)
-            };
-            List<KeyValuePair<InputType, float>> back_sequence = new List<KeyValuePair<InputType, float>>()
-            {
-                new KeyValuePair<InputType, float>(InputTypeUtil.GetBackward(actor),0.0f),
-                new KeyValuePair<InputType, float>(InputTypeUtil.GetBackward(actor),0.5f)
-            };
             if (fighter.KeyHeld(InputTypeUtil.GetForward(actor)))
             {
-                if (fighter.SequenceBuffered(forward_sequence))
+                if (fighter.CheckSmash(InputTypeUtil.GetForward(actor)))
                     actor.SendMessage("doAction", "Dash");
                 else
                     actor.SendMessage("doAction", "Move");
@@ -67,7 +55,7 @@ public class Pivot : GameAction {
             else if (fighter.KeyHeld(InputTypeUtil.GetBackward(actor)))
             {
                 actor.SendMessage("flip");
-                if (fighter.SequenceBuffered(back_sequence))
+                if (fighter.CheckSmash(InputTypeUtil.GetBackward(actor)))
                     actor.SendMessage("doAction", "Dash");
                 else
                     actor.SendMessage("doAction", "Move");

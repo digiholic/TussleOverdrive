@@ -39,7 +39,6 @@ public class UIButtonColor : MonoBehaviour
 	protected Color mColor;
 	protected bool mStarted = false;
 	protected bool mHighlighted = false;
-    protected bool mClicked = false;
 
 	/// <summary>
 	/// UIButtonColor's default (starting) color. It's useful to be able to change it, just in case.
@@ -67,13 +66,6 @@ public class UIButtonColor : MonoBehaviour
 			mStarted = true;
 		}
 	}
-
-    void Update()
-    {
-        ///TUSSLE OVERRIDE - This will keep the button updating colors while it's hovered over. Needed for our freakin' sweet menus
-        if (mHighlighted && !mClicked)
-            TweenColor.Begin(tweenTarget, duration, mHighlighted ? hover : mColor);
-    }
 
 	protected virtual void OnEnable () { if (mStarted && mHighlighted) OnHover(UICamera.IsHighlighted(gameObject)); }
 
@@ -132,7 +124,6 @@ public class UIButtonColor : MonoBehaviour
 		{
 			if (!mStarted) Start();
 			TweenColor.Begin(tweenTarget, duration, isPressed ? pressed : (UICamera.IsHighlighted(gameObject) ? hover : mColor));
-            mClicked = isPressed;
 		}
 	}
 
@@ -140,14 +131,9 @@ public class UIButtonColor : MonoBehaviour
 	{
 		if (enabled)
 		{
-            if (!mStarted) Start();
+			if (!mStarted) Start();
 			TweenColor.Begin(tweenTarget, duration, isOver ? hover : mColor);
 			mHighlighted = isOver;
-            if (isOver)
-            {
-                UICamera.selectedObject = gameObject;
-            }
-
 		}
 	}
 }

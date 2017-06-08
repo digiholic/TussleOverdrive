@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Diagnostics;
+using System;
 
 public class GameAction {
     private StackTrace stackTrace = new StackTrace();
@@ -10,6 +11,7 @@ public class GameAction {
     public int sprite_rate = 1;
     public bool loop = false;
     public int length = 1;
+    public string exit_action = "NeutralAction";
 
     public int current_frame;
 
@@ -42,10 +44,7 @@ public class GameAction {
         actor.BroadcastMessage("ChangeSprite",sprite_name);
         game_controller = BattleController.current_battle;
         foreach (string subaction in set_up_actions.subactions)
-        {
-            if (cond_list[cond_depth])
-                SubactionLoader.executeSubaction(subaction, actor, this);
-        }
+            CheckCondAndExecute(subaction);
     }
 
     // Update is called once per frame
@@ -59,13 +58,11 @@ public class GameAction {
         }
 
         foreach (string subaction in actions_before_frame.subactions)
-            if (cond_list[cond_depth])
-                SubactionLoader.executeSubaction(subaction, actor, this);
+            CheckCondAndExecute(subaction);
 
         if (actions_at_frame.ContainsKey(current_frame))
             foreach (string subaction in actions_at_frame[current_frame].subactions)
-                if (cond_list[cond_depth])
-                    SubactionLoader.executeSubaction(subaction, actor, this);
+                CheckCondAndExecute(subaction);
 
         if (current_frame >= last_frame)
             this.OnLastFrame();
@@ -74,15 +71,15 @@ public class GameAction {
     public virtual void OnLastFrame()
     {
         foreach (string subaction in actions_at_last_frame.subactions)
-            if (cond_list[cond_depth])
-                SubactionLoader.executeSubaction(subaction, actor, this);
+            CheckCondAndExecute(subaction);
+        if (exit_action != null)
+            actor.SendMessage("DoAction", exit_action);
     }
 
     public virtual void LateUpdate() //This way the frame gets incremented after everything else
     {
         foreach (string subaction in actions_after_frame.subactions)
-            if (cond_list[cond_depth])
-                SubactionLoader.executeSubaction(subaction, actor, this);
+            CheckCondAndExecute(subaction);
         current_frame++;
     }
 
@@ -101,29 +98,25 @@ public class GameAction {
             GameObject.Destroy(hbox.gameObject);
         }
         foreach (string subaction in tear_down_actions.subactions)
-            if (cond_list[cond_depth])
-                SubactionLoader.executeSubaction(subaction, actor, this);
+            CheckCondAndExecute(subaction);
     }
 
     public virtual void stateTransitions()
     {
         foreach (string subaction in state_transition_actions.subactions)
-            if (cond_list[cond_depth])
-                SubactionLoader.executeSubaction(subaction, actor, this);
+            CheckCondAndExecute(subaction);
     }
 
     public virtual void onClank()
     {
         foreach (string subaction in actions_on_clank.subactions)
-            if (cond_list[cond_depth])
-                SubactionLoader.executeSubaction(subaction, actor, this);
+            CheckCondAndExecute(subaction);
     }
 
     public virtual void onPrevail()
     {
         foreach (string subaction in actions_on_prevail.subactions)
-            if (cond_list[cond_depth])
-                SubactionLoader.executeSubaction(subaction, actor, this);
+            CheckCondAndExecute(subaction);
     }
 
     public void SetDynamicAction(DynamicAction dynAction)
@@ -132,6 +125,7 @@ public class GameAction {
         sprite_name = dynAction.sprite;
         sprite_rate = dynAction.sprite_rate;
         loop = dynAction.loop;
+        exit_action = dynAction.exit_action;
 
         set_up_actions = dynAction.set_up_actions;
         actions_before_frame = dynAction.actions_before_frame;
@@ -140,6 +134,7 @@ public class GameAction {
         actions_at_last_frame = dynAction.actions_at_last_frame;
         state_transition_actions = dynAction.state_transition_actions;
         tear_down_actions = dynAction.tear_down_actions;
+
     }
     
     public void AdjustLength(int new_length)
@@ -203,4 +198,110 @@ public class GameAction {
     {
         variables_to_pass[var_name] = var_value;
     }
+
+    private void CheckCondAndExecute(string subact)
+    {
+        if (!cond_list.Contains(false)) //If there are no falses in the list, execute the action
+        {
+            SubactionLoader.executeSubaction(subact, actor, this);
+        }
+        else
+        {
+            //Check if the subaction is one of the control subactions, we execute it anyway
+            if (subact.StartsWith("IfVar") || subact.StartsWith("Else") || subact.StartsWith("EndIf"))
+                SubactionLoader.executeSubaction(subact, actor, this);
+        }
+    }
 }
+
+/*
+public class TransitionState
+{
+    public int priority;
+
+    public virtual void CheckTransition(AbstractFighter actor) { }
+}
+
+
+public class InputTransitions : TransitionState
+{
+    InputType input, direction;
+    string neutral, tilt, smash;
+
+    public InputTransitions(InputType _input, InputType _direction, string _neutral=null, string _tilt=null, string _smash = null)
+    {
+        input = _input;
+        direction = _direction;
+        neutral = _neutral;
+        tilt = _tilt;
+        smash = _smash;
+    }
+}
+public class InputTransition : TransitionState
+{
+    InputType input;
+    string action;
+    public int priority = 0; //Resolve smashes, then direction, then inputs
+
+    public InputTransition(InputType _input, string _action)
+    {
+        input = _input;
+        action = _action;
+    }
+
+    public override void CheckTransition(AbstractFighter actor)
+    {
+        if (actor.KeyBuffered(input))
+            actor.SendMessage("DoAction", action);
+    }
+}
+
+public class DirectionTransition : TransitionState
+{
+    InputType direction;
+    string action;
+    bool smash;
+    public int priority = 1; //Resolve smashes, then direction, then inputs
+
+    public DirectionTransition(InputType _direction, string _action, bool _smash = false)
+    {
+        direction = _direction;
+        action = _action;
+        smash = _smash;
+    }
+
+    public override void CheckTransition(AbstractFighter actor)
+    {
+        if ((smash && actor.CheckSmash(direction)) || (!smash && (actor.KeyHeld(direction))))
+            actor.SendMessage("DoAction", action);
+    }
+}
+
+public class DirectionalInputTransition : TransitionState
+{
+    InputType direction;
+    InputType input;
+    string action;
+    bool smash;
+    public int priority = 2; //Resolve smashes, then direction, then inputs
+
+    public DirectionalInputTransition(InputType _direction, InputType _input, string _action, bool _smash = false)
+    {
+        direction = _direction;
+        input = _input;
+        action = _action;
+        smash = _smash;    
+    }
+
+
+    public override void CheckTransition(AbstractFighter actor)
+    {
+        //Check for either a smash or held
+        if ((smash && actor.CheckSmash(direction)) || (!smash && (actor.KeyHeld(direction))))
+        {
+            if (actor.KeyBuffered(input))
+                actor.SendMessage("DoAction", action);
+        }
+    }
+}
+*/

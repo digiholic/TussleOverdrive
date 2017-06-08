@@ -11,6 +11,11 @@ public class BattleComponent : MonoBehaviour {
         battleObject = GetComponent<BattleObject>();
 	}
 
+    public virtual void ManualUpdate()
+    {
+
+    }
+
     public void SetVar(string var_name, object obj)
     {
         battleObject.SetVar(var_name, obj);

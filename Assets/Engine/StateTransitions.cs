@@ -4,7 +4,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class StateTransitions : ScriptableObject {
+    /*
+    public static List<TransitionState> NeutralStateTransitions = new List<TransitionState>()
+    {
+        new InputTransition(InputType.Jump,"Jump"),
+        new DirectionTransition(InputType.Down,"Crouch"),
+        new DirectionTransition(InputType.Forward,"Move"),
+        new DirectionTransition(InputType.Backward,"StandingPivot"),
+        new DirectionalInputTransition(InputType.Up,InputType.Attack,"UpSmash",true),
+        new DirectionalInputTransition(InputType.Up,InputType.Attack,"UpAttack"),
+        new InputTransition(InputType.Attack,"NeutralAttack")
 
+    };
+    */
     public static void NeutralState(AbstractFighter actor)
     {
         //shield
@@ -13,7 +25,7 @@ public class StateTransitions : ScriptableObject {
         //special
         if (actor.KeyBuffered(InputType.Jump))
             actor.doAction("Jump");
-        if (actor.KeyBuffered(InputType.Down,threshold: 0.5f))
+        if (actor.KeyBuffered(InputType.Down))
             actor.doAction("Crouch");
         if (actor.KeyHeld(InputTypeUtil.GetForward(actor.BattleObject)))
             actor.doAction("Move");
@@ -80,12 +92,7 @@ public class StateTransitions : ScriptableObject {
 
     public static void MoveState(AbstractFighter actor)
     {
-        List<KeyValuePair<InputType, float>> sequence = new List<KeyValuePair<InputType, float>>()
-        {
-            new KeyValuePair<InputType, float>(InputTypeUtil.GetForward(actor.BattleObject),0.0f),
-            new KeyValuePair<InputType, float>(InputTypeUtil.GetForward(actor.BattleObject),0.5f)
-        };
-        if (actor.SequenceBuffered(sequence))
+        if (actor.CheckSmash(InputTypeUtil.GetForward(actor.BattleObject)))
             actor.doAction("Dash");
         //float direction = actor.GetControllerAxis("Horizontal") * actor.facing;
         //shield

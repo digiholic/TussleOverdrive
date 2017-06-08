@@ -37,7 +37,7 @@ public class ActionHandler : BattleComponent {
     }
 
     // Update is called once per frame
-    void Update () {
+    public override void ManualUpdate () {
         _current_action.stateTransitions();
         _current_action.Update();
         _current_action.LateUpdate();
@@ -70,6 +70,7 @@ public class ActionHandler : BattleComponent {
             case "Crouch": return new Crouch();
             case "CrouchGetup": return new CrouchGetup();
             case "Move": return new Move();
+            case "StandingPivot": return new StandingPivot();
             case "Stop": return new Stop();
             case "Pivot": return new Pivot();
             case "Land": return new Land();

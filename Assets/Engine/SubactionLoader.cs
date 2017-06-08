@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class SubactionLoader : ScriptableObject {
     
@@ -259,6 +260,12 @@ public class ActionFile
         foreach (DynamicAction action in actions)
             action.BuildDict();
     }
+
+    public void SaveToJson(string path, bool prettyPrint = true)
+    {
+        string action_json_path = Path.Combine("Assets/Resources/",path);
+        File.WriteAllText(action_json_path, JsonUtility.ToJson(this, prettyPrint));
+    }
 }
 
 [System.Serializable]
@@ -269,6 +276,7 @@ public class DynamicAction
     public string sprite;
     public int sprite_rate;
     public bool loop;
+    public string exit_action;
 
     public ActionGroup set_up_actions = new ActionGroup();
     public ActionGroup state_transition_actions = new ActionGroup();
@@ -280,13 +288,14 @@ public class DynamicAction
 
     public Dictionary<int, ActionGroup> actions_at_frame_dict = new Dictionary<int, ActionGroup>();
 
-    public DynamicAction(string _name, int _length=1, string _sprite="idle", int _sprite_rate=1,bool _loop=false)
+    public DynamicAction(string _name, int _length=1, string _sprite="idle", int _sprite_rate=1,bool _loop=false, string _exit_action="NeutralAction")
     {
         name = _name;
         length = _length;
         sprite = _sprite;
         sprite_rate = _sprite_rate;
         loop = _loop;
+        exit_action = _exit_action;
     }
 
     public void BuildDict()

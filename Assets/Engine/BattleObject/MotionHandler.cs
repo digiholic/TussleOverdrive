@@ -22,7 +22,7 @@ public class MotionHandler : BattleComponent {
     }
 
     // Update is called once per frame
-    void Update () {
+    public override void ManualUpdate () {
         
         if (_charController.isGrounded)
             SetVar("grounded", true);
@@ -30,7 +30,7 @@ public class MotionHandler : BattleComponent {
             SetVar("grounded", false);
     }
 
-    void LateUpdate()
+    public void ExecuteMovement()
     {
         Vector3 movement = new Vector3(0, 0, 0);
         movement.y = YSpeed;

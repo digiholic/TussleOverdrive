@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class InputBuffer : MonoBehaviour {
+    /*
     public int playerNum = 0;
 
     private List<InputEvent> inputBuffer = new List<InputEvent>();
@@ -213,75 +214,5 @@ public class InputBuffer : MonoBehaviour {
             return true;
         return false;
     }
-}
-
-
-[System.Serializable]
-public class InputEvent
-{
-    public InputType key;
-    public float value;
-    public int frame;
-    public bool active;
-
-    public InputEvent(InputType _key, float _value, int _frame)
-    {
-        key = _key;
-        value = _value;
-        frame = _frame;
-        active = true;
-    }
-
-    public bool Consume()
-    {
-        if (active)
-        {
-            active = false;
-            return true;
-        }
-        return false;
-    }
-}
-
-public enum InputType
-{
-    Attack, Special, Jump, Shield,
-    Left, Right, Up, Down,
-    LeftSmash, RightSmash, UpSmash, DownSmash, Grab
-}
-
-
-public static class InputTypeUtil
-{
-    public static InputType GetForward(BattleObject actor)
-    {
-        if (actor.GetIntVar("facing") == 1) //facing right
-            return InputType.Right;
-        else
-            return InputType.Left;
-    }
-
-    public static InputType GetBackward(BattleObject actor)
-    {
-        if (actor.GetIntVar("facing") == 1) //facing right
-            return InputType.Left;
-        else
-            return InputType.Right;
-    }
-
-    public static InputType GetForwardSmash(BattleObject actor)
-    {
-        if (actor.GetIntVar("facing") == 1) //facing right
-            return InputType.RightSmash;
-        else
-            return InputType.LeftSmash;
-    }
-
-    public static InputType GetBackwardSmash(BattleObject actor)
-    {
-        if (actor.GetIntVar("facing") == 1) //facing right
-            return InputType.LeftSmash;
-        else
-            return InputType.RightSmash;
-    }
+    */
 }

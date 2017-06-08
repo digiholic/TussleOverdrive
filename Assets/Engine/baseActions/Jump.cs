@@ -40,7 +40,7 @@ public class Jump : GameAction
         if (current_frame <= jump_frame)
             StateTransitions.JumpState(actor.GetAbstractFighter());
         if (current_frame > jump_frame)
-            StateTransitions.AirControl(actor.GetAbstractFighter());
+            StateTransitions.AirState(actor.GetAbstractFighter());
         if (current_frame > last_frame)
             actor.BroadcastMessage("DoAction", "Fall");
     }
