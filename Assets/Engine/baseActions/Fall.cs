@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class Fall : GameAction
 {
-    
+    public Fall()
+    {
+        exit_action = "Fall";
+    }
+
     public override void stateTransitions()
     {
         base.stateTransitions();

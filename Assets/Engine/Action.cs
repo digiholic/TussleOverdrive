@@ -72,7 +72,7 @@ public class GameAction {
     {
         foreach (string subaction in actions_at_last_frame.subactions)
             CheckCondAndExecute(subaction);
-        if (exit_action != null)
+        if (exit_action != null && exit_action != "")
             actor.SendMessage("DoAction", exit_action);
     }
 

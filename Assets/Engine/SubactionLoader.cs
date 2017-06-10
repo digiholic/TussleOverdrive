@@ -264,7 +264,9 @@ public class ActionFile
     public void SaveToJson(string path, bool prettyPrint = true)
     {
         string action_json_path = Path.Combine("Assets/Resources/",path);
-        File.WriteAllText(action_json_path, JsonUtility.ToJson(this, prettyPrint));
+        string thisjson = JsonUtility.ToJson(this, prettyPrint);
+        Debug.Log(thisjson);
+        File.WriteAllText(action_json_path, thisjson);
     }
 }
 
