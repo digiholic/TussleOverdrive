@@ -2,29 +2,1179 @@ Initialize engine version: 5.5.0f3 (38b4efef76f0)
 GfxDevice: creating device client; threaded=1
 Direct3D:
     Version:  Direct3D 11.0 [level 11.0]
-    Renderer: AMD Radeon HD 7700 Series (ID=0x683d)
-    Vendor:   ATI
-    VRAM:     2029 MB
-    Driver:   21.19.137.1
+    Renderer: Intel(R) HD Graphics 520 (ID=0x1916)
+    Vendor:   Intel
+    VRAM:     2111 MB
+    Driver:   20.19.15.4457
 Begin MonoManager ReloadAssembly
-Platform assembly: C:\Users\digiholic\git\TussleOverdrive\Project TUSSLE_Data\Managed\UnityEngine.dll (this message is harmless)
-Loading C:\Users\digiholic\git\TussleOverdrive\Project TUSSLE_Data\Managed\UnityEngine.dll into Unity Child Domain
-Platform assembly: C:\Users\digiholic\git\TussleOverdrive\Project TUSSLE_Data\Managed\Assembly-CSharp.dll (this message is harmless)
-Loading C:\Users\digiholic\git\TussleOverdrive\Project TUSSLE_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-Platform assembly: C:\Users\digiholic\git\TussleOverdrive\Project TUSSLE_Data\Managed\UnityEngine.UI.dll (this message is harmless)
-Loading C:\Users\digiholic\git\TussleOverdrive\Project TUSSLE_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-Platform assembly: C:\Users\digiholic\git\TussleOverdrive\Project TUSSLE_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
-Loading C:\Users\digiholic\git\TussleOverdrive\Project TUSSLE_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-Platform assembly: C:\Users\digiholic\git\TussleOverdrive\Project TUSSLE_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll (this message is harmless)
-Loading C:\Users\digiholic\git\TussleOverdrive\Project TUSSLE_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
-- Completed reload, in  0.040 seconds
-Platform assembly: C:\Users\digiholic\git\TussleOverdrive\Project TUSSLE_Data\Managed\System.Core.dll (this message is harmless)
-Platform assembly: C:\Users\digiholic\git\TussleOverdrive\Project TUSSLE_Data\Managed\System.dll (this message is harmless)
-desktop: 1920x1080 60Hz; virtual: 3200x1080 at -1280,0
+Platform assembly: C:\Users\fournier\Documents\Project TUSSLE\Project TUSSLE_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\fournier\Documents\Project TUSSLE\Project TUSSLE_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\fournier\Documents\Project TUSSLE\Project TUSSLE_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\fournier\Documents\Project TUSSLE\Project TUSSLE_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\fournier\Documents\Project TUSSLE\Project TUSSLE_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\fournier\Documents\Project TUSSLE\Project TUSSLE_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\fournier\Documents\Project TUSSLE\Project TUSSLE_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\fournier\Documents\Project TUSSLE\Project TUSSLE_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\fournier\Documents\Project TUSSLE\Project TUSSLE_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll (this message is harmless)
+Loading C:\Users\fournier\Documents\Project TUSSLE\Project TUSSLE_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
+- Completed reload, in  0.229 seconds
+Platform assembly: C:\Users\fournier\Documents\Project TUSSLE\Project TUSSLE_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\fournier\Documents\Project TUSSLE\Project TUSSLE_Data\Managed\System.dll (this message is harmless)
+Platform assembly: C:\Users\fournier\Documents\Project TUSSLE\Project TUSSLE_Data\Managed\System.Xml.dll (this message is harmless)
 <RI> Initializing input.
 <RI> Input initialized.
+desktop: 1920x1080 60Hz; virtual: 6900x1350 at -2400,0
 <RI> Initialized touch support.
-UnloadTime: 1.375461 ms
-Setting up 2 worker threads for Enlighten.
-  Thread -> id: 3890 -> priority: 1 
-  Thread -> id: 20d8 -> priority: 1 
+UnloadTime: 1.529027 ms
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 4.509133 ms
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 602.
+Total: 0.432000 ms (FindLiveObjects: 0.050051 ms CreateObjectMapping: 0.084512 ms MarkObjects: 0.290872 ms  DeleteObjects: 0.005743 ms)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.475898 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 595.
+Total: 1.383386 ms (FindLiveObjects: 0.141128 ms CreateObjectMapping: 0.157538 ms MarkObjects: 1.054770 ms  DeleteObjects: 0.026666 ms)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.571898 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 796.
+Total: 0.786462 ms (FindLiveObjects: 0.065230 ms CreateObjectMapping: 0.045128 ms MarkObjects: 0.642462 ms  DeleteObjects: 0.032820 ms)
+
+[06/10/2017 5:27 PM]BattleObject - {
+    "DebugLevel": 2,
+    "UpdateOnFrame": true,
+    "abstractFighterJSON": "{\"player_num\":0,\"fighter_name\":\"Hitboxie\",\"franchise_icon\":\"franchise_icon.png\",\"css_icon\":\"sprites/icon_hitboxie\",\"css_portrait\":\"\",\"sound_path\":\"sfx/\",\"ground_elasticity\":0.0,\"damage_percent\":0.0,\"game_controller\":{\"m_FileID\":4370,\"m_PathID\":0}}",
+    "actionHandlerJSON": "{\"action_json_path\":\"\"}",
+    "environmentColliderJSON": "",
+    "hitboxLoaderJSON": "",
+    "hurtboxLoaderJSON": "",
+    "modelHandlerJSON": "",
+    "motionHandlerJSON": "{}",
+    "platformJSON": "",
+    "spriteHandlerJSON": "{\"directory\":\"Assets/Resources/Fighters/Hitboxie/sprites/\",\"default_sprite\":\"idle\",\"prefix\":\"hitboxie_\",\"pixelsPerUnit\":50.0,\"orientation\":0}"
+}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+[06/10/2017 5:27 PM]BattleObject - {
+    "DebugLevel": 2,
+    "UpdateOnFrame": true,
+    "abstractFighterJSON": "{\"player_num\":1,\"fighter_name\":\"Unknown\",\"franchise_icon\":\"Assets/Sprites/Defaults/franchise_icon.png\",\"css_icon\":\"Assets/Sprites/Defaults/css_icon.png\",\"css_portrait\":\"Assets/Sprites/Default/css_portrait.png\",\"sound_path\":\"\",\"ground_elasticity\":0.0,\"damage_percent\":0.0,\"game_controller\":{\"m_FileID\":0,\"m_PathID\":0}}",
+    "actionHandlerJSON": "{\"action_json_path\":\"\"}",
+    "environmentColliderJSON": "",
+    "hitboxLoaderJSON": "",
+    "hurtboxLoaderJSON": "",
+    "modelHandlerJSON": "",
+    "motionHandlerJSON": "{}",
+    "platformJSON": "",
+    "spriteHandlerJSON": "{\"directory\":\"\",\"default_sprite\":\"\",\"prefix\":\"\",\"pixelsPerUnit\":50.0,\"orientation\":0}"
+}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Attempted to load illegal sprite: idle
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+BoxColliders does not support negative scale or size.
+The effective box size has been forced positive and is likely to give unexpected collision geometry.
+If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "Fighter (2)/Hurtbox"
+ 
+(Filename:  Line: 0)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Scene 'MainMenu' couldn't be loaded because it has not been added to the build settings or the AssetBundle has not been loaded.
+To add a scene to the build settings use the menu File->Build Settings...
+ 
+(Filename:  Line: 127)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Scene 'MainMenu' couldn't be loaded because it has not been added to the build settings or the AssetBundle has not been loaded.
+To add a scene to the build settings use the menu File->Build Settings...
+ 
+(Filename:  Line: 127)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SubactionLoader.executeSubaction (System.String subact, .BattleObject actor, .GameAction action) [0x00000] in <filename unknown>:0 
+  at GameAction.CheckCondAndExecute (System.String subact) [0x00000] in <filename unknown>:0 
+  at GameAction.Update () [0x00000] in <filename unknown>:0 
+  at ActionHandler.ManualUpdate () [0x00000] in <filename unknown>:0 
+  at BattleObject.StepFrame () [0x00000] in <filename unknown>:0 
+  at BattleObject.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Setting up 1 worker threads for Enlighten.
+  Thread -> id: 13b4 -> priority: 1 

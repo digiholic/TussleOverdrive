@@ -96,7 +96,12 @@ public class MenuButtonNavigator : MonoBehaviour {
     public void LoadSceneAndClearMenu(string sceneName)
     {
         Destroy(MenuColorChanger.menu_color.gameObject);
-        SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+        SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
 

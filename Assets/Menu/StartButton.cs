@@ -21,7 +21,11 @@ public class StartButton : MonoBehaviour {
         alpha = 127 * Mathf.Sin(alpha_rad) + 128;
         alpha_rad += 0.05f;
         textComponent.color = new Color(0, 0, 0, alpha / 255.0f);
-        if (Input.anyKeyDown)
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+        else if (Input.anyKeyDown)
         {
             SceneManager.LoadScene(SceneOnPress, LoadSceneMode.Single);
         }
