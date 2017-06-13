@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Land : GameAction {
+    private GameObject puff;
 
     public override void stateTransitions()
     {
@@ -22,6 +23,13 @@ public class Land : GameAction {
         base.Update();
         if (current_frame == 0)
         {
+            puff = ObjectPooler.current_pooler.GetPooledObject("LandPuff", actor.transform);
+            if (puff)
+            {
+                puff.SetActive(true);
+                puff.transform.localPosition = new Vector3(0, -actor.transform.lossyScale.y);
+            }
+            
             actor.BroadcastMessage("ChangeYPreferred", actor.GetFloatVar("max_fall_speed"));
             last_frame = Mathf.Max(last_frame,actor.GetIntVar("landing_lag"));
             actor.BroadcastMessage("ChangeYSpeed", -1.0f);
@@ -35,5 +43,11 @@ public class Land : GameAction {
                 print("l-cancel")
                 self.last_frame = self.last_frame // 2 */
         }
+    }
+
+    public override void TearDown(GameAction new_action)
+    {
+        base.TearDown(new_action);
+        puff.SendMessage("StopParticles");
     }
 }
