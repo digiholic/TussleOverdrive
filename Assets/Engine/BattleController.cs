@@ -4,12 +4,15 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class BattleController : MonoBehaviour {
-    public List<AbstractFighter> fighters;
     public int current_game_frame = 0;
 
     public static BattleController current_battle;
 
-
+    private List<BattleObject> objects = new List<BattleObject>();
+    private Dictionary<int, AbstractFighter> fighterDict = new Dictionary<int, AbstractFighter>();
+    private List<AbstractFighter> fighters = new List<AbstractFighter>();
+    private List<Hitbox> hitboxes = new List<Hitbox>();
+    public bool UpdateOnFrame;
     /// <summary>
     /// Singleton code. Will destroy any superfluous battle controllers that are in the scenes it loads into.
     /// When the battle processing is done, this object should be destroyed to make room for a new battle.
@@ -35,14 +38,23 @@ public class BattleController : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        current_game_frame++;
-        
+        if (UpdateOnFrame)
+        {
+            foreach(BattleObject obj in objects)
+                obj.StepFrame();
+            foreach (Hitbox hbox in hitboxes)
+                hbox.StepFrame();
+            current_game_frame++;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Slash))
+            UpdateOnFrame = !UpdateOnFrame;
         if (Input.GetKeyUp(KeyCode.Escape))
         {
             SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
         }
     }
-
+    
     /// <summary>
     /// Gets the fighter with the given player number from the list.
     /// </summary>
@@ -50,11 +62,50 @@ public class BattleController : MonoBehaviour {
     /// <returns>A fighter with the given player number, or null if none is found</returns>
     public AbstractFighter GetFighter(int playerNum)
     {
-        foreach (AbstractFighter fighter in fighters)
+        return fighterDict[playerNum];
+    }
+
+    public List<AbstractFighter> GetFighters()
+    {
+        return fighters;
+    }
+
+    /// <summary>
+    /// Adds an object to the list of active battle objects
+    /// </summary>
+    /// <param name="obj"></param>
+    public void RegisterObject(BattleObject obj)
+    {
+        objects.Add(obj);
+        AbstractFighter fighter = obj.GetAbstractFighter();
+        if (fighter != null)
         {
-            if (fighter.player_num == playerNum)
-                return fighter;
+            fighters.Add(fighter);
+            fighterDict.Add(fighter.player_num, fighter);
+            SendMessage("LoadFighterIcons"); //Reload icons when a new fighter is added
         }
-        return null;
+    }
+
+    /// <summary>
+    /// Removes an object from the list of active battle objects
+    /// </summary>
+    /// <param name="obj"></param>
+    public void UnregisterObject(BattleObject obj)
+    {
+
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="hit"></param>
+    public void RegisterHitbox(Hitbox hit)
+    {
+        hitboxes.Add(hit);
+    }
+
+    public void UnregisterHitbox(Hitbox hit)
+    {
+
     }
 }

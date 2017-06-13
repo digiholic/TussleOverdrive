@@ -36,7 +36,6 @@ public class HitboxLoader : BattleComponent {
             hbox.hitbox_lock = new HitboxLock(hbox.lock_name);
         }
 
-        
         return hbox;
     }
     

@@ -27,8 +27,16 @@ public class Hitbox : MonoBehaviour {
         mesh = GetComponent<MeshRenderer>();
 	}
 	
+    void Start()
+    {
+        if (BattleController.current_battle != null)
+        {
+            BattleController.current_battle.RegisterHitbox(this);
+        }
+    }
+
 	// Update is called once per frame
-	void Update () {
+	public void StepFrame () {
         if (active)
         {
             //Debug.Log("Checking for hitbox connections");
@@ -91,7 +99,7 @@ public class Hitbox : MonoBehaviour {
     {
         _life = life;
         active = true;
-        if (GameObject.FindObjectOfType<Settings>().display_hitboxes)
+        if (FindObjectOfType<Settings>().display_hitboxes)
         {
             mesh.enabled = true;
         }
@@ -130,6 +138,10 @@ public class Hitbox : MonoBehaviour {
         return retString;
     }
 
+    void OnDestroy()
+    {
+        BattleController.current_battle.UnregisterHitbox(this);
+    }
 }
 
 public class HitboxLock

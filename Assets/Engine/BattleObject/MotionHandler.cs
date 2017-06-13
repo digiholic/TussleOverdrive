@@ -36,6 +36,7 @@ public class MotionHandler : BattleComponent {
         movement.y = YSpeed;
         movement.x = XSpeed;
         movement *= Time.deltaTime;
+        Debug.DrawRay(transform.position, movement*10);
         _charController.Move(movement);
     }
 
@@ -169,5 +170,14 @@ public class MotionHandler : BattleComponent {
 
         Vector2 retVec = new Vector2(direction, magnitude);
         return retVec;
+    }
+    
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.gameObject.layer == LayerMask.NameToLayer("Terrain"))
+        {
+            
+        }
+        
     }
 }

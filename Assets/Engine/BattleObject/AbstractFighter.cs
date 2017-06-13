@@ -513,11 +513,27 @@ public class AbstractFighter : BattleComponent {
 
     private IEnumerator RemoveLock(HitboxLock hitbox_lock)
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(120);
         if (hitbox_locks.Contains(hitbox_lock)) //It can be unlocked later
             hitbox_locks.Remove(hitbox_lock);
     }
 
+    public class WaitForUnlock : CustomYieldInstruction
+    {
+        private int clockTarget;
+        public override bool keepWaiting
+        {
+            get
+            {
+                return BattleController.current_battle.current_game_frame < clockTarget;
+            }
+        }
+
+        public WaitForUnlock(int frameCount)
+        {
+            clockTarget = BattleController.current_battle.current_game_frame + frameCount;
+        }
+    }
     /////////////////////////////////////////////////////////////////////////////////////////
     //                               BROADCAST RECEIVERS                                   //
     /////////////////////////////////////////////////////////////////////////////////////////

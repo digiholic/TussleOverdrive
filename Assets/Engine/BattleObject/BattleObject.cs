@@ -23,8 +23,6 @@ public class BattleObject : MonoBehaviour
     public int DebugLevel = 2;
 
 
-    public bool UpdateOnFrame = true;
-    private int framesToUpdate = 0;
     /* Each component has a public accessor that will route commands to the right objects for the purposes of reading data,
      * but most methods should be called via the BroadcastMessage function, so that it could potentially hit multiple Components.
      */
@@ -61,8 +59,10 @@ public class BattleObject : MonoBehaviour
 
     public void Start()
     {
-        //Debug.Log(ToJson(true));
-        FromJson(ToJson());
+        if (BattleController.current_battle != null)
+        {
+            BattleController.current_battle.RegisterObject(this);
+        }
     }
 
     public string ToJson(bool prettyPrint = false)
@@ -123,18 +123,6 @@ public class BattleObject : MonoBehaviour
 
     public void Update()
     {
-        if (UpdateOnFrame)
-            StepFrame();
-        else if (framesToUpdate > 0)
-        {
-            StepFrame();
-            framesToUpdate--;
-        }
-
-        if (Input.GetKey(KeyCode.Slash))
-        {
-            framesToUpdate += 1;
-        }
             
     }
 
@@ -322,5 +310,10 @@ public class BattleObject : MonoBehaviour
             retval += message;
             Debug.Log(retval);
         }
+    }
+
+    void OnDestroy()
+    {
+        BattleController.current_battle.UnregisterObject(this);
     }
 }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class HitStun : GameAction {
+    public GameObject particles;
+
     public HitStun()
     {
         SetVar("angle", 0);
@@ -16,6 +18,8 @@ public class HitStun : GameAction {
     {
         base.SetUp(obj);
         SetVar("tech_cooldown", 0);
+        particles = ObjectPooler.current_pooler.GetPooledObject("LaunchTrail", obj.transform);
+        particles.SetActive(true);
     }
 
     public override void stateTransitions()
@@ -96,6 +100,7 @@ public class HitStun : GameAction {
         actor.SetVar("ground_elasticity", 0);
         actor.SetVar("tech_window", 0);
         actor.SendMessage("UnRotate");
+        particles.SendMessage("StopParticles");
     }
 
     public override void Update()
