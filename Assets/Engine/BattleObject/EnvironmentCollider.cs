@@ -8,19 +8,21 @@ public class EnvironmentCollider : BattleComponent {
     public float radius;
     public float height;
     
-    private CharacterController char_controller;
-
-	// Use this for initialization
+    // Use this for initialization
 	void Start () {
-        char_controller = GetComponent<CharacterController>();
-        if (char_controller == null) //If the character controller isn't already set, we need to create it
-        {
-            char_controller = gameObject.AddComponent<CharacterController>();
-        }
-	}
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
+
+    void OnCollisionEnter(Collision col)
+    {
+        if (col.gameObject.layer == LayerMask.NameToLayer("Terrain"))
+        {
+            Debug.Log("Hit terrain");
+        }
+    }
 }

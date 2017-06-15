@@ -11,6 +11,7 @@ public class LaunchTrail : MonoBehaviour {
     {
         particles = GetComponent<ParticleSystem>();
     }
+
 	// Use this for initialization
 	void OnEnable () {
         particles.Play();

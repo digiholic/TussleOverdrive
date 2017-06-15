@@ -19,6 +19,14 @@ public class SpriteHandler : BattleComponent {
 
     private SpriteRenderer sprite_renderer;
 
+    void Awake()
+    {
+        GameObject spriteComponent = new GameObject("Sprite");
+        spriteComponent.transform.parent = transform;
+        spriteComponent.transform.localPosition = Vector3.zero;
+        sprite_renderer = spriteComponent.AddComponent<SpriteRenderer>();
+    }
+
     void LoadSpriteXML()
     {
         XMLLoader data_xml = GetComponent<XMLLoader>();
@@ -38,10 +46,7 @@ public class SpriteHandler : BattleComponent {
 
     // Use this for initialization
 	void Start() {
-        GameObject spriteComponent = new GameObject("Sprite");
-        spriteComponent.transform.parent = transform;
-        spriteComponent.transform.localPosition = Vector3.zero;
-        sprite_renderer = spriteComponent.AddComponent<SpriteRenderer>();
+        
     }
 
     public void Initialize()
