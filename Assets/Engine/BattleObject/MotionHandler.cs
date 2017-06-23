@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class MotionHandler : BattleComponent {
     private CharacterController _charController;
+    private Rigidbody rigid;
 
     public float XSpeed { get; private set; }
     public float YSpeed { get; private set; }
@@ -14,20 +15,17 @@ public class MotionHandler : BattleComponent {
 
     // Use this for initialization
     void Start () {
-        _charController = GetComponent<CharacterController>();
-        if (_charController == null)
-        {
-            _charController = gameObject.AddComponent<CharacterController>();
-        }
+        rigid = GetComponent<Rigidbody>();
+        //_charController = GetComponent<CharacterController>();
+        //if (_charController == null)
+        //{
+        //    _charController = gameObject.AddComponent<CharacterController>();
+        //}
     }
 
     // Update is called once per frame
     public override void ManualUpdate () {
-        
-        if (_charController.isGrounded)
-            SetVar("grounded", true);
-        else
-            SetVar("grounded", false);
+
     }
 
     public void ExecuteMovement()
@@ -35,9 +33,22 @@ public class MotionHandler : BattleComponent {
         Vector3 movement = new Vector3(0, 0, 0);
         movement.y = YSpeed;
         movement.x = XSpeed;
+        //movement *= Time.deltaTime;
+        //Debug.Log(movement);
+        //transform.Translate(movement);
+        //rigid.velocity = movement;
+        rigid.velocity = transform.TransformDirection(movement);
+        //_charController.Move(movement);
+    }
+
+    void Update()
+    {
+        Vector3 movement = new Vector3(0, 0, 0);
+        movement.y = YSpeed;
+        movement.x = XSpeed;
         movement *= Time.deltaTime;
-        Debug.DrawRay(transform.position, movement*10);
-        _charController.Move(movement);
+        Debug.DrawRay(transform.position, movement * 10);
+
     }
 
     /// <summary>
@@ -77,6 +88,27 @@ public class MotionHandler : BattleComponent {
     }
 
     /// <summary>
+    /// Change the X and Y speeds by providing a Vector
+    /// </summary>
+    /// <param name="_newSpeed">A Vector3 representing the new speed to change to. Note that z is ignored, but Vector3 must be used anyway for Unity purposes</param>
+    public void ChangeSpeedVector(Vector3 _newSpeed)
+    {
+        ChangeXSpeed(_newSpeed.x);
+        ChangeYSpeed(_newSpeed.y);
+    }
+
+    /// <summary>
+    /// Add the values of a vector to the X and Y Speed
+    /// </summary>
+    /// <param name="_newSpeed">A Vector3 representing the new speed to add. Note that z is ignored, but Vector3 must be used anyway for Unity purposes</param>
+
+    public void ChangeSpeedVectorBy(Vector3 _additionalSpeed)
+    {
+        ChangeXSpeedBy(_additionalSpeed.x);
+        ChangeYSpeedBy(_additionalSpeed.y);
+    }
+
+    /// <summary>
     /// Change the X Preferred to the given value.
     /// </summary>
     /// <param name="_xPreferred">The Preferred to set X to</param>
@@ -112,6 +144,27 @@ public class MotionHandler : BattleComponent {
         YPreferred += _yPreferred;
     }
 
+    /// <summary>
+    /// Change the X and Y preferred speeds by providing a Vector
+    /// </summary>
+    /// <param name="_newSpeed">A Vector3 representing the new speed to change to. Note that z is ignored, but Vector3 must be used anyway for Unity purposes</param>
+    public void ChangePreferredVector(Vector3 _newSpeed)
+    {
+        ChangeXPreferred(_newSpeed.x);
+        ChangeYPreferred(_newSpeed.y);
+    }
+
+    /// <summary>
+    /// Add the values of a vector to the X and Y Preferred Speed
+    /// </summary>
+    /// <param name="_newSpeed">A Vector3 representing the new speed to add. Note that z is ignored, but Vector3 must be used anyway for Unity purposes</param>
+
+    public void ChangePreferredVectorBy(Vector3 _additionalSpeed)
+    {
+        ChangeXPreferredBy(_additionalSpeed.x);
+        ChangeYPreferredBy(_additionalSpeed.y);
+    }
+
     public void accel(float _xFactor)
     {
         if (XSpeed > XPreferred)
@@ -127,7 +180,7 @@ public class MotionHandler : BattleComponent {
     }
 
     /// <summary>
-    /// The Single-arguemtn version of CalcGrav, for use with SendMessage
+    /// The Single-argument version of CalcGrav, for use with SendMessage
     /// </summary>
     /// <param name="args">A list containing the gravity and the max_fall_speed, in that order</param>
     public void CalcGrav(float[] args)
@@ -172,6 +225,11 @@ public class MotionHandler : BattleComponent {
         return retVec;
     }
     
+    public Vector3 GetMotionVector()
+    {
+        return new Vector3(XSpeed, YSpeed, 0.0f);
+    }
+
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
         if (hit.gameObject.layer == LayerMask.NameToLayer("Terrain"))

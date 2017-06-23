@@ -13,4 +13,11 @@ public class Platform : BattleComponent {
 	void Update () {
 		
 	}
+
+    void OnLanding(AbstractFighter actor)
+    {
+
+    }
+
+
 }

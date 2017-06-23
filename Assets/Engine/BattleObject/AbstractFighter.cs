@@ -191,7 +191,8 @@ public class AbstractFighter : BattleComponent {
         
         SendMessage("ChangeYSpeed", 0f);
         SetVar("jumps",GetIntVar("max_jumps"));
-        
+        SetVar("elasticity", 0.0f);
+
         game_controller = BattleController.current_battle;
 
         //Load SFX

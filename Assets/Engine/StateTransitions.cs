@@ -81,6 +81,7 @@ public class StateTransitions : ScriptableObject {
         {
             actor.doAction("AirJump");
         }
+        actor.SendMessage("CheckForGround");
         if (actor.GetBoolVar("grounded") && actor.ground_elasticity == 0 && actor.GetIntVar("tech_window") == 0)
         {
             actor.BroadcastMessage("ChangeXPreferred", 0.0f);
@@ -261,8 +262,10 @@ public class StateTransitions : ScriptableObject {
         }
     }
 
+
     public static void CheckGround(AbstractFighter actor)
     {
+        actor.SendMessage("CheckForGround");
         if (!actor.GetBoolVar("grounded"))
         {
             actor.doAction("Fall");

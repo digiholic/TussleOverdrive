@@ -92,8 +92,8 @@ public class HitStun : GameAction {
     public override void TearDown(GameAction new_action)
     {
         base.TearDown(new_action);
-        actor.SetVar("elasticity", 0);
-        actor.SetVar("ground_elasticity", 0);
+        actor.SetVar("elasticity", 0.0f);
+        actor.SetVar("ground_elasticity", 0.0f);
         actor.SetVar("tech_window", 0);
         actor.SendMessage("UnRotate");
     }
@@ -110,7 +110,7 @@ public class HitStun : GameAction {
             SetVar("tech_cooldown", 40);
         }
         if (actor.GetIntVar("tech_window") > 0)
-            actor.SetVar("elasticity", 0);
+            actor.SetVar("elasticity", 0.0f);
         else
             actor.SetVar("elasticity", actor.GetVar("hitstun_elasticity"));
         SetVar("feet_planted",actor.GetBoolVar("grounded"));

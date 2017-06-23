@@ -37,7 +37,7 @@ public class BattleController : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
+    void FixedUpdate () {
         if (UpdateOnFrame)
         {
             foreach(BattleObject obj in objects)
@@ -49,6 +49,14 @@ public class BattleController : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Slash))
             UpdateOnFrame = !UpdateOnFrame;
+        if (Input.GetKeyDown(KeyCode.Period))
+        {
+            foreach (BattleObject obj in objects)
+                obj.StepFrame();
+            foreach (Hitbox hbox in hitboxes)
+                hbox.StepFrame();
+            current_game_frame++;
+        }
         if (Input.GetKeyUp(KeyCode.Escape))
         {
             SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
