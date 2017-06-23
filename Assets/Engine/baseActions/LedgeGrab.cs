@@ -9,7 +9,6 @@ public class LedgeGrab : GameAction {
     {
         base.SetUp(obj);
         grabbed_ledge = actor.GetAbstractFighter().GrabbedLedge;
-
     }
     public override void stateTransitions()
     {
@@ -27,20 +26,22 @@ public class LedgeGrab : GameAction {
     {
         base.Update();
         actor.SendMessage("Rest");
+        if (grabbed_ledge != null)
+        {
 
-        int facingDir = actor.GetIntVar("facing");
+            actor.GetAnchorPoint("Hang_Point").SendMessage("SnapAnchorToPoint", grabbed_ledge.hang_point);
 
-        if (grabbed_ledge.grabSide == Ledge.Side.LEFT)
-            if (facingDir == -1)
-                actor.SendMessage("flip");
-        if (grabbed_ledge.grabSide == Ledge.Side.RIGHT)
-            if (facingDir == 1)
-                actor.SendMessage("flip");
-        //Snap to point
+            actor.SendMessage("ChangeXSpeed", 0f);
+            actor.SendMessage("ChangeYSpeed", 0f);
 
-        actor.GetAnchorPoint("Hang_Point").SendMessage("SnapAnchorToPoint", grabbed_ledge.hang_point);
-        
-        actor.SendMessage("ChangeXSpeed",0f);
-        actor.SendMessage("ChangeYSpeed", 0f);
+            int facingDir = actor.GetIntVar("facing");
+
+            if (grabbed_ledge.grabSide == Ledge.Side.LEFT)
+                if (facingDir == -1)
+                    actor.SendMessage("flip");
+            if (grabbed_ledge.grabSide == Ledge.Side.RIGHT)
+                if (facingDir == 1)
+                    actor.SendMessage("flip");
+        }
     }
 }
