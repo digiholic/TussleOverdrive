@@ -11,6 +11,7 @@ public class Jump : GameAction
         base.Update();
         if (current_frame == jump_frame)
         {
+            actor.SendMessage("UnRotate");
             actor.SetVar("grounded", false);
             if (actor.GetAbstractFighter().GetControllerButton("Jump"))
                 actor.BroadcastMessage("ChangeYSpeed", actor.GetFloatVar("jump_height"));

@@ -337,6 +337,23 @@ public class AbstractFighter : BattleComponent {
             doAction("NeutralAttack");
     }
 
+    public void doGroundSpecial()
+    {
+        if (GetDirectionRelative() > 0.0f)
+            doAction("ForwardSpecial");
+        else if (GetDirectionRelative() < 0.0f)
+        {
+            battleObject.SendMessage("flip");
+            doAction("ForwardSpecial");
+        }
+        else if (GetControllerAxis("Vertical") > 0.0f)
+            doAction("UpSpecial");
+        else if (GetControllerAxis("Vertical") < 0.0f)
+            doAction("DownSpecial");
+        else
+            doAction("NeutralSpecial");
+    }
+
     public void doAirAttack()
     {
         if (GetDirectionRelative() > 0.0f)
@@ -350,7 +367,24 @@ public class AbstractFighter : BattleComponent {
         else
             doAction("NeutralAir");
     }
-    
+
+    public void doAirSpecial()
+    {
+        if (GetDirectionRelative() > 0.0f)
+            doAction("ForwardSpecial");
+        else if (GetDirectionRelative() < 0.0f)
+        {
+            SendMessage("flip");
+            doAction("ForwardSpecial");
+        }
+        else if (GetControllerAxis("Vertical") > 0.0f)
+            doAction("UpSpecial");
+        else if (GetControllerAxis("Vertical") < 0.0f)
+            doAction("DownSpecial");
+        else
+            doAction("NeutralSpecial");
+    }
+
     public void PlaySound(string sound_name)
     {
         if (sounds.ContainsKey(sound_name))

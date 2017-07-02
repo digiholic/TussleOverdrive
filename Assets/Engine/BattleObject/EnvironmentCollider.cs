@@ -49,6 +49,10 @@ public class EnvironmentCollider : BattleComponent {
     public override void ManualUpdate()
     {
         checkCollisions = true;
+        if (!Physics.Raycast(transform.position, -Vector3.up, yDist + 0.3f)) //If we're way off base
+        {
+            SetVar("grounded", false);
+        }
     }
 
     public void CheckForGround()

@@ -3474,17 +3474,34 @@
                         "ChangeSubimage 5"
                     ]
                 },
-                {
-                    "frames": "6,9,12,15",
+				{
+                    "frames": "6",
                     "subactions": [
-                        "ChangeSubimage 1"
+                        "ChangeSubimage 6"
+                    ]
+                },
+				{
+                    "frames": "9",
+                    "subactions": [
+                        "ChangeSubimage 7"
+                    ]
+                },
+				{
+                    "frames": "12",
+                    "subactions": [
+                        "ChangeSubimage 8"
+                    ]
+                },
+				{
+                    "frames": "15",
+                    "subactions": [
+                        "ChangeSubimage 9"
                     ]
                 },
                 {
                     "frames": "30",
                     "subactions": [
-                        "ModifyHitbox launchHitbox trajectory <engine.subaction.VarData instance at 0x08B810D0>",
-                        "ModifyHitbox flyingHitbox trajectory <engine.subaction.VarData instance at 0x08B81120>",
+                        "ModifyHitbox launchHitbox trajectory 45",
                         "ChangeECB 92,92 0,0"
                     ]
                 },
@@ -3492,8 +3509,9 @@
                     "frames": "31",
                     "subactions": [
                         "DeactivateHitbox launchHitbox",
+						"ChangeYSpeed 20",
                         "<TODO>Change Fighter Speed: ",
-                        "DoAction: UpSpecialFlight"
+                        "DoAction UpSpecialFlight"
                     ]
                 }
             ]
@@ -3516,6 +3534,7 @@
                 "frames": "",
                 "subactions": [
                     "DoTransition grabLedges",
+					"DoTransition airControl",
                     "<DEPRECATED>If action frame >= 26: control"
                 ]
             },
@@ -3547,7 +3566,7 @@
                 {
                     "frames": "49",
                     "subactions": [
-                        "DoAction: Helpless"
+                        "DoAction Fall"
                     ]
                 }
             ]

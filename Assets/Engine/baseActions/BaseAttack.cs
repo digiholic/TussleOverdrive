@@ -16,7 +16,6 @@ public class BaseAttack : GameAction {
     public override void stateTransitions()
     {
         base.stateTransitions();
-        StateTransitions.CheckGround(actor.GetAbstractFighter());
         if (current_frame >= last_frame)
             if (actor.GetBoolVar("grounded"))
                 actor.BroadcastMessage("DoAction", "NeutralAction");

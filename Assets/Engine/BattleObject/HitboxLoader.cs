@@ -34,7 +34,6 @@ public class HitboxLoader : BattleComponent {
          }
         else //If it's unnamed, we just need to create a new lock for this hitbox
         {
-            Debug.Log(action.hitbox_locks.Count);
             HitboxLock new_lock = new HitboxLock("GenericLockName"+action.hitbox_locks.Count.ToString());
             hbox.hitbox_lock = new_lock;
             action.hitbox_locks.Add(new_lock.name, new_lock);

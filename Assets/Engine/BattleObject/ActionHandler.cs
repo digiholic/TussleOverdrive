@@ -91,6 +91,11 @@ public class ActionHandler : BattleComponent {
             case "BackAir": return new AirAttack();
             case "UpAir": return new AirAttack();
             case "DownAir": return new AirAttack();
+            case "NeutralSpecial": return new BaseAttack();
+            case "ForwardSpecial": return new BaseAttack();
+            case "UpSpecial": return new BaseAttack();
+            case "DownSpecial": return new BaseAttack();
+
             default:
                 Debug.LogWarning("Null action: " + _name);
                 return new GameAction();

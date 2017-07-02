@@ -1623,7 +1623,7 @@
                 {
                     "frames":"6",
                     "subactions":[
-                        "<TODO>Change Fighter Speed: -16.0 Y",
+                        "ChangeYSpeed 16",
                         "DeactivateHitbox upspecial"
                     ]
                 },

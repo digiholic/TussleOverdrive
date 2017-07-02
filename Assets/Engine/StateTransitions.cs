@@ -22,7 +22,8 @@ public class StateTransitions : ScriptableObject {
         //shield
         if (actor.KeyBuffered(InputType.Attack))
             actor.doGroundAttack();
-        //special
+        if (actor.KeyBuffered(InputType.Special))
+            actor.doGroundSpecial();
         if (actor.KeyBuffered(InputType.Jump))
             actor.doAction("Jump");
         if (actor.KeyBuffered(InputType.Down))
@@ -54,8 +55,8 @@ public class StateTransitions : ScriptableObject {
         }
         if (actor.KeyBuffered(InputType.Attack))
             actor.doAction("DownAttack");
-        //if (actor.GetControllerButton("Special"))
-        //doAction("DownSpecial")
+        if (actor.GetControllerButton("Special"))
+            actor.doAction("DownSpecial");
         if (actor.KeyBuffered(InputType.Jump))
             actor.doAction("Jump");
         if (actor.KeyBuffered(InputType.Down,threshold:-0.1f) && actor.BattleObject.GetActionHandler().CurrentAction.GetType() != typeof(CrouchGetup))
@@ -73,9 +74,9 @@ public class StateTransitions : ScriptableObject {
         {
             actor.doAirAttack();
         }
-        if (actor.GetControllerButton("Special"))
+        if (actor.KeyBuffered(InputType.Special))
         {
-            //specials TODO
+            actor.doAirSpecial();
         }
         if (actor.KeyBuffered(InputType.Jump) && actor.GetIntVar("jumps") > 0)
         {
@@ -99,7 +100,8 @@ public class StateTransitions : ScriptableObject {
         //shield
         if (actor.KeyBuffered(InputType.Attack))
             actor.doGroundAttack();
-        //special
+        if (actor.KeyBuffered(InputType.Special))
+            actor.doGroundSpecial();
         if (actor.KeyBuffered(InputType.Jump))
             actor.doAction("Jump");
         else if (actor.GetControllerAxis("Vertical") < -0.5f)
@@ -154,7 +156,8 @@ public class StateTransitions : ScriptableObject {
         //shield
         if (actor.KeyBuffered(InputType.Attack))
             actor.doGroundAttack();
-        //special
+        if (actor.KeyBuffered(InputType.Special))
+            actor.doGroundSpecial();
         if (actor.KeyBuffered(InputType.Jump))
             actor.doAction("Jump");
         else if (actor.GetControllerAxis("Horizontal") == 0.0f)

@@ -81,7 +81,7 @@ public class SubactionLoader : ScriptableObject {
                 /* changeXSpeed x:float rel:bool
                  *      changes the xSpeed of the fighter
                  */
-                if (args.Length >= 2)
+                if (args.Length > 2)
                     actor.GetMotionHandler().ChangeXSpeedBy(float.Parse(args[1]) * actor.GetIntVar("facing"));
                 else
                     actor.GetMotionHandler().ChangeXSpeed(float.Parse(args[1]) * actor.GetIntVar("facing"));
@@ -90,7 +90,7 @@ public class SubactionLoader : ScriptableObject {
                 /* changeYSpeed y:float rel:bool
                  *      changes the ySpeed of the fighter
                  */
-                if (args.Length >= 2)
+                if (args.Length > 2)
                     actor.GetMotionHandler().ChangeYSpeedBy(float.Parse(args[1]));
                 else
                     actor.GetMotionHandler().ChangeYSpeed(float.Parse(args[1]));
@@ -99,7 +99,7 @@ public class SubactionLoader : ScriptableObject {
                 /* changeXPreferred x:float rel:bool
                  *      changes the preferred xSpeed of the fighter
                  */
-                if (args.Length >= 2)
+                if (args.Length > 2)
                     actor.GetMotionHandler().ChangeXPreferredBy(float.Parse(args[1]) * actor.GetIntVar("facing"));
                 else
                     actor.GetMotionHandler().ChangeXPreferred(float.Parse(args[1]) * actor.GetIntVar("facing"));
@@ -108,7 +108,7 @@ public class SubactionLoader : ScriptableObject {
                 /* changeXPreferred y:float rel:bool
                  *      changes the yPreferred of the fighter
                  */
-                if (args.Length >= 2)
+                if (args.Length > 2)
                     actor.GetMotionHandler().ChangeYPreferredBy(float.Parse(args[1]) * actor.GetIntVar("facing"));
                 else
                     actor.GetMotionHandler().ChangeYPreferred(float.Parse(args[1]) * actor.GetIntVar("facing"));
