@@ -124,12 +124,20 @@ public class HitStun : GameAction {
             {
                 actor.SetVar("grounded", false);
                 if (directMagn.y > 10)
-                    actor.SendMessage("RotateSprite", directMagn.y);
+                {
+                    actor.SendMessage("UnRotate");
+                    actor.SendMessage("RotateSprite", (directMagn.x-90)*actor.GetIntVar("facing"));
+                }
+                    
             }
             if (last_frame > 15) //If the hitstun is long enough
             {
                 GameObject particles = ObjectPooler.current_pooler.GetPooledObject("LaunchTrail", actor.transform);
                 particles.SetActive(true);
+                if (fighter.hitTagged != null)
+                {
+                    particles.SendMessage("ChangeColor", Settings.current_settings.player_colors[fighter.hitTagged.player_num]);
+                }
                 particles.SendMessage("Play", last_frame);
             }
         }

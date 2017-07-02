@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Hitbox : MonoBehaviour {
+    public BattleObject owner;
+
     public float damage = 0.0f;
     public float base_knockback = 0.0f;
     public float knockback_growth = 0.0f;
@@ -78,11 +80,11 @@ public class Hitbox : MonoBehaviour {
         //float scale = 50;
         transform.localPosition = new Vector3(centerx / scale, centery / scale, 0.0f);
         transform.localScale = new Vector3(width / scale, height / scale, 1.0f);
-        
+
         //The all-important lock name
         if (dict.ContainsKey("lock_name"))
             lock_name = dict["lock_name"];
-
+        
         //Hitbox stats
         if (dict.ContainsKey("damage"))
             damage           = float.Parse(dict["damage"]);
@@ -113,7 +115,7 @@ public class Hitbox : MonoBehaviour {
             active = false;
             if (mesh.enabled)
                 mesh.enabled = false;
-            hitbox_lock.Destroy();
+            //hitbox_lock.Destroy();
         }
     }
 
@@ -162,7 +164,6 @@ public class HitboxLock
     {
         foreach(List<HitboxLock> alist in locked_lists)
             alist.Remove(this);
-
         locked_lists.Clear();  //So this gets garbage collected, it can't have any more references
     }
 

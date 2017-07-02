@@ -91,6 +91,11 @@ public class GameAction {
             new_action.SetVar(passvar.Key, passvar.Value);
         }
 
+        foreach (HitboxLock hlock in hitbox_locks.Values)
+        {
+            hlock.Destroy();
+        }
+
         //Deactivate and destroy hitboxes at the end of the action
         foreach (Hitbox hbox in hitboxes.Values)
         {

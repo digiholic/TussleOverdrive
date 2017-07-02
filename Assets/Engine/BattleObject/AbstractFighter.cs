@@ -36,7 +36,6 @@ public class AbstractFighter : BattleComponent {
     };
 
 
-
     //public string fighter_xml_file = "";
     private string resource_path = "";
     public int player_num = 0;
@@ -82,6 +81,7 @@ public class AbstractFighter : BattleComponent {
 
     private List<Collider> contacted_colliders = new List<Collider>();
     private List<Ledge> contacted_ledges = new List<Ledge>();
+    public AbstractFighter hitTagged = null;
 
     public bool LedgeLock { get; set; }
 
@@ -165,9 +165,6 @@ public class AbstractFighter : BattleComponent {
         platform_phaser = GetComponent<PlatformPhase>();
         if (platform_phaser == null)
             platform_phaser = gameObject.AddComponent<PlatformPhase>();
-
-        if (GetComponent<Death>() == null)
-            gameObject.AddComponent<Death>();
     }
 
     void Start() {
@@ -254,6 +251,40 @@ public class AbstractFighter : BattleComponent {
             battleObject.GetMotionHandler().accel(GetFloatVar("air_resistance"));
     }
 
+    public void WallBounce(ControllerColliderHit hit)
+    {
+        //Impact article generation
+        GameObject impact = ObjectPooler.current_pooler.GetPooledObject("Impact");
+        impact.transform.position = hit.point;
+        impact.transform.eulerAngles = new Vector3(0, 0, 90); //Reset position to rotate properly
+        impact.transform.rotation = Quaternion.FromToRotation(impact.transform.up, hit.normal);
+        impact.SetActive(true);
+        impact.SendMessage("Burst");
+
+        MotionHandler mot = battleObject.GetMotionHandler();
+
+        Vector3 refVector = Vector3.Reflect(mot.GetMotionVector(), hit.normal);
+        transform.Translate(refVector.normalized * 0.3f);
+        mot.ChangeSpeedVector(refVector * GetFloatVar("elasticity"));
+
+        //rotate to the new bounce direction
+        Vector2 directMagn = mot.GetDirectionMagnitude();
+        SendMessage("UnRotate");
+        SendMessage("RotateSprite", (directMagn.x - 90) * GetIntVar("facing"));
+
+        SetVar("StopFrames", 5);
+    }
+
+
+    public void Die()
+    {
+        transform.position = new Vector3(0, 10);
+        //TODO send death signal, handle respawning in-object
+        damage_percent = 0;
+        SendMessage("ChangeXSpeed", 0.0f);
+        SendMessage("ChangeYSpeed", 0.0f);
+    }
+
     public void doAction(string _actionName)
     {
         BroadcastMessage("DoAction", _actionName);
@@ -333,8 +364,11 @@ public class AbstractFighter : BattleComponent {
     /// <returns></returns>
     public bool LockHitbox(Hitbox hitbox)
     {
+
         if (hitbox_locks.Contains(hitbox.hitbox_lock)) //If it's in the locks, return false and do nothing else.
+        {
             return false;
+        }
         else
         {
             hitbox.hitbox_lock.PutInList(hitbox_locks);
@@ -348,6 +382,9 @@ public class AbstractFighter : BattleComponent {
     {
         if (LockHitbox(hitbox)) //If the hitbox is not already locked to us
         {
+            hitTagged = hitbox.owner.GetAbstractFighter();
+            StartCoroutine(RemoveTag());
+
             float weight_constant = 1.4f;
             float flat_constant = 5.0f;
 
@@ -356,7 +393,8 @@ public class AbstractFighter : BattleComponent {
             float scaled_kb = (((percent_portion * weight_portion * weight_constant) + flat_constant) * hitbox.knockback_growth);
             ApplyKnockback(scaled_kb + hitbox.base_knockback, hitbox.trajectory);
             DealDamage(hitbox.damage);
-            //TODO ApplyHitstun(scaled_kb+hitbox.base_knockback,hitbox.hitstun_multiplier,hitbox.base_hitstun,hitbox.trajectory)
+            ApplyHitstop(hitbox.damage);//TODO hitlag multiplier
+            if (hitbox.owner != null) hitbox.owner.SendMessage("ApplyHitstop", hitbox.damage);
             ApplyHitstun(scaled_kb + hitbox.base_knockback, 1.0f, 1.0f, hitbox.trajectory);
         }
     }
@@ -369,9 +407,10 @@ public class AbstractFighter : BattleComponent {
         //TODO log damage data
     }
 
-    public void ApplyHitstop(float _damage, float _hitlagMultiplier)
+    public void ApplyHitstop(float frames)
     {
-
+        //battleObject.PrintDebug(this, 2, "Applying Hitstop of "+frames.ToString()+" frames");
+        SetVar("StopFrames", Mathf.FloorToInt(frames));
     }
 
     public void ApplyKnockback(float _total_kb, float _trajectory)
@@ -495,6 +534,23 @@ public class AbstractFighter : BattleComponent {
                 contacted_colliders.Remove(other);
             battleObject.PrintDebug(this, 3, "Left Collider " + other);
         }
+
+        if (other.tag == "Killbox")
+        {
+            GameObject deathBurst = ObjectPooler.current_pooler.GetPooledObject("DeathBurst");
+            deathBurst.transform.position = transform.position;
+            //TODO change color to that of the player that kill
+            deathBurst.SetActive(true);
+
+            Color deathCol = Settings.current_settings.player_colors[player_num];
+            if (hitTagged != null) deathCol = Settings.current_settings.player_colors[hitTagged.player_num];
+            deathBurst.SendMessage("ChangeColor", deathCol);
+
+            deathBurst.SendMessage("Burst");
+            SetVar("StopFrames", 60);
+            doAction("Fall"); //TODO respawn
+            Die();
+        }
     }
 
     public List<Collider> GetCollisionsWithLayer(string layer)
@@ -514,9 +570,26 @@ public class AbstractFighter : BattleComponent {
 
     private IEnumerator RemoveLock(HitboxLock hitbox_lock)
     {
-        yield return new WaitForSeconds(120);
+        yield return new WaitForSeconds(2);
         if (hitbox_locks.Contains(hitbox_lock)) //It can be unlocked later
             hitbox_locks.Remove(hitbox_lock);
+    }
+
+    private IEnumerator RemoveTag()
+    {
+        yield return new WaitForSeconds(300);
+        hitTagged = null;
+    }
+
+    private IEnumerator WaitForFrames(int frames, string command)
+    {
+        int targetFrame = BattleController.current_battle.current_game_frame + frames;
+
+        while (BattleController.current_battle.current_game_frame < targetFrame) {
+            Debug.Log("Waiting...");
+            yield return null;
+        }
+        SendMessage(command);
     }
 
     public class WaitForUnlock : CustomYieldInstruction
@@ -563,8 +636,7 @@ public class AbstractFighter : BattleComponent {
         {
             contacted_ledges.Remove(ledge);
             if (contacted_ledges.Count == 0) LedgeLock = false;
-        }
-            
+        }   
     }
 
     public List<Ledge> GetLedges()

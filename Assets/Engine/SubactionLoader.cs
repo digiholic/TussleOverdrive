@@ -91,9 +91,9 @@ public class SubactionLoader : ScriptableObject {
                  *      changes the ySpeed of the fighter
                  */
                 if (args.Length >= 2)
-                    actor.GetMotionHandler().ChangeYSpeedBy(float.Parse(args[2]));
+                    actor.GetMotionHandler().ChangeYSpeedBy(float.Parse(args[1]));
                 else
-                    actor.GetMotionHandler().ChangeYSpeed(float.Parse(args[2]));
+                    actor.GetMotionHandler().ChangeYSpeed(float.Parse(args[1]));
                 break;
             case "ChangeXPreferred":
                 /* changeXPreferred x:float rel:bool

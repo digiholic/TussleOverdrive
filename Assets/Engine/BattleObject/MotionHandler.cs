@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class MotionHandler : BattleComponent {
     private CharacterController _charController;
-    private Rigidbody rigid;
+    //private Rigidbody rigid;
 
     public float XSpeed { get; private set; }
     public float YSpeed { get; private set; }
@@ -15,17 +15,18 @@ public class MotionHandler : BattleComponent {
 
     // Use this for initialization
     void Start () {
-        rigid = GetComponent<Rigidbody>();
-        //_charController = GetComponent<CharacterController>();
-        //if (_charController == null)
-        //{
-        //    _charController = gameObject.AddComponent<CharacterController>();
-        //}
+        _charController = GetComponent<CharacterController>();
+        //rigid = GetComponent<Rigidbody>();
+        if (_charController == null)
+        {
+            _charController = gameObject.AddComponent<CharacterController>();
+        }
     }
 
     // Update is called once per frame
     public override void ManualUpdate () {
-
+        //if (_charController.isGrounded) SetVar("grounded", true);
+        //else SetVar("grounded",false);
     }
 
     public void ExecuteMovement()
@@ -33,12 +34,13 @@ public class MotionHandler : BattleComponent {
         Vector3 movement = new Vector3(0, 0, 0);
         movement.y = YSpeed;
         movement.x = XSpeed;
-        //movement *= Time.deltaTime;
-        //Debug.Log(movement);
+
+        movement *= Time.deltaTime;
+        _charController.Move(movement);
+        
         //transform.Translate(movement);
-        //rigid.velocity = movement;
-        rigid.velocity = transform.TransformDirection(movement);
-        //_charController.Move(movement);
+        //rigid.velocity = transform.TransformDirection(movement);
+
     }
 
     void Update()

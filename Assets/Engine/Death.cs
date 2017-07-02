@@ -16,22 +16,6 @@ public class Death : MonoBehaviour {
 
     void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Killbox")
-        {
-            GetComponent<Transform>().position = new Vector3(0, 10);
-            //TODO send death signal, handle respawning in-object
-            Rigidbody rb = GetComponent<Rigidbody>();
-            if (rb != null)
-            {
-                rb.velocity = Vector3.zero;
-            }
-            AbstractFighter fighter = GetComponent<AbstractFighter>();
-            if (fighter != null)
-            {
-                fighter.damage_percent = 0;
-                fighter.BattleObject.BroadcastMessage("ChangeXSpeed",0.0f);
-                fighter.BattleObject.BroadcastMessage("ChangeYSpeed",0.0f);
-            }
-        }
+        
     }
 }

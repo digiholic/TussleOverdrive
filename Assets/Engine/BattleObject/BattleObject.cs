@@ -59,6 +59,7 @@ public class BattleObject : MonoBehaviour
 
     public void Start()
     {
+        SetVar("StopFrames", 0);
         if (BattleController.current_battle != null)
         {
             BattleController.current_battle.RegisterObject(this);
@@ -106,9 +107,16 @@ public class BattleObject : MonoBehaviour
         }
     }
 
-    // ManualUpdate is called once per frame by the calling object
     public void StepFrame()
     {
+        //Process Hitstop
+        int StopFrames = GetIntVar("StopFrames");
+        if (StopFrames > 0)
+        {
+            SetVar("StopFrames", StopFrames - 1);
+            return;
+        }
+
         if (motionHandler != null) motionHandler.ManualUpdate();
         if (abstractFighter != null) abstractFighter.ManualUpdate();
         if (actionHandler != null) actionHandler.ManualUpdate();
@@ -285,6 +293,27 @@ public class BattleObject : MonoBehaviour
     {
         return spriteHandler;
     }
+
+    /// <summary>
+    /// Shortcut to get the x speed from the motion handler
+    /// </summary>
+    /// <returns></returns>
+    public float GetXSpeed()
+    {
+        if (motionHandler) return motionHandler.XSpeed;
+        return 0.0f;
+    }
+
+    /// <summary>
+    /// Shortcut to get the y speed from the motion handler
+    /// </summary>
+    /// <returns></returns>
+    public float GetYSpeed()
+    {
+        if (motionHandler) return motionHandler.YSpeed;
+        return 0.0f;
+    }
+
 
     public AnchorPoint GetAnchorPoint(string name)
     {

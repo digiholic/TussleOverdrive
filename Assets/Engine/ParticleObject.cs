@@ -32,6 +32,12 @@ public class ParticleObject : MonoBehaviour {
         Runtime = 0; //Time to end the particles
     }
 
+    void ChangeColor(Color color)
+    {
+        ParticleSystem.MainModule main = particles.main;
+        main.startColor = color;
+    }
+
     void Update()
     {
         //If we're out of time and the particles aren't playing anymore

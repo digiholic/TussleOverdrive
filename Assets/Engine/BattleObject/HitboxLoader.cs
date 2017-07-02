@@ -10,6 +10,7 @@ public class HitboxLoader : BattleComponent {
     public Hitbox LoadHitbox(AbstractFighter owner, GameAction action, Dictionary<string, string> dict)
     {
         Hitbox hbox = Instantiate(hitbox_prefab);
+        hbox.owner = owner.BattleObject;
         hbox.transform.parent = owner.transform;
         hbox.LoadValuesFromDict(owner, dict);
 
@@ -33,7 +34,10 @@ public class HitboxLoader : BattleComponent {
          }
         else //If it's unnamed, we just need to create a new lock for this hitbox
         {
-            hbox.hitbox_lock = new HitboxLock(hbox.lock_name);
+            Debug.Log(action.hitbox_locks.Count);
+            HitboxLock new_lock = new HitboxLock("GenericLockName"+action.hitbox_locks.Count.ToString());
+            hbox.hitbox_lock = new_lock;
+            action.hitbox_locks.Add(new_lock.name, new_lock);
         }
 
         return hbox;

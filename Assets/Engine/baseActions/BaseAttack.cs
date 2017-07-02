@@ -28,8 +28,6 @@ public class BaseAttack : GameAction {
 public class AirAttack : GameAction
 {
 
-    public Dictionary<string, Hitbox> hitboxes = new Dictionary<string, Hitbox>();
-
     public override void TearDown(GameAction new_action)
     {
         base.TearDown(new_action);
@@ -42,6 +40,7 @@ public class AirAttack : GameAction
     public override void stateTransitions()
     {
         base.stateTransitions();
+        actor.SendMessage("CheckForGround");
         if (current_frame >= last_frame)
             if (actor.GetBoolVar("grounded"))
                 actor.BroadcastMessage("DoAction", "NeutralAction");

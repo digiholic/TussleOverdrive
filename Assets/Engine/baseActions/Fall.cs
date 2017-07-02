@@ -15,4 +15,10 @@ public class Fall : GameAction
         StateTransitions.AirState(actor.GetAbstractFighter());
         StateTransitions.CheckLedges(actor.GetAbstractFighter());
     }
+
+    public override void SetUp(BattleObject obj)
+    {
+        base.SetUp(obj);
+        actor.SendMessage("UnRotate");
+    }
 }
