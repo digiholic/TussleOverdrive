@@ -114,30 +114,30 @@ public class AbstractFighter : BattleComponent {
             */
 
             //Load the stats
-            SetVar("weight", data_xml.SelectSingleNode("//fighter/stats/weight").GetFloat());
-            SetVar("gravity", data_xml.SelectSingleNode("//fighter/stats/gravity").GetFloat());
-            SetVar("max_fall_speed", data_xml.SelectSingleNode("//fighter/stats/max_fall_speed").GetFloat());
-            SetVar("max_ground_speed", data_xml.SelectSingleNode("//fighter/stats/max_ground_speed").GetFloat());
-            SetVar("run_speed", data_xml.SelectSingleNode("//fighter/stats/run_speed").GetFloat());
-            SetVar("max_air_speed", data_xml.SelectSingleNode("//fighter/stats/max_air_speed").GetFloat());
-            SetVar("aerial_transition_speed", data_xml.SelectSingleNode("//fighter/stats/aerial_transition_speed").GetFloat());
-            SetVar("crawl_speed", data_xml.SelectSingleNode("//fighter/stats/crawl_speed").GetFloat());
-            SetVar("dodge_speed", data_xml.SelectSingleNode("//fighter/stats/dodge_speed").GetFloat());
-            SetVar("friction", data_xml.SelectSingleNode("//fighter/stats/friction").GetFloat());
-            SetVar("static_grip", data_xml.SelectSingleNode("//fighter/stats/static_grip").GetFloat());
-            SetVar("pivot_grip", data_xml.SelectSingleNode("//fighter/stats/pivot_grip").GetFloat());
-            SetVar("air_resistance", data_xml.SelectSingleNode("//fighter/stats/air_resistance").GetFloat());
-            SetVar("air_control", data_xml.SelectSingleNode("//fighter/stats/air_control").GetFloat());
-            SetVar("jump_height", data_xml.SelectSingleNode("//fighter/stats/jump_height").GetFloat());
-            SetVar("short_hop_height", data_xml.SelectSingleNode("//fighter/stats/short_hop_height").GetFloat());
-            SetVar("air_jump_height", data_xml.SelectSingleNode("//fighter/stats/air_jump_height").GetFloat());
-            SetVar("fastfall_multiplier", data_xml.SelectSingleNode("//fighter/stats/fastfall_multiplier").GetFloat());
+            SetVar("weight", data_xml.SelectSingleNode("//fighter/stats/weight").GetString());
+            SetVar("gravity", data_xml.SelectSingleNode("//fighter/stats/gravity").GetString());
+            SetVar("max_fall_speed", data_xml.SelectSingleNode("//fighter/stats/max_fall_speed").GetString());
+            SetVar("max_ground_speed", data_xml.SelectSingleNode("//fighter/stats/max_ground_speed").GetString());
+            SetVar("run_speed", data_xml.SelectSingleNode("//fighter/stats/run_speed").GetString());
+            SetVar("max_air_speed", data_xml.SelectSingleNode("//fighter/stats/max_air_speed").GetString());
+            SetVar("aerial_transition_speed", data_xml.SelectSingleNode("//fighter/stats/aerial_transition_speed").GetString());
+            SetVar("crawl_speed", data_xml.SelectSingleNode("//fighter/stats/crawl_speed").GetString());
+            SetVar("dodge_speed", data_xml.SelectSingleNode("//fighter/stats/dodge_speed").GetString());
+            SetVar("friction", data_xml.SelectSingleNode("//fighter/stats/friction").GetString());
+            SetVar("static_grip", data_xml.SelectSingleNode("//fighter/stats/static_grip").GetString());
+            SetVar("pivot_grip", data_xml.SelectSingleNode("//fighter/stats/pivot_grip").GetString());
+            SetVar("air_resistance", data_xml.SelectSingleNode("//fighter/stats/air_resistance").GetString());
+            SetVar("air_control", data_xml.SelectSingleNode("//fighter/stats/air_control").GetString());
+            SetVar("jump_height", data_xml.SelectSingleNode("//fighter/stats/jump_height").GetString());
+            SetVar("short_hop_height", data_xml.SelectSingleNode("//fighter/stats/short_hop_height").GetString());
+            SetVar("air_jump_height", data_xml.SelectSingleNode("//fighter/stats/air_jump_height").GetString());
+            SetVar("fastfall_multiplier", data_xml.SelectSingleNode("//fighter/stats/fastfall_multiplier").GetString());
 
-            SetVar("hitstun_elasticity", data_xml.SelectSingleNode("//fighter/stats/hitstun_elasticity").GetFloat());
-            SetVar("shield_size", data_xml.SelectSingleNode("//fighter/stats/shield_size").GetFloat());
-            SetVar("max_jumps", data_xml.SelectSingleNode("//fighter/stats/jumps").GetInt());
-            SetVar("heavy_landing_lag", data_xml.SelectSingleNode("//fighter/stats/heavy_land_lag").GetInt());
-            SetVar("wavedash_lag", data_xml.SelectSingleNode("//fighter/stats/wavedash_lag").GetInt());
+            SetVar("hitstun_elasticity", data_xml.SelectSingleNode("//fighter/stats/hitstun_elasticity").GetString());
+            SetVar("shield_size", data_xml.SelectSingleNode("//fighter/stats/shield_size").GetString());
+            SetVar("max_jumps", data_xml.SelectSingleNode("//fighter/stats/jumps").GetString());
+            SetVar("heavy_landing_lag", data_xml.SelectSingleNode("//fighter/stats/heavy_land_lag").GetString());
+            SetVar("wavedash_lag", data_xml.SelectSingleNode("//fighter/stats/wavedash_lag").GetString());
 
 
         }
@@ -569,7 +569,8 @@ public class AbstractFighter : BattleComponent {
             battleObject.PrintDebug(this, 3, "Left Collider " + other);
         }
 
-        if (other.tag == "Killbox")
+        
+        if (other.tag == "Killbox" && !other.bounds.Contains(transform.position))
         {
             GameObject deathBurst = ObjectPooler.current_pooler.GetPooledObject("DeathBurst");
             deathBurst.transform.position = transform.position;
@@ -585,6 +586,7 @@ public class AbstractFighter : BattleComponent {
             doAction("Fall"); //TODO respawn
             Die();
         }
+        
     }
 
     public List<Collider> GetCollisionsWithLayer(string layer)

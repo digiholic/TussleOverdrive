@@ -46,6 +46,10 @@ public class BattleObject : MonoBehaviour
     // Use this for initialization
     void Awake()
     {
+        LoadComponents();
+    }
+    public void LoadComponents()
+    {
         abstractFighter = GetComponent<AbstractFighter>();
         actionHandler = GetComponent<ActionHandler>();
         environmentCollider = GetComponent<EnvironmentCollider>();
@@ -56,7 +60,6 @@ public class BattleObject : MonoBehaviour
         platform = GetComponent<Platform>();
         spriteHandler = GetComponent<SpriteHandler>();
     }
-
     public void Start()
     {
         SetVar("StopFrames", 0);
@@ -195,22 +198,34 @@ public class BattleObject : MonoBehaviour
 
     public int GetIntVar(string var_name)
     {
-        return (int)GetVar(var_name);
+        object val = GetVar(var_name);
+        if (val is string)
+            return int.Parse((string) val);
+        else
+            return (int)val;
     }
 
     public float GetFloatVar(string var_name)
     {
-        return (float)GetVar(var_name);
+        object val = GetVar(var_name);
+        if (val is string)
+            return float.Parse((string)val);
+        else
+            return (float)val;
     }
 
     public bool GetBoolVar(string var_name)
     {
-        return (bool)GetVar(var_name);
+        object val = GetVar(var_name);
+        if (val is string)
+            return bool.Parse((string)val);
+        else
+            return (bool)val;
     }
 
     public string GetStringVar(string var_name)
     {
-        return (string)GetVar(var_name);
+        return GetVar(var_name).ToString();
     }
 
     /// <summary>

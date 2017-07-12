@@ -38,21 +38,21 @@ public class BattleComponent : MonoBehaviour {
 
     public int GetIntVar(string var_name)
     {
-        return (int)GetVar(var_name);
+        return battleObject.GetIntVar(var_name);
     }
 
     public float GetFloatVar(string var_name)
     {
-        return (float)GetVar(var_name);
+        return battleObject.GetFloatVar(var_name);
     }
 
     public bool GetBoolVar(string var_name)
     {
-        return (bool)GetVar(var_name);
+        return battleObject.GetBoolVar(var_name);
     }
 
     public string GetStringVar(string var_name)
     {
-        return (string)GetVar(var_name);
+        return battleObject.GetStringVar(var_name);
     }
 }

@@ -13,6 +13,10 @@ public class MotionHandler : BattleComponent {
     public float XPreferred { get; private set; }
     public float YPreferred { get; private set; }
 
+
+    public float gravity;
+    public float max_fall_speed;
+    
     // Use this for initialization
     void Start () {
         _charController = GetComponent<CharacterController>();
