@@ -8,7 +8,7 @@ public class SubactionButton : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake() {
-        label = transform.FindChild("Label").GetComponent<UILabel>();
+        label = transform.Find("Label").GetComponent<UILabel>();
 	}
 	
     public void LoadSubaction(string subaction, int number)

@@ -10,7 +10,7 @@ public class ActionButton : MonoBehaviour {
 
     public void LoadAction(string action, int number)
     {
-        UILabel label = transform.FindChild("Label").GetComponent<UILabel>();
+        UILabel label = transform.Find("Label").GetComponent<UILabel>();
         label.text = action;
         actionName = action;
         Vector3 pos = transform.localPosition;

@@ -13,7 +13,7 @@ public class Screenshotter : MonoBehaviour {
 	void Update () {
         if (Input.GetKeyDown(KeyCode.LeftBracket))
         {
-            Application.CaptureScreenshot("screenshot.png");
+            ScreenCapture.CaptureScreenshot("screenshot.png");
             Debug.Log("Screenshot captured");
         }
             

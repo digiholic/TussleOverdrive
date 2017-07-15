@@ -31,7 +31,7 @@
                     "ChangeFrame 1",
                     "DoAction: neutralAction",
                     "ChangeFrame: 0",
-                    "DoTransition airControl",
+                    "DoTransition AirControl",
                     "CreateHitbox dashHitbox type damage center 0,0 trajectory 20 damage 2.0 base_knockback 10.0 knockback_growth 0.1 size 70,70"
                 ]
             },
@@ -2399,7 +2399,7 @@
             "state_transition_actions": {
                 "frames": "",
                 "subactions": [
-                    "DoTransition airControl"
+                    "DoTransition AirControl"
                 ]
             },
             "actions_before_frame": {
@@ -2571,7 +2571,7 @@
             "state_transition_actions": {
                 "frames": "",
                 "subactions": [
-                    "DoTransition airControl"
+                    "DoTransition AirControl"
                 ]
             },
             "actions_before_frame": {
@@ -2674,7 +2674,7 @@
             "state_transition_actions": {
                 "frames": "",
                 "subactions": [
-                    "DoTransition airControl"
+                    "DoTransition AirControl"
                 ]
             },
             "actions_before_frame": {
@@ -2755,7 +2755,7 @@
             "state_transition_actions": {
                 "frames": "",
                 "subactions": [
-                    "DoTransition airControl"
+                    "DoTransition AirControl"
                 ]
             },
             "actions_before_frame": {
@@ -3534,7 +3534,7 @@
                 "frames": "",
                 "subactions": [
                     "DoTransition grabLedges",
-					"DoTransition airControl",
+					"DoTransition AirControl",
                     "<DEPRECATED>If action frame >= 26: control"
                 ]
             },

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using UnityEngine.U2D;
 
 [System.Serializable]
 public class SpriteHandler : BattleComponent {
@@ -19,12 +20,41 @@ public class SpriteHandler : BattleComponent {
 
     private SpriteRenderer sprite_renderer;
 
+    public SpriteAtlas sprite_atlas;
+
+    
+    public void SaveSprites()
+    {
+        foreach (KeyValuePair<string,List<Sprite>> sheet in sprites)
+        {
+            int subimage = 0;
+            foreach (Sprite sprite in sheet.Value)
+            {
+                Texture2D spriteTexture = sprite.texture;
+                Rect rec = sprite.textureRect;
+                Texture2D subtex = CropTexture(spriteTexture,(int)rec.x, (int)rec.y, (int)rec.width, (int)rec.height);
+                
+                byte[] data = subtex.EncodeToPNG();
+
+                File.WriteAllBytes(directory + "/singles/" + sheet.Key + subimage.ToString() + ".png", data);
+                subimage++;
+            }
+        }
+    }
+    
+
     void Awake()
     {
         GameObject spriteComponent = new GameObject("Sprite");
         spriteComponent.transform.parent = transform;
         spriteComponent.transform.localPosition = Vector3.zero;
         sprite_renderer = spriteComponent.AddComponent<SpriteRenderer>();
+        
+        float pixelRatio = 100.0f / pixelsPerUnit;
+        Vector3 scale = spriteComponent.transform.localScale;
+        scale.x *= pixelRatio;
+        scale.y *= pixelRatio;
+        spriteComponent.transform.localScale = scale;
     }
 
     void LoadSpriteXML()
@@ -51,6 +81,7 @@ public class SpriteHandler : BattleComponent {
 
     public void Initialize()
     {
+        
         LoadSpriteXML();
         DirectoryInfo info = new DirectoryInfo(directory);
         string sprite_json_path = Path.Combine(info.FullName, "sprites.json");
@@ -65,6 +96,8 @@ public class SpriteHandler : BattleComponent {
         {
             Debug.LogError("No sprites JSON found: "+sprite_json_path);
         }
+
+        //SaveSprites();
     }
 
     public void LoadSpritesFromData(SpriteDataCollection sprite_list)
@@ -77,8 +110,9 @@ public class SpriteHandler : BattleComponent {
         {
             sprite_data_dict[data.sprite_name] = data;
             string filename = prefix + data.sprite_name + ".png";
+            
             Texture2D SpriteTexture = LoadTexture(Path.Combine(directory, filename));
-
+            
             List<Sprite> spriteFrames = new List<Sprite>();
             foreach (Vector2 startPos in data.subimage)
             {
@@ -86,6 +120,20 @@ public class SpriteHandler : BattleComponent {
                 spriteFrames.Add(newSprite);
             }
             sprites.Add(data.sprite_name, spriteFrames);
+        }
+    }
+    
+    private void ChangeRenderer(string current_sprite, int current_frame)
+    {
+        //sprite_renderer.sprite = sprites[current_sprite][current_frame];
+        Sprite spr = sprite_atlas.GetSprite(current_sprite + current_frame.ToString());
+        if (spr != null)
+        {
+            sprite_renderer.sprite = spr;
+        }
+        else
+        {
+            Debug.LogWarning("Attempted to load illegal sprite: " + current_sprite+current_frame.ToString());
         }
     }
 
@@ -96,16 +144,9 @@ public class SpriteHandler : BattleComponent {
             Debug.LogWarning("No Sprite found");
             _sprite_name = "idle";
         }
-        if (sprites.ContainsKey(_sprite_name))
-        {
-            current_sprite = _sprite_name;
-            current_frame = 0;
-            sprite_renderer.sprite = sprites[current_sprite][current_frame];
-        }
-        else
-        {
-            Debug.LogWarning("Attempted to load illegal sprite: " + _sprite_name);
-        }
+        current_sprite = _sprite_name;
+        current_frame = 0;
+        ChangeRenderer(current_sprite, current_frame);
     }
 
     public void ChangeSubimage(int _frame)
@@ -114,11 +155,13 @@ public class SpriteHandler : BattleComponent {
             _frame += sprites[current_sprite].Count;
         current_frame = Mathf.Min(_frame, sprites[current_sprite].Count - 1);
         
-        sprite_renderer.sprite = sprites[current_sprite][current_frame];
+
+        ChangeRenderer(current_sprite, current_frame);
     }
 
     public void ChangeSubimage(int _frame, bool _loop)
     {
+        
         if (_frame < 0)
             _frame += sprites[current_sprite].Count;
         if (_loop)
@@ -127,9 +170,8 @@ public class SpriteHandler : BattleComponent {
         {
             current_frame = Mathf.Min(_frame, sprites[current_sprite].Count - 1);
         }
-           
 
-        sprite_renderer.sprite = sprites[current_sprite][current_frame];
+        ChangeRenderer(current_sprite, current_frame);
     }
 
     private Texture2D LoadTexture(string FilePath)
@@ -181,5 +223,58 @@ public class SpriteHandler : BattleComponent {
                     (facing == -1 && orientation == SpriteOrientation.RIGHT))
                 flip();
         }
+    }
+
+    public static Texture2D CropTexture(Texture2D pSource, int left, int top, int width, int height)
+    {
+        if (left < 0)
+        {
+            width += left;
+            left = 0;
+        }
+        if (top < 0)
+        {
+            height += top;
+            top = 0;
+        }
+        if (left + width > pSource.width)
+        {
+            width = pSource.width - left;
+        }
+        if (top + height > pSource.height)
+        {
+            height = pSource.height - top;
+        }
+
+        if (width <= 0 || height <= 0)
+        {
+            return null;
+        }
+
+        Color[] aSourceColor = pSource.GetPixels(0);
+
+        //*** Make New
+        Texture2D oNewTex = new Texture2D(width, height, TextureFormat.RGBA32, false);
+
+        //*** Make destination array
+        int xLength = width * height;
+        Color[] aColor = new Color[xLength];
+
+        int i = 0;
+        for (int y = 0; y < height; y++)
+        {
+            int sourceIndex = (y + top) * pSource.width + left;
+            for (int x = 0; x < width; x++)
+            {
+                aColor[i++] = aSourceColor[sourceIndex++];
+            }
+        }
+
+        //*** Set Pixels
+        oNewTex.SetPixels(aColor);
+        oNewTex.Apply();
+
+        //*** Return
+        return oNewTex;
     }
 }
