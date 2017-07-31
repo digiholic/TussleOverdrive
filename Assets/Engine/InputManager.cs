@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour {
     public int player_num = 0;
+    public bool push_to_buffer = true;
 
     private Dictionary<InputType, List<KeyCode>> input_map = new Dictionary<InputType, List<KeyCode>>();
 
@@ -12,7 +13,7 @@ public class InputManager : MonoBehaviour {
 
     // Use this for initialization
 	void Start () {
-        game_controller = BattleController.current_battle;
+        if (push_to_buffer) game_controller = BattleController.current_battle;
         LoadAllKeys();
     }
     
@@ -64,15 +65,18 @@ public class InputManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-		//Insert the pressed events
-        foreach (InputType input_type in System.Enum.GetValues(typeof(InputType)))
-            if (GetKeyDown(input_type))
-                inputBuffer.Insert(0, new InputEvent(input_type, 1.0f, game_controller.current_game_frame));
+        if (push_to_buffer)
+        {
+            //Insert the pressed events
+            foreach (InputType input_type in System.Enum.GetValues(typeof(InputType)))
+                if (GetKeyDown(input_type))
+                    inputBuffer.Insert(0, new InputEvent(input_type, 1.0f, game_controller.current_game_frame));
 
-        //Insert release events
-        foreach (InputType input_type in System.Enum.GetValues(typeof(InputType)))
-            if (GetKeyUp(input_type))
-                inputBuffer.Insert(0, new InputEvent(input_type, 0.0f, game_controller.current_game_frame));
+            //Insert release events
+            foreach (InputType input_type in System.Enum.GetValues(typeof(InputType)))
+                if (GetKeyUp(input_type))
+                    inputBuffer.Insert(0, new InputEvent(input_type, 0.0f, game_controller.current_game_frame));
+        }
     }
 
     /// <summary>

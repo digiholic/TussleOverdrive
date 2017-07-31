@@ -83,7 +83,7 @@ public class Settings : MonoBehaviour {
     {
         audio_manager = GetComponent<AudioManager>();
         preset = GetComponent<SettingsPreset>();
-
+        
         PlayerPrefs.SetString("control_attack_0", "Z");
         PlayerPrefs.SetString("control_special_0", "X");
         PlayerPrefs.SetString("control_jump_0", "C");
@@ -101,6 +101,24 @@ public class Settings : MonoBehaviour {
         PlayerPrefs.SetString("control_right_1", "L");
         PlayerPrefs.SetString("control_up_1", "I");
         PlayerPrefs.SetString("control_down_1", "K");
+
+        PlayerPrefs.SetString("control_attack_2", "Alpha1");
+        PlayerPrefs.SetString("control_special_2", "Alpha2");
+        PlayerPrefs.SetString("control_jump_2", "Alpha3");
+        PlayerPrefs.SetString("control_shield_2", "Alpha4");
+        PlayerPrefs.SetString("control_left_2", "Alpha5");
+        PlayerPrefs.SetString("control_right_2", "Alpha6");
+        PlayerPrefs.SetString("control_up_2", "Alpha7");
+        PlayerPrefs.SetString("control_down_2", "Alpha8");
+
+        PlayerPrefs.SetString("control_attack_3", "Alpha1");
+        PlayerPrefs.SetString("control_special_3", "Alpha2");
+        PlayerPrefs.SetString("control_jump_3", "Alpha3");
+        PlayerPrefs.SetString("control_shield_3", "Alpha4");
+        PlayerPrefs.SetString("control_left_3", "Alpha5");
+        PlayerPrefs.SetString("control_right_3", "Alpha6");
+        PlayerPrefs.SetString("control_up_3", "Alpha7");
+        PlayerPrefs.SetString("control_down_3", "Alpha8");
     }
 
     public void ChangeBGMVolume(float vol)

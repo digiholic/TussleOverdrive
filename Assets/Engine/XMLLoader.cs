@@ -6,7 +6,7 @@ using System.IO;
 
 public class XMLLoader : MonoBehaviour {
     private XmlDocument data_xml;
-
+    
     public string resource_path;
 
     void Awake()
