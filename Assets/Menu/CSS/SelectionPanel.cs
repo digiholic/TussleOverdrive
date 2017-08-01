@@ -56,10 +56,15 @@ public class SelectionPanel : MonoBehaviour {
         else portraitSprite.sortingOrder = -1;
 
 
+        //Route button presses to their proper functions
         if (inputManager.GetKeyDown(InputType.Attack))
             ConfirmPressed();
         if (inputManager.GetKeyDown(InputType.Special))
             CancelPressed();
+        if (inputManager.GetKeyDown(InputType.Jump))
+            SwitchPressed();
+        if (inputManager.GetKeyDown(InputType.Shield))
+            RulesPressed();
         if (inputManager.GetKeyDown(InputType.Left))
             DirectionPressed(new Vector2(-1,0));
         if (inputManager.GetKeyDown(InputType.Right))
@@ -85,7 +90,8 @@ public class SelectionPanel : MonoBehaviour {
                 selected_fighter = portraits.GetRandomFighter();
             else
                 selected_fighter = current_panel.fighter_info;
-            Debug.Log("Player " + playerNum + " Selected Fighter "+selected_fighter.display_name);
+
+            BattleLoader.current_loader.fighters[playerNum] = selected_fighter;
         }
     }
 
@@ -95,12 +101,23 @@ public class SelectionPanel : MonoBehaviour {
         if (confirmed)
         {
             confirmed = false;
+            BattleLoader.current_loader.fighters[playerNum] = null;
         }
         //If the selection is not confirmed, deactivate the selection
         else if (active)
         {
             active = false;
         }
+    }
+
+    private void SwitchPressed()
+    {
+
+    }
+
+    private void RulesPressed()
+    {
+
     }
 
     private void DirectionPressed(Vector2 dir)

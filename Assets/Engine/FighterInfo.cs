@@ -11,6 +11,7 @@ public class FighterInfo {
     public string css_icon_path;
     public string css_portrait_path;
     public List<FighterPalette> colorPalettes;
+
     /// <summary>
     /// Directory name is not serialized, and is set when loaded so the program knows
     /// the folder name of the fighter, which might not match the fighter.

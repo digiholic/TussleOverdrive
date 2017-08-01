@@ -33,6 +33,7 @@ public class BattleController : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        //Fighters shouldn't collide with fighters
         Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Fighters"), LayerMask.NameToLayer("Fighters"), true);
     }
 
