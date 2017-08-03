@@ -261,11 +261,10 @@ public class ActionFile
             action.BuildDict();
     }
 
-    public void SaveToJson(string path, bool prettyPrint = true)
+    public void WriteJSON(string path)
     {
         string action_json_path = Path.Combine("Assets/Resources/",path);
-        string thisjson = JsonUtility.ToJson(this, prettyPrint);
-        Debug.Log(thisjson);
+        string thisjson = JsonUtility.ToJson(this, true);
         File.WriteAllText(action_json_path, thisjson);
     }
 }

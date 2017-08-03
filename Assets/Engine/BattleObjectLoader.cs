@@ -57,13 +57,6 @@ public class BattleObjectLoader : MonoBehaviour {
 }
 
 [System.Serializable]
-public struct VarData
-{
-    public string name;
-    public string value;
-}
-
-[System.Serializable]
 public class AbstractFighterLoader
 {
     public string resource_path;

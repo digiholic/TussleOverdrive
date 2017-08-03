@@ -27,7 +27,7 @@ public class ActionFileEditor : MonoBehaviour {
     {
         if (action_file != null)
         {
-            action_file.SaveToJson(action_file_path);
+            action_file.WriteJSON(action_file_path);
         }
     }
 

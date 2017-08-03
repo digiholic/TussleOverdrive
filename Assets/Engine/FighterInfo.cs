@@ -11,6 +11,8 @@ public class FighterInfo {
     public string css_icon_path;
     public string css_portrait_path;
     public List<FighterPalette> colorPalettes;
+    public List<VarData> variables;
+    public string action_file_path;
 
     /// <summary>
     /// Directory name is not serialized, and is set when loaded so the program knows
@@ -25,10 +27,10 @@ public class FighterInfo {
     [System.NonSerialized]
     public Sprite css_portrait_sprite;
 
-    public void WriteJSON(string directory)
+    public void WriteJSON(string path)
     {
         string json = JsonUtility.ToJson(this, true);
-        File.WriteAllText(Path.Combine(directory, "fighter_info.json"), json);
+        File.WriteAllText(path, json);
     }
 
     public void LoadDirectory(string directoryName)
@@ -61,4 +63,20 @@ public class ColorMap
 {
     public string from_color;
     public string to_color;
+}
+
+[System.Serializable]
+public class VarData
+{
+    public string name;
+    public string value;
+    public VarType type;
+}
+
+public enum VarType
+{
+    INT,
+    STRING,
+    FLOAT,
+    BOOL
 }

@@ -37,4 +37,5 @@ public class BattleLoader : MonoBehaviour {
 	void Update () {
 		
 	}
+
 }
