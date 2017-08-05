@@ -3,5 +3,96 @@
     "franchise_icon_path": "franchise_icon",
     "css_icon_path": "sprites/icon_hitboxie",
     "css_portrait_path": "sprites/icon_hitboxie",
-    "colorPalettes": []
+    "colorPalettes": [],
+    "variables": [
+        {
+            "name": "weight",
+            "value": "10"
+        },
+        {
+            "name": "gravity",
+            "value": "-5.0"
+        },
+        {
+            "name": "max_fall_speed",
+            "value": "-20"
+        },
+        {
+            "name": "max_ground_speed",
+            "value": "7"
+        },
+        {
+            "name": "run_speed",
+            "value": "11"
+        },
+        {
+            "name": "max_air_speed",
+            "value": "5.5"
+        },
+        {
+            "name": "aerial_transition_speed",
+            "value": "9"
+        },
+        {
+            "name": "crawl_speed",
+            "value": "2.5"
+        },
+        {
+            "name": "dodge_speed",
+            "value": "8.5"
+        },
+        {
+            "name": "friction",
+            "value": "0.3"
+        },
+        {
+            "name": "static_grip",
+            "value": "0.3"
+        },
+        {
+            "name": "pivot_grip",
+            "value": "0.6"
+        },
+        {
+            "name": "air_resistance",
+            "value": "0.2"
+        },
+        {
+            "name": "jumps",
+            "value": "1"
+        },
+        {
+            "name": "jump_height",
+            "value": "12.5"
+        },
+        {
+            "name": "short_hop_height",
+            "value": "8.5"
+        },
+        {
+            "name": "air_jump_height",
+            "value": "15"
+        },
+        {
+            "name": "heavy_land_lag",
+            "value": "4"
+        },
+        {
+            "name": "wavedash_lag",
+            "value": "12"
+        },
+        {
+            "name": "fastfall_multiplier",
+            "value": "2"
+        },
+        {
+            "name": "hitstun_elasticity",
+            "value": ".8"
+        },
+        {
+            "name": "shield_size",
+            "value": "1"
+        }
+    ],
+    "action_file_path": ""
 }

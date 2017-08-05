@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Death : MonoBehaviour {
+public class VarDataTester : MonoBehaviour {
+    public VarData variable;
+
 
 	// Use this for initialization
 	void Start () {
@@ -13,9 +15,4 @@ public class Death : MonoBehaviour {
 	void Update () {
 		
 	}
-
-    void OnTriggerExit(Collider other)
-    {
-        
-    }
 }

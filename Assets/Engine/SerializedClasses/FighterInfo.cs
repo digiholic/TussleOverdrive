@@ -64,19 +64,3 @@ public class ColorMap
     public string from_color;
     public string to_color;
 }
-
-[System.Serializable]
-public class VarData
-{
-    public string name;
-    public string value;
-    public VarType type;
-}
-
-public enum VarType
-{
-    INT,
-    STRING,
-    FLOAT,
-    BOOL
-}
