@@ -3,117 +3,129 @@
     "franchise_icon_path": "franchise_icon",
     "css_icon_path": "sprites/icon_zero",
     "css_portrait_path": "sprites/portrait_zero",
+    "action_file_path": "zero_actions",
+    "sound_path": "sfx",
+    "sprite_info": {
+        "sprite_directory": "sprites",
+        "sprite_prefix": "zero_",
+        "sprite_default": "idle",
+        "sprite_pixelsPerUnit": 25.0,
+        "sprite_atlas_path": "ZeroAtlas",
+        "sprite_atlas": {
+            "instanceID": 414
+        }
+    },
     "colorPalettes": [],
     "variables": [
         {
             "name": "weight",
             "value": "1.1",
-            "type": 2
+            "type": 0
         },
         {
             "name": "gravity",
             "value": "-7.0",
-            "type": 2
+            "type": 0
         },
         {
             "name": "max_fall_speed",
             "value": "-25",
-            "type": 2
+            "type": 0
         },
         {
             "name": "max_ground_speed",
             "value": "5",
-            "type": 2
+            "type": 0
         },
         {
             "name": "run_speed",
             "value": "14",
-            "type": 2
+            "type": 0
         },
         {
             "name": "max_air_speed",
             "value": "7.5",
-            "type": 2
+            "type": 0
         },
         {
             "name": "aerial_transition_speed",
             "value": "7.5",
-            "type": 2
+            "type": 0
         },
         {
             "name": "crawl_speed",
             "value": "0",
-            "type": 2
+            "type": 0
         },
         {
             "name": "dodge_speed",
             "value": "16",
-            "type": 2
+            "type": 0
         },
         {
             "name": "friction",
             "value": "0.6",
-            "type": 2
+            "type": 0
         },
         {
             "name": "static_grip",
             "value": "0.1",
-            "type": 2
+            "type": 0
         },
         {
             "name": "pivot_grip",
             "value": "0.1",
-            "type": 2
+            "type": 0
         },
         {
             "name": "air_resistance",
             "value": "0.2",
-            "type": 2
+            "type": 0
         },
         {
             "name": "air_control",
             "value": "0.8",
-            "type": 2
+            "type": 0
         },
         {
             "name": "jumps",
             "value": "1",
-            "type": 0
+            "type": 1
         },
         {
             "name": "jump_height",
             "value": "14",
-            "type": 2
+            "type": 0
         },
         {
             "name": "short_hop_height",
             "value": "9.0",
-            "type": 2
+            "type": 0
         },
         {
             "name": "air_jump_height",
             "value": "12",
-            "type": 2
+            "type": 0
         },
         {
             "name": "heavy_land_lag",
             "value": "4",
-            "type": 0
+            "type": 1
         },
         {
             "name": "wavedash_lag",
             "value": "8",
-            "type": 0
+            "type": 1
         },
         {
             "name": "fastfall_multiplier",
             "value": "3",
-            "type": 2
+            "type": 0
         },
         {
             "name": "hitstun_elasticity",
             "value": "0.8",
-            "type": 2
+            "type": 0
         },
         {
             "name": "shield_size",

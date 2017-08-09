@@ -8,21 +8,23 @@ using UnityEngine.U2D;
 public class SpriteHandler : BattleComponent {
     public enum SpriteOrientation { LEFT, RIGHT }
 
-    public string directory;
-    public string default_sprite;
-    public string prefix;
-    public float pixelsPerUnit = 100.0f;
+    //public string directory;
+    //public string default_sprite;
+    //public string prefix;
+    //public float pixelsPerUnit = 100.0f;
     public SpriteOrientation orientation;
+    public SpriteAtlas sprite_atlas;
+    public float pixelsPerUnit;
 
+    private FighterInfo fighter_info;
+    private SpriteInfo sprite_info;
     private Dictionary<string,List<Sprite>> sprites = new Dictionary<string,List<Sprite>>();
     private string current_sprite = "idle";
     private int current_frame = 0;
 
     private SpriteRenderer sprite_renderer;
+    private GameObject spriteComponent;
 
-    public SpriteAtlas sprite_atlas;
-
-    
     public void SaveSprites()
     {
         foreach (KeyValuePair<string,List<Sprite>> sheet in sprites)
@@ -36,56 +38,34 @@ public class SpriteHandler : BattleComponent {
                 
                 byte[] data = subtex.EncodeToPNG();
 
-                File.WriteAllBytes(directory + "/singles/" + sheet.Key + subimage.ToString() + ".png", data);
+                File.WriteAllBytes(sprite_info.sprite_directory + "/singles/" + sheet.Key + subimage.ToString() + ".png", data);
                 subimage++;
             }
         }
     }
     
 
-    void Awake()
+    void Start()
     {
-        GameObject spriteComponent = new GameObject("Sprite");
+        spriteComponent = new GameObject("Sprite");
         spriteComponent.transform.parent = transform;
         spriteComponent.transform.localPosition = Vector3.zero;
         sprite_renderer = spriteComponent.AddComponent<SpriteRenderer>();
-        
+
+        fighter_info = GetComponent<FighterInfoLoader>().GetFighterInfo();
+        sprite_info = fighter_info.sprite_info;
+        sprite_atlas = sprite_info.sprite_atlas;
+
+        pixelsPerUnit = sprite_info.sprite_pixelsPerUnit;
+        DirectoryInfo info = new DirectoryInfo(Path.Combine("Assets/Resources/Fighters/" + fighter_info.directory_name, sprite_info.sprite_directory));
+        string sprite_json_path = Path.Combine(info.FullName, "sprites.json");
+
         float pixelRatio = 100.0f / pixelsPerUnit;
         Vector3 scale = spriteComponent.transform.localScale;
         scale.x *= pixelRatio;
         scale.y *= pixelRatio;
         spriteComponent.transform.localScale = scale;
-    }
 
-    void LoadSpriteXML()
-    {
-        XMLLoader data_xml = GetComponent<XMLLoader>();
-
-        if (data_xml != null)
-        {
-            string resource_path = data_xml.resource_path;
-            string sprite_directory = data_xml.SelectSingleNode("//fighter/sprite_directory").GetString();
-
-            directory = "Assets/Resources/" + resource_path + sprite_directory;
-            prefix = data_xml.SelectSingleNode("//fighter/sprite_prefix").GetString();
-            default_sprite = data_xml.SelectSingleNode("//fighter/default_sprite").GetString();
-            pixelsPerUnit = float.Parse(data_xml.SelectSingleNode("//fighter/pixels_per_unit").GetString());
-
-        }
-    }
-
-    // Use this for initialization
-	void Start() {
-        
-    }
-
-    public void Initialize()
-    {
-        
-        LoadSpriteXML();
-        DirectoryInfo info = new DirectoryInfo(directory);
-        string sprite_json_path = Path.Combine(info.FullName, "sprites.json");
-        
         if (File.Exists(sprite_json_path))
         {
             string sprite_json = File.ReadAllText(sprite_json_path);
@@ -94,10 +74,14 @@ public class SpriteHandler : BattleComponent {
         }
         else
         {
-            Debug.LogError("No sprites JSON found: "+sprite_json_path);
+            Debug.LogError("No sprites JSON found: " + sprite_json_path);
         }
 
-        //SaveSprites();
+    }
+
+    public override void ManualUpdate()
+    {
+        
     }
 
     public void LoadSpritesFromData(SpriteDataCollection sprite_list)
@@ -109,9 +93,9 @@ public class SpriteHandler : BattleComponent {
         foreach (SpriteData data in sprite_list.sprites)
         {
             sprite_data_dict[data.sprite_name] = data;
-            string filename = prefix + data.sprite_name + ".png";
+            string filename = sprite_info.sprite_prefix + data.sprite_name + ".png";
             
-            Texture2D SpriteTexture = LoadTexture(Path.Combine(directory, filename));
+            Texture2D SpriteTexture = LoadTexture(Path.Combine("Assets/Resources/Fighters/"+fighter_info.directory_name+"/"+sprite_info.sprite_directory, filename));
             
             List<Sprite> spriteFrames = new List<Sprite>();
             foreach (Vector2 startPos in data.subimage)
@@ -121,11 +105,14 @@ public class SpriteHandler : BattleComponent {
             }
             sprites.Add(data.sprite_name, spriteFrames);
         }
+        Debug.Log(sprites);
     }
     
     private void ChangeRenderer(string current_sprite, int current_frame)
     {
         //sprite_renderer.sprite = sprites[current_sprite][current_frame];
+        
+        
         Sprite spr = sprite_atlas.GetSprite(current_sprite + current_frame.ToString());
         if (spr != null)
         {
@@ -135,6 +122,7 @@ public class SpriteHandler : BattleComponent {
         {
             Debug.LogWarning("Attempted to load illegal sprite: " + current_sprite+current_frame.ToString());
         }
+        
     }
 
     public void ChangeSprite(string _sprite_name)
@@ -161,7 +149,6 @@ public class SpriteHandler : BattleComponent {
 
     public void ChangeSubimage(int _frame, bool _loop)
     {
-        
         if (_frame < 0)
             _frame += sprites[current_sprite].Count;
         if (_loop)

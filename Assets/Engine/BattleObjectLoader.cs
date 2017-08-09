@@ -19,23 +19,15 @@ public class BattleObjectLoader : MonoBehaviour {
         if (abstract_fighter_info != null)
         {
             AbstractFighter fighter = obj.AddComponent<AbstractFighter>();
-            fighter.fighter_name = abstract_fighter_info.fighter_name;
-            fighter.franchise_icon = abstract_fighter_info.franchise_icon_path;
-            fighter.css_icon = abstract_fighter_info.css_icon_path;
         }
         if (sprite_handler_info != null)
         {
             SpriteHandler sprite = obj.AddComponent<SpriteHandler>();
-            sprite.directory = sprite_handler_info.sprite_directory;
-            sprite.default_sprite = sprite_handler_info.default_sprite;
-            sprite.prefix = sprite_handler_info.sprite_prefix;
-            sprite.pixelsPerUnit = sprite_handler_info.pixels_per_unit;
             //sprite.orientation = sprite_handler_info.orientation;
         }
         if (action_handler_info != null)
         {
             ActionHandler actions = obj.AddComponent<ActionHandler>();
-            actions.action_json_path = action_handler_info.action_file_path;
             //actions.action_json = action_handler_info.action_json;
             //actions.starting_action = action_handler_info.starting_action;
         }

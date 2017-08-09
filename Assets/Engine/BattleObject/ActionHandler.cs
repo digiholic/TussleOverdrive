@@ -8,31 +8,16 @@ public class ActionHandler : BattleComponent {
     private GameAction _current_action;
     public GameAction CurrentAction { get { return _current_action; } }
 
-    private ActionFile actions_file_json = new ActionFile();
+    public ActionFile actions_file = new ActionFile();
 
-    public string action_json_path;
-
-    void LoadActionXML()
-    {
-        XMLLoader data_xml = GetComponent<XMLLoader>();
-
-        if (data_xml != null)
-        {
-            action_json_path = Path.Combine("Assets/Resources/" + data_xml.resource_path, data_xml.SelectSingleNode("//fighter/actions").GetString());
-
-            if (File.Exists(action_json_path))
-            {
-                string action_json = File.ReadAllText(action_json_path);
-                LoadActionJSON(action_json);
-            }
-        }
-    }
+    private FighterInfo fighter_info;
 
     // Use this for initialization
     void Start () {
-        LoadActionXML();
+        fighter_info = GetComponent<FighterInfoLoader>().GetFighterInfo();
+        actions_file = fighter_info.action_file;
         _current_action = new NeutralAction();
-        _current_action.SetDynamicAction(actions_file_json.Get("NeutralAction"));
+        _current_action.SetDynamicAction(actions_file.Get("NeutralAction"));
         _current_action.SetUp(battleObject);
     }
 
@@ -48,15 +33,9 @@ public class ActionHandler : BattleComponent {
         //Debug.Log("GameAction: "+_actionName);
         GameAction old_action = _current_action;
         _current_action = LoadAction(_actionName);
-        _current_action.SetDynamicAction(actions_file_json.Get(_actionName));
+        _current_action.SetDynamicAction(actions_file.Get(_actionName));
         old_action.TearDown(_current_action);
         _current_action.SetUp(battleObject);
-    }
-    
-    public void LoadActionJSON(string action_json)
-    {
-        actions_file_json = JsonUtility.FromJson<ActionFile>(action_json);
-        actions_file_json.BuildDict();
     }
 
     public static GameAction LoadAction(string _name)

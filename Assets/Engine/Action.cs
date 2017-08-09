@@ -65,7 +65,7 @@ public class GameAction {
                 CheckCondAndExecute(subaction);
 
         if (current_frame >= last_frame)
-            this.OnLastFrame();
+            OnLastFrame();
 	}
 
     public virtual void OnLastFrame()

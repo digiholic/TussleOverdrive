@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using UnityEngine.U2D;
 
 [System.Serializable]
 public class FighterInfo {
@@ -10,9 +11,13 @@ public class FighterInfo {
     public string franchise_icon_path;
     public string css_icon_path;
     public string css_portrait_path;
+    public string action_file_path;
+    public string sound_path;
+
+    public SpriteInfo sprite_info;
     public List<FighterPalette> colorPalettes;
     public List<VarData> variables;
-    public string action_file_path;
+
 
     /// <summary>
     /// Directory name is not serialized, and is set when loaded so the program knows
@@ -26,6 +31,12 @@ public class FighterInfo {
     public Sprite css_icon_sprite;
     [System.NonSerialized]
     public Sprite css_portrait_sprite;
+    [System.NonSerialized]
+    public ActionFile action_file;
+    [System.NonSerialized]
+    public bool initialized = false;
+
+    private static DirectoryInfo FighterDir = new DirectoryInfo("Assets/Resources/Fighters");
 
     public void WriteJSON(string path)
     {
@@ -39,8 +50,30 @@ public class FighterInfo {
         franchise_icon_sprite = Resources.Load<Sprite>("Fighters/" + directory_name + "/" + franchise_icon_path);
         css_icon_sprite = Resources.Load<Sprite>("Fighters/" + directory_name + "/" + css_icon_path);
         css_portrait_sprite = Resources.Load<Sprite>("Fighters/" + directory_name + "/" + css_portrait_path);
+        sprite_info.sprite_atlas = Resources.Load<SpriteAtlas>("Fighters/" + directory_name + "/" + sprite_info.sprite_atlas_path);
+        string action_file_json = Resources.Load<TextAsset>("Fighters/" + directory_name + "/" + action_file_path).text;
+        action_file = JsonUtility.FromJson<ActionFile>(action_file_json);
+        action_file.BuildDict();
+        initialized = true;
     }
     
+    public static FighterInfo LoadFighterInfoFile(string directory, string filename="fighter_info.json")
+    {
+        string dir = Path.Combine(FighterDir.FullName, directory);
+        string combinedPath = Path.Combine(dir, filename);
+        if (File.Exists(combinedPath))
+        {
+            string json = File.ReadAllText(combinedPath);
+            FighterInfo info = JsonUtility.FromJson<FighterInfo>(json);
+            info.LoadDirectory(directory);
+            return info;
+        }
+        else
+        {
+            Debug.LogWarning("No fighter file found at " + directory + "/" + filename);
+            return null;
+        }
+    }
 }
 
 [System.Serializable]
@@ -63,4 +96,15 @@ public class ColorMap
 {
     public string from_color;
     public string to_color;
+}
+
+[System.Serializable]
+public class SpriteInfo
+{
+    public string sprite_directory;
+    public string sprite_prefix;
+    public string sprite_default;
+    public float  sprite_pixelsPerUnit;
+    public string sprite_atlas_path;
+    public SpriteAtlas sprite_atlas;
 }

@@ -37,16 +37,7 @@ public class AbstractFighter : BattleComponent {
 
 
     //public string fighter_xml_file = "";
-    private string resource_path = "";
     public int player_num = 0;
-
-    public string fighter_name = "Unknown";
-    public string franchise_icon = "Assets/Sprites/Defaults/franchise_icon.png";
-    public string css_icon = "Assets/Sprites/Defaults/css_icon.png";
-    public string css_portrait = "Assets/Sprites/Default/css_portrait.png";
-
-    [HideInInspector]
-    public string sound_path = "";
 
     void SetVariables()
     {
@@ -63,6 +54,7 @@ public class AbstractFighter : BattleComponent {
     [HideInInspector]
     public BattleController game_controller;
     
+    private FighterInfo fighter_info;
     private SpriteHandler sprite_loader;
     private Animator anim;
     private InputManager inputBuffer;
@@ -86,64 +78,32 @@ public class AbstractFighter : BattleComponent {
     public bool LedgeLock { get; set; }
 
 
-    void LoadFighterXML()
+    void LoadInfo()
     {
-        data_xml = GetComponent<XMLLoader>();
-        resource_path = data_xml.resource_path;   
-
-        if (data_xml != null)
+        fighter_info = GetComponent<FighterInfoLoader>().GetFighterInfo();
+        foreach(KeyValuePair<string,object> variable in DefaultStats)
         {
-            fighter_name = data_xml.SelectSingleNode("//fighter/name").GetString();
-            franchise_icon = data_xml.SelectSingleNode("//fighter/icon").GetString();
-            css_icon = data_xml.SelectSingleNode("//fighter/css_icon").GetString();
-            css_portrait = data_xml.SelectSingleNode("//fighter/css_portrait").GetString();
-            
-            sound_path = data_xml.SelectSingleNode("//fighter/sound_path").GetString();
-            
-            /*
-            SetVar("fighter_name", data_xml.SelectSingleNode("//fighter/name").GetString());
-            SetVar("franchise_icon", data_xml.SelectSingleNode("//fighter/icon").GetString());
-            SetVar("css_icon", data_xml.SelectSingleNode("//fighter/css_icon").GetString());
-            SetVar("css_portrait", data_xml.SelectSingleNode("//fighter/css_portrait").GetString());
-
-            article_path = data_xml.SelectSingleNode("//fighter/article_path").GetString();
-            article_file = data_xml.SelectSingleNode("//fighter/articles").GetString();
-            sound_path = data_xml.SelectSingleNode("//fighter/sound_path").GetString();
-
-            action_file = data_xml.SelectSingleNode("//fighter/actions").GetString();
-            */
-
-            //Load the stats
-            SetVar("weight", data_xml.SelectSingleNode("//fighter/stats/weight").GetString());
-            SetVar("gravity", data_xml.SelectSingleNode("//fighter/stats/gravity").GetString());
-            SetVar("max_fall_speed", data_xml.SelectSingleNode("//fighter/stats/max_fall_speed").GetString());
-            SetVar("max_ground_speed", data_xml.SelectSingleNode("//fighter/stats/max_ground_speed").GetString());
-            SetVar("run_speed", data_xml.SelectSingleNode("//fighter/stats/run_speed").GetString());
-            SetVar("max_air_speed", data_xml.SelectSingleNode("//fighter/stats/max_air_speed").GetString());
-            SetVar("aerial_transition_speed", data_xml.SelectSingleNode("//fighter/stats/aerial_transition_speed").GetString());
-            SetVar("crawl_speed", data_xml.SelectSingleNode("//fighter/stats/crawl_speed").GetString());
-            SetVar("dodge_speed", data_xml.SelectSingleNode("//fighter/stats/dodge_speed").GetString());
-            SetVar("friction", data_xml.SelectSingleNode("//fighter/stats/friction").GetString());
-            SetVar("static_grip", data_xml.SelectSingleNode("//fighter/stats/static_grip").GetString());
-            SetVar("pivot_grip", data_xml.SelectSingleNode("//fighter/stats/pivot_grip").GetString());
-            SetVar("air_resistance", data_xml.SelectSingleNode("//fighter/stats/air_resistance").GetString());
-            SetVar("air_control", data_xml.SelectSingleNode("//fighter/stats/air_control").GetString());
-            SetVar("jump_height", data_xml.SelectSingleNode("//fighter/stats/jump_height").GetString());
-            SetVar("short_hop_height", data_xml.SelectSingleNode("//fighter/stats/short_hop_height").GetString());
-            SetVar("air_jump_height", data_xml.SelectSingleNode("//fighter/stats/air_jump_height").GetString());
-            SetVar("fastfall_multiplier", data_xml.SelectSingleNode("//fighter/stats/fastfall_multiplier").GetString());
-
-            SetVar("hitstun_elasticity", data_xml.SelectSingleNode("//fighter/stats/hitstun_elasticity").GetString());
-            SetVar("shield_size", data_xml.SelectSingleNode("//fighter/stats/shield_size").GetString());
-            SetVar("max_jumps", data_xml.SelectSingleNode("//fighter/stats/jumps").GetString());
-            SetVar("heavy_landing_lag", data_xml.SelectSingleNode("//fighter/stats/heavy_land_lag").GetString());
-            SetVar("wavedash_lag", data_xml.SelectSingleNode("//fighter/stats/wavedash_lag").GetString());
-
-
+            SetVar(variable.Key, variable.Value);
         }
-        else
+
+        foreach(VarData variable in fighter_info.variables)
         {
-            throw new System.Exception("Could not load FighterXML");
+            VarType type = variable.type;
+            switch (type)
+            {
+                case VarType.BOOL:
+                    SetVar(variable.name, bool.Parse(variable.value));
+                    break;
+                case VarType.FLOAT:
+                    SetVar(variable.name, float.Parse(variable.value));
+                    break;
+                case VarType.INT:
+                    SetVar(variable.name, int.Parse(variable.value));
+                    break;
+                default:
+                    SetVar(variable.name, variable.value);
+                    break;
+            }
         }
     }
 
@@ -169,14 +129,15 @@ public class AbstractFighter : BattleComponent {
 
     void Start() {
         LoadComponents();
-        LoadFighterXML();
+        LoadInfo();
         SetVariables();
         sprite_loader = GetComponent<SpriteHandler>();
-        sprite_loader.Initialize();
         anim = GetComponent<Animator>();
         sound_player = GetComponent<AudioSource>();
         coll = GetComponent<Collider>();
 
+        SetVar("facing", 1);
+        /*
         if (player_num % 2 == 0)
             SetVar("facing", 1);
         
@@ -185,7 +146,7 @@ public class AbstractFighter : BattleComponent {
             battleObject.SendMessage("flip");
             SetVar("facing", -1);
         }
-        
+        */
         SendMessage("ChangeYSpeed", 0f);
         SetVar("jumps",GetIntVar("max_jumps"));
         SetVar("elasticity", 0.0f);
@@ -193,7 +154,7 @@ public class AbstractFighter : BattleComponent {
         game_controller = BattleController.current_battle;
 
         //Load SFX
-        string directory = Path.Combine("Assets/Resources/"+resource_path, sound_path);
+        string directory = Path.Combine("Assets/Resources/Fighters", fighter_info.directory_name+"/"+fighter_info.sound_path);
         DirectoryInfo directory_info = new DirectoryInfo(directory);
         if (directory_info.Exists)
         {
@@ -202,13 +163,11 @@ public class AbstractFighter : BattleComponent {
                 if (filename.Extension != ".meta")
                 {
                     string name_no_ext = filename.Name.Split('.')[0];
-                    sounds.Add(name_no_ext, Resources.Load<AudioClip>(resource_path + sound_path + name_no_ext));
+                    AudioClip audio = Resources.Load<AudioClip>("Fighters/" + fighter_info.directory_name + "/" + fighter_info.sound_path + "/" + name_no_ext);
+                    sounds.Add(name_no_ext, audio);
                 }
-                //Resources.Load<AudioClip>(filename);
             }
         }
-
-        //Debug.Log(JsonUtility.ToJson(this));
     }
 
     private float GetFromXml(string stat_name, float default_value)
@@ -696,6 +655,12 @@ public class AbstractFighter : BattleComponent {
     {
         Debug.Log("CAN'T STUMP THE LEDGE TRUMP");
     }
+
+    public void SetPlayerNum(int playernum)
+    {
+        player_num = playernum;
+    }
+
 
     /////////////////////////////////////////////////////////////////////////////////////////
     //                                  ACTION SETTERS                                     //

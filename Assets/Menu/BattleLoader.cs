@@ -5,11 +5,17 @@ using UnityEngine;
 public class BattleLoader : MonoBehaviour {
     public static BattleLoader current_loader;
 
-    public FighterInfo[] fighters = new FighterInfo[4];
+    public List<FighterInfo> fighters = new List<FighterInfo>();
+    public string[] fighter_strings;
 
     public int stockCount;
     public int timeCount;
     public bool teams;
+
+    [SerializeField]
+    private GameObject FighterPrefab;
+    [SerializeField]
+    private Transform[] spawnPoints = new Transform[4];
 
     /// <summary>
     /// Singleton code. Will destroy any superfluous battle controllers that are in the scenes it loads into.
@@ -29,8 +35,32 @@ public class BattleLoader : MonoBehaviour {
     }
 
     // Use this for initialization
-    void Start () {
-		
+    void Start() {
+        for (int i = 0; i < fighter_strings.Length; i++)
+        {
+            if (fighter_strings[i] != "")
+            {
+                FighterInfo info = FighterInfo.LoadFighterInfoFile(fighter_strings[i]);
+                if (info != null)
+                {
+                    fighters.Add(info);
+                }
+            }
+        }
+    }
+
+    public void LoadBattle() { 
+        for (int i = 0; i < fighters.Count; i++)
+        { 
+            if (fighters[i] != null)
+            {
+                GameObject fighter = Instantiate(FighterPrefab);
+                fighter.SendMessage("SetPlayerNum", i);
+                fighter.SendMessage("SetFighterInfo", fighters[i]);
+                fighter.transform.position = spawnPoints[i].position;
+                CameraControl3D.current_camera.follows.Add(fighter.transform);
+            }
+        }
 	}
 	
 	// Update is called once per frame

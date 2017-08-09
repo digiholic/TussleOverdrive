@@ -35,6 +35,7 @@ public class BattleController : MonoBehaviour {
     {
         //Fighters shouldn't collide with fighters
         Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Fighters"), LayerMask.NameToLayer("Fighters"), true);
+        BattleLoader.current_loader.LoadBattle();
     }
 
     // Update is called once per frame

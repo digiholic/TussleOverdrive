@@ -5,7 +5,9 @@ using System.IO;
 using UnityEditor;
 
 public class FighterInfoLoader : MonoBehaviour {
-    public FighterInfo fighter_info = new FighterInfo();
+    [SerializeField]
+    private FighterInfo fighter_info = new FighterInfo();
+
     public string directory;
     public string filename;
 
@@ -27,14 +29,26 @@ public class FighterInfoLoader : MonoBehaviour {
         }
         else
         {
-            string dir = Path.Combine(fightersDirectory.FullName, directory);
-            string combinedPath = Path.Combine(dir, filename);
-            if (File.Exists(combinedPath))
-            {
-                string json = File.ReadAllText(combinedPath);
-                fighter_info = JsonUtility.FromJson<FighterInfo>(json);
-            }
+            fighter_info = FighterInfo.LoadFighterInfoFile(directory, filename);
         }
+        fighter_info.LoadDirectory(directory);
+    }
+
+    public FighterInfo GetFighterInfo()
+    {
+        if (fighter_info.initialized) return fighter_info;
+        else
+        {
+            fighter_info.LoadDirectory(directory);
+            return fighter_info;
+        }
+    }
+
+    public void SetFighterInfo(FighterInfo info)
+    {
+        fighter_info = info;
+        directory = info.directory_name;
+        filename = "fighter_info.json";
     }
 }
 

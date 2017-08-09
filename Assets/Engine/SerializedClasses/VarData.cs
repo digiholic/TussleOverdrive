@@ -8,14 +8,13 @@ public class VarData
 {
     public string name;
     public string value;
-    //public VarType type;
+    public VarType type;
 }
-/*
+
 public enum VarType
 {
-    INT,
-    STRING,
     FLOAT,
-    BOOL
+    INT,
+    BOOL,
+    STRING
 }
-*/

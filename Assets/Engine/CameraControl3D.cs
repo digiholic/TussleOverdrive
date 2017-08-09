@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraControl3D : MonoBehaviour {
-    public Transform[] follows;
+    public List<Transform> follows;
 
     public float padding = 8.0f; //The amount of space to add around the fighters
     public float xAdjust = 0.0f; //The amount to shift the camera left or right
@@ -16,8 +16,11 @@ public class CameraControl3D : MonoBehaviour {
     private Camera m_Camera;
     private Vector3 moveVelocity;
 
+    public static CameraControl3D current_camera = null;
+    
 	// Use this for initialization
-	void Start () {
+	void Awake () {
+        current_camera = this;
         m_Camera = GetComponentInChildren<Camera>();
     }
 	
@@ -32,7 +35,7 @@ public class CameraControl3D : MonoBehaviour {
         int numTargets = 0;
 
         // Go through all the targets and add their positions together.
-        for (int i = 0; i < follows.Length; i++)
+        for (int i = 0; i < follows.Count; i++)
         {
 
             // If the target isn't active, go on to the next one.
