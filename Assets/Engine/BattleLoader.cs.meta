@@ -1,10 +1,12 @@
 fileFormatVersion: 2
 guid: 884faf968771af54ea1d1ad47843bcd0
-timeCreated: 1501523646
+timeCreated: 1502338926
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - FighterPrefab: {fileID: 1565209323680012, guid: 38b70fd6bbf25844da32569dd7dc718d,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

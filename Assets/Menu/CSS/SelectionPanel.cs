@@ -93,6 +93,12 @@ public class SelectionPanel : MonoBehaviour {
 
             BattleLoader.current_loader.fighters[playerNum] = selected_fighter;
         }
+        //If the selection is active, and confirmed
+        else
+        {
+            //Check if anyone else is not confirmed yet
+            SelectionRig.selection_rig.CheckStart();
+        }
     }
 
     private void CancelPressed()

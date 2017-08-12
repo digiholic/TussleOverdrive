@@ -16,7 +16,8 @@ public class MenuStockCount : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         label = GetComponentInChildren<UILabel>();
-	}
+        UpdateLoader();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -40,6 +41,7 @@ public class MenuStockCount : MonoBehaviour {
             }
             else varCount += increment;
         }
+        UpdateLoader();
     }
 
     void DecrementValue()
@@ -57,6 +59,21 @@ public class MenuStockCount : MonoBehaviour {
                 else varCount = maxValue;
             }
             else varCount -= increment;
+        }
+        UpdateLoader();
+    }
+
+    void UpdateLoader()
+    {
+        if (varName == "Stock")
+        {
+            BattleLoader.current_loader.stockCount = varCount;
+            BattleLoader.current_loader.stockInfinity = infinity;
+        }
+        if (varName == "Time")
+        {
+            BattleLoader.current_loader.timeCount = varCount;
+            BattleLoader.current_loader.timeInfinity = infinity;
         }
     }
 }

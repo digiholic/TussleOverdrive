@@ -8,7 +8,9 @@ public class BattleLoader : MonoBehaviour {
     public List<FighterInfo> fighters = new List<FighterInfo>();
     public string[] fighter_strings;
 
+    public bool stockInfinity;
     public int stockCount;
+    public bool timeInfinity;
     public int timeCount;
     public bool teams;
 
@@ -30,12 +32,10 @@ public class BattleLoader : MonoBehaviour {
         }
         else //if it's already set
         {
+            current_loader.spawnPoints = spawnPoints; //Set the spawn points to this one's
             Destroy(gameObject); //Destroy the new one
         }
-    }
 
-    // Use this for initialization
-    void Start() {
         for (int i = 0; i < fighter_strings.Length; i++)
         {
             if (fighter_strings[i] != "")
@@ -49,10 +49,11 @@ public class BattleLoader : MonoBehaviour {
         }
     }
 
+
     public void LoadBattle() { 
         for (int i = 0; i < fighters.Count; i++)
         { 
-            if (fighters[i] != null)
+            if (fighters[i] != null && fighters[i].directory_name != null)
             {
                 GameObject fighter = Instantiate(FighterPrefab);
                 fighter.SendMessage("SetPlayerNum", i);
