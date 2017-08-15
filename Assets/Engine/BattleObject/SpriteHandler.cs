@@ -108,8 +108,9 @@ public class SpriteHandler : BattleComponent {
         {
             sprite_data_dict[data.sprite_name] = data;
             string filename = sprite_info.sprite_prefix + data.sprite_name + ".png";
-            
-            Texture2D SpriteTexture = LoadTexture(Path.Combine("Assets/Resources/Fighters/"+fighter_info.directory_name+"/"+sprite_info.sprite_directory, filename));
+
+            string path = FileLoader.PathCombine("Assets", "Resources", "Fighters", fighter_info.directory_name, sprite_info.sprite_directory, filename);
+            Texture2D SpriteTexture = FileLoader.LoadTexture(path);
 
             List<Sprite> spriteFrames = new List<Sprite>();
             foreach (Vector2 startPos in data.subimage)
@@ -173,29 +174,6 @@ public class SpriteHandler : BattleComponent {
         }
 
         ChangeRenderer(current_sprite, current_frame);
-    }
-
-    private Texture2D LoadTexture(string FilePath)
-    {
-
-        // Load a PNG or JPG file from disk to a Texture2D
-        // Returns null if load fails
-
-        Texture2D Tex2D;
-        byte[] FileData;
-        
-        if (File.Exists(FilePath))
-        {
-            FileData = File.ReadAllBytes(FilePath);
-            Tex2D = new Texture2D(2, 2);           // Create new "empty" texture
-            if (Tex2D.LoadImage(FileData))           // Load the imagedata into the texture (size is set automatically)
-            {
-                Tex2D.filterMode = FilterMode.Point;
-                return Tex2D;                 // If data = readable -> return texture
-            }
-                
-        }
-        return null;                     // Return null if load failed
     }
 
     public void RotateSprite(float degrees)
