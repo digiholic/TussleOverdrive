@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
-using UnityEditor;
 
 public class StageInfoLoader : MonoBehaviour
 {
@@ -50,24 +49,5 @@ public class StageInfoLoader : MonoBehaviour
         stage_info = info;
         directory = info.directory_name;
         filename = "fighter_info.json";
-    }
-}
-
-[CustomEditor(typeof(StageInfoLoader))]
-public class StageInfoEditor : Editor
-{
-    public override void OnInspectorGUI()
-    {
-        DrawDefaultInspector();
-
-        StageInfoLoader info = (StageInfoLoader)target;
-        if (GUILayout.Button("Load"))
-        {
-            info.LoadStage();
-        }
-        if (GUILayout.Button("Save"))
-        {
-            info.SaveStage();
-        }
     }
 }

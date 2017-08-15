@@ -39,6 +39,9 @@ public class BattleObject : MonoBehaviour
     public Dictionary<string, object> variable = new Dictionary<string, object>();
     private Dictionary<string, AnchorPoint> anchor_points = new Dictionary<string, AnchorPoint>();
 
+    public GameObject hurtboxObject;
+    public GameObject spriteObject;
+
     //These are used only when serializing the main object
     [SerializeField,HideInInspector]
     private string abstractFighterJSON, actionHandlerJSON, environmentColliderJSON, hitboxLoaderJSON, hurtboxLoaderJSON, modelHandlerJSON, motionHandlerJSON, platformJSON, spriteHandlerJSON = "";

@@ -23,6 +23,6 @@ public class SelectionRig : MonoBehaviour {
                 return;
             }
         }
-        SceneManager.LoadScene(5,LoadSceneMode.Single);
+        SceneManager.LoadScene("SSS",LoadSceneMode.Single);
     }
 }

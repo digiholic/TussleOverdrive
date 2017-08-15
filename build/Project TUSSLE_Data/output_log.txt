@@ -1,0 +1,250 @@
+Initialize engine version: 2017.1.0f3 (472613c02cf7)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: Intel(R) HD Graphics 520 (ID=0x1916)
+    Vendor:   Intel
+    VRAM:     2111 MB
+    Driver:   20.19.15.4457
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\fournier\Documents\Project TUSSLE\build\Project TUSSLE_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\fournier\Documents\Project TUSSLE\build\Project TUSSLE_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\fournier\Documents\Project TUSSLE\build\Project TUSSLE_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading C:\Users\fournier\Documents\Project TUSSLE\build\Project TUSSLE_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: C:\Users\fournier\Documents\Project TUSSLE\build\Project TUSSLE_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\fournier\Documents\Project TUSSLE\build\Project TUSSLE_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\fournier\Documents\Project TUSSLE\build\Project TUSSLE_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\fournier\Documents\Project TUSSLE\build\Project TUSSLE_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\fournier\Documents\Project TUSSLE\build\Project TUSSLE_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\fournier\Documents\Project TUSSLE\build\Project TUSSLE_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\fournier\Documents\Project TUSSLE\build\Project TUSSLE_Data\Managed\UnityEngine.Timeline.dll (this message is harmless)
+Loading C:\Users\fournier\Documents\Project TUSSLE\build\Project TUSSLE_Data\Managed\UnityEngine.Timeline.dll into Unity Child Domain
+Platform assembly: C:\Users\fournier\Documents\Project TUSSLE\build\Project TUSSLE_Data\Managed\System.dll (this message is harmless)
+Platform assembly: C:\Users\fournier\Documents\Project TUSSLE\build\Project TUSSLE_Data\Managed\System.Core.dll (this message is harmless)
+- Completed reload, in  0.097 seconds
+Platform assembly: C:\Users\fournier\Documents\Project TUSSLE\build\Project TUSSLE_Data\Managed\System.Xml.dll (this message is harmless)
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 4.936613 ms
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 5.174151 ms
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 699.
+Total: 0.371692 ms (FindLiveObjects: 0.061538 ms CreateObjectMapping: 0.045538 ms MarkObjects: 0.256410 ms  DeleteObjects: 0.007794 ms)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.670768 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 730.
+Total: 0.539486 ms (FindLiveObjects: 0.115282 ms CreateObjectMapping: 0.059076 ms MarkObjects: 0.354051 ms  DeleteObjects: 0.010256 ms)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.115486 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 2699.
+Total: 2.046358 ms (FindLiveObjects: 0.159999 ms CreateObjectMapping: 0.182564 ms MarkObjects: 1.672204 ms  DeleteObjects: 0.031589 ms)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 3.545024 ms
+
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 1654.
+Total: 1.650050 ms (FindLiveObjects: 0.095589 ms CreateObjectMapping: 0.116512 ms MarkObjects: 1.370255 ms  DeleteObjects: 0.067282 ms)
+
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.923897 ms
+
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 1344.
+Total: 2.246152 ms (FindLiveObjects: 0.096820 ms CreateObjectMapping: 0.111999 ms MarkObjects: 1.964306 ms  DeleteObjects: 0.072205 ms)
+
+System.Collections.Generic.Dictionary`2[System.String,System.Collections.Generic.List`1[UnityEngine.Sprite]]
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+System.Collections.Generic.Dictionary`2[System.String,System.Collections.Generic.List`1[UnityEngine.Sprite]]
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+BoxColliders does not support negative scale or size.
+The effective box size has been forced positive and is likely to give unexpected collision geometry.
+If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "Fighter(Clone)/Hurtbox"
+ 
+(Filename:  Line: 0)
+
+BoxColliders does not support negative scale or size.
+The effective box size has been forced positive and is likely to give unexpected collision geometry.
+If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "Fighter(Clone)/Hitbox(Clone)"
+ 
+(Filename:  Line: 0)
+
+BoxColliders does not support negative scale or size.
+The effective box size has been forced positive and is likely to give unexpected collision geometry.
+If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "Fighter(Clone)/Hitbox(Clone)"
+ 
+(Filename:  Line: 0)
+
+BoxColliders does not support negative scale or size.
+The effective box size has been forced positive and is likely to give unexpected collision geometry.
+If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "Fighter(Clone)/Hitbox(Clone)"
+ 
+(Filename:  Line: 0)
+
+BoxColliders does not support negative scale or size.
+The effective box size has been forced positive and is likely to give unexpected collision geometry.
+If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "Fighter(Clone)/Hitbox(Clone)"
+ 
+(Filename:  Line: 0)
+
+BoxColliders does not support negative scale or size.
+The effective box size has been forced positive and is likely to give unexpected collision geometry.
+If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "Fighter(Clone)/Hitbox(Clone)"
+ 
+(Filename:  Line: 0)
+
+BoxColliders does not support negative scale or size.
+The effective box size has been forced positive and is likely to give unexpected collision geometry.
+If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "Fighter(Clone)/Hitbox(Clone)"
+ 
+(Filename:  Line: 0)
+
+BoxColliders does not support negative scale or size.
+The effective box size has been forced positive and is likely to give unexpected collision geometry.
+If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "Fighter(Clone)/Hitbox(Clone)"
+ 
+(Filename:  Line: 0)
+
+BoxColliders does not support negative scale or size.
+The effective box size has been forced positive and is likely to give unexpected collision geometry.
+If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "Fighter(Clone)/Hitbox(Clone)"
+ 
+(Filename:  Line: 0)
+
+BoxColliders does not support negative scale or size.
+The effective box size has been forced positive and is likely to give unexpected collision geometry.
+If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "Fighter(Clone)/Hitbox(Clone)"
+ 
+(Filename:  Line: 0)
+
+BoxColliders does not support negative scale or size.
+The effective box size has been forced positive and is likely to give unexpected collision geometry.
+If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "Fighter(Clone)/Hitbox(Clone)"
+ 
+(Filename:  Line: 0)
+
+BoxColliders does not support negative scale or size.
+The effective box size has been forced positive and is likely to give unexpected collision geometry.
+If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "Fighter(Clone)/Hitbox(Clone)"
+ 
+(Filename:  Line: 0)
+
+BoxColliders does not support negative scale or size.
+The effective box size has been forced positive and is likely to give unexpected collision geometry.
+If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "Fighter(Clone)/Hitbox(Clone)"
+ 
+(Filename:  Line: 0)
+
+BoxColliders does not support negative scale or size.
+The effective box size has been forced positive and is likely to give unexpected collision geometry.
+If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "Fighter(Clone)/Hitbox(Clone)"
+ 
+(Filename:  Line: 0)
+
+BoxColliders does not support negative scale or size.
+The effective box size has been forced positive and is likely to give unexpected collision geometry.
+If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "Fighter(Clone)/Hitbox(Clone)"
+ 
+(Filename:  Line: 0)
+
+BoxColliders does not support negative scale or size.
+The effective box size has been forced positive and is likely to give unexpected collision geometry.
+If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "Fighter(Clone)/Hitbox(Clone)"
+ 
+(Filename:  Line: 0)
+
+BoxColliders does not support negative scale or size.
+The effective box size has been forced positive and is likely to give unexpected collision geometry.
+If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "Fighter(Clone)/Hitbox(Clone)"
+ 
+(Filename:  Line: 0)
+
+BoxColliders does not support negative scale or size.
+The effective box size has been forced positive and is likely to give unexpected collision geometry.
+If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "Fighter(Clone)/Hitbox(Clone)"
+ 
+(Filename:  Line: 0)
+
+BoxColliders does not support negative scale or size.
+The effective box size has been forced positive and is likely to give unexpected collision geometry.
+If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "Fighter(Clone)/Hitbox(Clone)"
+ 
+(Filename:  Line: 0)
+
+BoxColliders does not support negative scale or size.
+The effective box size has been forced positive and is likely to give unexpected collision geometry.
+If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "Fighter(Clone)/Hitbox(Clone)"
+ 
+(Filename:  Line: 0)
+
+BoxColliders does not support negative scale or size.
+The effective box size has been forced positive and is likely to give unexpected collision geometry.
+If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "Fighter(Clone)/Hitbox(Clone)"
+ 
+(Filename:  Line: 0)
+
+BoxColliders does not support negative scale or size.
+The effective box size has been forced positive and is likely to give unexpected collision geometry.
+If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "Fighter(Clone)/Hitbox(Clone)"
+ 
+(Filename:  Line: 0)
+
+BoxColliders does not support negative scale or size.
+The effective box size has been forced positive and is likely to give unexpected collision geometry.
+If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "Fighter(Clone)/Hitbox(Clone)"
+ 
+(Filename:  Line: 0)
+
+BoxColliders does not support negative scale or size.
+The effective box size has been forced positive and is likely to give unexpected collision geometry.
+If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "Fighter(Clone)/Hurtbox"
+ 
+(Filename:  Line: 0)
+
+BoxColliders does not support negative scale or size.
+The effective box size has been forced positive and is likely to give unexpected collision geometry.
+If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "Fighter(Clone)/Hitbox(Clone)"
+ 
+(Filename:  Line: 0)
+
+BoxColliders does not support negative scale or size.
+The effective box size has been forced positive and is likely to give unexpected collision geometry.
+If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "Fighter(Clone)/Hitbox(Clone)"
+ 
+(Filename:  Line: 0)
+
+BoxColliders does not support negative scale or size.
+The effective box size has been forced positive and is likely to give unexpected collision geometry.
+If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "Fighter(Clone)/Hitbox(Clone)"
+ 
+(Filename:  Line: 0)
+
+BoxColliders does not support negative scale or size.
+The effective box size has been forced positive and is likely to give unexpected collision geometry.
+If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "Fighter(Clone)/Hitbox(Clone)"
+ 
+(Filename:  Line: 0)
+
+BoxColliders does not support negative scale or size.
+The effective box size has been forced positive and is likely to give unexpected collision geometry.
+If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "Fighter(Clone)/Hitbox(Clone)"
+ 
+(Filename:  Line: 0)
+
+BoxColliders does not support negative scale or size.
+The effective box size has been forced positive and is likely to give unexpected collision geometry.
+If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "Fighter(Clone)/Hitbox(Clone)"
+ 
+(Filename:  Line: 0)
+
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 23c8 -> priority: 1 
+  Thread -> id: 428 -> priority: 1 

@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 using System.IO;
 
 public class ActionFileLoader : MonoBehaviour {
@@ -34,25 +33,6 @@ public class ActionFileLoader : MonoBehaviour {
                 string json = File.ReadAllText(combinedPath);
                 action_file = JsonUtility.FromJson<ActionFile>(json);
             }
-        }
-    }
-}
-
-[CustomEditor(typeof(ActionFileLoader))]
-public class ActionFileInspector : Editor
-{
-    public override void OnInspectorGUI()
-    {
-        DrawDefaultInspector();
-
-        ActionFileLoader info = (ActionFileLoader)target;
-        if (GUILayout.Button("Load"))
-        {
-            info.LoadActions();
-        }
-        if (GUILayout.Button("Save"))
-        {
-            info.SaveActions();
         }
     }
 }

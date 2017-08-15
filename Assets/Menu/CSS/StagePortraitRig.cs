@@ -15,6 +15,9 @@ public class StagePortraitRig : MonoBehaviour {
         {
             StageSelectorPanel panel = child.GetComponent<StageSelectorPanel>();
             panels.Add(panel);
+
+            panel.GridLoc.x = panel.transform.localPosition.x;
+            panel.GridLoc.y = panel.transform.localPosition.y;
             panelsByLoc[panel.GridLoc] = panel;
         }
     }
@@ -31,7 +34,10 @@ public class StagePortraitRig : MonoBehaviour {
 
     public StageSelectorPanel GetPanel(Vector2 gridLoc)
     {
-        return panelsByLoc[gridLoc];
+        if (panelsByLoc.ContainsKey(gridLoc))
+            return panelsByLoc[gridLoc];
+        else
+            return null;
     }
 
     public void AddPanel(StageInfo info)
@@ -44,6 +50,6 @@ public class StagePortraitRig : MonoBehaviour {
     public StageInfo GetRandomStage()
     {
         int r = Random.Range(1, count);
-        return GetPanel(r).stage_info; ;
+        return GetPanel(r).stage_info;
     }
 }

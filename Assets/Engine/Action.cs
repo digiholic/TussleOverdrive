@@ -7,6 +7,7 @@ using System;
 public class GameAction {
     private StackTrace stackTrace = new StackTrace();
 
+    public string name;
     public string sprite_name;
     public int sprite_rate = 1;
     public bool loop = false;
@@ -126,6 +127,7 @@ public class GameAction {
 
     public void SetDynamicAction(DynamicAction dynAction)
     {
+        name = dynAction.name;
         length = dynAction.length;
         sprite_name = dynAction.sprite;
         sprite_rate = dynAction.sprite_rate;

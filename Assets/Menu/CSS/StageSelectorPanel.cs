@@ -6,15 +6,19 @@ public class StageSelectorPanel : MonoBehaviour {
     public string selectedSprite;
     public StageInfo stage_info;
 
-    public bool selected;
-
-    public Vector2 GridLoc;
+    public Vector2 GridLoc = new Vector2(0, 0);
 
     private SpriteRenderer bgSprite;
     private SpriteRenderer portraitSprite;
-    private List<SpriteRenderer> selectionSprites = new List<SpriteRenderer>();
+    private SpriteRenderer selectionSprite;
+
+    public Sprite randomEnabledSprite;
+    public Sprite randomDisabledSprite;
 
     public bool active = false;
+    public bool selected = false;
+    public bool random_enabled = true;
+
     // Use this for initialization
     void Awake()
     {
@@ -22,15 +26,15 @@ public class StageSelectorPanel : MonoBehaviour {
         if (selectedSprite == "") bgSprite.enabled = false;
         portraitSprite = transform.GetChild(0).GetComponent<SpriteRenderer>();
 
-        GridLoc.x = transform.localPosition.x;
-        GridLoc.y = transform.localPosition.y;
+        selectionSprite = transform.Find("Selector").GetComponent<SpriteRenderer>();
+    }
 
-        /*
-        selectionSprites.Add(transform.Find("TLSelected").GetComponent<SpriteRenderer>());
-        selectionSprites.Add(transform.Find("TRSelected").GetComponent<SpriteRenderer>());
-        selectionSprites.Add(transform.Find("BLSelected").GetComponent<SpriteRenderer>());
-        selectionSprites.Add(transform.Find("BRSelected").GetComponent<SpriteRenderer>());
-        */
+    void Update()
+    {
+        if (selected) selectionSprite.enabled = true;
+        else selectionSprite.enabled = false;
+        if (random_enabled) bgSprite.sprite = randomEnabledSprite;
+        else bgSprite.sprite = randomDisabledSprite;
     }
 
     public void SetPortrait(StageInfo info)

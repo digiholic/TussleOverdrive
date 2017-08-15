@@ -164,10 +164,11 @@ public class EnvironmentCollider : BattleComponent {
 
                 if (hit.transform.eulerAngles.z < 41 || hit.transform.eulerAngles.z > 319) //TODO un-hardcode this number
                 {
-                    SendMessage("UnRotate");
-                    SendMessage("RotateSprite", GetIntVar("facing") * hit.transform.eulerAngles.z);
-                    //Vector3 rot = transform.eulerAngles;
-                    //transform.eulerAngles = new Vector3(rot.x, rot.y, hit.transform.eulerAngles.z);
+
+                    float angle = hit.transform.eulerAngles.z;
+                    if (GetIntVar("facing") < 0)
+                        angle = 360.0f - angle;
+                    SendMessage("SetRotation", angle);
                 }
             }
         }

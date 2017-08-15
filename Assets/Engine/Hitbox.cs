@@ -46,7 +46,7 @@ public class Hitbox : MonoBehaviour {
             foreach (Collider c in cols)
             {
                 //Ignore hurtboxes and hitboxes from the same source
-                if (c.transform.parent != transform.parent)
+                if (!(transform.IsChildOf(c.transform.parent)))
                 {
                     c.SendMessage("onHit", this);
                 }

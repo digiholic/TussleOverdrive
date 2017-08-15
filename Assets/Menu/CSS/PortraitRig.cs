@@ -14,6 +14,8 @@ public class PortraitRig : MonoBehaviour {
         {
             SelectorPanel panel = child.GetComponent<SelectorPanel>();
             panels.Add(panel);
+            panel.GridLoc.x = panel.transform.localPosition.x;
+            panel.GridLoc.y = panel.transform.localPosition.y;
             panelsByLoc[panel.GridLoc] = panel;
         }
     }
@@ -42,6 +44,6 @@ public class PortraitRig : MonoBehaviour {
     public FighterInfo GetRandomFighter()
     {
         int r = Random.Range(1, count);
-        return GetPanel(r).fighter_info; ;
+        return GetPanel(r).fighter_info;
     }
 }

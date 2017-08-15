@@ -8,7 +8,7 @@ public class SelectorPanel : MonoBehaviour {
 
     public bool[] selected = new bool[4];
 
-    public Vector2 GridLoc;
+    public Vector2 GridLoc = new Vector2(0, 0);
 
     private SpriteRenderer bgSprite;
     private SpriteRenderer portraitSprite;
@@ -22,10 +22,7 @@ public class SelectorPanel : MonoBehaviour {
         bgSprite = GetComponent<SpriteRenderer>();
         if (selectedSprite == "") bgSprite.enabled = false;
         portraitSprite = transform.GetChild(0).GetComponent<SpriteRenderer>();
-
-        GridLoc.x = transform.localPosition.x;
-        GridLoc.y = transform.localPosition.y;
-
+        
         selectionSprites.Add(transform.Find("TLSelected").GetComponent<SpriteRenderer>());
         selectionSprites.Add(transform.Find("TRSelected").GetComponent<SpriteRenderer>());
         selectionSprites.Add(transform.Find("BLSelected").GetComponent<SpriteRenderer>());

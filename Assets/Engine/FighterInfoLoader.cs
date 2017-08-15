@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
-using UnityEditor;
 
 public class FighterInfoLoader : MonoBehaviour {
     [SerializeField]
@@ -49,24 +48,5 @@ public class FighterInfoLoader : MonoBehaviour {
         fighter_info = info;
         directory = info.directory_name;
         filename = "fighter_info.json";
-    }
-}
-
-[CustomEditor(typeof(FighterInfoLoader))]
-public class FighterInfoEditor : Editor
-{
-    public override void OnInspectorGUI()
-    {
-        DrawDefaultInspector();
-
-        FighterInfoLoader info = (FighterInfoLoader)target;
-        if (GUILayout.Button("Load"))
-        {
-            info.LoadFighter();
-        }
-        if (GUILayout.Button("Save"))
-        {
-            info.SaveFighter();
-        }
     }
 }

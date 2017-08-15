@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StageSelectionPanel : MonoBehaviour {
     public StagePortraitRig portraits;
@@ -55,7 +56,11 @@ public class StageSelectionPanel : MonoBehaviour {
 
     private void ConfirmPressed()
     {
-        
+        if (current_panel.selectedSprite == "Random")
+            selected_stage = portraits.GetRandomStage();
+        else
+            selected_stage = current_panel.stage_info;
+        SceneManager.LoadScene("stage_" + selected_stage.stage_name);
     }
 
     private void CancelPressed()
@@ -65,7 +70,7 @@ public class StageSelectionPanel : MonoBehaviour {
 
     private void SwitchPressed()
     {
-
+        current_panel.random_enabled = !current_panel.random_enabled;
     }
 
     private void RulesPressed()
@@ -77,7 +82,7 @@ public class StageSelectionPanel : MonoBehaviour {
     {
         Vector2 currentPos = current_panel.GridLoc;
         StageSelectorPanel panel = portraits.GetPanel(currentPos + dir);
-        if (panel.active)
+        if (panel != null && panel.active)
         {
             current_panel.selected = false;
             current_panel = panel;
