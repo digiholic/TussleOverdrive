@@ -364,3 +364,9 @@ public class InputEvent
         return false;
     }
 }
+
+public enum ControlType
+{
+    KEYBOARD,
+    GAMEPAD
+}

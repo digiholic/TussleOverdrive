@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
 
 public class ActionFileLoader : MonoBehaviour {
     public ActionFile action_file = new ActionFile();
@@ -10,12 +9,9 @@ public class ActionFileLoader : MonoBehaviour {
 
     public TextAsset json_file;
 
-    private DirectoryInfo fightersDirectory = new DirectoryInfo("Assets/Resources/Fighters");
-
     public void SaveActions()
     {
-        string dir = Path.Combine(fightersDirectory.FullName, directory);
-        action_file.WriteJSON(Path.Combine(dir, filename));
+        action_file.WriteJSON(FileLoader.PathCombine(FileLoader.GetFighterPath(directory), filename));
     }
 
     public void LoadActions()
@@ -26,13 +22,9 @@ public class ActionFileLoader : MonoBehaviour {
         }
         else
         {
-            string dir = Path.Combine(fightersDirectory.FullName, directory);
-            string combinedPath = Path.Combine(dir, filename);
-            if (File.Exists(combinedPath))
-            {
-                string json = File.ReadAllText(combinedPath);
-                action_file = JsonUtility.FromJson<ActionFile>(json);
-            }
+            string combinedPath = FileLoader.PathCombine(FileLoader.GetFighterPath(directory),filename);
+            string json = FileLoader.LoadTextFile(combinedPath);
+            action_file = JsonUtility.FromJson<ActionFile>(json);
         }
     }
 }

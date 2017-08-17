@@ -36,7 +36,7 @@ public class Settings : MonoBehaviour {
     public float sfx_volume = .50f;
 
     //Debug
-    public bool display_hitboxes = false;
+    public bool display_hitboxes  = false;
     public bool display_hurtboxes = false;
     public bool display_colliders = false;
     public bool display_platforms = false;
@@ -163,24 +163,34 @@ public class Settings : MonoBehaviour {
                 Screen.SetResolution(1920, 1200, fullscreen);
                 break;
             case ValidResolution.r1920x1080:
+                Screen.SetResolution(1920, 1080, fullscreen);
                 break;
             case ValidResolution.r1680x1050:
+                Screen.SetResolution(1680, 1050, fullscreen);
                 break;
             case ValidResolution.r1600x900:
+                Screen.SetResolution(1600, 900, fullscreen);
                 break;
             case ValidResolution.r1440x900:
+                Screen.SetResolution(1440, 900, fullscreen);
                 break;
             case ValidResolution.r1366x768:
+                Screen.SetResolution(1366, 768, fullscreen);
                 break;
             case ValidResolution.r1360x768:
+                Screen.SetResolution(1360, 768, fullscreen);
                 break;
             case ValidResolution.r1280x1024:
+                Screen.SetResolution(1280, 1024, fullscreen);
                 break;
             case ValidResolution.r1280x800:
+                Screen.SetResolution(1280, 800, fullscreen);
                 break;
             case ValidResolution.r1280x720:
+                Screen.SetResolution(1280, 720, fullscreen);
                 break;
             case ValidResolution.r1024x768:
+                Screen.SetResolution(1024, 768, fullscreen);
                 break;
         }
     }

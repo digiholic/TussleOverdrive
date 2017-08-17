@@ -8,6 +8,9 @@ public class FileLoader {
 
     public static DirectoryInfo ProgramDirectoryInfo = new DirectoryInfo(Application.dataPath).Parent;
 
+    public static string FighterPath = PathCombine("Assets", "Resources", "Fighters");
+    public static string StagePath = PathCombine("Assets", "Resources", "Stages");
+
     public static string PathCombine(params string [] paths)
     {
         string ResultString = paths[0];
@@ -17,6 +20,16 @@ public class FileLoader {
             ResultString = Path.Combine(ResultString, paths[i]);
         }
         return ResultString;
+    }
+
+    public static string GetFighterPath(string dirname)
+    {
+        return PathCombine(FighterPath, dirname);
+    }
+
+    public static string GetStagePath(string dirname)
+    {
+        return PathCombine(StagePath, dirname);
     }
 
     public static Texture2D LoadTexture(string FilePath)
