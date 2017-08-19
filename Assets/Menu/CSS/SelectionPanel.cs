@@ -57,21 +57,21 @@ public class SelectionPanel : MonoBehaviour {
 
 
         //Route button presses to their proper functions
-        if (inputManager.GetKeyDown(InputType.Attack))
+        if (inputManager.GetKeyDown("Attack"))
             ConfirmPressed();
-        if (inputManager.GetKeyDown(InputType.Special))
+        if (inputManager.GetKeyDown("Special"))
             CancelPressed();
-        if (inputManager.GetKeyDown(InputType.Jump))
+        if (inputManager.GetKeyDown("Jump"))
             SwitchPressed();
-        if (inputManager.GetKeyDown(InputType.Shield))
+        if (inputManager.GetKeyDown("Shield"))
             RulesPressed();
-        if (inputManager.GetKeyDown(InputType.Left))
+        if (inputManager.GetKeyDown("Left"))
             DirectionPressed(new Vector2(-1,0));
-        if (inputManager.GetKeyDown(InputType.Right))
+        if (inputManager.GetKeyDown("Right"))
             DirectionPressed(new Vector2(1, 0));
-        if (inputManager.GetKeyDown(InputType.Up))
+        if (inputManager.GetKeyDown("Up"))
             DirectionPressed(new Vector2(0, -1));
-        if (inputManager.GetKeyDown(InputType.Down))
+        if (inputManager.GetKeyDown("Down"))
             DirectionPressed(new Vector2(0, 1));
     }
 

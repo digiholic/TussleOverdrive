@@ -7,13 +7,7 @@ public class MenuInputManager : InputManager {
 
     void Update()
     {
-        foreach (InputType input_type in System.Enum.GetValues(typeof(InputType)))
-            if (GetKeyDown(input_type))
-                selectedButton.SendMessage("OnKeyPressed", input_type);
-
-        foreach (InputType input_type in System.Enum.GetValues(typeof(InputType)))
-            if (GetKeyUp(input_type))
-                selectedButton.SendMessage("OnKeyReleased", input_type);
+        
     }
 
     /// <summary>

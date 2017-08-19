@@ -102,7 +102,7 @@ public class HitStun : GameAction {
     {
         base.Update();
         AbstractFighter fighter = actor.GetAbstractFighter();
-        if (current_frame > 15 && actor.GetAbstractFighter().KeyBuffered(InputType.Shield, 5) && GetIntVar("tech_cooldown") == 0 && !actor.GetBoolVar("grounded"))
+        if (current_frame > 15 && actor.GetAbstractFighter().KeyBuffered("Shield", 5) && GetIntVar("tech_cooldown") == 0 && !actor.GetBoolVar("grounded"))
         {
             actor.SetVar("tech_window", 12);
             //anti_grab = statusEffect.TemporaryHitFilter(_actor, hurtbox.GrabImmunity(_actor), 10)

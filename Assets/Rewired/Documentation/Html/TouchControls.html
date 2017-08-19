@@ -1,0 +1,1375 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/BasicTemplate.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>Rewired Documentation | Touch Controls</title>
+<!-- InstanceEndEditable -->
+<!-- InstanceParam name="isRoot" type="boolean" value="false" -->
+<!-- InstanceParam name="wide" type="boolean" value="false" -->
+<link href="files/css/styles.css" rel="stylesheet" type="text/css" />
+<!-- Favicons -->
+<link rel="icon" type="image/x-icon" href="/projects/rewired/files/images/favicon.ico?v=1" />
+<!-- Apple Icons -->
+<!-- For iPad with high-resolution Retina display running iOS = 7: -->
+<link rel="apple-touch-icon-precomposed" sizes="152x152" href="files/images/favicon_152x152.png?v=1">
+<!-- For iPad with high-resolution Retina display running iOS = 6: -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="files/images/favicon_144x144.png?v=1">
+<!-- For iPhone with high-resolution Retina display running iOS = 7: -->
+<link rel="apple-touch-icon-precomposed" sizes="120x120" href="files/images/favicon_120x120.png?v=1">
+<!-- For iPhone with high-resolution Retina display running iOS = 6: -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="files/images/favicon_114x114.png?v=1">
+<!-- For the iPad mini and the first- and second-generation iPad on iOS = 7: -->
+<link rel="apple-touch-icon-precomposed" sizes="76x76" href="files/images/favicon_76x76.png?v=1">
+<!-- For the iPad mini and the first- and second-generation iPad on iOS = 6: -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="files/images/favicon_72x72.png?v=1">
+<!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+<link rel="apple-touch-icon-precomposed" href="files/images/favicon_57x57.png?v=1">
+</head>
+
+<body>
+
+
+<div class="container">
+
+    <div class="google-search-bar">
+        <script>
+          (function() {
+            var cx = '007961148920562332911:oocvtwz5jce';
+            var gcse = document.createElement('script');
+            gcse.type = 'text/javascript';
+            gcse.async = true;
+            gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(gcse, s);
+          })();
+        </script>
+        <gcse:search></gcse:search>
+    </div>
+
+  <div class="content">
+	
+	
+	 
+    <div class="page-body">
+	
+    
+         
+	    
+      	<div class="sidebar-nav">
+	        <h4><a href="Documentation.html">Documentation</a></h4>
+	        <ul>
+	          <li><a href="Overview.html">Overview</a></li>
+	          <li><a href="ReleaseNotes.txt">Release Notes</a></li>
+          </ul>
+	        <strong>Essentials:</strong>
+            <ol>
+              <li><a href="Installation.html">Installation</a></li>
+              <li><a href="QuickStart.html">Quick Start</a></li>
+              <li><a href="BasicUsage.html">Basic Usage</a></li>
+              <li><a href="Deployment.html">Deployment</a></li>
+              <li><a href="BestPractices.html">Best Practices</a></li>
+              <li><a href="RewiredEditor.html">Rewired Editor</a></li>
+              <li><a href="http://guavaman.com/projects/rewired/docs/api-reference" target="_blank">API Reference</a></li>
+            </ol>
+            <strong>Concepts:</strong>
+            <ul>
+              <li><a href="InputManager.html">Input Manager</a></li>
+              <li><a href="Players.html">Players</a></li>
+              <li><a href="Actions.html">Actions</a></li>
+              <li><a href="InputBehaviors.html">Input Behaviors</a></li>
+              <li><a href="Controllers.html">Controllers</a></li>
+              <li><a href="ControllerMaps.html">Controller Maps</a></li>
+              <li><a href="MapCategories.html">Map Categories</a></li>
+              <li><a href="ControllerMaps.html"></a><a href="Layouts.html">Layouts</a></li>
+              <li><a href="CustomControllers.html">Custom Controllers</a></li>
+            </ul>
+            <strong>Extras:</strong>
+            <ul>
+              <li><a href="ControlMapper.html" title="Control Mapper">Control Mapper</a></li>
+	          <li><a href="TouchControls.html" title="Touch Controls">Touch Controls</a></li>
+              <li><a href="RewiredStandaloneInputModule.html">Rewired Standalone Input Module</a></li>
+	          <li><a href="UnityInputOverride.html" title="Unity Input Override">Unity Input Override</a></li>
+            </ul>
+            <strong>Misc:</strong>
+            <ul>
+	          <li><a href="ComponentControls.html" title="Component Controls">Component Controls</a></li>
+	          <li><a href="InputMapper.html" title="Input Mapper">Input Mapper</a></li>
+	          <li><a href="UserDataStore.html" title="User Data Store">User Data Store</a></li>
+            </ul>
+            <strong>How To's:</strong>
+            <ul>
+            	<li><a href="HowTos.html">See all topics...</a></li>
+            </ul>
+            <strong>Help:</strong>
+            <ul>
+              <li><a href="SupportedControllers.html" title="Supported Controllers">Supported Controllers</a></li>
+              <li><a href="Overview.html#tested-platforms" title="Tested Platforms">Tested Platforms</a></li>
+              <li><a href="Troubleshooting.html" title="Troubleshooting">Troubleshooting</a></li>
+              <li><a href="KnownIssues.html">Known Issues</a></li>
+              <li><a href="SpecialPlatformSupport.html" title="Special Platform Support">Special Platform Support</a></li>
+	          <li><a href="Examples.html" title="Examples">Examples</a></li>
+              <li><a href="Integration.html">Integrations</a></li>
+	          <li><a href="Updating.html" title="Updating Rewired">Updating Rewired</a></li>
+            </ul>
+            <strong>FAQ</strong>
+            <ul>
+            	<li><a href="FAQ.html">See all topics...</a></li>
+            </ul>
+            <strong>Unity Help:</strong>
+            <ul>
+              <li><a href="http://docs.unity3d.com/Manual/" target="_blank">Unity Manual</a></li>
+              <li><a href="http://docs.unity3d.com/ScriptReference/" target="_blank">Unity Script Reference</a></li>
+              <li><a href="http://unity3d.com/learn/tutorials/modules" target="_blank">Unity Tutorials</a></li>
+            </ul>
+            <strong>Links:</strong>
+            <ul>
+              <li><a href="http://guavaman.com/projects/rewired">Rewired Website</a></li>
+              <li><a href="http://guavaman.com/projects/rewired/docs">Web Documentation</a></li>
+            </ul>
+        </div>
+        
+    
+    	<div class="main-body">
+	        <div class="logo"><a href="http://guavaman.com/projects/rewired" title="Rewired"><img src="files/images/rewired-logo.png" width="173" height="139" alt="Rewired" /></a></div>
+                     
+            <h1>
+            <!-- InstanceBeginEditable name="PageHeader" -->Touch Controls<!-- InstanceEndEditable -->
+            </h1>
+            
+			<!-- InstanceBeginEditable name="MainBody" -->
+
+    <p><strong><a href="#general-information">General Information</a></strong></p>
+    <ul>
+      <li><a href="#requirements">Requirements</a></li>
+      <li><a href="#installation">Installation</a></li>
+      <li><a href="#overview">Overview</a></li>
+    </ul>
+<p><strong><a href="#controllers">Controllers</a></strong></p>
+    <ul>
+      <li><a href="#touch-controller">Touch Controller</a></li>
+    </ul>
+<p><strong><a href="#controls">Controls</a></strong></p>
+    <ul>
+      <li><a href="#touch-button">Touch Button</a></li>
+      <li><a href="#touch-joystick">Touch Joystick</a></li>
+      <li><a href="#touch-pad">Touch Pad</a></li>
+      <li><a href="#touch-region">Touch Region</a></li>
+      </ul>
+    <p><strong><a href="#helper-components">Helper Components</a></strong></p>
+    <ul>
+      <li><a href="#touch-interactable-transitioner">Touch Interactable Transitioner</a></li>
+      <li><a href="#touch-joystick-radial-indicator">Touch Joystick Radial Indicator</a></li>
+      <li><a href="#touch-joystick-angle-indicator">Touch Joystick Angle Indicator</a></li>
+      </ul>
+    <p><strong><a href="#tutorials">Tutorials</a></strong></p>
+    <ul>
+      <li><a href="#custom-controller-setup">Creating and setting up a Custom Controller</a></li>
+      <li><a href="#touch-controller-setup">Creating and setting up a Touch Controller</a></li>
+      <li><a href="#touch-control-setup">Creating and setting up Touch Controls</a></li>
+    </ul>
+    <p><strong><a href="#help">Help</a></strong></p>
+    <ul>
+      <li><a href="#tips">Tips</a></li>
+      <li><a href="#troubleshooting">Troubleshooting</a></li>
+      <li><a href="#examples">Examples</a></li>
+    </ul>
+<p><strong>Other Controls</strong></p>
+    <ul>
+      <li><a href="ComponentControls.html#custom-controller">Component Controls</a></li>
+      <li><a href="ComponentControls.html#tilt-control">Tilt Control</a></li>
+      </ul>
+    <p>&nbsp;</p>
+<hr />
+    <h2><a name="general-information" id="general-information"></a>General Information</h2>
+    <h3><a name="requirements" id="requirements"></a>Requirements</h3>
+    <ul>
+      <li> Unity 5.0+ (5.3+ for optimal results)</li>
+      <li>Understanding of <a href="https://docs.unity3d.com/Manual/UISystem.html" target="_blank">Unity UI</a></li>
+      <li>Understanding of <a href="Documentation.html">Rewired</a> and <a href="ControllerMaps.html">Controller Maps</a></li>
+      <li>Understanding of <a href="CustomControllers.html">Custom Controllers</a></li>
+    </ul>
+    <p><strong>Scene requirements</strong></p>
+    <ul>
+      <li>There must be one enabled <a href="https://docs.unity3d.com/Manual/EventSystem.html" target="_blank">Event System</a> in the scene with a <a href="https://docs.unity3d.com/Manual/script-StandaloneInputModule.html" target="_blank">Standalone Input Module</a> component. It is recommended that you use the <a href="RewiredStandaloneInputModule.html">Rewired Standalone Input Module</a> instead of the default Unity component, but it is not a requirement.</li>
+      <li>There must be a <a href="https://docs.unity3d.com/Manual/UICanvas.html" target="_blank">Canvas</a> component on a parent of a Touch Controller and all Touch Controls.</li>
+      <li>The Canvas &quot;Render Mode&quot; property must be set to either &quot;Screen Space - Overlay&quot; or &quot;Screen Space - Camera&quot;. &quot;World Space&quot;  is not supported.</li>
+    </ul>
+    <p>&nbsp;</p>
+    <hr />
+    <h3><a name="installation" id="installation"></a>Installation</h3>
+    <p>You will have the option to install the Touch Controls pack on initial installation of Rewired. If you do not install it at this time, you can install it at any time from the menu:</p>
+    <ul>
+      <li>Window -&gt; Rewired -&gt; Extras -&gt; Touch Controls -&gt; Install</li>
+      </ul>
+    <p>To uninstall, delete the Rewired/Extras/TouchControls folder.</p>
+<p>&nbsp;</p>
+<hr />
+    <h3><a name="overview" id="overview"></a>Overview</h3>
+    <p>Rewired's Touch Controls use <a href="https://docs.unity3d.com/Manual/UISystem.html" target="_blank">Unity's UI system</a>. In order to use Touch Controls, you should have at least a basic understanding of Unity's UI system because you will be using this UI system to position and size the controls to fit your needs. If you do not have any experience using Unity UI, you can start with these <a href="https://unity3d.com/learn/tutorials/topics/user-interface-ui" target="_blank">Unity UI tutorials</a>.</p>
+<p>Touch Controls are a type of Component Control. Please see <a href="ComponentControls.html">Component Controls</a> for background information.</p>
+<p>There are two component types:</p>
+<ol>
+  <li>Touch Controller - Manages a set of controls.</li>
+  <li>Touch Control -  Individual buttons, joysticks, touch pads,  etc.</li>
+</ol>
+<p> The Touch Controller is responsible for collecting input data from its individual child controls, and in most cases, sending that data to a Custom Controller. Touch Controls utilize the  <a href="CustomControllers.html">Custom Controller</a> system in order to pipe user input into the Rewired Player-Action system. (While it is possible to use Touch Controls directly without a Custom Controller by using the exposed event fields in the inspector of each control, this is not recommended because it does not allow you to take advantage of Rewired's Player-Action system.)</p>
+<p>Each Touch Control must always be the child of a Touch Controller in the Unity scene Hierarchy. The hierarchy of a an example Touch Controller with its child controls would look like this:</p>
+<p><img src="files/images/touch-controller-hierarchy.png" alt="Touch Controller hierarchy" /><br />
+</p>
+<p>In the example above, the Touch Controller component points to a Rewired.CustomController class object which will receive the data from the touch joystick, the two touch buttons, and a tilt control. Each control will get the user input and send that data back to the Touch Controller component, which will feed it into the target Custom Controller elements pointed to in the inspector. The input will be piped into the Rewired Player-Action system and the Player who is assigned the Custom Controller will receive the input. The game-side code for getting input remains unchanged regardless of whether the input is coming from a physical joystick, keyboard, mouse, touch controller, tilt control, etc.</p>
+<p>You will notice the Tilt Control in the list above parented underneath a Touch Controller component. Even though a Tilt Control isn't a touch control, it can still be parented underneath a Touch Controller component and it will work because Touch Controller inherits from Custom Controller component and fulfills all requirements of the Tilt Control.</p>
+<p>There are four steps to setting up Touch Controls:</p>
+<ul>
+<li>In the <a href="RewiredEditor.html">Rewired Editor</a>:</li>
+<ol>
+  <li>Create a <a href="CustomControllers.html">Custom Controller</a>.</li>
+  <li>Create a Custom Controller Map for the new Custom Controller and and assign it to a Player.</li>
+</ol>
+<li>In the scene: 
+</li>
+<ol start="3">
+  <li>Create a <a href="#touch-controller">Touch Controller</a> and configure it to use the Custom Controller you created.</li>
+  <li>Create  each Touch Control and configure it to send its input data to an element in the Custom Controller.</li>
+</ol>
+</ul>
+<p>Step-by-step tutorials of the process can be found here:</p>
+<ul>
+  <li><a href="#custom-controller-setup">Creating and setting up a Custom Controller</a></li>
+  <li><a href="#touch-controller-setup">Creating and setting up a Touch Controller</a></li>
+  <li><a href="#touch-control-setup">Creating and setting up Touch Controls</a></li>
+</ul>
+<p>&nbsp;</p>
+<hr />
+<h2><a name="controllers" id="controllers"></a>Controllers</h2>
+<h3><a name="touch-controller" id="touch-controller"></a>Touch Controller</h3>
+<p>A Touch Controller is responsible for managing a set of touch controls and sending input data to a Custom Controller.  A Touch Controller component must exist as the parent of all touch controls.</p>
+<p><strong>Requirements</strong></p>
+<ul>
+  <li>A <a href="https://docs.unity3d.com/Manual/UICanvas.html" target="_blank">Canvas</a> component must exist on a parent GameObject.</li>
+  <li>An <a href="https://docs.unity3d.com/Manual/EventSystem.html" target="_blank">Event System</a> must exist in the scene and be enabled.</li>
+</ul>
+<p><strong>Creating</strong><br />
+  Select the following from option from the menu:</p>
+<ul>
+  <li>GameObject -&gt; Create Other -&gt; Rewired -&gt; Touch Controls -&gt; Touch Controller</li>
+  </ul>
+<p>If you already have a Canvas in your scene that you want the Touch Control to be created underneath, select it before creating the Touch Controller from the menu.</p>
+<p>If there is no <a href="https://docs.unity3d.com/Manual/UICanvas.html" target="_blank">Canvas</a> or <a href="https://docs.unity3d.com/Manual/EventSystem.html" target="_blank">Event System</a> in the scene, new ones will be created for you.</p>
+<p><strong>Recommendations</strong></p>
+<ul>
+  <li>Create a <a href="CustomControllers.html">Custom Controller</a> in the Rewired Input Manager which will receive the user input from the controller.</li>
+  <li>Link your <a href="InputManager.html">Rewired Input Manager</a> to the &quot;Rewired Input Manager&quot; field in the inspector.</li>
+  <li>Check &quot;Create Custom Controller&quot; and &quot;Destroy Custom Controller&quot; in the inspector for easiest usage.</li>
+</ul>
+<p><strong>Tutorials</strong></p>
+<ul>
+  <li><a href="#custom-controller-setup">Creating and setting up a Custom Controller</a></li>
+  <li><a href="#touch-controller-setup">Creating and setting up a Touch Controller</a></li>
+</ul>
+<p><strong><a name="touch-controller-inspector" id="touch-controller-inspector"></a>Inspector Options</strong></p>
+<p><img src="files/images/touchcontrols_inspector_touchcontroller.png" alt="Touch Controller Inspector" /></p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="22%" valign="top"><strong>General Options</strong></td>
+    <td width="78%" valign="top"><p>&nbsp;</p></td>
+  </tr>
+  <tr>
+    <td valign="top">Disable Mouse Input When Enabled</td>
+    <td valign="top">If true, disables mouse input when the Touch Controller script is enabled or GameObject is activated and re-enables mouse input when the script is disabled or GameObject is deactivated. This is useful for disabling Mouse Look controls when using touch controls in an FPS for example.</td>
+  </tr>
+  <tr>
+    <td valign="top">Use Custom Controller</td>
+    <td valign="top">If true, a Custom Controller will be populated with the data from this controller.</td>
+  </tr>
+  <tr>
+    <td valign="top">&nbsp;</td>
+    <td valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>Custom Controller Options</strong></td>
+    <td valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top">Rewired Input Manager</td>
+    <td valign="top">(Optional) Link the Rewired Input Manager here for easier access to Custom Controller elements, etc.</td>
+  </tr>
+  <tr>
+    <td valign="top">Create Custom Controller</td>
+    <td valign="top">If true, a new Custom Controller will be created. Otherwise, an existing Custom Controller will be found using the selector properties.</td>
+  </tr>
+  <tr>
+    <td valign="top">Custom Controller</td>
+    <td valign="top">The Custom Controller to create.</td>
+  </tr>
+  <tr>
+    <td valign="top">Custom Controller Source Id</td>
+    <td valign="top"><p>(Shown if Rewired Input Manager is not linked.)</p>
+      <p>The source id of the Custom Controller to create. Get this from the Rewired Input Manager.</p></td>
+  </tr>
+  <tr>
+    <td valign="top">Assign to Player</td>
+    <td valign="top">The Player that will be assigned this Custom Controller when it is created.</td>
+  </tr>
+  <tr>
+    <td valign="top">Assign to Player Id</td>
+    <td valign="top"><p>(Shown if Rewired Input Manager is not linked.)</p>
+      <p>The Player that will be assigned this Custom Controller when it is created.</p></td>
+  </tr>
+  <tr>
+    <td valign="top">Destroy Custom Controller</td>
+    <td valign="top">If true, the Custom Controller created by this component will be destroyed when this component is destroyed.</td>
+  </tr>
+  <tr>
+    <td valign="top">Find Using Source Id</td>
+    <td valign="top"><p>(Shown if Rewired Input Manager is not linked.)</p>
+      <p>If true, the Custom Controller will be searched for by its source controller id. This can be used with Find in Player and/or Find Using Tag to further refine the search parameters.</p></td>
+  </tr>
+  <tr>
+    <td valign="top">Source Id</td>
+    <td valign="top"><p>(Shown if Rewired Input Manager is not linked.)</p>
+      <p>The source id of the Custom Controller. This is used to find the Custom Controller if Find Using Source Id is True.&quot;</p></td>
+  </tr>
+  <tr>
+    <td valign="top">Find Using Tag</td>
+    <td valign="top"><p>(Shown if not creating a Custom Controller.)</p>
+      <p>If true, the Custom Controller will be found using the tag specified here. This can be used with Find in Player and/or Find Using Source Id to further refine the search parameters.</p></td>
+  </tr>
+  <tr>
+    <td valign="top">Tag</td>
+    <td valign="top">The tag on the Custom Controller you wish to use. This is used to find the Custom Controller.</td>
+  </tr>
+  <tr>
+    <td valign="top">Find In Player</td>
+    <td valign="top"><p>(Shown if not creating a Custom Controller.)</p>
+      <p>If true, the Custom Controller will be searched for in the Player specified in the Player Id field. This can be used with Find Using Source Id and/or Find Using Tag to further refine the search parameters.</p></td>
+  </tr>
+  <tr>
+    <td valign="top">Player</td>
+    <td valign="top">The Player that owns the Custom Controller to find.</td>
+  </tr>
+  <tr>
+    <td valign="top">Player Id</td>
+    <td valign="top"><p>(Shown if Rewired Input Manager is not linked.)</p>
+      <p>The Player Id of the Player that owns the Custom Controller to find.</p></td>
+  </tr>
+  <tr>
+    <td valign="top">&nbsp;</td>
+    <td valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>Controls</strong></td>
+    <td valign="top">Displays all Component Controls found in children of the Touch Controller.</td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>Add Controls</strong></td>
+    <td valign="top"><p>Allows you to easily add controls to the Touch Controller.</p>
+      <p>Note that this only allows you to add a control from the default controls included with Rewired. To add a control you've made, you must add it underneath the Touch Controller manually.</p></td>
+  </tr>
+  <tr>
+    <td valign="top">Select Control On Creation</td>
+    <td valign="top">If enabled, the newly created control will be selected after it is created. Otherwise the current object will remain selected.</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<hr />
+<h2><a name="controls" id="controls"></a>Controls</h2>
+<h3><a name="touch-button" id="touch-button"></a>Touch Button</h3>
+<p>A Touch Button is an on-screen button control which can be manipulated by touch or by using the mouse pointer.</p>
+<p><strong>Requirements</strong></p>
+<ul>
+  <li>A <a href="#touch-controller">Touch Controller</a> component must exist on a parent of the control.</li>
+  <li>A <a href="https://docs.unity3d.com/Manual/UICanvas.html" target="_blank">Canvas</a> component must exist on a parent GameObject.</li>
+  <li>An <a href="https://docs.unity3d.com/Manual/EventSystem.html" target="_blank">Event System</a> must exist in the scene and be enabled.</li>
+</ul>
+<p><strong>Creating</strong><br />
+  Select the following from option from the menu:</p>
+<ul>
+  <li>GameObject -&gt; Create Other -&gt; Rewired -&gt; Touch Controls -&gt; Touch Button</li>
+</ul>
+<p><strong>Inspector Options</strong></p>
+<p><img src="files/images/touchcontrols_inspector_touchbutton.png" alt="Touch Button Inspector" /></p>
+<p>&nbsp;</p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="22%" valign="top"><strong>General Options</strong></td>
+    <td width="78%" valign="top"><p>&nbsp;</p></td>
+  </tr>
+  <tr>
+    <td valign="top">Interactable</td>
+    <td valign="top">Toggles whether the control can be interacted with by the user.</td>
+  </tr>
+  <tr>
+    <td valign="top">Visible</td>
+    <td valign="top">Toggles visibility. An invisible control can still be interacted with. This property only has any effect when used with an Image Component.</td>
+  </tr>
+  <tr>
+    <td valign="top">&nbsp;</td>
+    <td valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>Custom Controller Options</strong></td>
+    <td valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top">Target Custom Controller Element</td>
+    <td valign="top">The Custom Controller element that will receive input values from this control.</td>
+  </tr>
+  <tr>
+    <td valign="top">&nbsp;</td>
+    <td valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>Button Options</strong></td>
+    <td valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top">Allowed Mouse Buttons</td>
+    <td valign="top">The mouse buttons that are allowed to interact with this control.</td>
+  </tr>
+  <tr>
+    <td valign="top">Button Type</td>
+    <td valign="top"><p>The type of button.</p>
+      <p>Standard: A momentary switch. Returns True while the button is pressed down.</p>
+      <p>Toggle Switch: Alternately turns on and off with each press.</p></td>
+  </tr>
+  <tr>
+    <td valign="top">Activate On Swipe In</td>
+    <td valign="top">If true, the button can be turned on by a touch swipe that began in an area outside the button region. If false, the button can only be turned on by a direct press.</td>
+  </tr>
+  <tr>
+    <td valign="top">Stay Active On Swipe Out</td>
+    <td valign="top">If true, the button will stay on even if the touch that activated it moves outside the button region. If false, the button will turn off once the touch that activated it moves outside the button region.</td>
+  </tr>
+  <tr>
+    <td valign="top">Follow Touch Position</td>
+    <td valign="top">If True, the button will follow the touch around until released. This setting overrides Move To Touch Position.</td>
+  </tr>
+  <tr>
+    <td valign="top">Touch Region</td>
+    <td valign="top">Optional external region to use for hover/click/touch detection. If set, this region will be used for touch detection instead of or in addition to the button's RectTransform. This can be useful if you want a larger area of the screen to act as a button.</td>
+  </tr>
+  <tr>
+    <td valign="top">Use Touch Region Only</td>
+    <td valign="top">If True, hovers/clicks/touches on the local button will be ignored and only Touch Region touches will be used. Otherwise, both touches on the button and on the Touch Region will be used. This also applies to mouse hover. This setting has no effect if no Touch Region is set.</td>
+  </tr>
+  <tr>
+    <td valign="top">Move To Touch Position</td>
+    <td valign="top">If True, the button will move to the location of the current touch in the Touch Region. This can be used to designate an area of the screen as a hot-spot for a button and have the button graphics follow the users touches. This only has an effect if a Touch Region is set.</td>
+  </tr>
+  <tr>
+    <td valign="top">Animate On Move To Touch</td>
+    <td valign="top">Should the button animate when moving to the touch point? This only has an effect if Move To Touch Position is True and a Touch Region is set. This setting is ignored if Follow Touch Position is True.</td>
+  </tr>
+  <tr>
+    <td valign="top">Move To Touch Speed</td>
+    <td valign="top">The speed at which the button will move toward the touch position measured in screens per second (based on the larger of width and height). [1.0 = Move 1 screen/sec]. This only has an effect if Move To Touch Position is True, Animate On Move To Touch is true, and a Touch Region is set. This setting is ignored if Follow Touch Position is True.</td>
+  </tr>
+  <tr>
+    <td valign="top"><p>Return On Release</p></td>
+    <td valign="top">If Move To Touch Position is enabled, this will make the button return to its original position after the press is released. This only has an effect if a Touch Region is set.</td>
+  </tr>
+  <tr>
+    <td valign="top">Animate On Return</td>
+    <td valign="top">Should the button animate when moving back to its original position? This only has an effect if Follow Touch Position is True, or if Move To Touch Position is True and a Touch Region is set, and Return on Release is True.</td>
+  </tr>
+  <tr>
+    <td valign="top">Return Speed</td>
+    <td valign="top">The speed at which the button will move back toward its original position measured in screens per second (based on the larger of width and height). [1.0 = Move 1 screen/sec]. This only has an effect if Follow Touch Position is True, or if Move To Touch Position is True and a Touch Region is set, and Return on Release and Animate on Return are both True.</td>
+  </tr>
+  <tr>
+    <td valign="top">&nbsp;</td>
+    <td valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>Axis Options</strong></td>
+    <td valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top">Use Digital Axis Simulation</td>
+    <td valign="top">Makes the axis value gradually change over time based on gravity and sensitivity as the button is pressed.</td>
+  </tr>
+  <tr>
+    <td valign="top">Digital Axis Sensitivity</td>
+    <td valign="top">Speed to move toward an axis value of 1.0 in units/sec when pressed. A value of 1.0 means an axis value of 0 will reach 1 over 1 second. A value of 3 equates to 1/3 of a second, and so on.</td>
+  </tr>
+  <tr>
+    <td valign="top">Digital Axis Gravity</td>
+    <td valign="top">Speed (units/sec) that the axis value falls toward 0 when not pressed. A value of 1.0 means an axis value of 1 will drain to 0 over 1 second. A value of 3 equates to 1/3 of a second, and so on.</td>
+  </tr>
+  <tr>
+    <td valign="top">Invert Axis Value</td>
+    <td valign="top">Inverts the axis value of the button.</td>
+  </tr>
+  <tr>
+    <td valign="top">Advanced</td>
+    <td valign="top">Advanced configuration options for the axis.</td>
+  </tr>
+  <tr>
+    <td valign="top">&nbsp;</td>
+    <td valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>Graphic Options</strong></td>
+    <td valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top"><p>Target Graphic</p></td>
+    <td valign="top">The target Graphic component for interaction state transitions. This should normally be set to an Image component on this GameObject.</td>
+  </tr>
+  <tr>
+    <td valign="top">Transition Type</td>
+    <td valign="top"><p>The transition type(s) to be used when transitioning to various states. Multiple transition types can be used simultaneously.</p>
+      <p>See the <a href="https://docs.unity3d.com/Manual/script-SelectableTransition.html" target="_blank">Unity documentation on Transitions</a> for usage.</p></td>
+  </tr>
+  <tr>
+    <td>Visibility Fade Duration</td>
+    <td>The fade duration of visibility changes. 0 = instant.</td>
+  </tr>
+  <tr>
+    <td valign="top">&nbsp;</td>
+    <td valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>Misc Options</strong></td>
+    <td valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top">Hide When Idle</td>
+    <td valign="top">Sets visibility to False when the control is idle. When the control is no longer idle, visibility will be set to True again.</td>
+  </tr>
+  <tr>
+    <td valign="top">Manage Raycasting</td>
+    <td valign="top">If True, it will attempt to automatically manage Graphic component raycasting for best results based on your current settings. (Requires Unity 5.3+)</td>
+  </tr>
+  <tr>
+    <td valign="top">&nbsp;</td>
+    <td valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>Events</strong></td>
+    <td valign="top">Numerous events are exposed which can be used to drive input directly or for use in certain effects.</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<hr />
+<h3><a name="touch-joystick" id="touch-joystick"></a>Touch Joystick</h3>
+<p>A Touch Joystick is an on-screen joystick control which can be manipulated by touch or by using the mouse pointer.</p>
+<p><strong>Requirements</strong></p>
+<ul>
+  <li>A <a href="#touch-controller">Touch Controller</a> component must exist on a parent of the control.</li>
+  <li>A <a href="https://docs.unity3d.com/Manual/UICanvas.html" target="_blank">Canvas</a> component must exist on a parent GameObject.</li>
+  <li>An <a href="https://docs.unity3d.com/Manual/EventSystem.html" target="_blank">Event System</a> must exist in the scene and be enabled.</li>
+</ul>
+    <p><strong>Creating</strong><br />
+      Select the following from option from the menu:</p>
+    <ul>
+      <li>GameObject -&gt; Create Other -&gt; Rewired -&gt; Touch Controls -&gt; Touch Joystick</li>
+    </ul>
+    <p><strong>Inspector Options</strong></p>
+    <p><img src="files/images/touchcontrols_inspector_touchjoystick.png" alt="Touch Joystick Inspector" /></p>
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td valign="top"><strong>General Options</strong></td>
+        <td valign="top">&nbsp;</td>
+      </tr>
+      <tr>
+        <td valign="top">Interactable</td>
+        <td valign="top">Toggles whether the control can be interacted with by the user.</td>
+      </tr>
+      <tr>
+        <td valign="top">Visible</td>
+        <td valign="top">Toggles visibility. An invisible control can still be interacted with. This property only has any effect when used with an Image Component.</td>
+      </tr>
+      <tr>
+        <td valign="top">&nbsp;</td>
+        <td valign="top">&nbsp;</td>
+      </tr>
+      <tr>
+        <td valign="top"><strong>Custom Controller Options</strong></td>
+        <td valign="top">&nbsp;</td>
+      </tr>
+      <tr>
+        <td valign="top">Horizontal Axis Custom Controller Element</td>
+        <td valign="top">The Custom Controller element(s) that will receive input values from the joystick's X axis.</td>
+      </tr>
+      <tr>
+        <td valign="top">Vertical Axis Custom Controller Element</td>
+        <td valign="top">The Custom Controller element(s) that will receive input values from the joystick's Y axis.</td>
+      </tr>
+      <tr>
+        <td valign="top">Tap Custom Controller Element</td>
+        <td valign="top"><p>(Shown if Allow Tap is enabled.)</p>
+          <p>The Custom Controller element that will receive input values from taps.</p></td>
+      </tr>
+      <tr>
+        <td valign="top">&nbsp;</td>
+        <td valign="top">&nbsp;</td>
+      </tr>
+      <tr>
+        <td valign="top"><strong>Joystick Options</strong></td>
+        <td valign="top">&nbsp;</td>
+      </tr>
+      <tr>
+        <td valign="top">Stick Transform</td>
+        <td valign="top">The Rect Transform of the stick disc. This is moved around by the user when manipulating the joystick.</td>
+      </tr>
+      <tr>
+        <td valign="top">Allowed Mouse Buttons</td>
+        <td valign="top">The mouse buttons that are allowed to interact with this control.</td>
+      </tr>
+      <tr>
+        <td valign="top">Axes To Use</td>
+        <td valign="top">The axis directions in which movement is allowed. You can restrict movement to one or both axes.</td>
+      </tr>
+      <tr>
+        <td valign="top">Stick Range</td>
+        <td valign="top">The range of movement of the stick in Canvas pixels. The larger the number, the further the stick must be moved from center to register movement.</td>
+      </tr>
+      <tr>
+        <td valign="top">Scale Stick Range</td>
+        <td valign="top">If enabled, the stick range will scale with parent controls. Otherwise, the stick range will remain constant.</td>
+      </tr>
+      <tr>
+        <td valign="top">Stick Bounds</td>
+        <td valign="top">The shape of the range of movement of the joystick.</td>
+      </tr>
+      <tr>
+        <td valign="top">Joystick Mode</td>
+        <td valign="top">The joystick's mode of operation. Set this to Digital to simulate a D-Pad which has only On/Off states. If you want mimic a real D-Pad, you should also set Snap Directions to 8.</td>
+      </tr>
+      <tr>
+        <td valign="top">Snap Directions</td>
+        <td valign="top">Snaps joystick movement to a fixed number of directions. This can be used to create a D-Pad, for example, setting it to 4 or 8 directions. If you want a true D-Pad, Stick Mode should be set to digital.</td>
+      </tr>
+      <tr>
+        <td valign="top">Snap Stick To Touch</td>
+        <td valign="top"><p>If true, the stick disc will snap immediately to the touch position when initially touched. This results in the stick disc being centered to the touch position. This will cause the stick to generate input immediately when touched if not touched perfectly centered.<br />
+          </p>
+          <p>If false, the stick disc will remain in its current position on touch, and when dragged will retain the same offset. The stick's center point will be set to the position of the touch. The initial touch will not cause the stick to pop in any direction.</p></td>
+      </tr>
+      <tr>
+        <td valign="top">Center Stick On Release</td>
+        <td valign="top">If true, the stick will return to the center after it is released. Otherwise, the stick will remain in the last position and continue to return input.</td>
+      </tr>
+      <tr>
+        <td valign="top">Activate On Swipe In</td>
+        <td valign="top">If true, the joystick can be activated by a touch swipe that began in an area outside the joystick region. If false, the joystick can only be activated by a direct touch.</td>
+      </tr>
+      <tr>
+        <td valign="top">Stay Active On Swipe Out</td>
+        <td valign="top">If true, the joystick will stay engaged even if the touch that activated it moves outside the joystick region. If false, the joystick will be released once the touch that activated it moves outside the joystick region.</td>
+      </tr>
+      <tr>
+        <td valign="top">Allow Tap</td>
+        <td valign="top">Should taps on the touch pad be processed?</td>
+      </tr>
+      <tr>
+        <td valign="top">Tap Timeout</td>
+        <td valign="top">The maximum touch duration allowed for the touch to be considered a tap. A touch that lasts longer than this value will not trigger a tap when released.</td>
+      </tr>
+      <tr>
+        <td valign="top">Tap Distance Limit</td>
+        <td valign="top">The maximum movement distance allowed in pixels since the touch began for the touch to be considered a tap. [-1 = no limit]</td>
+      </tr>
+      <tr>
+        <td valign="top">Follow Touch Position</td>
+        <td valign="top">If True, the joystick will follow the touch around until released. This setting overrides Move To Touch Position.</td>
+      </tr>
+      <tr>
+        <td valign="top">Touch Region</td>
+        <td valign="top">Optional external region to use for hover/click/touch detection. If set, this region will be used for touch detection instead of or in addition to the joystick's RectTransform. This can be useful if you want a larger area of the screen to act as a joystick.</td>
+      </tr>
+      <tr>
+        <td valign="top">Use Touch Region Only</td>
+        <td valign="top">If True, hovers/clicks/touches on the local joystick will be ignored and only Touch Region touches will be used. Otherwise, both touches on the joystick and on the Touch Region will be used. This also applies to mouse hover. This setting has no effect if no Touch Region is set.</td>
+      </tr>
+      <tr>
+        <td valign="top">Move To Touch Position</td>
+        <td valign="top">If True, the joystick will move to the location of the current touch in the Touch Region. This can be used to designate an area of the screen as a hot-spot for a joystick and have the joystick graphics follow the users touches. This only has an effect if a Touch Region is set.</td>
+      </tr>
+      <tr>
+        <td valign="top">Animate On Move To Touch</td>
+        <td valign="top">Should the joystick animate when moving to the touch point? This only has an effect if Move To Touch Position is True and a Touch Region is set. This setting is ignored if Follow Touch Position is True.</td>
+      </tr>
+      <tr>
+        <td valign="top">Move To Touch Speed</td>
+        <td valign="top">The speed at which the joystick will move toward the touch position measured in screens per second (based on the larger of width and height). [1.0 = Move 1 screen/sec]. This only has an effect if Move To Touch Position is True, Animate On Move To Touch is true, and a Touch Region is set. This setting is ignored if Follow Touch Position is True.</td>
+      </tr>
+      <tr>
+        <td valign="top"><p>Return On Release</p></td>
+        <td valign="top">If Move To Touch Position is enabled, this will make the joystick return to its original position after the press is released. This only has an effect if a Touch Region is set.</td>
+      </tr>
+      <tr>
+        <td valign="top">Animate On Return</td>
+        <td valign="top">Should the joystick animate when moving back to its original position? This only has an effect if Follow Touch Position is True, or if Move To Touch Position is True and a Touch Region is set, and Return on Release is True.</td>
+      </tr>
+      <tr>
+        <td valign="top">Return Speed</td>
+        <td valign="top">The speed at which the joystick will move back toward its original position measured in screens per second (based on the larger of width and height). [1.0 = Move 1 screen/sec]. This only has an effect if Follow Touch Position is True, or if Move To Touch Position is True and a Touch Region is set, and Return on Release and Animate on Return are both True.</td>
+      </tr>
+      <tr>
+        <td valign="top">&nbsp;</td>
+        <td valign="top">&nbsp;</td>
+      </tr>
+      <tr>
+        <td valign="top"><strong>Axis Options</strong></td>
+        <td valign="top">&nbsp;</td>
+      </tr>
+      <tr>
+        <td valign="top">Invert Horizontal Axis</td>
+        <td valign="top">Inverts the X axis value.</td>
+      </tr>
+      <tr>
+        <td valign="top">Invert Vertical Axis</td>
+        <td valign="top">Inverts the Y axis value.</td>
+      </tr>
+      <tr>
+        <td valign="top">Advanced</td>
+        <td valign="top">Advanced configuration options for the axes.</td>
+      </tr>
+      <tr>
+        <td valign="top">&nbsp;</td>
+        <td valign="top">&nbsp;</td>
+      </tr>
+      <tr>
+        <td valign="top"><strong>Graphic Options</strong></td>
+        <td valign="top">&nbsp;</td>
+      </tr>
+      <tr>
+        <td valign="top"><p>Target Graphic</p></td>
+        <td valign="top">The target Graphic component for interaction state transitions. This should normally be set to an Image component on this GameObject.</td>
+      </tr>
+      <tr>
+        <td valign="top">Transition Type</td>
+        <td valign="top"><p>The transition type(s) to be used when transitioning to various states. Multiple transition types can be used simultaneously.</p>
+          <p>See the <a href="https://docs.unity3d.com/Manual/script-SelectableTransition.html" target="_blank">Unity documentation on Transitions</a> for usage.</p></td>
+      </tr>
+      <tr>
+        <td>Visibility Fade Duration</td>
+        <td>The fade duration of visibility changes. 0 = instant.</td>
+      </tr>
+      <tr>
+        <td valign="top">&nbsp;</td>
+        <td valign="top">&nbsp;</td>
+      </tr>
+      <tr>
+        <td valign="top"><strong>Misc Options</strong></td>
+        <td valign="top">&nbsp;</td>
+      </tr>
+      <tr>
+        <td valign="top">Hide When Idle</td>
+        <td valign="top">Sets visibility to False when the control is idle. When the control is no longer idle, visibility will be set to True again.</td>
+      </tr>
+      <tr>
+        <td valign="top">Manage Raycasting</td>
+        <td valign="top">If True, it will attempt to automatically manage Graphic component raycasting for best results based on your current settings. (Requires Unity 5.3+)</td>
+      </tr>
+      <tr>
+        <td valign="top">&nbsp;</td>
+        <td valign="top">&nbsp;</td>
+      </tr>
+      <tr>
+        <td valign="top"><strong>Events</strong></td>
+        <td valign="top">Numerous events are exposed which can be used to drive input directly or for use in certain effects.</td>
+      </tr>
+    </table>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <hr />
+    <h3><a name="touch-pad" id="touch-pad"></a>Touch Pad</h3>
+    <p>A Touch Pad is an on-screen touch pad control which can be manipulated by touch or by using the mouse pointer.</p>
+    <p><strong>Requirements</strong></p>
+    <ul>
+      <li>A <a href="#touch-controller">Touch Controller</a> component must exist on a parent of the control.</li>
+      <li>A <a href="https://docs.unity3d.com/Manual/UICanvas.html" target="_blank">Canvas</a> component must exist on a parent GameObject.</li>
+      <li>An <a href="https://docs.unity3d.com/Manual/EventSystem.html" target="_blank">Event System</a> must exist in the scene and be enabled.</li>
+    </ul>
+    <p><strong>Creating</strong><br />
+      Select the following from option from the menu:</p>
+    <ul>
+      <li>GameObject -&gt; Create Other -&gt; Rewired -&gt; Touch Controls -&gt; Touch Pad</li>
+      </ul>
+    <p><strong>Inspector Options</strong></p>
+<p><img src="files/images/touchcontrols_inspector_touchpad.png" alt="Touch Pad inspector" /></p>
+<table width="100%" border="0">
+  <tr>
+    <td valign="top"><strong>General Options</strong></td>
+    <td valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top">Interactable</td>
+    <td valign="top">Toggles whether the control can be interacted with by the user.</td>
+  </tr>
+  <tr>
+    <td valign="top">Visible</td>
+    <td valign="top">Toggles visibility. An invisible control can still be interacted with. This property only has any effect when used with an Image Component.</td>
+  </tr>
+  <tr>
+    <td valign="top">&nbsp;</td>
+    <td valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>Custom Controller Options</strong></td>
+    <td valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top">Horizontal Axis Custom Controller Element</td>
+    <td valign="top">The Custom Controller element that will receive input values from the touch pad's X axis.</td>
+  </tr>
+  <tr>
+    <td valign="top">Vertical Axis Custom Controller Element</td>
+    <td valign="top">The Custom Controller element that will receive input values from the touch pad's Y axis.</td>
+  </tr>
+  <tr>
+    <td valign="top">Tap Custom Controller Element</td>
+    <td valign="top"><p>(Shown if Allow Tap is enabled.)</p>
+      <p>The Custom Controller element that will receive input values from touch pad taps.</p></td>
+  </tr>
+  <tr>
+    <td>Press Custom Controller Element</td>
+    <td><p>(Shown if Allow Press is enabled.)</p>
+      <p>The Custom Controller element that will receive input values from touch pad presses.</p></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><strong>Touch Pad Options</strong></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top">Allowed Mouse Buttons</td>
+    <td valign="top">The mouse buttons that are allowed to interact with this control.</td>
+  </tr>
+  <tr>
+    <td valign="top">Axes To Use</td>
+    <td valign="top">The axis directions in which movement is allowed. You can restrict movement to one or both axes.</td>
+  </tr>
+  <tr>
+    <td>Touch Pad Mode</td>
+    <td><p>The mode of the touch pad.<br />
+      </p>
+      <p>Delta - Returns the change in position of the touch from the previous to the current frame.</p>
+      <p>Screen Position - Returns the absolute position of the touch  on the screen.</p>
+      <p><br />
+        Vector From Center - Returns a vector from the center of the Touch Pad to the current touch position.</p>
+      <p><br />
+        Vector From Initial Touch - Returns a vector from the intial touch position to the current touch position.</p></td>
+  </tr>
+  <tr>
+    <td><p>Value Format</p></td>
+    <td><p>The format of the resulting data generated by the touch pad.</p>
+      <p>Pixels - Screen pixels.</p>
+      <p>Screen - The proportion of the value to screen size in the corresponding dimension. 1 unit = 1 screen length (width for X, height for Y).</p>
+      <p>Physical - 1 unit = 1/100th of an inch. The resulting value will be consistent across different screen resolutions and sizes. IMPORTANT: This relies on the value returned by UnityEngine.Screen.dpi. If the device does not return a value, a reference resolution of 96 dpi will be used.</p>
+      <p>Direction - A normalized direction vector.</p></td>
+  </tr>
+  <tr>
+    <td>Use Inertia</td>
+    <td>If enabled, when swiped and released, the value will slowly fall toward zero based on the Friction value. This only has an effect if Touch Pad Mode is set to Position Delta.</td>
+  </tr>
+  <tr>
+    <td>Inertia Friction</td>
+    <td><p>(Shown if Use Inertia is enabled.)</p>
+      <p>Determines how quickly a swipe value will fall toward zero when Use Inertia is enabled.</p></td>
+  </tr>
+  <tr>
+    <td>Activate On Swipe In</td>
+    <td>If true, the touch pad can be activated by a touch swipe that began in an area outside the touch pad region. If false, the touch pad can only be activated by a direct touch.</td>
+  </tr>
+  <tr>
+    <td>Stay Active On Swipe Out</td>
+    <td>If true, the touch pad will stay engaged even if the touch that activated it moves outside the touch pad region. If false, the touch pad will be released once the touch that activated it moves outside the touch pad region.</td>
+  </tr>
+  <tr>
+    <td>Allow Tap</td>
+    <td>Should taps on the touch pad be processed?</td>
+  </tr>
+  <tr>
+    <td>Tap Timeout</td>
+    <td><p>(Shown if Allow Tap is enabled.)</p>
+      <p>The maximum touch duration allowed for the touch to be considered a tap. A touch that lasts longer than this value will not trigger a tap when released.</p></td>
+  </tr>
+  <tr>
+    <td>Tap Distance Limit</td>
+    <td><p>(Shown if Allow Tap is enabled.)</p>
+      <p>The maximum movement distance allowed in pixels since the touch began for the touch to be considered a tap. [-1 = no limit]</p></td>
+  </tr>
+  <tr>
+    <td>Allow Press</td>
+    <td>Should presses (continual press like a button) on the touch pad be processed?</td>
+  </tr>
+  <tr>
+    <td>Press Start Delay</td>
+    <td><p>(Shown if Allow Press is enabled.)</p>
+      <p>Time the touch pad must be touched before it will be considered a press.</p></td>
+  </tr>
+  <tr>
+    <td>Press Distance Limit</td>
+    <td><p>(Shown if Allow Press is enabled.)</p>
+      <p>The maximum movement distance allowed in pixels since the touch began for the touch to be considered a press. Any movement beyond this value will cancel the press. [-1 = no limit]</p></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><strong>Axis Options</strong></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>Invert Horizontal Axis</td>
+    <td>Inverts the X axis value.</td>
+  </tr>
+  <tr>
+    <td>Horizontal Axis Sensitivity</td>
+    <td>Sensitivity of the X axis.</td>
+  </tr>
+  <tr>
+    <td>Invert Vertical Axis</td>
+    <td>Inverts the Y axis value.</td>
+  </tr>
+  <tr>
+    <td>Vertical Axis Sernsitivity</td>
+    <td>Sensitivity of the Y axis.</td>
+  </tr>
+  <tr>
+    <td>Advanced</td>
+    <td>Advanced configuration options for the axes.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><strong>Graphic Options</strong></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>Target Graphic</td>
+    <td valign="top">The target Graphic component for interaction state transitions. This should normally be set to an Image component on this GameObject.</td>
+    </tr>
+  <tr>
+    <td>Transition Type</td>
+    <td valign="top"><p>The transition type(s) to be used when transitioning to various states. Multiple transition types can be used simultaneously.</p>
+      <p>See the <a href="https://docs.unity3d.com/Manual/script-SelectableTransition.html" target="_blank">Unity documentation on Transitions</a> for usage.</p></td>
+    </tr>
+  <tr>
+    <td>Visibility Fade Duration</td>
+    <td>The fade duration of visibility changes. 0 = instant.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><strong>Misc Options</strong></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>Hide At Runtime</td>
+    <td>If enabled, the control will be hidden when gameplay starts.</td>
+  </tr>
+  <tr>
+    <td valign="top">Hide When Idle</td>
+    <td valign="top">Sets visibility to False when the control is idle. When the control is no longer idle, visibility will be set to True again.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><strong>Events</strong></td>
+    <td>Numerous events are exposed which can be used to drive input directly or for use in certain effects.</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+    <hr />
+    <h3><a name="touch-region" id="touch-region"></a>Touch Region</h3>
+    <p>A Touch Region is a control which is used to activate another control remotely. This allows you to specify an area of the Canvas to be used to activate the control.</p>
+    <p>For a control to use the Touch Region, the Touch Region field in the control must be linked to the Touch Region. See the inspector options for the control you wish to use for information about the Touch Region field and related options.</p>
+    <p><strong>Requirements</strong></p>
+    <ul>
+      <li>A <a href="#touch-controller">Touch Controller</a> component must exist on a parent of the control.</li>
+      <li>A <a href="https://docs.unity3d.com/Manual/UICanvas.html" target="_blank">Canvas</a> component must exist on a parent GameObject.</li>
+      <li>An <a href="https://docs.unity3d.com/Manual/EventSystem.html" target="_blank">Event System</a> must exist in the scene and be enabled.</li>
+    </ul>
+    <p><strong>Creating</strong><br />
+      Select the following from option from the menu:</p>
+    <ul>
+      <li>GameObject -&gt; Create Other -&gt; Rewired -&gt; Touch Controls -&gt; Touch Region</li>
+      </ul>
+    <p><strong>Inspector Options</strong></p>
+    <p><img src="files/images/touchcontrols_inspector_touchregion.png" alt="Touch Region inspector" /></p>
+    <table width="100%" border="0">
+      <tr>
+        <td valign="top"><strong>General Options</strong></td>
+        <td valign="top">&nbsp;</td>
+      </tr>
+      <tr>
+        <td valign="top">Interactable</td>
+        <td valign="top">Toggles whether the control can be interacted with by the user.</td>
+      </tr>
+      <tr>
+        <td valign="top">Visible</td>
+        <td valign="top">Toggles visibility. An invisible control can still be interacted with. This property only has any effect when used with an Image Component.</td>
+      </tr>
+      <tr>
+        <td valign="top">Allowed Mouse Buttons</td>
+        <td valign="top">The mouse buttons that are allowed to interact with this control.</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td><strong>Graphic Options</strong></td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>Target Graphic</td>
+        <td valign="top">The target Graphic component for interaction state transitions. This should normally be set to an Image component on this GameObject.</td>
+      </tr>
+      <tr>
+        <td>Transition Type</td>
+        <td valign="top"><p>The transition type(s) to be used when transitioning to various states. Multiple transition types can be used simultaneously.</p>
+          <p>See the <a href="https://docs.unity3d.com/Manual/script-SelectableTransition.html" target="_blank">Unity documentation on Transitions</a> for usage.</p></td>
+      </tr>
+      <tr>
+        <td>Visibility Fade Duration</td>
+        <td>The fade duration of visibility changes. 0 = instant.</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td><strong>Misc Options</strong></td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>Hide At Runtime</td>
+        <td>If enabled, the control will be hidden when gameplay starts.</td>
+      </tr>
+      <tr>
+        <td valign="top">Hide When Idle</td>
+        <td valign="top">Sets visibility to False when the control is idle. When the control is no longer idle, visibility will be set to True again.</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td><strong>Events</strong></td>
+        <td>Numerous events are exposed which can be used to drive input directly or for use in certain effects.</td>
+      </tr>
+    </table>
+    <p>&nbsp;</p>
+    <hr />
+    <h2><a name="helper-components" id="helper-components"></a>Helper Components    </h2>
+    <h3><a name="touch-interactable-transitioner" id="touch-interactable-transitioner"></a>Touch Interactable Transitioner</h3>
+<p>Allows synchronization of transition states between a Touch Interactable and a Graphic. Add this component to children of touch controls that need transition states or visibility to remain in sync with the parent.  This is useful for Text or Image components parented underneath a touch control for example. This allows you to add graphics, text, or other decorations on your touch control and have them animate colors, sprite transitions, etc. in sync with the parent control.</p>
+<p><strong>Usage</strong></p>
+<p>Add this component to a child of a Touch Button or Touch Joystick that has a Graphic, Text, or Image component and configure the options.</p>
+<p><strong>Inspector Options</strong></p>
+<p><img src="files/images/touchcontrols_inspector_touchinteractabletransitioner.png" width="642" height="244" alt="Touch Interactable Transitioner inspector" /></p>
+<table width="100%" border="0">
+  <tr>
+    <td>Visible</td>
+    <td>Toggles visibility. An invisible control can still be interacted with. This property only has any effect when used with an Image Component.</td>
+  </tr>
+  <tr>
+    <td valign="top"><p>Target Graphic</p></td>
+    <td valign="top">The target Graphic component for interaction state transitions. This should normally be set to an Image component on this GameObject.</td>
+  </tr>
+  <tr>
+    <td>Transition Type</td>
+    <td><p>The transition type(s) to be used when transitioning to various states. Multiple transition types can be used simultaneously.</p>
+      <p>See the <a href="https://docs.unity3d.com/Manual/script-SelectableTransition.html" target="_blank">Unity documentation on Transitions</a> for usage.</p></td>
+  </tr>
+  <tr>
+    <td>Sync Color Tint With Transition Event</td>
+    <td>Toggles whether the color tint is set by incoming transition events. If enabled, the color tint transition of the event sender will override any color tint setting here. This setting overrides Sync Fade Duration With Transition Event.</td>
+  </tr>
+  <tr>
+    <td>Sync Fade Duration With Transition Event</td>
+    <td>Toggles whether the fade duration is set by incoming transition events. If enabled, the duration of fades for visibility and Color Tint transitions will be synchronized with the event sender.</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <hr />
+    <h3><a name="touch-joystick-radial-indicator" id="touch-joystick-radial-indicator"></a>Touch Joystick Radial Indicator</h3>
+<p> Arranges child TouchJoystickAngleIndicator objects in a radial pattern. It is useful for displaying direction indicators for a Touch Joystick in a radial pattern. Assists with scaling and sizing of the child images.</p>
+<p><strong>Usage</strong></p>
+<p>Add this component to a child of a Touch Joystick, then add more child objects under this, each with a <a href="#touch-joystick-angle-indicator">Touch Angle Joystick Indicator</a> component and an Image component.</p>
+<p><strong>Inspector Options</strong></p>
+<p><img src="files/images/touchcontrols_inspector_touchjoystickradialindicator.png" width="479" height="140" alt="Touch Joystick Radial Indicator inspector" /></p>
+<table width="100%" border="0">
+  <tr>
+    <td>Scale</td>
+    <td>If enabled, the indicators will be scaled based on the size of the RectTransform.</td>
+  </tr>
+  <tr>
+    <td>Scale Ratio</td>
+    <td>The scale ratio of the indicators to the current RectTransform's height. A ratio of 0.1 means the indicator will be 0.1 times the size of the RectTransform's height. This is useful if you need to be able to scale the transform and have the indicators also scale with it.</td>
+  </tr>
+  <tr>
+    <td>Preserve Sprite Aspect Ratio</td>
+    <td>If enabled, the aspect ratio will be determined from the Sprite's texture.</td>
+  </tr>
+  <tr>
+    <td>Aspect Ratio X</td>
+    <td>The horizontal component of the desired aspect ratio of the indicator.</td>
+  </tr>
+  <tr>
+    <td>Aspect Ratio Y</td>
+    <td>The vertical component of the desired aspect ratio of the indicator.</td>
+  </tr>
+  <tr>
+    <td>Offset</td>
+    <td>Offsets the indicator position up by this proportion of its height. 1.0 = 1 unit high offset.</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <hr />
+    <h3><a name="touch-joystick-angle-indicator" id="touch-joystick-angle-indicator"></a>Touch Joystick Angle Indicator</h3>
+    <p>A visual indicator of the current direction of the joystick. This can be used to make arrows or other visual elements light up when the joystick is pressed in different directions.</p>
+    <p><strong>Usage</strong></p>
+    <p>Add this component to a child of a Touch Joystick and configure the settings.</p>
+    <p><strong>Inspector Options</strong></p>
+    <p><img src="files/images/touchcontrols_inspector_touchjoystickangleindicator.png" width="479" height="158" alt="Touch Joysick Angle Indicator inspector" /></p>
+    <table width="100%" border="0">
+      <tr>
+        <td>Visible</td>
+        <td>Toggles visibility.</td>
+      </tr>
+      <tr>
+        <td>Target Angle From Rotation</td>
+        <td>If enabled, the target angle will be determined by the transform's Local Rotation Z. Otherwise, the activation angle must be manually set.</td>
+      </tr>
+      <tr>
+        <td>Target Angle</td>
+        <td><p>The joystick angle at which this object should be considered fully active.</p>
+          <p>0 = up with negative values increase rotating clockwise. Example: -45 degrees = up-right.</p></td>
+      </tr>
+      <tr>
+        <td>Fade With Value</td>
+        <td>If enabled, the color will fade in and out based on the current joystick value.</td>
+      </tr>
+      <tr>
+        <td>Fade With Angle</td>
+        <td>If enabled, the color will fade in and out based on the current joystick angle. As the angle approaches the Target Angle, the color will become more intense.</td>
+      </tr>
+      <tr>
+        <td>Fade Range</td>
+        <td>The angle of rotation away from the Target Angle where the color fully fades out. If Fade with Angle is enabled, this is used to determine when the color will fully fade out when the joystick angle rotates away from the the Target Angle. This should be set to 1/2 of the complete rotation arc. Example: A value of 45 degrees would make the color fully fade out when the joystick angle is 45 degrees away from the Target Angle on either side, giving a complete arc of 90 degrees.</td>
+      </tr>
+      <tr>
+        <td>Normal Color</td>
+        <td>The color when not active.</td>
+      </tr>
+      <tr>
+        <td>Active Color</td>
+        <td>The color when fully active.</td>
+      </tr>
+    </table>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <hr />
+    <h2><a name="tutorials" id="tutorials"></a>Tutorials</h2>
+    <h3><a name="custom-controller-setup" id="custom-controller-setup"></a>Creating and setting up a Custom Controller</h3>
+    <ol>
+      <li>In the Rewired Editor, create a Custom Controller.</li>
+      <li>Create one Axis for each axis you will need in your touch controller. If the axis is a type that returns delta information such as a touch pad, be sure to uncheck the &quot;Calibrate&quot; box in the Axis Properties. (If you don't do this, the axis will be calibrated to a -1 to +1 range.)</li>
+    </ol>
+    <p><img src="files/images/touchcontrols_setup-cc-1.png" alt="" /></p>
+    <ol start="3">
+      <li>Create one button for each button your touch controller will need. Be sure to name these buttons something meaningful so you can select them easily later from the Touch Button inspector.</li>
+    </ol>
+    <p><img src="files/images/touchcontrols_setup-cc-2.png" alt="" /></p>
+    <ol start="4">
+      <li>Now create a Custom Controller Map for this new controller. Map each element you created to an Action.</li>
+    </ol>
+    <p><img src="files/images/touchcontrols_setup-cc-3.png" alt="" /></p>
+    <ol start="5">
+      <li>Assign the Custom Controller Map you created in the previous step to a Player. The Player will load this Custom Controller Map when the Custom Controller is assigned to it. Make sure &quot;Start Enabled&quot; is checked when you add the map.</li>
+    </ol>
+    <p><img src="files/images/touchcontrols_setup-cc-4.png" alt="" /></p>
+    <p>You've created your Custom Controller and Custom Controller Map and assigned it to a Player. Now you will need to create and configure your Touch Controller to use this Custom Controller and each Touch Control to target its respective Custom Controller element. Continue to the next section.</p>
+    <p>&nbsp;</p>
+    <hr />
+    <h3><a name="touch-controller-setup" id="touch-controller-setup"></a>Creating and setting up a Touch Controller</h3>
+    <p>To create a Touch Controller, create one from the menu:</p>
+    <ul>
+      <li>GameObject -&gt; Create Other -&gt; Rewired -&gt; Touch Controls -&gt; Touch Controller</li>
+    </ul>
+    <p>This will create a new GameObject with a <a href="#touch-controller">Touch Controller</a> component added. It will also create a Rewired Event System if no <a href="https://docs.unity3d.com/Manual/EventSystem.html" target="_blank">Event System</a> exists in the scene and a <a href="https://docs.unity3d.com/Manual/UICanvas.html" target="_blank">Canvas</a> if no Canvas exists.</p>
+    <p><strong>Configuring the Touch Controller</strong></p>
+    <p>The Touch Controller component is responsible for sending user input data received from its child Touch Controls into the Rewired.CustomController.</p>
+    <p>The Touch Controller component is essentially a wrapper for the Rewired.CustomController class. This component's inspector allows you to set options which will tell it which Rewired.CustomController to point to.</p>
+    <p>The first thing you should do is link the Rewired Input Manager you intend to use to the Rewired Input Manager field of the Touch Controller. This is optional, but highly recommended as it allows you to select the Custom Controller and the target elements on that controller by simply selecting them from a drop-down. If you do not link the Rewired Input Manager, you will have to use either string names or id integers to tell the controller and each control which Custom Controller and which elements in which to feed the incoming data.</p>
+    <p>Click the &quot;Find Rewired Input Manager&quot; button in the inspector to find any enabled Rewired Input Manager in the scene and link it. Otherwise, you can manually link it to the Rewired Input Manager.</p>
+    <p><img src="files/images/touchcontrols_inspector_touchcontroller_rim.png" alt="Touch Controller inspector" /></p>
+    <p>There are two ways to determine the target Rewired.CustomController:</p>
+    <ol>
+      <li>Instantiate a new Custom Controller from a controller defined in the Rewired Input Manager. (Recommended)</li>
+      <li>Search through existing Custom Controllers that have already been instantiated. </li>
+    </ol>
+    <p><strong>Instantiating a new Custom Controller:</strong><br />
+      The Touch Controller component can instantiate a new Rewired.CustomController from an existing controller definition that you have created beforehand in the Rewired Input Manager. This is the easiest way to work with Custom Controllers and is the recommended option. </p>
+    <p>A new Rewired.CustomController will be instantiated on Awake of the Touch Controller component and optionally destroyed when the Touch Controller component is destroyed. To enable this, check &quot;Create Custom Controller&quot; and &quot;Destroy Custom Controller&quot; in the inspector. Select a Custom Controller from the list or enter its Source Id, then choose a Player to assign it to when it's instantiated.</p>
+    <p><img src="files/images/touchcontrols_inspector_touchcontroller_create_rimlinked.png" alt="Custom Controller inspector" /></p>
+    <table width="100%" border="0">
+      <tr>
+        <td>Create Custom Controller</td>
+        <td>If true, a new Custom Controller will be created. Otherwise, an existing Custom Controller will be found using the selector properties.</td>
+      </tr>
+      <tr>
+        <td>Custom Controller / Source Id</td>
+        <td><p>(Custom Controller is shown if the Rewired Input Manager has been linked in the Rewired Input Manager field, otherwise Source Id is shown.)</p>
+          <p>Custom Controller:<br />
+            The  Custom Controller to create.</p>
+          <p>Source Id:<br />
+            The source id of the Custom Controller to create. Get this from the Rewired Input Manager.</p></td>
+      </tr>
+      <tr>
+        <td>Assign To Player / Assign To Player Id</td>
+        <td><p>(Assign To Player is shown if the Rewired Input Manager has been linked in the Rewired Input Manager field, otherwise Assign To Player Id is shown.)</p>
+          <p>Assign To Player:<br />
+            The Player that will be assigned this Custom Controller when it is created. </p>
+          <p>Assign To Player Id:<br />
+            The Player  that will be assigned this Custom Controller when it is created.</p></td>
+      </tr>
+      <tr>
+        <td>Destroy Custom Controller</td>
+        <td>If true, the Custom Controller created by this component will be destroyed when this component is destroyed.</td>
+      </tr>
+    </table>
+    <p>&nbsp;</p>
+    <p><strong>Searching for an existing Custom Controller:</strong><br />
+      If you have already instiantated a Rewired.CustomController through scripting or have set up Rewired to automatically create a Custom Controller on start by adding it under &quot;Starting Custom Controllers&quot; on the <a href="RewiredEditor.html#Players">Players page of the Rewired Editor</a>, you can set up the Touch Controller component to find that existing Rewired.CustomController and use it for its target.</p>
+    <p>If you want to search for an existing Rewired.CustomController, the &quot;Create Custom Controller&quot; field must not be checked:</p>
+    <p><img src="files/images/touchcontrols_inspector_touchcontroller_search_rimlinked.png" alt="Touch Controller inspector" /></p>
+    <p>Additional options will appear in the inspector allowing you to set the search parameters:</p>
+    <table width="100%" border="0">
+      <tr>
+        <td>Find Using Source Id</td>
+        <td>If true, the Custom Controller will be searched for by its source controller id. This can be used with Find in Player and/or Find Using Tag to further refine the search parameters.</td>
+      </tr>
+      <tr>
+        <td>Custom Controller / Custom Controller Id</td>
+        <td><p>(Custom Controller is shown if the Rewired Input Manager has been linked in the Rewired Input Manager field, otherwise Custom Controller Id is shown.)</p>
+          <p>Custom Controller:<br />
+            The target Custom Controller. This is used to find the Custom Controller if Find Using Source Id is True.</p>
+          <p>Custom Controller Id:<br />
+            The source id of the Custom Controller. This is used to find the Custom Controller if Find Using Source Id is True.</p></td>
+      </tr>
+      <tr>
+        <td>Find Using Tag</td>
+        <td>If true, the Custom Controller will be found using the tag specified here. This can be used with Find in Player and/or Find Using Source Id to further refine the search parameters.</td>
+      </tr>
+      <tr>
+        <td>Tag</td>
+        <td>The tag on the Custom Controller you wish to use. This is used to find the Custom Controller.</td>
+      </tr>
+      <tr>
+        <td>Find In Player</td>
+        <td>If true, the Custom Controller will be searched for in the Player specified in the Player Id field. This can be used with Find Using Source Id and/or Find Using Tag to further refine the search parameters.</td>
+      </tr>
+      <tr>
+        <td>Player / Player Id</td>
+        <td>The Player Id of the Player that owns the Custom Controller.</td>
+      </tr>
+    </table>
+    <p></p>
+    <p>&nbsp;</p>
+    <hr />
+    <h3><a name="touch-control-setup" id="touch-controller-setup2"></a>Creating and setting up Touch Controls</h3>
+    <p>As an example, a controller might consist of a Touch Joystick and two Touch Buttons. You can create controls from the Add Controls panel in the <a href="#touch-controller-inspector">Touch Controller inspector</a> or from the GameObject -&gt; Create Other -&gt; Rewired -&gt; Touch Controls menu. You can also build your own controls by creating a new GameObject and adding the individual component, TouchButton for example, and configuring the settings and images. Some sprites and sprite packs (zip files) are included in the Rewired/Extras/TouchControls/Sprites folder which you can use.</p>
+    <p><strong>Create a Touch Button</strong></p>
+    <p>Select the Touch Controller object in the hierarchy panel, then create a Touch Button of your choice from Add Controls area in the inspector:<br />
+    </p>
+    <p><img src="files/images/touchcontrols_inspector_touchcontrol-add-controls.png" alt="Touch Controller inspector - Add Conrols" /></p>
+    <p>A new GameObject will appear underneath the Touch Controller named &quot;Touch Button.&quot; Select this new GameObject.</p>
+<p><strong>Configure the Touch Button</strong></p>
+<p>The Touch Button has many options which can be customized to make the button behave how you want. See <a href="#touch-button">Touch Button</a> for more information about the options available.</p>
+<p>The most important thing is to make the button send its data to a particular button in the target Custom Controller. Under the Custom Conroller Options section, select the Target Button drop-down under Target Custom Controller Element and choose the button that will receive the input data.</p>
+<p><img src="files/images/touchcontrols_inspector_touchbutton-customcontrolleroptions.png" alt="Touch Button inspector - Custom Controller options" /></p>
+<p><strong>Create a Touch Joystick</strong></p>
+<p>Just like you created the Touch Button, create a Touch Joystick. Select the Touch Controller object in the hierarchy panel, then create a Touch Joystick of your choice from Add Controls area in the inspector. A new Touch Joystick will be created underneath the Touch Controller with the name &quot;Touch Joystick.&quot; Select the Touch Joystick.</p>
+<p><strong>Configure the Touch Joysick</strong></p>
+<p>The Touch Joystick has many options which can be customized to make the joystick behave how you want. See <a href="#touch-joystick">Touch Joystick</a> for more information about the options available.</p>
+<p>The most important thing is to make the joystick send its data to two axes in the target Custom Controller.Under the Custom Conroller Options section, select the Target Axis drop-down under Horizontal Axis Custom Controller Element and choose the axis that will receive the input data. Do the same for Vertical Axis Custom Controller element.</p>
+<p><img src="files/images/touchcontrols_inspector_touchjoystick-customcontrolleroptions.png" alt="Touch Joystick inspector- Custom Controller Options" /></p>
+<p><strong>Create a Touch Region for to the Touch Joystick</strong></p>
+<p>The Touch Joystick can be used by directly touching it, but say you want the entire left half of the screen to act as a joystick. You can use a <a href="#touch-region">Touch Region</a> to define an area of the Canvas to use to activate the Touch Joystick.</p>
+<p>To create a Touch Region, select the Touch Controller and under the Add Controls section of the inspector, choose &quot;Add Touch Region.&quot; A new Touch Region will be created underneath the Touch Controller.</p>
+<p><strong>Configure the Touch Region</strong></p>
+<p>To make the Touch Joystick use the Touch Region, you must link the Touch Region to the Touch Joystick in the inspector in the Touch Region field. Drag the Touch Region from the hierarchy into the Touch Region field in the Touch Joystick inspector:</p>
+<p><img src="files/images/touchcontrols_inspector_touchjoystick-touch-region-tut-step1.png" alt="Touch Joystick inspector - Touch Region" /></p>
+<p>Now uncheck the &quot;Use Touch Region Only&quot; field.</p>
+<p>Now check &quot;Move To Touch Position.&quot;</p>
+<p>The inspector should look something like this:</p>
+<p><img src="files/images/touchcontrols_inspector_touchjoystick-touch-region-tut-step2.png" alt="Touch Joystick inspector - Touch Region" /></p>
+<p>The Touch Joystick will now use the Touch Region as its activation area. Now we need to make the Touch Region cover the left half of the Canvas. Select the Touch Region in the hierarchy panel.</p>
+<p>In the Rect Transform options, set the options to match the following:</p>
+<p><img src="files/images/touchcontrols_inspector_touchjoystick-touch-region-tut-step3.png" alt="Touch Region Tutorial - Rect Transform" /></p>
+<p>Finally, make sure the Touch Region is ordered below the Touch Joystick in the hierarchy panel:</p>
+<p><img src="files/images/touchcontrols_inspector_touchjoystick-touch-region-tut-step4.png" alt="Touch Region Tutorial - Ordering" /></p>
+<p>This is done because of how Unity UI's raycasting system works. If the Touch Region were to be ordered after the Touch Joystick, it would block raycasting to the Touch Joystick and capture the touch events instead. Since we want the user to be able to interact with both the Touch Joystick and the Touch Region, make sure the Touch Joystick is ordered after the Touch Joystick.</p>
+<p>That's it! You should now have a working set of Touch Controls.</p>
+<p>&nbsp;</p>
+    <hr />
+    <h2><a name="help" id="help"></a>Help    </h2>
+    <h3><a name="tips" id="tips"></a>Tips</h3>
+    <p><strong><a name="tips-sprite-packing" id="tips-sprite-packing"></a>Sprite Packing</strong></p>
+    <p>To reduce draw calls, make sure Sprite packing is enabled.</p>
+    <p>Go to the menu:<br />
+      Edit -&gt; Project Settings -&gt; Editor</p>
+<p>Under &quot;Sprite Packer&quot;, make &quot;Mode&quot; is set to &quot;Always Enabled&quot; </p>
+<p><strong><a name="tips-changing-colors" id="tips-changing-colors"></a>Changing Control Colors</strong></p>
+    <p>Controls can have their colors changed by setting the colors in the Color Tint transition settings. While this works for many sprites, it doesn't result in a proper look for some sprites. Take a shiny button for example:</p>
+    <p><img src="files/images/touchcontrols_color-examples.png" width="651" height="322" alt="Color Examples" /></p>
+    <p>You can see that the color tinted versions lose the glossy white shine on the button surface, even on the grey button tinted to green. To get around this issue, a custom shader is used to shift the colors (a type of hue adjustment) on the red button turning it into a green button and preserving the glossy white shine.</p>
+    <p>All of the red sprites included in the Rewired/Extras/TouchControls/Sprites folder can be used with this Color Shift shader to get a variety of colors. Premade materials are included in the Rewired/Extras/TouchControls/Materials/ColorShift folder which you can apply to the Image component by dragging the material into the Material field.</p>
+    <p><img src="files/images/touchcontrols_set-material.png" width="414" height="127" alt="Image inspector" /></p>
+    <p>A disadvantage to this approach is that each control that uses a different material will require an additional draw call. If you need to have many different color controls shown on the screen at once you may want to instead use pre-baked sprites  instead of using shader to recolor them dynamically. This will allow you to use the same material on all your controls and save draw calls, but it comes at the cost of texture memory. Some packs of pre-baked colored  sprites are included at<br />
+      Rewired/Extras/TouchControls/Sprites/ under object type directory. Sprite packs are named SpritePack_xxx.zip. Unzip them and you can use the sprites on your controls with the default sprite shader (no material). Be sure to delete any extra sprites you are not going to use as they will take space in sprite atlases even if you do not use them.</p>
+    <p>&nbsp;</p>
+    <hr />
+    <h3><a name="troubleshooting" id="troubleshooting"></a>Troubleshooting    </h3>
+    <p><strong><a name="troubleshooting-unity-ui" id="troubleshooting-unity-ui"></a>General Unity UI issues</strong></p>
+    <p>You should have at least a basic understanding of how to use <a href="https://docs.unity3d.com/Manual/UISystem.html" target="_blank">Unity UI</a>. If you do not, you should start by going through <a href="https://unity3d.com/learn/tutorials/topics/user-interface-ui" target="_blank">Unity's tutorials</a> and <a href="https://docs.unity3d.com/Manual/UISystem.html" target="_blank">documentation</a>. Unfortunately, I cannot provide support on how to use Unity UI.    </p>
+    <p><strong><a name="troubleshooting-layout-components" id="troubleshooting-layout-components"></a>Problems with Layout Components</strong></p>
+    <p>Do not attach any Unity UI Layout components (ones that lock the anchored position such as Horizontal Layout) to the parent object of a Touch Button or Touch Joystick if using Move to Touch or Follow Touch Position. The Layout component will prevent the control from moving properly and will result in unpredictable behavior. If you need to use these layout components on a control, wrap the control in another GameObject so that game object's position is constrained by the Layout element and the control's is not.</p>
+    <p><strong><a name="troubleshooting-control-image-not-updating" id="troubleshooting-control-image-not-updating"></a>Problem:</strong> The control Image is not updating when changing transition settings (Color Tint, etc.) in the editor.</p>
+<p>You must have the Target Graphic field set to the primary Image used by the control.</p>
+<p>&nbsp;</p>
+<p></p>
+    <hr />
+    <h3><a name="examples" id="examples"></a>Examples</h3>
+    <p>Example files are located in Rewired/Extras/TouchControls/Examples.<br />
+    </p>
+<div class="bottom-pager clearfix">
+  <a class="back-button" href="Actions.html" title="Actions"><span class="button-img"></span></a><a class="back-button" href="Documentation.html" title="Actions">Documentation</a></div>
+<!-- InstanceEndEditable -->
+        </div>
+        
+    </div>
+  <div class="footer clearfix">
+   	<p class="left">Copyright &copy;2014-2016 <a href="http://guavaman.com" title="Guavaman Enterprises">Guavaman Enterprises</a>. All rights reserved. No materials may be reproduced without permission.</p>
+  	<p class="right"><a href="http://guavaman.com/projects/rewired" title="Return to Rewired Website">Return to Rewired Website</a></p>
+  </div>
+  <!-- end .content --></div>
+  <!-- end .container --></div>
+  
+  
+</body>
+<!-- InstanceEnd --></html>

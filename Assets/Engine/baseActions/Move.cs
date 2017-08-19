@@ -38,8 +38,7 @@ public class Move : GameAction {
         {
             actor.GetMotionHandler().accel(actor.GetFloatVar("static_grip"));
         }
-
-        if (actor.GetAbstractFighter().KeyHeld(InputTypeUtil.GetBackward(actor)))
+        if (actor.GetInputBuffer().DirectionHeld("Backward"))
         {
             SetVar("direction", -1 * actor.GetIntVar("facing"));
         }
@@ -58,12 +57,12 @@ public class Move : GameAction {
         StateTransitions.MoveState(actor.GetAbstractFighter());
         if (current_frame > 0)
         {
-            if (actor.GetAbstractFighter().KeyBuffered(InputTypeUtil.GetBackward(actor), 1, 1))
+            if (actor.GetInputBuffer().DirectionHeld("Backward"))
             {
                 PassVariable("direction", -1 * GetIntVar("direction"));
                 PassVariable("accel", false);
             }
-            else if (actor.GetAbstractFighter().KeyBuffered(InputTypeUtil.GetForward(actor), 1, 1))
+            else if (actor.GetInputBuffer().DirectionHeld("Forward"))
             {
                 PassVariable("direction", GetIntVar("direction"));
                 PassVariable("accel", false);

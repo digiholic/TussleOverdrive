@@ -1,0 +1,1129 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 323110133, guid: 09c9b883b79ef864a99683bb36c5776d, type: 3}
+  m_Name: PIEngineeringRailDriver
+  m_EditorClassIdentifier: 
+  controllerName: RailDriver
+  editorControllerName: 
+  description: P.I. Engineering RailDriver
+  controllerGuid: e2095ed1-2809-4c9e-aa2b-c17c8d33b90e
+  templateGuids: []
+  hideInLists: 0
+  elementIdentifiers:
+  - _id: 0
+    _name: Lever 1
+    _elementType: 0
+    _compoundElementType: 0
+  - _id: 1
+    _name: Lever 2
+    _elementType: 0
+    _compoundElementType: 0
+  - _id: 2
+    _name: Lever 3
+    _elementType: 0
+    _compoundElementType: 0
+  - _id: 3
+    _name: Lever 4
+    _elementType: 0
+    _compoundElementType: 0
+  - _id: 6
+    _name: Blue Button 1
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 7
+    _name: Blue Button 2
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 8
+    _name: Blue Button 3
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 9
+    _name: Blue Button 4
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 10
+    _name: Blue Button 5
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 11
+    _name: Blue Button 6
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 12
+    _name: Blue Button 7
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 13
+    _name: Blue Button 8
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 14
+    _name: Blue Button 9
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 15
+    _name: Blue Button 10
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 16
+    _name: Blue Button 11
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 17
+    _name: Blue Button 12
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 18
+    _name: Blue Button 13
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 19
+    _name: Blue Button 14
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 20
+    _name: Blue Button 15
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 21
+    _name: Blue Button 16
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 22
+    _name: Blue Button 17
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 23
+    _name: Blue Button 18
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 24
+    _name: Blue Button 19
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 25
+    _name: Blue Button 20
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 26
+    _name: Blue Button 21
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 27
+    _name: Blue Button 22
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 28
+    _name: Blue Button 23
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 29
+    _name: Blue Button 24
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 30
+    _name: Blue Button 25
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 31
+    _name: Blue Button 26
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 32
+    _name: Blue Button 27
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 33
+    _name: Blue Button 28
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 34
+    _name: Rocker 1 Up
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 35
+    _name: Rocker 1 Down
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 36
+    _name: Rocker 2 Up
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 37
+    _name: Rocker 2 Down
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 38
+    _name: Circle 1
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 39
+    _name: Square 1
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 40
+    _name: Circle 2
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 41
+    _name: Circle 3
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 42
+    _name: Switch Up
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 43
+    _name: Switch Down
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 52
+    _name: Blue Rocker Up
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 53
+    _name: Blue Rocker Down
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 44
+    _name: D-Pad Up
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 45
+    _name: D-Pad Right
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 46
+    _name: D-Pad Down
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 47
+    _name: D-Pad Left
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 4
+    _name: Rotary 1 Left
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 5
+    _name: Rotary 1 Center
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 48
+    _name: Rotary 1 Right
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 49
+    _name: Rotary 2 Left
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 50
+    _name: Rotary 2 Center
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 51
+    _name: Rotary 2 Right
+    _elementType: 1
+    _compoundElementType: 0
+  directInput:
+    matchingCriteria:
+      axisCount: 0
+      buttonCount: 0
+      disabled: 0
+      hatCount: 0
+      productName_useRegex: 0
+      productName: []
+      productGUID: []
+      productId: 
+      deviceType: 0
+    elements:
+      compoundElements: []
+      axes: []
+      buttons: []
+  rawInput:
+    matchingCriteria:
+      axisCount: 0
+      buttonCount: 0
+      disabled: 0
+      hatCount: 0
+      productName_useRegex: 0
+      productName: []
+      productGUID: []
+      productId: 
+      deviceType: 0
+    elements:
+      compoundElements: []
+      axes: []
+      buttons: []
+  xInput:
+    matchingCriteria:
+      axisCount: 0
+      buttonCount: 0
+      disabled: 0
+      subType: 
+    elements:
+      compoundElements: []
+      axes: []
+      buttons: []
+  osx:
+    matchingCriteria:
+      axisCount: 0
+      buttonCount: 0
+      disabled: 0
+      hatCount: 0
+      productName_useRegex: 0
+      productName: []
+      manufacturer: []
+      productId: 
+      vendorId: 
+    elements:
+      compoundElements: []
+      axes: []
+      buttons: []
+  linux:
+    matchingCriteria:
+      axisCount: 0
+      buttonCount: 0
+      disabled: 0
+      hatCount: 0
+      manufacturer_useRegex: 0
+      productName_useRegex: 0
+      systemName_useRegex: 0
+      manufacturer: []
+      productName: []
+      systemName: []
+      productGUID: []
+    elements:
+      compoundElements: []
+      axes: []
+      buttons: []
+  fallback_Windows:
+    matchingCriteria:
+      axisCount: 0
+      buttonCount: 0
+      disabled: 0
+      alwaysMatch: 0
+      productName_useRegex: 0
+      productName: []
+    elements:
+      compoundElements: []
+      axes: []
+      buttons: []
+  fallback_OSX:
+    matchingCriteria:
+      axisCount: 0
+      buttonCount: 0
+      disabled: 0
+      alwaysMatch: 0
+      productName_useRegex: 0
+      productName: []
+    elements:
+      compoundElements: []
+      axes: []
+      buttons: []
+  fallback_Linux:
+    matchingCriteria:
+      axisCount: 0
+      buttonCount: 0
+      disabled: 0
+      alwaysMatch: 0
+      productName_useRegex: 0
+      productName: []
+    elements:
+      compoundElements: []
+      axes: []
+      buttons: []
+  fallback_Linux_PreConfigured:
+    matchingCriteria:
+      axisCount: 0
+      buttonCount: 0
+      disabled: 0
+      alwaysMatch: 0
+      productName_useRegex: 0
+      productName: []
+    elements:
+      compoundElements: []
+      axes: []
+      buttons: []
+  fallback_Android:
+    matchingCriteria:
+      axisCount: 0
+      buttonCount: 0
+      disabled: 0
+      alwaysMatch: 0
+      productName_useRegex: 0
+      productName: []
+    elements:
+      compoundElements: []
+      axes: []
+      buttons: []
+  fallback_iOS:
+    matchingCriteria:
+      axisCount: 0
+      buttonCount: 0
+      disabled: 0
+      alwaysMatch: 0
+      productName_useRegex: 0
+      productName: []
+    elements:
+      compoundElements: []
+      axes: []
+      buttons: []
+  fallback_Blackberry:
+    matchingCriteria:
+      axisCount: 0
+      buttonCount: 0
+      disabled: 0
+      alwaysMatch: 0
+      productName_useRegex: 0
+      productName: []
+    elements:
+      compoundElements: []
+      axes: []
+      buttons: []
+  fallback_WindowsPhone8:
+    matchingCriteria:
+      axisCount: 0
+      buttonCount: 0
+      disabled: 0
+      alwaysMatch: 0
+      productName_useRegex: 0
+      productName: []
+    elements:
+      compoundElements: []
+      axes: []
+      buttons: []
+  fallback_XBox360:
+    matchingCriteria:
+      axisCount: 0
+      buttonCount: 0
+      disabled: 0
+      alwaysMatch: 0
+      productName_useRegex: 0
+      productName: []
+    elements:
+      compoundElements: []
+      axes: []
+      buttons: []
+  fallback_XBoxOne:
+    matchingCriteria:
+      axisCount: 0
+      buttonCount: 0
+      disabled: 0
+      alwaysMatch: 0
+      productName_useRegex: 0
+      productName: []
+    elements:
+      compoundElements: []
+      axes: []
+      buttons: []
+  fallback_PS3:
+    matchingCriteria:
+      axisCount: 0
+      buttonCount: 0
+      disabled: 0
+      alwaysMatch: 0
+      productName_useRegex: 0
+      productName: []
+    elements:
+      compoundElements: []
+      axes: []
+      buttons: []
+  fallback_PS4:
+    matchingCriteria:
+      axisCount: 0
+      buttonCount: 0
+      disabled: 0
+      alwaysMatch: 0
+      productName_useRegex: 0
+      productName: []
+    elements:
+      compoundElements: []
+      axes: []
+      buttons: []
+  fallback_PSM:
+    matchingCriteria:
+      axisCount: 0
+      buttonCount: 0
+      disabled: 0
+      alwaysMatch: 0
+      productName_useRegex: 0
+      productName: []
+    elements:
+      compoundElements: []
+      axes: []
+      buttons: []
+  fallback_PSVita:
+    matchingCriteria:
+      axisCount: 0
+      buttonCount: 0
+      disabled: 0
+      alwaysMatch: 0
+      productName_useRegex: 0
+      productName: []
+    elements:
+      compoundElements: []
+      axes: []
+      buttons: []
+  fallback_Wii:
+    matchingCriteria:
+      axisCount: 0
+      buttonCount: 0
+      disabled: 0
+      alwaysMatch: 0
+      productName_useRegex: 0
+      productName: []
+    elements:
+      compoundElements: []
+      axes: []
+      buttons: []
+  fallback_WiiU:
+    matchingCriteria:
+      axisCount: 0
+      buttonCount: 0
+      disabled: 0
+      alwaysMatch: 0
+      productName_useRegex: 0
+      productName: []
+    elements:
+      compoundElements: []
+      axes: []
+      buttons: []
+  fallback_AmazonFireTV:
+    matchingCriteria:
+      axisCount: 0
+      buttonCount: 0
+      disabled: 0
+      alwaysMatch: 0
+      productName_useRegex: 0
+      productName: []
+    elements:
+      compoundElements: []
+      axes: []
+      buttons: []
+  fallback_RazerForgeTV:
+    matchingCriteria:
+      axisCount: 0
+      buttonCount: 0
+      disabled: 0
+      alwaysMatch: 0
+      productName_useRegex: 0
+      productName: []
+    elements:
+      compoundElements: []
+      axes: []
+      buttons: []
+  ouya:
+    matchingCriteria:
+      axisCount: 0
+      buttonCount: 0
+      disabled: 0
+      alwaysMatch: 0
+    elements:
+      compoundElements: []
+      axes: []
+      buttons: []
+  xboxOne:
+    matchingCriteria:
+      axisCount: 0
+      buttonCount: 0
+      disabled: 0
+      alwaysMatch: 0
+      productName_useRegex: 0
+      productName: []
+    elements:
+      compoundElements: []
+      axes: []
+      buttons: []
+  internalDriver:
+    matchingCriteria:
+      axisCount: 4
+      buttonCount: 50
+      disabled: 0
+      alwaysMatch: 0
+      productName_useRegex: 0
+      productName:
+      - RailDriver Modern Desktop
+      vidPid:
+      - vendorId: 1523
+        productId: 210
+      hatCount: 0
+    elements:
+      compoundElements: []
+      axes:
+      - elementIdentifier: 0
+        sourceType: 1
+        sourceAxis: 0
+        axisDeadZone: .0500000007
+        sourceButton: 0
+        invert: 1
+        sourceAxisRange: 0
+        buttonAxisContribution: 0
+        calibrateAxis: 1
+        axisZero: -.0590000004
+        axisMin: -.519999981
+        axisMax: .800000012
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+        sourceHatRange: 0
+      - elementIdentifier: 1
+        sourceType: 1
+        sourceAxis: 1
+        axisDeadZone: .0500000007
+        sourceButton: 0
+        invert: 0
+        sourceAxisRange: 0
+        buttonAxisContribution: 0
+        calibrateAxis: 1
+        axisZero: .0500000007
+        axisMin: -.524999976
+        axisMax: .74000001
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+        sourceHatRange: 0
+      - elementIdentifier: 2
+        sourceType: 1
+        sourceAxis: 2
+        axisDeadZone: .0500000007
+        sourceButton: 0
+        invert: 1
+        sourceAxisRange: 0
+        buttonAxisContribution: 0
+        calibrateAxis: 1
+        axisZero: .699999988
+        axisMin: -.310000002
+        axisMax: .694000006
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+        sourceHatRange: 0
+      - elementIdentifier: 3
+        sourceType: 1
+        sourceAxis: 3
+        axisDeadZone: .0500000007
+        sourceButton: 0
+        invert: 1
+        sourceAxisRange: 0
+        buttonAxisContribution: 0
+        calibrateAxis: 1
+        axisZero: .720000029
+        axisMin: -.810000002
+        axisMax: .694000006
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+        sourceHatRange: 0
+      buttons:
+      - elementIdentifier: 6
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 0
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 7
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 1
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 8
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 2
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 9
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 3
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 10
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 4
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 11
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 5
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 12
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 6
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 13
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 7
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 14
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 8
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 15
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 9
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 16
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 10
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 17
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 11
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 18
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 12
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 19
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 13
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 20
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 14
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 21
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 15
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 22
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 16
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 23
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 17
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 24
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 18
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 25
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 19
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 26
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 20
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 27
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 21
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 28
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 22
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 29
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 23
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 30
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 24
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 31
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 25
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 32
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 26
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 33
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 27
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 34
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 34
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 35
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 35
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 36
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 36
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 37
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 37
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 38
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 38
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 39
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 39
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 40
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 40
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 41
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 41
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 42
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 42
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 43
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 43
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 52
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 28
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 53
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 29
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 44
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 30
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 45
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 31
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 46
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 32
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 47
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 33
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 4
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 44
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 5
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 45
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 48
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 46
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 49
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 47
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 50
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 48
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+      - elementIdentifier: 51
+        sourceType: 0
+        sourceAxis: 0
+        axisDeadZone: 0
+        sourceButton: 49
+        sourceAxisPole: 0
+        sourceHat: 0
+        sourceHatDirection: 0
+        sourceHatType: 0
+  sdl2_Linux:
+    matchingCriteria:
+      axisCount: 0
+      buttonCount: 0
+      disabled: 0
+      hatCount: 0
+      manufacturer_useRegex: 0
+      productName_useRegex: 0
+      systemName_useRegex: 0
+      manufacturer: []
+      productName: []
+      systemName: []
+      productGUID: []
+    elements:
+      compoundElements: []
+      axes: []
+      buttons: []
+  sdl2_Windows:
+    matchingCriteria:
+      axisCount: 0
+      buttonCount: 0
+      disabled: 0
+      hatCount: 0
+      manufacturer_useRegex: 0
+      productName_useRegex: 0
+      systemName_useRegex: 0
+      manufacturer: []
+      productName: []
+      systemName: []
+      productGUID: []
+    elements:
+      compoundElements: []
+      axes: []
+      buttons: []
+  sdl2_OSX:
+    matchingCriteria:
+      axisCount: 0
+      buttonCount: 0
+      disabled: 0
+      hatCount: 0
+      manufacturer_useRegex: 0
+      productName_useRegex: 0
+      systemName_useRegex: 0
+      manufacturer: []
+      productName: []
+      systemName: []
+      productGUID: []
+    elements:
+      compoundElements: []
+      axes: []
+      buttons: []
+  elementIdentifierIdCounter: 54

@@ -51,13 +51,10 @@ public class AbstractFighter : BattleComponent {
     [HideInInspector]
     public float ground_elasticity = 0.0f, damage_percent = 0;
     
-    [HideInInspector]
-    public BattleController game_controller;
-    
     private FighterInfo fighter_info;
     private SpriteHandler sprite_loader;
     private Animator anim;
-    private InputManager inputBuffer;
+    private InputBuffer inputBuffer;
     private XMLLoader data_xml;
     private AudioSource sound_player;
     private PlatformPhase platform_phaser;
@@ -113,14 +110,7 @@ public class AbstractFighter : BattleComponent {
     /// </summary>
     private void LoadComponents()
     {
-        inputBuffer = GetComponent<InputManager>();
-        if (inputBuffer == null)
-        {
-            inputBuffer = gameObject.AddComponent<InputManager>();
-            inputBuffer.player_num = player_num;
-            inputBuffer.LoadAllKeys();
-        }
-            
+        inputBuffer = battleObject.GetInputBuffer();
 
         platform_phaser = GetComponent<PlatformPhase>();
         if (platform_phaser == null)
@@ -150,8 +140,6 @@ public class AbstractFighter : BattleComponent {
         SendMessage("ChangeYSpeed", 0f);
         SetVar("jumps",GetIntVar("max_jumps"));
         SetVar("elasticity", 0.0f);
-
-        game_controller = BattleController.current_battle;
 
         //Load SFX
         string directory = Path.Combine("Assets/Resources/Fighters", fighter_info.directory_name+"/"+fighter_info.sound_path);
@@ -190,16 +178,16 @@ public class AbstractFighter : BattleComponent {
         }
 
         //Set horizontal and vertical deltas
-        float current_x = GetControllerAxis("Horizontal");
+        float current_x = GetAxis("Horizontal");
         x_axis_delta = Mathf.Abs(current_x) - Mathf.Abs(last_x_axis);
         last_x_axis = current_x;
 
-        float current_y = GetControllerAxis("Vertical");
+        float current_y = GetAxis("Vertical");
         y_axis_delta = Mathf.Abs(current_y) - Mathf.Abs(last_y_axis);
         last_y_axis = current_y;
 
         //Enable Phasing
-        if (GetControllerAxis("Vertical") < -0.3)
+        if (GetAxis("Vertical") < -0.3)
             platform_phaser.EnableDownPhase = true;
         else
             platform_phaser.EnableDownPhase = false;
@@ -248,16 +236,7 @@ public class AbstractFighter : BattleComponent {
     {
         BroadcastMessage("DoAction", _actionName);
     }
-
-    /// <summary>
-    /// Gets the horizontal direction relative to the direction of facing, so that positive is forward and negative is backward.
-    /// </summary>
-    /// <returns> The float value of the direction relative to facing</returns>
-    public float GetDirectionRelative()
-    {
-        return GetControllerAxis("Horizontal") * battleObject.GetIntVar("facing");
-    }
-
+    
     public void flip()
     {
         if (battleObject.GetSpriteHandler() != null) //Sprites get flipped
@@ -269,45 +248,52 @@ public class AbstractFighter : BattleComponent {
 
     public void doGroundAttack()
     {
-        if (GetDirectionRelative() > 0.0f)
-            if (KeyBuffered(InputTypeUtil.GetForward(battleObject), 2))
-                doAction("ForwardSmash");
-            else
-                doAction("ForwardAttack");
-        else if (GetDirectionRelative() < 0.0f)
+        if (DirectionHeld("Forward"))
+        {
+            //if (KeyBuffered(InputTypeUtil.GetForward(battleObject), 2))
+            //    doAction("ForwardSmash");
+            //else
+            doAction("ForwardAttack");
+        }
+        else if (DirectionHeld("Backward"))
         {
             battleObject.SendMessage("flip");
-            if (KeyBuffered(InputTypeUtil.GetForward(battleObject), 2))
-                doAction("ForwardSmash");
-            else
-                doAction("ForwardAttack");
+            //if (KeyBuffered(InputTypeUtil.GetForward(battleObject), 2))
+            //    doAction("ForwardSmash");
+            //else
+            doAction("ForwardAttack");
         }
-        else if (GetControllerAxis("Vertical") > 0.0f)
-            if (KeyBuffered(InputType.Up, 2))
-                doAction("UpSmash");
-            else
-                doAction("UpAttack");
-        else if (GetControllerAxis("Vertical") < 0.0f)
-            if (KeyBuffered(InputType.Down, 2))
-                doAction("DownSmash");
-            else
-                doAction("DownAttack");
+        else if (DirectionHeld("Up"))
+        {
+            //if (KeyBuffered("Up", 2))
+            //    doAction("UpSmash");
+            //else
+            doAction("UpAttack");
+        }
+            
+        else if (DirectionHeld("Down"))
+        {
+            //if (KeyBuffered("Down", 2))
+            //    doAction("DownSmash");
+            //else
+            doAction("DownAttack");
+        }
         else
             doAction("NeutralAttack");
     }
 
     public void doGroundSpecial()
     {
-        if (GetDirectionRelative() > 0.0f)
+        if (DirectionHeld("Forward"))
             doAction("ForwardSpecial");
-        else if (GetDirectionRelative() < 0.0f)
+        else if (DirectionHeld("Backward"))
         {
             battleObject.SendMessage("flip");
             doAction("ForwardSpecial");
         }
-        else if (GetControllerAxis("Vertical") > 0.0f)
+        else if (DirectionHeld("Up"))
             doAction("UpSpecial");
-        else if (GetControllerAxis("Vertical") < 0.0f)
+        else if (DirectionHeld("Down"))
             doAction("DownSpecial");
         else
             doAction("NeutralSpecial");
@@ -315,13 +301,13 @@ public class AbstractFighter : BattleComponent {
 
     public void doAirAttack()
     {
-        if (GetDirectionRelative() > 0.0f)
+        if (DirectionHeld("Forward"))
             doAction("ForwardAir");
-        else if (GetDirectionRelative() < 0.0f)
+        else if (DirectionHeld("Backward"))
             doAction("BackAir");
-        else if (GetControllerAxis("Vertical") > 0.0f)
+        else if (DirectionHeld("Up"))
             doAction("UpAir");
-        else if (GetControllerAxis("Vertical") < 0.0f)
+        else if (DirectionHeld("Down"))
             doAction("DownAir");
         else
             doAction("NeutralAir");
@@ -329,16 +315,16 @@ public class AbstractFighter : BattleComponent {
 
     public void doAirSpecial()
     {
-        if (GetDirectionRelative() > 0.0f)
+        if (DirectionHeld("Forward"))
             doAction("ForwardSpecial");
-        else if (GetDirectionRelative() < 0.0f)
+        else if (DirectionHeld("Backward"))
         {
             SendMessage("flip");
             doAction("ForwardSpecial");
         }
-        else if (GetControllerAxis("Vertical") > 0.0f)
+        else if (DirectionHeld("Up"))
             doAction("UpSpecial");
-        else if (GetControllerAxis("Vertical") < 0.0f)
+        else if (DirectionHeld("Down"))
             doAction("DownSpecial");
         else
             doAction("NeutralSpecial");
@@ -436,48 +422,36 @@ public class AbstractFighter : BattleComponent {
             battleObject.GetActionHandler().CurrentAction.SetVar("tech_cooldown", Mathf.RoundToInt(_total_kb * _hitstunMultiplier));
         }
     }
-    /**
-     * Shorthand for getting the input axis that this fighter is reading from.
-     **/
-    public float GetControllerAxis(string axisName)
+
+    public bool KeyBuffered(string key, int distance = 12, bool pressed = true)
     {
-        return Input.GetAxisRaw(player_num + "_" + axisName);
+        if (key == "Forward") key = InputTypeUtil.GetForward(battleObject);
+        if (key == "Backward") key = InputTypeUtil.GetBackward(battleObject);
+        return inputBuffer.KeyBuffered(key, distance, pressed);
     }
 
-    public bool GetControllerButton(string buttonName)
+    public bool CheckBuffer(string key, int distance = 12, bool pressed = true)
     {
-        return Input.GetButton(player_num + "_" + buttonName);
+        if (key == "Forward") key = InputTypeUtil.GetForward(battleObject);
+        if (key == "Backward") key = InputTypeUtil.GetBackward(battleObject);
+        return inputBuffer.CheckBuffer(key, distance, pressed);
     }
 
-    public bool GetControllerButtonDown(string buttonName)
+    public bool KeyHeld(string key)
     {
-        return Input.GetButtonDown(player_num + "_" + buttonName);
-    }
-
-    public bool GetControllerButtonUp(string buttonName)
-    {
-        return Input.GetButtonUp(player_num + "_" + buttonName);
-    }
-
-    public bool KeyBuffered(InputType key, int distance = 12, float threshold = 1.0f)
-    {
-        if (key == InputType.Forward) key = InputTypeUtil.GetForward(battleObject);
-        if (key == InputType.Backward) key = InputTypeUtil.GetBackward(battleObject);
-        return inputBuffer.KeyBuffered(key, distance, threshold);
-    }
-
-    public bool CheckBuffer(InputType key, int distance = 12, float threshold = 1.0f)
-    {
-        if (key == InputType.Forward) key = InputTypeUtil.GetForward(battleObject);
-        if (key == InputType.Backward) key = InputTypeUtil.GetBackward(battleObject);
-        return inputBuffer.CheckBuffer(key, distance, threshold);
-    }
-
-    public bool KeyHeld(InputType key)
-    {
-        if (key == InputType.Forward) key = InputTypeUtil.GetForward(battleObject);
-        if (key == InputType.Backward) key = InputTypeUtil.GetBackward(battleObject);
+        if (key == "Forward") key = InputTypeUtil.GetForward(battleObject);
+        if (key == "Backward") key = InputTypeUtil.GetBackward(battleObject);
         return inputBuffer.GetKey(key);
+    }
+
+    public bool DirectionHeld(string direction)
+    {
+        return inputBuffer.DirectionHeld(direction);
+    }
+
+    public float GetAxis(string axis)
+    {
+        return inputBuffer.GetAxis(axis);
     }
 
     /*public bool SequenceBuffered(List<KeyValuePair<InputType,float>> inputList, int distance = 12)
@@ -486,10 +460,10 @@ public class AbstractFighter : BattleComponent {
     }*/
 
 
-    public bool CheckSmash(InputType key)
+    public bool CheckSmash(string key)
     {
-        if (key == InputType.Forward) key = InputTypeUtil.GetForward(battleObject);
-        if (key == InputType.Backward) key = InputTypeUtil.GetBackward(battleObject);
+        if (key == "Forward") key = InputTypeUtil.GetForward(battleObject);
+        if (key == "Backward") key = InputTypeUtil.GetBackward(battleObject);
 
         return inputBuffer.CheckDoubleTap(key,32);
     }

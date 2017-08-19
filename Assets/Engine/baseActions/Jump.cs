@@ -13,7 +13,7 @@ public class Jump : GameAction
         {
             actor.SendMessage("UnRotate");
             actor.SetVar("grounded", false);
-            if (actor.GetAbstractFighter().GetControllerButton("Jump"))
+            if (actor.GetAbstractFighter().KeyHeld("Jump"))
                 actor.BroadcastMessage("ChangeYSpeed", actor.GetFloatVar("jump_height"));
             else
                 actor.BroadcastMessage("ChangeYSpeed", actor.GetFloatVar("short_hop_height"));

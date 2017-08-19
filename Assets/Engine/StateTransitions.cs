@@ -4,33 +4,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class StateTransitions : ScriptableObject {
-    /*
-    public static List<TransitionState> NeutralStateTransitions = new List<TransitionState>()
-    {
-        new InputTransition(InputType.Jump,"Jump"),
-        new DirectionTransition(InputType.Down,"Crouch"),
-        new DirectionTransition(InputType.Forward,"Move"),
-        new DirectionTransition(InputType.Backward,"StandingPivot"),
-        new DirectionalInputTransition(InputType.Up,InputType.Attack,"UpSmash",true),
-        new DirectionalInputTransition(InputType.Up,InputType.Attack,"UpAttack"),
-        new InputTransition(InputType.Attack,"NeutralAttack")
-
-    };
-    */
     public static void NeutralState(AbstractFighter actor)
     {
         //shield
-        if (actor.KeyBuffered(InputType.Attack))
+        if (actor.KeyBuffered("Attack"))
             actor.doGroundAttack();
-        if (actor.KeyBuffered(InputType.Special))
+        if (actor.KeyBuffered("Special"))
             actor.doGroundSpecial();
-        if (actor.KeyBuffered(InputType.Jump))
+        if (actor.KeyBuffered("Jump"))
             actor.doAction("Jump");
-        if (actor.KeyBuffered(InputType.Down))
+        if (actor.DirectionHeld("Down"))
             actor.doAction("Crouch");
-        if (actor.KeyHeld(InputTypeUtil.GetForward(actor.BattleObject)))
+        if (actor.DirectionHeld("Forward"))
             actor.doAction("Move");
-        if (actor.KeyHeld(InputTypeUtil.GetBackward(actor.BattleObject)))
+        if (actor.DirectionHeld("Backward"))
         {
             actor.SendMessage("flip"); //TODO PIVOT
             actor.doAction("Move");
@@ -49,36 +36,36 @@ public class StateTransitions : ScriptableObject {
 
     public static void CrouchState(AbstractFighter actor)
     {
-        if (actor.KeyBuffered(InputType.Shield))
+        if (actor.KeyBuffered("Shield"))
         {
             //TODO forward backward roll
         }
-        if (actor.KeyBuffered(InputType.Attack))
+        if (actor.KeyBuffered("Attack"))
             actor.doAction("DownAttack");
-        if (actor.GetControllerButton("Special"))
+        if (actor.KeyBuffered("Special"))
             actor.doAction("DownSpecial");
-        if (actor.KeyBuffered(InputType.Jump))
+        if (actor.KeyBuffered("Jump"))
             actor.doAction("Jump");
-        if (actor.KeyBuffered(InputType.Down,threshold:-0.1f) && actor.BattleObject.GetActionHandler().CurrentAction.GetType() != typeof(CrouchGetup))
+        if (!actor.DirectionHeld("Down") && actor.BattleObject.GetActionHandler().CurrentAction.GetType() != typeof(CrouchGetup))
             actor.doAction("CrouchGetup");
     }
 
     public static void AirState(AbstractFighter actor)
     {
         StateTransitions.AirControl(actor);
-        if (actor.GetControllerButton("Shield") && actor.GetIntVar("air_dodges") >= 1)
+        if (actor.KeyBuffered("Shield") && actor.GetIntVar("air_dodges") >= 1)
         {
             //actor.doAction("AirDodge");
         }
-        if (actor.KeyBuffered(InputType.Attack))
+        if (actor.KeyBuffered("Attack"))
         {
             actor.doAirAttack();
         }
-        if (actor.KeyBuffered(InputType.Special))
+        if (actor.KeyBuffered("Special"))
         {
             actor.doAirSpecial();
         }
-        if (actor.KeyBuffered(InputType.Jump) && actor.GetIntVar("jumps") > 0)
+        if (actor.KeyBuffered("Jump") && actor.GetIntVar("jumps") > 0)
         {
             actor.doAction("AirJump");
         }
@@ -94,19 +81,19 @@ public class StateTransitions : ScriptableObject {
 
     public static void MoveState(AbstractFighter actor)
     {
-        if (actor.CheckSmash(InputTypeUtil.GetForward(actor.BattleObject)))
+        if (actor.CheckSmash("Forward"))
             actor.doAction("Dash");
         //float direction = actor.GetControllerAxis("Horizontal") * actor.facing;
         //shield
-        if (actor.KeyBuffered(InputType.Attack))
+        if (actor.KeyBuffered("Attack"))
             actor.doGroundAttack();
-        if (actor.KeyBuffered(InputType.Special))
+        if (actor.KeyBuffered("Special"))
             actor.doGroundSpecial();
-        if (actor.KeyBuffered(InputType.Jump))
+        if (actor.KeyBuffered("Jump"))
             actor.doAction("Jump");
-        else if (actor.GetControllerAxis("Vertical") < -0.5f)
+        else if (actor.DirectionHeld("Down"))
             actor.doAction("Crouch");
-        else if (actor.GetControllerAxis("Horizontal") == 0.0f)
+        else if (actor.GetAxis("Horizontal") == 0.0f)
             actor.doAction("Stop");
         if (actor.KeyBuffered(InputTypeUtil.GetBackward(actor.BattleObject)))
             actor.SendMessage("flip"); //TODO PIVOT
@@ -118,7 +105,7 @@ public class StateTransitions : ScriptableObject {
         //shield
         //attack
         //special
-        if (actor.GetControllerButtonDown("Jump"))
+        if (actor.KeyBuffered("Jump"))
             actor.doAction("Jump");
         //if repeated, dash
         //pivot
@@ -154,13 +141,13 @@ public class StateTransitions : ScriptableObject {
         */
         //float direction = actor.GetControllerAxis("Horizontal") * actor.facing;
         //shield
-        if (actor.KeyBuffered(InputType.Attack))
+        if (actor.KeyBuffered("Attack"))
             actor.doGroundAttack();
-        if (actor.KeyBuffered(InputType.Special))
+        if (actor.KeyBuffered("Special"))
             actor.doGroundSpecial();
-        if (actor.KeyBuffered(InputType.Jump))
+        if (actor.KeyBuffered("Jump"))
             actor.doAction("Jump");
-        else if (actor.GetControllerAxis("Horizontal") == 0.0f)
+        else if (actor.GetAxis("Horizontal") == 0.0f)
             actor.doAction("Stop");
         if (actor.KeyBuffered(InputTypeUtil.GetBackward(actor.BattleObject)))
             actor.SendMessage("flip"); //TODO PIVOT
@@ -172,7 +159,7 @@ public class StateTransitions : ScriptableObject {
         TapReversible(actor);
         //if (actor.GetControllerButton("Shield") && actor.air_dodges >= 1)
         //    actor.doAction("AirDodge");
-        //if (actor.KeyBuffered(InputType.Attack))
+        //if (actor.KeyBuffered("Attack"))
         //    actor.doAirAttack();
         //if (actor.GetControllerButton("Special"))
         //actor.doAirAttack();
@@ -214,7 +201,7 @@ public class StateTransitions : ScriptableObject {
         apply_invuln.activate()
         _actor.doAction('Fall')
         */
-        if (actor.KeyBuffered(InputType.Jump))
+        if (actor.KeyBuffered("Jump"))
         {
             actor.doAction("Jump");
         }
@@ -236,7 +223,7 @@ public class StateTransitions : ScriptableObject {
 
     public static void AirControl(AbstractFighter actor)
     {
-        actor.BroadcastMessage("ChangeXPreferred", actor.GetControllerAxis("Horizontal") * actor.GetFloatVar("max_air_speed"));
+        actor.BroadcastMessage("ChangeXPreferred", actor.GetAxis("Horizontal") * actor.GetFloatVar("max_air_speed"));
         if (Mathf.Abs(actor.BattleObject.GetMotionHandler().XSpeed) > actor.GetFloatVar("max_air_speed"))
             actor.BattleObject.GetMotionHandler().accel(actor.GetFloatVar("air_control"));
         if (Mathf.Abs(actor.BattleObject.GetMotionHandler().YSpeed) > Mathf.Abs(actor.GetFloatVar("max_fall_speed")))
@@ -254,11 +241,11 @@ public class StateTransitions : ScriptableObject {
         {
             foreach (Ledge ledge in actor.GetLedges())
             {
-                if (!actor.KeyHeld(InputType.Down))
+                if (!actor.DirectionHeld("Down"))
                 {
-                    if ((ledge.grabSide == Ledge.Side.LEFT) && actor.KeyHeld(InputType.Right))
+                    if ((ledge.grabSide == Ledge.Side.LEFT) && actor.KeyHeld("Right"))
                         ledge.SendMessage("FighterGrabs", actor);
-                    else if ((ledge.grabSide == Ledge.Side.RIGHT) && actor.KeyHeld(InputType.Left))
+                    else if ((ledge.grabSide == Ledge.Side.RIGHT) && actor.KeyHeld("Left"))
                         ledge.SendMessage("FighterGrabs", actor);
                 }
             }

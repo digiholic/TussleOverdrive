@@ -28,36 +28,36 @@ public class MenuButtonNavigator : MonoBehaviour {
         }
     }
 
-    void OnKeyPressed(InputType input)
+    void OnKeyPressed(string input)
     {
         if (MenuInputManager.selectedButton == this)
         {
             switch (input)
             {
-                case (InputType.Right):
+                case ("Right"):
                     if (Right != null)
                         MenuInputManager.Select(Right);
                     else if (RightFunction.FuncName != "") SendMessage(RightFunction.FuncName, RightFunction.FuncArg);
                     break;
-                case (InputType.Left):
+                case ("Left"):
                     if (Left != null)
                         MenuInputManager.Select(Left);
                     else if (LeftFunction.FuncName != "") SendMessage(LeftFunction.FuncName, LeftFunction.FuncArg);
                     break;
-                case (InputType.Up):
+                case ("Up"):
                     if (Up != null)
                         MenuInputManager.Select(Up);
                     else if (UpFunction.FuncName != "") SendMessage(UpFunction.FuncName, UpFunction.FuncArg);
                     break;
-                case (InputType.Down):
+                case ("Down"):
                     if (Down != null)
                         MenuInputManager.Select(Down);
                     else if (DownFunction.FuncName != "") SendMessage(DownFunction.FuncName, DownFunction.FuncArg);
                     break;
-                case (InputType.Attack):
+                case ("Attack"):
                     if (ConfirmFunction.FuncName != "") SendMessage(ConfirmFunction.FuncName,ConfirmFunction.FuncArg);
                     break;
-                case (InputType.Special):
+                case ("Special"):
                     if (CancelFunction.FuncName != "") SendMessage(CancelFunction.FuncName, CancelFunction.FuncArg);
                     break;
 
@@ -65,7 +65,7 @@ public class MenuButtonNavigator : MonoBehaviour {
         }
     }
 
-    void OnKeyReleased(InputType input)
+    void OnKeyReleased(string input)
     {
 
     }

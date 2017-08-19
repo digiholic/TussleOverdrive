@@ -39,7 +39,7 @@ public class Dash : GameAction {
         if (current_frame == 0)
             actor.BroadcastMessage("ChangeXPreferred", actor.GetFloatVar("run_speed") * actor.GetIntVar("facing"));
         StateTransitions.CheckGround(actor.GetAbstractFighter());
-        if ((actor.GetAbstractFighter().GetControllerAxis("Horizontal") * actor.GetIntVar("facing")) < 0.0f) //If you are holding the opposite direction of movement
+        if (actor.GetInputBuffer().DirectionHeld("Backward"))
             direction = actor.GetIntVar("facing") * -1;
         else
             direction = actor.GetIntVar("facing");

@@ -35,6 +35,7 @@ public class BattleObject : MonoBehaviour
     private MotionHandler motionHandler;
     private Platform platform;
     private SpriteHandler spriteHandler;
+    private InputBuffer inputBuffer;
 
     public Dictionary<string, object> variable = new Dictionary<string, object>();
     private Dictionary<string, AnchorPoint> anchor_points = new Dictionary<string, AnchorPoint>();
@@ -62,6 +63,7 @@ public class BattleObject : MonoBehaviour
         motionHandler = GetComponent<MotionHandler>();
         platform = GetComponent<Platform>();
         spriteHandler = GetComponent<SpriteHandler>();
+        inputBuffer = GetComponent<InputBuffer>();
     }
     public void Start()
     {
@@ -123,15 +125,9 @@ public class BattleObject : MonoBehaviour
             return;
         }
 
-        if (motionHandler != null) motionHandler.ManualUpdate();
-        if (abstractFighter != null) abstractFighter.ManualUpdate();
-        if (actionHandler != null) actionHandler.ManualUpdate();
-        if (hitboxLoader != null) hitboxLoader.ManualUpdate();
-        if (hurtboxLoader != null) hurtboxLoader.ManualUpdate();
-        if (modelHandler != null) modelHandler.ManualUpdate();
-        if (platform != null) platform.ManualUpdate();
-        if (environmentCollider != null) environmentCollider.ManualUpdate();
-        if (spriteHandler != null) spriteHandler.ManualUpdate();
+        SendMessage("ManualUpdate");
+
+        //Motion must be done after all of the components resolve.
         if (motionHandler != null) motionHandler.ExecuteMovement();
     }
 
@@ -310,6 +306,15 @@ public class BattleObject : MonoBehaviour
     public SpriteHandler GetSpriteHandler()
     {
         return spriteHandler;
+    }
+
+    /// <summary>
+    /// Gets the InputBuffer component of the object.
+    /// </summary>
+    /// <returns>The InputBuffer component of the object</returns>
+    public InputBuffer GetInputBuffer()
+    {
+        return inputBuffer;
     }
 
     /// <summary>
