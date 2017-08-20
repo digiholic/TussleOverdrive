@@ -18,9 +18,9 @@ public class InputBuffer : BattleComponent {
 
     void Update()
     {
-        //For the keyboard, smashes are double taps
-        if (player.controllers.hasKeyboard)
+        if (player.controllers.Joysticks.Count == 0)
         {
+            //For the keyboard, smashes are double taps
             //Right Smash
             if (player.GetButtonDoublePressDown("Horizontal"))
                 input_buffer.Insert(0, new ButtonBuffer(game_controller.current_game_frame, "RightSmash", true));
@@ -33,17 +33,21 @@ public class InputBuffer : BattleComponent {
             //Left Smash
             if (player.GetNegativeButtonDoublePressDown("Vertical"))
                 input_buffer.Insert(0, new ButtonBuffer(game_controller.current_game_frame, "DownSmash", true));
+
         }
-        else //If we're on a gamepad
+        else
         {
             //If the joystick has moved a lot...
-            if (player.GetAxisDelta("Horizontal") > 0.3f)
+            if (Mathf.Abs(player.GetAxisDelta("Horizontal")) > 0.3f)
             {
                 //...And is out far enough to count as a smash
                 if (player.GetAxis("Horizontal") > 0.6f)
                     input_buffer.Insert(0, new ButtonBuffer(game_controller.current_game_frame, "RightSmash", true));
                 if (player.GetAxis("Horizontal") < -0.6f)
                     input_buffer.Insert(0, new ButtonBuffer(game_controller.current_game_frame, "LeftSmash", true));
+            }
+            if (Mathf.Abs(player.GetAxisDelta("Vertical")) > 0.3f)
+            {
                 if (player.GetAxis("Vertical") > 0.6f)
                     input_buffer.Insert(0, new ButtonBuffer(game_controller.current_game_frame, "UpSmash", true));
                 if (player.GetAxis("Vertical") < -0.6f)
