@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Rewired;
 
 public class StageSelectionPanel : MonoBehaviour {
     public StagePortraitRig portraits;
@@ -11,14 +12,12 @@ public class StageSelectionPanel : MonoBehaviour {
     public Sprite random_sprite;
 
     private StageInfo selected_stage;
-    private InputManager inputManager;
     private StageSelectorPanel current_panel;
 
     // Use this for initialization
     void Start()
     {
         portraitSprite = transform.GetChild(0).GetComponent<SpriteRenderer>();
-        inputManager = GetComponent<InputManager>();
         current_panel = portraits.GetPanel(new Vector2(0, 0));
     }
 
@@ -35,23 +34,26 @@ public class StageSelectionPanel : MonoBehaviour {
             portraitSprite.sprite = current_panel.stage_info.stage_portrait;
         }
 
-        //Route button presses to their proper functions
-        if (inputManager.GetKeyDown("Attack"))
-            ConfirmPressed();
-        if (inputManager.GetKeyDown("Special"))
-            CancelPressed();
-        if (inputManager.GetKeyDown("Jump"))
-            SwitchPressed();
-        if (inputManager.GetKeyDown("Shield"))
-            RulesPressed();
-        if (inputManager.GetKeyDown("Left"))
-            DirectionPressed(new Vector2(-1, 0));
-        if (inputManager.GetKeyDown("Right"))
-            DirectionPressed(new Vector2(1, 0));
-        if (inputManager.GetKeyDown("Up"))
-            DirectionPressed(new Vector2(0, -1));
-        if (inputManager.GetKeyDown("Down"))
-            DirectionPressed(new Vector2(0, 1));
+        foreach (Player player in ReInput.players.Players)
+        {
+            //Route button presses to their proper functions
+            if (player.GetButtonDown("Attack"))
+                ConfirmPressed();
+            if (player.GetButtonDown("Special"))
+                CancelPressed();
+            if (player.GetButtonDown("Jump"))
+                SwitchPressed();
+            if (player.GetButtonDown("Shield"))
+                RulesPressed();
+            if (player.GetNegativeButtonDown("Horizontal"))
+                DirectionPressed(new Vector2(-1, 0));
+            if (player.GetButtonDown("Horizontal"))
+                DirectionPressed(new Vector2(1, 0));
+            if (player.GetButtonDown("Vertical"))
+                DirectionPressed(new Vector2(0, -1));
+            if (player.GetNegativeButtonDown("Vertical"))
+                DirectionPressed(new Vector2(0, 1));
+        }
     }
 
     private void ConfirmPressed()

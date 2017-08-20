@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Rewired;
 
 public class MenuButtonNavigator : MonoBehaviour {
+    public static MenuButtonNavigator selectedButton = null;
+
     public bool DefaultSelected = false;
 
     public MenuButtonNavigator Right;
@@ -24,34 +27,35 @@ public class MenuButtonNavigator : MonoBehaviour {
     {
         if (DefaultSelected)
         {
-            MenuInputManager.Select(this);
+            selectedButton = this;
+            selected = true;
         }
     }
 
     void OnKeyPressed(string input)
     {
-        if (MenuInputManager.selectedButton == this)
+        if (selectedButton == this)
         {
             switch (input)
             {
                 case ("Right"):
                     if (Right != null)
-                        MenuInputManager.Select(Right);
+                        Right.Select();
                     else if (RightFunction.FuncName != "") SendMessage(RightFunction.FuncName, RightFunction.FuncArg);
                     break;
                 case ("Left"):
                     if (Left != null)
-                        MenuInputManager.Select(Left);
+                        Left.Select();
                     else if (LeftFunction.FuncName != "") SendMessage(LeftFunction.FuncName, LeftFunction.FuncArg);
                     break;
                 case ("Up"):
                     if (Up != null)
-                        MenuInputManager.Select(Up);
+                        Up.Select();
                     else if (UpFunction.FuncName != "") SendMessage(UpFunction.FuncName, UpFunction.FuncArg);
                     break;
                 case ("Down"):
                     if (Down != null)
-                        MenuInputManager.Select(Down);
+                        Down.Select();
                     else if (DownFunction.FuncName != "") SendMessage(DownFunction.FuncName, DownFunction.FuncArg);
                     break;
                 case ("Attack"):
@@ -60,18 +64,16 @@ public class MenuButtonNavigator : MonoBehaviour {
                 case ("Special"):
                     if (CancelFunction.FuncName != "") SendMessage(CancelFunction.FuncName, CancelFunction.FuncArg);
                     break;
+                default:
+                    break;
 
             }
         }
     }
 
-    void OnKeyReleased(string input)
-    {
-
-    }
-
     public void Select()
     {
+        selectedButton.Deselect();
         selected = true;
     }
 
@@ -82,10 +84,24 @@ public class MenuButtonNavigator : MonoBehaviour {
     
     void Update()
     {
-        if (selected)
+        if (selectedButton == this)
+        {
             SendMessage("SetColor", MenuColorChanger.menu_color.getColor());
+            foreach (Player player in ReInput.players.Players)
+            {
+                if (player.GetButtonDown("Horizontal")) OnKeyPressed("Right");
+                if (player.GetNegativeButtonDown("Horizontal")) OnKeyPressed("Left");
+                if (player.GetButtonDown("Vertical")) OnKeyPressed("Up");
+                if (player.GetNegativeButtonDown("Vertical")) OnKeyPressed("Down");
+                if (player.GetButtonDown("Attack")) OnKeyPressed("Attack");
+                if (player.GetButtonDown("Special")) OnKeyPressed("Special");
+            }
+        }
         else
             SendMessage("SetColor", Color.white);
+
+        //We have to do this after the button check, or else we get occasional double-moves
+        if (selected) selectedButton = this;
     }
 
     public void LoadScene(string sceneName)

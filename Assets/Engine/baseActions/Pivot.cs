@@ -44,18 +44,18 @@ public class Pivot : GameAction {
         AbstractFighter fighter = actor.GetAbstractFighter();
         if (current_frame == last_frame)
         {
-            if (fighter.KeyHeld(InputTypeUtil.GetForward(actor)))
+            if (fighter.KeyHeld("Forward"))
             {
-                if (fighter.CheckSmash(InputTypeUtil.GetForward(actor)))
+                if (fighter.CheckSmash("ForwardSmash"))
                     actor.SendMessage("doAction", "Dash");
                 else
                     actor.SendMessage("doAction", "Move");
 
             }
-            else if (fighter.KeyHeld(InputTypeUtil.GetBackward(actor)))
+            else if (fighter.KeyHeld("Backward"))
             {
                 actor.SendMessage("flip");
-                if (fighter.CheckSmash(InputTypeUtil.GetBackward(actor)))
+                if (fighter.CheckSmash("BackwardSmash"))
                     actor.SendMessage("doAction", "Dash");
                 else
                     actor.SendMessage("doAction", "Move");

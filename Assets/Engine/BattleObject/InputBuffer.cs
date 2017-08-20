@@ -18,7 +18,38 @@ public class InputBuffer : BattleComponent {
 
     void Update()
     {
-        
+        //For the keyboard, smashes are double taps
+        if (player.controllers.hasKeyboard)
+        {
+            //Right Smash
+            if (player.GetButtonDoublePressDown("Horizontal"))
+                input_buffer.Insert(0, new ButtonBuffer(game_controller.current_game_frame, "RightSmash", true));
+            //Left Smash
+            if (player.GetNegativeButtonDoublePressDown("Horizontal"))
+                input_buffer.Insert(0, new ButtonBuffer(game_controller.current_game_frame, "LeftSmash", true));
+            //Up Smash
+            if (player.GetButtonDoublePressDown("Vertical"))
+                input_buffer.Insert(0, new ButtonBuffer(game_controller.current_game_frame, "UpSmash", true));
+            //Left Smash
+            if (player.GetNegativeButtonDoublePressDown("Vertical"))
+                input_buffer.Insert(0, new ButtonBuffer(game_controller.current_game_frame, "DownSmash", true));
+        }
+        else //If we're on a gamepad
+        {
+            //If the joystick has moved a lot...
+            if (player.GetAxisDelta("Horizontal") > 0.3f)
+            {
+                //...And is out far enough to count as a smash
+                if (player.GetAxis("Horizontal") > 0.6f)
+                    input_buffer.Insert(0, new ButtonBuffer(game_controller.current_game_frame, "RightSmash", true));
+                if (player.GetAxis("Horizontal") < -0.6f)
+                    input_buffer.Insert(0, new ButtonBuffer(game_controller.current_game_frame, "LeftSmash", true));
+                if (player.GetAxis("Vertical") > 0.6f)
+                    input_buffer.Insert(0, new ButtonBuffer(game_controller.current_game_frame, "UpSmash", true));
+                if (player.GetAxis("Vertical") < -0.6f)
+                    input_buffer.Insert(0, new ButtonBuffer(game_controller.current_game_frame, "DownSmash", true));
+            }
+        }
     }
 
     private void ButtonPressed(InputActionEventData data)
@@ -34,6 +65,12 @@ public class InputBuffer : BattleComponent {
     public bool CheckBuffer(string input)
     {
         return CheckBuffer(input, PlayerPrefs.GetInt("buffer_window", 12), true);
+    }
+
+    void OnDestroy()
+    {
+        player.RemoveInputEventDelegate(ButtonPressed);
+        player.RemoveInputEventDelegate(ButtonReleased);
     }
 
     public bool CheckBuffer(string input, int buffer_window, bool pressed)

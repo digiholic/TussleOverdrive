@@ -41,7 +41,11 @@ public class StateTransitions : ScriptableObject {
             //TODO forward backward roll
         }
         if (actor.KeyBuffered("Attack"))
-            actor.doAction("DownAttack");
+        {
+            if (actor.CheckSmash("DownSmash")) actor.doAction("DownSmash");
+            else actor.doAction("DownAttack");
+        }
+            
         if (actor.KeyBuffered("Special"))
             actor.doAction("DownSpecial");
         if (actor.KeyBuffered("Jump"))
@@ -81,7 +85,7 @@ public class StateTransitions : ScriptableObject {
 
     public static void MoveState(AbstractFighter actor)
     {
-        if (actor.CheckSmash("Forward"))
+        if (actor.CheckSmash("ForwardSmash"))
             actor.doAction("Dash");
         //float direction = actor.GetControllerAxis("Horizontal") * actor.facing;
         //shield
@@ -243,9 +247,9 @@ public class StateTransitions : ScriptableObject {
             {
                 if (!actor.DirectionHeld("Down"))
                 {
-                    if ((ledge.grabSide == Ledge.Side.LEFT) && actor.KeyHeld("Right"))
+                    if ((ledge.grabSide == Ledge.Side.LEFT) && actor.DirectionHeld("Right"))
                         ledge.SendMessage("FighterGrabs", actor);
-                    else if ((ledge.grabSide == Ledge.Side.RIGHT) && actor.KeyHeld("Left"))
+                    else if ((ledge.grabSide == Ledge.Side.RIGHT) && actor.DirectionHeld("Left"))
                         ledge.SendMessage("FighterGrabs", actor);
                 }
             }

@@ -250,33 +250,29 @@ public class AbstractFighter : BattleComponent {
     {
         if (DirectionHeld("Forward"))
         {
-            //if (KeyBuffered(InputTypeUtil.GetForward(battleObject), 2))
-            //    doAction("ForwardSmash");
-            //else
-            doAction("ForwardAttack");
+            if (CheckSmash("ForwardSmash"))
+                doAction("ForwardSmash");
+            else doAction("ForwardAttack");
         }
         else if (DirectionHeld("Backward"))
         {
             battleObject.SendMessage("flip");
-            //if (KeyBuffered(InputTypeUtil.GetForward(battleObject), 2))
-            //    doAction("ForwardSmash");
-            //else
-            doAction("ForwardAttack");
+            if (CheckSmash("BackwardSmash"))
+                doAction("BackwardSmash");
+            else doAction("ForwardAttack");
         }
         else if (DirectionHeld("Up"))
         {
-            //if (KeyBuffered("Up", 2))
-            //    doAction("UpSmash");
-            //else
-            doAction("UpAttack");
+            if (CheckSmash("UpSmash"))
+                doAction("UpSmash");
+            else doAction("UpAttack");
         }
             
         else if (DirectionHeld("Down"))
         {
-            //if (KeyBuffered("Down", 2))
-            //    doAction("DownSmash");
-            //else
-            doAction("DownAttack");
+            if (CheckSmash("DownSmash"))
+                doAction("DownSmash");
+            else doAction("DownAttack");
         }
         else
             doAction("NeutralAttack");
@@ -462,10 +458,17 @@ public class AbstractFighter : BattleComponent {
 
     public bool CheckSmash(string key)
     {
-        if (key == "Forward") key = InputTypeUtil.GetForward(battleObject);
-        if (key == "Backward") key = InputTypeUtil.GetBackward(battleObject);
-
-        return inputBuffer.CheckDoubleTap(key,32);
+        if (key == "ForwardSmash")
+        {
+            if (GetIntVar("facing") == 1) key = "RightSmash";
+            else key = "LeftSmash";
+        }
+        if (key == "BackwardSmash")
+        {
+            if (GetIntVar("facing") == 1) key = "LeftSmash";
+            else key = "RightSmash";
+        }
+        return inputBuffer.KeyBuffered(key);
     }
 
     /*

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Rewired;
 
 public class SelectionPanel : MonoBehaviour {
     public bool active = false;
@@ -16,15 +17,15 @@ public class SelectionPanel : MonoBehaviour {
     public Sprite random_sprite;
 
     private FighterInfo selected_fighter;
-    private InputManager inputManager;
     private SelectorPanel current_panel;
 
+    private Player player;
 	// Use this for initialization
 	void Start () {
         bgSprite = GetComponent<SpriteRenderer>();
         bgSprite.color = Settings.current_settings.player_colors[playerNum];
         portraitSprite = transform.GetChild(0).GetComponent<SpriteRenderer>();
-        inputManager = GetComponent<InputManager>();
+        player = ReInput.players.GetPlayer(playerNum);
         current_panel = portraits.GetPanel(new Vector2(0, 0));
     }
 	
@@ -57,21 +58,21 @@ public class SelectionPanel : MonoBehaviour {
 
 
         //Route button presses to their proper functions
-        if (inputManager.GetKeyDown("Attack"))
+        if (player.GetButtonDown("Attack"))
             ConfirmPressed();
-        if (inputManager.GetKeyDown("Special"))
+        if (player.GetButtonDown("Special"))
             CancelPressed();
-        if (inputManager.GetKeyDown("Jump"))
+        if (player.GetButtonDown("Jump"))
             SwitchPressed();
-        if (inputManager.GetKeyDown("Shield"))
+        if (player.GetButtonDown("Shield"))
             RulesPressed();
-        if (inputManager.GetKeyDown("Left"))
+        if (player.GetNegativeButtonDown("Horizontal"))
             DirectionPressed(new Vector2(-1,0));
-        if (inputManager.GetKeyDown("Right"))
+        if (player.GetButtonDown("Horizontal"))
             DirectionPressed(new Vector2(1, 0));
-        if (inputManager.GetKeyDown("Up"))
+        if (player.GetButtonDown("Vertical"))
             DirectionPressed(new Vector2(0, -1));
-        if (inputManager.GetKeyDown("Down"))
+        if (player.GetNegativeButtonDown("Vertical"))
             DirectionPressed(new Vector2(0, 1));
     }
 

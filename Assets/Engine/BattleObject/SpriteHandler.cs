@@ -54,7 +54,7 @@ public class SpriteHandler : BattleComponent {
 
         spriteComponent = new GameObject("Sprite");
         RectTransform componentRect = spriteComponent.AddComponent<RectTransform>();
-        spriteComponent.transform.parent = transform;
+        spriteComponent.transform.SetParent(transform);
         componentRect.anchorMin = new Vector2(0.5f, 0);
         componentRect.anchorMax = new Vector2(0.5f, 0);
         componentRect.anchoredPosition = Vector3.zero;
