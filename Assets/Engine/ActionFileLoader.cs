@@ -11,6 +11,7 @@ public class ActionFileLoader : MonoBehaviour {
 
     public void SaveActions()
     {
+        Debug.Log(FileLoader.GetFighterPath(directory));
         action_file.WriteJSON(FileLoader.PathCombine(FileLoader.GetFighterPath(directory), filename));
     }
 
@@ -26,5 +27,10 @@ public class ActionFileLoader : MonoBehaviour {
             string json = FileLoader.LoadTextFile(combinedPath);
             action_file = JsonUtility.FromJson<ActionFile>(json);
         }
+    }
+
+    public void DeleteAction(string action_name)
+    {
+        action_file.Delete(action_name);
     }
 }

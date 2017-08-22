@@ -103,7 +103,7 @@ public class SpriteHandler : BattleComponent {
         sprites = new Dictionary<string, List<Sprite>>();
 
         Dictionary<string, SpriteData> sprite_data_dict = new Dictionary<string, SpriteData>();
-        
+
         foreach (SpriteData data in sprite_list.sprites)
         {
             sprite_data_dict[data.sprite_name] = data;
@@ -120,7 +120,6 @@ public class SpriteHandler : BattleComponent {
             }
             sprites.Add(data.sprite_name, spriteFrames);
         }
-        Debug.Log(sprites);
     }
     
     private void ChangeRenderer(string current_sprite, int current_frame)

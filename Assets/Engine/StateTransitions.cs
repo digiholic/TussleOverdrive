@@ -50,7 +50,7 @@ public class StateTransitions : ScriptableObject {
             actor.doAction("DownSpecial");
         if (actor.KeyBuffered("Jump"))
             actor.doAction("Jump");
-        if (!actor.DirectionHeld("Down") && actor.BattleObject.GetActionHandler().CurrentAction.GetType() != typeof(CrouchGetup))
+        if (!actor.DirectionHeld("Down") && actor.battleObject.GetActionHandler().ActionIsOfType(typeof(CrouchGetup)))
             actor.doAction("CrouchGetup");
     }
 
@@ -99,7 +99,7 @@ public class StateTransitions : ScriptableObject {
             actor.doAction("Crouch");
         else if (actor.GetAxis("Horizontal") == 0.0f)
             actor.doAction("Stop");
-        if (actor.KeyBuffered(InputTypeUtil.GetBackward(actor.BattleObject)))
+        if (actor.KeyBuffered(InputTypeUtil.GetBackward(actor.battleObject)))
             actor.SendMessage("flip"); //TODO PIVOT
         //Two other kinds of stop? Not sure if these are needed
     }
@@ -153,7 +153,7 @@ public class StateTransitions : ScriptableObject {
             actor.doAction("Jump");
         else if (actor.GetAxis("Horizontal") == 0.0f)
             actor.doAction("Stop");
-        if (actor.KeyBuffered(InputTypeUtil.GetBackward(actor.BattleObject)))
+        if (actor.KeyBuffered(InputTypeUtil.GetBackward(actor.battleObject)))
             actor.SendMessage("flip"); //TODO PIVOT
     }
 
@@ -209,7 +209,7 @@ public class StateTransitions : ScriptableObject {
         {
             actor.doAction("Jump");
         }
-        else if (actor.KeyHeld(InputTypeUtil.GetBackward(actor.BattleObject)))
+        else if (actor.KeyHeld(InputTypeUtil.GetBackward(actor.battleObject)))
         {
             actor.doAction("Fall");
         }
@@ -228,9 +228,9 @@ public class StateTransitions : ScriptableObject {
     public static void AirControl(AbstractFighter actor)
     {
         actor.BroadcastMessage("ChangeXPreferred", actor.GetAxis("Horizontal") * actor.GetFloatVar("max_air_speed"));
-        if (Mathf.Abs(actor.BattleObject.GetMotionHandler().XSpeed) > actor.GetFloatVar("max_air_speed"))
-            actor.BattleObject.GetMotionHandler().accel(actor.GetFloatVar("air_control"));
-        if (Mathf.Abs(actor.BattleObject.GetMotionHandler().YSpeed) > Mathf.Abs(actor.GetFloatVar("max_fall_speed")))
+        if (Mathf.Abs(actor.battleObject.GetMotionHandler().XSpeed) > actor.GetFloatVar("max_air_speed"))
+            actor.SendMessage("accel", actor.GetFloatVar("air_control"));
+        if (Mathf.Abs(actor.battleObject.GetMotionHandler().YSpeed) > Mathf.Abs(actor.GetFloatVar("max_fall_speed")))
             actor.SetVar("landing_lag", actor.GetFloatVar("heavy_land_lag"));
     }
     

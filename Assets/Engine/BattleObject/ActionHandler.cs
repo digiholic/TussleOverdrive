@@ -38,6 +38,11 @@ public class ActionHandler : BattleComponent {
         _current_action.SetUp(battleObject);
     }
 
+    public bool ActionIsOfType(System.Type actionType) {
+            bool ret = CurrentAction.GetType() == actionType;
+            return ret;
+    }
+
     public static GameAction LoadAction(string _name)
     {
         switch (_name)

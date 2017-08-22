@@ -22,7 +22,8 @@ public class MenuButtonNavigator : MonoBehaviour {
     public FuncData DownFunction;
 
     private bool selected = false;
-    
+    private static MenuButtonNavigator Last;
+
     void Awake()
     {
         if (DefaultSelected)
@@ -39,24 +40,24 @@ public class MenuButtonNavigator : MonoBehaviour {
             switch (input)
             {
                 case ("Right"):
+                    if (RightFunction.FuncName != "") SendMessage(RightFunction.FuncName, RightFunction.FuncArg);
                     if (Right != null)
                         Right.Select();
-                    else if (RightFunction.FuncName != "") SendMessage(RightFunction.FuncName, RightFunction.FuncArg);
                     break;
                 case ("Left"):
+                    if (LeftFunction.FuncName != "") SendMessage(LeftFunction.FuncName, LeftFunction.FuncArg);
                     if (Left != null)
                         Left.Select();
-                    else if (LeftFunction.FuncName != "") SendMessage(LeftFunction.FuncName, LeftFunction.FuncArg);
                     break;
                 case ("Up"):
+                    if (UpFunction.FuncName != "") SendMessage(UpFunction.FuncName, UpFunction.FuncArg);
                     if (Up != null)
                         Up.Select();
-                    else if (UpFunction.FuncName != "") SendMessage(UpFunction.FuncName, UpFunction.FuncArg);
                     break;
                 case ("Down"):
+                    if (DownFunction.FuncName != "") SendMessage(DownFunction.FuncName, DownFunction.FuncArg);
                     if (Down != null)
                         Down.Select();
-                    else if (DownFunction.FuncName != "") SendMessage(DownFunction.FuncName, DownFunction.FuncArg);
                     break;
                 case ("Attack"):
                     if (ConfirmFunction.FuncName != "") SendMessage(ConfirmFunction.FuncName,ConfirmFunction.FuncArg);
@@ -118,6 +119,16 @@ public class MenuButtonNavigator : MonoBehaviour {
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void SetLast()
+    {
+        Last = selectedButton;
+    }
+
+    public void SelectLast()
+    {
+        Last.Select();
     }
 }
 

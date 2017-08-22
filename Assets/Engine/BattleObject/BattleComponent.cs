@@ -4,7 +4,7 @@ using UnityEngine;
 
 [System.Serializable]
 public class BattleComponent : MonoBehaviour {
-    protected BattleObject battleObject;
+    public BattleObject battleObject;
     protected BattleController game_controller;
 
 	// Use this for initialization

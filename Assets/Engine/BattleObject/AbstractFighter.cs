@@ -35,19 +35,8 @@ public class AbstractFighter : BattleComponent {
         {"wavedash_lag", 12 }
     };
 
-
-    //public string fighter_xml_file = "";
     public int player_num = 0;
 
-    void SetVariables()
-    {
-        SetVar("jumps", 0);
-        SetVar("facing", 1);
-        SetVar("landing_lag", 0);
-        SetVar("tech_window", 0);
-        SetVar("air_dodges", 1);
-        SetVar("grounded", false);
-    }
     [HideInInspector]
     public float ground_elasticity = 0.0f, damage_percent = 0;
     
@@ -55,24 +44,15 @@ public class AbstractFighter : BattleComponent {
     private SpriteHandler sprite_loader;
     private Animator anim;
     private InputBuffer inputBuffer;
-    private XMLLoader data_xml;
-    private AudioSource sound_player;
     private PlatformPhase platform_phaser;
-    private Collider coll;
-    public BattleObject BattleObject { get { return battleObject; } set { battleObject = value; } }
-
-    private float last_x_axis;
-    private float x_axis_delta;
-    private float last_y_axis;
-    private float y_axis_delta;
-    private List<HitboxLock> hitbox_locks = new List<HitboxLock>();
+    private AudioSource sound_player;
     private Dictionary<string, AudioClip> sounds = new Dictionary<string, AudioClip>();
-
+    private List<HitboxLock> hitbox_locks = new List<HitboxLock>();
+    private Collider coll;
     private List<Collider> contacted_colliders = new List<Collider>();
     private List<Ledge> contacted_ledges = new List<Ledge>();
     public AbstractFighter hitTagged = null;
-
-    public bool LedgeLock { get; set; }
+    public bool LedgeLock = false;
 
 
     void LoadInfo()
@@ -115,39 +95,42 @@ public class AbstractFighter : BattleComponent {
         platform_phaser = GetComponent<PlatformPhase>();
         if (platform_phaser == null)
             platform_phaser = gameObject.AddComponent<PlatformPhase>();
+
+        sprite_loader = GetComponent<SpriteHandler>();
+        anim = GetComponent<Animator>();
+        sound_player = GetComponent<AudioSource>();
+        coll = GetComponent<Collider>();
+    }
+
+    void SetVariables()
+    {
+        SetVar("jumps", 0);
+        SetVar("facing", 1);
+        SetVar("landing_lag", 0);
+        SetVar("tech_window", 0);
+        SetVar("air_dodges", 1);
+        SetVar("grounded", false);
+        SetVar("elasticity", 0.0f);
     }
 
     void Start() {
         LoadComponents();
         LoadInfo();
         SetVariables();
-        sprite_loader = GetComponent<SpriteHandler>();
-        anim = GetComponent<Animator>();
-        sound_player = GetComponent<AudioSource>();
-        coll = GetComponent<Collider>();
-
-        SetVar("facing", 1);
-        /*
-        if (player_num % 2 == 0)
-            SetVar("facing", 1);
         
-        else
-        {
-            battleObject.SendMessage("flip");
-            SetVar("facing", -1);
-        }
-        */
+        SetVar("facing", 1);
+
         SendMessage("ChangeYSpeed", 0f);
-        SetVar("jumps",GetIntVar("max_jumps"));
-        SetVar("elasticity", 0.0f);
+        Rest();
 
         //Load SFX
-        string directory = Path.Combine("Assets/Resources/Fighters", fighter_info.directory_name+"/"+fighter_info.sound_path);
+        string directory = FileLoader.PathCombine(FileLoader.GetFighterPath(fighter_info.directory_name),fighter_info.sound_path);
         DirectoryInfo directory_info = new DirectoryInfo(directory);
         if (directory_info.Exists)
         {
             foreach (FileInfo filename in directory_info.GetFiles())
             {
+                //Ignore Unity Meta files
                 if (filename.Extension != ".meta")
                 {
                     string name_no_ext = filename.Name.Split('.')[0];
@@ -156,15 +139,6 @@ public class AbstractFighter : BattleComponent {
                 }
             }
         }
-    }
-
-    private float GetFromXml(string stat_name, float default_value)
-    {
-        DataNode data_node = data_xml.SelectSingleNode("//fighter/stats/" + stat_name);
-        if (data_node != null)
-            return data_node.GetFloat();
-        else
-            return default_value;
     }
 
     // Update is called once per frame
@@ -177,17 +151,8 @@ public class AbstractFighter : BattleComponent {
             SendMessage("CalcGrav",new float[] { GetFloatVar("gravity"), GetFloatVar("max_fall_speed") });
         }
 
-        //Set horizontal and vertical deltas
-        float current_x = GetAxis("Horizontal");
-        x_axis_delta = Mathf.Abs(current_x) - Mathf.Abs(last_x_axis);
-        last_x_axis = current_x;
-
-        float current_y = GetAxis("Vertical");
-        y_axis_delta = Mathf.Abs(current_y) - Mathf.Abs(last_y_axis);
-        last_y_axis = current_y;
-
         //Enable Phasing
-        if (GetAxis("Vertical") < -0.3)
+        if (CheckSmash("DownSmash"))
             platform_phaser.EnableDownPhase = true;
         else
             platform_phaser.EnableDownPhase = false;
@@ -339,7 +304,6 @@ public class AbstractFighter : BattleComponent {
     /// <returns></returns>
     public bool LockHitbox(Hitbox hitbox)
     {
-
         if (hitbox_locks.Contains(hitbox.hitbox_lock)) //If it's in the locks, return false and do nothing else.
         {
             return false;
@@ -350,7 +314,6 @@ public class AbstractFighter : BattleComponent {
             StartCoroutine(RemoveLock(hitbox.hitbox_lock));
             return true;
         }
-
     }
 
     public void GetHit(Hitbox hitbox)
@@ -421,22 +384,16 @@ public class AbstractFighter : BattleComponent {
 
     public bool KeyBuffered(string key, int distance = 12, bool pressed = true)
     {
-        if (key == "Forward") key = InputTypeUtil.GetForward(battleObject);
-        if (key == "Backward") key = InputTypeUtil.GetBackward(battleObject);
         return inputBuffer.KeyBuffered(key, distance, pressed);
     }
 
     public bool CheckBuffer(string key, int distance = 12, bool pressed = true)
     {
-        if (key == "Forward") key = InputTypeUtil.GetForward(battleObject);
-        if (key == "Backward") key = InputTypeUtil.GetBackward(battleObject);
         return inputBuffer.CheckBuffer(key, distance, pressed);
     }
 
     public bool KeyHeld(string key)
     {
-        if (key == "Forward") key = InputTypeUtil.GetForward(battleObject);
-        if (key == "Backward") key = InputTypeUtil.GetBackward(battleObject);
         return inputBuffer.GetKey(key);
     }
 

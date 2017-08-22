@@ -10,7 +10,7 @@ public class HitboxLoader : BattleComponent {
     public Hitbox LoadHitbox(AbstractFighter owner, GameAction action, Dictionary<string, string> dict)
     {
         Hitbox hbox = Instantiate(hitbox_prefab);
-        hbox.owner = owner.BattleObject;
+        hbox.owner = owner.battleObject;
         hbox.transform.parent = owner.transform;
         hbox.LoadValuesFromDict(owner, dict);
 

@@ -1,96 +1,6 @@
 {
     "actions": [
         {
-            "name": "TestEverything",
-            "length": 1,
-            "sprite": "idle",
-            "sprite_rate": 0,
-            "loop": false,
-            "exit_action": "",
-            "set_up_actions": {
-                "frames": "",
-                "subactions": [
-                    "RemoveColorMask",
-                    "ChangeFrame 1",
-                    "Flip",
-                    "Unrotate",
-                    "ChangeGravity 2.0",
-                    "DealDamage 5.0",
-                    "SetInvuln 10",
-                    "SetLandingLag 5",
-                    "ChangeXSpeed 0",
-                    "ChangeYSpeed 0",
-                    "ChangeXPreferred 0",
-                    "ChangeYPreferred 0",
-                    "<TODO>Shift Position: 0 X, 0Y",
-                    "<TODO>Shift Sprite: None X, 0Y",
-                    "CreateColorMask: #FFFFFF 0 0",
-                    "ApplyHitstop 10 5.0 80.0",
-                    "ChangeECB 0,0 0,0",
-                    "Print testPrint",
-                    "ChangeFrame 1",
-                    "DoAction: neutralAction",
-                    "ChangeFrame: 0",
-                    "DoTransition AirControl",
-                    "CreateHitbox dashHitbox type damage center 0,0 trajectory 20 damage 2.0 base_knockback 10.0 knockback_growth 0.1 size 70,70"
-                ]
-            },
-            "state_transition_actions": {
-                "frames": "",
-                "subactions": []
-            },
-            "actions_before_frame": {
-                "frames": "",
-                "subactions": []
-            },
-            "actions_after_frame": {
-                "frames": "",
-                "subactions": []
-            },
-            "actions_at_last_frame": {
-                "frames": "",
-                "subactions": []
-            },
-            "tear_down_actions": {
-                "frames": "",
-                "subactions": []
-            },
-            "actions_at_frame": []
-        },
-        {
-            "name": "event",
-            "length": 1,
-            "sprite": "idle",
-            "sprite_rate": 1,
-            "loop": false,
-            "exit_action": "",
-            "set_up_actions": {
-                "frames": "",
-                "subactions": []
-            },
-            "state_transition_actions": {
-                "frames": "",
-                "subactions": []
-            },
-            "actions_before_frame": {
-                "frames": "",
-                "subactions": []
-            },
-            "actions_after_frame": {
-                "frames": "",
-                "subactions": []
-            },
-            "actions_at_last_frame": {
-                "frames": "",
-                "subactions": []
-            },
-            "tear_down_actions": {
-                "frames": "",
-                "subactions": []
-            },
-            "actions_at_frame": []
-        },
-        {
             "name": "NeutralAction",
             "length": 1,
             "sprite": "idle",
@@ -98,37 +8,31 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": [
                     "SetVar object sideSpecialUses 1"
                 ]
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": [
                 {
-                    "frames": "1",
                     "subactions": [
                         "ChangeFrame: 1"
-                    ]
+                    ],
+                    "frames": "1"
                 }
             ]
         },
@@ -140,27 +44,21 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": []
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": []
@@ -173,27 +71,21 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": []
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": []
@@ -206,29 +98,23 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": []
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": [
                     "ChangeFrame: 2"
                 ]
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": []
@@ -241,27 +127,21 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": []
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": []
@@ -274,31 +154,25 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": [
                     "SetVar action always None"
                 ]
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": [
                     "<DEPRECATED>If forward is pressed to a depth of at least 0.1 during this action:check_cling"
                 ]
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": [
                     "<DEPRECATED>If action always true None: fast_fall"
                 ]
@@ -313,35 +187,29 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": []
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": [
                 {
-                    "frames": "5",
                     "subactions": [
                         "ChangeSprite jump"
-                    ]
+                    ],
+                    "frames": "5"
                 }
             ]
         },
@@ -353,27 +221,21 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": []
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": []
@@ -386,27 +248,21 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": []
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": []
@@ -419,29 +275,23 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": [
                     "SetVar object sideSpecialUses 1"
                 ]
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": []
@@ -454,29 +304,23 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": [
                     "SetVar object sideSpecialUses 1"
                 ]
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": []
@@ -489,27 +333,21 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": []
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": []
@@ -522,37 +360,31 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": []
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": [
                     "ChangeFrame: 12"
                 ]
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": [
                 {
-                    "frames": "0",
                     "subactions": [
                         "<DEPRECATED>If action accel == False: noAccel"
-                    ]
+                    ],
+                    "frames": "0"
                 }
             ]
         },
@@ -564,27 +396,21 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": []
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": []
@@ -597,27 +423,21 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": []
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": []
@@ -630,27 +450,21 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": []
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": []
@@ -663,30 +477,24 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": [
                     "ChangeSubimage 4",
                     "ChangeXSpeed 0"
                 ]
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": []
@@ -699,27 +507,21 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": []
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": []
@@ -732,27 +534,21 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": []
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": []
@@ -765,27 +561,21 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": []
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": []
@@ -798,43 +588,37 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": [
                     "ChangeSubimage 1"
                 ]
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": [
                 {
-                    "frames": "2",
                     "subactions": [
                         "PlaySound dashroll"
-                    ]
+                    ],
+                    "frames": "2"
                 },
                 {
-                    "frames": "22",
                     "subactions": [
                         "ChangeSubimage 0"
-                    ]
+                    ],
+                    "frames": "22"
                 }
             ]
         },
@@ -846,43 +630,37 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": [
                     "ChangeSubimage 1"
                 ]
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": [
                 {
-                    "frames": "2",
                     "subactions": [
                         "PlaySound dashroll"
-                    ]
+                    ],
+                    "frames": "2"
                 },
                 {
-                    "frames": "22",
                     "subactions": [
                         "ChangeSubimage 0"
-                    ]
+                    ],
+                    "frames": "22"
                 }
             ]
         },
@@ -894,53 +672,47 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": []
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": [
                 {
-                    "frames": "3",
                     "subactions": [
                         "ChangeSubimage 3"
-                    ]
+                    ],
+                    "frames": "3"
                 },
                 {
-                    "frames": "18",
                     "subactions": [
                         "ChangeSubimage 2"
-                    ]
+                    ],
+                    "frames": "18"
                 },
                 {
-                    "frames": "20",
                     "subactions": [
                         "ChangeSubimage 1"
-                    ]
+                    ],
+                    "frames": "20"
                 },
                 {
-                    "frames": "22",
                     "subactions": [
                         "ChangeSubimage 0"
-                    ]
+                    ],
+                    "frames": "22"
                 }
             ]
         },
@@ -952,43 +724,37 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": [
                     "ChangeSubimage 1"
                 ]
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": [
                 {
-                    "frames": "2",
                     "subactions": [
                         "PlaySound dashroll"
-                    ]
+                    ],
+                    "frames": "2"
                 },
                 {
-                    "frames": "22",
                     "subactions": [
                         "ChangeSubimage 0"
-                    ]
+                    ],
+                    "frames": "22"
                 }
             ]
         },
@@ -1000,43 +766,37 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": [
                     "ChangeSubimage 1"
                 ]
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": [
                 {
-                    "frames": "2",
                     "subactions": [
                         "PlaySound dashroll"
-                    ]
+                    ],
+                    "frames": "2"
                 },
                 {
-                    "frames": "22",
                     "subactions": [
                         "ChangeSubimage 0"
-                    ]
+                    ],
+                    "frames": "22"
                 }
             ]
         },
@@ -1048,53 +808,47 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": []
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": [
                 {
-                    "frames": "3",
                     "subactions": [
                         "ChangeSubimage 3"
-                    ]
+                    ],
+                    "frames": "3"
                 },
                 {
-                    "frames": "18",
                     "subactions": [
                         "ChangeSubimage 2"
-                    ]
+                    ],
+                    "frames": "18"
                 },
                 {
-                    "frames": "20",
                     "subactions": [
                         "ChangeSubimage 1"
-                    ]
+                    ],
+                    "frames": "20"
                 },
                 {
-                    "frames": "22",
                     "subactions": [
                         "ChangeSubimage 0"
-                    ]
+                    ],
+                    "frames": "22"
                 }
             ]
         },
@@ -1106,41 +860,35 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": []
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": [
                 {
-                    "frames": "4",
                     "subactions": [
                         "ChangeSubimage 2"
-                    ]
+                    ],
+                    "frames": "4"
                 },
                 {
-                    "frames": "20",
                     "subactions": [
                         "ChangeSubimage 0"
-                    ]
+                    ],
+                    "frames": "20"
                 }
             ]
         },
@@ -1152,27 +900,21 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": []
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": []
@@ -1185,27 +927,21 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": []
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": []
@@ -1218,29 +954,23 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": [
                     "SetVar object sideSpecialUses 1"
                 ]
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": []
@@ -1253,37 +983,31 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": [
                     "SetVar object sideSpecialUses 1"
                 ]
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": [
                 {
-                    "frames": "6",
                     "subactions": [
                         "ChangeSubimage 3"
-                    ]
+                    ],
+                    "frames": "6"
                 }
             ]
         },
@@ -1295,37 +1019,31 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": [
                     "SetVar object sideSpecialUses 1"
                 ]
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": [
                 {
-                    "frames": "6",
                     "subactions": [
                         "ChangeSubimage 3"
-                    ]
+                    ],
+                    "frames": "6"
                 }
             ]
         },
@@ -1337,29 +1055,23 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": [
                     "SetVar object sideSpecialUses 1"
                 ]
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": []
@@ -1372,37 +1084,31 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": []
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": [
                     "RemoveColorMask"
                 ]
             },
             "actions_at_frame": [
                 {
-                    "frames": "0",
                     "subactions": [
                         "CreateColorMask: #FF00FF 999 8"
-                    ]
+                    ],
+                    "frames": "0"
                 }
             ]
         },
@@ -1414,29 +1120,23 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": [
                     "CreateColorMask: #bf3fbf 999 8"
                 ]
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": [
                     "RemoveColorMask"
                 ]
@@ -1451,29 +1151,23 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": [
                     "SetVar object sideSpecialUses 1"
                 ]
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": []
@@ -1486,27 +1180,21 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": []
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": []
@@ -1519,59 +1207,53 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": []
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": [
                 {
-                    "frames": "0",
                     "subactions": [
                         "ChangeSubimage 4"
-                    ]
+                    ],
+                    "frames": "0"
                 },
                 {
-                    "frames": "2",
                     "subactions": [
                         "ChangeSubimage 3"
-                    ]
+                    ],
+                    "frames": "2"
                 },
                 {
-                    "frames": "4",
                     "subactions": [
                         "ChangeSubimage 2"
-                    ]
+                    ],
+                    "frames": "4"
                 },
                 {
-                    "frames": "10",
                     "subactions": [
                         "ChangeSubimage 3"
-                    ]
+                    ],
+                    "frames": "10"
                 },
                 {
-                    "frames": "12",
                     "subactions": [
                         "ChangeSubimage 4"
-                    ]
+                    ],
+                    "frames": "12"
                 }
             ]
         },
@@ -1583,27 +1265,21 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": []
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": []
@@ -1616,35 +1292,29 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": []
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": [
                 {
-                    "frames": "6,8,10,12,14,17,20,23,26",
                     "subactions": [
                         "ChangeSubimage 1"
-                    ]
+                    ],
+                    "frames": "6,8,10,12,14,17,20,23,26"
                 }
             ]
         },
@@ -1656,55 +1326,49 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": []
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": [
                 {
-                    "frames": "8,10,12,14",
                     "subactions": [
                         "ChangeSubimage 1"
-                    ]
+                    ],
+                    "frames": "8,10,12,14"
                 },
                 {
-                    "frames": "15",
                     "subactions": [
                         "<TODO>Change Fighter Speed: <engine.subaction.VarData instance at 0x08B6D350> X"
-                    ]
+                    ],
+                    "frames": "15"
                 },
                 {
-                    "frames": "17",
                     "subactions": [
                         "ChangeSprite land",
                         "ChangeSubimage 1"
-                    ]
+                    ],
+                    "frames": "17"
                 },
                 {
-                    "frames": "33",
                     "subactions": [
                         "ChangeSprite land",
                         "ChangeSubimage 0"
-                    ]
+                    ],
+                    "frames": "33"
                 }
             ]
         },
@@ -1716,7 +1380,6 @@
             "loop": true,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": [
                     "CreateHitbox dashHitbox type damage center 0,0 trajectory 20 damage 2.0 base_knockback 10.0 knockback_growth 0.1 size 70,70",
                     "CreateHitbox chainHitbox type autolink damage 2.0 x_bias 1.0 y_bias -1.0 center 0,0 size 70,70",
@@ -1724,97 +1387,92 @@
                 ]
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": [
                     "Modify Hurtbox: auto"
                 ]
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": [
                 {
-                    "frames": "8",
                     "subactions": [
                         "ChangeSubimage 8"
-                    ]
+                    ],
+                    "frames": "8"
                 },
                 {
-                    "frames": "10",
                     "subactions": [
                         "ChangeSubimage 9"
-                    ]
+                    ],
+                    "frames": "10"
                 },
                 {
-                    "frames": "12",
                     "subactions": [
                         "ChangeSubimage 10"
-                    ]
+                    ],
+                    "frames": "12"
                 },
                 {
-                    "frames": "14",
                     "subactions": [
                         "ChangeSubimage 11"
-                    ]
+                    ],
+                    "frames": "14"
                 },
                 {
-                    "frames": "15",
                     "subactions": [
                         "ChangeSprite nair",
                         "ChangeSubimage 0",
                         "ChangeECB 64,78 0,7",
                         "<TODO>Change Fighter Speed: <engine.subaction.VarData instance at 0x08B6D7B0> X"
-                    ]
+                    ],
+                    "frames": "15"
                 },
                 {
-                    "frames": "16-22",
                     "subactions": [
                         "ChangeSubimage 1"
-                    ]
+                    ],
+                    "frames": "16-22"
                 },
                 {
-                    "frames": "24, 26, 28, 30, 32, 34, 36",
                     "subactions": [
                         "ChangeSubimage 1"
-                    ]
+                    ],
+                    "frames": "24, 26, 28, 30, 32, 34, 36"
                 },
                 {
-                    "frames": "17",
                     "subactions": [
                         "ActivateHitbox chainHitbox -1"
-                    ]
+                    ],
+                    "frames": "17"
                 },
                 {
-                    "frames": "21,25",
                     "subactions": [
                         "UnlockHitbox chainHitbox"
-                    ]
+                    ],
+                    "frames": "21,25"
                 },
                 {
-                    "frames": "29",
                     "subactions": [
                         "DeactivateHitbox chainHitbox",
                         "ActivateHitbox dashHitbox -1"
-                    ]
+                    ],
+                    "frames": "29"
                 },
                 {
-                    "frames": "33",
                     "subactions": [
                         "DeactivateHitbox dashHitbox"
-                    ]
+                    ],
+                    "frames": "33"
                 }
             ]
         },
@@ -1826,68 +1484,62 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": [
                     "CreateHitbox jab type funnel center 0,0 x_draw -.1 y_draw -.1 hitstun_growth 2 damage 2.0 base_knockback 6.5 velocity_multiplier 0.0 y_bias -16.0 base_hitstun 20 knockback_growth 0.0 size 80,80"
                 ]
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": [
                     "DoTransition checkGrounded"
                 ]
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": [
                     "<DEPRECATED>If attack is pressed to a depth of at least 0.1 during this action:"
                 ]
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": [
                 {
-                    "frames": "4",
                     "subactions": [
                         "PlaySound jab",
                         "ActivateHitbox jab -1",
                         "UnlockHitbox jab"
-                    ]
+                    ],
+                    "frames": "4"
                 },
                 {
-                    "frames": "5",
                     "subactions": [
                         "ChangeSubimage 9"
-                    ]
+                    ],
+                    "frames": "5"
                 },
                 {
-                    "frames": "9",
                     "subactions": [
                         "DeactivateHitbox jab",
                         "ChangeSubimage 10"
-                    ]
+                    ],
+                    "frames": "9"
                 },
                 {
-                    "frames": "11-14",
                     "subactions": [
                         "ChangeSubimage 1"
-                    ]
+                    ],
+                    "frames": "11-14"
                 },
                 {
-                    "frames": "14",
                     "subactions": [
                         "<DEPRECATED>If action doRepeat == True: repeatAttack"
-                    ]
+                    ],
+                    "frames": "14"
                 }
             ]
         },
@@ -1899,51 +1551,45 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": [
                     "CreateHitbox fTilt0 type damage center 20,0 trajectory 50 damage 10.0 base_knockback 1.5 trail_color #bfbf00 knockback_growth 0.2 size 120,40"
                 ]
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": [
                     "<DEPRECATED>If action frame < 14: transition"
                 ]
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": [
                 {
-                    "frames": "10",
                     "subactions": [
                         "PlaySound ftilt"
-                    ]
+                    ],
+                    "frames": "10"
                 },
                 {
-                    "frames": "14",
                     "subactions": [
                         "ActivateHitbox fTilt0 -1"
-                    ]
+                    ],
+                    "frames": "14"
                 },
                 {
-                    "frames": "16",
                     "subactions": [
                         "DeactivateHitbox fTilt0"
-                    ]
+                    ],
+                    "frames": "16"
                 }
             ]
         },
@@ -1955,70 +1601,64 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": [
                     "CreateHitbox fSmash0 type damage charge_base_knockback 0.04 center 20,0 trajectory 40 damage 16.0 base_knockback 8.0 charge_damage 0.426 hitstun_multiplier 1.6 trail_color #ffff00 knockback_growth 0.23 size 120,40"
                 ]
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": [
                     "<DEPRECATED>If action frame < 16: transition"
                 ]
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": [
                 {
-                    "frames": "8",
                     "subactions": [
                         ""
-                    ]
+                    ],
+                    "frames": "8"
                 },
                 {
-                    "frames": "14",
                     "subactions": [
                         "ChangeSubimage 6"
-                    ]
+                    ],
+                    "frames": "14"
                 },
                 {
-                    "frames": "16",
                     "subactions": [
                         "ChangeSubimage 7",
                         "ActivateHitbox fSmash0 -1"
-                    ]
+                    ],
+                    "frames": "16"
                 },
                 {
-                    "frames": "32",
                     "subactions": [
                         "DeactivateHitbox fSmash0"
-                    ]
+                    ],
+                    "frames": "32"
                 },
                 {
-                    "frames": "40",
                     "subactions": [
                         "ChangeSubimage 8"
-                    ]
+                    ],
+                    "frames": "40"
                 },
                 {
-                    "frames": "43",
                     "subactions": [
                         "ChangeSubimage 9"
-                    ]
+                    ],
+                    "frames": "43"
                 }
             ]
         },
@@ -2030,7 +1670,6 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": [
                     "CreateHitbox sweet type damage lock_name main center 30,20 trajectory 100 damage 7.0 base_knockback 8.0 knockback_growth 0.08 size 6,20",
                     "CreateHitbox tangy type damage lock_name main center 27,25 trajectory 110 damage 5.0 base_knockback 7.0 knockback_growth 0.08 size 12,35",
@@ -2038,76 +1677,71 @@
                 ]
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": [
                     "DoTransition checkGrounded"
                 ]
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": [
                 {
-                    "frames": "0-4",
                     "subactions": [
                         "Modify Hurtbox: auto"
-                    ]
+                    ],
+                    "frames": "0-4"
                 },
                 {
-                    "frames": "5-8",
                     "subactions": [
                         "Modify Hurtbox: auto"
-                    ]
+                    ],
+                    "frames": "5-8"
                 },
                 {
-                    "frames": "0",
                     "subactions": [
                         "PlaySound utilt"
-                    ]
+                    ],
+                    "frames": "0"
                 },
                 {
-                    "frames": "4",
                     "subactions": [
                         "ActivateHitbox sweet -1"
-                    ]
+                    ],
+                    "frames": "4"
                 },
                 {
-                    "frames": "6",
                     "subactions": [
                         "ActivateHitbox tangy -1"
-                    ]
+                    ],
+                    "frames": "6"
                 },
                 {
-                    "frames": "8",
                     "subactions": [
                         "ActivateHitbox sour -1",
                         "DeactivateHitbox sweet"
-                    ]
+                    ],
+                    "frames": "8"
                 },
                 {
-                    "frames": "12",
                     "subactions": [
                         "DeactivateHitbox tangy"
-                    ]
+                    ],
+                    "frames": "12"
                 },
                 {
-                    "frames": "16",
                     "subactions": [
                         "DeactivateHitbox sour"
-                    ]
+                    ],
+                    "frames": "16"
                 }
             ]
         },
@@ -2119,7 +1753,6 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": [
                     "CreateHitbox popup type damage center 0,0 trajectory 90 damage 0.0 base_knockback 10.0 base_hitstun 8 knockback_growth 0.0 size 100,100",
                     "CreateHitbox weakL type damage center 0,80 trajectory 150 damage 2.0 base_knockback 5.0 charge_damage 0.027 base_hitstun 6 knockback_growth 0.0 size 80,80",
@@ -2129,83 +1762,78 @@
                 ]
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": [
                     "DoTransition checkGrounded"
                 ]
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": [
                     "DeactivateHitbox uSmash"
                 ]
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": [
                 {
-                    "frames": "8",
                     "subactions": [
                         ""
-                    ]
+                    ],
+                    "frames": "8"
                 },
                 {
-                    "frames": "12",
                     "subactions": [
                         "ActivateArticle: firework",
                         "ChangeSubimage 5",
                         "ActivateHitbox popup -1"
-                    ]
+                    ],
+                    "frames": "12"
                 },
                 {
-                    "frames": "15",
                     "subactions": [
                         "ChangeSubimage 6",
                         "DeactivateHitbox popup",
                         "ActivateHitbox weakL -1"
-                    ]
+                    ],
+                    "frames": "15"
                 },
                 {
-                    "frames": "18",
                     "subactions": [
                         "ChangeSubimage 7",
                         "DeactivateHitbox weakL",
                         "ActivateHitbox weakR -1"
-                    ]
+                    ],
+                    "frames": "18"
                 },
                 {
-                    "frames": "21",
                     "subactions": [
                         "ChangeSubimage 8",
                         "DeactivateHitbox weakR",
                         "ActivateHitbox weakL -1"
-                    ]
+                    ],
+                    "frames": "21"
                 },
                 {
-                    "frames": "24",
                     "subactions": [
                         "ChangeSubimage 9",
                         "DeactivateHitbox weakL",
                         "ActivateHitbox weakR -1"
-                    ]
+                    ],
+                    "frames": "24"
                 },
                 {
-                    "frames": "27",
                     "subactions": [
                         "ChangeSubimage 10",
                         "DeactivateHitbox weakR",
                         "ActivateHitbox uSmash -1"
-                    ]
+                    ],
+                    "frames": "27"
                 }
             ]
         },
@@ -2217,7 +1845,6 @@
             "loop": true,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": [
                     "CreateHitbox spikeBox type funnel center 0,-26 x_draw 0.05 base_hitstun 8 damage 1.0 hitstun_multiplier 4.0 y_draw 0 y_bias -2.0 size 90,40",
                     "CreateHitbox rightHbox type damage lock_name main center 23,-26 trajectory 45 damage 6.0 base_knockback 6.0 knockback_growth 0.12 size 46,40",
@@ -2225,61 +1852,56 @@
                 ]
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": [
                     "<DEPRECATED>If action frame < 8: transition"
                 ]
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": [
                 {
-                    "frames": "0",
                     "subactions": [
                         "PlaySound dtilt"
-                    ]
+                    ],
+                    "frames": "0"
                 },
                 {
-                    "frames": "8",
                     "subactions": [
                         "ActivateHitbox spikeBox -1"
-                    ]
+                    ],
+                    "frames": "8"
                 },
                 {
-                    "frames": "14",
                     "subactions": [
                         "UnlockHitbox spikeBox"
-                    ]
+                    ],
+                    "frames": "14"
                 },
                 {
-                    "frames": "20",
                     "subactions": [
                         "DeactivateHitbox spikeBox",
                         "ActivateHitbox rightHbox -1",
                         "ActivateHitbox leftHbox -1"
-                    ]
+                    ],
+                    "frames": "20"
                 },
                 {
-                    "frames": "26",
                     "subactions": [
                         "DeactivateHitbox rightHbox",
                         "DeactivateHitbox leftHbox",
                         "ChangeSubimage 0"
-                    ]
+                    ],
+                    "frames": "26"
                 }
             ]
         },
@@ -2291,7 +1913,6 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": [
                     "ChangeXSpeed 0",
                     "CreateHitbox rightHbox type sakurai lock_name main center 14,0 trajectory 45 damage 8.0 base_knockback 8.0 charge_damage 0.1 knockback_growth 0.11 size 24,52",
@@ -2299,85 +1920,80 @@
                 ]
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": [
                     "DoTransition checkGrounded"
                 ]
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": [
                 {
-                    "frames": "9",
                     "subactions": [
                         "",
                         "ChangeSubimage 5"
-                    ]
+                    ],
+                    "frames": "9"
                 },
                 {
-                    "frames": "10",
                     "subactions": [
                         "ActivateHitbox rightHbox -1",
                         "ActivateHitbox leftHbox -1"
-                    ]
+                    ],
+                    "frames": "10"
                 },
                 {
-                    "frames": "11",
                     "subactions": [
                         "ModifyHitbox rightHbox knockback_growth 0.13 trajectory 30 charge_damage 0.15 center 24,-13 damage 12.0",
                         "ModifyHitbox leftHbox knockback_growth 0.13 trajectory 150 charge_damage 0.15 center -24,-13 damage 12.0",
                         "PlaySound dsmash",
                         "ChangeSubimage 6"
-                    ]
+                    ],
+                    "frames": "11"
                 },
                 {
-                    "frames": "12",
                     "subactions": [
                         "ModifyHitbox rightHbox knockback_growth 0.15 trajectory 15 charge_damage 0.2 center 34,-26 damage 16.0",
                         "ModifyHitbox leftHbox knockback_growth 0.15 trajectory 135 charge_damage 0.2 center -34,-26 damage 16.0",
                         "ChangeSubimage 7"
-                    ]
+                    ],
+                    "frames": "12"
                 },
                 {
-                    "frames": "14",
                     "subactions": [
                         "ChangeSubimage 8"
-                    ]
+                    ],
+                    "frames": "14"
                 },
                 {
-                    "frames": "16",
                     "subactions": [
                         "ModifyHitbox rightHbox trajectory 30 charge_damage 0.15 damage 12.0 knockback_growth 0.12",
                         "ModifyHitbox leftHbox trajectory 150 charge_damage 0.15 damage 12.0 knockback_growth 0.12",
                         "ChangeSubimage 9"
-                    ]
+                    ],
+                    "frames": "16"
                 },
                 {
-                    "frames": "20,24,28,33,38,44",
                     "subactions": [
                         "ChangeSubimage 1"
-                    ]
+                    ],
+                    "frames": "20,24,28,33,38,44"
                 },
                 {
-                    "frames": "33",
                     "subactions": [
                         "DeactivateHitbox rightHbox",
                         "DeactivateHitbox leftHbox"
-                    ]
+                    ],
+                    "frames": "33"
                 }
             ]
         },
@@ -2389,7 +2005,6 @@
             "loop": true,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": [
                     "ChangeECB 64,78 0,7",
                     "ChangeXPreferred 0",
@@ -2397,74 +2012,69 @@
                 ]
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": [
                     "DoTransition AirControl"
                 ]
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": [
                     "Modify Hurtbox: auto"
                 ]
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": [
                 {
-                    "frames": "2",
                     "subactions": [
                         "PlaySound nair",
                         "SetLandingLag 15",
                         "ActivateHitbox nairBox -1"
-                    ]
+                    ],
+                    "frames": "2"
                 },
                 {
-                    "frames": "4",
                     "subactions": [
                         "ModifyHitbox nairBox damage 7.0 base_knockback 5.0"
-                    ]
+                    ],
+                    "frames": "4"
                 },
                 {
-                    "frames": "12",
                     "subactions": [
                         "SetLandingLag 6",
                         "ModifyHitbox nairBox damage 5.0 base_knockback 2.0"
-                    ]
+                    ],
+                    "frames": "12"
                 },
                 {
-                    "frames": "18",
                     "subactions": [
                         "ModifyHitbox nairBox base_hitstun 0 damage 3.0 hitstun_multiplier 1.0 base_knockback 1.0"
-                    ]
+                    ],
+                    "frames": "18"
                 },
                 {
-                    "frames": "24",
                     "subactions": [
                         "ModifyHitbox nairBox damage 1.0 hitstun_multiplier 0.5 base_knockback 0.0"
-                    ]
+                    ],
+                    "frames": "24"
                 },
                 {
-                    "frames": "28",
                     "subactions": [
                         "SetLandingLag 2"
-                    ]
+                    ],
+                    "frames": "28"
                 },
                 {
-                    "frames": "32",
                     "subactions": [
                         "SetLandingLag 10"
-                    ]
+                    ],
+                    "frames": "32"
                 }
             ]
         },
@@ -2476,81 +2086,75 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": [
                     "CreateHitbox bairBox type damage center -14,0 trajectory 180 damage 10.0 base_knockback 8.0 knockback_growth 0.2 size 64,46"
                 ]
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": [
                     "<DEPRECATED>If action frame >= 15: transition"
                 ]
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": [
                 {
-                    "frames": "2",
                     "subactions": [
                         "SetLandingLag 10",
                         "ChangeXSpeed 0",
                         "ChangeSubimage 2"
-                    ]
+                    ],
+                    "frames": "2"
                 },
                 {
-                    "frames": "4",
                     "subactions": [
                         "ChangeSubimage 3"
-                    ]
+                    ],
+                    "frames": "4"
                 },
                 {
-                    "frames": "6",
                     "subactions": [
                         "ChangeSubimage 4",
                         "PlaySound bair"
-                    ]
+                    ],
+                    "frames": "6"
                 },
                 {
-                    "frames": "8",
                     "subactions": [
                         "ChangeSubimage 5",
                         "ActivateHitbox bairBox -1",
                         "ChangeXSpeed 10 true"
-                    ]
+                    ],
+                    "frames": "8"
                 },
                 {
-                    "frames": "12",
                     "subactions": [
                         "DeactivateHitbox bairBox",
                         "ChangeSubimage 6"
-                    ]
+                    ],
+                    "frames": "12"
                 },
                 {
-                    "frames": "16",
                     "subactions": [
                         "ChangeSubimage 7"
-                    ]
+                    ],
+                    "frames": "16"
                 },
                 {
-                    "frames": "20",
                     "subactions": [
                         "ChangeSprite jump"
-                    ]
+                    ],
+                    "frames": "20"
                 }
             ]
         },
@@ -2562,97 +2166,91 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": [
                     "CreateHitbox sourSpot type damage lock_name sharedLock center -30,2 trajectory 30 damage 10.0 base_knockback 8.0 knockback_growth 0.2 size 40,40",
                     "CreateHitbox sweetSpot type damage lock_name sharedLock center 30,-10 trajectory 270 damage 14.0 base_knockback 12.0 trail_color #ffffff knockback_growth 0.3 size 40,40"
                 ]
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": [
                     "DoTransition AirControl"
                 ]
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": [
                 {
-                    "frames": "0",
                     "subactions": [
                         "SetLandingLag 20",
                         "PlaySound fair"
-                    ]
+                    ],
+                    "frames": "0"
                 },
                 {
-                    "frames": "12",
                     "subactions": [
                         "ActivateHitbox sourSpot -1"
-                    ]
+                    ],
+                    "frames": "12"
                 },
                 {
-                    "frames": "14",
                     "subactions": [
                         "ModifyHitbox sourSpot center -14,20"
-                    ]
+                    ],
+                    "frames": "14"
                 },
                 {
-                    "frames": "16",
                     "subactions": [
                         "ModifyHitbox sourSpot center 9,26",
                         "ActivateHitbox sweetSpot -1"
-                    ]
+                    ],
+                    "frames": "16"
                 },
                 {
-                    "frames": "18",
                     "subactions": [
                         "ModifyHitbox sourSpot center 23,12",
                         "DeactivateHitbox sweetSpot"
-                    ]
+                    ],
+                    "frames": "18"
                 },
                 {
-                    "frames": "20",
                     "subactions": [
                         "ModifyHitbox sourSpot center 30,-10"
-                    ]
+                    ],
+                    "frames": "20"
                 },
                 {
-                    "frames": "22",
                     "subactions": [
                         "DeactivateHitbox sourSpot"
-                    ]
+                    ],
+                    "frames": "22"
                 },
                 {
-                    "frames": "26",
                     "subactions": [
                         "ChangeSprite jump"
-                    ]
+                    ],
+                    "frames": "26"
                 },
                 {
-                    "frames": "33",
                     "subactions": [
                         "SetLandingLag 10"
-                    ]
+                    ],
+                    "frames": "33"
                 },
                 {
-                    "frames": "36",
                     "subactions": [
                         "SetLandingLag 16"
-                    ]
+                    ],
+                    "frames": "36"
                 }
             ]
         },
@@ -2664,7 +2262,6 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": [
                     "CreateHitbox sour type damage lock_name shared center 0,-18 trajectory 60 damage 6.0 base_knockback 8.0 transcendence 1 knockback_growth 0.05 size 60,47",
                     "CreateHitbox tangy type damage lock_name shared center 0,27 trajectory 75 damage 8.0 base_knockback 8.0 transcendence 1 knockback_growth 0.1 size 30,46",
@@ -2672,66 +2269,61 @@
                 ]
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": [
                     "DoTransition AirControl"
                 ]
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": [
                     "SetLandingLag 6"
                 ]
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": [
                 {
-                    "frames": "0",
                     "subactions": [
                         "SetLandingLag 16",
                         "PlaySound uair"
-                    ]
+                    ],
+                    "frames": "0"
                 },
                 {
-                    "frames": "6",
                     "subactions": [
                         "ActivateHitbox sour -1",
                         "ActivateHitbox sweet -1"
-                    ]
+                    ],
+                    "frames": "6"
                 },
                 {
-                    "frames": "9",
                     "subactions": [
                         "ChangeSubimage 2",
                         "DeactivateHitbox sweet",
                         "ActivateHitbox tangy -1"
-                    ]
+                    ],
+                    "frames": "9"
                 },
                 {
-                    "frames": "18",
                     "subactions": [
                         "ChangeSubimage 3",
                         "DeactivateHitbox tangy"
-                    ]
+                    ],
+                    "frames": "18"
                 },
                 {
-                    "frames": "21",
                     "subactions": [
                         "ChangeSubimage 4",
                         "DeactivateHitbox sour",
                         "SetLandingLag 6"
-                    ]
+                    ],
+                    "frames": "21"
                 }
             ]
         },
@@ -2743,7 +2335,6 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": [
                     "CreateHitbox downHbox type damage lock_name allLock center 0,-80 trajectory 270 damage 9.0 base_knockback 8.0 transcendence 1 knockback_growth 0.08 size 10,50",
                     "CreateHitbox leftDiagHbox type damage lock_name allLock center -10,-70 trajectory 225 damage 7.0 base_knockback 7.0 transcendence 1 knockback_growth 0.06 size 10,30",
@@ -2753,46 +2344,40 @@
                 ]
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": [
                     "DoTransition AirControl"
                 ]
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": [
                     "<DEPRECATED>If action frame < 13: stopAir"
                 ]
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": [
                     "SetLandingLag 8"
                 ]
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": [
                 {
-                    "frames": "3",
                     "subactions": [
                         "SetLandingLag 16"
-                    ]
+                    ],
+                    "frames": "3"
                 },
                 {
-                    "frames": "1-12",
                     "subactions": [
                         "ChangeYSpeed 0"
-                    ]
+                    ],
+                    "frames": "1-12"
                 },
                 {
-                    "frames": "13",
                     "subactions": [
                         "ActivateHitbox downHbox -1",
                         "ActivateHitbox leftDiagHbox -1",
@@ -2800,16 +2385,16 @@
                         "ActivateHitbox leftSourHbox -1",
                         "ActivateHitbox rightSourHbox -1",
                         "ChangeYSpeed -20"
-                    ]
+                    ],
+                    "frames": "13"
                 },
                 {
-                    "frames": "30",
                     "subactions": [
                         "<DEPRECATED>If attack is pressed to a depth of at least 0.1 during this action:frame_hold"
-                    ]
+                    ],
+                    "frames": "30"
                 },
                 {
-                    "frames": "31",
                     "subactions": [
                         "DeactivateHitbox downHbox",
                         "DeactivateHitbox leftDiagHbox",
@@ -2817,25 +2402,26 @@
                         "DeactivateHitbox leftSourHbox",
                         "DeactivateHitbox rightSourHbox",
                         "ChangeSubimage 3"
-                    ]
+                    ],
+                    "frames": "31"
                 },
                 {
-                    "frames": "33",
                     "subactions": [
                         "ChangeSubimage 2"
-                    ]
+                    ],
+                    "frames": "33"
                 },
                 {
-                    "frames": "36",
                     "subactions": [
                         "ChangeSubimage 1"
-                    ]
+                    ],
+                    "frames": "36"
                 },
                 {
-                    "frames": "39",
                     "subactions": [
                         "ChangeSubimage 0"
-                    ]
+                    ],
+                    "frames": "39"
                 }
             ]
         },
@@ -2847,7 +2433,6 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": [
                     "ChangeECB 64,78 0,7",
                     "CreateHitbox dashHitbox type sakurai center 0,0 trajectory 20 damage 2.0 base_knockback 5.0 knockback_growth 0.15 size 70,70",
@@ -2855,52 +2440,47 @@
                 ]
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": [
                     "Modify Hurtbox: auto"
                 ]
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": [
                 {
-                    "frames": "8",
                     "subactions": [
                         "ActivateHitbox chainHitbox -1"
-                    ]
+                    ],
+                    "frames": "8"
                 },
                 {
-                    "frames": "12,16",
                     "subactions": [
                         "UnlockHitbox chainHitbox"
-                    ]
+                    ],
+                    "frames": "12,16"
                 },
                 {
-                    "frames": "20",
                     "subactions": [
                         "DeactivateHitbox chainHitbox",
                         "ActivateHitbox dashHitbox -1"
-                    ]
+                    ],
+                    "frames": "20"
                 },
                 {
-                    "frames": "24",
                     "subactions": [
                         "DeactivateHitbox dashHitbox"
-                    ]
+                    ],
+                    "frames": "24"
                 }
             ]
         },
@@ -2912,77 +2492,71 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": [
                     "LoadArticle projectile",
                     "ChangeXSpeed 0"
                 ]
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": [
                     "DoTransition checkGrounded",
                     "DoTransition tiltReversible"
                 ]
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": [
                 {
-                    "frames": "6",
                     "subactions": [
                         "PlaySound laser"
-                    ]
+                    ],
+                    "frames": "6"
                 },
                 {
-                    "frames": "12",
                     "subactions": [
                         "ActivateArticle: projectile"
-                    ]
+                    ],
+                    "frames": "12"
                 },
                 {
-                    "frames": "14",
                     "subactions": [
                         "ChangeSubimage 7"
-                    ]
+                    ],
+                    "frames": "14"
                 },
                 {
-                    "frames": "20",
                     "subactions": [
                         "ChangeSubimage 8"
-                    ]
+                    ],
+                    "frames": "20"
                 },
                 {
-                    "frames": "22-36",
                     "subactions": [
                         "<DEPRECATED>If special is pressed to a depth of at least 0.1 during this action:checkRepeat"
-                    ]
+                    ],
+                    "frames": "22-36"
                 },
                 {
-                    "frames": "26",
                     "subactions": [
                         "ChangeSubimage 9"
-                    ]
+                    ],
+                    "frames": "26"
                 },
                 {
-                    "frames": "32",
                     "subactions": [
                         "ChangeSubimage 10"
-                    ]
+                    ],
+                    "frames": "32"
                 }
             ]
         },
@@ -2994,83 +2568,77 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": [
                     "LoadArticle projectile"
                 ]
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": [
                     "DoTransition tiltReversible"
                 ]
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": [
                     "SetLandingLag 12"
                 ]
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": [
                 {
-                    "frames": "0",
                     "subactions": [
                         "SetLandingLag 18"
-                    ]
+                    ],
+                    "frames": "0"
                 },
                 {
-                    "frames": "6",
                     "subactions": [
                         "PlaySound laser"
-                    ]
+                    ],
+                    "frames": "6"
                 },
                 {
-                    "frames": "12",
                     "subactions": [
                         "ActivateArticle: projectile"
-                    ]
+                    ],
+                    "frames": "12"
                 },
                 {
-                    "frames": "14",
                     "subactions": [
                         "ChangeSubimage 7"
-                    ]
+                    ],
+                    "frames": "14"
                 },
                 {
-                    "frames": "15-36",
                     "subactions": [
                         "<DEPRECATED>If special is pressed to a depth of at least 0.1 during this action:repeatAttack"
-                    ]
+                    ],
+                    "frames": "15-36"
                 },
                 {
-                    "frames": "20",
                     "subactions": [
                         "ChangeSubimage 8"
-                    ]
+                    ],
+                    "frames": "20"
                 },
                 {
-                    "frames": "26",
                     "subactions": [
                         "ChangeSubimage 9"
-                    ]
+                    ],
+                    "frames": "26"
                 },
                 {
-                    "frames": "32",
                     "subactions": [
                         "ChangeSubimage 10"
-                    ]
+                    ],
+                    "frames": "32"
                 }
             ]
         },
@@ -3082,7 +2650,6 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": [
                     "LoadArticle shine",
                     "CreateHitbox damage type damage transcendence 5 center 0,0 trajectory 330 damage 4.0 base_knockback 2.0 hitlag_multiplier 2.0 hitstun_multiplier 7.0 trail_color #00ffff base_hitstun 0 knockback_growth 0.0 size 64,64",
@@ -3090,23 +2657,18 @@
                 ]
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": [
                     "DeactivateArticle shine",
                     "<TODO>Change Preferred Speed: <engine.subaction.VarData instance at 0x08B73558> Y",
@@ -3115,7 +2677,6 @@
             },
             "actions_at_frame": [
                 {
-                    "frames": "0",
                     "subactions": [
                         "ChangeYSpeed 0",
                         "ChangeYPreferred -1",
@@ -3125,28 +2686,29 @@
                         "ActivateHitbox reflect -1",
                         "CreateColorMask: #00FFFF -1 8",
                         "PlaySound shine"
-                    ]
+                    ],
+                    "frames": "0"
                 },
                 {
-                    "frames": "7",
                     "subactions": [
                         "DeactivateHitbox damage"
-                    ]
+                    ],
+                    "frames": "7"
                 },
                 {
-                    "frames": "8",
                     "subactions": [
                         "<DEPRECATED>If special is pressed to a depth of at least 0.1 during this action:frame_hold",
                         "<TODO>Change Preferred Speed: <engine.subaction.VarData instance at 0x08B73698> Y"
-                    ]
+                    ],
+                    "frames": "8"
                 },
                 {
-                    "frames": "12",
                     "subactions": [
                         "DeactivateArticle shine",
                         "DeactivateHitbox reflect",
                         "RemoveColorMask"
-                    ]
+                    ],
+                    "frames": "12"
                 }
             ]
         },
@@ -3158,7 +2720,6 @@
             "loop": true,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": [
                     "ChangeXPreferred 0",
                     "ChangeECB 64,78 0,7",
@@ -3167,51 +2728,46 @@
                 ]
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": [
                 {
-                    "frames": "12",
                     "subactions": [
                         "ActivateHitbox chainHitbox -1"
-                    ]
+                    ],
+                    "frames": "12"
                 },
                 {
-                    "frames": "16,20",
                     "subactions": [
                         "UnlockHitbox chainHitbox"
-                    ]
+                    ],
+                    "frames": "16,20"
                 },
                 {
-                    "frames": "24",
                     "subactions": [
                         "DeactivateHitbox chainHitbox",
                         "ActivateHitbox dashHitbox -1"
-                    ]
+                    ],
+                    "frames": "24"
                 },
                 {
-                    "frames": "28",
                     "subactions": [
                         "DeactivateHitbox dashHitbox",
                         "ChangeXPreferred 0"
-                    ]
+                    ],
+                    "frames": "28"
                 }
             ]
         },
@@ -3223,43 +2779,37 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": [
                     "CreateHitbox throwBox type damage center 20,0 trajectory 40 damage 13.0 base_knockback 12.0 knockback_growth 0.2 size 120,40"
                 ]
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": [
                 {
-                    "frames": "14",
                     "subactions": [
                         "ActivateHitbox throwBox -1"
-                    ]
+                    ],
+                    "frames": "14"
                 },
                 {
-                    "frames": "16",
                     "subactions": [
                         "DeactivateHitbox throwBox"
-                    ]
+                    ],
+                    "frames": "16"
                 }
             ]
         },
@@ -3271,54 +2821,48 @@
             "loop": true,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": [
                     "CreateHitbox throwBox type damage center 20,-20 trajectory 260 damage 1.0 base_knockback 3.0 knockback_growth 0.0 size 50,50",
                     "ChangeECB 64,78 0,7"
                 ]
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": [
                     "DoTransition checkGrounded"
                 ]
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": [
                     "Modify Hurtbox: auto"
                 ]
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": [
                 {
-                    "frames": "0",
                     "subactions": [
                         "ActivateHitbox throwBox -1"
-                    ]
+                    ],
+                    "frames": "0"
                 },
                 {
-                    "frames": "4,8,12,16,20,24,28",
                     "subactions": [
                         "UnlockHitbox throwBox"
-                    ]
+                    ],
+                    "frames": "4,8,12,16,20,24,28"
                 },
                 {
-                    "frames": "28",
                     "subactions": [
                         "ModifyHitbox throwBox weight_influence 1.0 trajectory 90 base_knockback 10.0 knockback_growth 0.12"
-                    ]
+                    ],
+                    "frames": "28"
                 }
             ]
         },
@@ -3330,7 +2874,6 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": [
                     "SetVar object flinch_knockback_threshold 10000",
                     "SetVar object flinch_damage_threshold 10000",
@@ -3338,40 +2881,35 @@
                 ]
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": [
                 {
-                    "frames": "8",
                     "subactions": [
                         "ChangeYSpeed 45",
                         "SetLandingLag 12"
-                    ]
+                    ],
+                    "frames": "8"
                 },
                 {
-                    "frames": "10",
                     "subactions": [
                         "ChangeGravity 4.0",
                         "ChangeSubimage 0",
                         "<DEPRECATED>If fighter grounded == True: blast"
-                    ]
+                    ],
+                    "frames": "10"
                 }
             ]
         },
@@ -3383,41 +2921,35 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": [
                     "CreateHitbox ThrowBox type throw knockback_growth 0.05 trajectory 170 damage 7.0 weight_influence 0.5 base_knockback 10.0"
                 ]
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": [
                     "DoTransition checkGrounded"
                 ]
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": [
                     "Flip"
                 ]
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": [
                 {
-                    "frames": "1",
                     "subactions": [
                         "ActivateHitbox ThrowBox -1"
-                    ]
+                    ],
+                    "frames": "1"
                 }
             ]
         },
@@ -3429,17 +2961,14 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": [
                     "CreateHitbox launchHitbox type damage center 0,0 trajectory 90 damage 14.0 base_knockback 12.0 hitstun_multiplier 2.8 knockback_growth 0.1 size 64,64"
                 ]
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": [
                     "SetLandingLag 10",
                     "Unrotate",
@@ -3450,69 +2979,66 @@
                 ]
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": [
                 {
-                    "frames": "0",
                     "subactions": [
                         "PlaySound slingsquare"
-                    ]
+                    ],
+                    "frames": "0"
                 },
                 {
-                    "frames": "3",
                     "subactions": [
                         "ChangeSubimage 5"
-                    ]
-                },
-				{
-                    "frames": "6",
-                    "subactions": [
-                        "ChangeSubimage 6"
-                    ]
-                },
-				{
-                    "frames": "9",
-                    "subactions": [
-                        "ChangeSubimage 7"
-                    ]
-                },
-				{
-                    "frames": "12",
-                    "subactions": [
-                        "ChangeSubimage 8"
-                    ]
-                },
-				{
-                    "frames": "15",
-                    "subactions": [
-                        "ChangeSubimage 9"
-                    ]
+                    ],
+                    "frames": "3"
                 },
                 {
-                    "frames": "30",
+                    "subactions": [
+                        "ChangeSubimage 6"
+                    ],
+                    "frames": "6"
+                },
+                {
+                    "subactions": [
+                        "ChangeSubimage 7"
+                    ],
+                    "frames": "9"
+                },
+                {
+                    "subactions": [
+                        "ChangeSubimage 8"
+                    ],
+                    "frames": "12"
+                },
+                {
+                    "subactions": [
+                        "ChangeSubimage 9"
+                    ],
+                    "frames": "15"
+                },
+                {
                     "subactions": [
                         "ModifyHitbox launchHitbox trajectory 45",
                         "ChangeECB 92,92 0,0"
-                    ]
+                    ],
+                    "frames": "30"
                 },
                 {
-                    "frames": "31",
                     "subactions": [
                         "DeactivateHitbox launchHitbox",
-						"ChangeYSpeed 20",
+                        "ChangeYSpeed 20",
                         "<TODO>Change Fighter Speed: ",
                         "DoAction UpSpecialFlight"
-                    ]
+                    ],
+                    "frames": "31"
                 }
             ]
         },
@@ -3524,50 +3050,44 @@
             "loop": true,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": [
                     "CreateHitbox flyingHitbox type damage center 0,0 base_knockback 10.0 trajectory 70 damage 8.0 base_hitstun 20 hitstun_multiplier 2.0 knockback_growth 0.05 size 64,64",
                     "ActivateHitbox flyingHitbox -1"
                 ]
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": [
                     "DoTransition grabLedges",
-					"DoTransition AirControl",
+                    "DoTransition AirControl",
                     "<DEPRECATED>If action frame >= 26: control"
                 ]
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": [
                     "Unrotate"
                 ]
             },
             "actions_at_frame": [
                 {
-                    "frames": "26",
                     "subactions": [
                         "DeactivateHitbox flyingHitbox"
-                    ]
+                    ],
+                    "frames": "26"
                 },
                 {
-                    "frames": "49",
                     "subactions": [
                         "DoAction Fall"
-                    ]
+                    ],
+                    "frames": "49"
                 }
             ]
         },
@@ -3579,70 +3099,64 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": [
                     "CreateHitbox grabHitbox type grab transcendence -1 center 30,0 size 30,30"
                 ]
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": [
                     "DoTransition checkGrounded"
                 ]
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": [
                 {
-                    "frames": "6",
                     "subactions": [
                         "ActivateHitbox grabHitbox -1"
-                    ]
+                    ],
+                    "frames": "6"
                 },
                 {
-                    "frames": "8",
                     "subactions": [
                         "ChangeSubimage 4",
                         "DeactivateHitbox grabHitbox"
-                    ]
+                    ],
+                    "frames": "8"
                 },
                 {
-                    "frames": "11",
                     "subactions": [
                         "ChangeSubimage 3"
-                    ]
+                    ],
+                    "frames": "11"
                 },
                 {
-                    "frames": "15",
                     "subactions": [
                         "ChangeSubimage 2"
-                    ]
+                    ],
+                    "frames": "15"
                 },
                 {
-                    "frames": "20",
                     "subactions": [
                         "ChangeSubimage 1"
-                    ]
+                    ],
+                    "frames": "20"
                 },
                 {
-                    "frames": "26",
                     "subactions": [
                         "ChangeSubimage 0"
-                    ]
+                    ],
+                    "frames": "26"
                 }
             ]
         },
@@ -3654,27 +3168,21 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": []
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": []
@@ -3687,70 +3195,64 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": [
                     "CreateHitbox grabHitbox type grab transcendence -1 center 40,0 size 50,30"
                 ]
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": [
                     "DoTransition checkGrounded"
                 ]
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": [
                 {
-                    "frames": "10",
                     "subactions": [
                         "ActivateHitbox grabHitbox -1"
-                    ]
+                    ],
+                    "frames": "10"
                 },
                 {
-                    "frames": "13",
                     "subactions": [
                         "ChangeSubimage 4",
                         "DeactivateHitbox grabHitbox"
-                    ]
+                    ],
+                    "frames": "13"
                 },
                 {
-                    "frames": "18",
                     "subactions": [
                         "ChangeSubimage 3"
-                    ]
+                    ],
+                    "frames": "18"
                 },
                 {
-                    "frames": "22",
                     "subactions": [
                         "ChangeSubimage 2"
-                    ]
+                    ],
+                    "frames": "22"
                 },
                 {
-                    "frames": "26",
                     "subactions": [
                         "ChangeSubimage 1"
-                    ]
+                    ],
+                    "frames": "26"
                 },
                 {
-                    "frames": "30",
                     "subactions": [
                         "ChangeSubimage 0"
-                    ]
+                    ],
+                    "frames": "30"
                 }
             ]
         },
@@ -3762,58 +3264,52 @@
             "loop": false,
             "exit_action": "",
             "set_up_actions": {
-                "frames": "",
                 "subactions": [
                     "CreateHitbox jab type throw hitlag_multiplier 0.0 damage 3.0 base_hitstun 0"
                 ]
             },
             "state_transition_actions": {
-                "frames": "",
                 "subactions": [
                     "DoTransition checkGrounded"
                 ]
             },
             "actions_before_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_after_frame": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_last_frame": {
-                "frames": "",
                 "subactions": []
             },
             "tear_down_actions": {
-                "frames": "",
                 "subactions": []
             },
             "actions_at_frame": [
                 {
-                    "frames": "4",
                     "subactions": [
                         "ActivateHitbox jab -1"
-                    ]
+                    ],
+                    "frames": "4"
                 },
                 {
-                    "frames": "5",
                     "subactions": [
                         "ChangeSubimage 9"
-                    ]
+                    ],
+                    "frames": "5"
                 },
                 {
-                    "frames": "9",
                     "subactions": [
                         "DeactivateHitbox jab",
                         "ChangeSubimage 10"
-                    ]
+                    ],
+                    "frames": "9"
                 },
                 {
-                    "frames": "11-14",
                     "subactions": [
                         "ChangeSubimage 1"
-                    ]
+                    ],
+                    "frames": "11-14"
                 }
             ]
         }

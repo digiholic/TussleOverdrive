@@ -18,6 +18,23 @@ public class ActionFile
         actions.Add(newAction);
     }
 
+    public void Delete(DynamicAction action)
+    {
+        actions.Remove(action);
+    }
+
+    public void Delete(string action_name)
+    {
+        foreach (DynamicAction act in actions)
+        {
+            if (act.name == action_name)
+            {
+                Delete(act);
+                return;
+            }
+        }
+    }
+
     public DynamicAction Get(string name)
     {
         foreach (DynamicAction action in actions)
@@ -37,9 +54,9 @@ public class ActionFile
 
     public void WriteJSON(string path)
     {
-        string action_json_path = Path.Combine("Assets/Resources/", path);
         string thisjson = JsonUtility.ToJson(this, true);
-        File.WriteAllText(action_json_path, thisjson);
+        Debug.Log(path);
+        File.WriteAllText(path, thisjson);
     }
 }
 
@@ -59,7 +76,7 @@ public class DynamicAction
     public ActionGroup actions_after_frame = new ActionGroup();
     public ActionGroup actions_at_last_frame = new ActionGroup();
     public ActionGroup tear_down_actions = new ActionGroup();
-    public List<ActionGroup> actions_at_frame = new List<ActionGroup>();
+    public List<ActionFrameGroup> actions_at_frame = new List<ActionFrameGroup>();
 
     public Dictionary<int, ActionGroup> actions_at_frame_dict = new Dictionary<int, ActionGroup>();
 
@@ -80,7 +97,7 @@ public class DynamicAction
     public void BuildDict()
     {
         actions_at_frame_dict = new Dictionary<int, ActionGroup>();
-        foreach (ActionGroup group in actions_at_frame)
+        foreach (ActionFrameGroup group in actions_at_frame)
         {
             foreach (int frame in group.GetFrameNumbers())
                 actions_at_frame_dict[frame] = group;
@@ -91,8 +108,14 @@ public class DynamicAction
 [System.Serializable]
 public class ActionGroup
 {
-    public string frames; //Used only for actions_at_frame, parses the string to see if the current frame is in the allowed list
     public List<string> subactions = new List<string>();
+
+}
+
+[System.Serializable]
+public class ActionFrameGroup : ActionGroup
+{
+    public string frames; //Used only for actions_at_frame, parses the string to see if the current frame is in the allowed list
 
     public List<int> GetFrameNumbers()
     {
