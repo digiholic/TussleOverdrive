@@ -130,6 +130,16 @@ public class MenuButtonNavigator : MonoBehaviour {
     {
         Last.Select();
     }
+
+    public void ShowSettingsPanel(string panelName)
+    {
+        SettingsPanelRig.GetPanel(panelName);
+    }
+
+    public void SelectSettingsPanel(string panelName)
+    {
+        SettingsPanelRig.GetPanel(panelName);
+    }
 }
 
 [System.Serializable]
