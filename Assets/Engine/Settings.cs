@@ -42,10 +42,39 @@ public class Settings : MonoBehaviour {
     public bool display_platforms = false;
 
     //Player Colors
-    //public string[] player_colors = new string[] { "#f54e4e", "#4e54f5", "#f5f54e", "#67f54e" };
     public Color[] player_colors = new Color[4];
 
-    public SettingsPreset preset;
+    //Physics
+    public float gravity_ratio = 1.0f;
+    public float weight_ratio = 1.0f;
+    public float friction_ratio = 1.0f;
+    public float aircontrol_ratio = 1.0f;
+    public float hitstun_ratio = 1.0f;
+    public float hitlag_ratio = 1.0f;
+    public float shieldstun_ratio = 1.0f;
+
+    //Ledge Settings
+    public string conflict_type = "Share";
+    public string sweetspot_size = "Medium";
+    public bool sweetspot_facing_only = false;
+    public bool team_ledge_conflict = false;
+    public int ledge_invulnerability = 60;
+    public bool regrab_invulnerability = false;
+    public int slow_wakeup_threshold = 100;
+
+    //Air Dodge Settings
+    public bool air_dodge_enabled = true;
+    public bool directional_air_dodge = true;
+    public bool enable_wavedash = true;
+    public int air_dodge_lag = 16;
+
+    //Respawn Settings
+    public int respawn_downtime = 0;
+    public int respawn_lifetime = 300;
+    public int respawn_invuln = 120;
+
+    //L-Cancel Settings
+    public string cancel_type = "NONE";
 
     //Used for static access of settings
     public static Settings current_settings = null;
@@ -82,73 +111,6 @@ public class Settings : MonoBehaviour {
     void Start()
     {
         audio_manager = GetComponent<AudioManager>();
-        preset = GetComponent<SettingsPreset>();
-        
-        PlayerPrefs.SetString("control_attack_0", "Z");
-        PlayerPrefs.SetString("control_special_0", "X");
-        PlayerPrefs.SetString("control_jump_0", "C");
-        PlayerPrefs.SetString("control_shield_0", "A");
-        PlayerPrefs.SetString("control_left_0", "LeftArrow");
-        PlayerPrefs.SetString("control_right_0", "RightArrow");
-        PlayerPrefs.SetString("control_up_0", "UpArrow");
-        PlayerPrefs.SetString("control_down_0", "DownArrow");
-
-        PlayerPrefs.SetString("control_attack_1", "U");
-        PlayerPrefs.SetString("control_special_1", "Y");
-        PlayerPrefs.SetString("control_jump_1", "Semicolon");
-        PlayerPrefs.SetString("control_shield_1", "O");
-        PlayerPrefs.SetString("control_left_1", "J");
-        PlayerPrefs.SetString("control_right_1", "L");
-        PlayerPrefs.SetString("control_up_1", "I");
-        PlayerPrefs.SetString("control_down_1", "K");
-
-        PlayerPrefs.SetString("control_attack_2", "Alpha1");
-        PlayerPrefs.SetString("control_special_2", "Alpha2");
-        PlayerPrefs.SetString("control_jump_2", "Alpha3");
-        PlayerPrefs.SetString("control_shield_2", "Alpha4");
-        PlayerPrefs.SetString("control_left_2", "Alpha5");
-        PlayerPrefs.SetString("control_right_2", "Alpha6");
-        PlayerPrefs.SetString("control_up_2", "Alpha7");
-        PlayerPrefs.SetString("control_down_2", "Alpha8");
-
-        PlayerPrefs.SetString("control_attack_3", "Alpha1");
-        PlayerPrefs.SetString("control_special_3", "Alpha2");
-        PlayerPrefs.SetString("control_jump_3", "Alpha3");
-        PlayerPrefs.SetString("control_shield_3", "Alpha4");
-        PlayerPrefs.SetString("control_left_3", "Alpha5");
-        PlayerPrefs.SetString("control_right_3", "Alpha6");
-        PlayerPrefs.SetString("control_up_3", "Alpha7");
-        PlayerPrefs.SetString("control_down_3", "Alpha8");
-    }
-
-    public void ChangeBGMVolume(float vol)
-    {
-        music_volume = vol;
-    }
-
-    public void ChangeSFXVolume(float vol)
-    {
-        sfx_volume = vol;
-    }
-
-    public void ChangeHitboxDisplay(bool check)
-    {
-        display_hitboxes = check;
-    }
-
-    public void ChangeHurtboxDisplay(bool check)
-    {
-        display_hurtboxes = check;
-    }
-
-    public void ChangeColliderDisplay(bool check)
-    {
-        display_colliders = check;
-    }
-
-    public void ChangePlatformDisplay(bool check)
-    {
-        display_platforms = check;
     }
 
     public void ChangeResolution()
@@ -192,6 +154,36 @@ public class Settings : MonoBehaviour {
             case ValidResolution.r1024x768:
                 Screen.SetResolution(1024, 768, fullscreen);
                 break;
+        }
+    }
+
+    public void ChangeSetting(string setting_name,object value)
+    {
+        switch (setting_name)
+        {
+            case "gravity_ratio":
+                gravity_ratio = ((int)value / 100.0f);
+                break;
+            case "weight_ratio":
+                weight_ratio = ((int)value / 100.0f);
+                break;
+            case "friction_ratio":
+                friction_ratio = ((int)value / 100.0f);
+                break;
+            case "aircontrol_ratio":
+                aircontrol_ratio = ((int)value / 100.0f);
+                break;
+            case "hitstun_ratio":
+                hitstun_ratio = ((int)value / 100.0f);
+                break;
+            case "hitlag_ratio":
+                hitlag_ratio = ((int)value / 100.0f);
+                break;
+            case "shieldstun_ratio":
+                shieldstun_ratio = ((int)value / 100.0f);
+                break;
+            default:
+                return;
         }
     }
 }

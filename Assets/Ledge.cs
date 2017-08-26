@@ -28,17 +28,17 @@ public class Ledge : MonoBehaviour {
             fighter.SendMessage("GrabLedge", this);
         } else
         {
-            SettingsPreset.ConflictType conflict = Settings.current_settings.preset.conflict_type;
-            if (conflict == SettingsPreset.ConflictType.SHARE)
+            string conflict = Settings.current_settings.conflict_type;
+            if (conflict == "Share")
             {
                 fighters_grabbed.Add(fighter);
                 fighter.SendMessage("GrabLedge", this);
             }
-            else if (conflict == SettingsPreset.ConflictType.HOG)
+            else if (conflict == "Hog")
             {
                 return; //The grabbing fighter entirely ignores the ledge if he can't grab it
             }
-            else if (conflict == SettingsPreset.ConflictType.TRUMP)
+            else if (conflict == "Trump")
             {
                 foreach (AbstractFighter other in fighters_grabbed)
                 {

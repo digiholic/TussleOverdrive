@@ -377,7 +377,7 @@ public class AbstractFighter : BattleComponent {
         if (hitstun_frames > 0.5)
         {
             //if not isinstance(self.current_action, baseActions.HitStun) or (self.current_action.last_frame-self.current_action.frame) / float(settingsManager.getSetting('hitstun')) <= hitstun_frames+15:
-            DoHitStun(hitstun_frames * Settings.current_settings.preset.hitstun_ratio, _trajectory);
+            DoHitStun(hitstun_frames * Settings.current_settings.hitstun_ratio, _trajectory);
             battleObject.GetActionHandler().CurrentAction.SetVar("tech_cooldown", Mathf.RoundToInt(_total_kb * _hitstunMultiplier));
         }
     }

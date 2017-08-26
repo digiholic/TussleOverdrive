@@ -20,7 +20,7 @@ public class SettingsPanelRig : MonoBehaviour {
 
     public static SettingsPanel GetPanel(string name)
     {
-        Debug.Log(name);
+        panels[name].starting_selection.Select();
         return panels[name];
     }
 }
