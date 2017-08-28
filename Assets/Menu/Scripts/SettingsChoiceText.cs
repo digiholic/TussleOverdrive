@@ -22,6 +22,7 @@ public class SettingsChoiceText : MonoBehaviour {
     void RedrawText()
     {
         label.text = display_text + text_values[value] + after_text;
+        Settings.current_settings.ChangeSetting(var_name, text_values[value]);
     }
 
     void IncrementValue()

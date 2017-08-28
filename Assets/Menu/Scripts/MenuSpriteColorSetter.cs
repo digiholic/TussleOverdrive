@@ -18,9 +18,9 @@ public class MenuSpriteColorSetter : MonoBehaviour {
 
     void SetColor(Color color)
     {
-        if (color_object == ObjectToColor.Sprite || color_object == ObjectToColor.Both)
+        if (buttonBg != null && (color_object == ObjectToColor.Sprite || color_object == ObjectToColor.Both))
             buttonBg.color = color;
-        if (color_object == ObjectToColor.Text || color_object == ObjectToColor.Both)
+        if (text != null && (color_object == ObjectToColor.Text || color_object == ObjectToColor.Both))
             text.color = color;
     }
 }

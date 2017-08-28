@@ -5,8 +5,10 @@ using UnityEngine;
 public class SettingsPanelRig : MonoBehaviour {
     private static Dictionary<string, SettingsPanel> panels = new Dictionary<string, SettingsPanel>();
 
+    private static SettingsPanel selected_panel;
+
 	// Use this for initialization
-	void Start () {
+	void Awake() {
 	    foreach (SettingsPanel panel in GetComponentsInChildren<SettingsPanel>())
         {
             panels[panel.panelname] = panel;
@@ -17,6 +19,17 @@ public class SettingsPanelRig : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public static void SelectPanel(string name)
+    {
+        if (selected_panel != null)
+        {
+            if (selected_panel == panels[name]) return;
+            selected_panel.Disable();
+        }
+        panels[name].Enable();
+        selected_panel = panels[name];
+    }
 
     public static SettingsPanel GetPanel(string name)
     {

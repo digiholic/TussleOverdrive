@@ -20,16 +20,18 @@ public class MenuButtonNavigator : MonoBehaviour {
     public FuncData LeftFunction;
     public FuncData UpFunction;
     public FuncData DownFunction;
+    public FuncData OnSelectFunction;
 
     private bool selected = false;
     private static MenuButtonNavigator Last;
 
-    void Awake()
+    void Start()
     {
         if (DefaultSelected)
         {
             selectedButton = this;
             selected = true;
+            if (OnSelectFunction.FuncName != "") SendMessage(OnSelectFunction.FuncName, OnSelectFunction.FuncArg);
         }
     }
 
@@ -76,6 +78,7 @@ public class MenuButtonNavigator : MonoBehaviour {
     {
         selectedButton.Deselect();
         selected = true;
+        if (!string.IsNullOrEmpty(OnSelectFunction.FuncName)) SendMessage(OnSelectFunction.FuncName, OnSelectFunction.FuncArg);
     }
 
     public void Deselect()
@@ -116,6 +119,12 @@ public class MenuButtonNavigator : MonoBehaviour {
         SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
     }
 
+    public void SaveSettings(string sceneName)
+    {
+        Settings.current_settings.SaveSettings();
+        if (sceneName != null) LoadScene(sceneName);
+    }
+
     public void QuitGame()
     {
         Application.Quit();
@@ -133,12 +142,17 @@ public class MenuButtonNavigator : MonoBehaviour {
 
     public void ShowSettingsPanel(string panelName)
     {
-        SettingsPanelRig.GetPanel(panelName);
+        SettingsPanelRig.SelectPanel(panelName);
     }
 
     public void SelectSettingsPanel(string panelName)
     {
         SettingsPanelRig.GetPanel(panelName);
+    }
+
+    public void ExitPanel()
+    {
+        SettingsPanel.active_panel.settings_header.Select();
     }
 }
 

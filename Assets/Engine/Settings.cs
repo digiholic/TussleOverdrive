@@ -88,18 +88,21 @@ public class Settings : MonoBehaviour {
         File.WriteAllText("Assets/Settings/settings.json",json);
     }
 
+    public void LoadSettings()
+    {
+        //load settings from JSON
+        if (File.Exists("Assets/Settings/settings.json"))
+        {
+            string settings_json = File.ReadAllText("Assets/Settings/settings.json");
+            JsonUtility.FromJsonOverwrite(settings_json, this);
+        }
+    }
     void Awake()
     {
         DontDestroyOnLoad(gameObject);
         if (current_settings == null) //if we don't have a settings object
         {
-            //load settings from JSON
-            if (File.Exists("Assets/Settings/settings.json"))
-            {
-                string settings_json = File.ReadAllText("Assets/Settings/settings.json");
-                JsonUtility.FromJsonOverwrite(settings_json, this);
-            }
-
+            LoadSettings();
             current_settings = this;
         }
         else //if it's already set
@@ -182,8 +185,91 @@ public class Settings : MonoBehaviour {
             case "shieldstun_ratio":
                 shieldstun_ratio = ((int)value / 100.0f);
                 break;
+            case "conflict_type":
+                conflict_type = value.ToString();
+                break;
+            case "sweetspot_size":
+                sweetspot_size = value.ToString();
+                break;
+            case "sweetspot_facing_only":
+                sweetspot_facing_only = (value.ToString() == "Yes");
+                break;
+            case "team_ledge_conflict":
+                team_ledge_conflict = (value.ToString() == "Yes");
+                break;
+            case "ledge_invulnerability":
+                ledge_invulnerability = (int)value;
+                break;
+            case "regrab_invulnerability":
+                regrab_invulnerability = (value.ToString() == "Yes");
+                break;
+            case "slow_wakeup_threshold":
+                slow_wakeup_threshold = (int)value;
+                break;
+            case "air_dodge_enabled":
+                air_dodge_enabled = (value.ToString() == "Yes");
+                break;
+            case "directional_air_dodge":
+                directional_air_dodge = (value.ToString() == "Directional");
+                break;
+            case "enable_wavedash":
+                enable_wavedash = (value.ToString() == "Yes");
+                break;
+            case "air_dodge_lag":
+                air_dodge_lag = (int)value;
+                break;
+            case "cancel_type":
+                cancel_type = value.ToString();
+                break;
             default:
                 return;
+        }
+    }
+
+    public object GetSetting(string setting_name)
+    {
+        switch (setting_name)
+        {
+            case "gravity_ratio":
+                return gravity_ratio;
+            case "weight_ratio":
+                return weight_ratio;
+            case "friction_ratio":
+                return friction_ratio;
+            case "aircontrol_ratio":
+                return aircontrol_ratio;
+            case "hitstun_ratio":
+                return hitstun_ratio;
+            case "hitlag_ratio":
+                return hitlag_ratio;
+            case "shieldstun_ratio":
+                return shieldstun_ratio;
+            case "conflict_type":
+                return conflict_type;
+            case "sweetspot_size":
+                return sweetspot_size;
+            case "sweetspot_facing_only":
+                return sweetspot_facing_only;
+            case "team_ledge_conflict":
+                return team_ledge_conflict;
+            case "ledge_invulnerability":
+                return ledge_invulnerability;
+            case "regrab_invulnerability":
+                return regrab_invulnerability;
+            case "slow_wakeup_threshold":
+                return slow_wakeup_threshold;
+            case "air_dodge_enabled":
+                return air_dodge_enabled;
+            case "directional_air_dodge":
+                return directional_air_dodge;
+            case "enable_wavedash":
+                return enable_wavedash;
+            case "air_dodge_lag":
+                return air_dodge_lag;
+            case "cancel_type":
+                return cancel_type;
+            default:
+                return null;
         }
     }
 }

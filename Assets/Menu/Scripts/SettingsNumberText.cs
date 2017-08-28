@@ -12,12 +12,18 @@ public class SettingsNumberText : MonoBehaviour {
     public int max_value;
     public int increment;
 
+    public bool percentage = false;
     private UILabel label;
 
     void Start()
     {
         label = GetComponentInChildren<UILabel>();
+        if (percentage)
+            value = (int)((float)Settings.current_settings.GetSetting(var_name) * 100);
+        else
+            value = (int)Settings.current_settings.GetSetting(var_name);
         RedrawText();
+
     }
 
     void RedrawText()
