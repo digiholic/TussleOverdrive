@@ -12,7 +12,7 @@ public class SettingsPanel : MonoBehaviour {
 
     private GameObject internal_panel;
 
-    void Start()
+    void Awake()
     {
         internal_panel = transform.Find("Panel").gameObject;
         internal_panel.SetActive(false);

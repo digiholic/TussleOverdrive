@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlatformPhase : MonoBehaviour {
-    public bool EnableDownPhase { get; set; } //Default to not allowing downward phasing
-    public bool EnableUpPhase { get; set; } //Default to allowing upward phasing
+    public bool EnableDownPhase = false; //Default to not allowing downward phasing
+    public bool EnableUpPhase = false; //Default to allowing upward phasing
 
     private CharacterController _charController;
 
@@ -24,6 +24,7 @@ public class PlatformPhase : MonoBehaviour {
     {
         if (other.tag == "PassThrough" && EnableUpPhase)
         {
+            Debug.Log(_charController + " is not phasing with " + other.transform.parent);
             Physics.IgnoreCollision(_charController, other.transform.parent.GetComponent<Collider>(), true);
         }
     }

@@ -6,6 +6,7 @@ using Rewired;
 
 public class MenuButtonNavigator : MonoBehaviour {
     public static MenuButtonNavigator selectedButton = null;
+    public static bool accept_inputs = true;
 
     public bool DefaultSelected = false;
 
@@ -91,14 +92,41 @@ public class MenuButtonNavigator : MonoBehaviour {
         if (selectedButton == this)
         {
             SendMessage("SetColor", MenuColorChanger.menu_color.getColor());
-            foreach (Player player in ReInput.players.Players)
+            if (accept_inputs)
             {
-                if (player.GetButtonDown("Horizontal")) OnKeyPressed("Right");
-                if (player.GetNegativeButtonDown("Horizontal")) OnKeyPressed("Left");
-                if (player.GetButtonDown("Vertical")) OnKeyPressed("Up");
-                if (player.GetNegativeButtonDown("Vertical")) OnKeyPressed("Down");
-                if (player.GetButtonDown("Attack")) OnKeyPressed("Attack");
-                if (player.GetButtonDown("Special")) OnKeyPressed("Special");
+                foreach (Player player in ReInput.players.AllPlayers)
+                {
+                    if (player.GetButtonDown("Horizontal"))
+                    {
+                        OnKeyPressed("Right");
+                        break;
+                    }
+                    if (player.GetNegativeButtonDown("Horizontal"))
+                    {
+                        OnKeyPressed("Left");
+                        break;
+                    }
+                    if (player.GetButtonDown("Vertical"))
+                    {
+                        OnKeyPressed("Up");
+                        break;
+                    }
+                    if (player.GetNegativeButtonDown("Vertical"))
+                    {
+                        OnKeyPressed("Down");
+                        break;
+                    }
+                    if (player.GetButtonDown("Attack"))
+                    {
+                        OnKeyPressed("Attack");
+                        break;
+                    }
+                    if (player.GetButtonDown("Special"))
+                    {
+                        OnKeyPressed("Special");
+                        break;
+                    }
+                }
             }
         }
         else

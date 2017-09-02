@@ -7,6 +7,8 @@ public class MenuSpriteColorSetter : MonoBehaviour {
 
     public enum ObjectToColor { Sprite, Text, Both };
 
+    public bool always_set;
+
     private UISprite buttonBg;
     private UILabel text;
 
@@ -14,6 +16,11 @@ public class MenuSpriteColorSetter : MonoBehaviour {
     {
         buttonBg = GetComponentInChildren<UISprite>();
         text = GetComponentInChildren<UILabel>();
+    }
+
+    void Update()
+    {
+        if (always_set) SetColor(MenuColorChanger.menu_color.getColor());
     }
 
     void SetColor(Color color)
