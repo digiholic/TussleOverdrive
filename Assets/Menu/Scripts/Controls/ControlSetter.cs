@@ -70,6 +70,7 @@ public class ControlSetter : MonoBehaviour {
     {
         statusText.text = "Listening for input...";
         MenuButtonNavigator.accept_inputs = false;
+        controllerMap.DeleteElementMap(actionElementMapToReplaceId);
         inputMapper.Start(
             new InputMapper.Context()
             {
@@ -142,11 +143,12 @@ public class ControlSetter : MonoBehaviour {
     {
         statusText.text = string.Empty;
         StartCoroutine(EnableInputsAfterTime());
+        UpdateChildren();
     }
 
     IEnumerator EnableInputsAfterTime()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.2f);
         MenuButtonNavigator.accept_inputs = true;
     }
 }

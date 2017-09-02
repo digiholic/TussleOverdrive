@@ -150,6 +150,7 @@ public class MenuButtonNavigator : MonoBehaviour {
     public void SaveSettings(string sceneName)
     {
         Settings.current_settings.SaveSettings();
+        ReInput.userDataStore.Save();
         if (sceneName != null) LoadScene(sceneName);
     }
 

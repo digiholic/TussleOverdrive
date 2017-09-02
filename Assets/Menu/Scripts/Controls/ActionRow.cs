@@ -33,14 +33,17 @@ public class ActionRow : MonoBehaviour {
         BroadcastMessage("ChangeLabelText", "---");
 
         // Find the first ActionElementMap that maps to this Action and is compatible with this field type
-        foreach (var actionElementMap in ControlSetter.current_setter.controllerMap.ElementMapsWithAction(action.id))
+        if (ControlSetter.current_setter != null)
         {
-            if (index >= button_rows.Count) break; //Escape the loop if we've set too many buttons already
-            if (actionElementMap.ShowInField(axisRange))
+            foreach (ActionElementMap actionElementMap in ControlSetter.current_setter.controllerMap.ElementMapsWithAction(action.id))
             {
-                button_rows[index].ChangeLabelText(actionElementMap.elementIdentifierName);
-                button_rows[index].actionElementMapToReplaceId = actionElementMap.id;
-                index++;
+                if (index >= button_rows.Count) break; //Escape the loop if we've set too many buttons already
+                if (actionElementMap.ShowInField(axisRange))
+                {
+                    button_rows[index].ChangeLabelText(actionElementMap.elementIdentifierName);
+                    button_rows[index].actionElementMapToReplaceId = actionElementMap.id;
+                    index++;
+                }
             }
         }
     }
