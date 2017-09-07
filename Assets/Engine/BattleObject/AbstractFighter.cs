@@ -111,6 +111,13 @@ public class AbstractFighter : BattleComponent {
         SetVar("air_dodges", 1);
         SetVar("grounded", false);
         SetVar("elasticity", 0.0f);
+
+        //Change variables according to Settings
+        Settings settings = Settings.current_settings;
+        SetVar("gravity", GetFloatVar("gravity") * settings.gravity_ratio);
+        SetVar("weight", GetFloatVar("weight") * settings.weight_ratio);
+        SetVar("friction", GetFloatVar("friction") * settings.friction_ratio);
+        SetVar("air_control", GetFloatVar("air_control") * settings.aircontrol_ratio);
     }
 
     void Start() {
@@ -347,6 +354,7 @@ public class AbstractFighter : BattleComponent {
 
     public void ApplyHitstop(float frames)
     {
+        frames *= Settings.current_settings.hitlag_ratio;
         //battleObject.PrintDebug(this, 2, "Applying Hitstop of "+frames.ToString()+" frames");
         SetVar("StopFrames", Mathf.FloorToInt(frames));
     }
@@ -373,6 +381,9 @@ public class AbstractFighter : BattleComponent {
     public void ApplyHitstun(float _total_kb, float _hitstunMultiplier, float _baseHitstun, float _trajectory)
     {
         float hitstun_frames = Mathf.Floor((_total_kb) * _hitstunMultiplier + _baseHitstun);
+
+        //Apply hitstun scaling
+        hitstun_frames *= Settings.current_settings.hitstun_ratio;
 
         if (hitstun_frames > 0.5)
         {

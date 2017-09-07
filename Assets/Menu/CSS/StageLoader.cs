@@ -6,13 +6,12 @@ using System.IO;
 public class StageLoader : MonoBehaviour {
     public StagePortraitRig portraitRig;
 
-    private DirectoryInfo stagesDirectory = new DirectoryInfo("Assets/Resources/Stages");
     //private float lastYPos = -0f;
 
     // Use this for initialization
     void Start()
     {
-        LoadFighterList();
+        LoadStageList();
     }
 
     // Update is called once per frame
@@ -21,9 +20,10 @@ public class StageLoader : MonoBehaviour {
 
     }
 
-    public void LoadFighterList()
+    public void LoadStageList()
     {
-        DirectoryInfo[] individualStages = stagesDirectory.GetDirectories();
+        Debug.Log(FileLoader.StageDir.FullName);
+        DirectoryInfo[] individualStages = FileLoader.StageDir.GetDirectories();
         foreach (DirectoryInfo stageDir in individualStages)
         {
             string combinedPath = Path.Combine(stageDir.FullName, "stage_info.json");

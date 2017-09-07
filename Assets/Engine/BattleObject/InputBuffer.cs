@@ -23,16 +23,16 @@ public class InputBuffer : BattleComponent {
             //For the keyboard, smashes are double taps
             //Right Smash
             if (player.GetButtonDoublePressDown("Horizontal"))
-                input_buffer.Insert(0, new ButtonBuffer(game_controller.current_game_frame, "RightSmash", true));
+                input_buffer.Insert(0, new ButtonBuffer(BattleController.current_battle.current_game_frame, "RightSmash", true));
             //Left Smash
             if (player.GetNegativeButtonDoublePressDown("Horizontal"))
-                input_buffer.Insert(0, new ButtonBuffer(game_controller.current_game_frame, "LeftSmash", true));
+                input_buffer.Insert(0, new ButtonBuffer(BattleController.current_battle.current_game_frame, "LeftSmash", true));
             //Up Smash
             if (player.GetButtonDoublePressDown("Vertical"))
-                input_buffer.Insert(0, new ButtonBuffer(game_controller.current_game_frame, "UpSmash", true));
+                input_buffer.Insert(0, new ButtonBuffer(BattleController.current_battle.current_game_frame, "UpSmash", true));
             //Left Smash
             if (player.GetNegativeButtonDoublePressDown("Vertical"))
-                input_buffer.Insert(0, new ButtonBuffer(game_controller.current_game_frame, "DownSmash", true));
+                input_buffer.Insert(0, new ButtonBuffer(BattleController.current_battle.current_game_frame, "DownSmash", true));
 
         }
         else
@@ -42,28 +42,28 @@ public class InputBuffer : BattleComponent {
             {
                 //...And is out far enough to count as a smash
                 if (player.GetAxis("Horizontal") > 0.6f)
-                    input_buffer.Insert(0, new ButtonBuffer(game_controller.current_game_frame, "RightSmash", true));
+                    input_buffer.Insert(0, new ButtonBuffer(BattleController.current_battle.current_game_frame, "RightSmash", true));
                 if (player.GetAxis("Horizontal") < -0.6f)
-                    input_buffer.Insert(0, new ButtonBuffer(game_controller.current_game_frame, "LeftSmash", true));
+                    input_buffer.Insert(0, new ButtonBuffer(BattleController.current_battle.current_game_frame, "LeftSmash", true));
             }
             if (Mathf.Abs(player.GetAxisDelta("Vertical")) > 0.3f)
             {
                 if (player.GetAxis("Vertical") > 0.6f)
-                    input_buffer.Insert(0, new ButtonBuffer(game_controller.current_game_frame, "UpSmash", true));
+                    input_buffer.Insert(0, new ButtonBuffer(BattleController.current_battle.current_game_frame, "UpSmash", true));
                 if (player.GetAxis("Vertical") < -0.6f)
-                    input_buffer.Insert(0, new ButtonBuffer(game_controller.current_game_frame, "DownSmash", true));
+                    input_buffer.Insert(0, new ButtonBuffer(BattleController.current_battle.current_game_frame, "DownSmash", true));
             }
         }
     }
 
     private void ButtonPressed(InputActionEventData data)
     {
-        input_buffer.Insert(0, new ButtonBuffer(game_controller.current_game_frame,data.actionName,true));
+        input_buffer.Insert(0, new ButtonBuffer(BattleController.current_battle.current_game_frame,data.actionName,true));
     }
 
     private void ButtonReleased(InputActionEventData data)
     {
-        input_buffer.Insert(0, new ButtonBuffer(game_controller.current_game_frame, data.actionName, false));
+        input_buffer.Insert(0, new ButtonBuffer(BattleController.current_battle.current_game_frame, data.actionName, false));
     }
 
     public bool CheckBuffer(string input)
@@ -82,7 +82,7 @@ public class InputBuffer : BattleComponent {
         foreach (ButtonBuffer bufferedInput in input_buffer)
         {
             //If we've fallen off our distance value, quit the for loop.
-            if (bufferedInput.frame < game_controller.current_game_frame - buffer_window)
+            if (bufferedInput.frame < BattleController.current_battle.current_game_frame - buffer_window)
                 break;
             else
             {
@@ -104,7 +104,7 @@ public class InputBuffer : BattleComponent {
         foreach (ButtonBuffer bufferedInput in input_buffer)
         {
             //If we've fallen off our distance value, quit the for loop.
-            if (bufferedInput.frame < game_controller.current_game_frame - buffer_window)
+            if (bufferedInput.frame < BattleController.current_battle.current_game_frame - buffer_window)
                 break;
             else
             {
@@ -126,7 +126,7 @@ public class InputBuffer : BattleComponent {
         foreach (ButtonBuffer bufferedInput in input_buffer)
         {
             //If we've fallen off our distance value, quit the for loop.
-            if (bufferedInput.frame < game_controller.current_game_frame - buffer_window)
+            if (bufferedInput.frame < BattleController.current_battle.current_game_frame - buffer_window)
                 break;
             else
             {
@@ -152,7 +152,7 @@ public class InputBuffer : BattleComponent {
         foreach (ButtonBuffer bufferedInput in input_buffer)
         {
             //If we've fallen off our distance value, quit the for loop.
-            if (bufferedInput.frame < game_controller.current_game_frame - buffer_window)
+            if (bufferedInput.frame < BattleController.current_battle.current_game_frame - buffer_window)
                 break;
             //If we've already found everything, we're done with the loop and can end early
             else if (index >= valuesToFind.Length)

@@ -63,9 +63,16 @@ public class BattleLoader : MonoBehaviour {
             }
         }
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    public void ClearBattle()
+    {
+        fighters = new List<FighterInfo>() { null, null, null, null };
+        fighter_strings = new string[0];
+    }
+
+
+    // Update is called once per frame
+    void Update () {
 		
 	}
 

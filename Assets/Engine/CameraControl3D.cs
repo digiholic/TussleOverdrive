@@ -12,12 +12,13 @@ public class CameraControl3D : MonoBehaviour {
     public float minDist = 2.0f;
     public float dampTime = 0.2f;
 
-
+    public bool angle_camera = true;
+    public float camera_angle_speed = 1.0f;
     private Camera m_Camera;
     private Vector3 moveVelocity;
 
     public static CameraControl3D current_camera = null;
-    
+
 	// Use this for initialization
 	void Awake () {
         current_camera = this;
@@ -26,7 +27,23 @@ public class CameraControl3D : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.position = Vector3.SmoothDamp(transform.position, GetCenterPoint(), ref moveVelocity, dampTime);
+        
+    }
+
+    public void TrackObjects()
+    {
+        Vector3 center_point = GetCenterPoint();
+        if (angle_camera)
+        {
+            Vector3 world_center = center_point;
+            world_center.z = 0;
+            Quaternion targetRotation = Quaternion.LookRotation(world_center - transform.position);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, camera_angle_speed * Time.deltaTime);
+        } else
+        {
+            transform.eulerAngles = Vector3.zero;
+        }
+        transform.position = Vector3.SmoothDamp(transform.position, center_point, ref moveVelocity, dampTime);
     }
 
     private Vector3 GetCenterPoint()

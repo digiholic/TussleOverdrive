@@ -15,9 +15,6 @@ public class PercentIconManager : MonoBehaviour {
     void Awake () {
         screen_width = Screen.width;
         canv = FindObjectOfType<Canvas>();
-        
-        //Resources res = Resources.Load("Fighters");
-        //Debug.Log(res);
     }
 
     void LoadFighterIcons()

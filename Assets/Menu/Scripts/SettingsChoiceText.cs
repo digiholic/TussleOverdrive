@@ -7,15 +7,20 @@ public class SettingsChoiceText : MonoBehaviour {
     public string display_text;
     public int value;
     public string after_text;
-
+    public bool isBool;
     public List<string> text_values;
-    
+
     private UILabel label;
     
 
     void Start()
     {
         label = GetComponentInChildren<UILabel>();
+        if (isBool)
+            value = ((bool)Settings.current_settings.GetSetting(var_name) ? 1 : 0);
+        else
+            value = text_values.IndexOf(Settings.current_settings.GetSetting(var_name).ToString());
+
         RedrawText();
     }
 

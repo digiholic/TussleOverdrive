@@ -5,11 +5,14 @@ using UnityEngine;
 public class Hurtbox : MonoBehaviour {
 
     private Transform fighter;
-    
+    private MeshRenderer meshrenderer;
+
 	// Use this for initialization
 	void Start () {
-        fighter = GetComponent<Collider>().transform.root;
-	}
+        fighter = transform.root;
+        meshrenderer = GetComponent<MeshRenderer>();
+        meshrenderer.enabled = Settings.current_settings.display_hurtboxes;
+    }
 	
 	// Update is called once per frame
 	void Update () {

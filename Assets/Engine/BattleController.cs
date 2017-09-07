@@ -13,27 +13,12 @@ public class BattleController : MonoBehaviour {
     private List<AbstractFighter> fighters = new List<AbstractFighter>();
     private List<Hitbox> hitboxes = new List<Hitbox>();
     public bool UpdateOnFrame;
-    /// <summary>
-    /// Singleton code. Will destroy any superfluous battle controllers that are in the scenes it loads into.
-    /// When the battle processing is done, this object should be destroyed to make room for a new battle.
-    /// </summary>
-    void Awake()
-    {
-        DontDestroyOnLoad(gameObject);
-        if (current_battle == null) //if we don't have a settings object
-        {
-            current_battle = this;
-        }
-        else //if it's already set
-        {
-            Destroy(gameObject); //Destroy the new one
-        }
-    }
-
+    
     // Use this for initialization
     void Start()
     {
         //Fighters shouldn't collide with fighters
+        current_battle = this;
         Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Fighters"), LayerMask.NameToLayer("Fighters"), true);
         BattleLoader.current_loader.LoadBattle();
     }
@@ -42,27 +27,29 @@ public class BattleController : MonoBehaviour {
     void FixedUpdate () {
         if (UpdateOnFrame)
         {
-            foreach(BattleObject obj in objects)
-                obj.StepFrame();
-            foreach (Hitbox hbox in hitboxes)
-                hbox.StepFrame();
-            current_game_frame++;
+            StepFrame();
         }
-
         if (Input.GetKeyDown(KeyCode.Slash))
             UpdateOnFrame = !UpdateOnFrame;
         if (Input.GetKeyDown(KeyCode.Period))
         {
-            foreach (BattleObject obj in objects)
-                obj.StepFrame();
-            foreach (Hitbox hbox in hitboxes)
-                hbox.StepFrame();
-            current_game_frame++;
+            StepFrame();
         }
         if (Input.GetKeyUp(KeyCode.Escape))
         {
-            SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+            BattleLoader.current_loader.ClearBattle();
+            SceneManager.LoadScene("CSS", LoadSceneMode.Single);
         }
+    }
+
+    void StepFrame()
+    {
+        foreach (BattleObject obj in objects)
+            obj.StepFrame();
+        foreach (Hitbox hbox in hitboxes)
+            hbox.StepFrame();
+        CameraControl3D.current_camera.TrackObjects();
+        current_game_frame++;
     }
     
     /// <summary>

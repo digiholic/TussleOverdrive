@@ -13,11 +13,9 @@ public class StageInfoLoader : MonoBehaviour
 
     public TextAsset json_file;
 
-    private DirectoryInfo stageDirectory = new DirectoryInfo("Assets/Resources/Stages");
-
     public void SaveStage()
     {
-        string dir = Path.Combine(stageDirectory.FullName, directory);
+        string dir = Path.Combine(FileLoader.StageDir.FullName, directory);
         stage_info.WriteJSON(Path.Combine(dir, filename));
     }
 

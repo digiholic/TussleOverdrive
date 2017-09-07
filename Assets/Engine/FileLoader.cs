@@ -8,8 +8,11 @@ public class FileLoader {
 
     public static DirectoryInfo ProgramDirectoryInfo = new DirectoryInfo(Application.dataPath).Parent;
 
-    public static string FighterPath = PathCombine("Assets", "Resources", "Fighters");
-    public static string StagePath = PathCombine("Assets", "Resources", "Stages");
+    public static string FighterPath = PathCombine("Assets", "Modules", "Fighters");
+    public static string StagePath = PathCombine("Assets", "Modules", "Stages");
+
+    public static DirectoryInfo FighterDir = new DirectoryInfo(FighterPath);
+    public static DirectoryInfo StageDir = new DirectoryInfo(StagePath);
 
     public static string PathCombine(params string [] paths)
     {
@@ -54,6 +57,12 @@ public class FileLoader {
         return null;                     // Return null if load failed
     }
 
+    public static Sprite LoadSprite(string FilePath)
+    {
+        Texture2D texture = LoadTexture(FilePath);
+        Sprite newSprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f,0.5f));
+        return newSprite;
+    }
     public static string LoadTextFile(string FilePath)
     {
         string FullPath = Path.Combine(ProgramDirectoryInfo.FullName, FilePath);

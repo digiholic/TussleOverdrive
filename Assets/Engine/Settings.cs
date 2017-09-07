@@ -221,6 +221,18 @@ public class Settings : MonoBehaviour {
             case "cancel_type":
                 cancel_type = value.ToString();
                 break;
+            case "display_hitboxes":
+                display_hitboxes = (value.ToString() == "Yes");
+                break;
+            case "display_hurtboxes":
+                display_hurtboxes = (value.ToString() == "Yes");
+                break;
+            case "display_colliders":
+                display_colliders = (value.ToString() == "Yes");
+                break;
+            case "display_platforms":
+                display_platforms = (value.ToString() == "Yes");
+                break;
             default:
                 return;
         }
@@ -268,6 +280,14 @@ public class Settings : MonoBehaviour {
                 return air_dodge_lag;
             case "cancel_type":
                 return cancel_type;
+            case "display_hitboxes":
+                return display_hitboxes;
+            case "display_hurtboxes":
+                return display_hurtboxes;
+            case "display_colliders":
+                return display_colliders;
+            case "display_platforms":
+                return display_platforms;
             default:
                 return null;
         }

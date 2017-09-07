@@ -32,10 +32,9 @@ public class SelectorPanel : MonoBehaviour {
     public void SetPortrait(FighterInfo info)
     {
         fighter_info = info;
-        selectedSprite = "Fighters/"+info.directory_name+"/"+info.css_icon_path;
+        selectedSprite = info.css_icon_path;
         bgSprite.enabled = true;
-        Sprite spr = Resources.Load<Sprite>(selectedSprite);
-        portraitSprite.sprite = spr;
+        portraitSprite.sprite = info.css_icon_sprite;
         active = true;
     }
 

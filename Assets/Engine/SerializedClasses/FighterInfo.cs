@@ -36,8 +36,6 @@ public class FighterInfo {
     [System.NonSerialized]
     public bool initialized = false;
 
-    private static DirectoryInfo FighterDir = new DirectoryInfo("Assets/Resources/Fighters");
-
     public void WriteJSON(string path)
     {
         string json = JsonUtility.ToJson(this, true);
@@ -46,12 +44,12 @@ public class FighterInfo {
 
     public void LoadDirectory(string directoryName)
     {
-        directory_name = directoryName;
-        franchise_icon_sprite = Resources.Load<Sprite>("Fighters/" + directory_name + "/" + franchise_icon_path);
-        css_icon_sprite = Resources.Load<Sprite>("Fighters/" + directory_name + "/" + css_icon_path);
-        css_portrait_sprite = Resources.Load<Sprite>("Fighters/" + directory_name + "/" + css_portrait_path);
-        sprite_info.sprite_atlas = Resources.Load<SpriteAtlas>("Fighters/" + directory_name + "/" + sprite_info.sprite_atlas_path);
-        string action_file_json = Resources.Load<TextAsset>("Fighters/" + directory_name + "/" + action_file_path).text;
+        directory_name = FileLoader.GetFighterPath(directoryName);
+        franchise_icon_sprite = FileLoader.LoadSprite(FileLoader.PathCombine(directory_name,franchise_icon_path));
+        css_icon_sprite = FileLoader.LoadSprite(FileLoader.PathCombine(directory_name, css_icon_path));
+        css_portrait_sprite = FileLoader.LoadSprite(FileLoader.PathCombine(directory_name, css_portrait_path));
+        //sprite_info.sprite_atlas = FileLoader.LoadSprite(FileLoader.PathCombine(directory_name, sprite_info.sprite_atlas_path);
+        string action_file_json = FileLoader.LoadTextFile(FileLoader.PathCombine(directory_name, action_file_path));
         action_file = JsonUtility.FromJson<ActionFile>(action_file_json);
         action_file.BuildDict();
         initialized = true;
@@ -59,7 +57,7 @@ public class FighterInfo {
     
     public static FighterInfo LoadFighterInfoFile(string directory, string filename="fighter_info.json")
     {
-        string dir = Path.Combine(FighterDir.FullName, directory);
+        string dir = FileLoader.GetFighterPath(directory);
         string combinedPath = Path.Combine(dir, filename);
         if (File.Exists(combinedPath))
         {

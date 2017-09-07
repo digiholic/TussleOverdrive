@@ -19,7 +19,7 @@
     "variables": [
         {
             "name": "weight",
-            "value": "10",
+            "value": "100",
             "type": 0
         },
         {

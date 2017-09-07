@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
 
 public class FighterInfoLoader : MonoBehaviour {
     [SerializeField]
@@ -12,12 +11,10 @@ public class FighterInfoLoader : MonoBehaviour {
 
     public TextAsset json_file;
 
-    private DirectoryInfo fightersDirectory = new DirectoryInfo("Assets/Resources/Fighters");
-
     public void SaveFighter()
     {
-        string dir = Path.Combine(fightersDirectory.FullName, directory);
-        fighter_info.WriteJSON(Path.Combine(dir, filename));
+        string dir = FileLoader.GetFighterPath(directory);
+        fighter_info.WriteJSON(FileLoader.PathCombine(dir, filename));
     }
 
     public void LoadFighter()

@@ -19,8 +19,6 @@ public class StageInfo{
     [System.NonSerialized]
     public bool initialized = false;
 
-    private static DirectoryInfo StageDir = new DirectoryInfo("Assets/Resources/Stages");
-
     public void WriteJSON(string path)
     {
         string json = JsonUtility.ToJson(this, true);
@@ -29,15 +27,15 @@ public class StageInfo{
 
     public void LoadDirectory(string directoryName)
     {
-        directory_name = directoryName;
-        stage_icon = Resources.Load<Sprite>("Stages/" + directory_name + "/" + stage_icon_path);
-        stage_portrait = Resources.Load<Sprite>("Stages/" + directory_name + "/" + stage_portrait_path);
+        directory_name = FileLoader.GetStagePath(directoryName);
+        stage_icon = FileLoader.LoadSprite(FileLoader.PathCombine(directory_name, stage_icon_path));
+        stage_portrait = FileLoader.LoadSprite(FileLoader.PathCombine(directory_name, stage_portrait_path));
         initialized = true;
     }
 
     public static StageInfo LoadStageInfoFile(string directory, string filename = "stage_info.json")
     {
-        string dir = Path.Combine(StageDir.FullName, directory);
+        string dir = Path.Combine(FileLoader.StageDir.FullName, directory);
         string combinedPath = Path.Combine(dir, filename);
         if (File.Exists(combinedPath))
         {

@@ -68,7 +68,7 @@ public class SpriteHandler : BattleComponent {
         //sprite_atlas = sprite_info.sprite_atlas;
 
         pixelsPerUnit = sprite_info.sprite_pixelsPerUnit;
-        DirectoryInfo info = new DirectoryInfo(Path.Combine("Assets/Resources/Fighters/" + fighter_info.directory_name, sprite_info.sprite_directory));
+        DirectoryInfo info = new DirectoryInfo(FileLoader.PathCombine(fighter_info.directory_name, sprite_info.sprite_directory));
         string sprite_json_path = Path.Combine(info.FullName, "sprites.json");
 
         
@@ -109,7 +109,7 @@ public class SpriteHandler : BattleComponent {
             sprite_data_dict[data.sprite_name] = data;
             string filename = sprite_info.sprite_prefix + data.sprite_name + ".png";
 
-            string path = FileLoader.PathCombine("Assets", "Resources", "Fighters", fighter_info.directory_name, sprite_info.sprite_directory, filename);
+            string path = FileLoader.PathCombine(fighter_info.directory_name, sprite_info.sprite_directory, filename);
             Texture2D SpriteTexture = FileLoader.LoadTexture(path);
 
             List<Sprite> spriteFrames = new List<Sprite>();
@@ -124,7 +124,10 @@ public class SpriteHandler : BattleComponent {
     
     private void ChangeRenderer(string current_sprite, int current_frame)
     {
-        sprite_renderer.sprite = sprites[current_sprite][current_frame];
+        if (sprites.ContainsKey(current_sprite))
+            sprite_renderer.sprite = sprites[current_sprite][current_frame];
+        else
+            Debug.LogError("No sprite in dictionary! " + current_sprite);
         
         /*
         Sprite spr = sprite_atlas.GetSprite(current_sprite + current_frame.ToString());

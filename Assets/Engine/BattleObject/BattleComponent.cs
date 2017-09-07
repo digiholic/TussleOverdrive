@@ -5,12 +5,10 @@ using UnityEngine;
 [System.Serializable]
 public class BattleComponent : MonoBehaviour {
     public BattleObject battleObject;
-    protected BattleController game_controller;
 
 	// Use this for initialization
 	void Awake () {
         battleObject = GetComponent<BattleObject>();
-        game_controller = BattleController.current_battle;
 	}
 
     public virtual void ManualUpdate()

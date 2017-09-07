@@ -119,17 +119,32 @@ public class SelectionPanel : MonoBehaviour {
 
     private void SwitchPressed()
     {
+        //If the selection is not active, activate it
+        if (!active)
+        {
+            active = true;
+        }
 
     }
 
     private void RulesPressed()
     {
+        //If the selection is not active, activate it
+        if (!active)
+        {
+            active = true;
+        }
 
     }
 
     private void DirectionPressed(Vector2 dir)
     {
-        if (active && !confirmed)
+        //If the selection is not active, activate it
+        if (!active)
+        {
+            active = true;
+        }
+        else if (active && !confirmed)
         {
             Vector2 currentPos = current_panel.GridLoc;
             SelectorPanel panel = portraits.GetPanel(currentPos + dir);

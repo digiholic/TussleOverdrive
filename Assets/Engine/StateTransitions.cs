@@ -209,7 +209,7 @@ public class StateTransitions : ScriptableObject {
         {
             actor.doAction("Jump");
         }
-        else if (actor.KeyHeld(InputTypeUtil.GetBackward(actor.battleObject)))
+        else if (actor.DirectionHeld("Backward"))
         {
             actor.doAction("Fall");
         }

@@ -33,7 +33,6 @@ public class ActionFileEditor : MonoBehaviour {
 
     void LoadFile()
     {
-        Debug.Log("Loading");
         string action_json_path = Path.Combine("Assets/Resources/", action_file_path);
         if (File.Exists(action_json_path))
         {

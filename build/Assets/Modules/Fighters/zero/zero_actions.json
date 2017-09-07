@@ -1,0 +1,2544 @@
+{
+    "actions":[
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"NeutralAction",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[
+                ]
+            },
+            "length":54,
+            "actions_at_frame":[
+                {
+                    "frames":"36",
+                    "subactions":[
+                        "ChangeSubimage 5"
+                    ]
+                }
+            ],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":6,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "loop":false,
+            "sprite":"idle"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"Stop",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "length":8,
+            "actions_at_frame":[],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":0,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "loop":false,
+            "sprite":"stop"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"RunStop",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "length":15,
+            "actions_at_frame":[],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":3,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "loop":false,
+            "sprite":"stop"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"Crouch",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[
+                    "SetFrame 2"
+                ]
+            },
+            "length":3,
+            "actions_at_frame":[],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":1,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "loop":false,
+            "sprite":"land"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"CrouchGetup",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "length":9,
+            "actions_at_frame":[],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":-3,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "loop":false,
+            "sprite":"land"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"Fall",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[
+                    "SetFrame 4"
+                ]
+            },
+            "length":20,
+            "actions_at_frame":[],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":4,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "loop":false,
+            "sprite":"fall"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"Jump",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[
+                    "<DEPRECATED>If action frame >= 13: transition"
+                ]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "length":25,
+            "actions_at_frame":[
+                {
+                    "frames":"5",
+                    "subactions":[
+                        "ChangeSprite jump",
+                        "ChangeSubimage 0"
+                    ]
+                },
+                {
+                    "frames":"9",
+                    "subactions":[
+                        "ChangeSubimage 1"
+                    ]
+                },
+                {
+                    "frames":"13",
+                    "subactions":[
+                        "ChangeSubimage 2"
+                    ]
+                },
+                {
+                    "frames":"17",
+                    "subactions":[
+                        "ChangeSubimage 3"
+                    ]
+                },
+                {
+                    "frames":"21",
+                    "subactions":[
+                        "ChangeSubimage 4"
+                    ]
+                }
+            ],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":1,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "loop":false,
+            "sprite":"land"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"AirJump",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "length":27,
+            "actions_at_frame":[],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":3,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "loop":false,
+            "sprite":"airjump"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"Helpless",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "length":2,
+            "actions_at_frame":[],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":0,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "loop":false,
+            "sprite":"tumble"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"Stunned",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "length":1,
+            "actions_at_frame":[],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":8,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "loop":true,
+            "sprite":"stunned"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"PlatformDrop",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "length":14,
+            "actions_at_frame":[
+                {
+                    "frames":"3",
+                    "subactions":[
+                        "<TODO>Change Fighter Speed: 2.0 Y"
+                    ]
+                }
+            ],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":-3,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "loop":false,
+            "sprite":"airjump"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"Move",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[
+                    "SetFrame 6"
+                ]
+            },
+            "length":66,
+            "actions_at_frame":[],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":6,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "loop":false,
+            "sprite":"walk"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"Dash",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "length":19,
+            "actions_at_frame":[
+                {
+                    "frames":"0",
+                    "subactions":[
+                        "PlaySound dash",
+                        "<TODO>Change Fighter Speed: 14.0 X",
+                        "<TODO>Change Preferred Speed: 8.0 X"
+                    ]
+                },
+                {
+                    "frames":"4",
+                    "subactions":[
+                        "<TODO>Change Preferred Speed: 10.0 X"
+                    ]
+                }
+            ],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":4,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "loop":false,
+            "sprite":"dash"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"Pivot",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "length":10,
+            "actions_at_frame":[],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":-2,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "loop":false,
+            "sprite":"pivot"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"RunPivot",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "length":15,
+            "actions_at_frame":[
+                {
+                    "frames":"0",
+                    "subactions":[
+                        "PlaySound dash"
+                    ]
+                }
+            ],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":-3,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "loop":false,
+            "sprite":"pivot"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"Grabbing",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "length":1,
+            "actions_at_frame":[],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[
+                    "ChangeSubimage 4",
+                    "<TODO>Change Fighter Speed: 0.0 X"
+                ]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":0,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "loop":false,
+            "sprite":"pivot"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"Getup",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "length":12,
+            "actions_at_frame":[],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":3,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "loop":false,
+            "sprite":"land"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"Shield",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "length":4,
+            "actions_at_frame":[],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":0,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "loop":false,
+            "sprite":"shield"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"ForwardRoll",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "length":46,
+            "actions_at_frame":[
+                {
+                    "frames":"34",
+                    "subactions":[
+                        "ChangeSprite land"
+                    ]
+                },
+                {
+                    "frames":"37",
+                    "subactions":[
+                        "ChangeSubimage 1"
+                    ]
+                },
+                {
+                    "frames":"40",
+                    "subactions":[
+                        "ChangeSubimage 2"
+                    ]
+                },
+                {
+                    "frames":"43",
+                    "subactions":[
+                        "ChangeSubimage 3"
+                    ]
+                },
+                {
+                    "frames":"46",
+                    "subactions":[
+                        "ChangeSubimage 5"
+                    ]
+                }
+            ],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":3,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "loop":false,
+            "sprite":"airjump"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"BackwardRoll",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "length":50,
+            "actions_at_frame":[
+                {
+                    "frames":"34",
+                    "subactions":[
+                        "ChangeSubimage 0"
+                    ]
+                }
+            ],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[
+                    "ChangeSubimage 1"
+                ]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":0,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "loop":false,
+            "sprite":"land"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"SpotDodge",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "length":24,
+            "actions_at_frame":[
+                {
+                    "frames":"3",
+                    "subactions":[
+                        "ChangeSubimage 3"
+                    ]
+                },
+                {
+                    "frames":"21",
+                    "subactions":[
+                        "ChangeSubimage 2"
+                    ]
+                },
+                {
+                    "frames":"22",
+                    "subactions":[
+                        "ChangeSubimage 1"
+                    ]
+                },
+                {
+                    "frames":"23",
+                    "subactions":[
+                        "ChangeSubimage 0"
+                    ]
+                }
+            ],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":1,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "loop":false,
+            "sprite":"land"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"AirDodge",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "length":24,
+            "actions_at_frame":[
+                {
+                    "frames":"4",
+                    "subactions":[
+                        "ChangeSubimage 2"
+                    ]
+                },
+                {
+                    "frames":"20",
+                    "subactions":[
+                        "ChangeSubimage 0"
+                    ]
+                }
+            ],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":0,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "loop":false,
+            "sprite":"airjump"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"LedgeGrab",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "length":15,
+            "actions_at_frame":[],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":3,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "loop":false,
+            "sprite":"ledgehang"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"LedgeGetup",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "length":24,
+            "actions_at_frame":[
+                {
+                    "frames":"8",
+                    "subactions":[
+                        "ChangeSprite land",
+                        "ChangeSubimage 3"
+                    ]
+                },
+                {
+                    "frames":"12",
+                    "subactions":[
+                        "ChangeSubimage 2"
+                    ]
+                },
+                {
+                    "frames":"16",
+                    "subactions":[
+                        "ChangeSubimage 1"
+                    ]
+                },
+                {
+                    "frames":"20",
+                    "subactions":[
+                        "ChangeSubimage 0"
+                    ]
+                }
+            ],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":4,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "loop":false,
+            "sprite":"ledgegetup"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"HitStun",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "length":1,
+            "actions_at_frame":[
+                {
+                    "frames":"0",
+                    "subactions":[
+                        "PlaySound hit"
+                    ]
+                }
+            ],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":1,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "loop":false,
+            "sprite":"hitstun"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"Tumble",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "length":1,
+            "actions_at_frame":[],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":1,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "loop":true,
+            "sprite":"tumble"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"Prone",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "length":60,
+            "actions_at_frame":[],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":2,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "loop":false,
+            "sprite":"prone"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"Getup",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "length":12,
+            "actions_at_frame":[],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":3,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "loop":false,
+            "sprite":"land"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"NeutralAttack",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "length":22,
+            "actions_at_frame":[
+                {
+                    "frames":"0",
+                    "subactions":[
+                        "PlaySound slash"
+                    ]
+                },
+                {
+                    "frames":"2",
+                    "subactions":[
+                        "ActivateHitbox main -1",
+                        "ActivateHitbox backhand -1"
+                    ]
+                },
+                {
+                    "frames":"6",
+                    "subactions":[
+                        "DeactivateHitbox main"
+                    ]
+                },
+                {
+                    "frames":"12",
+                    "subactions":[
+                        "DeactivateHitbox backhand",
+                        "<DEPRECATED>If attack was pressed to a depth of at least 0.1 between frames 0 and 6 during this action:nextSlash"
+                    ]
+                }
+            ],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[
+                    "<TODO>Shift Sprite: 34 X, NoneY",
+                    "CreateHitbox main type sakurai lock_name lock center 35,-6 trajectory 30 damage 2.0 base_knockback 2.0 knockback_growth 0.1 size 36,32",
+                    "CreateHitbox backhand type sakurai lock_name lock center -2,3 trajectory 160 damage 2.0 base_knockback 2.0 knockback_growth 0.1 size 36,16"
+                ]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":2,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[
+                    "<TODO>Shift Sprite: 0 X, NoneY"
+                ]
+            },
+            "loop":false,
+            "sprite":"jab1"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"NeutralAttack2",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "length":26,
+            "actions_at_frame":[
+                {
+                    "frames":"0",
+                    "subactions":[
+                        "ActivateHitbox main -1",
+                        "PlaySound slash2"
+                    ]
+                },
+                {
+                    "frames":"12",
+                    "subactions":[
+                        "DeactivateHitbox main",
+                        "<DEPRECATED>If attack was pressed to a depth of at least 0.1 between frames 0 and 12 during this action:nextSlash"
+                    ]
+                }
+            ],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[
+                    "<TODO>Shift Sprite: 32 X, 6Y",
+                    "CreateHitbox main type sakurai center 27,-9 trajectory 270 damage 2.0 base_knockback 3.0 knockback_growth 0.1 size 48,48"
+                ]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":2,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[
+                    "<TODO>Shift Sprite: 0 X, 0Y"
+                ]
+            },
+            "loop":false,
+            "sprite":"jab2"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"NeutralAttack3",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "length":22,
+            "actions_at_frame":[
+                {
+                    "frames":"4",
+                    "subactions":[
+                        "PlaySound slash"
+                    ]
+                },
+                {
+                    "frames":"8",
+                    "subactions":[
+                        "ActivateHitbox main -1",
+                        "ActivateHitbox top -1",
+                        "ActivateHitbox backhand -1"
+                    ]
+                },
+                {
+                    "frames":"12",
+                    "subactions":[
+                        "DeactivateHitbox top",
+                        "DeactivateHitbox backhand"
+                    ]
+                },
+                {
+                    "frames":"16",
+                    "subactions":[
+                        "DeactivateHitbox main"
+                    ]
+                }
+            ],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[
+                    "<TODO>Shift Sprite: 26 X, NoneY",
+                    "CreateHitbox main type damage lock_name lock center 35,-9 trajectory 30 damage 6.0 base_knockback 8.0 knockback_growth 0.2 size 36,42",
+                    "CreateHitbox top type damage lock_name lock center 17,21 trajectory 90 damage 6.0 base_knockback 8.0 knockback_growth 0.2 size 60,14",
+                    "CreateHitbox backhand type damage lock_name lock center -23,1 trajectory 150 damage 6.0 base_knockback 8.0 knockback_growth 0.2 size 16,38"
+                ]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":2,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[
+                    "<TODO>Shift Sprite: 0 X, NoneY"
+                ]
+            },
+            "loop":false,
+            "sprite":"jab3"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"ForwardAttack",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "length":28,
+            "actions_at_frame":[
+                {
+                    "frames":"0",
+                    "subactions":[
+                        "ActivateHitbox backhand -1",
+                        "ActivateHitbox main -1",
+                        "PlaySound slash"
+                    ]
+                },
+                {
+                    "frames":"8",
+                    "subactions":[
+                        "DeactivateHitbox backhand",
+                        "DeactivateHitbox main"
+                    ]
+                }
+            ],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[
+                    "CreateHitbox main type damage lock_name lock center 35,-6 trajectory 20 damage 6.0 base_knockback 8.0 knockback_growth 0.1 size 36,32",
+                    "CreateHitbox backhand type damage lock_name lock center -2,3 trajectory 160 damage 6.0 base_knockback 6.0 knockback_growth 0.1 size 36,16",
+                    "<TODO>Shift Sprite: 34 X, NoneY"
+                ]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":4,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[
+                    "<TODO>Shift Sprite: 0 X, NoneY"
+                ]
+            },
+            "loop":false,
+            "sprite":"ftilt"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"ForwardSmash",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "length":44,
+            "actions_at_frame":[
+                {
+                    "frames":"8",
+                    "subactions":[
+                        "ActivateArticle: fsmashsplash",
+                        "ActivateHitbox blastHitbox -1",
+                        "PlaySound fsmash"
+                    ]
+                }
+            ],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[
+                    "<TODO>Shift Position: 28 X, NoneY",
+                    "CreateHitbox blastHitbox type damage charge_base_knockback 0.4 center 16,-17 trajectory 55 damage 8.0 base_knockback 6.0 charge_damage 0.5 hitstun 1 knockback_growth 0.3 size 36,35",
+                    "LoadArticle fsmashsplash"
+                ]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":4,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[
+                    "<TODO>Shift Position: -28 X, NoneY"
+                ]
+            },
+            "loop":false,
+            "sprite":"fsmash"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"NeutralAir",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[
+                    "DoTransition airControl"
+                ]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "length":32,
+            "actions_at_frame":[
+                {
+                    "frames":"0",
+                    "subactions":[
+                        "PlaySound rollslash"
+                    ]
+                },
+                {
+                    "frames":"2",
+                    "subactions":[
+                        "SetLandingLag 40",
+                        "ActivateHitbox nairBox -1"
+                    ]
+                },
+                {
+                    "frames":"4",
+                    "subactions":[
+                        "ModifyHitbox nairBox center 55,9 size 52,80"
+                    ]
+                },
+                {
+                    "frames":"6",
+                    "subactions":[
+                        "ModifyHitbox nairBox center 54,-23 size 50,89"
+                    ]
+                },
+                {
+                    "frames":"8",
+                    "subactions":[
+                        "ModifyHitbox nairBox center 30,-75 size 81,49"
+                    ]
+                },
+                {
+                    "frames":"10",
+                    "subactions":[
+                        "ModifyHitbox nairBox center -6,-75 size 84,52"
+                    ]
+                },
+                {
+                    "frames":"12",
+                    "subactions":[
+                        "ModifyHitbox nairBox trajectory 130 center -50,-47 size 55,77"
+                    ]
+                },
+                {
+                    "frames":"14",
+                    "subactions":[
+                        "ModifyHitbox nairBox center -58,-10 size 48,80"
+                    ]
+                },
+                {
+                    "frames":"16",
+                    "subactions":[
+                        "ModifyHitbox nairBox center -29,32 size 86,55"
+                    ]
+                },
+                {
+                    "frames":"18",
+                    "subactions":[
+                        "ModifyHitbox nairBox center -3,18 size 68,48"
+                    ]
+                },
+                {
+                    "frames":"20",
+                    "subactions":[
+                        "SetLandingLag 12",
+                        "ChangeSprite fall",
+                        "DeactivateHitbox nairBox"
+                    ]
+                }
+            ],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[
+                    "ChangeECB 0,0 0,0",
+                    "<TODO>Change Preferred Speed: 0.0 X",
+                    "CreateHitbox nairBox type damage center 0,22 trajectory 40 base_knockback 12.0 damage 6.0 transcendence 1 knockback_growth 0.0 size 38,20"
+                ]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":2,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "loop":true,
+            "sprite":"nair"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"DownAttack",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "length":32,
+            "actions_at_frame":[
+                {
+                    "frames":"0",
+                    "subactions":[
+                        "PlaySound dtilt"
+                    ]
+                },
+                {
+                    "frames":"8",
+                    "subactions":[
+                        "ActivateHitbox dtilt -1"
+                    ]
+                },
+                {
+                    "frames":"16",
+                    "subactions":[
+                        "DeactivateHitbox dtilt"
+                    ]
+                }
+            ],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[
+                    "CreateHitbox dtilt type damage center 15,-22 trajectory 50 damage 10.0 base_knockback 8.0 hitstun 1.0 knockback_growth 0.6 size 20,20"
+                ]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":4,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "loop":false,
+            "sprite":"dtilt"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"UpAttack",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "length":28,
+            "actions_at_frame":[
+                {
+                    "frames":"0",
+                    "subactions":[
+                        "PlaySound slash"
+                    ]
+                },
+                {
+                    "frames":"3",
+                    "subactions":[
+                        "ActivateHitbox utilt -1"
+                    ]
+                },
+                {
+                    "frames":"9",
+                    "subactions":[
+                        "DeactivateHitbox utilt"
+                    ]
+                }
+            ],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[
+                    "<TODO>Shift Sprite: 10 X, NoneY",
+                    "CreateHitbox utilt type damage center 22,-3 trajectory 80 damage 4.0 base_knockback 10.0 hitstun 1.0 knockback_growth 0.05 size 30,67"
+                ]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":3,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[
+                    "<TODO>Shift Sprite: 0 X, NoneY"
+                ]
+            },
+            "loop":false,
+            "sprite":"utilt"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"UpSpecial",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[
+                    "DoTransition grabLedges"
+                ]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "length":40,
+            "actions_at_frame":[
+                {
+                    "frames":"0",
+                    "subactions":[
+                        "<DEPRECATED>If fighter element == Fire: fireSpecial",
+                        "PlaySound uspecial"
+                    ]
+                },
+                {
+                    "frames":"4",
+                    "subactions":[
+                        "ActivateHitbox upspecial -1"
+                    ]
+                },
+                {
+                    "frames":"6",
+                    "subactions":[
+                        "ChangeYSpeed 16",
+                        "DeactivateHitbox upspecial"
+                    ]
+                },
+                {
+                    "frames":"39",
+                    "subactions":[
+                        "DoAction: Helpless"
+                    ]
+                }
+            ],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[
+                    "CreateHitbox upspecial type damage center 12,-4 trajectory 65 damage 6.0 base_knockback 14.0 hitstun 1.0 knockback_growth 0.02 size 30,65"
+                ]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":2,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "loop":false,
+            "sprite":"uspecial"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"FireUpSpecial",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[
+                    "<DEPRECATED>If action frame >= 8: control",
+                    "DoTransition grabLedges"
+                ]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "length":40,
+            "actions_at_frame":[
+                {
+                    "frames":"0",
+                    "subactions":[
+                        "PlaySound fire",
+                        "<TODO>Change Fighter Speed: 0.0 Y"
+                    ]
+                },
+                {
+                    "frames":"4",
+                    "subactions":[
+                        "ActivateHitbox upspecial -1"
+                    ]
+                },
+                {
+                    "frames":"6",
+                    "subactions":[
+                        "<TODO>Change Fighter Speed: -20.0 Y",
+                        "DeactivateHitbox upspecial"
+                    ]
+                },
+                {
+                    "frames":"39",
+                    "subactions":[
+                        "DoAction: Helpless"
+                    ]
+                }
+            ],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[
+                    "CreateHitbox upspecial type damage center 12,-4 trajectory 65 damage 8.0 base_knockback 14.0 hitstun 1.0 knockback_growth 0.1 size 30,65"
+                ]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":2,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "loop":false,
+            "sprite":"upspecial_fire"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"DownAir",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[
+                    "DoTransition airControl"
+                ]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "length":36,
+            "actions_at_frame":[
+                {
+                    "frames":"0",
+                    "subactions":[
+                        "<TODO>Change Fighter Speed: 0.0 Y",
+                        "PlaySound slash2"
+                    ]
+                },
+                {
+                    "frames":"4",
+                    "subactions":[
+                        "<DEPRECATED>If fighter element == Ice: iceStab"
+                    ]
+                },
+                {
+                    "frames":"8",
+                    "subactions":[
+                        "ActivateHitbox spikeBox -1"
+                    ]
+                },
+                {
+                    "frames":"10",
+                    "subactions":[
+                        "DeactivateHitbox spikeBox",
+                        "ActivateHitbox damageBox -1"
+                    ]
+                },
+                {
+                    "frames":"28",
+                    "subactions":[
+                        "DeactivateHitbox damageBox",
+                        "ChangeSprite fall"
+                    ]
+                }
+            ],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[
+                    "CreateHitbox spikeBox type damage lock_name lock center 4,-20 trajectory 40 damage 8.0 base_knockback 6.0 hitstun 1.0 knockback_growth 0.2 size 18,35",
+                    "CreateHitbox damageBox type damage lock_name lock center 4,-20 trajectory 40 damage 8.0 base_knockback 6.0 hitstun 1.0 knockback_growth 0.2 size 18,35"
+                ]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":4,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "loop":false,
+            "sprite":"dair"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"ForwardAir",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[
+                    "DoTransition airControl"
+                ]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "length":26,
+            "actions_at_frame":[
+                {
+                    "frames":"0",
+                    "subactions":[
+                        "PlaySound slash3"
+                    ]
+                },
+                {
+                    "frames":"3",
+                    "subactions":[
+                        "ActivateHitbox fairBox -1"
+                    ]
+                },
+                {
+                    "frames":"15",
+                    "subactions":[
+                        "DeactivateHitbox fairBox"
+                    ]
+                },
+                {
+                    "frames":"24",
+                    "subactions":[
+                        "ChangeSubimage 7"
+                    ]
+                }
+            ],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[
+                    "CreateHitbox fairBox type sakurai center 13,-4 trajectory 30 base_knockback 7.0 damage 8.0 knockback_growth 0.2 size 32,50"
+                ]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":3,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "loop":false,
+            "sprite":"fair"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"UpAir",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[
+                    "DoTransition airControl"
+                ]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "length":27,
+            "actions_at_frame":[
+                {
+                    "frames":"0",
+                    "subactions":[
+                        "PlaySound uair"
+                    ]
+                },
+                {
+                    "frames":"6",
+                    "subactions":[
+                        "ActivateHitbox uairBox -1"
+                    ]
+                },
+                {
+                    "frames":"24",
+                    "subactions":[
+                        "DeactivateHitbox uairBox"
+                    ]
+                }
+            ],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[
+                    "CreateHitbox uairBox type damage center 8,14 trajectory 90 damage 10.0 base_knockback 8.0 hitstun 1.0 knockback_growth 0.15 size 20,35"
+                ]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":3,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "loop":false,
+            "sprite":"uair"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"BackAir",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "length":20,
+            "actions_at_frame":[
+                {
+                    "frames":"0",
+                    "subactions":[
+                        "<TODO>Change Preferred Speed: 0.0 X",
+                        "PlaySound slash"
+                    ]
+                },
+                {
+                    "frames":"6",
+                    "subactions":[
+                        "ActivateHitbox bairBox -1"
+                    ]
+                },
+                {
+                    "frames":"12",
+                    "subactions":[
+                        "DeactivateHitbox bairBox"
+                    ]
+                }
+            ],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[
+                    "CreateHitbox bairBox type damage center -13,-4 trajectory 120 base_knockback 8.0 damage 14.0 knockback_growth 0.4 size 30,40"
+                ]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":2,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "loop":false,
+            "sprite":"bair"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"UpSmash",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "length":55,
+            "actions_at_frame":[
+                {
+                    "frames":"8",
+                    "subactions":[
+                        "ChangeSubimage 2",
+                        "PlaySound usmash",
+                        "ActivateHitbox popL -1"
+                    ]
+                },
+                {
+                    "frames":"10",
+                    "subactions":[
+                        "ChangeSubimage 3"
+                    ]
+                },
+                {
+                    "frames":"12",
+                    "subactions":[
+                        "ChangeSubimage 4",
+                        "DeactivateHitbox popL",
+                        "ActivateHitbox popR -1",
+                        "UnlockHitbox popR",
+                        "UnlockHitbox popL"
+                    ]
+                },
+                {
+                    "frames":"14",
+                    "subactions":[
+                        "ChangeSubimage 5"
+                    ]
+                },
+                {
+                    "frames":"16",
+                    "subactions":[
+                        "ChangeSubimage 2",
+                        "DeactivateHitbox popR",
+                        "ActivateHitbox popL -1",
+                        "UnlockHitbox popR",
+                        "UnlockHitbox popL"
+                    ]
+                },
+                {
+                    "frames":"18",
+                    "subactions":[
+                        "ChangeSubimage 3"
+                    ]
+                },
+                {
+                    "frames":"20",
+                    "subactions":[
+                        "ChangeSubimage 4",
+                        "DeactivateHitbox popL",
+                        "ActivateHitbox popR -1",
+                        "UnlockHitbox popR",
+                        "UnlockHitbox popL"
+                    ]
+                },
+                {
+                    "frames":"22",
+                    "subactions":[
+                        "ChangeSubimage 5"
+                    ]
+                },
+                {
+                    "frames":"24",
+                    "subactions":[
+                        "ChangeSubimage 2",
+                        "DeactivateHitbox popR",
+                        "ActivateHitbox popL -1",
+                        "UnlockHitbox popR",
+                        "UnlockHitbox popL"
+                    ]
+                },
+                {
+                    "frames":"26",
+                    "subactions":[
+                        "ChangeSubimage 3"
+                    ]
+                },
+                {
+                    "frames":"28",
+                    "subactions":[
+                        "ChangeSubimage 4",
+                        "DeactivateHitbox popL",
+                        "ActivateHitbox popR -1",
+                        "UnlockHitbox popR",
+                        "UnlockHitbox popL"
+                    ]
+                },
+                {
+                    "frames":"30",
+                    "subactions":[
+                        "ChangeSubimage 5",
+                        "DeactivateHitbox popR",
+                        "ActivateHitbox usmashBox -1",
+                        "UnlockHitbox popR",
+                        "UnlockHitbox popL"
+                    ]
+                },
+                {
+                    "frames":"32",
+                    "subactions":[
+                        "ChangeSubimage 6",
+                        "DeactivateHitbox usmashBox"
+                    ]
+                },
+                {
+                    "frames":"34",
+                    "subactions":[
+                        "ChangeSubimage 7"
+                    ]
+                },
+                {
+                    "frames":"36",
+                    "subactions":[
+                        "ChangeSubimage 8"
+                    ]
+                },
+                {
+                    "frames":"38",
+                    "subactions":[
+                        "ChangeSubimage 0"
+                    ]
+                }
+            ],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[
+                    "CreateHitbox usmashBox type damage lock_name lockMain charge_base_knockback 0.13 center -2,4 trajectory 80 damage 10.0 base_knockback 10.0 charge_damage 0.2 hitstun 1 knockback_growth 0.2 size 65,47",
+                    "CreateHitbox popL type damage lock_name lockL center -2,4 trajectory 140 damage 1.5 base_knockback 4.0 hitstun 4 knockback_growth 0.0 size 65,47",
+                    "CreateHitbox popR type damage lock_name lockR center -2,4 trajectory 40 damage 1.5 base_knockback 4.0 hitstun 4 knockback_growth 0.0 size 65,47"
+                ]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":4,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "loop":false,
+            "sprite":"usmash"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"DownSmash",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "length":38,
+            "actions_at_frame":[
+                {
+                    "frames":"6",
+                    "subactions":[
+                        "ActivateHitbox dsmash -1",
+                        "PlaySound dsmash"
+                    ]
+                },
+                {
+                    "frames":"18",
+                    "subactions":[
+                        "DeactivateHitbox dsmash"
+                    ]
+                }
+            ],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[
+                    "CreateHitbox dsmash type damage lock_name main charge_base_knockback 0.4 center 0,-13 trajectory 20 damage 8.0 base_knockback 5.0 charge_damage 0.5 hitstun 1.0 knockback_growth 0.2 size 50,35"
+                ]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":3,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "loop":false,
+            "sprite":"dsmash"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"DashAttack",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "length":30,
+            "actions_at_frame":[
+                {
+                    "frames":"0",
+                    "subactions":[
+                        "PlaySound slash"
+                    ]
+                },
+                {
+                    "frames":"3",
+                    "subactions":[
+                        "<TODO>Change Preferred Speed: 0.0 X",
+                        "ActivateHitbox dashHitbox -1"
+                    ]
+                },
+                {
+                    "frames":"9",
+                    "subactions":[
+                        "DeactivateHitbox dashHitbox"
+                    ]
+                }
+            ],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[
+                    "ChangeECB 0,0 0,0",
+                    "CreateHitbox dashHitbox type damage center 15,-8 trajectory 30 base_knockback 8.0 damage 6.0 knockback_growth 0.1 size 35,40",
+                    "CreateHitbox chainHitbox type autolink size 35,35 xBias 0.0 yBias -1.0 damage 2.0 center 0,0",
+                    "<TODO>Shift Sprite: None X, -8Y"
+                ]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":3,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[
+                    "<TODO>Shift Sprite: None X, 0Y"
+                ]
+            },
+            "loop":false,
+            "sprite":"dashattack"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"NeutralSpecial",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "length":32,
+            "actions_at_frame":[
+                {
+                    "frames":"0",
+                    "subactions":[
+                        "ChangeSubimage 0",
+                        "<DEPRECATED>If fighter chargeLevel >= 1: fireChargedShot"
+                    ]
+                },
+                {
+                    "frames":"4",
+                    "subactions":[
+                        "ChangeSubimage 0"
+                    ]
+                },
+                {
+                    "frames":"7",
+                    "subactions":[
+                        "<DEPRECATED>If fighter grounded == True: doCharge"
+                    ]
+                },
+                {
+                    "frames":"8",
+                    "subactions":[
+                        "ChangeSubimage 1",
+                        "LoadArticle projectile",
+                        "ActivateArticle: projectile"
+                    ]
+                },
+                {
+                    "frames":"12",
+                    "subactions":[
+                        "ChangeSubimage 2"
+                    ]
+                },
+                {
+                    "frames":"16",
+                    "subactions":[
+                        "ChangeSubimage 3"
+                    ]
+                },
+                {
+                    "frames":"23",
+                    "subactions":[
+                        "<DEPRECATED>If special was pressed to a depth of at least 0.1 between frames 0 and 15 during this action:repeat"
+                    ]
+                },
+                {
+                    "frames":"24",
+                    "subactions":[
+                        "ChangeSubimage 0"
+                    ]
+                }
+            ],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[
+                    "<DEPRECATED>If fighter grounded == True: groundShot"
+                ]
+            },
+            "sprite_rate":4,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "loop":false,
+            "sprite":"shootGround"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"Charging",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[
+                    "DoTransition shieldCancellable"
+                ]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[
+                    "SetFrame 11"
+                ]
+            },
+            "length":24,
+            "actions_at_frame":[
+                {
+                    "frames":"0",
+                    "subactions":[
+                        "ChangeSubimage 3",
+                        "ActivateArticle: chargeAnim"
+                    ]
+                },
+                {
+                    "frames":"12",
+                    "subactions":[
+                        "<DEPRECATED>If special was pressed to a depth of at least 0.1 between frames 0 and 12 during this action:fireChargedShot",
+                        "SetVar object chargeLevel 1",
+                        "<DEPRECATED>If fighter chargeLevel == 10: end"
+                    ]
+                }
+            ],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[
+                    "LoadArticle chargeAnim"
+                ]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":1,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[
+                    "DeactivateArticle chargeAnim"
+                ]
+            },
+            "loop":false,
+            "sprite":"shootGround"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"ChargeShot",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "length":28,
+            "actions_at_frame":[
+                {
+                    "frames":"0",
+                    "subactions":[
+                        "PlaySound chargeshot"
+                    ]
+                },
+                {
+                    "frames":"4",
+                    "subactions":[
+                        "<DEPRECATED>If fighter chargeLevel < 10: fireMidShot",
+                        "SetVar object chargeLevel 0",
+                        "<DEPRECATED>If fighter grounded == False: airShot"
+                    ]
+                },
+                {
+                    "frames":"20",
+                    "subactions":[
+                        "ChangeSubimage 0"
+                    ]
+                }
+            ],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":4,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "loop":false,
+            "sprite":"shootGround"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"ForwardSpecial",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "length":52,
+            "actions_at_frame":[
+                {
+                    "frames":"0",
+                    "subactions":[
+                        "PlaySound dash"
+                    ]
+                },
+                {
+                    "frames":"4",
+                    "subactions":[
+                        "<TODO>Change Fighter Speed: 12.0 X",
+                        "<TODO>Change Preferred Speed: 0.0 X",
+                        "PlaySound slash2",
+                        "<DEPRECATED>If fighter element == Elec: activateElec"
+                    ]
+                },
+                {
+                    "frames":"8",
+                    "subactions":[
+                        "UnlockHitbox elecChain"
+                    ]
+                },
+                {
+                    "frames":"12",
+                    "subactions":[
+                        "UnlockHitbox elecChain"
+                    ]
+                },
+                {
+                    "frames":"16",
+                    "subactions":[
+                        "UnlockHitbox elecChain"
+                    ]
+                },
+                {
+                    "frames":"20",
+                    "subactions":[
+                        "<DEPRECATED>If fighter element == Elec: elecHitbox"
+                    ]
+                },
+                {
+                    "frames":"24",
+                    "subactions":[
+                        "DeactivateHitbox dashBox"
+                    ]
+                }
+            ],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[
+                    "CreateHitbox dashBox type damage center 20,-18 trajectory 30 damage 8.0 base_knockback 6.0 knockback_growth 0.4 size 35,12",
+                    "CreateHitbox elecChain type autolink center 20,-18 damage 2.0 hitlag_multiplier 2.0 yBias -1 xBias 0 size 35,12",
+                    "LoadArticle elecDash",
+                    "<DEPRECATED>If fighter element == Elec: elecDash"
+                ]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[
+                    "<DEPRECATED>If action frame < 28: float"
+                ]
+            },
+            "sprite_rate":4,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "loop":false,
+            "sprite":"sideSpecialNormal"
+        },
+        {
+            "actions_after_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "name":"DownSpecial",
+            "state_transition_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "actions_at_last_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "length":0,
+            "actions_at_frame":[],
+            "set_up_actions":{
+                "frames":"",
+                "subactions":[
+                    "<DEPRECATED>If fighter element == Fire: fireToIce",
+                    "LoadArticle elem",
+                    "ActivateArticle: elem"
+                ]
+            },
+            "actions_before_frame":{
+                "frames":"",
+                "subactions":[]
+            },
+            "sprite_rate":1,
+            "tear_down_actions":{
+                "frames":"",
+                "subactions":[]
+            },
+            "loop":false,
+            "sprite":"idle"
+        }
+    ]
+}
