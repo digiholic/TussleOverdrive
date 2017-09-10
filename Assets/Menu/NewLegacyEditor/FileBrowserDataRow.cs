@@ -4,33 +4,47 @@ using UnityEngine;
 using System.IO;
 
 public class FileBrowserDataRow : MonoBehaviour {
-    public GameObject FolderIcon;
-    public GameObject FileIcon;
-    public GameObject ImageIcon;
+    public static int last_depth = 26;
+    public UISprite FolderIcon;
+    public UISprite FileIcon;
+    public UISprite ImageIcon;
     public UILabel Filename;
 
     public FileInfo current_file;
     public DirectoryInfo current_directory;
 
-	// Use this for initialization
-	public void Initialize() {
+    public FileBrowser browser;
+
+    // Use this for initialization
+    public void Initialize()
+    {
         if (current_file != null)
         {
             Filename.text = current_file.Name;
+            /*
             if (current_file.Extension == ".png")
-                ImageIcon.SetActive(true);
+                ImageIcon.gameObject.SetActive(true);
             else
-                FileIcon.SetActive(true);
+                FileIcon.gameObject.SetActive(true);
+            */
         }
         else if (current_directory != null)
         {
             Filename.text = current_directory.Name;
-            FolderIcon.SetActive(true);
+            //FolderIcon.gameObject.SetActive(true);
         }
     }
-	
+
 	public void ChangeName(string text)
     {
         Filename.text = text;
+    }
+
+    public void OnClick()
+    {
+        if (current_directory != null)
+        {
+            browser.ChangeDirectory(current_directory);
+        }
     }
 }
