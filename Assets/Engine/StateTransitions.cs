@@ -13,6 +13,8 @@ public class StateTransitions : ScriptableObject {
             actor.doGroundSpecial();
         if (actor.KeyBuffered("Jump"))
             actor.doAction("Jump");
+        //if (actor.KeyBuffered("Shield"))
+        //    actor.doAction("Shield");
         if (actor.DirectionHeld("Down"))
             actor.doAction("Crouch");
         if (actor.DirectionHeld("Forward"))

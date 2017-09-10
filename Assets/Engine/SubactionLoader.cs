@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
-public class SubactionLoader : ScriptableObject {
+public class SubactionLoader : BattleComponent {
     
     public static void executeSubaction(string subact, BattleObject actor, GameAction action)
     {
