@@ -21,17 +21,15 @@ public class FileBrowserDataRow : MonoBehaviour {
         if (current_file != null)
         {
             Filename.text = current_file.Name;
-            /*
             if (current_file.Extension == ".png")
                 ImageIcon.gameObject.SetActive(true);
             else
                 FileIcon.gameObject.SetActive(true);
-            */
         }
         else if (current_directory != null)
         {
             Filename.text = current_directory.Name;
-            //FolderIcon.gameObject.SetActive(true);
+            FolderIcon.gameObject.SetActive(true);
         }
     }
 
@@ -45,6 +43,13 @@ public class FileBrowserDataRow : MonoBehaviour {
         if (current_directory != null)
         {
             browser.ChangeDirectory(current_directory);
+        }
+        else if (current_file != null)
+        {
+            if (browser.validate_method(current_file))
+            {
+                Debug.Log("File Valid");
+            }
         }
     }
 }
