@@ -42,13 +42,15 @@ public class FileBrowserDataRow : MonoBehaviour {
     {
         if (current_directory != null)
         {
+            Debug.Log(browser);
             browser.ChangeDirectory(current_directory);
         }
         else if (current_file != null)
         {
             if (browser.validate_method(current_file))
             {
-                Debug.Log("File Valid");
+                browser.current_file = current_file;
+                browser.SelectedFileText.text = current_file.Name;
             }
         }
     }

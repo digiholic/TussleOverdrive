@@ -8,9 +8,11 @@ public class FileBrowser : MonoBehaviour {
     public UIGrid gridPanel;
     public FileBrowserDataRow data_row_prefab;
     public FileBrowserDataRow up_one_level;
-
+    public UILabel SelectedFileText;
 
     public DirectoryInfo current_directory;
+    public FileInfo current_file;
+
     private List<FileBrowserDataRow> data_rows = new List<FileBrowserDataRow>();
     
     public delegate bool ValidateFile(FileInfo finfo);
@@ -40,7 +42,13 @@ public class FileBrowser : MonoBehaviour {
         LoadData();
     }
     
-    void RemoveData()
+    public void ConfirmSelection()
+    {
+        PopupWindow.current_popup_manager.CloseFileBrowser();
+        callback_function(current_file);
+    }
+
+    public void RemoveData()
     {
         foreach(FileBrowserDataRow data in data_rows)
         {
