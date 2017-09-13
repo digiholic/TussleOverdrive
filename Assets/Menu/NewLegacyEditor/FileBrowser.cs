@@ -16,10 +16,19 @@ public class FileBrowser : MonoBehaviour {
     public delegate bool ValidateFile(FileInfo finfo);
     public ValidateFile validate_method;
 
+    public delegate void FileCallback(FileInfo finfo);
+    public FileCallback callback_function;
+
     void Start()
     {
-        validate_method = ValidateFighter;
-        current_directory = FileLoader.FighterDir;
+        Initialize(FileLoader.FighterDir, ValidateFighter, null);
+    }
+
+    public void Initialize(DirectoryInfo starting_directory, ValidateFile validation_method, FileCallback callback)
+    {
+        validate_method = validation_method;
+        current_directory = starting_directory;
+        callback_function = callback;
         LoadData();
     }
 
@@ -49,7 +58,7 @@ public class FileBrowser : MonoBehaviour {
         }
         foreach(FileInfo fname in current_directory.GetFiles())
         {
-            if (fname.Extension != ".meta")//Unit meta files, man. Gotta filter that shit out
+            if (validate_method(fname))
                 InstantiateFileRow(fname);
         }
         gridPanel.Reposition();
@@ -77,14 +86,13 @@ public class FileBrowser : MonoBehaviour {
         return data;
     }
 
-    bool ValidateFighter(FileInfo info)
+    public static bool ValidateFighter(FileInfo info)
     {
-        if (info.Extension == ".json")
-        {
-            return true;
-        }
-        return false;
+        return (info.Extension == ".json");
     }
 
-
+    public static bool ValidateImage(FileInfo info)
+    {
+        return (info.Extension == ".png" || info.Extension == ".jpg");
+    }
 }
