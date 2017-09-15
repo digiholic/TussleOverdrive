@@ -23,7 +23,7 @@ public class FileBrowser : MonoBehaviour {
 
     void Start()
     {
-        Initialize(FileLoader.FighterDir, ValidateFighter, null);
+        //Initialize(FileLoader.FighterDir, ValidateFighter, null);
     }
 
     public void Initialize(DirectoryInfo starting_directory, ValidateFile validation_method, FileCallback callback)

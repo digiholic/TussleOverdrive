@@ -9,17 +9,18 @@ public class PopupWindow : MonoBehaviour {
 
     public GameObject BlockerPanel;
     public FileBrowser FileBrowserPanel;
+    public InfoBox InfoBoxPanel;
 
     void Awake()
     {
         current_popup_manager = this;
     }
 
-    public static void OpenFileBrowser(DirectoryInfo starting_directory, FileBrowser.ValidateFile validate_function, FileBrowser.FileCallback callback_function)
+    public void OpenFileBrowser(DirectoryInfo starting_directory, FileBrowser.ValidateFile validate_function, FileBrowser.FileCallback callback_function)
     {
-        current_popup_manager.BlockerPanel.SetActive(true);
-        current_popup_manager.FileBrowserPanel.gameObject.SetActive(true);
-        current_popup_manager.FileBrowserPanel.Initialize(starting_directory, validate_function, callback_function);
+        BlockerPanel.SetActive(true);
+        FileBrowserPanel.gameObject.SetActive(true);
+        FileBrowserPanel.Initialize(starting_directory, validate_function, callback_function);
     }
 
     public void CloseFileBrowser()
@@ -27,5 +28,19 @@ public class PopupWindow : MonoBehaviour {
         BlockerPanel.SetActive(false);
         FileBrowserPanel.RemoveData();
         FileBrowserPanel.gameObject.SetActive(false);
+    }
+
+    public void OpenInfoBox(string text)
+    {
+        BlockerPanel.SetActive(true);
+        InfoBoxPanel.gameObject.SetActive(true);
+        InfoBoxPanel.SetText(text);
+    }
+
+    public void CloseInfoBox()
+    {
+        BlockerPanel.SetActive(false);
+        InfoBoxPanel.SetText("");
+        InfoBoxPanel.gameObject.SetActive(false);
     }
 }

@@ -8,7 +8,7 @@ public class TopMenuBar : MonoBehaviour {
     public void OpenFighterBrowser()
     {
         Debug.Log("Opening Fighter Browser");
-        PopupWindow.OpenFileBrowser(FileLoader.FighterDir, FileBrowser.ValidateFighter, FighterPopupCallback);
+        PopupWindow.current_popup_manager.OpenFileBrowser(FileLoader.FighterDir, FileBrowser.ValidateFighter, FighterPopupCallback);
     }
 
     void FighterPopupCallback(FileInfo file_info)
@@ -20,7 +20,7 @@ public class TopMenuBar : MonoBehaviour {
         }
         else
         {
-            Debug.LogWarning("Could not find a fighter at " + file_info.FullName + " Maybe the file is malformed, or an incorrect json file?");
+            PopupWindow.current_popup_manager.OpenInfoBox("Could not find a fighter at " + file_info.Name + " Maybe the file is malformed, or an incorrect json file?");
         }
     }
 }
