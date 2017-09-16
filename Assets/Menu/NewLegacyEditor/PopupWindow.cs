@@ -32,6 +32,7 @@ public class PopupWindow : MonoBehaviour {
 
     public void OpenInfoBox(string text)
     {
+        Debug.Log(text);
         BlockerPanel.SetActive(true);
         InfoBoxPanel.gameObject.SetActive(true);
         InfoBoxPanel.SetText(text);

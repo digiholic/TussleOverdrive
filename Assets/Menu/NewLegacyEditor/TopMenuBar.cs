@@ -16,7 +16,9 @@ public class TopMenuBar : MonoBehaviour {
         FighterInfo fighter_info = JsonUtility.FromJson<FighterInfo>(File.ReadAllText(file_info.FullName));
         if (fighter_info.display_name != null)
         {
-            Debug.Log("Loaded a fighter: " + fighter_info.display_name);
+            fighter_info.LoadDirectory(file_info.DirectoryName);
+            LegacyEditor.editor.LoadFighter(fighter_info);
+
         }
         else
         {

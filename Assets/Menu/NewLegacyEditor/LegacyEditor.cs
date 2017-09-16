@@ -13,7 +13,13 @@ public class LegacyEditor : MonoBehaviour {
         editor = this;
 	}
 	
-    void LoadFighter(string path)
+    public void LoadFighter(FighterInfo info)
+    {
+        current_fighter = info;
+        current_actions = info.action_file;
+    }
+
+    void SaveFighter()
     {
 
     }

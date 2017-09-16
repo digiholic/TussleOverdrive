@@ -10,7 +10,7 @@ public class InfoBox : MonoBehaviour {
 
     void Start()
     {
-        label.text = display_text;
+        //label.text = display_text;
     }
 
     public void SetText(string text)
