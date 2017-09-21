@@ -42,7 +42,6 @@ public class FileBrowserDataRow : MonoBehaviour {
     {
         if (current_directory != null)
         {
-            Debug.Log(browser);
             browser.ChangeDirectory(current_directory);
         }
         else if (current_file != null)

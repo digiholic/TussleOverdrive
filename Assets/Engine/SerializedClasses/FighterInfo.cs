@@ -54,7 +54,7 @@ public class FighterInfo {
         action_file.BuildDict();
         initialized = true;
     }
-    
+
     public static FighterInfo LoadFighterInfoFile(string directory, string filename="fighter_info.json")
     {
         string dir = FileLoader.GetFighterPath(directory);

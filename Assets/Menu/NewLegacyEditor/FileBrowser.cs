@@ -103,4 +103,25 @@ public class FileBrowser : MonoBehaviour {
     {
         return (info.Extension == ".png" || info.Extension == ".jpg");
     }
+
+    public static bool ValidateEverything(FileInfo info)
+    {
+        return true;
+    }
+
+    public static void LoadFighterCallback(FileInfo file_info)
+    {
+        FighterInfo fighter_info = JsonUtility.FromJson<FighterInfo>(File.ReadAllText(file_info.FullName));
+        if (fighter_info.display_name != null)
+        {
+            LegacyEditor.editor.fighter_file = file_info;
+            fighter_info.LoadDirectory(file_info.DirectoryName);
+            LegacyEditor.editor.LoadFighter(fighter_info);
+
+        }
+        else
+        {
+            PopupWindow.current_popup_manager.OpenInfoBox("Could not find a fighter at " + file_info.Name + " Maybe the file is malformed, or an incorrect json file?");
+        }
+    }
 }

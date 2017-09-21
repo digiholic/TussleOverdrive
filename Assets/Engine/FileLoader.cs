@@ -30,6 +30,11 @@ public class FileLoader {
         return PathCombine(FighterPath, dirname);
     }
 
+    public static DirectoryInfo GetFighterDir(string dirname)
+    {
+        return new DirectoryInfo(PathCombine(FighterPath, dirname));
+    }
+
     public static string GetStagePath(string dirname)
     {
         return PathCombine(StagePath, dirname);
@@ -76,5 +81,16 @@ public class FileLoader {
         }
         Debug.LogError("Error Loading Text from File " + FullPath);
         return "";
+    }
+
+    public static string GetRelativePath(DirectoryInfo directory_info, FileInfo file_info)
+    {
+        string file_string = file_info.FullName;
+        string directory_string = directory_info.FullName;
+        if (file_string.StartsWith(directory_string))
+        {
+            return file_string.Remove(0, directory_string.Length + 1); //We add one here to remove the leading slash
+        }
+        return null;
     }
 }

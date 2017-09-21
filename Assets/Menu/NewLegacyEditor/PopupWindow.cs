@@ -44,4 +44,19 @@ public class PopupWindow : MonoBehaviour {
         InfoBoxPanel.SetText("");
         InfoBoxPanel.gameObject.SetActive(false);
     }
+
+    public void OpenFighterBrowser()
+    {
+        OpenFileBrowser(FileLoader.FighterDir, FileBrowser.ValidateFighter, FileBrowser.LoadFighterCallback);
+    }
+
+    public void OpenImageBrowser()
+    {
+        DirectoryInfo startDir = FileLoader.FighterDir;
+        if (LegacyEditor.editor.current_fighter != null)
+        {
+            startDir = FileLoader.GetFighterDir(LegacyEditor.editor.current_fighter.directory_name);
+        }
+        OpenFileBrowser(startDir, FileBrowser.ValidateImage, null);
+    }
 }
