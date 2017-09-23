@@ -26,6 +26,7 @@ public class LegacyEditor : MonoBehaviour {
         current_fighter = info;
         current_actions = info.action_file;
         RefreshFighter();
+        RefreshActions();
     }
 
     void SaveFighter()
@@ -39,7 +40,12 @@ public class LegacyEditor : MonoBehaviour {
 
     public static void RefreshFighter()
     {
-        editor.BroadcastMessage("RefreshFighter", editor.current_fighter);
+        editor.BroadcastMessage("RefreshFighter", editor.current_fighter,SendMessageOptions.DontRequireReceiver);
+    }
+
+    public static void RefreshActions()
+    {
+        editor.BroadcastMessage("RefreshActions", editor.current_actions, SendMessageOptions.DontRequireReceiver);
     }
 
     public static DirectoryInfo CurrentFighterDir()
