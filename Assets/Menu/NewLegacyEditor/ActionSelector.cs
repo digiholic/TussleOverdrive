@@ -8,7 +8,7 @@ public class ActionSelector : MonoBehaviour {
     private UIGrid grid;
     private List<ActionSelectorDataRow> action_rows = new List<ActionSelectorDataRow>();
 
-    void OnEnable()
+    void Start()
     {
         grid = GetComponent<UIGrid>();
         if (LegacyEditor.editor.current_actions != null)
