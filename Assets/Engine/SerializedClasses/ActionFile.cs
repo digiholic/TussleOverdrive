@@ -78,6 +78,15 @@ public class DynamicAction
     public ActionGroup tear_down_actions = new ActionGroup();
     public List<ActionFrameGroup> actions_at_frame = new List<ActionFrameGroup>();
 
+    public SubActionGroup set_up_subactions = new SubActionGroup();
+    public SubActionGroup state_transition_subactions = new SubActionGroup();
+    public SubActionGroup subactions_before_frame = new SubActionGroup();
+    public SubActionGroup subactions_after_frame = new SubActionGroup();
+    public SubActionGroup subactions_at_last_frame = new SubActionGroup();
+    public SubActionGroup tear_down_subactions = new SubActionGroup();
+    public List<SubActionFrameGroup> subactions_at_frame = new List<SubActionFrameGroup>();
+
+
     public Dictionary<int, ActionGroup> actions_at_frame_dict = new Dictionary<int, ActionGroup>();
 
     public DynamicAction(string _name, int _length = 1, string _sprite = "idle", int _sprite_rate = 1, bool _loop = false, string _exit_action = "NeutralAction")
@@ -114,6 +123,44 @@ public class ActionGroup
 
 [System.Serializable]
 public class ActionFrameGroup : ActionGroup
+{
+    public string frames; //Used only for actions_at_frame, parses the string to see if the current frame is in the allowed list
+
+    public List<int> GetFrameNumbers()
+    {
+        List<int> frameNo = new List<int>();
+        if (frames.Contains(",")) //If it's a comma seperated list
+        {
+            string[] frameStrings = frames.Split(',');
+            foreach (string frameString in frameStrings)
+            {
+                frameNo.Add(int.Parse(frameString));
+            }
+        }
+        else if (frames.Contains("-")) //If it's a range
+        {
+            string[] endPoints = frames.Split('-');
+            for (int i = int.Parse(endPoints[0]); i <= int.Parse(endPoints[1]); i++)
+            {
+                frameNo.Add(i);
+            }
+        }
+        else
+            frameNo.Add(int.Parse(frames));
+        return frameNo;
+    }
+}
+
+
+[System.Serializable]
+public class SubActionGroup
+{
+    public List<Subaction> subactions = new List<Subaction>();
+
+}
+
+[System.Serializable]
+public class SubActionFrameGroup : ActionGroup
 {
     public string frames; //Used only for actions_at_frame, parses the string to see if the current frame is in the allowed list
 
