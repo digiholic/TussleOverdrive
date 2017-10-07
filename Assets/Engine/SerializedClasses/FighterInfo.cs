@@ -72,6 +72,15 @@ public class FighterInfo {
             return null;
         }
     }
+
+    public VarData GetVarByName(string name)
+    {
+        foreach (VarData data in variables)
+        {
+            if (data.name == name) return data;
+        }
+        return null;
+    }
 }
 
 [System.Serializable]

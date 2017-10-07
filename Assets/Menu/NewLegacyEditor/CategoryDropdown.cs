@@ -29,6 +29,7 @@ public class CategoryDropdown : MonoBehaviour {
         foreach(PanelInfo panel in panels)
         {
             NGUITools.SetActive(panel.panel, (panel.name == item));
+            NGUITools.SetActive(panel.subSelector, (panel.name == item));
         }
     }
 }
@@ -38,5 +39,6 @@ public struct PanelInfo
 {
     public string name;
     public GameObject panel;
+    public GameObject subSelector;
 }
 

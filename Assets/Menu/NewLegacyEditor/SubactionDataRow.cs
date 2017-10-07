@@ -32,4 +32,14 @@ public class SubactionDataRow : MonoBehaviour {
         selected = false;
         current_selection = null;
     }
+
+    public void MoveUp()
+    {
+        
+    }
+
+    public void MoveDown()
+    {
+
+    }
 }
