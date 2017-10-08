@@ -74,7 +74,7 @@ public class FighterInfo {
     }
 
     public VarData GetVarByName(string name)
-    {
+    { 
         foreach (VarData data in variables)
         {
             if (data.name == name) return data;

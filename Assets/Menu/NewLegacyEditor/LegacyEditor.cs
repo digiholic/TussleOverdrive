@@ -9,6 +9,7 @@ public class LegacyEditor : MonoBehaviour {
 
     public FighterInfo current_fighter;
     public ActionFile current_actions;
+    public DynamicAction selected_action;
 
     public FileInfo fighter_file;
     public FileInfo action_file;
@@ -18,6 +19,7 @@ public class LegacyEditor : MonoBehaviour {
         editor = this;
         current_fighter = null;
         current_actions = null;
+        selected_action = null;
 	}
 	
     public void LoadFighter(FighterInfo info)
@@ -46,6 +48,11 @@ public class LegacyEditor : MonoBehaviour {
     public static void RefreshActions()
     {
         editor.BroadcastMessage("RefreshActions", editor.current_actions, SendMessageOptions.DontRequireReceiver);
+    }
+
+    public static void ActionChanged()
+    {
+        editor.BroadcastMessage("ActionChanged", editor.selected_action, SendMessageOptions.DontRequireReceiver);
     }
 
     public static DirectoryInfo CurrentFighterDir()

@@ -13,8 +13,7 @@ public class SubactionWindow : MonoBehaviour {
         grid = GetComponent<UIGrid>();
     }
 
-    //Gets called by message from ActionSelectorDataRow
-    public void ChangeSelectedAction(DynamicAction action)
+    public void ActionChanged(DynamicAction action)
     {
         RemoveData();
         if (action.set_up_actions.subactions.Count > 0)
