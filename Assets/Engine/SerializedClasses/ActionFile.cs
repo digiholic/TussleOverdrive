@@ -46,12 +46,6 @@ public class ActionFile
         return new DynamicAction("Null");
     }
 
-    public void BuildDict()
-    {
-        foreach (DynamicAction action in actions)
-            action.BuildDict();
-    }
-
     public void WriteJSON(string path)
     {
         string thisjson = JsonUtility.ToJson(this, true);
@@ -70,20 +64,10 @@ public class DynamicAction
     public bool loop;
     public string exit_action;
 
-    public ActionGroup set_up_actions = new ActionGroup();
-    public ActionGroup state_transition_actions = new ActionGroup();
-    public ActionGroup actions_before_frame = new ActionGroup();
-    public ActionGroup actions_after_frame = new ActionGroup();
-    public ActionGroup actions_at_last_frame = new ActionGroup();
-    public ActionGroup tear_down_actions = new ActionGroup();
-    public List<ActionFrameGroup> actions_at_frame = new List<ActionFrameGroup>();
-
     public SubActionGroup set_up_subactions = new SubActionGroup();
     public SubActionGroup state_transition_subactions = new SubActionGroup();
     public SubActionGroup subactions_on_frame = new SubActionGroup();
     public SubActionGroup tear_down_subactions = new SubActionGroup();
-
-    public Dictionary<int, ActionGroup> actions_at_frame_dict = new Dictionary<int, ActionGroup>();
 
     public DynamicAction(string _name, int _length = 1, string _sprite = "idle", int _sprite_rate = 1, bool _loop = false, string _exit_action = "NeutralAction")
     {
@@ -93,20 +77,6 @@ public class DynamicAction
         sprite_rate = _sprite_rate;
         loop = _loop;
         exit_action = _exit_action;
-    }
-
-    /// <summary>
-    /// Builds the actions at frame dictionary from the properties of the actions_at_frame value.
-    /// Since dicts aren't serializeable, but are much faster to access, we convert the actions into a dict with this function.
-    /// </summary>
-    public void BuildDict()
-    {
-        actions_at_frame_dict = new Dictionary<int, ActionGroup>();
-        foreach (ActionFrameGroup group in actions_at_frame)
-        {
-            foreach (int frame in group.GetFrameNumbers())
-                actions_at_frame_dict[frame] = group;
-        }
     }
 }
 

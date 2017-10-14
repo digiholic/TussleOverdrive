@@ -5,10 +5,20 @@ using UnityEngine;
 [System.Serializable]
 public class Subaction
 {
+    
     public string SubactionName;
     public List<SubactionVarData> arg_list;
     private Dictionary<string, SubactionVarData> arg_dict;
 
+    //This is used to denote if a subaction should be executed, regardless of conditional
+    private bool is_control_subaction = false;
+    //This is used to denote if a subaction should execute in the builder
+    private bool execute_in_builder = false;
+
+    /// <summary>
+    /// Builds the dictionary of variables keyed by name for easier access.
+    /// Called when the subaction is generated.
+    /// </summary>
     private void BuildDict()
     {
         arg_dict = new Dictionary<string, SubactionVarData>();
@@ -18,14 +28,41 @@ public class Subaction
         }
     }
 
+    /// <summary>
+    /// Executes the subaction
+    /// </summary>
+    /// <param name="actor">The BattleObject the subaction is being executed by</param>
+    /// <param name="action">The action that is calling the subaction</param>
     public virtual void Execute(BattleObject actor, GameAction action)
     {
         
     }
 
+    /// <summary>
+    /// Get a list of modules that are required for the subaction to execute
+    /// </summary>
+    /// <returns>A list of names of modules that are required by the subaction</returns>
     public virtual List<string> GetRequirements()
     {
         return null;
+    }
+
+    /// <summary>
+    /// Check if the subaction is a conditional subaction, which would execute even if the conditional flag isn't set for execution.
+    /// </summary>
+    /// <returns>If the subaction should be executed regardless of conditional status</returns>
+    public bool isConditional()
+    {
+        return is_control_subaction;
+    }
+
+    /// <summary>
+    /// Check if the subaction should execute in build mode, like animation and control flow subactions.
+    /// </summary>
+    /// <returns>If the subaction should be executed in the builder</returns>
+    public bool executeInBuilder()
+    {
+        return execute_in_builder;
     }
 }
 

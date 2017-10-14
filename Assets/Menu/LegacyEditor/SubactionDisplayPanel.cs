@@ -28,28 +28,20 @@ public class SubactionDisplayPanel : MonoBehaviour {
         switch (group)
         {
             case "Set Up":
-                foreach (string subaction in action.set_up_actions.subactions)
-                    InitButton(subaction);
+                foreach (Subaction subaction in action.set_up_subactions.subactions)
+                    InitButton(subaction.SubactionName);
                 break;
             case "State Transitions":
-                foreach (string subaction in action.state_transition_actions.subactions)
-                    InitButton(subaction);
+                foreach (Subaction subaction in action.state_transition_subactions.subactions)
+                    InitButton(subaction.SubactionName);
                 break;
             case "Tear Down":
-                foreach (string subaction in action.tear_down_actions.subactions)
-                    InitButton(subaction);
+                foreach (Subaction subaction in action.tear_down_subactions.subactions)
+                    InitButton(subaction.SubactionName);
                 break;
-            case "Before Each Frame":
-                foreach (string subaction in action.actions_before_frame.subactions)
-                    InitButton(subaction);
-                break;
-            case "After Each Frame":
-                foreach (string subaction in action.actions_after_frame.subactions)
-                    InitButton(subaction);
-                break;
-            case "On Last Frame":
-                foreach (string subaction in action.actions_at_last_frame.subactions)
-                    InitButton(subaction);
+            case "On Frame":
+                foreach (Subaction subaction in action.subactions_on_frame.subactions)
+                    InitButton(subaction.SubactionName);
                 break;
             default:
                 break;

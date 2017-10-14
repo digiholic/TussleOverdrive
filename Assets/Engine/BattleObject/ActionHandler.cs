@@ -25,7 +25,6 @@ public class ActionHandler : BattleComponent {
     public override void ManualUpdate () {
         _current_action.stateTransitions();
         _current_action.Update();
-        _current_action.LateUpdate();
     }
 
     public void DoAction(string _actionName)

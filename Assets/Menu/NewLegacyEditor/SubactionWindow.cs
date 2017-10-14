@@ -16,12 +16,12 @@ public class SubactionWindow : MonoBehaviour {
     public void ActionChanged(DynamicAction action)
     {
         RemoveData();
-        if (action.set_up_actions.subactions.Count > 0)
+        if (action.set_up_subactions.subactions.Count > 0)
         {
-            foreach (string action_text in action.set_up_actions.subactions)
+            foreach (Subaction action_text in action.set_up_subactions.subactions)
             {
                 Debug.Log(action_text);
-                InstantiateRow(action_text);
+                InstantiateRow(action_text.SubactionName);
             }
             subaction_rows[0].Select();
         }

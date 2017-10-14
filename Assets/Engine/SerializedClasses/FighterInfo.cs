@@ -51,7 +51,6 @@ public class FighterInfo {
         //sprite_info.sprite_atlas = FileLoader.LoadSprite(FileLoader.PathCombine(directory_name, sprite_info.sprite_atlas_path);
         string action_file_json = FileLoader.LoadTextFile(FileLoader.PathCombine(directory_name, action_file_path));
         action_file = JsonUtility.FromJson<ActionFile>(action_file_json);
-        action_file.BuildDict();
         initialized = true;
     }
 

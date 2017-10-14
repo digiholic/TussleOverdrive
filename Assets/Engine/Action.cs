@@ -16,15 +16,10 @@ public class GameAction {
 
     public int current_frame;
 
-    public ActionGroup set_up_actions = new ActionGroup();
-    public ActionGroup actions_before_frame = new ActionGroup();
-    public Dictionary<int,ActionGroup> actions_at_frame = new Dictionary<int,ActionGroup>();
-    public ActionGroup actions_after_frame = new ActionGroup();
-    public ActionGroup actions_at_last_frame = new ActionGroup();
-    public ActionGroup actions_on_clank = new ActionGroup();
-    public ActionGroup actions_on_prevail = new ActionGroup();
-    public ActionGroup state_transition_actions = new ActionGroup();
-    public ActionGroup tear_down_actions = new ActionGroup();
+    public SubActionGroup set_up_subactions = new SubActionGroup();
+    public SubActionGroup state_transition_subactions = new SubActionGroup();
+    public SubActionGroup subactions_on_frame = new SubActionGroup();
+    public SubActionGroup tear_down_subactions = new SubActionGroup();
 
     public Dictionary<string, Hitbox> hitboxes = new Dictionary<string, Hitbox>();
     public Dictionary<string, HitboxLock> hitbox_locks = new Dictionary<string, HitboxLock>();
@@ -44,7 +39,7 @@ public class GameAction {
         actor = obj;
         actor.BroadcastMessage("ChangeSprite",sprite_name);
         game_controller = BattleController.current_battle;
-        foreach (string subaction in set_up_actions.subactions)
+        foreach (Subaction subaction in set_up_subactions.subactions)
             CheckCondAndExecute(subaction);
     }
 
@@ -58,29 +53,12 @@ public class GameAction {
             actor.GetSpriteHandler().ChangeSubimage(sprite_number, loop);
         }
 
-        foreach (string subaction in actions_before_frame.subactions)
+        foreach (Subaction subaction in subactions_on_frame.subactions)
             CheckCondAndExecute(subaction);
-
-        if (actions_at_frame.ContainsKey(current_frame))
-            foreach (string subaction in actions_at_frame[current_frame].subactions)
-                CheckCondAndExecute(subaction);
-
         if (current_frame >= last_frame)
-            OnLastFrame();
-	}
+            if (exit_action != null && exit_action != "")
+                actor.SendMessage("DoAction", exit_action);
 
-    public virtual void OnLastFrame()
-    {
-        foreach (string subaction in actions_at_last_frame.subactions)
-            CheckCondAndExecute(subaction);
-        if (exit_action != null && exit_action != "")
-            actor.SendMessage("DoAction", exit_action);
-    }
-
-    public virtual void LateUpdate() //This way the frame gets incremented after everything else
-    {
-        foreach (string subaction in actions_after_frame.subactions)
-            CheckCondAndExecute(subaction);
         current_frame++;
     }
 
@@ -92,6 +70,7 @@ public class GameAction {
             new_action.SetVar(passvar.Key, passvar.Value);
         }
 
+        //Release all hitbox locks
         foreach (HitboxLock hlock in hitbox_locks.Values)
         {
             hlock.Destroy();
@@ -103,28 +82,16 @@ public class GameAction {
             hbox.Deactivate();
             GameObject.Destroy(hbox.gameObject);
         }
-        foreach (string subaction in tear_down_actions.subactions)
+        foreach (Subaction subaction in tear_down_subactions.subactions)
             CheckCondAndExecute(subaction);
     }
 
     public virtual void stateTransitions()
     {
-        foreach (string subaction in state_transition_actions.subactions)
+        foreach (Subaction subaction in state_transition_subactions.subactions)
             CheckCondAndExecute(subaction);
     }
-
-    public virtual void onClank()
-    {
-        foreach (string subaction in actions_on_clank.subactions)
-            CheckCondAndExecute(subaction);
-    }
-
-    public virtual void onPrevail()
-    {
-        foreach (string subaction in actions_on_prevail.subactions)
-            CheckCondAndExecute(subaction);
-    }
-
+    
     public void SetDynamicAction(DynamicAction dynAction)
     {
         name = dynAction.name;
@@ -134,14 +101,10 @@ public class GameAction {
         loop = dynAction.loop;
         exit_action = dynAction.exit_action;
 
-        set_up_actions = dynAction.set_up_actions;
-        actions_before_frame = dynAction.actions_before_frame;
-        actions_at_frame = dynAction.actions_at_frame_dict;
-        actions_after_frame = dynAction.actions_after_frame;
-        actions_at_last_frame = dynAction.actions_at_last_frame;
-        state_transition_actions = dynAction.state_transition_actions;
-        tear_down_actions = dynAction.tear_down_actions;
-
+        set_up_subactions = dynAction.set_up_subactions;
+        state_transition_subactions = dynAction.state_transition_subactions;
+        tear_down_subactions = dynAction.tear_down_subactions;
+        subactions_on_frame = dynAction.subactions_on_frame;
     }
     
     public void AdjustLength(int new_length)
@@ -206,17 +169,17 @@ public class GameAction {
         variables_to_pass[var_name] = var_value;
     }
 
-    private void CheckCondAndExecute(string subact)
+    private void CheckCondAndExecute(Subaction subact)
     {
         if (!cond_list.Contains(false)) //If there are no falses in the list, execute the action
         {
-            SubactionLoader.executeSubaction(subact, actor, this);
+            subact.Execute(actor, this);
         }
         else
         {
             //Check if the subaction is one of the control subactions, we execute it anyway
-            if (subact.StartsWith("IfVar") || subact.StartsWith("Else") || subact.StartsWith("EndIf"))
-                SubactionLoader.executeSubaction(subact, actor, this);
+            if (subact.isConditional())
+                subact.Execute(actor, this);
         }
     }
 }

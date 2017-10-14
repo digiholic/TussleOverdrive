@@ -35,14 +35,9 @@ public class Crouch : GameAction {
         actor.GetMotionHandler().accel(actor.GetFloatVar("pivot_grip"));
         //TODO crawl action
         //actor.BroadcastMessage("ChangeXPreferred", actor.GetAbstractFighter().GetControllerAxis("Horizontal") * actor.GetFloatVar("crawl_speed"));
-        
-        //actor.GetComponent<SpriteLoader>().printSprite();
-    }
 
-    public override void LateUpdate()
-    {
-        base.LateUpdate();
+        //actor.GetComponent<SpriteLoader>().printSprite();
         if (current_frame >= last_frame)
-            current_frame = last_frame-1;
+            current_frame = last_frame - 1;
     }
 }

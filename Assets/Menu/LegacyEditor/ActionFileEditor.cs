@@ -38,7 +38,6 @@ public class ActionFileEditor : MonoBehaviour {
         {
             string action_json = File.ReadAllText(action_json_path);
             action_file = JsonUtility.FromJson<ActionFile>(action_json);
-            action_file.BuildDict();
         }
         int index = 0;
         foreach (DynamicAction action in action_file.actions)
