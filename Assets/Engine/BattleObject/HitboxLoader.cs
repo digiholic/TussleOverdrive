@@ -3,7 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class HitboxLoader : BattleComponent {
+public class HitboxLoader : MonoBehaviour {
+    public static HitboxLoader loader;
+
+    private void Start()
+    {
+        loader = this;
+    }
 
     public Hitbox hitbox_prefab;
 
