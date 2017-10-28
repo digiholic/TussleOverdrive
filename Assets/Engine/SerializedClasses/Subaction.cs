@@ -7,7 +7,7 @@ public class Subaction
 {
     public string SubactionName;
     public List<SubactionVarData> arg_list;
-    private Dictionary<string, SubactionVarData> arg_dict;
+    protected Dictionary<string, SubactionVarData> arg_dict;
 
     //This is used to denote if a subaction should be executed, regardless of conditional
     private bool is_control_subaction = false;
@@ -322,10 +322,21 @@ public class Subaction
 [System.Serializable]
 public class SubactionVarData
 {
+    private bool editable = true;
+
     public string name; //The name of the variable in the subaction, so you can easily set arguments without needing to remember order
     public string source; //Constant, Owner, or Action. The source of the variable
     public string type; //String, Int, Float, or Bool
     public string data; //The string representation of the data or the name of the variable to use
+
+    public SubactionVarData(string _name, string _source, string _type, string _data, bool _editable = true)
+    {
+        name = _name;
+        source = _source;
+        type = _type;
+        data = _data;
+        editable = _editable;
+    }
 
     public object GetData(BattleObject owner, GameAction action)
     {
