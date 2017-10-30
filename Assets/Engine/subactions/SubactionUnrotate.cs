@@ -2,15 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// ANIMATION SUBACTION
+/// Resets the sprite's rotation, back to default position
+/// No arguments required.
+/// </summary>
 public class SubactionUnrotate : Subaction {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public override void Execute(BattleObject actor, GameAction action)
+    {
+        base.Execute(actor, action);
+        actor.GetSpriteHandler().UnRotate();
+    }
+
+    public override SubactionCategory getCategory()
+    {
+        return SubactionCategory.ANIMATION;
+    }
 }

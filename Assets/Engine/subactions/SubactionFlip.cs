@@ -2,15 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// ANIMATION SUBACTION
+/// Flips the sprite. No arguments required.
+/// </summary>
 public class SubactionFlip : Subaction {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public override void Execute(BattleObject actor, GameAction action)
+    {
+        base.Execute(actor, action);
+        actor.GetSpriteHandler().flip();
+    }
+
+    public override SubactionCategory getCategory()
+    {
+        return SubactionCategory.ANIMATION;
+    }
 }

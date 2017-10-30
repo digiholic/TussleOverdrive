@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class SubactionShiftPosition : Subaction {
 
-	public SubactionShiftPosition(float _x, float _y, bool _relative)
+    public override void Execute(BattleObject actor, GameAction action)
     {
-
+        base.Execute(actor, action);
+        //TODO
     }
 }

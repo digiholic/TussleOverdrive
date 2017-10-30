@@ -2,23 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// CONTROL SUBACTION
+/// Sets or increments the current frame of the executing action
+/// 
+/// Arguments:
+///     frame    - optional (default 1)    - The frame to set to or by
+///     relative - optional (default true) - If true, frame number is incremented. If false, the frame is set directly to the given value. 
+/// </summary>
 public class SubactionSetFrame : Subaction {
-    public int frameNo;
 
-    public SubactionSetFrame(int _frameNo)
+    public override void Execute(BattleObject actor, GameAction action)
     {
-        frameNo = _frameNo;
+        base.Execute(actor, action);
+        int frame = (int) GetArgument("frame", actor, action, 1);
+        bool relative = (bool)GetArgument("relative", actor, action, true);
+
+        action.ChangeFrame(frame, relative);
     }
 
-    public override void Execute(BattleObject obj, GameAction action)
+    public override SubactionCategory getCategory()
     {
-        action.current_frame = frameNo;
-    }
-
-    public override List<string> GetRequirements()
-    {
-        List<string> retList = new List<string>();
-        retList.Add("ActionHandler");
-        return retList;
+        return SubactionCategory.CONTROL;
     }
 }

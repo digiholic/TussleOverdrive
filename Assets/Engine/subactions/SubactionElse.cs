@@ -2,21 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// CONTROL SUBACTION
+/// Inverts the current conditional bit.
+/// No arguments required.
+/// </summary>
 public class SubactionElse : Subaction {
-
-    public SubactionElse()
-    {
-    }
 
     public override void Execute(BattleObject obj, GameAction action)
     {
         action.cond_list[action.cond_depth] = !action.cond_list[action.cond_depth];
     }
 
-    public override List<string> GetRequirements()
+    public override SubactionCategory getCategory()
     {
-        List<string> retList = new List<string>();
-        retList.Add("ActionHandler");
-        return retList;
+        return SubactionCategory.CONTROL;
+    }
+
+    public override bool isConditional()
+    {
+        return true;
     }
 }

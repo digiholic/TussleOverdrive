@@ -2,31 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// HITBOX SUBACTION
+/// Deactivates a given hitbox. If the hitbox is not active, this subaction does nothing.
+/// 
+/// Arguments:
+///     name - required string - the name of the hitbox to deactivate
+/// </summary>
 public class SubactionDeactivateHitbox : Subaction
 {
-    public string arguments;
-
-    public SubactionDeactivateHitbox(string _arguments)
-    {
-        arguments = _arguments;
-    }
-
     public override void Execute(BattleObject obj, GameAction action)
     {
-        string[] args = arguments.Split(' ');
-
-        string name = args[1];
-        if (action.hitboxes.ContainsKey(args[1]))
-            action.hitboxes[args[1]].Deactivate();
+        string name = (string) GetArgument("name", obj, action);
+        if (action.hitboxes.ContainsKey(name))
+            action.hitboxes[name].Deactivate();
         else
             Debug.LogWarning("Current action has no hitbox names " + name);
-
     }
 
-    public override List<string> GetRequirements()
+    public override SubactionCategory getCategory()
     {
-        List<string> retList = new List<string>();
-        retList.Add("HitboxLoader");
-        return retList;
+        return SubactionCategory.HITBOX;
+    }
+
+    public override bool executeInBuilder()
+    {
+        return true;
     }
 }

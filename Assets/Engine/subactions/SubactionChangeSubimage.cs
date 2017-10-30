@@ -2,23 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// ANIMATION SUBACTION
+/// Changes to the given frame of animation
+/// 
+/// Arguments:
+///     subimage - required int - the subimage index of the animation to switch to
+/// </summary>
 public class SubactionChangeSubimage : Subaction {
-    public int subimage;
-
-    public SubactionChangeSubimage(int _subimage)
-    {
-        subimage = _subimage;
-    }
-
     public override void Execute(BattleObject obj, GameAction action)
     {
+        int subimage = (int) GetArgument("subimage", obj, action);
         obj.GetSpriteHandler().ChangeSubimage(subimage);
     }
 
-    public override List<string> GetRequirements()
+    public override SubactionCategory getCategory()
     {
-        List<string> retList = new List<string>();
-        retList.Add("SpriteHandler");
-        return retList;
+        return SubactionCategory.ANIMATION;
+    }
+
+    public override bool executeInBuilder()
+    {
+        return true;
     }
 }

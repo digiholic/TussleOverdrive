@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class SubactionShiftSprite : Subaction {
 
-	public SubactionShiftSprite(float _x, float _y)
+    public override void Execute(BattleObject actor, GameAction action)
     {
-
+        base.Execute(actor, action);
+        //TODO
     }
 }

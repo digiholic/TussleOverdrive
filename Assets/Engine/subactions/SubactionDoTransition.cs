@@ -2,25 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// BEHAVIOR SUBACTION
+/// Enters a system-defined Transition State
+/// 
+/// Arguments:
+///     name - required string - the name of the transition state to use
+/// </summary>
 public class SubactionDoTransition : Subaction {
-    private string transitionName;
-
-    public SubactionDoTransition(string _transitionName)
-    {
-        transitionName = _transitionName;
-    }
-
     public override void Execute(BattleObject obj, GameAction action)
     {
-        //obj.BroadcastMessage("DoAction", actionName);
-        StateTransitions.LoadTransitionState(transitionName, obj.GetAbstractFighter());
+        string name = (string) GetArgument("name", obj, action);
+        StateTransitions.LoadTransitionState(name, obj.GetAbstractFighter());
     }
 
-    public override List<string> GetRequirements()
+    public override SubactionCategory getCategory()
     {
-        List<string> retList = new List<string>();
-        retList.Add("ActionHandler");
-        retList.Add("AbstractFighter");
-        return retList;
+        return SubactionCategory.BEHAVIOR;
     }
 }

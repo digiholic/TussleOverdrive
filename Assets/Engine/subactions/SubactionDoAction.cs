@@ -8,4 +8,9 @@ public class SubactionDoAction : Subaction {
     {
         obj.BroadcastMessage("DoAction", arg_dict["actionName"].GetData(obj,action));
     }
+
+    public override SubactionCategory getCategory()
+    {
+        return SubactionCategory.CONTROL;
+    }
 }

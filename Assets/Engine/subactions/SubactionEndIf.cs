@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// CONTROL SUBACTION
+/// Finishes up a conditional block, dropping the conditional depth one level.
+/// No arguments required
+/// </summary>
 public class SubactionEndIf : Subaction {
-
-    public SubactionEndIf()
-    {
-    }
 
     public override void Execute(BattleObject obj, GameAction action)
     {
@@ -14,10 +15,13 @@ public class SubactionEndIf : Subaction {
         if (action.cond_depth < 0) action.cond_depth = 0;
     }
 
-    public override List<string> GetRequirements()
+    public override SubactionCategory getCategory()
     {
-        List<string> retList = new List<string>();
-        retList.Add("ActionHandler");
-        return retList;
+        return SubactionCategory.CONTROL;
+    }
+
+    public override bool isConditional()
+    {
+        return true;
     }
 }

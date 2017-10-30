@@ -107,6 +107,12 @@ public class GameAction {
         subactions_on_frame = dynAction.subactions_on_frame;
     }
     
+    public void ChangeFrame(int frame, bool relative)
+    {
+        if (relative) current_frame += frame;
+        else current_frame = frame;
+    }
+
     public void AdjustLength(int new_length)
     {
         last_frame = new_length;

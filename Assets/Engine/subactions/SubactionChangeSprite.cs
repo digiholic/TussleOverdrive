@@ -2,24 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// ANIMATION SUBACTION
+/// Changes the sprite to the given sprite.
+/// 
+/// Arguments:
+///     sprite - required string - the sprite to change to
+/// </summary>
 public class SubactionChangeSprite : Subaction
 {
-    public string spriteName;
-
-    public SubactionChangeSprite(string _spriteName)
-    {
-        spriteName = _spriteName;
-    }
-
     public override void Execute(BattleObject obj, GameAction action)
     {
-        obj.GetSpriteHandler().ChangeSprite(spriteName);
+        string sprite = (string)GetArgument("sprite", obj, action);
+        obj.GetSpriteHandler().ChangeSprite(sprite);
     }
 
-    public override List<string> GetRequirements()
+    public override SubactionCategory getCategory()
     {
-        List<string> retList = new List<string>();
-        retList.Add("SpriteHandler");
-        return retList;
+        return SubactionCategory.ANIMATION;
+    }
+
+    public override bool executeInBuilder()
+    {
+        return true;
     }
 }

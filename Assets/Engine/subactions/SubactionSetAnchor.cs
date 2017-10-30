@@ -2,28 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// CONTROL SUBACTION
+/// Sets a given Anchorpoint on the calling object
+/// 
+/// Arguments:
+///     name - required string - the name of the anchor point to set. If it doesn't exist, it'll be made.
+///     centerx - required int - the center x position (in pixel coordinates) of the anchor point. This is offset from the center of the sprite
+///     centery - required int - the center y position (in pixel coordinates) of the anchor point. This is offset from the center of the sprite
+/// </summary>
 public class SubactionSetAnchor : Subaction
 {
-    public string name;
-    public int centerx;
-    public int centery;
-
-    public SubactionSetAnchor(string _name, int _centerx, int _centery)
-    {
-        name = _name;
-        centerx = _centerx;
-        centery = _centery;
-    }
-
     public override void Execute(BattleObject obj, GameAction action)
     {
+        base.Execute(obj, action);
+        string name = (string) GetArgument("name", obj, action);
+        int centerx = (int) GetArgument("centerx", obj, action);
+        int centery = (int)GetArgument("centery", obj, action);
         obj.GetAnchorPoint(name).MoveAnchorPixel(centerx, centery);
     }
 
-    public override List<string> GetRequirements()
+    public override SubactionCategory getCategory()
     {
-        List<string> retList = new List<string>();
-        retList.Add("SpriteHandler");
-        return retList;
+        return SubactionCategory.CONTROL;
     }
 }
