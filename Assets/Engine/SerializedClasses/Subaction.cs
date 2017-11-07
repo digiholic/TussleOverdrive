@@ -13,7 +13,7 @@ public class Subaction
     /// Builds the dictionary of variables keyed by name for easier access.
     /// Called when the subaction is generated.
     /// </summary>
-    private void BuildDict()
+    protected void BuildDict()
     {
         arg_dict = new Dictionary<string, SubactionVarData>();
         foreach (SubactionVarData data in arg_list)
@@ -109,6 +109,15 @@ public class Subaction
     {
         return false;
     }
+
+    /// <summary>
+    /// Adds the subaction's default arguments to the subaction. Flags those subactions as non-renameable in builder.
+    /// </summary>
+    public virtual void generateDefaultArguments()
+    {
+
+    }
+
 
     /// <summary>
     /// Get the category this subaction belongs to.

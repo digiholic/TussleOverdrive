@@ -25,4 +25,11 @@ public class SubactionSetFrame : Subaction {
     {
         return SubactionCategory.CONTROL;
     }
+
+    public override void generateDefaultArguments()
+    {
+        arg_list.Add(new SubactionVarData("frame", "constant", "int", "1", false));
+        arg_list.Add(new SubactionVarData("relative", "constant", "bool", "true", false));
+        BuildDict();
+    }
 }

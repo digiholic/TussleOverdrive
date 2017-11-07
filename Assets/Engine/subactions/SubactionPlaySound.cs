@@ -22,4 +22,10 @@ public class SubactionPlaySound : Subaction {
     {
         return SubactionCategory.CONTROL;
     }
+
+    public override void generateDefaultArguments()
+    {
+        arg_list.Add(new SubactionVarData("name", "constant", "string", "", false));
+        BuildDict();
+    }
 }

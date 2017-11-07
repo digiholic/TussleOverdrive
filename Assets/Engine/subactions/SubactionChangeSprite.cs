@@ -26,4 +26,10 @@ public class SubactionChangeSprite : Subaction
     {
         return true;
     }
+
+    public override void generateDefaultArguments()
+    {
+        arg_list.Add(new SubactionVarData("sprite", "constant", "string", "", false));
+        BuildDict();
+    }
 }

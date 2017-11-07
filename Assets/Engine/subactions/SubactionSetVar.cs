@@ -22,4 +22,11 @@ public class SubactionSetVar : Subaction {
     {
         return SubactionCategory.CONTROL;
     }
+
+    public override void generateDefaultArguments()
+    {
+        arg_list.Add(new SubactionVarData("variable", "constant", "string", "", false));
+        arg_list.Add(new SubactionVarData("value", "constant", "string", "", false));
+        BuildDict();
+    }
 }

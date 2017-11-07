@@ -13,4 +13,10 @@ public class SubactionDoAction : Subaction {
     {
         return SubactionCategory.CONTROL;
     }
+
+    public override void generateDefaultArguments()
+    {
+        arg_list.Add(new SubactionVarData("actionName", "constant", "string", "", false));
+        BuildDict();
+    }
 }

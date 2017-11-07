@@ -42,4 +42,10 @@ public class SubactionCreateHitbox : Subaction {
     {
         return true;
     }
+
+    public override void generateDefaultArguments()
+    {
+        arg_list.Add(new SubactionVarData("name", "constant", "string", "", false));
+        BuildDict();
+    }
 }

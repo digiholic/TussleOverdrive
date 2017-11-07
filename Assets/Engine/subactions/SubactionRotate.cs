@@ -22,4 +22,10 @@ public class SubactionRotate : Subaction {
     {
         return SubactionCategory.ANIMATION;
     }
+
+    public override void generateDefaultArguments()
+    {
+        arg_list.Add(new SubactionVarData("degrees", "constant", "float", "", false));
+        BuildDict();
+    }
 }

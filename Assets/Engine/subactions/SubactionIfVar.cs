@@ -77,4 +77,12 @@ public class SubactionIfVar : Subaction {
     {
         return true;
     }
+
+    public override void generateDefaultArguments()
+    { 
+        arg_list.Add(new SubactionVarData("var1", "constant", "string", "", true));
+        arg_list.Add(new SubactionVarData("var2", "constant", "string", "", true));
+        arg_list.Add(new SubactionVarData("var1", "constant", "string", "", false));
+        BuildDict();
+    }
 }

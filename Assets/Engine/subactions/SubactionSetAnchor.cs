@@ -26,4 +26,12 @@ public class SubactionSetAnchor : Subaction
     {
         return SubactionCategory.CONTROL;
     }
+
+    public override void generateDefaultArguments()
+    {
+        arg_list.Add(new SubactionVarData("name", "constant", "string", "", false));
+        arg_list.Add(new SubactionVarData("centerx", "constant", "int", "", false));
+        arg_list.Add(new SubactionVarData("centery", "constant", "int", "", false));
+        BuildDict();
+    }
 }

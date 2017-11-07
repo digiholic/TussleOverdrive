@@ -25,4 +25,10 @@ public class SubactionChangeSubimage : Subaction {
     {
         return true;
     }
+
+    public override void generateDefaultArguments()
+    {
+        arg_list.Add(new SubactionVarData("subimage", "constant", "int", "", false));
+        BuildDict();
+    }
 }

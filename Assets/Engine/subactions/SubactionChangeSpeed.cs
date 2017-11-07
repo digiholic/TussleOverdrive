@@ -47,4 +47,13 @@ public class SubactionChangeSpeed : Subaction {
     {
         return SubactionCategory.BEHAVIOR;
     }
+
+    public override void generateDefaultArguments()
+    {
+        arg_list.Add(new SubactionVarData("xspeed", "constant", "float", "", false));
+        arg_list.Add(new SubactionVarData("yspeed", "constant", "float", "", false));
+        arg_list.Add(new SubactionVarData("xpref", "constant", "float", "", false));
+        arg_list.Add(new SubactionVarData("ypref", "constant", "float", "", false));
+        BuildDict();
+    }
 }
