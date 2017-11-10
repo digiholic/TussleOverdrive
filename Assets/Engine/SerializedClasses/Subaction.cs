@@ -143,7 +143,8 @@ public enum SubactionCategory
 [System.Serializable]
 public class SubactionVarData
 {
-    private bool editable = true;
+    [System.NonSerialized]
+    public bool editable = true;
 
     public string name; //The name of the variable in the subaction, so you can easily set arguments without needing to remember order
     public string source; //Constant, Owner, or Action. The source of the variable
