@@ -5,10 +5,10 @@ using UnityEngine;
 public class ArgumentDataRow : MonoBehaviour {
     public SubactionVarData data;
 
-    public UILabel argname;
-    public UILabel source;
-    public UILabel vartype;
-    public UILabel value;
+    public UIInput argname;
+    public UIPopupList vartype;
+    public UIPopupList source;
+    public UIInput value;
 
     // Use this for initialization
     void Start () {
@@ -28,14 +28,20 @@ public class ArgumentDataRow : MonoBehaviour {
 
     public void UpdateText()
     {
-        if (data.editable)
+        if (!data.editable)
         {
-            //TODO make some of these from UILabels to an object that can turn on or off it's editability if this is a required argument
+            argname.SendMessage("SetEditable", false);
+            vartype.SendMessage("SetEditable", false);
+        }
+        else
+        {
+            argname.SendMessage("SetEditable", true);
+            vartype.SendMessage("SetEditable", true);
         }
 
         argname.text = data.name;
-        source.text = data.source;
-        vartype.text = data.type;
+        vartype.selection = data.type;
+        source.selection = data.source;
         value.text = data.data;
     }
 }

@@ -143,7 +143,7 @@ public enum SubactionCategory
 [System.Serializable]
 public class SubactionVarData
 {
-    [System.NonSerialized]
+    //[System.NonSerialized]
     public bool editable = true;
 
     public string name; //The name of the variable in the subaction, so you can easily set arguments without needing to remember order
