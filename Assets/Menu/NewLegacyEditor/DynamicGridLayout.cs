@@ -6,25 +6,30 @@ public class DynamicGridLayout : MonoBehaviour {
     private List<DynamicGridCell> cells = new List<DynamicGridCell>();
     private int offset;
 
-    public bool RepositionNow; //Used to refresh in play mode only
-
     void Start()
     {
         foreach (DynamicGridCell cell in GetComponentsInChildren<DynamicGridCell>())
         {
-            cells.Add(cell);
-            cell.owner = this;
+            AddData(cell);
         }
+        InvokeRepeating("Reposition", 0.0f, 0.5f);
         Reposition();
     }
 
     void Update()
     {
-        if (RepositionNow)
-        {
-            Reposition();
-            RepositionNow = false;
-        }
+
+    }
+
+    public void AddData(DynamicGridCell cell)
+    {
+        cells.Add(cell);
+        cell.owner = this;
+    }
+
+    public void ClearData()
+    {
+        cells.Clear();
     }
 
     public void Reposition()

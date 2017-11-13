@@ -5,12 +5,12 @@ using UnityEngine;
 public class SubactionWindow : MonoBehaviour {
     public GameObject data_row_prefab;
 
-    private UIGrid grid;
-    private List<SubactionDataRow> subaction_rows = new List<SubactionDataRow>();
+    private DynamicGridLayout grid;
+    private List<SubactionDataRowExpanded> subaction_rows = new List<SubactionDataRowExpanded>();
 
     void Start()
     {
-        grid = GetComponent<UIGrid>();
+        grid = GetComponent<DynamicGridLayout>();
     }
 
     public void ActionChanged(DynamicAction action)
@@ -21,29 +21,30 @@ public class SubactionWindow : MonoBehaviour {
             foreach (Subaction action_text in action.set_up_subactions.subactions)
             {
                 Debug.Log(action_text);
-                InstantiateRow(action_text.SubactionName);
+                InstantiateRow(action_text);
             }
-            subaction_rows[0].Select();
+            //subaction_rows[0].Select();
         }
-        grid.Reposition();
+        grid.Reposition(); //FIXME: For some reason, this doesn't actually reposition it in time. It's still stacked on top of each other.
     }
 
     void RemoveData()
     {
-        foreach (SubactionDataRow action_row in subaction_rows)
+        foreach (SubactionDataRowExpanded action_row in subaction_rows)
         {
             NGUITools.Destroy(action_row.gameObject);
         }
-        subaction_rows = new List<SubactionDataRow>();
+        grid.ClearData();
+        subaction_rows.Clear();
     }
 
-    private SubactionDataRow InstantiateRow(string action_text)
+    private SubactionDataRowExpanded InstantiateRow(Subaction action_text)
     {
         GameObject go = NGUITools.AddChild(gameObject, data_row_prefab);
-        SubactionDataRow data = go.GetComponent<SubactionDataRow>();
-        //data.subaction = 
-        data.SetText(action_text);
+        SubactionDataRowExpanded data = go.GetComponent<SubactionDataRowExpanded>();
+        data.subaction = action_text;
         subaction_rows.Add(data);
+        grid.AddData(data.GetComponent<DynamicGridCell>());
         return data;
     }
 }

@@ -6,8 +6,8 @@ using UnityEngine;
 public class Subaction
 {
     public string SubactionName;
-    public List<SubactionVarData> arg_list;
-    protected Dictionary<string, SubactionVarData> arg_dict;
+    public List<SubactionVarData> arg_list = new List<SubactionVarData>();
+    protected Dictionary<string, SubactionVarData> arg_dict = new Dictionary<string, SubactionVarData>();
 
     /// <summary>
     /// Builds the dictionary of variables keyed by name for easier access.

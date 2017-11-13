@@ -44,4 +44,28 @@ public class ArgumentDataRow : MonoBehaviour {
         source.selection = data.source;
         value.text = data.data;
     }
+
+    public void UpdateArgName(string name)
+    {
+        data.name = name;
+        UpdateArgument(data);
+    }
+
+    public void UpdateArgType(string type)
+    {
+        data.type = type;
+        UpdateArgument(data);
+    }
+
+    public void UpdateArgSource(string src)
+    {
+        data.source = src;
+        UpdateArgument(data);
+    }
+
+    public void UpdateArgValue(string val)
+    {
+        data.data = val;
+        UpdateArgument(data);
+    }
 }
