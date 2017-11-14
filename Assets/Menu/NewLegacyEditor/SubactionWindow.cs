@@ -18,7 +18,6 @@ public class SubactionWindow : MonoBehaviour {
     public void RefreshData()
     {
         SubactionFactory.AddNewSubaction("ChangeSprite", currentAction.GetGroup(currentGroupName));
-        Debug.Log("Refreshing");
         RemoveData();
         if (currentAction.GetGroup(currentGroupName).subactions.Count > 0)
         {
@@ -34,14 +33,12 @@ public class SubactionWindow : MonoBehaviour {
 
     public void ActionChanged(DynamicAction action)
     {
-        Debug.Log("Receiving Broadcast: " + action);
         currentAction = action;
         RefreshData();
     }
 
     public void SubActionGroupChanged(string group)
     {
-        Debug.Log("Receiving Broadcast: " + group);
         currentGroupName = group;
         RefreshData();
     }

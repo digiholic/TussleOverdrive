@@ -53,13 +53,11 @@ public class LegacyEditor : MonoBehaviour {
 
     public static void ActionChanged()
     {
-        Debug.Log("Broadcasting: " + editor.current_group_name);
         editor.BroadcastMessage("ActionChanged", editor.selected_action, SendMessageOptions.DontRequireReceiver);
     }
 
     public static void SubActionGroupChanged()
     {
-        Debug.Log("Broadcasting: " + editor.current_group_name);
         editor.BroadcastMessage("ActionChanged", editor.selected_action, SendMessageOptions.DontRequireReceiver);
     }
 

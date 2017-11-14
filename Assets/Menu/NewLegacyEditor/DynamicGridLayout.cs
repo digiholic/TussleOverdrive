@@ -6,23 +6,30 @@ public class DynamicGridLayout : MonoBehaviour {
     private List<DynamicGridCell> cells = new List<DynamicGridCell>();
     private int offset;
 
+    public bool refreshNow;
+
     void Start()
     {
+        ClearData();
         foreach (DynamicGridCell cell in GetComponentsInChildren<DynamicGridCell>())
         {
             AddData(cell);
         }
-        InvokeRepeating("Reposition", 0.0f, 0.5f);
+        //InvokeRepeating("Reposition", 0.0f, 0.5f);
         Reposition();
     }
 
     void Update()
     {
-
+        if (refreshNow)
+        {
+            Reposition();
+            refreshNow = false;
+        }
     }
 
     public void AddData(DynamicGridCell cell)
-    {
+    { 
         cells.Add(cell);
         cell.owner = this;
     }
