@@ -52,6 +52,17 @@ public class ActionFile
         Debug.Log(path);
         File.WriteAllText(path, thisjson);
     }
+
+    /// <summary>
+    /// Converts all subactions from the base subaction class to their actual selves. Only needs to be run once.
+    /// </summary>
+    public void ReconcileSubactions()
+    {
+        foreach (DynamicAction act in actions)
+        {
+            act.ReconcileSubactions();
+        }
+    }
 }
 
 [System.Serializable]
@@ -66,8 +77,11 @@ public class DynamicAction
 
     public SubActionGroup set_up_subactions = new SubActionGroup();
     public SubActionGroup state_transition_subactions = new SubActionGroup();
+    //public List<SubActionFrameGroup> subactions_on_frame = new List<SubActionFrameGroup>();
     public SubActionGroup subactions_on_frame = new SubActionGroup();
     public SubActionGroup tear_down_subactions = new SubActionGroup();
+
+    private Dictionary<int, SubActionFrameGroup> subactions_at_frame;
 
     public DynamicAction(string _name, int _length = 1, string _sprite = "idle", int _sprite_rate = 1, bool _loop = false, string _exit_action = "NeutralAction")
     {
@@ -78,48 +92,68 @@ public class DynamicAction
         loop = _loop;
         exit_action = _exit_action;
     }
-}
 
-[System.Serializable]
-public class ActionGroup
-{
-    public List<string> subactions = new List<string>();
-
-}
-
-[System.Serializable]
-public class ActionFrameGroup : ActionGroup
-{
-    public string frames; //Used only for actions_at_frame, parses the string to see if the current frame is in the allowed list
-
-    public List<int> GetFrameNumbers()
+    public SubActionGroup GetGroup(string name)
     {
-        List<int> frameNo = new List<int>();
-        if (frames.Contains(",")) //If it's a comma seperated list
+        switch (name)
         {
-            string[] frameStrings = frames.Split(',');
-            foreach (string frameString in frameStrings)
-            {
-                frameNo.Add(int.Parse(frameString));
-            }
+            case ("Set Up"):
+                return set_up_subactions;
+            case ("Transitions"):
+                return state_transition_subactions;
+            case ("Tear Down"):
+                return tear_down_subactions;
+            case ("On Frame"):
+                return subactions_on_frame;
+            default:
+                Debug.LogError("Incorrect Subaction Group! " + name);
+                return new SubActionGroup();
         }
-        else if (frames.Contains("-")) //If it's a range
+    }
+
+    /*
+    protected void BuildDict()
+    {
+        subactions_at_frame.Clear();
+        foreach (SubActionFrameGroup data in subactions_on_frame)
         {
-            string[] endPoints = frames.Split('-');
-            for (int i = int.Parse(endPoints[0]); i <= int.Parse(endPoints[1]); i++)
-            {
-                frameNo.Add(i);
-            }
+            subactions_at_frame[data.frame] = data;
         }
-        else
-            frameNo.Add(int.Parse(frames));
-        return frameNo;
+    }
+    */
+
+    public void ReconcileSubactions()
+    {
+        set_up_subactions.ReconcileSubactions();
+        state_transition_subactions.ReconcileSubactions();
+        tear_down_subactions.ReconcileSubactions();
+        subactions_on_frame.ReconcileSubactions();
+        /*
+        foreach (SubActionFrameGroup group in subactions_on_frame)
+        {
+            group.ReconcileSubactions();
+        }
+        */
     }
 }
-
 
 [System.Serializable]
 public class SubActionGroup
 {
     public List<Subaction> subactions = new List<Subaction>();
+
+    public void ReconcileSubactions()
+    {
+        List<Subaction> newSubactions = new List<Subaction>();
+        foreach (Subaction subact in subactions)
+        {
+            newSubactions.Add(SubactionFactory.LoadSubactionAs(subact, subact.SubactionName));
+        }
+    }
+}
+
+[System.Serializable]
+public class SubActionFrameGroup : SubActionGroup
+{
+    public int frame;
 }

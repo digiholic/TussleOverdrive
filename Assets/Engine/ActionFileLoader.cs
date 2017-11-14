@@ -26,6 +26,7 @@ public class ActionFileLoader : MonoBehaviour {
             string combinedPath = FileLoader.PathCombine(FileLoader.GetFighterPath(directory),filename);
             string json = FileLoader.LoadTextFile(combinedPath);
             action_file = JsonUtility.FromJson<ActionFile>(json);
+            action_file.ReconcileSubactions();
         }
     }
 

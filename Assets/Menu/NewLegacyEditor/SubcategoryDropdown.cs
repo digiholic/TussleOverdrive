@@ -8,6 +8,7 @@ public class SubcategoryDropdown : MonoBehaviour {
 
     public List<SubPanelInfo> panels;
 
+    private SubPanelInfo lastSelectedPanel;
     public string selected_string;
 
     void Start()
@@ -18,17 +19,35 @@ public class SubcategoryDropdown : MonoBehaviour {
         foreach (SubPanelInfo panel in panels)
         {
             popup.items.Add(panel.name);
+            NGUITools.SetActive(panel.panel, false); //Initially turn everything off
         }
         display_text.text = popup.items[0];
+        OnChangeDropdown(popup.items[0]);
     }
 
     void OnChangeDropdown(string item)
     {
         display_text.text = item;
         selected_string = item;
+        if (lastSelectedPanel.panel != null)
+            NGUITools.SetActive(lastSelectedPanel.panel, false); //Disable old panel
         foreach (SubPanelInfo panel in panels)
         {
-            NGUITools.SetActive(panel.panel, (panel.name == item));
+            if (panel.name == item)
+            {
+                NGUITools.SetActive(panel.panel, true);
+                lastSelectedPanel = panel;
+            }
+        }
+    }
+
+    void OnGroupChanged(string group)
+    {
+        Debug.Log("Dropdown changed: " + group);
+        if (group != "Properties")
+        {
+            LegacyEditor.editor.current_group_name = group;
+            LegacyEditor.SubActionGroupChanged();
         }
     }
 }

@@ -23,6 +23,16 @@ public class Subaction
     }
 
     /// <summary>
+    /// Creates an arg dict from another subaction. Moves their arguments over to this one, then rebuilds the dict.
+    /// </summary>
+    /// <param name="other">The subaction to take arguments from. This is usually one generated from JSON</param>
+    public void CreateFromOther(Subaction other)
+    {
+        arg_list.AddRange(other.arg_list);
+        BuildDict();
+    }
+
+    /// <summary>
     /// Executes the subaction
     /// </summary>
     /// <param name="actor">The BattleObject the subaction is being executed by</param>

@@ -5,20 +5,24 @@ using UnityEngine;
 public class SubactionWindow : MonoBehaviour {
     public GameObject data_row_prefab;
 
+    public string currentGroupName = "Set Up";
+    public DynamicAction currentAction;
     private DynamicGridLayout grid;
     private List<SubactionDataRowExpanded> subaction_rows = new List<SubactionDataRowExpanded>();
 
-    void Start()
+    void Awake()
     {
         grid = GetComponent<DynamicGridLayout>();
     }
 
-    public void ActionChanged(DynamicAction action)
+    public void RefreshData()
     {
+        SubactionFactory.AddNewSubaction("ChangeSprite", currentAction.GetGroup(currentGroupName));
+        Debug.Log("Refreshing");
         RemoveData();
-        if (action.set_up_subactions.subactions.Count > 0)
+        if (currentAction.GetGroup(currentGroupName).subactions.Count > 0)
         {
-            foreach (Subaction action_text in action.set_up_subactions.subactions)
+            foreach (Subaction action_text in currentAction.GetGroup(currentGroupName).subactions)
             {
                 Debug.Log(action_text);
                 InstantiateRow(action_text);
@@ -26,6 +30,20 @@ public class SubactionWindow : MonoBehaviour {
             //subaction_rows[0].Select();
         }
         grid.Reposition(); //FIXME: For some reason, this doesn't actually reposition it in time. It's still stacked on top of each other.
+    }
+
+    public void ActionChanged(DynamicAction action)
+    {
+        Debug.Log("Receiving Broadcast: " + action);
+        currentAction = action;
+        RefreshData();
+    }
+
+    public void SubActionGroupChanged(string group)
+    {
+        Debug.Log("Receiving Broadcast: " + group);
+        currentGroupName = group;
+        RefreshData();
     }
 
     void RemoveData()

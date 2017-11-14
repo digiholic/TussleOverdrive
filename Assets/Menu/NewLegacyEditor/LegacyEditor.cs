@@ -10,6 +10,7 @@ public class LegacyEditor : MonoBehaviour {
     public FighterInfo current_fighter;
     public ActionFile current_actions;
     public DynamicAction selected_action;
+    public string current_group_name;
 
     public FileInfo fighter_file;
     public FileInfo action_file;
@@ -52,6 +53,13 @@ public class LegacyEditor : MonoBehaviour {
 
     public static void ActionChanged()
     {
+        Debug.Log("Broadcasting: " + editor.current_group_name);
+        editor.BroadcastMessage("ActionChanged", editor.selected_action, SendMessageOptions.DontRequireReceiver);
+    }
+
+    public static void SubActionGroupChanged()
+    {
+        Debug.Log("Broadcasting: " + editor.current_group_name);
         editor.BroadcastMessage("ActionChanged", editor.selected_action, SendMessageOptions.DontRequireReceiver);
     }
 

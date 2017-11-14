@@ -30,4 +30,14 @@ public class SubactionFactory {
         }
         return sub;
     }
+
+    public static Subaction LoadSubactionAs(Subaction subact, string subactionName)
+    {
+        Subaction sub = GetSubaction(subactionName);
+        if (sub != null)
+        {
+            sub.CreateFromOther(subact);
+        }
+        return sub;
+    }
 }

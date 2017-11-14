@@ -10,7 +10,8 @@ public class ActionDataSetter : MonoBehaviour {
     void ActionChanged(DynamicAction action)
     {
         if (display_area != null)
-            display_area.text = action.GetType().GetField(variable_name).GetValue(action).ToString();
+            if (action.GetType().GetField(variable_name).GetValue(action) != null)
+                display_area.text = action.GetType().GetField(variable_name).GetValue(action).ToString();
         if (bool_display != null)
             bool_display.isChecked = (bool)action.GetType().GetField(variable_name).GetValue(action);
     }
