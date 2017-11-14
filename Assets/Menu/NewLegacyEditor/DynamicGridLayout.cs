@@ -15,7 +15,7 @@ public class DynamicGridLayout : MonoBehaviour {
         {
             AddData(cell);
         }
-        //InvokeRepeating("Reposition", 0.0f, 0.5f);
+        InvokeRepeating("Reposition", 0.0f, 0.5f);
         Reposition();
     }
 
@@ -32,6 +32,7 @@ public class DynamicGridLayout : MonoBehaviour {
     { 
         cells.Add(cell);
         cell.owner = this;
+        Reposition();
     }
 
     public void ClearData()
