@@ -43,6 +43,11 @@ public class LegacyEditor : MonoBehaviour {
             editor.sub_window = new_subwindow_name;
             BroadcastSubWindowChanged();
         }
+        //If we're changing a subaction group, we need to notify that listener as well
+        if (editor.main_window == "Action" && new_subwindow_name != "Properties")
+        {
+            ChangeSubactionGroup(new_subwindow_name);
+        }
     }
     public static void BroadcastSubWindowChanged()
     {
@@ -148,6 +153,43 @@ public class LegacyEditor : MonoBehaviour {
     public static void BroadcastCategoryChanged()
     {
         editor.BroadcastMessage("CategoryChanged", editor.selected_subaction_category, SendMessageOptions.DontRequireReceiver);
+    }
+
+    /************************************************
+     *               SUBACTION GROUP                *
+     ***********************************************/
+    public SubActionGroup subaction_group;
+
+    public static void ChangeSubactionGroup(string new_group_name)
+    {
+        if (editor.selected_action != null) //If we don't have an action selected, we can't pull the group from it
+        {
+            DynamicAction act = editor.selected_action;
+            switch (new_group_name)
+            {
+                case "Set Up":
+                    ChangeSubactionGroup(act.set_up_subactions);
+                    break;
+                case "Transitions":
+                    ChangeSubactionGroup(act.state_transition_subactions);
+                    break;
+                case "On Frame":
+                    ChangeSubactionGroup(act.subactions_on_frame);
+                    break;
+                case "Tear Down":
+                    ChangeSubactionGroup(act.tear_down_subactions);
+                    break;
+            }
+        }
+    }
+    public static void ChangeSubactionGroup(SubActionGroup new_group)
+    {
+        editor.subaction_group = new_group;
+        BroadcastSubactionGroupChanged();
+    }
+    public static void BroadcastSubactionGroupChanged()
+    {
+        editor.BroadcastMessage("SubactionGroupChanged", editor.subaction_group, SendMessageOptions.DontRequireReceiver);
     }
 
     // Use this for initialization

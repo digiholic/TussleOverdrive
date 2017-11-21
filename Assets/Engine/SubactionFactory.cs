@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Linq;
 
 public class SubactionFactory {
     
@@ -39,5 +40,51 @@ public class SubactionFactory {
             sub.CreateFromOther(subact);
         }
         return sub;
+    }
+
+    public static List<String> GetSubactionNamesByCategory(string cat)
+    {
+        switch (cat)
+        {
+            case "Control":
+                return new List<String>()
+                {
+                    "SubactionDoAction",
+                    "SubactionDoTransition",
+                    "SubactionElse",
+                    "SubactionEndIf",
+                    "SubactionIfVar",
+                    "SubactionSetAnchor",
+                    "SubactionSetFrame",
+                    "SubactionSetVar"
+                };
+            case "Behavior":
+                return new List<String>()
+                {
+                    "SubactionChangeSpeed",
+                    "SubactionShiftPosition",
+                    "SubactionPlaysound"
+                };
+            case "Animation":
+                return new List<String>()
+                {
+                    "SubactionChangeSprite",
+                    "SubactionChangeSubimage",
+                    "SubactionFlip",
+                    "SubactionShiftSprite",
+                    "SubactionRotate",
+                    "SubactionUnrotate"
+                };
+            case "Hitbox":
+                return new List<String>()
+                {
+                    "SubactionActivateHitbox",
+                    "SubactionCreateHitbox",
+                    "SubactionDeactivateHitbox",
+                    "SubactionModifyHitbox"
+                };
+            default:
+                return new List<String>();
+        }
     }
 }
