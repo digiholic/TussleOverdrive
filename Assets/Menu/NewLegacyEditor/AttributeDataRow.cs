@@ -17,11 +17,11 @@ public class AttributeDataRow : MonoBehaviour {
 
     void Start()
     {
-        if (LegacyEditor.FighterLoaded) RefreshFighter(LegacyEditor.editor.current_fighter);
+        if (LegacyEditor.FighterLoaded) FighterChanged(LegacyEditor.editor.current_fighter);
         grid = transform.parent.GetComponent<UIGrid>();
     }
 
-    void RefreshFighter(FighterInfo info)
+    void FighterChanged(FighterInfo info)
     {
         if (variable_name != "")
         {

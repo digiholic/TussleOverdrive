@@ -18,18 +18,26 @@ MonoBehaviour:
   elementIdentifiers:
   - _id: 0
     _name: Left Stick X
+    _positiveName: Left Stick Right
+    _negativeName: Left Stick Left
     _elementType: 0
     _compoundElementType: 0
   - _id: 1
     _name: Left Stick Y
+    _positiveName: Left Stick Up
+    _negativeName: Left Stick Down
     _elementType: 0
     _compoundElementType: 0
   - _id: 2
     _name: Right Stick X
+    _positiveName: Right Stick Right
+    _negativeName: Right Stick Left
     _elementType: 0
     _compoundElementType: 0
   - _id: 3
     _name: Right Stick Y
+    _positiveName: Right Stick Up
+    _negativeName: Right Stick Down
     _elementType: 0
     _compoundElementType: 0
   - _id: 4

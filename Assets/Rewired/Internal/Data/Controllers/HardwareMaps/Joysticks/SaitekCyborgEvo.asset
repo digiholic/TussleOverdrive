@@ -18,109 +18,162 @@ MonoBehaviour:
   templateGuids:
   - 061a00cf-d8c2-4f8d-8cb5-a15a010bc53e
   hideInLists: 0
+  joystickTypes: 0a0000000b0000001400000015000000
   elementIdentifiers:
   - _id: 0
     _name: Stick X
+    _positiveName: Stick Right
+    _negativeName: Stick Left
     _elementType: 0
     _compoundElementType: 0
   - _id: 1
     _name: Stick Y
+    _positiveName: Stick Up
+    _negativeName: Stick Down
     _elementType: 0
     _compoundElementType: 0
   - _id: 2
     _name: Stick Rotate
+    _positiveName: Stick Rotate Right
+    _negativeName: Stick Rotate Left
     _elementType: 0
     _compoundElementType: 0
   - _id: 3
     _name: Throttle
+    _positiveName: Throttle Up
+    _negativeName: Throttle Down
     _elementType: 0
     _compoundElementType: 0
   - _id: 4
     _name: Trigger
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 5
     _name: Button 2
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 6
     _name: Button 3
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 7
     _name: Button 4
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 8
     _name: Button 5
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 9
     _name: Button 6
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 10
     _name: Hat Up
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 11
     _name: Hat Up-Right
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 12
     _name: Hat Right
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 13
     _name: Hat Down-Right
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 14
     _name: Hat Down
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 15
     _name: Hat Down-Left
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 16
     _name: Hat Left
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 17
     _name: Hat Up-Left
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 22
     _name: F1
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 23
     _name: F2
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 24
     _name: F3
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 25
     _name: F4
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 20
     _name: Left Shift
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 21
     _name: Right Shift
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 18
     _name: Stick
+    _positiveName: 
+    _negativeName: 
     _elementType: 100
     _compoundElementType: 0
   - _id: 19
     _name: Hat
+    _positiveName: 
+    _negativeName: 
     _elementType: 100
     _compoundElementType: 11
   compoundElements:
@@ -264,6 +317,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
         sourceOtherAxis: 0
       - customCalculation: {fileID: 0}
         customCalculationSourceData: []
@@ -280,6 +336,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
         sourceOtherAxis: 0
       - customCalculation: {fileID: 0}
         customCalculationSourceData: []
@@ -296,6 +355,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
         sourceOtherAxis: 0
       - customCalculation: {fileID: 0}
         customCalculationSourceData: []
@@ -312,6 +374,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
         sourceOtherAxis: 0
       - customCalculation: {fileID: 0}
         customCalculationSourceData: []
@@ -328,6 +393,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
         sourceOtherAxis: 0
       - customCalculation: {fileID: 0}
         customCalculationSourceData: []
@@ -344,6 +412,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
         sourceOtherAxis: 0
       - customCalculation: {fileID: 0}
         customCalculationSourceData: []
@@ -360,6 +431,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
         sourceOtherAxis: 0
       - customCalculation: {fileID: 0}
         customCalculationSourceData: []
@@ -376,6 +450,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
         sourceOtherAxis: 0
       - customCalculation: {fileID: 0}
         customCalculationSourceData: []
@@ -392,6 +469,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
         sourceOtherAxis: 0
       - customCalculation: {fileID: 0}
         customCalculationSourceData: []
@@ -408,6 +488,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
         sourceOtherAxis: 0
       - customCalculation: {fileID: 0}
         customCalculationSourceData: []
@@ -424,6 +507,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
         sourceOtherAxis: 0
       - customCalculation: {fileID: 0}
         customCalculationSourceData: []
@@ -440,6 +526,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
         sourceOtherAxis: 0
       - customCalculation: {fileID: 0}
         customCalculationSourceData: []
@@ -456,6 +545,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
         sourceOtherAxis: 0
       - customCalculation: {fileID: 0}
         customCalculationSourceData: []
@@ -472,6 +564,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
         sourceOtherAxis: 0
       - customCalculation: {fileID: 0}
         customCalculationSourceData: []
@@ -488,6 +583,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
         sourceOtherAxis: 0
       - customCalculation: {fileID: 0}
         customCalculationSourceData: []
@@ -504,6 +602,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
         sourceOtherAxis: 0
       - customCalculation: {fileID: 0}
         customCalculationSourceData: []
@@ -520,6 +621,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
         sourceOtherAxis: 0
       - customCalculation: {fileID: 0}
         customCalculationSourceData: []
@@ -536,6 +640,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
         sourceOtherAxis: 0
       - customCalculation: {fileID: 0}
         customCalculationSourceData: []
@@ -552,6 +659,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
         sourceOtherAxis: 0
       - customCalculation: {fileID: 0}
         customCalculationSourceData: []
@@ -568,6 +678,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
         sourceOtherAxis: 0
     variants: []
   xInput:
@@ -694,6 +807,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 5
         sourceType: 0
         sourceButton: 1
@@ -709,6 +825,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 6
         sourceType: 0
         sourceButton: 2
@@ -724,6 +843,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 7
         sourceType: 0
         sourceButton: 3
@@ -739,6 +861,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 8
         sourceType: 0
         sourceButton: 4
@@ -754,6 +879,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 9
         sourceType: 0
         sourceButton: 5
@@ -769,6 +897,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 10
         sourceType: 2
         sourceButton: 0
@@ -784,6 +915,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 11
         sourceType: 2
         sourceButton: 0
@@ -799,6 +933,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 12
         sourceType: 2
         sourceButton: 0
@@ -814,6 +951,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 13
         sourceType: 2
         sourceButton: 0
@@ -829,6 +969,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 14
         sourceType: 2
         sourceButton: 0
@@ -844,6 +987,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 15
         sourceType: 2
         sourceButton: 0
@@ -859,6 +1005,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 16
         sourceType: 2
         sourceButton: 0
@@ -874,6 +1023,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 17
         sourceType: 2
         sourceButton: 0
@@ -889,6 +1041,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 22
         sourceType: 0
         sourceButton: 6
@@ -904,6 +1059,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 23
         sourceType: 0
         sourceButton: 7
@@ -919,6 +1077,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 24
         sourceType: 0
         sourceButton: 8
@@ -934,6 +1095,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 25
         sourceType: 0
         sourceButton: 9
@@ -949,6 +1113,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 20
         sourceType: 0
         sourceButton: 10
@@ -964,6 +1131,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 21
         sourceType: 0
         sourceButton: 11
@@ -979,6 +1149,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
     variants: []
   linux:
     description: 
@@ -1085,6 +1258,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 5
         sourceType: 0
         sourceButton: 1
@@ -1098,6 +1274,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 6
         sourceType: 0
         sourceButton: 2
@@ -1111,6 +1290,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 7
         sourceType: 0
         sourceButton: 3
@@ -1124,6 +1306,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 8
         sourceType: 0
         sourceButton: 4
@@ -1137,6 +1322,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 9
         sourceType: 0
         sourceButton: 5
@@ -1150,6 +1338,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 10
         sourceType: 2
         sourceButton: 0
@@ -1163,6 +1354,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 11
         sourceType: 2
         sourceButton: 0
@@ -1176,6 +1370,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 12
         sourceType: 2
         sourceButton: 0
@@ -1189,6 +1386,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 13
         sourceType: 2
         sourceButton: 0
@@ -1202,6 +1402,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 14
         sourceType: 2
         sourceButton: 0
@@ -1215,6 +1418,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 15
         sourceType: 2
         sourceButton: 0
@@ -1228,6 +1434,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 16
         sourceType: 2
         sourceButton: 0
@@ -1241,6 +1450,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 17
         sourceType: 2
         sourceButton: 0
@@ -1254,6 +1466,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 22
         sourceType: 0
         sourceButton: 6
@@ -1267,6 +1482,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 23
         sourceType: 0
         sourceButton: 7
@@ -1280,6 +1498,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 24
         sourceType: 0
         sourceButton: 8
@@ -1293,6 +1514,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 25
         sourceType: 0
         sourceButton: 9
@@ -1306,6 +1530,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 20
         sourceType: 0
         sourceButton: 10
@@ -1319,6 +1546,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 21
         sourceType: 0
         sourceButton: 11
@@ -1332,6 +1562,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
     variants: []
   windowsUWP:
     description: 
@@ -1436,6 +1669,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 5
         sourceType: 0
         sourceButton: 1
@@ -1449,6 +1685,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 6
         sourceType: 0
         sourceButton: 2
@@ -1462,6 +1701,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 7
         sourceType: 0
         sourceButton: 3
@@ -1475,6 +1717,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 8
         sourceType: 0
         sourceButton: 4
@@ -1488,6 +1733,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 9
         sourceType: 0
         sourceButton: 5
@@ -1501,6 +1749,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 10
         sourceType: 2
         sourceButton: 0
@@ -1514,6 +1765,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 11
         sourceType: 2
         sourceButton: 0
@@ -1527,6 +1781,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 12
         sourceType: 2
         sourceButton: 0
@@ -1540,6 +1797,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 13
         sourceType: 2
         sourceButton: 0
@@ -1553,6 +1813,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 14
         sourceType: 2
         sourceButton: 0
@@ -1566,6 +1829,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 15
         sourceType: 2
         sourceButton: 0
@@ -1579,6 +1845,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 16
         sourceType: 2
         sourceButton: 0
@@ -1592,6 +1861,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 17
         sourceType: 2
         sourceButton: 0
@@ -1605,6 +1877,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 22
         sourceType: 0
         sourceButton: 6
@@ -1618,6 +1893,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 23
         sourceType: 0
         sourceButton: 7
@@ -1631,6 +1909,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 24
         sourceType: 0
         sourceButton: 8
@@ -1644,6 +1925,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 25
         sourceType: 0
         sourceButton: 9
@@ -1657,6 +1941,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 20
         sourceType: 0
         sourceButton: 10
@@ -1670,6 +1957,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 21
         sourceType: 0
         sourceButton: 11
@@ -1683,6 +1973,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
     variants: []
   fallback_Windows:
     description: 
@@ -1794,6 +2087,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 5
         sourceType: 0
         sourceAxis: 0
@@ -1815,6 +2111,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 6
         sourceType: 0
         sourceAxis: 0
@@ -1836,6 +2135,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 7
         sourceType: 0
         sourceAxis: 0
@@ -1857,6 +2159,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 8
         sourceType: 0
         sourceAxis: 0
@@ -1878,6 +2183,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 9
         sourceType: 0
         sourceAxis: 0
@@ -1899,6 +2207,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 10
         sourceType: 2
         sourceAxis: 0
@@ -1920,6 +2231,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 11
         sourceType: 2
         sourceAxis: 0
@@ -1941,6 +2255,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 12
         sourceType: 2
         sourceAxis: 0
@@ -1962,6 +2279,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 13
         sourceType: 2
         sourceAxis: 0
@@ -1983,6 +2303,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 14
         sourceType: 2
         sourceAxis: 0
@@ -2004,6 +2327,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 15
         sourceType: 2
         sourceAxis: 0
@@ -2025,6 +2351,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 16
         sourceType: 2
         sourceAxis: 0
@@ -2046,6 +2375,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 17
         sourceType: 2
         sourceAxis: 0
@@ -2067,6 +2399,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 22
         sourceType: 0
         sourceAxis: 0
@@ -2088,6 +2423,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 23
         sourceType: 0
         sourceAxis: 0
@@ -2109,6 +2447,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 24
         sourceType: 0
         sourceAxis: 0
@@ -2130,6 +2471,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 25
         sourceType: 0
         sourceAxis: 0
@@ -2151,6 +2495,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 20
         sourceType: 0
         sourceAxis: 0
@@ -2172,6 +2519,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 21
         sourceType: 0
         sourceAxis: 0
@@ -2193,6 +2543,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
     variants: []
   fallback_WindowsUWP:
     description: 
@@ -2321,6 +2674,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 5
         sourceType: 0
         sourceAxis: 0
@@ -2342,6 +2698,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 6
         sourceType: 0
         sourceAxis: 0
@@ -2363,6 +2722,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 7
         sourceType: 0
         sourceAxis: 0
@@ -2384,6 +2746,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 8
         sourceType: 0
         sourceAxis: 0
@@ -2405,6 +2770,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 9
         sourceType: 0
         sourceAxis: 0
@@ -2426,6 +2794,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 10
         sourceType: 2
         sourceAxis: 0
@@ -2447,6 +2818,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 11
         sourceType: 2
         sourceAxis: 0
@@ -2468,6 +2842,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 12
         sourceType: 2
         sourceAxis: 0
@@ -2489,6 +2866,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 13
         sourceType: 2
         sourceAxis: 0
@@ -2510,6 +2890,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 14
         sourceType: 2
         sourceAxis: 0
@@ -2531,6 +2914,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 15
         sourceType: 2
         sourceAxis: 0
@@ -2552,6 +2938,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 16
         sourceType: 2
         sourceAxis: 0
@@ -2573,6 +2962,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 17
         sourceType: 2
         sourceAxis: 0
@@ -2594,6 +2986,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 22
         sourceType: 0
         sourceAxis: 0
@@ -2615,6 +3010,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 23
         sourceType: 0
         sourceAxis: 0
@@ -2636,6 +3034,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 24
         sourceType: 0
         sourceAxis: 0
@@ -2657,6 +3058,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 25
         sourceType: 0
         sourceAxis: 0
@@ -2678,6 +3082,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 20
         sourceType: 0
         sourceAxis: 0
@@ -2699,6 +3106,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 21
         sourceType: 0
         sourceAxis: 0
@@ -2720,6 +3130,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
     variants: []
   fallback_Linux:
     description: 
@@ -2831,6 +3244,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 5
         sourceType: 0
         sourceAxis: 0
@@ -2852,6 +3268,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 6
         sourceType: 0
         sourceAxis: 0
@@ -2873,6 +3292,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 7
         sourceType: 0
         sourceAxis: 0
@@ -2894,6 +3316,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 8
         sourceType: 0
         sourceAxis: 0
@@ -2915,6 +3340,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 9
         sourceType: 0
         sourceAxis: 0
@@ -2936,6 +3364,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 10
         sourceType: 2
         sourceAxis: 0
@@ -2957,6 +3388,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 11
         sourceType: 2
         sourceAxis: 0
@@ -2978,6 +3412,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 12
         sourceType: 2
         sourceAxis: 0
@@ -2999,6 +3436,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 13
         sourceType: 2
         sourceAxis: 0
@@ -3020,6 +3460,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 14
         sourceType: 2
         sourceAxis: 0
@@ -3041,6 +3484,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 15
         sourceType: 2
         sourceAxis: 0
@@ -3062,6 +3508,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 16
         sourceType: 2
         sourceAxis: 0
@@ -3083,6 +3532,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 17
         sourceType: 2
         sourceAxis: 0
@@ -3104,6 +3556,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 22
         sourceType: 0
         sourceAxis: 0
@@ -3125,6 +3580,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 23
         sourceType: 0
         sourceAxis: 0
@@ -3146,6 +3604,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 24
         sourceType: 0
         sourceAxis: 0
@@ -3167,6 +3628,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 25
         sourceType: 0
         sourceAxis: 0
@@ -3188,6 +3652,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 20
         sourceType: 0
         sourceAxis: 0
@@ -3209,6 +3676,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 21
         sourceType: 0
         sourceAxis: 0
@@ -3230,6 +3700,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
     variants: []
   fallback_Linux_PreConfigured:
     description: 
@@ -3358,6 +3831,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 5
         sourceType: 0
         sourceAxis: 0
@@ -3379,6 +3855,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 6
         sourceType: 0
         sourceAxis: 0
@@ -3400,6 +3879,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 7
         sourceType: 0
         sourceAxis: 0
@@ -3421,6 +3903,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 8
         sourceType: 0
         sourceAxis: 0
@@ -3442,6 +3927,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 10
         sourceType: 2
         sourceAxis: 0
@@ -3463,6 +3951,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 11
         sourceType: 2
         sourceAxis: 0
@@ -3484,6 +3975,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 12
         sourceType: 2
         sourceAxis: 0
@@ -3505,6 +3999,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 13
         sourceType: 2
         sourceAxis: 0
@@ -3526,6 +4023,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 14
         sourceType: 2
         sourceAxis: 0
@@ -3547,6 +4047,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 15
         sourceType: 2
         sourceAxis: 0
@@ -3568,6 +4071,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 16
         sourceType: 2
         sourceAxis: 0
@@ -3589,6 +4095,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 17
         sourceType: 2
         sourceAxis: 0
@@ -3610,6 +4119,9 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
     variants: []
   fallback_iOS:
     description: 
@@ -3832,6 +4344,24 @@ MonoBehaviour:
       axes: []
       buttons: []
     variants: []
+  webGL:
+    description: 
+    matchingCriteria:
+      axisCount: 0
+      buttonCount: 0
+      disabled: 0
+      tag: 
+      alwaysMatch: 0
+      productName_useRegex: 0
+      productName: []
+      productGUID: []
+      mapping: 
+      elementCount: []
+      clientInfo: []
+    elements:
+      axes: []
+      buttons: []
+    variants: []
   ouya:
     description: 
     matchingCriteria:
@@ -3859,6 +4389,20 @@ MonoBehaviour:
       buttons: []
     variants: []
   ps4:
+    description: 
+    matchingCriteria:
+      axisCount: 0
+      buttonCount: 0
+      disabled: 0
+      tag: 
+      alwaysMatch: 0
+      productName_useRegex: 0
+      productName: []
+    elements:
+      axes: []
+      buttons: []
+    variants: []
+  nintendoSwitch:
     description: 
     matchingCriteria:
       axisCount: 0

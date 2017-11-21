@@ -154,8 +154,21 @@
     <p>Rewired itself will work if you move it into another folder in your project. However, before updating, you must always remember to move it back to the root of the project.</p>
     <p><strong>Details</strong></p>
     <p>In Unity 5, Unity has changed the way the Unitypackage system works. In 4.x it used to find existing files that matched those being extracted by GUID and then replace those files even if they weren't in the same location as in the Unitypackage. Not anymore in U5. If you unpack a file that already exists in the project but it's not in the expected location, it will just unpack a copy into the root instead of replacing the one you moved and change all the GUIDs on these new files. You will be left with multiple copies of the scripts and DLLs which will interfere with each other and break script references on Monobehaviours. There is no way to work around this. Unitypackage is Unity's format and asset store developers cannot change the way it works.</p>
-    <p><strong>Issues when Updating</strong></p>
+    <p><strong><a name="issues-when-updating" id="issues-when-updating"></a>Issues when Updating</strong></p>
 <p>If you experience issues when updating, you may find it easier just to delete the Rewired folder and reimport it. Rewired stores no data in its folder so you are safe to just delete it and reinstall it in any situation where problems occur. However, during this delete and reinstall process, be sure you DO NOT save your scene until after importing Rewired again and verifying the Rewired Input Manager works as expected.</p>
+<p><a name="clean-reinstall" id="clean-reinstall"></a>How to do a clean reinstall of Rewired:</p>
+<ol>
+  <li> Close the Unity editor if it is open.</li>
+  <li> Open   the Unity editor.</li>
+  <li>Delete the Rewired folder.</li>
+  <li>Close the Unity editor without saving if   asked.</li>
+  <li> Open the Unity editor.</li>
+  <li> Install Rewired from the Unity Asset Store.</li>
+  <li> Close the Unity editor without saving   if asked.</li>
+  <li> Open the Unity editor.</li>
+  <li>Test.<br />
+  </li>
+</ol>
 <p><strong>Possible Data Corruption in Imported Package Files</strong></p>
 <p>Due to a Unity bug in the Unitypackage importer, in certain cases Unity may corrupt serialized data in some of Rewired's necessary data files upon import. If after updating, Rewired suddenly stops working and you get exceptions thrown for no apparent reason, Please see <a href="KnownIssues.html#serialized-data-corruption-after-import">Known Issues - Serialized data corruption after importing Rewired</a>.</p>
     <p><br />

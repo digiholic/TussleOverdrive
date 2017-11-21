@@ -24,9 +24,10 @@ public class UIButtonMessage : MonoBehaviour
 
 	public GameObject target;
 	public string functionName;
-	public Trigger trigger = Trigger.OnClick;
+    public string argData;
+    public Trigger trigger = Trigger.OnClick;
 	public bool includeChildren = false;
-
+    
 	bool mStarted = false;
 	bool mHighlighted = false;
 
@@ -62,19 +63,26 @@ public class UIButtonMessage : MonoBehaviour
 		if (string.IsNullOrEmpty(functionName)) return;
 		if (target == null) target = gameObject;
 
-		if (includeChildren)
+        object arg = argData;
+        if (argData == "" || argData == null)
+            arg = gameObject;
+
+        if (includeChildren)
 		{
 			Transform[] transforms = target.GetComponentsInChildren<Transform>();
 
 			for (int i = 0, imax = transforms.Length; i < imax; ++i)
 			{
 				Transform t = transforms[i];
-				t.gameObject.SendMessage(functionName, gameObject, SendMessageOptions.DontRequireReceiver);
+				t.gameObject.SendMessage(functionName, arg, SendMessageOptions.DontRequireReceiver);
 			}
 		}
 		else
 		{
-			target.SendMessage(functionName, gameObject, SendMessageOptions.DontRequireReceiver);
+            Debug.Log(target);
+            Debug.Log(functionName);
+            Debug.Log(arg);
+            target.SendMessage(functionName, arg, SendMessageOptions.DontRequireReceiver);
 		}
 	}
 }

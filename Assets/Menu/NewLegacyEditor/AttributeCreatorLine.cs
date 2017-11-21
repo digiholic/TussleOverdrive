@@ -15,7 +15,7 @@ public class AttributeCreatorLine : MonoBehaviour {
             item.type = VarType.FLOAT;
             item.value = "0";
             LegacyEditor.editor.current_fighter.variables.Add(item);
-            LegacyEditor.RefreshFighter();
+            LegacyEditor.BroadcastFighterChanged();
             variable_name.text = "";
         }
     }

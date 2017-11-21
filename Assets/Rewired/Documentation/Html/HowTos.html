@@ -177,7 +177,7 @@
       <li><a href="#new-controller-templates">Creating new controller templates</a></li>
       <li><a href="#add-controller-to-existing-controller-template">Adding a controller to an existing controller template</a></li>
       <li><a href="#excluding-controller-definitions">Excluding controller definitions</a></li>
-      <li><a href="#identifying-recognized-controllers">Identifying recognized Joysticks by type</a></li>
+      <li><a href="#identifying-recognized-controllers">Identifying recognized Joysticks</a></li>
       <li><a href="#identifying-joysticks-windows-fallback-or-webplayer">Identifying controllers on Windows fallback or Windows Webplayer platforms</a></li>
       <li><a href="#hide-input-settings-launcher">Hiding input settings on the Unity launcher</a></li>
       <li><a href="#optimization">Optimizing performance</a></li>
@@ -411,8 +411,8 @@ void LogJoystickElementValues(Joystick joystick) {
     <p>To receive an event when a <a href="Controllers.html#joysticks">Joystick</a> is connected, register for <a href="http://guavaman.com/projects/rewired/docs/api-reference/html/E_Rewired_ReInput_ControllerConnectedEvent.htm">ReInput.ControllerConnectedEvent</a>.<br />
     To receive an event when a <a href="Controllers.html#joysticks">Joystick</a><a href="Controllers.html"></a> is fully disconnected, register for <a href="http://guavaman.com/projects/rewired/docs/api-reference/html/E_Rewired_ReInput_ControllerDisconnectedEvent.htm">ReInput.ControllerDisconnectedEvent</a>.<br />
     To receive an event when a <a href="Controllers.html#joysticks">Joystick</a><a href="Controllers.html"></a> is about to be disconnected, register for <a href="http://guavaman.com/projects/rewired/docs/api-reference/html/E_Rewired_ReInput_ControllerDisconnectedEvent.htm">ReInput.ControllerPreDisconnectEvent</a>.</p>
-    <p>Note: <a href="Controllers.html#joysticks">Joysticks</a> are not guaranteed to be available on Awake or Start on all platforms or input sources. If <a href="Controllers.html#joysticks">Joysticks</a> are available immediately to Rewired on Awake, <a href="Controllers.html#joysticks">Joystick</a> connected events will not be sent. If <a href="Controllers.html#joysticks">Joystick</a> availability is delayed, a <a href="Controllers.html">Controller</a> connected event will be sent when Rewired detects the controller. If you need to check for the presence of <a href="Controllers.html#joysticks">Joysticks</a> at the beginning of your game, you should always check in both Awake or Start and by subscribing to the <a href="http://guavaman.com/projects/rewired/docs/api-reference/html/E_Rewired_ReInput_ControllerConnectedEvent.htm">ReInput.ControllerConnectedEvent</a>.</p>
-    <pre class="code">
+    <p>Note: <a href="Controllers.html#joysticks">Joysticks</a> are not guaranteed to be available on Awake or Start on all platforms or input sources. If <a href="Controllers.html#joysticks">Joysticks</a> are available immediately to Rewired on Awake, <a href="Controllers.html#joysticks">Joystick</a> connected events will not be sent (technically, they will, but you cannot subscribe to Rewired's events before it initializes because of Rewired's script execution order, so you can't react to these events). If <a href="Controllers.html#joysticks">Joystick</a> availability is delayed, a <a href="Controllers.html">Controller</a> connected event will be sent when Rewired detects the controller. If you need to check for the presence of <a href="Controllers.html#joysticks">Joysticks</a> at the beginning of your game, you should check in both Awake or Start and by subscribing to the <a href="http://guavaman.com/projects/rewired/docs/api-reference/html/E_Rewired_ReInput_ControllerConnectedEvent.htm">ReInput.ControllerConnectedEvent</a> or enable deferred controller connected events. The <a href="RewiredEditor.html#settings-defer-controller-connected-events-on-start">&quot;Defer Controller Connected Events On Start&quot; option in Rewired Editor -&gt; Settings</a> will defer controller connected events for controllers already connected when Rewired initializes until the Start event so that you can subscribe to the ReInput.ControllerConnectedEvent in Awake and react to the events.</p>
+<pre class="code">
 using UnityEngine;
 using Rewired;
 
@@ -1780,13 +1780,13 @@ private void LoadAllMaps() {
     </ol>
   <p>&nbsp;</p>
 <hr />
-  <h3><a name="identifying-recognized-controllers" id="identifying-recognized-controllers"></a>Identifying recognized Joysticks by type</h3>
+  <h3><a name="identifying-recognized-controllers" id="identifying-recognized-controllers"></a>Identifying recognized Joysticks</h3>
 <p>
   If you need to identify a <a href="Controllers.html#joysticks">Joystick</a> for some reason (you're building <a href="#display-glyph-for-action">a controller element glyph table</a> for example), you can determine the identity of a <a href="Controllers.html#joysticks">Joystick</a> by using the <a href="http://guavaman.com/projects/rewired/docs/api-reference/html/P_Rewired_Joystick_hardwareTypeGuid.htm">joystick.hardwareTypeGuid property</a>. This will return the unique GUID of the <a href="Controllers.html#joysticks">Joystick</a> type. (Note: This is a Rewired-generated GUID, not  from the hardware.) This GUID can be found in each HardwareJoystickMap on the Settings page. HardwareJoystickMaps can be found in the Assets/Rewired/Internal/Data/Controllers/HardwareMaps/Joysticks/ folder in your project.</p>
 <p>(To save time, you can <a href="http://guavaman.com/rewired/files/docs/RewiredControllersCSV.zip">download a CSV file of the current controllers here</a>.)</p>
 <p>If a <a href="Controllers.html#joysticks">Joystick</a> is not a recognized controller, it will always return Guid.Empty (all zeros).</p>
 <p>Be sure to note the <a href="ControllerMaps.html#xinput-devices-windows">special cases for certain controllers on some platfoms/input sources as noted here</a> as this affects what a controller is identified as.</p>
-<p>&nbsp; </p>
+<p>&nbsp;</p>
 <hr />
   <h3><a name="identifying-joysticks-windows-fallback-or-webplayer" id="identifying-joysticks-windows-fallback-or-webplayer"></a>Identifying controllers on Windows fallback or Windows Webplayer platforms</h3>
 <p><strong>Update:</strong> Unity fixed this issue on Windows in Unity 4.6.3p1 and an early version of Unity 5.x. You can check if the current version of Unity includes the fix by checking the value of <a href="http://guavaman.com/projects/rewired/docs/api-reference/html/P_Rewired_ReInput_unityJoystickIdentificationRequired.htm">ReInput.unityJoystickIdentificationRequired</a>. If true, you should allow your players to manually identify controllers using the methods described below.</p>

@@ -13,7 +13,7 @@ public class AttributeLayout : MonoBehaviour {
     void Start()
     {
         grid = GetComponent<UIGrid>();
-        if (LegacyEditor.editor.current_fighter != null) RefreshFighter(LegacyEditor.editor.current_fighter);
+        if (LegacyEditor.editor.current_fighter != null) FighterChanged(LegacyEditor.editor.current_fighter);
         grid.Reposition();
     }
 
@@ -25,7 +25,7 @@ public class AttributeLayout : MonoBehaviour {
         }
     }
 
-    void RefreshFighter(FighterInfo info)
+    void FighterChanged(FighterInfo info)
     {
         RemoveData();
         foreach (VarData data in info.variables)

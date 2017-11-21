@@ -63,6 +63,23 @@ public class ActionFile
             act.ReconcileSubactions();
         }
     }
+
+    public static ActionFile LoadActionsFromFile(string directory, string filename = "fighter_actions.json")
+    {
+        string dir = FileLoader.GetFighterPath(directory);
+        string combinedPath = Path.Combine(dir, filename);
+        if (File.Exists(combinedPath))
+        {
+            string json = File.ReadAllText(combinedPath);
+            ActionFile info = JsonUtility.FromJson<ActionFile>(json);
+            return info;
+        }
+        else
+        {
+            Debug.LogWarning("No action file found at " + directory + "/" + filename);
+            return null;
+        }
+    }
 }
 
 [System.Serializable]

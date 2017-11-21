@@ -116,8 +116,7 @@ public class FileBrowser : MonoBehaviour {
         {
             LegacyEditor.editor.fighter_file = file_info;
             fighter_info.LoadDirectory(file_info.DirectoryName);
-            LegacyEditor.editor.LoadFighter(fighter_info);
-
+            LegacyEditor.ChangeFighter(fighter_info);
         }
         else
         {

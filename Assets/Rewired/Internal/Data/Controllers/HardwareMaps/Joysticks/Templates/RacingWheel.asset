@@ -17,178 +17,272 @@ MonoBehaviour:
   elementIdentifiers:
   - _id: 0
     _name: Wheel
+    _positiveName: 
+    _negativeName: 
     _elementType: 0
     _compoundElementType: 0
   - _id: 1
     _name: Accelerator
+    _positiveName: 
+    _negativeName: 
     _elementType: 0
     _compoundElementType: 0
   - _id: 2
     _name: Brake
+    _positiveName: 
+    _negativeName: 
     _elementType: 0
     _compoundElementType: 0
   - _id: 3
     _name: Clutch
+    _positiveName: 
+    _negativeName: 
     _elementType: 0
     _compoundElementType: 0
   - _id: 4
     _name: Shift Down
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 5
     _name: Shift Up
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 6
     _name: Wheel Button 1
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 7
     _name: Wheel Button 2
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 8
     _name: Wheel Button 3
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 9
     _name: Wheel Button 4
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 10
     _name: Wheel Button 5
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 11
     _name: Wheel Button 6
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 12
     _name: Wheel Button 7
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 13
     _name: Wheel Button 8
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 14
     _name: Wheel Button 9
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 15
     _name: Wheel Button 10
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 16
     _name: Console Button 1
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 17
     _name: Console Button 2
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 18
     _name: Console Button 3
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 19
     _name: Console Button 4
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 20
     _name: Console Button 5
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 21
     _name: Console Button 6
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 22
     _name: Console Button 7
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 23
     _name: Console Button 8
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 24
     _name: Console Button 9
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 25
     _name: Console Button 10
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 26
     _name: Shifter 1
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 27
     _name: Shifter 2
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 28
     _name: Shifter 3
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 29
     _name: Shifter 4
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 30
     _name: Shifter 5
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 31
     _name: Shifter 6
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 32
     _name: Shifter 7
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 33
     _name: Shifter 8
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 34
     _name: Shifter 9
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 35
     _name: Shifter 10
+    _positiveName: 
+    _negativeName: 
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 44
+    _name: Reverse Gear
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 36
     _name: Select
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 37
     _name: Start
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 38
     _name: System Button
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 43
     _name: Horn
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 39
     _name: D-Pad Up
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 40
     _name: D-Pad Right
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 41
     _name: D-Pad Down
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 42
     _name: D-Pad Left
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   joysticks:
@@ -308,6 +402,11 @@ MonoBehaviour:
       splitAxis: 0
       sourceAxisPole: 0
     - templateId: 32
+      joystickId: 26
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 44
       joystickId: 26
       joystickId2: 0
       splitAxis: 0
@@ -472,6 +571,11 @@ MonoBehaviour:
       joystickId2: 0
       splitAxis: 0
       sourceAxisPole: 0
+    - templateId: 44
+      joystickId: 26
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
     - templateId: 39
       joystickId: 27
       joystickId2: 0
@@ -627,6 +731,11 @@ MonoBehaviour:
       joystickId2: 0
       splitAxis: 0
       sourceAxisPole: 0
+    - templateId: 44
+      joystickId: 32
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
   - id: 12
     name: Logitech G920
     joystickGuid: 0f5ba315-3e83-4237-8374-28bea596914d
@@ -758,6 +867,11 @@ MonoBehaviour:
       splitAxis: 0
       sourceAxisPole: 0
     - templateId: 32
+      joystickId: 26
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 44
       joystickId: 26
       joystickId2: 0
       splitAxis: 0
@@ -1322,6 +1436,11 @@ MonoBehaviour:
       joystickId2: 0
       splitAxis: 0
       sourceAxisPole: 0
+    - templateId: 44
+      joystickId: 8
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
     - templateId: 4
       joystickId: 9
       joystickId2: 0
@@ -1542,5 +1661,310 @@ MonoBehaviour:
       joystickId2: 0
       splitAxis: 0
       sourceAxisPole: 0
-  elementIdentifierIdCounter: 44
-  joystickIdCounter: 13
+  - id: 13
+    name: Logitech MOMO
+    joystickGuid: f26d10b0-4488-4ed0-8d11-a7d9b71d1d50
+    fileGuid: d604681f0d3a82d488e5cc5650c38595
+    elementIdentifierMappings:
+    - templateId: 0
+      joystickId: 0
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 1
+      joystickId: 1
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 2
+      joystickId: 2
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 5
+      joystickId: 4
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 4
+      joystickId: 3
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 5
+      joystickId: 11
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 4
+      joystickId: 12
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 6
+      joystickId: 5
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 7
+      joystickId: 6
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 8
+      joystickId: 7
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 9
+      joystickId: 8
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 10
+      joystickId: 9
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 11
+      joystickId: 10
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+  - id: 14
+    name: Logitech Driving Force GT
+    joystickGuid: a6b952df-1dee-4b0b-92d2-d124f230e9b1
+    fileGuid: 61b8b45ce0d7f6840b81320de46d0284
+    elementIdentifierMappings:
+    - templateId: 0
+      joystickId: 0
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 1
+      joystickId: 1
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 2
+      joystickId: 2
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 4
+      joystickId: 4
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 5
+      joystickId: 5
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 6
+      joystickId: 6
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 7
+      joystickId: 7
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 8
+      joystickId: 8
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 9
+      joystickId: 9
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 10
+      joystickId: 10
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 11
+      joystickId: 11
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 12
+      joystickId: 12
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 13
+      joystickId: 13
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 13
+      joystickId: 16
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 14
+      joystickId: 17
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 15
+      joystickId: 18
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 36
+      joystickId: 14
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 37
+      joystickId: 15
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 38
+      joystickId: 23
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 43
+      joystickId: 22
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 39
+      joystickId: 26
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 40
+      joystickId: 27
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 41
+      joystickId: 28
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 42
+      joystickId: 29
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 5
+      joystickId: 24
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 4
+      joystickId: 25
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+  - id: 15
+    name: Thrustmaster FreeStyler Bike
+    joystickGuid: c87a944a-9bc7-4043-ab22-75ce682c0362
+    fileGuid: bd7d5c0c34396c348ac8c50237ce7919
+    elementIdentifierMappings:
+    - templateId: 0
+      joystickId: 0
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 1
+      joystickId: 2
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 2
+      joystickId: 3
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 3
+      joystickId: 8
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 6
+      joystickId: 4
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 7
+      joystickId: 5
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 8
+      joystickId: 6
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 9
+      joystickId: 7
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 10
+      joystickId: 9
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 11
+      joystickId: 10
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 12
+      joystickId: 11
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 13
+      joystickId: 12
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 14
+      joystickId: 13
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 15
+      joystickId: 14
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 16
+      joystickId: 15
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 39
+      joystickId: 16
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 40
+      joystickId: 17
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 41
+      joystickId: 18
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+    - templateId: 42
+      joystickId: 19
+      joystickId2: 0
+      splitAxis: 0
+      sourceAxisPole: 0
+  elementIdentifierIdCounter: 45
+  joystickIdCounter: 16

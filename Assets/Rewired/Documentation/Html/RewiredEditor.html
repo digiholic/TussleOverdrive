@@ -163,7 +163,7 @@
     </ul>
     <hr />
     <h3><a name="Settings" id="Settings"></a>Settings</h3>
-<p><img src="files/images/rewirededitor_settings.png" alt="Settings" width="770" height="708" /></p>
+<p><img src="files/images/rewirededitor_settings.png" alt="Settings" /></p>
 <p>The Settings page allows you change the options for the current Input Manager. The options available are as follows:</p>
  <table width="100%" border="0" cellpadding="0" cellspacing="0">
   <tr>
@@ -207,7 +207,7 @@
     <td valign="top">Disable keyboard input on all platforms? Disabling this can improve performance slightly.</td>
   </tr>
   <tr>
-    <td valign="top">Ignore Input When App Not In Focus</td>
+    <td valign="top"><a name="settings-ignore-input-when-app-not-in-focus" id="settings-ignore-input-when-app-not-in-focus"></a>Ignore Input When App Not In Focus</td>
     <td valign="top"><p>Ignores input if the application is not in focus. This setting has no effect on some platforms.</p>
       <p>NOTE: Disabling this does not guarantee that input will be processed when the application is out of focus. Whether input is received by the application or not is dependent on A) the input device type B) the current platform C) the input source(s) being used.</p></td>
   </tr>
@@ -228,6 +228,11 @@
     <td valign="top">Use XInput</td>
     <td valign="top"><p>On Windows, use XInput for compatible devices. Otherwise fall back to Raw Input or Direct Input. Installation of DirectX end-user runtimes may be required for XInput support. (Windows Vista+ include XInput support without the need for additional drivers.) Required for XBox 360 vibration support.</p>
       <p>(Only available when  Input Source is set to Raw Input or Direct Input.)</p></td>
+  </tr>
+  <tr>
+    <td valign="top">Joystick Refresh Rate</td>
+    <td valign="top"><p>The joystick refresh rate in frames per second. Set this to a higher value if you need higher precision input timing at high frame rates such as for a music beat game. Higher values result in higher CPU usage. Note that setting this to a very high value when the game is running at a low frame rate will not result in higher precision input.</p>
+      <p>This settings only applies to input sources that use a separate thread to poll for joystick input values (currently XInput and Direct Input). This setting does not apply to event-based input sources such as Raw Input.</p></td>
   </tr>
   <tr>
     <td valign="top"> Native Mouse Handling</td>
@@ -343,26 +348,6 @@
     <td valign="top">&nbsp;</td>
   </tr>
   <tr>
-    <td valign="top"><strong>Global Settings:</strong></td>
-    <td valign="top">&nbsp;</td>
-  </tr>
-  <tr>
-    <td valign="top">Default Joystick Dead Zone Type</td>
-    <td valign="top"><p>The default calculation type for joystick dead zones.</p>
-      <p>Radial: X and Y are combined and the dead zone is calculated on the length of the vector.<br />
-        Axial: X and Y axes are calculated independently.<br />
-        </p>
-  <p>This setting only applies to joysticks on recognized controllers.</p></td>
-  </tr>
-  <tr>
-    <td valign="top">Force 4-Way Hats</td>
-    <td valign="top">Force all 8-way hats on recognized joysticks to be treated as 4-way hats. If enabled, the corner directions on all hats will activate the adjacent 2 cardinal direction buttons instead of the corner button. This is useful if you need joystick hats to behave like D-Pads instead of 8-way hats.</td>
-  </tr>
-  <tr>
-    <td valign="top">&nbsp;</td>
-    <td valign="top">&nbsp;</td>
-  </tr>
-  <tr>
     <td valign="top"><strong><a name="settings-joystick-auto-assignment" id="settings-joystick-auto-assignment"></a>Joystick Auto-Assignment:</strong></td>
     <td valign="top">NOTE: Joystick Auto-Assignment  applies to Joysticks only (controllers other than keyboard or mouse.) Joystick Auto-Assignment does not consider whether a Player has Keyboard Maps assigned, so it will not skip assigning joysticks to Players that are using the keyboard.</td>
   </tr>
@@ -386,7 +371,31 @@
     <td valign="top">Reassign To Previous Owner</td>
     <td valign="top">When a joystick is disconnected and reconnected, attempt to reassign the joystick to the last player it was assigned to.</td>
   </tr>
-</table>
+  <tr>
+    <td valign="top">&nbsp;</td>
+    <td valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>Global Settings:</strong></td>
+    <td valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top">Default Joystick Dead Zone Type</td>
+    <td valign="top"><p>The default calculation type for joystick dead zones.</p>
+      <p>Radial: X and Y are combined and the dead zone is calculated on the length of the vector.<br />
+        Axial: X and Y axes are calculated independently.<br />
+      </p>
+      <p>This setting only applies to joysticks on recognized controllers.</p></td>
+  </tr>
+  <tr>
+    <td valign="top">Force 4-Way Hats</td>
+    <td valign="top">Force all 8-way hats on recognized joysticks to be treated as 4-way hats. If enabled, the corner directions on all hats will activate the adjacent 2 cardinal direction buttons instead of the corner button. This is useful if you need joystick hats to behave like D-Pads instead of 8-way hats.</td>
+  </tr>
+  <tr>
+    <td valign="top"><a name="settings-defer-controller-connected-events-on-start" id="settings-defer-controller-connected-events-on-start"></a>Defer Controller Connected Events On Start</td>
+    <td valign="top">Defer controller connected events for controllers already connected when Rewired initializes until the Start event instead of during initialization. Normally, it's impossible to receive controller connection events at the start of runtime because Rewired initializes before any other script is able to subscribe to the controller connected event. Enabling this will defer the controller connected events until the Start event, allowing your scripts to subscribe to the controller connected event in Awake and still receive the event callback. If disabled, controller connection events for controllers already connected before runtime starts will be missed.</td>
+  </tr>
+ </table>
 <p>&nbsp;</p>
 <hr />
 <h3><a name="Tools" id="Settings2"></a>Tools</h3>
@@ -850,7 +859,11 @@
     <td valign="top">Invert</td>
     <td valign="top">Inverts the final value of the axis.</td>
   </tr>
-</table>
+  <tr>
+    <td valign="top">Coordinate Mode</td>
+    <td valign="top">The coordinate mode of the axis data. This should be set to Relative for axes that return delta values.</td>
+  </tr>
+ </table>
 <p>&nbsp;</p>
 <p><strong>Button Properties:</strong></p>
 <p><img src="files/images/rewirededitor_customcontrollers_buttonproperties.png" alt="Button Properties" /></p>

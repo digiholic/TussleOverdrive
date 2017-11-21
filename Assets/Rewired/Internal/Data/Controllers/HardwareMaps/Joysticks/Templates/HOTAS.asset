@@ -17,10 +17,14 @@ MonoBehaviour:
   elementIdentifiers:
   - _id: 0
     _name: Stick X
+    _positiveName: Stick Right
+    _negativeName: Stick Left
     _elementType: 0
     _compoundElementType: 0
   - _id: 1
     _name: Stick Y
+    _positiveName: Stick Up
+    _negativeName: Stick Down
     _elementType: 0
     _compoundElementType: 0
   - _id: 2

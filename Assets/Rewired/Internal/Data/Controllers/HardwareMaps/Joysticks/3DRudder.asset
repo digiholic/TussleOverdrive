@@ -17,29 +17,40 @@ MonoBehaviour:
   controllerGuid: 4c2437d8-438b-400f-bd43-16ba0aadfcc1
   templateGuids: []
   hideInLists: 0
+  joystickTypes: 7b000000
   elementIdentifiers:
   - _id: 0
     _name: Lateral Tilt
+    _positiveName: Right Tilt
+    _negativeName: Left Tilt
     _elementType: 0
     _compoundElementType: 0
   - _id: 1
     _name: Forward/Back Tilt
+    _positiveName: Forward Tilt
+    _negativeName: Back Tilt
     _elementType: 0
     _compoundElementType: 0
   - _id: 2
     _name: Corner Press
+    _positiveName: 
+    _negativeName: 
     _elementType: 0
     _compoundElementType: 0
   - _id: 3
     _name: Rotate
+    _positiveName: Rotate Right
+    _negativeName: Rotate Left
     _elementType: 0
     _compoundElementType: 0
+  compoundElements: []
   directInput:
     description: 
     matchingCriteria:
       axisCount: 9
       buttonCount: 16
       disabled: 0
+      tag: 
       hatCount: 0
       productName_useRegex: 0
       productName:
@@ -49,9 +60,10 @@ MonoBehaviour:
       productId: 3ff20000
       deviceType: 24
     elements:
-      compoundElements: []
       axes:
-      - elementIdentifier: 0
+      - customCalculation: {fileID: 0}
+        customCalculationSourceData: []
+        elementIdentifier: 0
         sourceType: 1
         sourceAxis: 1
         sourceAxisRange: 0
@@ -61,12 +73,17 @@ MonoBehaviour:
         axisZero: 0
         axisMin: 0
         axisMax: 0
+        axisInfo:
+          _dataFormat: 0
+          _excludeFromPolling: 0
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
         sourceHatDirection: 0
         sourceHatRange: 0
-      - elementIdentifier: 1
+      - customCalculation: {fileID: 0}
+        customCalculationSourceData: []
+        elementIdentifier: 1
         sourceType: 1
         sourceAxis: 2
         sourceAxisRange: 0
@@ -76,12 +93,17 @@ MonoBehaviour:
         axisZero: 0
         axisMin: 0
         axisMax: 0
+        axisInfo:
+          _dataFormat: 0
+          _excludeFromPolling: 0
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
         sourceHatDirection: 0
         sourceHatRange: 0
-      - elementIdentifier: 2
+      - customCalculation: {fileID: 0}
+        customCalculationSourceData: []
+        elementIdentifier: 2
         sourceType: 1
         sourceAxis: 3
         sourceAxisRange: 0
@@ -91,12 +113,17 @@ MonoBehaviour:
         axisZero: 0
         axisMin: 0
         axisMax: 0
+        axisInfo:
+          _dataFormat: 0
+          _excludeFromPolling: 0
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
         sourceHatDirection: 0
         sourceHatRange: 0
-      - elementIdentifier: 3
+      - customCalculation: {fileID: 0}
+        customCalculationSourceData: []
+        elementIdentifier: 3
         sourceType: 1
         sourceAxis: 6
         sourceAxisRange: 0
@@ -106,6 +133,9 @@ MonoBehaviour:
         axisZero: 0
         axisMin: 0
         axisMax: 0
+        axisInfo:
+          _dataFormat: 0
+          _excludeFromPolling: 0
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -119,6 +149,7 @@ MonoBehaviour:
       axisCount: 8
       buttonCount: 16
       disabled: 0
+      tag: 
       hatCount: 0
       productName_useRegex: 0
       productName:
@@ -128,9 +159,10 @@ MonoBehaviour:
       productId: 3ff20000
       deviceType: 21
     elements:
-      compoundElements: []
       axes:
-      - elementIdentifier: 0
+      - customCalculation: {fileID: 0}
+        customCalculationSourceData: []
+        elementIdentifier: 0
         sourceType: 1
         sourceAxis: 1
         sourceAxisRange: 0
@@ -140,13 +172,18 @@ MonoBehaviour:
         axisZero: 0
         axisMin: 0
         axisMax: 0
+        axisInfo:
+          _dataFormat: 0
+          _excludeFromPolling: 0
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
         sourceHatDirection: 0
         sourceHatRange: 0
         sourceOtherAxis: 0
-      - elementIdentifier: 1
+      - customCalculation: {fileID: 0}
+        customCalculationSourceData: []
+        elementIdentifier: 1
         sourceType: 1
         sourceAxis: 2
         sourceAxisRange: 0
@@ -156,13 +193,18 @@ MonoBehaviour:
         axisZero: 0
         axisMin: 0
         axisMax: 0
+        axisInfo:
+          _dataFormat: 0
+          _excludeFromPolling: 0
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
         sourceHatDirection: 0
         sourceHatRange: 0
         sourceOtherAxis: 0
-      - elementIdentifier: 2
+      - customCalculation: {fileID: 0}
+        customCalculationSourceData: []
+        elementIdentifier: 2
         sourceType: 1
         sourceAxis: 3
         sourceAxisRange: 0
@@ -172,13 +214,18 @@ MonoBehaviour:
         axisZero: 0
         axisMin: 0
         axisMax: 0
+        axisInfo:
+          _dataFormat: 0
+          _excludeFromPolling: 0
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
         sourceHatDirection: 0
         sourceHatRange: 0
         sourceOtherAxis: 0
-      - elementIdentifier: 3
+      - customCalculation: {fileID: 0}
+        customCalculationSourceData: []
+        elementIdentifier: 3
         sourceType: 1
         sourceAxis: 6
         sourceAxisRange: 0
@@ -188,6 +235,9 @@ MonoBehaviour:
         axisZero: 0
         axisMin: 0
         axisMax: 0
+        axisInfo:
+          _dataFormat: 0
+          _excludeFromPolling: 0
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -202,9 +252,9 @@ MonoBehaviour:
       axisCount: 0
       buttonCount: 0
       disabled: 0
+      tag: 
       subType: 
     elements:
-      compoundElements: []
       axes: []
       buttons: []
     variants: []
@@ -214,6 +264,7 @@ MonoBehaviour:
       axisCount: 18
       buttonCount: 18
       disabled: 0
+      tag: 
       hatCount: 1
       productName_useRegex: 0
       productName:
@@ -223,7 +274,6 @@ MonoBehaviour:
       productId: 3ff20000
       vendorId: d8040000
     elements:
-      compoundElements: []
       axes:
       - elementIdentifier: 0
         sourceType: 1
@@ -237,6 +287,9 @@ MonoBehaviour:
         axisZero: 0
         axisMin: 0
         axisMax: 0
+        axisInfo:
+          _dataFormat: 0
+          _excludeFromPolling: 0
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -254,6 +307,9 @@ MonoBehaviour:
         axisZero: 0
         axisMin: 0
         axisMax: 0
+        axisInfo:
+          _dataFormat: 0
+          _excludeFromPolling: 0
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -271,6 +327,9 @@ MonoBehaviour:
         axisZero: 0
         axisMin: 0
         axisMax: 0
+        axisInfo:
+          _dataFormat: 0
+          _excludeFromPolling: 0
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -288,6 +347,9 @@ MonoBehaviour:
         axisZero: 0
         axisMin: 0
         axisMax: 0
+        axisInfo:
+          _dataFormat: 0
+          _excludeFromPolling: 0
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -301,6 +363,7 @@ MonoBehaviour:
       axisCount: 15
       buttonCount: 16
       disabled: 0
+      tag: 
       hatCount: 0
       manufacturer_useRegex: 0
       productName_useRegex: 0
@@ -313,7 +376,6 @@ MonoBehaviour:
       productGUID:
       - f23f04d8
     elements:
-      compoundElements: []
       axes:
       - elementIdentifier: 0
         sourceType: 1
@@ -325,6 +387,9 @@ MonoBehaviour:
         axisZero: 0
         axisMin: 0
         axisMax: 0
+        axisInfo:
+          _dataFormat: 0
+          _excludeFromPolling: 0
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -340,6 +405,9 @@ MonoBehaviour:
         axisZero: 0
         axisMin: 0
         axisMax: 0
+        axisInfo:
+          _dataFormat: 0
+          _excludeFromPolling: 0
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -355,6 +423,9 @@ MonoBehaviour:
         axisZero: 0
         axisMin: 0
         axisMax: 0
+        axisInfo:
+          _dataFormat: 0
+          _excludeFromPolling: 0
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -370,6 +441,9 @@ MonoBehaviour:
         axisZero: 0
         axisMin: 0
         axisMax: 0
+        axisInfo:
+          _dataFormat: 0
+          _excludeFromPolling: 0
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -383,6 +457,7 @@ MonoBehaviour:
       axisCount: 8
       buttonCount: 16
       disabled: 0
+      tag: 
       hatCount: 0
       manufacturer_useRegex: 0
       productName_useRegex: 0
@@ -392,7 +467,6 @@ MonoBehaviour:
       productGUID:
       - f23f04d8
     elements:
-      compoundElements: []
       axes:
       - elementIdentifier: 0
         sourceType: 1
@@ -404,6 +478,9 @@ MonoBehaviour:
         axisZero: 0
         axisMin: 0
         axisMax: 0
+        axisInfo:
+          _dataFormat: 0
+          _excludeFromPolling: 0
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -419,6 +496,9 @@ MonoBehaviour:
         axisZero: 0
         axisMin: 0
         axisMax: 0
+        axisInfo:
+          _dataFormat: 0
+          _excludeFromPolling: 0
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -434,6 +514,9 @@ MonoBehaviour:
         axisZero: 0
         axisMin: 0
         axisMax: 0
+        axisInfo:
+          _dataFormat: 0
+          _excludeFromPolling: 0
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -449,6 +532,9 @@ MonoBehaviour:
         axisZero: 0
         axisMin: 0
         axisMax: 0
+        axisInfo:
+          _dataFormat: 0
+          _excludeFromPolling: 0
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -462,6 +548,7 @@ MonoBehaviour:
       axisCount: 0
       buttonCount: 0
       disabled: 0
+      tag: 
       alwaysMatch: 0
       productName_useRegex: 0
       productName:
@@ -470,7 +557,6 @@ MonoBehaviour:
       matchUnityVersion_min: 
       matchUnityVersion_max: 
     elements:
-      compoundElements: []
       axes:
       - elementIdentifier: 0
         sourceType: 1
@@ -487,6 +573,9 @@ MonoBehaviour:
         axisZero: 0
         axisMin: 0
         axisMax: 0
+        axisInfo:
+          _dataFormat: 0
+          _excludeFromPolling: 0
       - elementIdentifier: 1
         sourceType: 1
         sourceAxis: 2
@@ -502,6 +591,9 @@ MonoBehaviour:
         axisZero: 0
         axisMin: 0
         axisMax: 0
+        axisInfo:
+          _dataFormat: 0
+          _excludeFromPolling: 0
       - elementIdentifier: 2
         sourceType: 1
         sourceAxis: 3
@@ -517,6 +609,9 @@ MonoBehaviour:
         axisZero: 0
         axisMin: 0
         axisMax: 0
+        axisInfo:
+          _dataFormat: 0
+          _excludeFromPolling: 0
       - elementIdentifier: 3
         sourceType: 1
         sourceAxis: 6
@@ -532,6 +627,9 @@ MonoBehaviour:
         axisZero: 0
         axisMin: 0
         axisMax: 0
+        axisInfo:
+          _dataFormat: 0
+          _excludeFromPolling: 0
       buttons: []
     variants: []
   fallback_WindowsUWP:
@@ -540,6 +638,7 @@ MonoBehaviour:
       axisCount: 0
       buttonCount: 0
       disabled: 0
+      tag: 
       alwaysMatch: 0
       productName_useRegex: 0
       productName: []
@@ -547,7 +646,6 @@ MonoBehaviour:
       matchUnityVersion_min: 
       matchUnityVersion_max: 
     elements:
-      compoundElements: []
       axes: []
       buttons: []
     variants: []
@@ -557,6 +655,7 @@ MonoBehaviour:
       axisCount: 0
       buttonCount: 0
       disabled: 0
+      tag: 
       alwaysMatch: 0
       productName_useRegex: 0
       productName: []
@@ -564,7 +663,6 @@ MonoBehaviour:
       matchUnityVersion_min: 
       matchUnityVersion_max: 
     elements:
-      compoundElements: []
       axes: []
       buttons: []
     variants: []
@@ -574,6 +672,7 @@ MonoBehaviour:
       axisCount: 0
       buttonCount: 0
       disabled: 0
+      tag: 
       alwaysMatch: 0
       productName_useRegex: 0
       productName:
@@ -582,7 +681,6 @@ MonoBehaviour:
       matchUnityVersion_min: 
       matchUnityVersion_max: 
     elements:
-      compoundElements: []
       axes:
       - elementIdentifier: 0
         sourceType: 1
@@ -599,6 +697,9 @@ MonoBehaviour:
         axisZero: 0
         axisMin: 0
         axisMax: 0
+        axisInfo:
+          _dataFormat: 0
+          _excludeFromPolling: 0
       - elementIdentifier: 1
         sourceType: 1
         sourceAxis: 2
@@ -614,6 +715,9 @@ MonoBehaviour:
         axisZero: 0
         axisMin: 0
         axisMax: 0
+        axisInfo:
+          _dataFormat: 0
+          _excludeFromPolling: 0
       - elementIdentifier: 2
         sourceType: 1
         sourceAxis: 3
@@ -629,6 +733,9 @@ MonoBehaviour:
         axisZero: 0
         axisMin: 0
         axisMax: 0
+        axisInfo:
+          _dataFormat: 0
+          _excludeFromPolling: 0
       - elementIdentifier: 3
         sourceType: 1
         sourceAxis: 6
@@ -644,6 +751,9 @@ MonoBehaviour:
         axisZero: 0
         axisMin: 0
         axisMax: 0
+        axisInfo:
+          _dataFormat: 0
+          _excludeFromPolling: 0
       buttons: []
     variants: []
   fallback_Linux_PreConfigured:
@@ -652,6 +762,7 @@ MonoBehaviour:
       axisCount: 0
       buttonCount: 0
       disabled: 0
+      tag: 
       alwaysMatch: 0
       productName_useRegex: 0
       productName: []
@@ -659,7 +770,6 @@ MonoBehaviour:
       matchUnityVersion_min: 
       matchUnityVersion_max: 
     elements:
-      compoundElements: []
       axes: []
       buttons: []
     variants: []
@@ -669,6 +779,7 @@ MonoBehaviour:
       axisCount: 0
       buttonCount: 0
       disabled: 0
+      tag: 
       alwaysMatch: 0
       productName_useRegex: 0
       productName:
@@ -677,7 +788,6 @@ MonoBehaviour:
       matchUnityVersion_min: 
       matchUnityVersion_max: 
     elements:
-      compoundElements: []
       axes:
       - elementIdentifier: 0
         sourceType: 1
@@ -694,6 +804,9 @@ MonoBehaviour:
         axisZero: 0
         axisMin: 0
         axisMax: 0
+        axisInfo:
+          _dataFormat: 0
+          _excludeFromPolling: 0
       - elementIdentifier: 1
         sourceType: 1
         sourceAxis: 2
@@ -709,6 +822,9 @@ MonoBehaviour:
         axisZero: 0
         axisMin: 0
         axisMax: 0
+        axisInfo:
+          _dataFormat: 0
+          _excludeFromPolling: 0
       - elementIdentifier: 2
         sourceType: 1
         sourceAxis: 14
@@ -724,6 +840,9 @@ MonoBehaviour:
         axisZero: 0
         axisMin: 0
         axisMax: 0
+        axisInfo:
+          _dataFormat: 0
+          _excludeFromPolling: 0
       - elementIdentifier: 3
         sourceType: 1
         sourceAxis: 15
@@ -739,6 +858,9 @@ MonoBehaviour:
         axisZero: 0
         axisMin: 0
         axisMax: 0
+        axisInfo:
+          _dataFormat: 0
+          _excludeFromPolling: 0
       buttons: []
     variants: []
   fallback_iOS:
@@ -747,6 +869,7 @@ MonoBehaviour:
       axisCount: 0
       buttonCount: 0
       disabled: 0
+      tag: 
       alwaysMatch: 0
       productName_useRegex: 0
       productName: []
@@ -754,7 +877,6 @@ MonoBehaviour:
       matchUnityVersion_min: 
       matchUnityVersion_max: 
     elements:
-      compoundElements: []
       axes: []
       buttons: []
     variants: []
@@ -764,6 +886,7 @@ MonoBehaviour:
       axisCount: 0
       buttonCount: 0
       disabled: 0
+      tag: 
       alwaysMatch: 0
       productName_useRegex: 0
       productName: []
@@ -771,7 +894,6 @@ MonoBehaviour:
       matchUnityVersion_min: 
       matchUnityVersion_max: 
     elements:
-      compoundElements: []
       axes: []
       buttons: []
     variants: []
@@ -781,6 +903,7 @@ MonoBehaviour:
       axisCount: 0
       buttonCount: 0
       disabled: 0
+      tag: 
       alwaysMatch: 0
       productName_useRegex: 0
       productName: []
@@ -788,7 +911,6 @@ MonoBehaviour:
       matchUnityVersion_min: 
       matchUnityVersion_max: 
     elements:
-      compoundElements: []
       axes: []
       buttons: []
     variants: []
@@ -798,6 +920,7 @@ MonoBehaviour:
       axisCount: 0
       buttonCount: 0
       disabled: 0
+      tag: 
       alwaysMatch: 0
       productName_useRegex: 0
       productName: []
@@ -805,7 +928,6 @@ MonoBehaviour:
       matchUnityVersion_min: 
       matchUnityVersion_max: 
     elements:
-      compoundElements: []
       axes: []
       buttons: []
     variants: []
@@ -815,6 +937,7 @@ MonoBehaviour:
       axisCount: 0
       buttonCount: 0
       disabled: 0
+      tag: 
       alwaysMatch: 0
       productName_useRegex: 0
       productName: []
@@ -822,7 +945,6 @@ MonoBehaviour:
       matchUnityVersion_min: 
       matchUnityVersion_max: 
     elements:
-      compoundElements: []
       axes: []
       buttons: []
     variants: []
@@ -832,6 +954,7 @@ MonoBehaviour:
       axisCount: 0
       buttonCount: 0
       disabled: 0
+      tag: 
       alwaysMatch: 0
       productName_useRegex: 0
       productName: []
@@ -839,7 +962,6 @@ MonoBehaviour:
       matchUnityVersion_min: 
       matchUnityVersion_max: 
     elements:
-      compoundElements: []
       axes: []
       buttons: []
     variants: []
@@ -849,6 +971,7 @@ MonoBehaviour:
       axisCount: 0
       buttonCount: 0
       disabled: 0
+      tag: 
       alwaysMatch: 0
       productName_useRegex: 0
       productName: []
@@ -856,7 +979,6 @@ MonoBehaviour:
       matchUnityVersion_min: 
       matchUnityVersion_max: 
     elements:
-      compoundElements: []
       axes: []
       buttons: []
     variants: []
@@ -866,6 +988,7 @@ MonoBehaviour:
       axisCount: 0
       buttonCount: 0
       disabled: 0
+      tag: 
       alwaysMatch: 0
       productName_useRegex: 0
       productName: []
@@ -873,7 +996,6 @@ MonoBehaviour:
       matchUnityVersion_min: 
       matchUnityVersion_max: 
     elements:
-      compoundElements: []
       axes: []
       buttons: []
     variants: []
@@ -883,6 +1005,7 @@ MonoBehaviour:
       axisCount: 0
       buttonCount: 0
       disabled: 0
+      tag: 
       alwaysMatch: 0
       productName_useRegex: 0
       productName: []
@@ -890,7 +1013,6 @@ MonoBehaviour:
       matchUnityVersion_min: 
       matchUnityVersion_max: 
     elements:
-      compoundElements: []
       axes: []
       buttons: []
     variants: []
@@ -900,6 +1022,7 @@ MonoBehaviour:
       axisCount: 0
       buttonCount: 0
       disabled: 0
+      tag: 
       alwaysMatch: 0
       productName_useRegex: 0
       productName: []
@@ -907,7 +1030,6 @@ MonoBehaviour:
       matchUnityVersion_min: 
       matchUnityVersion_max: 
     elements:
-      compoundElements: []
       axes: []
       buttons: []
     variants: []
@@ -917,6 +1039,7 @@ MonoBehaviour:
       axisCount: 0
       buttonCount: 0
       disabled: 0
+      tag: 
       alwaysMatch: 0
       productName_useRegex: 0
       productName: []
@@ -924,7 +1047,6 @@ MonoBehaviour:
       matchUnityVersion_min: 
       matchUnityVersion_max: 
     elements:
-      compoundElements: []
       axes: []
       buttons: []
     variants: []
@@ -934,6 +1056,7 @@ MonoBehaviour:
       axisCount: 0
       buttonCount: 0
       disabled: 0
+      tag: 
       alwaysMatch: 0
       productName_useRegex: 0
       productName: []
@@ -941,7 +1064,6 @@ MonoBehaviour:
       matchUnityVersion_min: 
       matchUnityVersion_max: 
     elements:
-      compoundElements: []
       axes: []
       buttons: []
     variants: []
@@ -951,6 +1073,7 @@ MonoBehaviour:
       axisCount: 0
       buttonCount: 0
       disabled: 0
+      tag: 
       alwaysMatch: 0
       productName_useRegex: 0
       productName: []
@@ -958,7 +1081,24 @@ MonoBehaviour:
       matchUnityVersion_min: 
       matchUnityVersion_max: 
     elements:
-      compoundElements: []
+      axes: []
+      buttons: []
+    variants: []
+  webGL:
+    description: 
+    matchingCriteria:
+      axisCount: 0
+      buttonCount: 0
+      disabled: 0
+      tag: 
+      alwaysMatch: 0
+      productName_useRegex: 0
+      productName: []
+      productGUID: []
+      mapping: 
+      elementCount: []
+      clientInfo: []
+    elements:
       axes: []
       buttons: []
     variants: []
@@ -968,9 +1108,9 @@ MonoBehaviour:
       axisCount: 0
       buttonCount: 0
       disabled: 0
+      tag: 
       alwaysMatch: 0
     elements:
-      compoundElements: []
       axes: []
       buttons: []
     variants: []
@@ -980,11 +1120,39 @@ MonoBehaviour:
       axisCount: 0
       buttonCount: 0
       disabled: 0
+      tag: 
       alwaysMatch: 0
       productName_useRegex: 0
       productName: []
     elements:
-      compoundElements: []
+      axes: []
+      buttons: []
+    variants: []
+  ps4:
+    description: 
+    matchingCriteria:
+      axisCount: 0
+      buttonCount: 0
+      disabled: 0
+      tag: 
+      alwaysMatch: 0
+      productName_useRegex: 0
+      productName: []
+    elements:
+      axes: []
+      buttons: []
+    variants: []
+  nintendoSwitch:
+    description: 
+    matchingCriteria:
+      axisCount: 0
+      buttonCount: 0
+      disabled: 0
+      tag: 
+      alwaysMatch: 0
+      productName_useRegex: 0
+      productName: []
+    elements:
       axes: []
       buttons: []
     variants: []
@@ -994,13 +1162,13 @@ MonoBehaviour:
       axisCount: 0
       buttonCount: 0
       disabled: 0
+      tag: 
       alwaysMatch: 0
       productName_useRegex: 0
       productName: []
       vidPid: []
       hatCount: 0
     elements:
-      compoundElements: []
       axes: []
       buttons: []
     variants: []
@@ -1010,6 +1178,7 @@ MonoBehaviour:
       axisCount: 0
       buttonCount: 0
       disabled: 0
+      tag: 
       hatCount: 0
       manufacturer_useRegex: 0
       productName_useRegex: 0
@@ -1019,7 +1188,6 @@ MonoBehaviour:
       systemName: []
       productGUID: []
     elements:
-      compoundElements: []
       axes: []
       buttons: []
     variants: []
@@ -1029,6 +1197,7 @@ MonoBehaviour:
       axisCount: 0
       buttonCount: 0
       disabled: 0
+      tag: 
       hatCount: 0
       manufacturer_useRegex: 0
       productName_useRegex: 0
@@ -1038,7 +1207,6 @@ MonoBehaviour:
       systemName: []
       productGUID: []
     elements:
-      compoundElements: []
       axes: []
       buttons: []
     variants: []
@@ -1048,6 +1216,7 @@ MonoBehaviour:
       axisCount: 0
       buttonCount: 0
       disabled: 0
+      tag: 
       hatCount: 0
       manufacturer_useRegex: 0
       productName_useRegex: 0
@@ -1057,7 +1226,6 @@ MonoBehaviour:
       systemName: []
       productGUID: []
     elements:
-      compoundElements: []
       axes: []
       buttons: []
     variants: []

@@ -164,6 +164,30 @@
             </summary>
             <returns>The duration the axis has been continuously inactive.</returns>
         </member>
+        <member name="M:Rewired.InputActionEventData.GetAxisCoordinateMode">
+            Gets the current coordinate mode of the axis.
+            This can be used to detect whether the axis is returning a delta value
+            (mouse, touchpad, etc.) or an absolute value (joystick).
+            <returns>The axis coordinate mode.</returns>
+        </member>
+        <member name="M:Rewired.InputActionEventData.GetAxisCoordinateModePrev">
+            Gets the coordinate mode of the axis on the previous frame.
+            This can be used to detect whether the axis is returning a delta value
+            (mouse, touchpad, etc.) or an absolute value (joystick).
+            <returns>The axis coordinate mode.</returns>
+        </member>
+        <member name="M:Rewired.InputActionEventData.GetAxisRawCoordinateMode">
+            Gets the current coordinate mode of the raw axis.
+            This can be used to detect whether the axis is returning a delta value
+            (mouse, touchpad, etc.) or an absolute value (joystick).
+            <returns>The raw axis coordinate mode.</returns>
+        </member>
+        <member name="M:Rewired.InputActionEventData.GetAxisRawCoordinateModePrev">
+            Gets the coordinate mode of the raw axis on the previous frame.
+            This can be used to detect whether the axis is returning a delta value
+            (mouse, touchpad, etc.) or an absolute value (joystick).
+            <returns>The raw axis coordinate mode.</returns>
+        </member>
         <member name="M:Rewired.InputActionEventData.GetButton">
             <summary>
             Gets the button held state of an Action. This will return TRUE as long as the button is held.
@@ -667,6 +691,21 @@
         <member name="P:Rewired.ControllerPollingInfo.keyboardKey">
             <summary>
             The keyboard key that returned input. This is only valid if controllerType is Keyboard.
+            </summary>
+        </member>
+        <member name="P:Rewired.ControllerPollingInfo.player">
+            <summary>
+            The Player that generated this input. This value is only valid if the controller is assigned to a Player and polling was called on or through Player.
+            </summary>
+        </member>
+        <member name="P:Rewired.ControllerPollingInfo.controller">
+            <summary>
+            The controller that returned input.
+            </summary>
+        </member>
+        <member name="P:Rewired.ControllerPollingInfo.elementIdentifier">
+            <summary>
+            The controller element identifier that returned input.
             </summary>
         </member>
         <member name="T:Rewired.ElementAssignmentConflictInfo">
@@ -1524,36 +1563,6 @@
             The display name of the element in this assignment.
             </summary>
         </member>
-        <member name="P:Rewired.ButtonStateRecorder.lastTimeStateChangedToPressed">
-            <summary>
-            Returns the last time the button state became pressed exactly.
-            Does not return 0 when the button is currently pressed like above.
-            </summary>
-        </member>
-        <member name="P:Rewired.ButtonStateRecorder.lastTimeStateChangedToUnpressed">
-            <summary>
-            Returns the the last time the button state became unpressed exactly.
-            Does not return 0 when the button is currently unpressed like above.
-            </summary>
-        </member>
-        <member name="F:Rewired.PlatformInputManager._DeviceConnectedEvent">
-            Events
-        </member>
-        <member name="M:Rewired.Interfaces.IInputSource.SystemDeviceConnected">
-            <summary>
-            Only for input sources that get their device connections from without
-            </summary>
-        </member>
-        <member name="M:Rewired.Interfaces.IInputSource.SystemDeviceDisconnected">
-            <summary>
-            Only for input sources that get their device connections from without
-            </summary>
-        </member>
-        <member name="E:Rewired.Interfaces.IInputSource.DeviceChangedEvent">
-            <summary>
-            Only for input sources that get their device connections from within
-            </summary>
-        </member>
         <member name="T:Rewired.InputActionSourceData">
             <summary>
             Provides information about the current sources contributing to the value of an Input Action.
@@ -1582,6 +1591,36 @@
         <member name="P:Rewired.InputActionSourceData.elementIdentifierName">
             <summary>
             Gets the element identifier name of the element that contributed to the value of the Action.
+            </summary>
+        </member>
+        <member name="P:Rewired.ButtonStateRecorder.lastTimeStateChangedToPressed">
+            <summary>
+            Returns the last time the button state became pressed exactly.
+            Does not return 0 when the button is currently pressed like above.
+            </summary>
+        </member>
+        <member name="P:Rewired.ButtonStateRecorder.lastTimeStateChangedToUnpressed">
+            <summary>
+            Returns the the last time the button state became unpressed exactly.
+            Does not return 0 when the button is currently unpressed like above.
+            </summary>
+        </member>
+        <member name="F:Rewired.PlatformInputManager._DeviceConnectedEvent">
+            Events
+        </member>
+        <member name="M:Rewired.Interfaces.IInputSource.SystemDeviceConnected">
+            <summary>
+            Only for input sources that get their device connections from without
+            </summary>
+        </member>
+        <member name="M:Rewired.Interfaces.IInputSource.SystemDeviceDisconnected">
+            <summary>
+            Only for input sources that get their device connections from without
+            </summary>
+        </member>
+        <member name="E:Rewired.Interfaces.IInputSource.DeviceChangedEvent">
+            <summary>
+            Only for input sources that get their device connections from within
             </summary>
         </member>
         <member name="P:Rewired.TouchInfo.isValid">
@@ -2968,6 +3007,42 @@
             <param name="index">Button index</param>
             <returns>Previous button held state</returns>
         </member>
+        <member name="M:Rewired.Controller.GetButtonDoublePressHold(System.Int32,System.Single)">
+            <summary>
+            Gets the double press and hold state of the button at the specified index.
+            This will return TRUE after the double press is detected and for as long as the button is held thereafter.
+            </summary>
+            <param name="index">Button index</param>
+            <param name="speed">Double press speed in seconds</param>
+            <returns>Button double press and hold state</returns>
+        </member>
+        <member name="M:Rewired.Controller.GetButtonDoublePressDown(System.Int32,System.Single)">
+            <summary>
+            Gets the double press down state of the button at the specified index.
+            This will return TRUE only on the first frame the double press is detected.
+            </summary>
+            <param name="index">Button index</param>
+            <param name="speed">Double press speed in seconds</param>
+            <returns>Button double press down state</returns>
+        </member>
+        <member name="M:Rewired.Controller.GetButtonDoublePressHold(System.Int32)">
+            <summary>
+            Gets the double press and hold state of the button at the specified index.
+            This will return TRUE after the double press is detected and for as long as the button is held thereafter.
+            This will use the default double press speed.
+            </summary>
+            <param name="index">Button index</param>
+            <returns>Button double press and hold state</returns>
+        </member>
+        <member name="M:Rewired.Controller.GetButtonDoublePressDown(System.Int32)">
+            <summary>
+            Gets the double press down state of the button at the specified index.
+            This will return TRUE only on the first frame the double press is detected.
+            This will use the default double press speed.
+            </summary>
+            <param name="index">Button index</param>
+            <returns>Button double press down state</returns>
+        </member>
         <member name="M:Rewired.Controller.GetButtonTimePressed(System.Int32)">
             <summary>
             Gets the length of time the button at index has been active.
@@ -3036,6 +3111,106 @@
             </summary>
             <returns>Button changed state</returns>
         </member>
+        <member name="M:Rewired.Controller.GetButtonById(System.Int32)">
+            <summary>
+            Gets the button held state of the hardware button at the specified element identifier id. This will return TRUE as long as the button is held.
+            This does not take into acount any controller mapping or Actions -- this is the unmapped physical button value only.
+            Use the Player class to get button values mapped to Actions.
+            </summary>
+            <param name="elementIdentifierId">Element identifier id</param>
+            <returns>Button held state</returns>
+        </member>
+        <member name="M:Rewired.Controller.GetButtonDownById(System.Int32)">
+            <summary>
+            Gets the button just pressed state of the hardware button at the specified element identifier id. This will only return TRUE only on the first frame the button is pressed
+            This does not take into acount any controller mapping or Actions -- this is the unmapped physical button value only.
+            Use the Player class to get button values mapped to Actions.
+            </summary>
+            <param name="elementIdentifierId">Element identifier id</param>
+            <returns>Button just pressed state</returns>
+        </member>
+        <member name="M:Rewired.Controller.GetButtonUpById(System.Int32)">
+            <summary>
+            Gets the button just released state of the hardware button at the specified element identifier id. This will only return TRUE only on the first frame the button is released
+            This does not take into acount any controller mapping or Actions -- this is the unmapped physical button value only.
+            Use the Player class to get button values mapped to Actions.
+            </summary>
+            <param name="elementIdentifierId">Element identifier id</param>
+            <returns>Button just released state</returns>
+        </member>
+        <member name="M:Rewired.Controller.GetButtonDoublePressHoldById(System.Int32,System.Single)">
+            <summary>
+            Gets the double press and hold state of the button at the specified element identifier id.
+            This will return TRUE after the double press is detected and for as long as the button is held thereafter.
+            </summary>
+            <param name="elementIdentifierId">Element identifier id</param>
+            <param name="speed">Double press speed in seconds</param>
+            <returns>Button double press and hold state</returns>
+        </member>
+        <member name="M:Rewired.Controller.GetButtonDoublePressDownById(System.Int32,System.Single)">
+            <summary>
+            Gets the double press down state of the button at the specified element identifier id.
+            This will return TRUE only on the first frame the double press is detected.
+            </summary>
+            <param name="elementIdentifierId">Element identifier id</param>
+            <param name="speed">Double press speed in seconds</param>
+            <returns>Button double press down state</returns>
+        </member>
+        <member name="M:Rewired.Controller.GetButtonDoublePressHoldById(System.Int32)">
+            <summary>
+            Gets the double press and hold state of the button at the specified element identifier id.
+            This will return TRUE after the double press is detected and for as long as the button is held thereafter.
+            This will use the default double press speed.
+            </summary>
+            <param name="elementIdentifierId">Element identifier id</param>
+            <returns>Button double press and hold state</returns>
+        </member>
+        <member name="M:Rewired.Controller.GetButtonDoublePressDownById(System.Int32)">
+            <summary>
+            Gets the double press down state of the button at the specified element identifier id.
+            This will return TRUE only on the first frame the double press is detected.
+            This will use the default double press speed.
+            </summary>
+            <param name="elementIdentifierId">Element identifier id</param>
+            <returns>Button double press down state</returns>
+        </member>
+        <member name="M:Rewired.Controller.GetButtonPrevById(System.Int32)">
+            <summary>
+            Gets the previous button held state of the hardware button at the specified element identifier id. This will return TRUE if the button was held in the previous frame.
+            This does not take into acount any controller mapping or Actions -- this is the unmapped physical button value only.
+            Use the Player class to get button values mapped to Actions.
+            </summary>
+            <param name="elementIdentifierId">Element identifier id</param>
+            <returns>Previous button held state</returns>
+        </member>
+        <member name="M:Rewired.Controller.GetButtonTimePressedById(System.Int32)">
+            <summary>
+            Gets the length of time the button with the element identifier id has been active.
+            </summary>
+            <param name="elementIdentifierId">Element identifier id</param>
+            <returns>Time in seconds</returns>
+        </member>
+        <member name="M:Rewired.Controller.GetButtonTimeUnpressedById(System.Int32)">
+            <summary>
+            Gets the length of time the button with the element identifier id has been inactive.
+            </summary>
+            <param name="elementIdentifierId">Element identifier id</param>
+            <returns>Time in seconds</returns>
+        </member>
+        <member name="M:Rewired.Controller.GetButtonLastTimePressedById(System.Int32)">
+            <summary>
+            Gets the last timestamp the button with the element identifier id was active.
+            </summary>
+            <param name="elementIdentifierId">Element identifier id</param>
+            <returns>Timestamp</returns>
+        </member>
+        <member name="M:Rewired.Controller.GetButtonLastTimeUnpressedById(System.Int32)">
+            <summary>
+            Gets the last timestamp the button with the element identifier id was inactive.
+            </summary>
+            <param name="elementIdentifierId">Element identifier id</param>
+            <returns>Timestamp</returns>
+        </member>
         <member name="M:Rewired.Controller.GetLastTimeActive">
             <summary>
             Gets the last timestamp any button was active.
@@ -3053,14 +3228,14 @@
         </member>
         <member name="M:Rewired.Controller.GetLastTimeAnyElementChanged">
             <summary>
-            Gets the last timestamp any button changed state.
+            Gets the last timestamp any element changed state.
             NOTE: If comparing time against current time, always compare to ReInput.time.unscaledTime.
             </summary>
             <returns>Timestamp</returns>
         </member>
         <member name="M:Rewired.Controller.GetLastTimeAnyElementChanged(System.Boolean)">
             <summary>
-            Gets the last timestamp any button changed state.
+            Gets the last timestamp any element changed state.
             NOTE: If comparing time against current time, always compare to ReInput.time.unscaledTime.
             <param name="useRawValues">Use raw axis values</param>
             </summary>
@@ -3345,6 +3520,11 @@
             <summary>
             Gets the last time the button changed state.
             NOTE: If comparing time against current time, always compare to ReInput.time.unscaledTime.
+            </summary>
+        </member>
+        <member name="P:Rewired.Controller.Button.state">
+            <summary>
+            Gets the button state flags.
             </summary>
         </member>
         <member name="T:Rewired.Controller.CompoundElement">
@@ -3639,14 +3819,14 @@
         </member>
         <member name="M:Rewired.ControllerWithAxes.GetLastTimeAnyElementChanged">
             <summary>
-            Gets the last timestamp any axis changed state.
+            Gets the last timestamp any element changed state.
             NOTE: If comparing time against current time, always compare to ReInput.time.unscaledTime.
             </summary>
             <returns>Timestamp</returns>
         </member>
         <member name="M:Rewired.ControllerWithAxes.GetLastTimeAnyElementChanged(System.Boolean)">
             <summary>
-            Gets the last timestamp any axis changed state.
+            Gets the last timestamp any element changed state.
             NOTE: If comparing time against current time, always compare to ReInput.time.unscaledTime.
             <param name="useRawValues">Use raw axis values</param>
             </summary>
@@ -4364,6 +4544,13 @@
             A joystick with buttons and axes.
             </summary>
         </member>
+        <member name="M:Rewired.Joystick.IsType(Rewired.JoystickType)">
+            <summary>
+            Checks whether this Joystick matches a specific type.
+            </summary>
+            <param name="joystickType">The Joystick type to match.</param>
+            <returns>True if the type matches, false if it does not.</returns>
+        </member>
         <member name="M:Rewired.Joystick.GetCalibrationMapSaveData">
             <summary>
             Gets calibration map save data from this joystick.
@@ -4428,6 +4615,11 @@
         <member name="M:Rewired.Joystick.StopVibration">
             <summary>
             Stops vibration on all motors.
+            </summary>
+        </member>
+        <member name="P:Rewired.Joystick.joystickTypes">
+            <summary>
+            The joystick types that apply to this Joystick. A Joystick may have more than one Joystick Type.
             </summary>
         </member>
         <member name="P:Rewired.Joystick.systemId">
@@ -4570,6 +4762,66 @@
             Configuration variables for the Input Manager.
             </summary>
             <exclude></exclude>
+        </member>
+        <member name="M:Rewired.Data.ConfigVars.GetPlatformVar_disableKeyboard">
+            <summary>
+            Runtime only!
+            </summary>
+        </member>
+        <member name="M:Rewired.Data.ConfigVars.GetPlatformVar_ignoreInputWhenAppNotInFocus">
+            <summary>
+            Runtime only!
+            </summary>
+        </member>
+        <member name="M:Rewired.Data.ConfigVars.GetPlatformVar_useEnhancedDeviceSupport">
+            <summary>
+            Runtime only!
+            </summary>
+        </member>
+        <member name="M:Rewired.Data.ConfigVars.GetPlatformVar_useNativeMouse">
+            <summary>
+            Runtime only!
+            </summary>
+        </member>
+        <member name="M:Rewired.Data.ConfigVars.GetPlatformVar_useNativeKeyboard">
+            <summary>
+            Runtime only!
+            </summary>
+        </member>
+        <member name="M:Rewired.Data.ConfigVars.GetPlatformVar_joystickRefreshRate">
+            <summary>
+            Runtime only!
+            </summary>
+        </member>
+        <member name="M:Rewired.Data.ConfigVars.SetPlatformVar_ignoreInputWhenAppNotInFocus(System.Boolean)">
+            <summary>
+            Runtime only!
+            </summary>
+        </member>
+        <member name="M:Rewired.Data.ConfigVars.SetPlatformVar_useEnhancedDeviceSupport(System.Boolean)">
+            <summary>
+            Runtime only!
+            </summary>
+        </member>
+        <member name="M:Rewired.Data.ConfigVars.SetPlatformVar_useNativeMouse(System.Boolean)">
+            <summary>
+            Runtime only!
+            </summary>
+        </member>
+        <member name="M:Rewired.Data.ConfigVars.SetPlatformVar_useNativeKeyboard(System.Boolean)">
+            <summary>
+            Runtime only!
+            </summary>
+        </member>
+        <member name="M:Rewired.Data.ConfigVars.SetPlatformVar_joystickRefreshRate(System.Int32)">
+            <summary>
+            Runtime only!
+            </summary>
+        </member>
+        <member name="M:Rewired.Data.ConfigVars.GetPlatformVars">
+            <summary>
+            Runtime only!
+            </summary>
         </member>
         <member name="T:Rewired.Data.ConfigVars.PlatformVars">
             <summary>
@@ -5032,9 +5284,6 @@
         <member name="T:Rewired.Data.Mapping.HardwareAxisType">
             <exclude></exclude>
         </member>
-        <member name="T:Rewired.Data.Mapping.AxisDataFormat">
-            <exclude></exclude>
-        </member>
         <member name="T:Rewired.Data.Mapping.AxisCalibrationType">
             <exclude></exclude>
         </member>
@@ -5304,9 +5553,34 @@
             The type of axis.
             </summary>
         </member>
+        <member name="F:Rewired.AxisType.None">
+            <summary>
+            Not an axis.
+            </summary>
+        </member>
+        <member name="F:Rewired.AxisType.Normal">
+            <summary>
+            A full axis with both positive and negative sides.
+            </summary>
+        </member>
+        <member name="F:Rewired.AxisType.Split">
+            <summary>
+            One half of an axis with only a positive or negative side.
+            </summary>
+        </member>
         <member name="T:Rewired.Pole">
             <summary>
             A positive or negative value.
+            </summary>
+        </member>
+        <member name="F:Rewired.Pole.Positive">
+            <summary>
+            Positive value.
+            </summary>
+        </member>
+        <member name="F:Rewired.Pole.Negative">
+            <summary>
+            Negative value.
             </summary>
         </member>
         <member name="T:Rewired.AxisRange">
@@ -5314,9 +5588,59 @@
             The range of an axis.
             </summary>
         </member>
+        <member name="F:Rewired.AxisRange.Full">
+            <summary>
+            A complete axis with both positive and negative sides.
+            </summary>
+        </member>
+        <member name="F:Rewired.AxisRange.Positive">
+            <summary>
+            Only the positive side of the axis.
+            </summary>
+        </member>
+        <member name="F:Rewired.AxisRange.Negative">
+            <summary>
+            Only the negative side of the axis.
+            </summary>
+        </member>
+        <member name="T:Rewired.AxisCoordinateMode">
+            <summary>
+            The axis coordinate mode.
+            </summary>
+        </member>
+        <member name="F:Rewired.AxisCoordinateMode.Absolute">
+            <summary>
+            Represents the position of the axis in relation to a fixed point.
+            </summary>
+        </member>
+        <member name="F:Rewired.AxisCoordinateMode.Relative">
+            <summary>
+            Represents the change in position of the axis since the last time the value was retreived.
+            </summary>
+        </member>
         <member name="T:Rewired.ControllerType">
             <summary>
             The type of a controller.
+            </summary>
+        </member>
+        <member name="F:Rewired.ControllerType.Keyboard">
+            <summary>
+            A keyboard.
+            </summary>
+        </member>
+        <member name="F:Rewired.ControllerType.Mouse">
+            <summary>
+            A mouse.
+            </summary>
+        </member>
+        <member name="F:Rewired.ControllerType.Joystick">
+            <summary>
+            A joystick.
+            </summary>
+        </member>
+        <member name="F:Rewired.ControllerType.Custom">
+            <summary>
+            A Custom Controller.
             </summary>
         </member>
         <member name="T:Rewired.ControllerElementType">
@@ -5586,6 +5910,11 @@
             Axis sensitivity calculation type.
             </summary>
         </member>
+        <member name="T:Rewired.JoystickType">
+            <summary>
+            Joystick type.
+            </summary>
+        </member>
         <member name="T:Rewired.Utils.Interfaces.IExternalTools">
             <exclude></exclude>
         </member>
@@ -5812,6 +6141,44 @@
         <member name="E:Rewired.Internal.StandaloneAxis2D.RawValueChangedEvent">
             <summary>
             Event fired when the raw value changes.
+            </summary>
+        </member>
+        <member name="T:Rewired.VirtualButton">
+            <summary>
+            A virtual button that is used to track button states for things like
+            keyboard + modifier keys and mouse axes being treated as digital buttons.
+            This is auto-cleared every update by Control Manager.
+            You cannot set the button value to false, only true.
+            It can be set multiple times per frame as well without issue.
+            </summary>
+        </member>
+        <member name="M:Rewired.VirtualButton.SetOn(Rewired.UpdateLoopType,System.Boolean)">
+            <summary>
+            This does not store the valuePrev at this time so it can be set multiple times per update.
+            You cannot set a negative value here because the button may be fed by multiple sources and
+            negatives cannot cancel out positives. The button value will be cleared at the end up update.
+            </summary>
+        </member>
+        <member name="M:Rewired.VirtualButton.InnerButton.SetOn(System.Boolean)">
+            <summary>
+            This does not store the valuePrev at this time so it can be set multiple times per update.
+            You cannot set a negative value here because the button may be fed by multiple sources and
+            negatives cannot cancel out positives. The button value will be cleared at the end up update.
+            </summary>
+        </member>
+        <member name="T:Rewired.VirtualButton.InnerButton.ButtonValueFlags">
+            <summary>
+            Represents the value and previous 
+            </summary>
+        </member>
+        <member name="M:Rewired.VirtualControl.GetAxisFrameDelta_NOTFINISHED">
+            <summary>
+            This is not finished! DO NOT USE!
+            </summary>
+        </member>
+        <member name="M:Rewired.VirtualControl.GetAxisRawFrameDelta_NOTFINISHED">
+            <summary>
+            This is not finished! DO NOT USE!
             </summary>
         </member>
         <member name="T:Rewired.ActionElementMap">
@@ -7564,6 +7931,21 @@
         <member name="M:Rewired.ControllerMapSet`1.Rewired#IControllerMapSet#GetMapsByCategory``1(System.Int32,System.Collections.Generic.List{``0},System.Boolean)">
             <summary>
             DO NOT USE ControllerMap or ControllerMapWithAxes!
+            </summary>
+        </member>
+        <member name="M:Rewired.HardwareControllerMap_Game.#ctor(System.String,System.Int32,Rewired.ControllerElementIdentifier[],System.Int32[],System.Int32[],Rewired.AxisCalibrationData[],Rewired.AxisRange[],Rewired.Data.Mapping.HardwareAxisInfo[],Rewired.Data.Mapping.HardwareButtonInfo[],Rewired.Data.Mapping.HardwareJoystickMap.CompoundElement[])">
+            <summary>
+            Overload for Custom Controllers.
+            </summary>
+        </member>
+        <member name="M:Rewired.HardwareControllerMap_Game.#ctor(System.String,Rewired.HardwareControllerMapIdentifier,Rewired.JoystickType[],Rewired.ControllerElementIdentifier[],System.Int32[],System.Int32[],Rewired.AxisCalibrationData[],Rewired.AxisRange[],Rewired.Data.Mapping.HardwareAxisInfo[],Rewired.Data.Mapping.HardwareButtonInfo[],Rewired.Data.Mapping.HardwareJoystickMap.CompoundElement[])">
+            <summary>
+            Overload for Joysticks.
+            </summary>
+        </member>
+        <member name="M:Rewired.HardwareControllerMap_Game.#ctor(System.String,Rewired.HardwareControllerMapIdentifier,Rewired.ControllerElementIdentifier[],System.Int32[],System.Int32[],Rewired.AxisCalibrationData[],Rewired.AxisRange[],Rewired.Data.Mapping.HardwareAxisInfo[],Rewired.Data.Mapping.HardwareButtonInfo[],Rewired.Data.Mapping.HardwareJoystickMap.CompoundElement[])">
+            <summary>
+            Overload for keyboard/mouse.
             </summary>
         </member>
         <member name="T:Rewired.InputAction">
@@ -9499,6 +9881,78 @@
             </summary>
             <param name="actionId">Id of the Action</param>
             <returns>The duration the axis has been continuously inactive.</returns>
+        </member>
+        <member name="M:Rewired.Player.GetAxisCoordinateMode(System.String)">
+            <summary>
+            Gets the current coordinate mode of the axis.
+            This can be used to detect whether the axis is returning a delta value
+            (mouse, touchpad, etc.) or an absolute value (joystick).
+            </summary>
+            <param name="actionName">Name of the Action</param>
+            <returns>The axis coordinate mode.</returns>
+        </member>
+        <member name="M:Rewired.Player.GetAxisCoordinateMode(System.Int32)">
+            <summary>
+            Gets the current coordinate mode of the axis.
+            This can be used to detect whether the axis is returning a delta value
+            (mouse, touchpad, etc.) or an absolute value (joystick).
+            </summary>
+            <param name="actionId">Id of the Action</param>
+            <returns>The axis coordinate mode.</returns>
+        </member>
+        <member name="M:Rewired.Player.GetAxisRawCoordinateMode(System.String)">
+            <summary>
+            Gets the current coordinate mode of the raw axis.
+            This can be used to detect whether the axis is returning a delta value
+            (mouse, touchpad, etc.) or an absolute value (joystick).
+            </summary>
+            <param name="actionName">Name of the Action</param>
+            <returns>The raw axis coordinate mode.</returns>
+        </member>
+        <member name="M:Rewired.Player.GetAxisRawCoordinateMode(System.Int32)">
+            <summary>
+            Gets the current coordinate mode of the raw axis.
+            This can be used to detect whether the axis is returning a delta value
+            (mouse, touchpad, etc.) or an absolute value (joystick).
+            </summary>
+            <param name="actionId">Id of the Action</param>
+            <returns>The raw axis coordinate mode.</returns>
+        </member>
+        <member name="M:Rewired.Player.GetAxisCoordinateModePrev(System.String)">
+            <summary>
+            Gets the coordinate mode of the axis on the previous frame.
+            This can be used to detect whether the axis is returning a delta value
+            (mouse, touchpad, etc.) or an absolute value (joystick).
+            </summary>
+            <param name="actionName">Name of the Action</param>
+            <returns>The axis coordinate mode.</returns>
+        </member>
+        <member name="M:Rewired.Player.GetAxisCoordinateModePrev(System.Int32)">
+            <summary>
+            Gets the coordinate mode of the axis on the previous frame.
+            This can be used to detect whether the axis is returning a delta value
+            (mouse, touchpad, etc.) or an absolute value (joystick).
+            </summary>
+            <param name="actionId">Id of the Action</param>
+            <returns>The axis coordinate mode.</returns>
+        </member>
+        <member name="M:Rewired.Player.GetAxisRawCoordinateModePrev(System.String)">
+            <summary>
+            Gets the coordinate mode of the raw axis on the previous frame.
+            This can be used to detect whether the axis is returning a delta value
+            (mouse, touchpad, etc.) or an absolute value (joystick).
+            </summary>
+            <param name="actionName">Name of the Action</param>
+            <returns>The raw axis coordinate mode.</returns>
+        </member>
+        <member name="M:Rewired.Player.GetAxisRawCoordinateModePrev(System.Int32)">
+            <summary>
+            Gets the coordinate mode of the raw axis on the previous frame.
+            This can be used to detect whether the axis is returning a delta value
+            (mouse, touchpad, etc.) or an absolute value (joystick).
+            </summary>
+            <param name="actionId">Id of the Action</param>
+            <returns>The raw axis coordinate mode.</returns>
         </member>
         <member name="M:Rewired.Player.GetCurrentInputSources(System.String)">
             <summary>
@@ -12256,9 +12710,20 @@
             Toggles the use of enhanced device support during runtime. Rewired will be completely reset if this value is changed.
             </summary>
         </member>
+        <member name="P:Rewired.ReInput.ConfigHelper.joystickRefreshRate">
+            <summary>
+            The joystick refresh rate in frames per second. [0 - 2000] [0 = Default]
+            Set this to a higher value if you need higher precision input timing at high frame rates such as for a music beat game. Higher values result in higher CPU usage. Note that setting this to a very high value when the game is running at a low frame rate will not result in higher precision input.
+            This settings only applies to input sources that use a separate thread to poll for joystick input values (currently XInput and Direct Input). This setting does not apply to event-based input sources such as Raw Input.
+            This setting can be changed without resetting Rewired.
+            </summary>
+        </member>
         <member name="P:Rewired.ReInput.ConfigHelper.ignoreInputWhenAppNotInFocus">
             <summary>
-            Ignores input if the application is not in focus This setting has no effect on some platforms. NOTE: Disabling this does not guarantee that input will be processed when the application is out of focus. Whether input is received by the application or not is dependent on A) the input device type B) the current platform C) the input source(s) being used. This setting can be changed without resetting Rewired.
+            Ignores input if the application is not in focus This setting has no effect on some platforms.
+            NOTE: Disabling this does not guarantee that input will be processed when the application is out of focus.
+            Whether input is received by the application or not is dependent on A) the input device type B) the current platform C) the input source(s) being used.
+            This setting can be changed without resetting Rewired.
             </summary>
         </member>
         <member name="P:Rewired.ReInput.ConfigHelper.android_supportUnknownGamepads">
@@ -12277,6 +12742,15 @@
             If enabled, the corner directions on all hats will activate the adjacent 2 cardinal direction buttons instead of the corner button.
             This is useful if you need joystick hats to behave like D-Pads instead of 8-way hats.
             This setting can be changed without resetting Rewired.
+            </summary>
+        </member>
+        <member name="P:Rewired.ReInput.ConfigHelper.deferControllerConnectedEventsOnStart">
+            <summary>
+            Defer controller connected events for controllers already connected when Rewired initializes until the Start event instead of
+            during initialization. Normally, it's impossible to receive controller connection events at the start of runtime because Rewired
+            initializes before any other script is able to subscribe to the controller connected event. Enabling this will defer the controller
+            connected events until the Start event, allowing your scripts to subscribe to the controller connected event in Awake and still
+            receive the event callback. If disabled, controller connection events for controllers already connected before runtime starts will be missed.
             </summary>
         </member>
         <member name="P:Rewired.ReInput.ConfigHelper.autoAssignJoysticks">
@@ -14131,6 +14605,12 @@
             <param name="text"></param>
             <returns></returns>
         </member>
+        <member name="M:Rewired.Utils.ReflectionTools.IsAssemblyLoaded(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Must use this to check whether assemblies are loaded prior to calling System.Type.GetType or
+            the assembly will get dynamically loaded in the .NET 4.6 backend!
+            </summary>
+        </member>
         <member name="M:Rewired.Utils.UnityTools.DetermineWebplayerPlatformType(Rewired.Platforms.Platform,Rewired.Platforms.EditorPlatform)">
             <summary>
             Only works if called from within #if UNITY_WEBPLAYER so we KNOW this a webplayer.
@@ -14629,7 +15109,7 @@
         </member>
         <member name="M:Rewired.Utils.Classes.Utility.ThreadHelper.ResetTimeout">
             <summary>
-            Resets the timeout timer so the thread does self-terminate.
+            Resets the timeout timer so the thread does not self-terminate.
             </summary>
         </member>
         <member name="P:Rewired.Utils.Classes.Utility.ThreadHelper.isRunning">
@@ -14645,6 +15125,7 @@
         <member name="P:Rewired.Utils.Classes.Utility.ThreadHelper.useHighPrecitionTimer">
             <summary>
             Is the high precision timer being used? This greatly increases CPU resources because the thread does not sleep.
+            Note: This is enabled automatically if using a fixed time step and FPS is set to the FORCE_HIGH_PRECISION_TIMER_AT_FPS threshold or above.
             </summary>
         </member>
         <member name="P:Rewired.Utils.Classes.Utility.ThreadHelper.useFixedTimeStep">

@@ -5,21 +5,20 @@ using UnityEngine;
 public class SubcategoryDropdown : MonoBehaviour {
     public UIPopupList popup;
     public UILabel display_text;
+    public List<string> panels;
+    public WindowType window_type;
 
-    public List<SubPanelInfo> panels;
-
-    private SubPanelInfo lastSelectedPanel;
+    private string lastSelectedPanel;
     public string selected_string;
-
+    
     void Start()
     {
         popup = GetComponent<UIPopupList>();
         popup.onSelectionChange = OnChangeDropdown;
         display_text = GetComponentInChildren<UILabel>();
-        foreach (SubPanelInfo panel in panels)
+        foreach (string panel in panels)
         {
-            popup.items.Add(panel.name);
-            NGUITools.SetActive(panel.panel, false); //Initially turn everything off
+            popup.items.Add(panel);
         }
         display_text.text = popup.items[0];
         OnChangeDropdown(popup.items[0]);
@@ -29,32 +28,13 @@ public class SubcategoryDropdown : MonoBehaviour {
     {
         display_text.text = item;
         selected_string = item;
-        if (lastSelectedPanel.panel != null)
-            NGUITools.SetActive(lastSelectedPanel.panel, false); //Disable old panel
-        foreach (SubPanelInfo panel in panels)
+        if (window_type == WindowType.MAIN)
         {
-            if (panel.name == item)
-            {
-                NGUITools.SetActive(panel.panel, true);
-                lastSelectedPanel = panel;
-            }
+            LegacyEditor.ChangeWindow(item);
+        }
+        else if (window_type == WindowType.SUB)
+        {
+            LegacyEditor.ChangeSubWindow(item);
         }
     }
-
-    void OnGroupChanged(string group)
-    {
-        Debug.Log("Dropdown changed: " + group);
-        if (group != "Properties")
-        {
-            LegacyEditor.editor.current_group_name = group;
-            LegacyEditor.SubActionGroupChanged();
-        }
-    }
-}
-
-[System.Serializable]
-public struct SubPanelInfo
-{
-    public string name;
-    public GameObject panel;
 }

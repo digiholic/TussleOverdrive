@@ -772,10 +772,10 @@ namespace Rewired.UI.ControlMapper {
 
                     string name = pollingInfo.elementIdentifierName;
 
-                    // Append +/- on split axis names
+                    // Get the positive/negative name for axes
                     if(pollingInfo.elementType == ControllerElementType.Axis) {
-                        if(axisRange == AxisRange.Positive) name += " +";
-                        else if(axisRange == AxisRange.Negative) name += " -";
+                        if(axisRange == AxisRange.Positive) name = pollingInfo.elementIdentifier.positiveName;
+                        else if(axisRange == AxisRange.Negative) name = pollingInfo.elementIdentifier.negativeName;
                     }
 
                     return name;

@@ -33,8 +33,7 @@ public class ActionSelectorDataRow : MonoBehaviour {
         selected = true;
         NGUITools.SetActive(selected_sprite.gameObject, true);
         current_selection = this;
-        LegacyEditor.editor.selected_action = action;
-        LegacyEditor.ActionChanged();
+        LegacyEditor.ChangeSelectedAction(action);
     }
 
     public void Deselect()

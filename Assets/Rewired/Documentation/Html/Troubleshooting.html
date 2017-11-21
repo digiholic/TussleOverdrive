@@ -133,7 +133,7 @@
     	<div class="main-body">
 	        <div class="logo"><a href="http://guavaman.com/projects/rewired" title="Rewired"><img src="files/images/rewired-logo.png" width="173" height="139" alt="Rewired" /></a></div>
                      
-            <h1>
+          <h1>
             <!-- InstanceBeginEditable name="PageHeader" -->Troubleshooting <!-- InstanceEndEditable -->
             </h1>
             
@@ -175,6 +175,7 @@
     <h3><a href="#osx">OSX:</a></h3>
     <ul>
       <li><a href="#osx-xbox-one-controller-vibration">OSX: XBox One Controller vibration doesn't work</a></li>
+      <li><a href="#osx-mac-app-store-joysticks-dont-work">OSX, Mac App Store: Joysticks don't work</a></li>
     </ul>
     <h3><a href="#android">Android:</a></h3>
     <ul>
@@ -562,6 +563,16 @@ Int64* args, IntPtr method)
 <p></p>
 <h3><a name="osx-xbox-one-controller-vibration" id="osx-xbox-one-controller-vibration"></a>OSX: XBox One Controller vibration doesn't work</h3>
 <p>In order for vibration to work on the Xbox One Controller on OSX, the <a href="RewiredEditor.html#Settings">input source must be set to Native</a> and you must have <a href="https://github.com/360Controller/360Controller/releases" target="_blank">this driver installed</a> (at least v0.16).</p>
+<p>&nbsp;</p>
+<hr />
+<h3><a name="osx-mac-app-store-joysticks-dont-work" id="osx-mac-app-store-joysticks-dont-work"></a>OSX, Mac App Store: Joysticks don't work</h3>
+<p>To access USB or Bluetooth devices in the Mac App Store sandbox, your application must request specific entitlements.</p>
+<p>  Enable the follow entitlements for your application:</p>
+<ul>
+  <li>com.apple.security.device.bluetooth</li>
+  <li>com.apple.security.device.usb</li>
+</ul>
+<p>See the <a href="https://developer.apple.com/library/content/documentation/Miscellaneous/Reference/EntitlementKeyReference/Chapters/EnablingAppSandbox.html#//apple_ref/doc/uid/TP40011195-CH4-SW1" target="_blank">Mac App Store entitlements documentation</a> for more information.</p>
 <p>&nbsp;</p>
 <hr />
 <p>&nbsp;</p>

@@ -15,7 +15,7 @@ public class DynamicGridLayout : MonoBehaviour {
         {
             AddData(cell);
         }
-        InvokeRepeating("Reposition", 0.0f, 0.5f);
+        //InvokeRepeating("Reposition", 0.0f, 0.5f);
         Reposition();
     }
 
@@ -53,5 +53,20 @@ public class DynamicGridLayout : MonoBehaviour {
     public int GetTotalSize()
     {
         return -offset;
+    }
+
+    void FighterChanged()
+    {
+        Reposition();
+    }
+
+    void ActionChanged()
+    {
+        Reposition();
+    }
+
+    void SelectedActionChanged()
+    {
+        Reposition();
     }
 }

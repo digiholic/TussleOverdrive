@@ -18,69 +18,102 @@ MonoBehaviour:
   templateGuids:
   - 83b427e4-086f-47f3-bb06-be266abd1ca5
   hideInLists: 0
+  joystickTypes: 0100000003000000
   elementIdentifiers:
   - _id: 0
     _name: Stick X
+    _positiveName: Stick Right
+    _negativeName: Stick Left
     _elementType: 0
     _compoundElementType: 0
   - _id: 1
     _name: Stick Y
+    _positiveName: Stick Up
+    _negativeName: Stick Down
     _elementType: 0
     _compoundElementType: 0
   - _id: 12
     _name: Stick Touch
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 2
     _name: X
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 3
     _name: X Touch
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 4
     _name: Y
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 5
     _name: Y Touch
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 6
     _name: Start
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 7
     _name: Index Trigger
+    _positiveName: Index Trigger
+    _negativeName: 
     _elementType: 0
     _compoundElementType: 0
   - _id: 8
     _name: Index Trigger Touch
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 9
     _name: Index Trigger Near Touch
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 10
     _name: Hand Trigger
+    _positiveName: Hand Trigger
+    _negativeName: 
     _elementType: 0
     _compoundElementType: 0
   - _id: 11
     _name: Stick Button
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 13
     _name: Thumb Rest Touch
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 14
     _name: Thumb Rest Near Touch
+    _positiveName: 
+    _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 16
     _name: Stick
+    _positiveName: 
+    _negativeName: 
     _elementType: 100
     _compoundElementType: 0
   compoundElements:
@@ -298,6 +331,7 @@ MonoBehaviour:
         ignoreIfButtonsActiveButtons: 
         buttonInfo:
           _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 3
         sourceType: 0
         sourceAxis: 0
@@ -321,6 +355,7 @@ MonoBehaviour:
         ignoreIfButtonsActiveButtons: 
         buttonInfo:
           _excludeFromPolling: 1
+          _isPressureSensitive: 0
       - elementIdentifier: 4
         sourceType: 0
         sourceAxis: 0
@@ -344,6 +379,7 @@ MonoBehaviour:
         ignoreIfButtonsActiveButtons: 
         buttonInfo:
           _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 5
         sourceType: 0
         sourceAxis: 0
@@ -367,6 +403,7 @@ MonoBehaviour:
         ignoreIfButtonsActiveButtons: 
         buttonInfo:
           _excludeFromPolling: 1
+          _isPressureSensitive: 0
       - elementIdentifier: 6
         sourceType: 0
         sourceAxis: 0
@@ -390,6 +427,7 @@ MonoBehaviour:
         ignoreIfButtonsActiveButtons: 
         buttonInfo:
           _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 8
         sourceType: 0
         sourceAxis: 0
@@ -413,6 +451,7 @@ MonoBehaviour:
         ignoreIfButtonsActiveButtons: 
         buttonInfo:
           _excludeFromPolling: 1
+          _isPressureSensitive: 0
       - elementIdentifier: 9
         sourceType: 1
         sourceAxis: 13
@@ -436,6 +475,7 @@ MonoBehaviour:
         ignoreIfButtonsActiveButtons: 
         buttonInfo:
           _excludeFromPolling: 1
+          _isPressureSensitive: 0
       - elementIdentifier: 11
         sourceType: 0
         sourceAxis: 0
@@ -459,6 +499,7 @@ MonoBehaviour:
         ignoreIfButtonsActiveButtons: 
         buttonInfo:
           _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 12
         sourceType: 0
         sourceAxis: 0
@@ -482,6 +523,7 @@ MonoBehaviour:
         ignoreIfButtonsActiveButtons: 
         buttonInfo:
           _excludeFromPolling: 1
+          _isPressureSensitive: 0
       - elementIdentifier: 13
         sourceType: 0
         sourceAxis: 0
@@ -505,6 +547,7 @@ MonoBehaviour:
         ignoreIfButtonsActiveButtons: 
         buttonInfo:
           _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - elementIdentifier: 14
         sourceType: 1
         sourceAxis: 15
@@ -528,6 +571,7 @@ MonoBehaviour:
         ignoreIfButtonsActiveButtons: 
         buttonInfo:
           _excludeFromPolling: 1
+          _isPressureSensitive: 0
     variants:
     - description: Pre Unity 5.5.0p4
       matchingCriteria:
@@ -640,6 +684,7 @@ MonoBehaviour:
           ignoreIfButtonsActiveButtons: 
           buttonInfo:
             _excludeFromPolling: 0
+            _isPressureSensitive: 0
         - elementIdentifier: 3
           sourceType: 0
           sourceAxis: 0
@@ -663,6 +708,7 @@ MonoBehaviour:
           ignoreIfButtonsActiveButtons: 
           buttonInfo:
             _excludeFromPolling: 1
+            _isPressureSensitive: 0
         - elementIdentifier: 4
           sourceType: 0
           sourceAxis: 0
@@ -686,6 +732,7 @@ MonoBehaviour:
           ignoreIfButtonsActiveButtons: 
           buttonInfo:
             _excludeFromPolling: 0
+            _isPressureSensitive: 0
         - elementIdentifier: 5
           sourceType: 0
           sourceAxis: 0
@@ -709,6 +756,7 @@ MonoBehaviour:
           ignoreIfButtonsActiveButtons: 
           buttonInfo:
             _excludeFromPolling: 1
+            _isPressureSensitive: 0
         - elementIdentifier: 6
           sourceType: 0
           sourceAxis: 0
@@ -732,6 +780,7 @@ MonoBehaviour:
           ignoreIfButtonsActiveButtons: 
           buttonInfo:
             _excludeFromPolling: 0
+            _isPressureSensitive: 0
         - elementIdentifier: 8
           sourceType: 0
           sourceAxis: 0
@@ -755,6 +804,7 @@ MonoBehaviour:
           ignoreIfButtonsActiveButtons: 
           buttonInfo:
             _excludeFromPolling: 1
+            _isPressureSensitive: 0
         - elementIdentifier: 9
           sourceType: 1
           sourceAxis: 13
@@ -778,6 +828,7 @@ MonoBehaviour:
           ignoreIfButtonsActiveButtons: 
           buttonInfo:
             _excludeFromPolling: 1
+            _isPressureSensitive: 0
         - elementIdentifier: 11
           sourceType: 0
           sourceAxis: 0
@@ -801,6 +852,7 @@ MonoBehaviour:
           ignoreIfButtonsActiveButtons: 
           buttonInfo:
             _excludeFromPolling: 0
+            _isPressureSensitive: 0
         - elementIdentifier: 12
           sourceType: 0
           sourceAxis: 0
@@ -824,6 +876,7 @@ MonoBehaviour:
           ignoreIfButtonsActiveButtons: 
           buttonInfo:
             _excludeFromPolling: 1
+            _isPressureSensitive: 0
         - elementIdentifier: 13
           sourceType: 0
           sourceAxis: 0
@@ -847,6 +900,7 @@ MonoBehaviour:
           ignoreIfButtonsActiveButtons: 
           buttonInfo:
             _excludeFromPolling: 0
+            _isPressureSensitive: 0
         - elementIdentifier: 14
           sourceType: 1
           sourceAxis: 15
@@ -870,6 +924,7 @@ MonoBehaviour:
           ignoreIfButtonsActiveButtons: 
           buttonInfo:
             _excludeFromPolling: 1
+            _isPressureSensitive: 0
   fallback_WindowsUWP:
     description: 
     matchingCriteria:
@@ -1176,6 +1231,24 @@ MonoBehaviour:
       axes: []
       buttons: []
     variants: []
+  webGL:
+    description: 
+    matchingCriteria:
+      axisCount: 0
+      buttonCount: 0
+      disabled: 0
+      tag: 
+      alwaysMatch: 0
+      productName_useRegex: 0
+      productName: []
+      productGUID: []
+      mapping: 
+      elementCount: []
+      clientInfo: []
+    elements:
+      axes: []
+      buttons: []
+    variants: []
   ouya:
     description: 
     matchingCriteria:
@@ -1203,6 +1276,20 @@ MonoBehaviour:
       buttons: []
     variants: []
   ps4:
+    description: 
+    matchingCriteria:
+      axisCount: 0
+      buttonCount: 0
+      disabled: 0
+      tag: 
+      alwaysMatch: 0
+      productName_useRegex: 0
+      productName: []
+    elements:
+      axes: []
+      buttons: []
+    variants: []
+  nintendoSwitch:
     description: 
     matchingCriteria:
       axisCount: 0

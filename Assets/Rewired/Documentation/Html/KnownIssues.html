@@ -133,7 +133,7 @@
     	<div class="main-body">
 	        <div class="logo"><a href="http://guavaman.com/projects/rewired" title="Rewired"><img src="files/images/rewired-logo.png" width="173" height="139" alt="Rewired" /></a></div>
                      
-            <h1>
+          <h1>
             <!-- InstanceBeginEditable name="PageHeader" -->Known Issues
       <!-- InstanceEndEditable -->
             </h1>
@@ -142,7 +142,11 @@
 
     <p><strong>Topics:</strong></p>
     <ul>
-      <li><a href="#unity-2011-dot-net-46-editor-errors">Editor corruption in Unity 2017.1 when using .NET 4.6 experimental backend</a></li>
+      <li><a href="#net46-windows-tilemap-exception">Windows, .NET 4.6 experiemental backend: Exception thrown when using Unity tilemap editor</a></li>
+      <li><a href="#net46-windows-touch-controls">Windows, .NET 4.6 experiemental backend: Touch controls don't work</a></li>
+      <li><a href="#net46-windows-freeze-on-exit">Windows, .NET 4.6 experiemental backend: Application freezes on exit</a></li>
+      <li><a href="#unity-2011-dot-net-46-editor-errors">Windows, .NET 4.6 experimental backend: Editor corruption in Unity 2017.1</a></li>
+      <li><a href="#osx-net46-initialization-exception">OSX, .NET 4.6 experimental backend: Throws exception on initialization</a></li>
       <li><a href="#oculus-touch-editor-crash">Editor crash in Unity 5.6+ with Oculus Touch</a></li>
       <li><a href="#running-in-a-sandbox">Running in a Sandbox</a></li>
       <li><a href="#windows-app-store-u5">Windows App Store support not working in Unity 5.0.0, fixed in 5.0.1</a></li>
@@ -178,13 +182,76 @@
       <li><a href="#serialized-data-corruption-after-upgrading-unity">Serialized data corruption after upgrading Unity</a></li>
     </ul>
     <hr />
-    <h3><a name="unity-2011-dot-net-46-editor-errors" id="unity-2011-dot-net-46-editor-errors"></a>Editor corruption in Unity 2017.1 when using .NET 4.6 experimental backend</h3>
-    <p>The .NET 4.6 experimental backend contains a major bug that affects Rewired's ability to run in the editor. The 2nd time you press Play in the editor, it will throw thousands of exceptions and cause the editor to become corrupt until quit and restart. This bug has been reported to Unity and they have acknowledged it. Until this bug is fixed, Rewired is not compatible with the .NET 4.6 experimental backend. See the following forum posts for more details about the issue.</p>
+    <h3><a name="net46-windows-tilemap-exception" id="net46-windows-tilemap-exception"></a>Windows, .NET 4.6 experiemental backend: Exception thrown when using Unity tilemap editor</h3>
+    <p>As of Unity 2017.2.0f3, the 2D tilemap editor will throw exceptions when used with Rewired in the project. This is a bug in the .NET 4.6 experimental backend and has been reported to Unity.</p>
+    <p><strong>Update:</strong> This was fixed by Unity as of Unity 2017.3.0b4.<br />
+      <strong>Update:</strong> A workaround was added in Rewired 1.1.7.8 to get around this bug in all versions of Unity.</p>
+    <p>The only workaround is to disable the &quot;Editor&quot; checkbox on the Rewired/Internal/Libraries/Runtime/Rewired_Windows_Lib.dll inspector, making native input no longer run when using the Unity editor. There is no &quot;fix&quot; possible in Rewired to make this work becaues the issue is not in Rewired. It will only function correctly when Unity fixes the bug in the .NET 4.6 experimental backend.</p>
+<p>&nbsp;</p>
+    <hr />
+    <h3><a name="net46-windows-touch-controls" id="net46-windows-touch-controls"></a>Windows, .NET 4.6 experiemental backend: Touch controls don't work</h3>
+<p>As of Unity 2017.2.0f3, when the .NET 4.6 experimental backend is enabled in Windows, touch controls will no longer work. This is due to a bug in the .NET 4.6 experimental backend with the EqualityComparer&lt;T&gt; implementation not using the overloaded == operator of the UnityEngine.Object class. This bug has been reported to Unity. Unity has confirmed this bug in the .NET 4.6 backend but no ETA for a fix is known.</p>
+<p><strong>Update:</strong> A workaround was added in Rewired 1.1.7.8 to get around this bug in all versions of Unity.</p>
+    <p><strong>Q: But it used to work before updating Rewired to 1.1.3.0+:</strong></p>
+    <p>It actually did have the same issue, but you just 
+      couldn’t see it because Rewired was never actually running in native mode when 
+      the 4.6 backend was enabled in versions prior to 1.1.3.0 because of an unrelated exception <br />
+      that made it fall back to Unity input silently. This exception was due to an unrelated issue involving 
+      reflection when using the .NET 4.6 backend. The exception was silently swallowed forcing Rewired 
+      to run in UnityEngine.Input mode instead. In 1.1.3.0, the silent exception was fixed allowing native input to actually be initialized revealing the new .NET 4.6 bug. Native input never worked when using the 
+      4.6 .NET backend. The fact that older versions looked like they worked was 
+      just a fluke due to the unrelated exception preventing native input from being initialized.</p>
+    <p><em>Beta versions and experimental features of Unity are not supported by Rewired.</em></p>
+    <p>&nbsp;</p>
+    <hr />
+    <h3><a name="net46-windows-freeze-on-exit" id="net46-windows-freeze-on-exit"></a>Windows, .NET 4.6 experiemental backend: Application freezes on exit</h3>
+    <p>As of Unity 2017.2.0f3, when the .NET 4.6 experimental backend is enabled in Windows, the application will freeze forever on exit (closing via the X window button or Alt + F4). The error occurrs outside Rewired's code after it has already shut down. Unity has confirmed this bug in the .NET 4.6 backend but no ETA for a fix is known.</p>
+    <p><strong>Q: But it used to work before updating Rewired to 1.1.3.0+:</strong></p>
+    <p>It actually did have the same issue, but you just 
+      couldn’t see it because Rewired was never actually running in native mode when 
+      the 4.6 backend was enabled in versions prior to 1.1.3.0 because of an unrelated exception <br />
+      that made it fall back to Unity input silently. This exception was due to an unrelated issue involving 
+      reflection when using the .NET 4.6 backend. The exception was silently swallowed forcing Rewired 
+      to run in UnityEngine.Input mode instead. In 1.1.3.0, the silent exception was fixed allowing native input to actually be initialized revealing the new .NET 4.6 bug. Native input never worked when using the 
+      4.6 .NET backend. The fact that older versions looked like they worked was 
+      just a fluke due to the unrelated exception preventing native input from being initialized.</p>
+    <p><em>Beta versions and experimental features of Unity are not supported by Rewired.</em></p>
+    <p>&nbsp;</p>
+<hr />
+    <h3><a name="unity-2011-dot-net-46-editor-errors" id="unity-2011-dot-net-46-editor-errors"></a>Windows, .NET 4.6 experimental backend: Editor corruption in Unity 2017.1</h3>
+    <p>The .NET 4.6 experimental backend contains a major bug that affects Rewired's ability to run in the editor. The 2nd time you press Play in the editor, it will throw thousands of exceptions and cause the editor to become corrupt until quit and restart. This bug has been reported to Unity.</p>
+    <p><strong>Update:</strong> Unity fixed the bug in Unity 2017.1.p4.</p>
+    <p>More information about this bug can be found here:</p>
     <ul>
       <li><a href="https://forum.unity3d.com/threads/rewired-advanced-input-for-unity.270693/page-66#post-3116639" title="https://forum.unity3d.com/threads/rewired-advanced-input-for-unity.270693/page-66#post-3116639" target="_blank">https://forum.unity3d.com/threads/rewired-advanced-input-for-unity.270693/page-66#post-3116639</a></li>
       <li><a href="https://forum.unity3d.com/threads/rewired-advanced-input-for-unity.270693/page-66#post-3116993" title="https://forum.unity3d.com/threads/rewired-advanced-input-for-unity.270693/page-66#post-3116993" target="_blank">https://forum.unity3d.com/threads/rewired-advanced-input-for-unity.270693/page-66#post-3116993</a></li>
       </ul>
-    <p>The only workaround is to disable native input by setting the input source for the editor platform to Unity in the Rewired Input Manager -&gt; Settings page. By doing this, you will lose access to all the special features and benefits native input provides.</p>
+    <p>The only workaround is to disable native input by setting the Primary Input Source for the editor platform you are using to Unity in the Rewired Input Manager -&gt; Settings page. By doing this, you will lose access to all the special features and benefits native input provides.</p>
+    <p><strong>Q: But it used to work before updating Rewired to 1.1.3.0+:</strong></p>
+    <p>It actually did have the same issue, but you just 
+      couldn’t see it because Rewired was never actually running in native mode when 
+      the 4.6 backend was enabled in versions prior to 1.1.3.0 because of an unrelated exception <br />
+      that made it fall back to Unity input silently. This exception was due to an unrelated issue involving 
+      reflection  when using the .NET 4.6 backend. The exception was silently swallowed forcing Rewired 
+      to run in UnityEngine.Input mode instead. In 1.1.3.0, the silent exception was fixed allowing native input to actually be initialized revealing the new .NET 4.6 bug. Native input never worked when using the 
+      4.6 .NET backend. The fact that older versions looked like they worked was 
+      just a fluke due to the unrelated exception preventing native input from being initialized.</p>
+    <p><em>Beta versions and experimental features of Unity are not supported by Rewired.</em></p>
+<p>&nbsp;</p>
+<hr />
+<h3><a name="osx-net46-initialization-exception" id="osx-net46-initialization-exception"></a>OSX, .NET 4.6 experimental backend: Throws exception on initialization </h3>
+<p>As of Unity 2017.2.0f3, when the .NET 4.6 experimental backend is enabled in OSX, an exception will be thrown on initialization causing Rewired to not function. This exception is due to a bug in the .NET 4.6 experimental backend that prevents all P/Invoke calls from functioning, always throwing a DllNotFoundException. The exact same call works using the .NET 3.5 backend while the 4.6 backend fails. This bug has been reported to Unity.</p>
+<p>Due to the severity of this bug, until Unity fixes it, it is impossible for Rewired to use native input on OSX with the .NET 4.6 backend enabled. The only workaround is to disable native input by setting the Primary Input Source for the  platform to Unity in the Rewired Input Manager -&gt; Settings -&gt; OSX page. By doing this, you will lose access to all the special features and benefits native input provides.</p>
+<p><strong>Q: But it used to work before updating Rewired to 1.1.3.0+:</strong></p>
+<p>It actually did have the same issue, but you just 
+  couldn’t see it because Rewired was never actually running in native mode when 
+  the 4.6 backend was enabled in versions prior to 1.1.3.0 because of an unrelated exception <br />
+  that made it fall back to Unity input silently. This exception was due to an unrelated issue involving 
+  reflection when using the .NET 4.6 backend. The exception was silently swallowed forcing Rewired 
+  to run in UnityEngine.Input mode instead. In 1.1.3.0, the silent exception was fixed allowing native input to actually be initialized revealing the new .NET 4.6 bug. Native input never worked when using the 
+  4.6 .NET backend. The fact that older versions looked like they worked was 
+  just a fluke due to the unrelated exception preventing native input from being initialized.</p>
+<p><em>Beta versions and experimental features of Unity are not supported by Rewired.</em></p>
 <p>&nbsp;</p>
 <hr />
     <h3><a name="oculus-touch-editor-crash" id="oculus-touch-editor-crash"></a>Editor crash in Unity 5.6+ with Oculus Touch</h3>
