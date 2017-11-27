@@ -5,8 +5,6 @@ using UnityEngine;
 public class SubactionWindow : MonoBehaviour {
     public GameObject data_row_prefab;
 
-    public string currentGroupName = "Set Up";
-    public DynamicAction currentAction;
     private DynamicGridLayout grid;
     private List<SubactionDataRowExpanded> subaction_rows = new List<SubactionDataRowExpanded>();
 
@@ -17,13 +15,14 @@ public class SubactionWindow : MonoBehaviour {
 
     public void RefreshData()
     {
-        SubactionFactory.AddNewSubaction("ChangeSprite", currentAction.GetGroup(currentGroupName));
+        DynamicAction currentAction = LegacyEditor.editor.selected_action;
+        SubActionGroup currentGroup = LegacyEditor.editor.subaction_group;
         RemoveData();
-        if (currentAction.GetGroup(currentGroupName).subactions.Count > 0)
+        
+        if (currentGroup.subactions.Count > 0)
         {
-            foreach (Subaction action_text in currentAction.GetGroup(currentGroupName).subactions)
+            foreach (Subaction action_text in currentGroup.subactions)
             {
-                Debug.Log(action_text);
                 InstantiateRow(action_text);
             }
             //subaction_rows[0].Select();
@@ -31,15 +30,13 @@ public class SubactionWindow : MonoBehaviour {
         grid.Reposition(); //FIXME: For some reason, this doesn't actually reposition it in time. It's still stacked on top of each other.
     }
 
-    public void ActionChanged(DynamicAction action)
+    public void SelectedActionChanged(DynamicAction action)
     {
-        currentAction = action;
         RefreshData();
     }
 
-    public void SubActionGroupChanged(string group)
+    public void SubactionGroupChanged(SubActionGroup group)
     {
-        currentGroupName = group;
         RefreshData();
     }
 

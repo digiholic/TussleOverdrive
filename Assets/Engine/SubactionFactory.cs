@@ -14,6 +14,7 @@ public class SubactionFactory {
             if (obj.GetType().IsSubclassOf(typeof(Subaction)))
             {
                 Subaction sub = (Subaction) obj;
+                sub.SubactionName = subactionName;
                 return sub;
             }
             return null;
@@ -63,7 +64,7 @@ public class SubactionFactory {
                 {
                     "SubactionChangeSpeed",
                     "SubactionShiftPosition",
-                    "SubactionPlaysound"
+                    "SubactionPlaySound"
                 };
             case "Animation":
                 return new List<String>()

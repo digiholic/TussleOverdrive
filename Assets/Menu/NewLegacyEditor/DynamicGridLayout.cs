@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DynamicGridLayout : MonoBehaviour {
-    private List<DynamicGridCell> cells = new List<DynamicGridCell>();
+    public List<DynamicGridCell> cells = new List<DynamicGridCell>();
     private int offset;
 
     public bool refreshNow;

@@ -20,13 +20,13 @@ public class ArgDataEditableToggle : MonoBehaviour {
     {
         if (editable)
         {
-            clickCollider.enabled = false;
-            background.enabled = false;
+            clickCollider.enabled = true;
+            background.enabled = true;
         }
         else
         {
-            clickCollider.enabled = true;
-            background.enabled = true;
+            clickCollider.enabled = false;
+            background.enabled = false;
         }
     }
 }

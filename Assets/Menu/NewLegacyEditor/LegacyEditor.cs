@@ -44,7 +44,7 @@ public class LegacyEditor : MonoBehaviour {
             BroadcastSubWindowChanged();
         }
         //If we're changing a subaction group, we need to notify that listener as well
-        if (editor.main_window == "Action" && new_subwindow_name != "Properties")
+        if (editor.main_window == "Actions" && new_subwindow_name != "Properties")
         {
             ChangeSubactionGroup(new_subwindow_name);
         }
@@ -121,6 +121,7 @@ public class LegacyEditor : MonoBehaviour {
         {
             editor.selected_action_name = new_selection_name;
             editor.selected_action = editor.current_actions.Get(new_selection_name);
+            ChangeSubactionGroup(editor.sub_window);
             BroadcastSelectedActionChanged();
         }
     }
@@ -131,6 +132,7 @@ public class LegacyEditor : MonoBehaviour {
         {
             editor.selected_action = new_action;
             editor.selected_action_name = new_action.name;
+            ChangeSubactionGroup(editor.sub_window);
             BroadcastSelectedActionChanged();
         }
     }
@@ -146,7 +148,6 @@ public class LegacyEditor : MonoBehaviour {
     
     public static void ChangeSubactionCategory(string new_subaction_category)
     {
-        Debug.Log(new_subaction_category);
         editor.selected_subaction_category = new_subaction_category;
         BroadcastCategoryChanged();
     }

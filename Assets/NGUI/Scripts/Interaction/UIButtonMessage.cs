@@ -79,9 +79,6 @@ public class UIButtonMessage : MonoBehaviour
 		}
 		else
 		{
-            Debug.Log(target);
-            Debug.Log(functionName);
-            Debug.Log(arg);
             target.SendMessage(functionName, arg, SendMessageOptions.DontRequireReceiver);
 		}
 	}

@@ -10,7 +10,7 @@ public class DynamicGridExpander : MonoBehaviour {
     public DynamicGridLayout internalData;
 
 	// Use this for initialization
-	void Start () {
+	void OnEnable () {
         thisCell = GetComponent<DynamicGridCell>();
         thisCell.owner = internalData;
         lastKnownHeight = headerSize + internalData.GetTotalSize();

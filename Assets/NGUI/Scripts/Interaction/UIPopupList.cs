@@ -489,6 +489,7 @@ public class UIPopupList : MonoBehaviour
 			// Add a sprite used for the selection
 			mHighlight = NGUITools.AddSprite(mChild, atlas, highlightSprite);
 			mHighlight.pivot = UIWidget.Pivot.TopLeft;
+            mHighlight.transform.localPosition = new Vector3(0, 0, 0); //Changed by digi, getting rid of that awkward float back to position
 			mHighlight.color = highlightColor;
 
 			UIAtlas.Sprite hlsp = mHighlight.GetAtlasSprite();
