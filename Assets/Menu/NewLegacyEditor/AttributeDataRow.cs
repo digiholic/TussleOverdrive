@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttributeDataRow : MonoBehaviour {
+public class AttributeDataRow : MonoBehaviour, LegacyDataViewer {
     public VarData vardata;
 
     public string variable_name;
@@ -21,7 +21,7 @@ public class AttributeDataRow : MonoBehaviour {
         grid = transform.parent.GetComponent<UIGrid>();
     }
 
-    void FighterChanged(FighterInfo info)
+    public void FighterChanged(FighterInfo info)
     {
         if (variable_name != "")
         {
@@ -84,4 +84,12 @@ public class AttributeDataRow : MonoBehaviour {
     {
         value_label.selectOnTab = data.value_label.gameObject;
     }
+
+
+    public void WindowChanged(string window_name) { }
+    public void SubWindowChanged(string sub_window_name) { }
+    public void ActionsChanged(ActionFile actions) { }
+    public void SelectedActionChanged(DynamicAction action) { }
+    public void CategoryChanged(string category_name) { }
+    public void SubactionGroupChanged(SubActionGroup group) { }
 }

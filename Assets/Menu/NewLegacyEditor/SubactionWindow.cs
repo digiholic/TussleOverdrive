@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SubactionWindow : MonoBehaviour {
+public class SubactionWindow : MonoBehaviour, LegacyDataViewer {
     public GameObject data_row_prefab;
 
     private DynamicGridLayout grid;
@@ -59,4 +59,10 @@ public class SubactionWindow : MonoBehaviour {
         grid.AddData(data.GetComponent<DynamicGridCell>());
         return data;
     }
+
+    public void WindowChanged(string window_name) { }
+    public void SubWindowChanged(string sub_window_name) { }
+    public void FighterChanged(FighterInfo fighter_info) { }
+    public void ActionsChanged(ActionFile actions) { }
+    public void CategoryChanged(string category_name) { }
 }

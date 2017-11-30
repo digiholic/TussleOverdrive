@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DynamicGridLayout : MonoBehaviour {
+public class DynamicGridLayout : MonoBehaviour, LegacyDataViewer {
     public List<DynamicGridCell> cells = new List<DynamicGridCell>();
     private int offset;
 
@@ -55,17 +55,37 @@ public class DynamicGridLayout : MonoBehaviour {
         return -offset;
     }
 
-    void FighterChanged()
+    public void WindowChanged(string window_name)
     {
         Reposition();
     }
 
-    void ActionChanged()
+    public void SubWindowChanged(string sub_window_name)
     {
         Reposition();
     }
 
-    void SelectedActionChanged()
+    public void FighterChanged(FighterInfo fighter_info)
+    {
+        Reposition();
+    }
+
+    public void ActionsChanged(ActionFile actions)
+    {
+        Reposition();
+    }
+
+    public void SelectedActionChanged(DynamicAction action)
+    {
+        Reposition();
+    }
+
+    public void CategoryChanged(string category_name)
+    {
+        Reposition();
+    }
+
+    public void SubactionGroupChanged(SubActionGroup group)
     {
         Reposition();
     }

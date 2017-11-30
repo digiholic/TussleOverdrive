@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FighterDataSetter : MonoBehaviour {
+public class FighterDataSetter : MonoBehaviour, LegacyDataViewer {
     public string variable_name;
     public UILabel display_area;
 
-	void FighterChanged(FighterInfo info)
+    public void FighterChanged(FighterInfo info)
     {
         display_area.text = info.GetType().GetField(variable_name).GetValue(info).ToString();
     }
@@ -16,4 +16,11 @@ public class FighterDataSetter : MonoBehaviour {
         FighterInfo info = LegacyEditor.editor.current_fighter;
         info.GetType().GetField(variable_name).SetValue(info, text);
     }
+
+    public void ActionsChanged(ActionFile actions) { }
+    public void CategoryChanged(string category_name) { }
+    public void SelectedActionChanged(DynamicAction action) { }
+    public void SubactionGroupChanged(SubActionGroup group) { }
+    public void SubWindowChanged(string sub_window_name) { }
+    public void WindowChanged(string window_name) { }
 }

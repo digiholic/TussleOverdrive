@@ -2,24 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WindowListener : MonoBehaviour {
+public class WindowListener : MonoBehaviour, LegacyDataViewer {
     public WindowType ListenForWindow;
     public List<WindowMapping> windows;
 
-	void WindowChanged(string window_name)
+	public void WindowChanged(string window_name)
     {
         //We only do this function if the window type is main.
         if (ListenForWindow == WindowType.MAIN)
             UpdateWindows(window_name);
     }
 
-    void SubWindowChanged(string window_name)
+    public void SubWindowChanged(string window_name)
     {
         if (ListenForWindow == WindowType.SUB)
             UpdateWindows(window_name);
     }
 
-    void CategoryChanged(string category_name)
+    public void CategoryChanged(string category_name)
     {
         Debug.Log(category_name);
         if (ListenForWindow == WindowType.NEW)
@@ -42,6 +42,12 @@ public class WindowListener : MonoBehaviour {
             }
         }
     }
+
+    //Unused data listeners
+    public void FighterChanged(FighterInfo fighter_info) {}
+    public void ActionsChanged(ActionFile actions) {}
+    public void SelectedActionChanged(DynamicAction action) {}
+    public void SubactionGroupChanged(SubActionGroup group) {}
 }
 
 [System.Serializable]

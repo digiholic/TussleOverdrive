@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttributeLayout : MonoBehaviour {
+public class AttributeLayout : MonoBehaviour, LegacyDataViewer {
     public GameObject data_row_prefab;
 
     public GameObject new_data_object;
@@ -25,7 +25,7 @@ public class AttributeLayout : MonoBehaviour {
         }
     }
 
-    void FighterChanged(FighterInfo info)
+    public void FighterChanged(FighterInfo info)
     {
         RemoveData();
         foreach (VarData data in info.variables)
@@ -45,4 +45,11 @@ public class AttributeLayout : MonoBehaviour {
         data_rows.Add(go);
         return attr;
     }
+
+    public void WindowChanged(string window_name) { }
+    public void SubWindowChanged(string sub_window_name) { }
+    public void ActionsChanged(ActionFile actions) { }
+    public void SelectedActionChanged(DynamicAction action) { }
+    public void CategoryChanged(string category_name) { }
+    public void SubactionGroupChanged(SubActionGroup group) { }
 }
