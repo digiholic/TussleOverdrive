@@ -17,20 +17,85 @@ public class LegacyEditor : MonoBehaviour {
     public static event StringMenuFunction OnSubwindowChanged;
     public static event FighterMenuFunction OnFighterChanged;
     public static event ActionMenuFunction OnActionFileChanged;
-    public static event DynamicActionMenuFunction OnActionChanged;
+    public static event DynamicActionMenuFunction OnSelectedActionChanged;
     public static event StringMenuFunction OnSubactionCategoryChanged;
     public static event SubActionGroupMenuFunction OnSubactionGroupChanged;
 
-    public string main_window;
-    public string sub_window;
-    public FileInfo fighter_file;
-    public FighterInfo current_fighter;
-    public FileInfo action_file;
-    public ActionFile current_actions;
-    public string selected_action_name;
-    public DynamicAction selected_action;
-    public string selected_subaction_category;
-    public SubActionGroup subaction_group;
+    #region Event Firers
+    public static void LoadFighterFromFile(FileInfo info_file)
+    {
+        editor.fighter_file = info_file;
+        FighterInfo info = FighterInfo.LoadFighterInfoFile(info_file.DirectoryName, info_file.Name);
+        OnFighterChanged(info);
+    }
+    public static void LoadActionFileFromFile(FileInfo action_file)
+    {
+        editor.action_file = action_file;
+        ActionFile actions = ActionFile.LoadActionsFromFile(action_file.DirectoryName, action_file.Name);
+        OnActionFileChanged(actions);
+    }
+    public static void ChangeSubactionGroup(string new_group_name)
+    {
+        if (editor.selected_action != null) //If we don't have an action selected, we can't pull the group from it
+        {
+            DynamicAction act = editor.selected_action;
+            switch (new_group_name)
+            {
+                case "Set Up":
+                    OnSubactionGroupChanged(act.set_up_subactions);
+                    break;
+                case "Transitions":
+                    OnSubactionGroupChanged(act.state_transition_subactions);
+                    break;
+                case "On Frame":
+                    OnSubactionGroupChanged(act.subactions_on_frame);
+                    break;
+                case "Tear Down":
+                    OnSubactionGroupChanged(act.tear_down_subactions);
+                    break;
+            }
+        }
+    }
+    public static void ChangeSelectedAction(string new_selection_name)
+    {
+        //It doesn't make sense to select an action if we don't have actions yet
+        if (editor.current_actions != null)
+        {
+            editor.selected_action_name = new_selection_name;
+            editor.selected_action = editor.current_actions.Get(new_selection_name);
+            
+            ChangeSubactionGroup(editor.sub_window);
+        }
+    }
+    public static void FireChangeWindow(string window_name)
+    {
+        OnWindowChanged(window_name);
+    }
+    public static void FireChangeSubwindow(string subwindow_name)
+    {
+        OnSubwindowChanged(subwindow_name);
+    }
+    public static void FireChangeFighter(FighterInfo info)
+    {
+        OnFighterChanged(info);
+    }
+    public static void FireChangeActionFile(ActionFile actions)
+    {
+        OnActionFileChanged(actions);
+    }
+    public static void FireChangeSelectedAction(DynamicAction action)
+    {
+        OnSelectedActionChanged(action);
+    }
+    public static void FireChangeSubactionCategory(string subaction_category)
+    {
+        OnSubactionCategoryChanged(subaction_category);
+    }
+    public static void FireChangeSubactionGroup(SubActionGroup group)
+    {
+        OnSubactionGroupChanged(group);
+    }
+    #endregion
 
     #region Event hooks
     public void ChangeWindow(string new_window_name)
@@ -60,23 +125,12 @@ public class LegacyEditor : MonoBehaviour {
     {
         FighterLoaded = true;
         editor.current_fighter = info;
-        editor.current_actions = info.action_file;
+        FireChangeActionFile(info.action_file);
     }
 
     public void ChangeActionFile(ActionFile actions)
     {
         editor.current_actions = actions;
-    }
-
-    public void ChangeSelectedAction(string new_selection_name)
-    {
-        //It doesn't make sense to select an action if we don't have actions yet
-        if (editor.current_actions != null)
-        {
-            editor.selected_action_name = new_selection_name;
-            editor.selected_action = editor.current_actions.Get(new_selection_name);
-            ChangeSubactionGroup(editor.sub_window);
-        }
     }
 
     public void ChangeSelectedAction(DynamicAction new_action)
@@ -102,6 +156,27 @@ public class LegacyEditor : MonoBehaviour {
     }
     #endregion
 
+    public static DirectoryInfo CurrentFighterDir()
+    {
+        if (editor.current_fighter != null && editor.current_fighter.directory_name != null)
+        {
+            return FileLoader.GetFighterDir(editor.current_fighter.directory_name);
+        }
+        else return null;
+    }
+
+
+    public string main_window;
+    public string sub_window;
+    public FileInfo fighter_file;
+    public FighterInfo current_fighter;
+    public FileInfo action_file;
+    public ActionFile current_actions;
+    public string selected_action_name;
+    public DynamicAction selected_action;
+    public string selected_subaction_category;
+    public SubActionGroup subaction_group;
+
     // Use this for initialization
     void Awake()
     {
@@ -118,7 +193,7 @@ public class LegacyEditor : MonoBehaviour {
         OnSubwindowChanged += ChangeSubWindow;
         OnFighterChanged += ChangeFighter;
         OnActionFileChanged += ChangeActionFile;
-        OnActionChanged += ChangeSelectedAction;
+        OnSelectedActionChanged += ChangeSelectedAction;
         OnSubactionCategoryChanged += ChangeSubactionCategory;
         OnSubactionGroupChanged += ChangeSubactionGroup;
     }
@@ -130,7 +205,7 @@ public class LegacyEditor : MonoBehaviour {
         OnSubwindowChanged -= ChangeSubWindow;
         OnFighterChanged -= ChangeFighter;
         OnActionFileChanged -= ChangeActionFile;
-        OnActionChanged -= ChangeSelectedAction;
+        OnSelectedActionChanged -= ChangeSelectedAction;
         OnSubactionCategoryChanged -= ChangeSubactionCategory;
         OnSubactionGroupChanged -= ChangeSubactionGroup;
     }
@@ -159,54 +234,7 @@ public class LegacyEditor : MonoBehaviour {
             editor.current_fighter.WriteJSON(editor.fighter_file.FullName);
         }
     }
-
-    #region static accessors
-    public static void LoadFighterFromFile(FileInfo info_file)
-    {
-        editor.fighter_file = info_file;
-        FighterInfo info = FighterInfo.LoadFighterInfoFile(info_file.DirectoryName, info_file.Name);
-        OnFighterChanged(info);
-    }
-
-    public static void LoadActionFileFromFile(FileInfo action_file)
-    {
-        editor.action_file = action_file;
-        ActionFile actions = ActionFile.LoadActionsFromFile(action_file.DirectoryName, action_file.Name);
-        OnActionFileChanged(actions);
-    }
-
-    public static void ChangeSubactionGroup(string new_group_name)
-    {
-        if (editor.selected_action != null) //If we don't have an action selected, we can't pull the group from it
-        {
-            DynamicAction act = editor.selected_action;
-            switch (new_group_name)
-            {
-                case "Set Up":
-                    OnSubactionGroupChanged(act.set_up_subactions);
-                    break;
-                case "Transitions":
-                    OnSubactionGroupChanged(act.state_transition_subactions);
-                    break;
-                case "On Frame":
-                    OnSubactionGroupChanged(act.subactions_on_frame);
-                    break;
-                case "Tear Down":
-                    OnSubactionGroupChanged(act.tear_down_subactions);
-                    break;
-            }
-        }
-    }
-
-    public static DirectoryInfo CurrentFighterDir()
-    {
-        if (editor.current_fighter != null && editor.current_fighter.directory_name != null)
-        {
-            return FileLoader.GetFighterDir(editor.current_fighter.directory_name);
-        }
-        else return null;
-    }
-    #endregion
+    
 }
 
 public enum WindowType

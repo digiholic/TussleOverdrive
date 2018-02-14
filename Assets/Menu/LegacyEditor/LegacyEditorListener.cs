@@ -11,19 +11,19 @@ public class LegacyEditorListener : MonoBehaviour {
 
     public static void ChangeWindow(string new_window_name)
     {
-        LegacyEditor.ChangeWindow(new_window_name);
+        LegacyEditor.FireChangeWindow(new_window_name);
     }
     public static void ChangeSubWindow(string new_subwindow_name)
     {
-        LegacyEditor.ChangeSubWindow(new_subwindow_name);
+        LegacyEditor.FireChangeSubwindow(new_subwindow_name);
     }
     public static void ChangeFighter(FileInfo info_file)
     {
-        LegacyEditor.ChangeFighter(info_file);
+        LegacyEditor.LoadFighterFromFile(info_file);
     }
     public static void ChangeActions(FileInfo action_file)
     {
-        LegacyEditor.ChangeActions(action_file);
+        LegacyEditor.LoadActionFileFromFile(action_file);
     }
     public static void ChangeSelectedAction(string new_selection_name)
     {
@@ -31,6 +31,6 @@ public class LegacyEditorListener : MonoBehaviour {
     }
     public void ChangeSubactionCategory(string new_subaction_category)
     {
-        LegacyEditor.ChangeSubactionCategory(new_subaction_category);
+        LegacyEditor.FireChangeSubactionCategory(new_subaction_category);
     }
 }

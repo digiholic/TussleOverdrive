@@ -20,7 +20,7 @@ public class ButtonLoadFile : MonoBehaviour {
         string value = FileLoader.GetRelativePath(LegacyEditor.CurrentFighterDir(), info);
         FighterInfo fighter = LegacyEditor.editor.current_fighter;
         fighter.GetType().GetField(variable_name).SetValue(fighter, value);
-        LegacyEditor.BroadcastFighterChanged();
+        LegacyEditor.FireChangeFighter(fighter);
     }
 
     public enum FileBrowserType

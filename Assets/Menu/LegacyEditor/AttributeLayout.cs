@@ -48,8 +48,18 @@ public class AttributeLayout : MonoBehaviour, LegacyDataViewer {
 
     public void WindowChanged(string window_name) { }
     public void SubWindowChanged(string sub_window_name) { }
-    public void ActionsChanged(ActionFile actions) { }
+    public void ActionFileChanged(ActionFile actions) { }
     public void SelectedActionChanged(DynamicAction action) { }
     public void CategoryChanged(string category_name) { }
     public void SubactionGroupChanged(SubActionGroup group) { }
+
+    public void OnEnable()
+    {
+        LegacyEditor.OnFighterChanged += FighterChanged;
+    }
+
+    public void OnDisable()
+    {
+        LegacyEditor.OnFighterChanged -= FighterChanged;
+    }
 }

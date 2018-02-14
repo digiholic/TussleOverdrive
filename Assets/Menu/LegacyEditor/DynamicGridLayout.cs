@@ -55,38 +55,55 @@ public class DynamicGridLayout : MonoBehaviour, LegacyDataViewer {
         return -offset;
     }
 
+    public void OnEnable()
+    {
+        LegacyEditor.OnWindowChanged            += WindowChanged;
+        LegacyEditor.OnSubwindowChanged         += SubWindowChanged;
+        LegacyEditor.OnFighterChanged           += FighterChanged;
+        LegacyEditor.OnActionFileChanged        += ActionFileChanged;
+        LegacyEditor.OnSelectedActionChanged            += SelectedActionChanged;
+        LegacyEditor.OnSubactionCategoryChanged += CategoryChanged;
+        LegacyEditor.OnSubactionGroupChanged    += SubactionGroupChanged;
+    }
+
+    public void OnDisable()
+    {
+        LegacyEditor.OnWindowChanged            -= WindowChanged;
+        LegacyEditor.OnSubwindowChanged         -= SubWindowChanged;
+        LegacyEditor.OnFighterChanged           -= FighterChanged;
+        LegacyEditor.OnActionFileChanged        -= ActionFileChanged;
+        LegacyEditor.OnSelectedActionChanged            -= SelectedActionChanged;
+        LegacyEditor.OnSubactionCategoryChanged -= CategoryChanged;
+        LegacyEditor.OnSubactionGroupChanged    -= SubactionGroupChanged;
+    }
+
     public void WindowChanged(string window_name)
     {
         Reposition();
     }
-
     public void SubWindowChanged(string sub_window_name)
     {
         Reposition();
     }
-
     public void FighterChanged(FighterInfo fighter_info)
     {
         Reposition();
     }
-
-    public void ActionsChanged(ActionFile actions)
+    public void ActionFileChanged(ActionFile actions)
     {
         Reposition();
     }
-
     public void SelectedActionChanged(DynamicAction action)
     {
         Reposition();
     }
-
     public void CategoryChanged(string category_name)
     {
         Reposition();
     }
-
     public void SubactionGroupChanged(SubActionGroup group)
     {
         Reposition();
     }
+
 }

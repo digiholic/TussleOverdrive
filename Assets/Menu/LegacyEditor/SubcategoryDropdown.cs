@@ -30,11 +30,11 @@ public class SubcategoryDropdown : MonoBehaviour {
         selected_string = item;
         if (window_type == WindowType.MAIN)
         {
-            LegacyEditor.ChangeWindow(item);
+            LegacyEditor.FireChangeWindow(item);
         }
         else if (window_type == WindowType.SUB)
         {
-            LegacyEditor.ChangeSubWindow(item);
+            LegacyEditor.FireChangeSubwindow(item);
         }
     }
 }

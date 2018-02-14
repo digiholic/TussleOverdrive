@@ -63,6 +63,18 @@ public class SubactionWindow : MonoBehaviour, LegacyDataViewer {
     public void WindowChanged(string window_name) { }
     public void SubWindowChanged(string sub_window_name) { }
     public void FighterChanged(FighterInfo fighter_info) { }
-    public void ActionsChanged(ActionFile actions) { }
+    public void ActionFileChanged(ActionFile actions) { }
     public void CategoryChanged(string category_name) { }
+
+    public void OnEnable()
+    {
+        LegacyEditor.OnSelectedActionChanged += SelectedActionChanged;
+        LegacyEditor.OnSubactionGroupChanged += SubactionGroupChanged;
+    }
+
+    public void OnDisable()
+    {
+        LegacyEditor.OnSelectedActionChanged -= SelectedActionChanged;
+        LegacyEditor.OnSubactionGroupChanged -= SubactionGroupChanged;
+    }
 }

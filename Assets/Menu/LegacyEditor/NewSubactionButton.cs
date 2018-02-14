@@ -16,7 +16,7 @@ public class NewSubactionButton : MonoBehaviour {
             if (LegacyEditor.editor.subaction_group != null)
             {
                 SubactionFactory.AddNewSubaction(SubactionName, LegacyEditor.editor.subaction_group);
-                LegacyEditor.BroadcastSelectedActionChanged();
+                LegacyEditor.FireChangeSelectedAction(LegacyEditor.editor.selected_action);
             }
         }
     }

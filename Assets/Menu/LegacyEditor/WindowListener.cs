@@ -6,7 +6,21 @@ public class WindowListener : MonoBehaviour, LegacyDataViewer {
     public WindowType ListenForWindow;
     public List<WindowMapping> windows;
 
-	public void WindowChanged(string window_name)
+    public void OnEnable()
+    {
+        LegacyEditor.OnWindowChanged += WindowChanged;
+        LegacyEditor.OnSubwindowChanged += SubWindowChanged;
+        LegacyEditor.OnSubactionCategoryChanged += CategoryChanged;
+    }
+
+    public void OnDisable()
+    {
+        LegacyEditor.OnWindowChanged -= WindowChanged;
+        LegacyEditor.OnSubwindowChanged -= SubWindowChanged;
+        LegacyEditor.OnSubactionCategoryChanged -= CategoryChanged;
+    }
+
+    public void WindowChanged(string window_name)
     {
         //We only do this function if the window type is main.
         if (ListenForWindow == WindowType.MAIN)
@@ -45,7 +59,7 @@ public class WindowListener : MonoBehaviour, LegacyDataViewer {
 
     //Unused data listeners
     public void FighterChanged(FighterInfo fighter_info) {}
-    public void ActionsChanged(ActionFile actions) {}
+    public void ActionFileChanged(ActionFile actions) {}
     public void SelectedActionChanged(DynamicAction action) {}
     public void SubactionGroupChanged(SubActionGroup group) {}
 }

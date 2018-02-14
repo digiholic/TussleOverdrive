@@ -21,11 +21,11 @@ public class ChangeWindowAction : BuilderAction
 
     public override void Execute()
     {
-        LegacyEditor.ChangeWindow(new_window);
+        LegacyEditor.FireChangeWindow(new_window);
     }
 
     public override void Undo()
     {
-        LegacyEditor.ChangeWindow(old_window);
+        LegacyEditor.FireChangeWindow(old_window);
     }
 }
