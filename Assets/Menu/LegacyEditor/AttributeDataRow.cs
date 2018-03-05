@@ -34,7 +34,8 @@ public class AttributeDataRow : MonoBehaviour, LegacyDataViewer {
 
     void OnSubmit(string value)
     {
-        Debug.Log(value);
+        vardata.value = value;
+        LegacyEditor.editor.current_fighter.CreateOrUpdateVarData(vardata);
     }
 
     void OnTypeChange(string value)

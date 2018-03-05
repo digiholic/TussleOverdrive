@@ -76,6 +76,11 @@ public class UIInput : MonoBehaviour
 
 	public bool autoCorrect = false;
 
+    /// <summary>
+    /// Whether to fire the update method when input is enterred without needing to confirm
+    /// </summary>
+    public bool updateOnInput = false;
+
 	/// <summary>
 	/// Whether the label's text value will be used as the input's text value on start.
 	/// By default the label is just a tooltip of sorts, letting you choose helpful
@@ -406,7 +411,10 @@ public class UIInput : MonoBehaviour
 				{
 					mText = mText.Substring(0, mText.Length - 1);
 					SendMessage("OnInputChanged", this, SendMessageOptions.DontRequireReceiver);
-				}
+
+                    if (updateOnInput)
+                        eventReceiver.SendMessage(functionName, mText, SendMessageOptions.DontRequireReceiver);
+                }
 			}
 			else if (c == '\r' || c == '\n')
 			{
@@ -453,8 +461,11 @@ public class UIInput : MonoBehaviour
 				// Append the character and notify the "input changed" listeners.
 				mText += c;
 				SendMessage("OnInputChanged", this, SendMessageOptions.DontRequireReceiver);
-			}
-		}
+
+                if (updateOnInput)
+                    eventReceiver.SendMessage(functionName, mText, SendMessageOptions.DontRequireReceiver);
+            }
+        }
 
 		// Ensure that we don't exceed the maximum length
 		UpdateLabel();

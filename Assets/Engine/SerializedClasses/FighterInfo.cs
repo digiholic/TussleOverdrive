@@ -80,6 +80,20 @@ public class FighterInfo {
         }
         return null;
     }
+
+    public void CreateOrUpdateVarData(VarData newData)
+    {
+        foreach (VarData data in variables)
+        {
+            if (data.name == newData.name)
+            {
+                data.type = newData.type;
+                data.value = newData.value;
+                return;
+            }
+        }
+        variables.Add(newData);
+    }
 }
 
 [System.Serializable]

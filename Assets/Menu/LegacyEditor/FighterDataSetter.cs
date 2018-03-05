@@ -3,18 +3,54 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FighterDataSetter : MonoBehaviour, LegacyDataViewer {
-    public string variable_name;
-    public UILabel display_area;
+    public FighterDataPropertyType variable;
+    private UIInput display_area;
 
     public void FighterChanged(FighterInfo info)
     {
-        display_area.text = info.GetType().GetField(variable_name).GetValue(info).ToString();
+        switch (variable)
+        {
+            case FighterDataPropertyType.NAME:
+                display_area.text = info.display_name;
+                break;
+            case FighterDataPropertyType.FRANCHISE_ICON:
+                display_area.text = info.franchise_icon_path;
+                break;
+            case FighterDataPropertyType.CSS_ICON:
+                display_area.text = info.css_icon_path;
+                break;
+            case FighterDataPropertyType.CSS_PORTRAIT:
+                display_area.text = info.css_portrait_path;
+                break;
+            case FighterDataPropertyType.ACTION_FILE:
+                Debug.Log(gameObject.name);
+                display_area.text = info.action_file_path;
+                break;
+        }
     }
 
     void DataChanged(string text)
     {
         FighterInfo info = LegacyEditor.editor.current_fighter;
-        info.GetType().GetField(variable_name).SetValue(info, text);
+        switch (variable)
+        {
+            case FighterDataPropertyType.NAME:
+                info.display_name = display_area.text;
+                break;
+            case FighterDataPropertyType.FRANCHISE_ICON:
+                info.franchise_icon_path = display_area.text;
+                break;
+            case FighterDataPropertyType.CSS_ICON:
+                info.css_icon_path = display_area.text;
+                break;
+            case FighterDataPropertyType.CSS_PORTRAIT:
+                info.css_portrait_path = display_area.text;
+                break;
+            case FighterDataPropertyType.ACTION_FILE:
+                info.action_file_path = display_area.text;
+                break;
+        }
+        LegacyEditor.FireChangeFighter(info);
     }
 
     public void ActionFileChanged(ActionFile actions) { }
@@ -26,11 +62,18 @@ public class FighterDataSetter : MonoBehaviour, LegacyDataViewer {
 
     public void OnEnable()
     {
+        display_area = GetComponent<UIInput>();
+        Debug.Log("Setting display area: "+display_area);
         LegacyEditor.OnFighterChanged += FighterChanged;
     }
 
     public void OnDisable()
     {
         LegacyEditor.OnFighterChanged -= FighterChanged;
+    }
+
+    public enum FighterDataPropertyType
+    {
+        NAME, FRANCHISE_ICON, CSS_ICON, CSS_PORTRAIT, ACTION_FILE
     }
 }

@@ -233,6 +233,11 @@ public class LegacyEditor : MonoBehaviour {
             Debug.Log(editor.fighter_file.FullName);
             editor.current_fighter.WriteJSON(editor.fighter_file.FullName);
         }
+        if (editor.action_file != null)
+        {
+            Debug.Log(editor.action_file.FullName);
+            editor.current_actions.WriteJSON(editor.action_file.FullName);
+        }
     }
     
 }
