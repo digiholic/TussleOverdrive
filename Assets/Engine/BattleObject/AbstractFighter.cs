@@ -7,7 +7,7 @@ using UnityEngine.Profiling;
 
 [System.Serializable]
 public class AbstractFighter : BattleComponent {
-    private static Dictionary<string, object> DefaultStats = new Dictionary<string, object>
+    public static Dictionary<string, object> DefaultStats = new Dictionary<string, object>
     {
         {"weight", 10.0f },
         {"gravity", -9.8f},
@@ -16,7 +16,7 @@ public class AbstractFighter : BattleComponent {
         {"run_speed", 11.0f},
         {"max_air_speed", 5.5f},
         {"crawl_speed", 2.5f},
-        {"dodge_sepeed", 8.5f},
+        {"dodge_speed", 8.5f},
         {"friction", 0.3f},
         {"static_grip", 0.3f},
         {"pivot_grip", 0.6f},
@@ -30,7 +30,7 @@ public class AbstractFighter : BattleComponent {
         {"shield_size", 1.0f},
         {"aerial_transition_speed", 9.0f},
         {"pixels_per_unit", 100},
-        {"max_jumps", 1 },
+        {"jumps", 1 },
         {"heavy_land_lag", 4 },
         {"wavedash_lag", 12 }
     };

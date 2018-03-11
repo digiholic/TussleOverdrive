@@ -10,8 +10,10 @@ public class AttributeDataRow : MonoBehaviour, LegacyDataViewer {
     public UILabel name_label;
     public UIPopupList type_label;
     public UIInput value_label;
-
     public UIInputValidator value_validator;
+
+    public bool removable = false;
+    public UIButton deleteButton;
 
     private UIGrid grid;
 
@@ -19,6 +21,12 @@ public class AttributeDataRow : MonoBehaviour, LegacyDataViewer {
     {
         if (LegacyEditor.FighterLoaded) FighterChanged(LegacyEditor.editor.current_fighter);
         grid = transform.parent.GetComponent<UIGrid>();
+    }
+
+    public void SetRemovable(bool rem)
+    {
+        removable = rem;
+        NGUITools.SetActive(deleteButton.gameObject, rem);
     }
 
     public void FighterChanged(FighterInfo info)

@@ -184,6 +184,7 @@ public class LegacyEditor : MonoBehaviour {
         current_fighter = null;
         current_actions = null;
         selected_action = null;
+        BroadcastMessage("OpenFighterBrowser");
     }
 
     private void OnEnable()

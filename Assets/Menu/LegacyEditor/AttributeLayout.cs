@@ -30,7 +30,11 @@ public class AttributeLayout : MonoBehaviour, LegacyDataViewer {
         RemoveData();
         foreach (VarData data in info.variables)
         {
-            InstantiateRow(data);
+            AttributeDataRow dataRow = InstantiateRow(data);
+            if (AbstractFighter.DefaultStats.ContainsKey(data.name))
+            {
+                dataRow.SetRemovable(false);
+            }
         }
         new_data_object.transform.SetAsLastSibling();
         grid.Reposition();
