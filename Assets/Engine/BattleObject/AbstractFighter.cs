@@ -9,30 +9,30 @@ using UnityEngine.Profiling;
 public class AbstractFighter : BattleComponent {
     public static Dictionary<string, object> DefaultStats = new Dictionary<string, object>
     {
-        {"weight", 10.0f },
-        {"gravity", -9.8f},
-        {"max_fall_speed", -20.0f},
-        {"max_ground_speed", 7.0f},
-        {"run_speed", 11.0f},
-        {"max_air_speed", 5.5f},
-        {"crawl_speed", 2.5f},
-        {"dodge_speed", 8.5f},
-        {"friction", 0.3f},
-        {"static_grip", 0.3f},
-        {"pivot_grip", 0.6f},
-        {"air_resistance", 0.2f},
-        {"air_control", 0.2f},
-        {"jump_height", 15.0f},
-        {"short_hop_height", 8.5f},
-        {"air_jump_height", 18.0f},
-        {"fastfall_multiplier", 2.0f},
-        {"hitstun_elasticity", 0.8f},
-        {"shield_size", 1.0f},
-        {"aerial_transition_speed", 9.0f},
-        {"pixels_per_unit", 100},
-        {"jumps", 1 },
-        {"heavy_land_lag", 4 },
-        {"wavedash_lag", 12 }
+        {TussleConstants.FighterAttributes.WEIGHT, 10.0f },
+        {TussleConstants.FighterAttributes.GRAVITY, -9.8f},
+        {TussleConstants.FighterAttributes.MAX_FALL_SPEED, -20.0f},
+        {TussleConstants.FighterAttributes.MAX_GROUND_SPEED, 7.0f},
+        {TussleConstants.FighterAttributes.RUN_SPEED, 11.0f},
+        {TussleConstants.FighterAttributes.MAX_AIR_SPEED, 5.5f},
+        {TussleConstants.FighterAttributes.CRAWL_SPEED, 2.5f},
+        {TussleConstants.FighterAttributes.DODGE_SPEED, 8.5f},
+        {TussleConstants.FighterAttributes.FRICTION, 0.3f},
+        {TussleConstants.FighterAttributes.STATIC_GRIP, 0.3f},
+        {TussleConstants.FighterAttributes.PIVOT_GRIP, 0.6f},
+        {TussleConstants.FighterAttributes.AIR_RESISTANCE, 0.2f},
+        {TussleConstants.FighterAttributes.AIR_CONTROL, 0.2f},
+        {TussleConstants.FighterAttributes.JUMP_HEIGHT, 15.0f},
+        {TussleConstants.FighterAttributes.SHORT_HOP_HEIGHT, 8.5f},
+        {TussleConstants.FighterAttributes.AIR_JUMP_HEIGHT, 18.0f},
+        {TussleConstants.FighterAttributes.FASTFALL_MULTIPLIER, 2.0f},
+        {TussleConstants.FighterAttributes.HITSTUN_ELASTICITY, 0.8f},
+        {TussleConstants.FighterAttributes.SHIELD_SIZE, 1.0f},
+        {TussleConstants.FighterAttributes.AERIAL_TRANSITION_SPEED, 9.0f},
+        {TussleConstants.FighterAttributes.PIXELS_PER_UNIT, 100},
+        {TussleConstants.FighterAttributes.MAX_JUMPS, 1 },
+        {TussleConstants.FighterAttributes.HEAVY_LANDING_LAG, 4 },
+        {TussleConstants.FighterAttributes.WAVEDASH_LAG, 12 }
     };
 
     public int player_num = 0;
@@ -104,7 +104,7 @@ public class AbstractFighter : BattleComponent {
 
     void SetVariables()
     {
-        SetVar("jumps", 0);
+        SetVar(TussleConstants.FighterAttributes.JUMPS, 0);
         SetVar("facing", 1);
         SetVar("landing_lag", 0);
         SetVar("tech_window", 0);
@@ -114,10 +114,10 @@ public class AbstractFighter : BattleComponent {
 
         //Change variables according to Settings
         Settings settings = Settings.current_settings;
-        SetVar("gravity", GetFloatVar("gravity") * settings.gravity_ratio);
-        SetVar("weight", GetFloatVar("weight") * settings.weight_ratio);
-        SetVar("friction", GetFloatVar("friction") * settings.friction_ratio);
-        SetVar("air_control", GetFloatVar("air_control") * settings.aircontrol_ratio);
+        SetVar(TussleConstants.FighterAttributes.GRAVITY, GetFloatVar(TussleConstants.FighterAttributes.GRAVITY) * settings.gravity_ratio);
+        SetVar(TussleConstants.FighterAttributes.WEIGHT, GetFloatVar(TussleConstants.FighterAttributes.WEIGHT) * settings.weight_ratio);
+        SetVar(TussleConstants.FighterAttributes.FRICTION, GetFloatVar(TussleConstants.FighterAttributes.FRICTION) * settings.friction_ratio);
+        SetVar(TussleConstants.FighterAttributes.AIR_CONTROL, GetFloatVar(TussleConstants.FighterAttributes.AIR_CONTROL) * settings.aircontrol_ratio);
     }
 
     void Start() {
@@ -155,7 +155,7 @@ public class AbstractFighter : BattleComponent {
             Rest();
         else
         {
-            SendMessage("CalcGrav",new float[] { GetFloatVar("gravity"), GetFloatVar("max_fall_speed") });
+            SendMessage("CalcGrav",new float[] { GetFloatVar(TussleConstants.FighterAttributes.GRAVITY), GetFloatVar(TussleConstants.FighterAttributes.MAX_FALL_SPEED) });
         }
 
         //Enable Phasing
@@ -165,9 +165,9 @@ public class AbstractFighter : BattleComponent {
             platform_phaser.EnableDownPhase = false;
 
         if (GetBoolVar("grounded"))
-            battleObject.GetMotionHandler().accel(GetFloatVar("friction"));
+            battleObject.GetMotionHandler().accel(GetFloatVar(TussleConstants.FighterAttributes.FRICTION));
         else
-            battleObject.GetMotionHandler().accel(GetFloatVar("air_resistance"));
+            battleObject.GetMotionHandler().accel(GetFloatVar(TussleConstants.FighterAttributes.AIR_RESISTANCE));
     }
 
     public void WallBounce(ControllerColliderHit hit)
@@ -334,7 +334,7 @@ public class AbstractFighter : BattleComponent {
             float flat_constant = 5.0f;
 
             float percent_portion = (damage_percent / 10.0f) + ((damage_percent * hitbox.damage) / 20.0f);
-            float weight_portion = 200.0f / (GetFloatVar("weight") * hitbox.weight_influence + 100);
+            float weight_portion = 200.0f / (GetFloatVar(TussleConstants.FighterAttributes.WEIGHT) * hitbox.weight_influence + 100);
             float scaled_kb = (((percent_portion * weight_portion * weight_constant) + flat_constant) * hitbox.knockback_growth);
             ApplyKnockback(scaled_kb + hitbox.base_knockback, hitbox.trajectory);
             DealDamage(hitbox.damage);
@@ -557,9 +557,8 @@ public class AbstractFighter : BattleComponent {
     /// </summary>
     void Rest()
     {
-        SetVar("jumps", GetIntVar("max_jumps"));
+        SetVar(TussleConstants.FighterAttributes.JUMPS, GetIntVar(TussleConstants.FighterAttributes.MAX_JUMPS));
         SetVar("air_dodges", 1); //TODO change this based on settings
-
     }
 
     private Ledge grabbed_ledge;
