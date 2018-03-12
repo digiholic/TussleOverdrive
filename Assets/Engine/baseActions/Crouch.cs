@@ -32,9 +32,9 @@ public class Crouch : GameAction {
     public override void Update()
     {
         base.Update();
-        actor.GetMotionHandler().accel(actor.GetFloatVar("pivot_grip"));
+        actor.GetMotionHandler().accel(actor.GetFloatVar(TussleConstants.FighterAttributes.PIVOT_GRIP));
         //TODO crawl action
-        //actor.BroadcastMessage("ChangeXPreferred", actor.GetAbstractFighter().GetControllerAxis("Horizontal") * actor.GetFloatVar("crawl_speed"));
+        //actor.BroadcastMessage("ChangeXPreferred", actor.GetAbstractFighter().GetControllerAxis("Horizontal") * actor.GetFloatVar(TussleConstants.FighterAttributes.CRAWL_SPEED));
 
         //actor.GetComponent<SpriteLoader>().printSprite();
         if (current_frame >= last_frame)

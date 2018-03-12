@@ -35,9 +35,9 @@ public class HitStun : GameAction {
             {
                 if (actor.GetMotionHandler().YSpeed >= actor.GetFloatVar("max_fall_speed"))
                 {
-                    actor.SetVar("ground_elasticity", actor.GetVar("hitstun_elasticity"));
+                    actor.SetVar("ground_elasticity", actor.GetVar(TussleConstants.FighterAttributes.HITSTUN_ELASTICITY));
                 }
-                else if (Mathf.Abs(actor.GetMotionHandler().XSpeed) > actor.GetFloatVar("run_speed")) //skid trip
+                else if (Mathf.Abs(actor.GetMotionHandler().XSpeed) > actor.GetFloatVar(TussleConstants.FighterAttributes.RUN_SPEED)) //skid trip
                 {
                     actor.SetVar("ground_elasticity", 0);
                     if (actor.GetBoolVar("grounded") && !GetBoolVar("feet_planted"))
@@ -54,12 +54,12 @@ public class HitStun : GameAction {
                     }
                 }
                 else
-                    actor.SetVar("ground_elasticity", actor.GetFloatVar("hitstun_elasticity") / 2);
+                    actor.SetVar("ground_elasticity", actor.GetFloatVar(TussleConstants.FighterAttributes.HITSTUN_ELASTICITY) / 2);
             }
             else if (last_frame <= 15) //If the hitstun is short, we don
                 actor.SetVar("ground_elasticity", 0);
             else
-                actor.SetVar("ground_elasticity", actor.GetVar("hitstun_elasticity"));
+                actor.SetVar("ground_elasticity", actor.GetVar(TussleConstants.FighterAttributes.HITSTUN_ELASTICITY));
         }
 
         if (current_frame == last_frame)
@@ -112,7 +112,7 @@ public class HitStun : GameAction {
         if (actor.GetIntVar("tech_window") > 0)
             actor.SetVar("elasticity", 0.0f);
         else
-            actor.SetVar("elasticity", actor.GetVar("hitstun_elasticity"));
+            actor.SetVar("elasticity", actor.GetVar(TussleConstants.FighterAttributes.HITSTUN_ELASTICITY));
         SetVar("feet_planted",actor.GetBoolVar("grounded"));
         if (GetIntVar("tech_cooldown") > 0) SetVar("tech_cooldown",GetIntVar("tech_cooldown")-1);
         if (current_frame == 0)

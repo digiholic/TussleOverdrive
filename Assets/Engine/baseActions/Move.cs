@@ -31,12 +31,12 @@ public class Move : GameAction {
     public override void Update()
     {
         base.Update();
-        actor.SendMessage("ChangeXPreferred", actor.GetFloatVar("max_ground_speed") * actor.GetIntVar("facing"));
+        actor.SendMessage("ChangeXPreferred", actor.GetFloatVar(TussleConstants.FighterAttributes.MAX_GROUND_SPEED) * actor.GetIntVar("facing"));
 
-        if (((actor.GetMotionHandler().XSpeed >= -actor.GetFloatVar("max_ground_speed")) && actor.GetIntVar("facing") == -1) || 
-            ((actor.GetMotionHandler().XSpeed <=  actor.GetFloatVar("max_ground_speed")) && actor.GetIntVar("facing") ==  1))
+        if (((actor.GetMotionHandler().XSpeed >= -actor.GetFloatVar(TussleConstants.FighterAttributes.MAX_GROUND_SPEED)) && actor.GetIntVar("facing") == -1) || 
+            ((actor.GetMotionHandler().XSpeed <=  actor.GetFloatVar(TussleConstants.FighterAttributes.MAX_GROUND_SPEED)) && actor.GetIntVar("facing") ==  1))
         {
-            actor.GetMotionHandler().accel(actor.GetFloatVar("static_grip"));
+            actor.GetMotionHandler().accel(actor.GetFloatVar(TussleConstants.FighterAttributes.STATIC_GRIP));
         }
         if (actor.GetInputBuffer().DirectionHeld("Backward"))
         {

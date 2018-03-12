@@ -37,7 +37,7 @@ public class Dash : GameAction {
     {
         base.Update();
         if (current_frame == 0)
-            actor.BroadcastMessage("ChangeXPreferred", actor.GetFloatVar("run_speed") * actor.GetIntVar("facing"));
+            actor.BroadcastMessage("ChangeXPreferred", actor.GetFloatVar(TussleConstants.FighterAttributes.RUN_SPEED) * actor.GetIntVar("facing"));
         StateTransitions.CheckGround(actor.GetAbstractFighter());
         if (actor.GetInputBuffer().DirectionHeld("Backward"))
             direction = actor.GetIntVar("facing") * -1;

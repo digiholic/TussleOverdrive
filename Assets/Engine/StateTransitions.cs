@@ -71,7 +71,7 @@ public class StateTransitions : ScriptableObject {
         {
             actor.doAirSpecial();
         }
-        if (actor.KeyBuffered("Jump") && actor.GetIntVar("jumps") > 0)
+        if (actor.KeyBuffered("Jump") && actor.GetIntVar(TussleConstants.FighterAttributes.JUMPS) > 0)
         {
             actor.doAction("AirJump");
         }
@@ -229,9 +229,9 @@ public class StateTransitions : ScriptableObject {
 
     public static void AirControl(AbstractFighter actor)
     {
-        actor.BroadcastMessage("ChangeXPreferred", actor.GetAxis("Horizontal") * actor.GetFloatVar("max_air_speed"));
-        if (Mathf.Abs(actor.battleObject.GetMotionHandler().XSpeed) > actor.GetFloatVar("max_air_speed"))
-            actor.SendMessage("accel", actor.GetFloatVar("air_control"));
+        actor.BroadcastMessage("ChangeXPreferred", actor.GetAxis("Horizontal") * actor.GetFloatVar(TussleConstants.FighterAttributes.MAX_AIR_SPEED));
+        if (Mathf.Abs(actor.battleObject.GetMotionHandler().XSpeed) > actor.GetFloatVar(TussleConstants.FighterAttributes.MAX_AIR_SPEED))
+            actor.SendMessage("accel", actor.GetFloatVar(TussleConstants.FighterAttributes.AIR_CONTROL));
         if (Mathf.Abs(actor.battleObject.GetMotionHandler().YSpeed) > Mathf.Abs(actor.GetFloatVar("max_fall_speed")))
             actor.SetVar("landing_lag", actor.GetFloatVar("heavy_land_lag"));
     }

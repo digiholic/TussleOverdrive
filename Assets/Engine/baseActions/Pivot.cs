@@ -12,7 +12,7 @@ public class Pivot : GameAction {
     {
         base.SetUp(obj);
         SetVar("direction", actor.GetIntVar("facing"));
-        int num_frames = Mathf.FloorToInt((actor.GetMotionHandler().XSpeed * actor.GetIntVar("facing")) / actor.GetFloatVar("pivot_grip"));
+        int num_frames = Mathf.FloorToInt((actor.GetMotionHandler().XSpeed * actor.GetIntVar("facing")) / actor.GetFloatVar(TussleConstants.FighterAttributes.PIVOT_GRIP));
         SetVar("num_frames", num_frames);
         //If the pivot grip would have us with a shorter amount than the length shows it should be
         //then we need to start partway through the pivot
@@ -75,6 +75,6 @@ public class Pivot : GameAction {
         //_actor.accel(_actor.stats['static_grip'])
         //else:
         actor.SendMessage("ChangeXPreferred", 0.0f);
-        actor.GetMotionHandler().accel(actor.GetFloatVar("pivot_grip"));
+        actor.GetMotionHandler().accel(actor.GetFloatVar(TussleConstants.FighterAttributes.PIVOT_GRIP));
     }
 }
