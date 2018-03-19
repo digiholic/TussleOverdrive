@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 35ea8da221b652a4c8d14acb343adde8
+timeCreated: 1521341985
+licenseType: Free
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - selectedFont: {fileID: 114907446591650868, guid: 0f536f07ffb743444b41049d392dfca6,
+      type: 2}
+  - deselectedFont: {fileID: 114054070114975234, guid: 10b662212e28951478669a148cd99195,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

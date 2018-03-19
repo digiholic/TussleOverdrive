@@ -23,7 +23,7 @@ public class MenuButtonNavigator : MonoBehaviour {
     public FuncData DownFunction;
     public FuncData OnSelectFunction;
 
-    private bool selected = false;
+    public bool selected = false;
     private static MenuButtonNavigator Last;
 
     void Start()
@@ -91,7 +91,7 @@ public class MenuButtonNavigator : MonoBehaviour {
     {
         if (selectedButton == this)
         {
-            SendMessage("SetColor", MenuColorChanger.menu_color.getColor());
+            SendMessage("SetColor", MenuColorChanger.menu_color.getColor(), SendMessageOptions.DontRequireReceiver);
             if (accept_inputs)
             {
                 foreach (Player player in ReInput.players.AllPlayers)
@@ -130,7 +130,7 @@ public class MenuButtonNavigator : MonoBehaviour {
             }
         }
         else
-            SendMessage("SetColor", Color.white);
+            SendMessage("SetColor", Color.white,SendMessageOptions.DontRequireReceiver);
 
         //We have to do this after the button check, or else we get occasional double-moves
         if (selected) selectedButton = this;
