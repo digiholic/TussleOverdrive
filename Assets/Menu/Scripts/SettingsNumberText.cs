@@ -17,9 +17,13 @@ public class SettingsNumberText : MonoBehaviour {
 
     public UISlider slider;
 
-    void Start()
+    private void Awake()
     {
         label = GetComponentInChildren<UILabel>();
+    }
+
+    void Start()
+    {
         if (percentage)
             value = (int)((float)Settings.current_settings.GetSetting(var_name) * 100);
         else
@@ -35,7 +39,6 @@ public class SettingsNumberText : MonoBehaviour {
         if (slider != null)
         {
             slider.sliderValue = Mathf.InverseLerp(min_value, max_value, value);
-            Debug.Log(Mathf.InverseLerp(min_value, max_value, value));
         }
     }
 
@@ -54,6 +57,12 @@ public class SettingsNumberText : MonoBehaviour {
             value -= increment;
         else
             value = max_value;
+        RedrawText();
+    }
+
+    void OnSliderChange(float sliderVal)
+    {
+        value = Mathf.FloorToInt(Mathf.Lerp(min_value, max_value, sliderVal));
         RedrawText();
     }
 }
