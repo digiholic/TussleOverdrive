@@ -292,4 +292,35 @@ public class Settings : MonoBehaviour {
                 return null;
         }
     }
+
+    public List<string> getAllSettings()
+    {
+        List<string> retList = new List<string>()
+        {
+            "gravity_ratio",
+            "weight_ratio",
+            "friction_ratio",
+            "aircontrol_ratio",
+            "hitstun_ratio",
+            "hitlag_ratio",
+            "shieldstun_ratio",
+            "conflict_type",
+            "sweetspot_size",
+            "sweetspot_facing_only",
+            "team_ledge_conflict",
+            "ledge_invulnerability",
+            "regrab_invulnerability",
+            "slow_wakeup_threshold",
+            "air_dodge_enabled",
+            "directional_air_dodge",
+            "enable_wavedash",
+            "air_dodge_lag",
+            "cancel_type",
+            "display_hitboxes",
+            "display_hurtboxes",
+            "display_colliders",
+            "display_platforms"
+        };
+        return retList;
+    }
 }

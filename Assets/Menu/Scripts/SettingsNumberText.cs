@@ -24,6 +24,7 @@ public class SettingsNumberText : MonoBehaviour {
 
     void Start()
     {
+        Debug.Log(var_name);
         if (percentage)
             value = (int)((float)Settings.current_settings.GetSetting(var_name) * 100);
         else
