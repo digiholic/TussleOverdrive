@@ -8,7 +8,7 @@ public class SettingsPanel : MonoBehaviour {
     public string panelname;
 
     public MenuButtonNavigator settings_header;
-    public MenuButtonNavigator starting_selection;
+    public MenuButtonNavigator starting_selection = null;
 
     private GameObject internal_panel;
 
@@ -27,5 +27,17 @@ public class SettingsPanel : MonoBehaviour {
     public void Disable()
     {
         internal_panel.SetActive(false);
+    }
+
+    public void SetDefaultSelection()
+    {
+        foreach (MenuButtonNavigator child in GetComponentsInChildren<MenuButtonNavigator>())
+        {
+            if (child.DefaultSelected)
+            {
+                starting_selection = child;
+                return;
+            }
+        }
     }
 }

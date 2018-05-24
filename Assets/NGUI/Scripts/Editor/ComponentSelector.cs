@@ -138,15 +138,15 @@ public class ComponentSelector : ScriptableWizard
 		{
 			if (EditorUtility.IsPersistent(mb.gameObject))
 			{
-				GUILayout.Label("Prefab", "AS TextArea", GUILayout.Width(80f), GUILayout.Height(20f));
+				GUILayout.Label("Prefab", "TextArea", GUILayout.Width(80f), GUILayout.Height(20f));
 			}
 			else
 			{
 				GUI.color = Color.grey;
-				GUILayout.Label("Object", "AS TextArea", GUILayout.Width(80f), GUILayout.Height(20f));
+				GUILayout.Label("Object", "TextArea", GUILayout.Width(80f), GUILayout.Height(20f));
 			}
 
-			GUILayout.Label(NGUITools.GetHierarchy(mb.gameObject), "AS TextArea", GUILayout.Height(20f));
+			GUILayout.Label(NGUITools.GetHierarchy(mb.gameObject), "TextArea", GUILayout.Height(20f));
 			GUI.color = Color.white;
 
 			retVal = GUILayout.Button("Select", "ButtonLeft", GUILayout.Width(60f), GUILayout.Height(16f));

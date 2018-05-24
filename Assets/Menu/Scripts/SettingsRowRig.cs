@@ -8,6 +8,9 @@ public class SettingsRowRig : MonoBehaviour {
     public GameObject slider_setting_prefab;
     public GameObject choice_setting_prefab;
 
+    [SerializeField]
+    private SettingsPanel parent;
+
     //These are used to make sure that all of the buttons are able to navigate to the next ones properly
     private MenuButtonNavigator firstChild = null;
     private MenuButtonNavigator previousChild = null;
@@ -18,17 +21,18 @@ public class SettingsRowRig : MonoBehaviour {
         {
             if (set.options.Count == 0)
             {
-                Debug.Log("Number Setting: " + set.settingName);
+                //Debug.Log("Number Setting: " + set.settingName);
                 InstantiateNumberRow(set);
             } else
             {
-                Debug.Log("Choice Setting: " + set.settingName);
+                //Debug.Log("Choice Setting: " + set.settingName);
                 //InstantiateChoiceRow(set);
             }
         }
         //Once the loop is over, we need to make sure that the options wrap
         previousChild.Down = firstChild;
         firstChild.Up = previousChild;
+        parent.starting_selection = firstChild;
 	}
 	
 	// Update is called once per frame
@@ -54,6 +58,7 @@ public class SettingsRowRig : MonoBehaviour {
         {
             nav.Up = previousChild;
             previousChild.Down = nav;
+            previousChild = nav;
         }
 
         //Set the text

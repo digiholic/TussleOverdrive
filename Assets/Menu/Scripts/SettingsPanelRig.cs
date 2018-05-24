@@ -33,6 +33,8 @@ public class SettingsPanelRig : MonoBehaviour {
 
     public static SettingsPanel GetPanel(string name)
     {
+        //If the panel doesn't have a default, select it
+        if (panels[name].starting_selection == null) panels[name].SetDefaultSelection();
         panels[name].starting_selection.Select();
         return panels[name];
     }

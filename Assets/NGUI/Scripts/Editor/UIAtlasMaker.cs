@@ -853,7 +853,7 @@ public class UIAtlasMaker : EditorWindow
 					GUILayout.Space(-1f);
 					bool highlight = (UIAtlasInspector.instance != null) && (NGUISettings.selectedSprite == iter.Key);
 					GUI.backgroundColor = highlight ? Color.white : new Color(0.8f, 0.8f, 0.8f);
-					GUILayout.BeginHorizontal("AS TextArea", GUILayout.MinHeight(20f));
+					GUILayout.BeginHorizontal("TextArea", GUILayout.MinHeight(20f));
 					GUI.backgroundColor = Color.white;
 					GUILayout.Label(index.ToString(), GUILayout.Width(24f));
 

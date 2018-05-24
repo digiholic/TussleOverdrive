@@ -1074,7 +1074,7 @@ public class NGUIEditorTools
 	{
 		GUILayout.BeginHorizontal();
 		GUILayout.Space(4f);
-		EditorGUILayout.BeginHorizontal("AS TextArea", GUILayout.MinHeight(10f));
+		EditorGUILayout.BeginHorizontal("TextArea", GUILayout.MinHeight(10f));
 		GUILayout.BeginVertical();
 		GUILayout.Space(2f);
 	}
