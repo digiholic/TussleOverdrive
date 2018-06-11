@@ -15,6 +15,11 @@ public class SettingsChoiceText : MonoBehaviour {
 
     void Start()
     {
+        init();
+    }
+
+    public void init()
+    {
         label = GetComponentInChildren<UILabel>();
         if (isBool)
             value = ((bool)Settings.current_settings.GetSetting(var_name) ? 1 : 0);

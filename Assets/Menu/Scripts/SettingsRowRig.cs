@@ -22,11 +22,11 @@ public class SettingsRowRig : MonoBehaviour {
             if (set.options.Count == 0)
             {
                 //Debug.Log("Number Setting: " + set.settingName);
-                InstantiateNumberRow(set);
+                //InstantiateNumberRow(set);
             } else
             {
                 //Debug.Log("Choice Setting: " + set.settingName);
-                //InstantiateChoiceRow(set);
+                InstantiateChoiceRow(set);
             }
         }
         //Once the loop is over, we need to make sure that the options wrap
@@ -83,10 +83,11 @@ public class SettingsRowRig : MonoBehaviour {
 
     void InstantiateChoiceRow (Setting set)
     {
-        GameObject go = NGUITools.AddChild(gameObject, slider_setting_prefab);
+        GameObject go = NGUITools.AddChild(gameObject, choice_setting_prefab);
+        go.transform.localPosition = new Vector3(0, -80 * settingCount, 0);
         MenuButtonNavigator nav = go.GetComponent<MenuButtonNavigator>();
         SettingsChoiceText sct = go.GetComponent<SettingsChoiceText>();
-
+        
         //Set the navigation options
         //If the first child hasn't been set, set it (we'll use it later to make the last one loop around)
         if (firstChild == null)
@@ -98,10 +99,25 @@ public class SettingsRowRig : MonoBehaviour {
         {
             nav.Up = previousChild;
             previousChild.Down = nav;
+            previousChild = nav;
         }
 
-        //Set the text 
+        if (set.isBool)
+        {
+            sct.isBool = true;
+        }
 
+        //Set the text
+        sct.var_name = set.settingName;
+        sct.display_text = set.displayName;
+
+        foreach (string textvalue in set.options)
+        {
+            sct.text_values.Add(textvalue);
+        }
+
+        //sct.init();
+        
         settingCount++;
     }
 }
@@ -113,6 +129,7 @@ public struct Setting
     public string displayName;
     public string defaultValue;
     public bool isPercent;
+    public bool isBool;
     public float minVal;
     public float maxVal;
     public float increment;
