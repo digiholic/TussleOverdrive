@@ -11,16 +11,18 @@ public class SettingsChoiceText : MonoBehaviour {
     public List<string> text_values;
 
     private UILabel label;
-    
+    [SerializeField]
+    private UILabel choiceLabel;
 
     void Start()
     {
+        label = transform.Find("VarName").GetComponent<UILabel>();
+        choiceLabel = transform.Find("ChoiceText").GetComponent<UILabel>();
         init();
     }
 
     public void init()
     {
-        label = GetComponentInChildren<UILabel>();
         if (isBool)
             value = ((bool)Settings.current_settings.GetSetting(var_name) ? 1 : 0);
         else
@@ -31,7 +33,8 @@ public class SettingsChoiceText : MonoBehaviour {
 
     void RedrawText()
     {
-        label.text = display_text + text_values[value] + after_text;
+        label.text = display_text;
+        choiceLabel.text = text_values[value] + after_text;
         Settings.current_settings.ChangeSetting(var_name, text_values[value]);
     }
 
