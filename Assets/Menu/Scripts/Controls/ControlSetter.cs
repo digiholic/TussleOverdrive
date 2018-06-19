@@ -32,10 +32,14 @@ public class ControlSetter : MonoBehaviour {
     private List<Controller> controllers = new List<Controller>();
     private int controller_count { get { return controllers.Count; } }
 
+    private int temp_controller_index = 0;
+    public Controller temp_controller;
+
     void Start()
     {
         current_setter = this;
         controller = ReInput.controllers.GetController(ControllerType.Keyboard, 0);
+        temp_controller = ReInput.controllers.GetController(ControllerType.Keyboard, 0);
         LoadControllerList();
         UpdateChildren();
     }
@@ -63,6 +67,31 @@ public class ControlSetter : MonoBehaviour {
             player.controllers.AddController(controller, true);
         }
         
+        UpdateChildren();
+    }
+
+    public void ChangeTempController(int value)
+    {
+        temp_controller_index += value;
+        if (temp_controller_index < 0) temp_controller_index = controller_count + temp_controller_index;
+        if (temp_controller_index > 0) temp_controller_index = temp_controller_index % controller_count;
+
+        temp_controller = controllers[temp_controller_index];
+
+        UpdateChildren();
+    }
+
+    public void ConfirmChangeController()
+    {
+        controller_index = temp_controller_index;
+        controller = controllers[temp_controller_index];
+
+        if (controller.type == ControllerType.Joystick)
+        {
+            player.controllers.ClearControllersOfType(ControllerType.Joystick);
+            player.controllers.AddController(controller, true);
+        }
+
         UpdateChildren();
     }
 

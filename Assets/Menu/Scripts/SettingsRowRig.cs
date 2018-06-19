@@ -22,7 +22,7 @@ public class SettingsRowRig : MonoBehaviour {
             if (set.options.Count == 0)
             {
                 //Debug.Log("Number Setting: " + set.settingName);
-                //InstantiateNumberRow(set);
+                InstantiateNumberRow(set);
             } else
             {
                 //Debug.Log("Choice Setting: " + set.settingName);

@@ -17,13 +17,20 @@ public class ControllerSelectionText : MonoBehaviour {
         label.text = "Controller: " + ControlSetter.current_setter.controller.name;
     }
 
+    void ConfirmChangeController()
+    {
+        ControlSetter.current_setter.ConfirmChangeController();
+    }
+
     void IncrementValue()
     {
-        ControlSetter.current_setter.ChangeController(1);
+        ControlSetter.current_setter.ChangeTempController(1);
+        //ControlSetter.current_setter.ChangeController(1);
     }
 
     void DecrementValue()
     {
-        ControlSetter.current_setter.ChangeController(-1);
+        ControlSetter.current_setter.ChangeTempController(-1);
+        //ControlSetter.current_setter.ChangeController(-1);
     }
 }

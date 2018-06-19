@@ -35,7 +35,7 @@ public class ActionRow : MonoBehaviour {
         // Find the first ActionElementMap that maps to this Action and is compatible with this field type
         if (ControlSetter.current_setter != null)
         {
-            //Debug.Log(ControlSetter.current_setter);
+            //Debug.Log(ControlSetter.current_setter.controller);
             //Debug.Log(ControlSetter.current_setter.controllerMap);
             foreach (ActionElementMap actionElementMap in ControlSetter.current_setter.controllerMap.ElementMapsWithAction(action.id))
             {
