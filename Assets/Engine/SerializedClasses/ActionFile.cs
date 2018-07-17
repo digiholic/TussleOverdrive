@@ -8,6 +8,9 @@ public class ActionFile
 {
     public List<DynamicAction> actions = new List<DynamicAction>();
 
+    [SerializeField]
+    private TextAsset JSONFile;
+
     /// <summary>
     /// Adds an action to this ActionFile. Overwrites if it exists
     /// </summary>
@@ -32,6 +35,14 @@ public class ActionFile
                 Delete(act);
                 return;
             }
+        }
+    }
+
+    public void LoadFromTextAsset()
+    {
+        if (JSONFile != null)
+        {
+            JsonUtility.FromJsonOverwrite(JSONFile.text, this);
         }
     }
 

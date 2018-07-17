@@ -36,6 +36,9 @@ public class FighterInfo {
     [System.NonSerialized]
     public bool initialized = false;
 
+    [SerializeField]
+    private TextAsset JSONFile;
+
     public void WriteJSON(string path)
     {
         string json = JsonUtility.ToJson(this, true);
@@ -69,6 +72,14 @@ public class FighterInfo {
         {
             Debug.LogWarning("No fighter file found at " + directory + "/" + filename);
             return null;
+        }
+    }
+
+    public void LoadFromTextAsset()
+    {
+        if (JSONFile != null)
+        {
+            JsonUtility.FromJsonOverwrite(JSONFile.text,this);
         }
     }
 

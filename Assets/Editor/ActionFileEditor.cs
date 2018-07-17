@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomPropertyDrawer(typeof(FighterInfo))]
-public class FighterInfoEditor : PropertyDrawer
+[CustomPropertyDrawer(typeof(ActionFile))]
+public class ActionFileEditor : PropertyDrawer
 {
     private float height = 20f;
 
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
         EditorGUI.PropertyField(position, property, label, true);
-        FighterInfo info = fieldInfo.GetValue(property.serializedObject.targetObject) as FighterInfo;
+        ActionFile info = fieldInfo.GetValue(property.serializedObject.targetObject) as ActionFile;
         if (property.isExpanded)
         {
             if (GUI.Button(new Rect(position.xMin + 30f, position.yMax - 20f, position.width - 30f, 20f), "Load From Text Asset"))
