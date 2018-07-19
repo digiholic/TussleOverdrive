@@ -40,13 +40,13 @@ public class LegacyEditorData : MonoBehaviour {
     #endregion
     #region Current Action - the action that is currently selected from the left panel
     [SerializeField]
-    private GameAction _currentAction;
+    private DynamicAction _currentAction;
     public bool currentActionDirty { get; private set; }
 
-    public GameAction currentAction
+    public DynamicAction currentAction
     {
         get { return _currentAction; }
-        private set
+        set
         {
             _currentAction = value;
             currentActionDirty = true;
@@ -139,6 +139,10 @@ public class LegacyEditorData : MonoBehaviour {
         FireModelChange();
     }
 
+    private void Update()
+    {
+        CheckKeyboardShortcuts();
+    }
     /// <summary>
     /// Calls everything's OnModelChanged methods, then unsets the dirty bits for everything
     /// </summary>
@@ -189,6 +193,23 @@ public class LegacyEditorData : MonoBehaviour {
         act.execute();
         //This is a special tool that will help us later
         undoList.Push(act);
+    }
+
+    private void CheckKeyboardShortcuts()
+    {
+        //Check for CTRL shortcuts
+        if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl) || Application.isEditor)
+        {
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                Undo();
+            }
+            else if (Input.GetKeyDown(KeyCode.Y))
+            {
+                Redo();
+            }
+        }
+
     }
 }
 
