@@ -16,6 +16,7 @@ public class ChangeCurrentAction : LegacyEditorAction
     {
         previousAction = LegacyEditorData.instance.currentAction;
         LegacyEditorData.instance.currentAction = nextAction;
+        LegacyEditorData.instance.currentFrame = 0;
     }
 
     public override void undo()

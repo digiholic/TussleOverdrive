@@ -39,6 +39,19 @@ public class ActionSelectionButtonRig : MonoBehaviour {
             //Realign the grid
             grid.Reposition();
         }
+
+        if (LegacyEditorData.instance.leftDropdownDirty)
+        {
+            //If the option is "Actions", sets all the children to enabled. Otherwise, disables them.
+            //Yes I know this doesn't need to be if/else but readability > efficiency
+            if (LegacyEditorData.instance.leftDropdown == "Actions")
+            {
+                NGUITools.SetActiveChildren(gameObject, true);
+            } else
+            {
+                NGUITools.SetActiveChildren(gameObject, false);
+            }
+        }
     }
 
     private void instantiateButton(DynamicAction action)

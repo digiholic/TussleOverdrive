@@ -5,7 +5,8 @@ using UnityEngine;
 /// <summary>
 /// This is the model for the legacy editor. Each variable has properties that 
 /// </summary>
-public class LegacyEditorData : MonoBehaviour {
+public class LegacyEditorData : MonoBehaviour
+{
     public static LegacyEditorData instance;
 
     #region Loaded Fighter - the currently loaded fighter info
@@ -16,7 +17,7 @@ public class LegacyEditorData : MonoBehaviour {
     public FighterInfo loadedFighter
     {
         get { return _loadedFighter; }
-        private set 
+        private set
         {
             _loadedFighter = value;
             loadedFighterDirty = true;
@@ -55,13 +56,13 @@ public class LegacyEditorData : MonoBehaviour {
     #endregion
     #region Left Dropdown - what is selected on the left dropdown menu
     [SerializeField]
-    private BuilderLeftDropdown _leftDropdown;
+    private string _leftDropdown;
     public bool leftDropdownDirty { get; private set; }
 
-    public BuilderLeftDropdown leftDropdown
+    public string leftDropdown
     {
         get { return _leftDropdown; }
-        private set
+        set
         {
             _leftDropdown = value;
             leftDropdownDirty = true;
@@ -70,10 +71,10 @@ public class LegacyEditorData : MonoBehaviour {
     #endregion
     #region Right Dropdown - what is selected on the right dropdown menu
     [SerializeField]
-    private BuilderRightDropdown _rightDropdown;
+    private string _rightDropdown;
     public bool rightDropdownDirty { get; private set; }
 
-    public BuilderRightDropdown rightDropdown
+    public string rightDropdown
     {
         get { return _rightDropdown; }
         private set
@@ -91,7 +92,7 @@ public class LegacyEditorData : MonoBehaviour {
     public int currentFrame
     {
         get { return _currentFrame; }
-        private set
+        set
         {
             _currentFrame = value;
             currentFrameDirty = true;
@@ -113,13 +114,13 @@ public class LegacyEditorData : MonoBehaviour {
         }
     }
     #endregion
-    
+
     //TODO
     public string contextFighterCategory;
     public string contextSubactionCategory;
     public string actionSearchText;
     public string spriteSearchText;
-    public SortOrder sortOrder;
+    public string sortOrder;
 
     /// <summary>
     /// Set the singleton instance at OnEnable time, the earliest we can
@@ -170,7 +171,9 @@ public class LegacyEditorData : MonoBehaviour {
         {
             LegacyEditorAction act = undoList.Pop();
             act.undo();
+            Debug.Log("Undoing Action: " + act);
             redoList.Push(act);
+            BroadcastMessage("OnModelChanged");
         }
     }
 
@@ -182,6 +185,7 @@ public class LegacyEditorData : MonoBehaviour {
             LegacyEditorAction act = redoList.Pop();
             act.execute();
             undoList.Push(act);
+            BroadcastMessage("OnModelChanged");
         }
     }
 
@@ -193,11 +197,13 @@ public class LegacyEditorData : MonoBehaviour {
         act.execute();
         //This is a special tool that will help us later
         undoList.Push(act);
+        BroadcastMessage("OnModelChanged");
     }
 
     private void CheckKeyboardShortcuts()
     {
-        //Check for CTRL shortcuts
+        //Check for CTRL shortcuts. Since the editor keyboard shortcuts can't be disabled, if you're in editor, it'll activate without ctrl
+        //TODO remove this for final build so testing is easier.
         if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl) || Application.isEditor)
         {
             if (Input.GetKeyDown(KeyCode.Z))
@@ -211,21 +217,4 @@ public class LegacyEditorData : MonoBehaviour {
         }
 
     }
-}
-
-public enum BuilderLeftDropdown
-{
-    ACTION,
-    SPRITE
-}
-
-public enum BuilderRightDropdown
-{
-    PROPERTIES
-}
-
-public enum SortOrder
-{
-    NAME,
-    CATEGORY
 }

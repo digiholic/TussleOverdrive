@@ -11,7 +11,7 @@ public class OnClickSendAction : MonoBehaviour {
         action = legacyAction;
     }
 
-    void OnAction()
+    public void OnAction()
     {
         if (action != null)
         {
