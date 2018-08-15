@@ -9,7 +9,14 @@ public class TimelineFrameCount : MonoBehaviour {
     {
         if (LegacyEditorData.instance.currentActionDirty || LegacyEditorData.instance.currentFrameDirty)
         {
-            text.text = LegacyEditorData.instance.currentFrame.ToString() + "/" + LegacyEditorData.instance.currentAction.length.ToString();
+            //Since the action can't be null, it turns into an anymous action whenever there's nothing loaded. If it's name is empty, it's basically null
+            if (LegacyEditorData.instance.currentAction.name == "")
+            {
+                text.text = "---";
+            } else
+            {
+                text.text = LegacyEditorData.instance.currentFrame.ToString() + "/" + LegacyEditorData.instance.currentAction.length.ToString();
+            }
         }
     }
 }

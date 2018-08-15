@@ -8,32 +8,41 @@ public class LeftPanelToggler : MonoBehaviour {
     public GameObject spritesPanel;
     public GameObject animationsPanel;
 
+    private void Start()
+    {
+        BanishPanels();
+    }
+
     void OnModelChanged()
     {
         if (LegacyEditorData.instance.leftDropdownDirty)
         {
-            NGUITools.SetActive(actionsPanel, false);
-            NGUITools.SetActive(methodsPanel, false);
-            NGUITools.SetActive(spritesPanel, false);
-            NGUITools.SetActive(animationsPanel, false);
+            BanishPanels();
+        }
+    }
 
-            switch (LegacyEditorData.instance.leftDropdown)
-            {
-                case "Actions":
-                    NGUITools.SetActive(actionsPanel, true);
-                    break;
-                case "Methods":
-                    NGUITools.SetActive(methodsPanel, true);
-                    break;
-                case "Sprites":
-                    NGUITools.SetActive(spritesPanel, true);
-                    break;
-                case "Animations":
-                    NGUITools.SetActive(animationsPanel, true);
-                    break;
-                default:
-                    break;
-            }
+    private void BanishPanels()
+    {
+        LegacyEditorData.Banish(actionsPanel);
+        LegacyEditorData.Banish(methodsPanel);
+        LegacyEditorData.Banish(spritesPanel);
+        LegacyEditorData.Banish(animationsPanel);
+        switch (LegacyEditorData.instance.leftDropdown)
+        {
+            case "Actions":
+                LegacyEditorData.Unbanish(actionsPanel);
+                break;
+            case "Methods":
+                LegacyEditorData.Unbanish(methodsPanel);
+                break;
+            case "Sprites":
+                LegacyEditorData.Unbanish(spritesPanel);
+                break;
+            case "Animations":
+                LegacyEditorData.Unbanish(animationsPanel);
+                break;
+            default:
+                break;
         }
     }
 }

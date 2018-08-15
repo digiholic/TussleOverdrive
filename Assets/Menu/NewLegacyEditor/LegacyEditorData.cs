@@ -9,6 +9,8 @@ public class LegacyEditorData : MonoBehaviour
 {
     public static LegacyEditorData instance;
 
+    public PanelHider ShadowRealm;
+
     #region Loaded Fighter - the currently loaded fighter info
     [SerializeField]
     private FighterInfo _loadedFighter;
@@ -217,4 +219,16 @@ public class LegacyEditorData : MonoBehaviour
         }
 
     }
+
+    #region static helper methods
+    public static void Banish(GameObject panelToBanish)
+    {
+        instance.ShadowRealm.Banish(panelToBanish);
+    }
+
+    public static void Unbanish(GameObject panelToBanish)
+    {
+        instance.ShadowRealm.Unbanish(panelToBanish);
+    }
+    #endregion
 }
