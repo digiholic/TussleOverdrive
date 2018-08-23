@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LegacyEditorConstants {
     public static string[] LeftDropdownOptions = new string[] {
-        "Actions", "Methods", "Sprites", "Animations"
+        "Fighter", "Actions", "Methods", "Sprites", "Animations"
         };
 
     public static string[] RightDropdownOptions = new string[] {
@@ -13,6 +13,7 @@ public class LegacyEditorConstants {
 
     public static Dictionary<string, string[]> RightDropdownOptionsDict = new Dictionary<string, string[]>
     {
+        { "Fighter",    new string[] { "Attributes", "Variables", "Palettes"} },
         { "Actions",    new string[] { "Properties", "SetUp", "TearDown", "Frame" } },
         { "Methods",    new string[] { "" } },
         { "Sprites",    new string[] { "Cropping", "Anchors" } },

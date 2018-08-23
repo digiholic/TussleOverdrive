@@ -79,7 +79,7 @@ public class LegacyEditorData : MonoBehaviour
     public string rightDropdown
     {
         get { return _rightDropdown; }
-        private set
+        set
         {
             _rightDropdown = value;
             rightDropdownDirty = true;
@@ -123,7 +123,7 @@ public class LegacyEditorData : MonoBehaviour
     public string actionSearchText;
     public string spriteSearchText;
     public string sortOrder;
-
+    
     /// <summary>
     /// Set the singleton instance at OnEnable time, the earliest we can
     /// </summary>
@@ -139,6 +139,11 @@ public class LegacyEditorData : MonoBehaviour
     {
         loadedFighterDirty = true;
         loadedActionFileDirty = true;
+        currentActionDirty = true;
+        leftDropdownDirty = true;
+        rightDropdownDirty = true;
+        currentFrameDirty = true;
+        currentSelectedDirty = true;
         FireModelChange();
     }
 
@@ -152,7 +157,7 @@ public class LegacyEditorData : MonoBehaviour
     public void FireModelChange()
     {
         BroadcastMessage("OnModelChanged");
-
+        
         //After the broadcast, clear all the "dirty" bits
         loadedFighterDirty = false;
         loadedActionFileDirty = false;
@@ -221,14 +226,32 @@ public class LegacyEditorData : MonoBehaviour
     }
 
     #region static helper methods
+    /// <summary>
+    /// Banish a panel to the shadow realm, a place where panels no longer in use go.
+    /// </summary>
+    /// <param name="panelToBanish">The panel to banish. Can technically be any gameObject, but it's mostly used for panels.</param>
     public static void Banish(GameObject panelToBanish)
     {
         instance.ShadowRealm.Banish(panelToBanish);
     }
 
+    /// <summary>
+    /// Returns a panel to the place it was banished from intact.
+    /// </summary>
+    /// <param name="panelToBanish">An object in the shadow realm to be returned from whence it came</param>
     public static void Unbanish(GameObject panelToBanish)
     {
         instance.ShadowRealm.Unbanish(panelToBanish);
+    }
+
+    /// <summary>
+    /// This is a quick helper method that notifies the model that the FighterInfo has changed. It fires the reload method that will cause the view to update.
+    /// Since the actions that modify the data directly access the FighterInfo field, it bypasses the setter that would normally do this. MAKE SURE TO CALL THIS WHENEVER THE FIGHTERINFO CHANGES
+    /// </summary>
+    public static void ChangedFighterData()
+    {
+        instance.loadedFighterDirty = true;
+        instance.FireModelChange();
     }
     #endregion
 }

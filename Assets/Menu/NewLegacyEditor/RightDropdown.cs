@@ -70,8 +70,8 @@ public class RightDropdown : MonoBehaviour {
     void OnChangeDropdown(string selected)
     {
         //Create a message object to have the model execute
-        //ChangeLeftDropdownAction act = ScriptableObject.CreateInstance<ChangeLeftDropdownAction>();
-        //act.init(selected);
-        //LegacyEditorData.instance.DoAction(act);
+        ChangeRightDropdownAction act = ScriptableObject.CreateInstance<ChangeRightDropdownAction>();
+        act.init(selected);
+        LegacyEditorData.instance.DoAction(act);
     }
 }

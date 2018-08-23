@@ -19,8 +19,7 @@ public class PanelHider : MonoBehaviour {
     {
         //If it's already here, don't bother re-banishing it
         if (panelToBanish.transform.parent.Equals(gameObject.transform))
-        {
-            Debug.Log("Banishing an already banished panel: " + panelToBanish);
+        { 
             return;
         }
         //Set the panel and its old parent in the dictionary
