@@ -10,6 +10,7 @@ public class LegacyEditorData : MonoBehaviour
     public static LegacyEditorData instance;
 
     public PanelHider ShadowRealm;
+    public string FighterDirName;
 
     #region Loaded Fighter - the currently loaded fighter info
     [SerializeField]
@@ -137,6 +138,7 @@ public class LegacyEditorData : MonoBehaviour
     /// </summary>
     private void Start()
     {
+        loadedFighter.LoadDirectory(FighterDirName);
         loadedFighterDirty = true;
         loadedActionFileDirty = true;
         currentActionDirty = true;
@@ -253,5 +255,39 @@ public class LegacyEditorData : MonoBehaviour
         instance.loadedFighterDirty = true;
         instance.FireModelChange();
     }
+
+    /// <summary>
+    /// This is a quick helper method that notifies the model that the Current Action has changed. It fires the reload method that will cause the view to update.
+    /// Since the actions that modify the data directly access the DynamicAction field, it bypasses the setter that would normally do this. MAKE SURE TO CALL THIS WHENEVER THE CURRENTACTION CHANGES
+    /// </summary>
+    public static void ChangedActionData()
+    {
+        instance.currentActionDirty = true;
+        instance.loadedActionFileDirty = true; //? maybe don't need this? Revisit later
+        instance.FireModelChange();
+    }
+
+    /// <summary>
+    /// This is a quick helper method that notifies the model that the Action File has changed. It fires the reload method that will cause the view to update.
+    /// Since the actions that modify the data directly access the ActionFile's fields, it bypasses the setter that would normally do this. MAKE SURE TO CALL THIS WHENEVER THE ACTIONFILE CHANGES
+    /// </summary>
+    public static void ChangedActionFile()
+    {
+        instance.loadedActionFileDirty = true;
+        instance.FireModelChange();
+    }
+
+    /// <summary>
+    /// Returns true if the current action is a new action that is not currently in the ActionFile.
+    /// If the action is in the ActionFile, it will return false.
+    /// </summary>
+    /// <returns></returns>
+    public static bool CurrentActionIsNew()
+    {
+        DynamicAction action = instance.currentAction;
+        ActionFile actionFile = instance.loadedActionFile;
+        return !actionFile.actions.Contains(action);
+    }
+
     #endregion
 }

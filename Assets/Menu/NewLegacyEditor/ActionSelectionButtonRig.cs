@@ -9,7 +9,7 @@ public class ActionSelectionButtonRig : MonoBehaviour {
     private UIGrid grid;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         grid = GetComponent<UIGrid>();
 	}
 	

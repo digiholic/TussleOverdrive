@@ -12,13 +12,39 @@ public class ActionFile
     private TextAsset JSONFile;
 
     /// <summary>
-    /// Adds an action to this ActionFile. Overwrites if it exists
+    /// Adds an action to this ActionFile.
     /// </summary>
     /// <param name="newAction">The DynamicAction object to add.</param>
-    public void Add(DynamicAction newAction) //Overwrites an action with the given name if it exists. Otherwise, adds it
+    /// <param name="overwrite">Whether or not to remove the action that exists with that name.</param>
+    public void Add(DynamicAction newAction, bool overwrite = false) //Overwrites an action with the given name if it exists. Otherwise, adds it
     {
-        actions.RemoveAll(s => s.name == newAction.name); //Removes all objects that have the same name as the new action
-        actions.Add(newAction);
+        //This should always only ever return one thing, otherwise something's gone wrong
+        //Why didn't I use a set or dict? ¯\_(ツ)_/¯
+        //TODO: make this a set
+        List<DynamicAction> existingActions = actions.FindAll(s => s.name == newAction.name);
+        if (existingActions.Count > 1)
+        {
+            throw new System.Exception("Multiple Actions with the same name! I told you this would happen! Fix it!");
+        }
+
+        //If we have existing actions, we need to figure out what to do with the old one based on the overwrite flag
+        if (existingActions.Count > 0)
+        {
+            if (overwrite)
+            {
+                actions.RemoveAll(s => s.name == newAction.name); //Removes all objects that have the same name as the new action
+                actions.Add(newAction);
+            } else
+            { 
+                DynamicAction cloneAction = new DynamicAction(newAction);
+                cloneAction.name += "_new";
+                //TODO this will chain forever if you keep cloning the same action. This might be a problem, but probably not.
+                actions.Add(cloneAction);
+            }
+        } else
+        {
+            actions.Add(newAction);
+        }
     }
 
     public void Delete(DynamicAction action)
@@ -60,8 +86,9 @@ public class ActionFile
     public void WriteJSON(string path)
     {
         string thisjson = JsonUtility.ToJson(this, true);
-        Debug.Log(path);
         File.WriteAllText(path, thisjson);
+        Debug.Log(path);
+        Debug.Log(thisjson);
     }
 
     /// <summary>
@@ -119,6 +146,24 @@ public class DynamicAction
         sprite_rate = _sprite_rate;
         loop = _loop;
         exit_action = _exit_action;
+    }
+
+    /// <summary>
+    /// Create a Dynamic Action that is a copy of the existing one. The copy will change it's name
+    /// to add _new so there is no name conflict
+    /// </summary>
+    /// <param name="sourceAction"></param>
+    public DynamicAction(DynamicAction sourceAction)
+    {
+        name = sourceAction.name;
+        length = sourceAction.length;
+        sprite = sourceAction.sprite;
+        sprite_rate = sourceAction.sprite_rate;
+        loop = sourceAction.loop;
+        exit_action = sourceAction.exit_action;
+
+        //TODO clones currently have no subactions. I'll figure this out later.
+        //set_upsub_actions = sourceAction.set_up_subactions; etc.
     }
 
     public SubActionGroup GetGroup(string name)

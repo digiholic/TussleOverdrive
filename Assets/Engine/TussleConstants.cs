@@ -29,7 +29,7 @@ public class TussleConstants {
         public static string PIXELS_PER_UNIT         = "pixels_per_unit";
         public static string JUMPS                   = "jumps";
         public static string MAX_JUMPS               = "max_jumps";
-        public static string HEAVY_LANDING_LAG       = "heavy_landing_lag";
+        public static string HEAVY_LANDING_LAG       = "heavy_land_lag";
         public static string WAVEDASH_LAG            = "wavedash_lag";
     }
 }

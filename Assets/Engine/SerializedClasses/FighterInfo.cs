@@ -18,7 +18,6 @@ public class FighterInfo {
     public List<FighterPalette> colorPalettes;
     public List<VarData> variables;
 
-
     /// <summary>
     /// Directory name is not serialized, and is set when loaded so the program knows
     /// the folder name of the fighter, which might not match the fighter.
@@ -38,11 +37,16 @@ public class FighterInfo {
 
     [SerializeField]
     private TextAsset JSONFile;
-
+    
     public void WriteJSON(string path)
     {
         string json = JsonUtility.ToJson(this, true);
         File.WriteAllText(path, json);
+    }
+
+    public void Save()
+    {
+        WriteJSON(FileLoader.PathCombine(directory_name, "fighter_info.json"));
     }
 
     public void LoadDirectory(string directoryName)

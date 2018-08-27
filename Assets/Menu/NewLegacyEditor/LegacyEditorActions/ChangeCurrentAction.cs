@@ -15,9 +15,16 @@ public class ChangeCurrentAction : LegacyEditorAction
 
     public override void execute()
     {
+        DynamicAction actionToSet = nextAction;
+        //If we're re-selecting the current action, unselect it instead (by creating an empty action that can be edited and saved later)
         previousAction = LegacyEditorData.instance.currentAction;
+        if (previousAction == nextAction)
+        {
+            actionToSet = new DynamicAction("");
+        }
+
         previousFrame = LegacyEditorData.instance.currentFrame;
-        LegacyEditorData.instance.currentAction = nextAction;
+        LegacyEditorData.instance.currentAction = actionToSet;
         LegacyEditorData.instance.currentFrame = 0;
     }
 

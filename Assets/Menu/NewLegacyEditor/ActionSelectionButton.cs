@@ -9,11 +9,12 @@ public class ActionSelectionButton : MonoBehaviour {
 	// Use this for initialization
 	void OnEnable () {
         label = GetComponentInChildren<UILabel>();
-	}
+        OnModelChanged();
+    }
 	
 	// Update is called once per frame
-	void Update () {
-		if (LegacyEditorData.instance.currentAction == action)
+	void OnModelChanged() {
+        if (LegacyEditorData.instance.currentAction == action)
         {
             label.color = new Color(1, 1, 1, 1);
         }

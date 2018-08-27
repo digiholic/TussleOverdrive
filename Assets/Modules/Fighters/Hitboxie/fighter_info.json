@@ -126,6 +126,14 @@
             "name": "shield_size",
             "value": "1",
             "type": 0
+        },
+        {
+            "name": "air_control",
+            "value": "1",
+            "type": 0
         }
-    ]
+    ],
+    "JSONFile": {
+        "instanceID": 20348
+    }
 }

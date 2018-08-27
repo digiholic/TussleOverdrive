@@ -35,7 +35,6 @@ public class PanelHider : MonoBehaviour {
         //If it's not in the shadow realm, ignore this function
         if (!panelToParentDict.ContainsKey(panelToUnbanish))
         {
-            Debug.LogWarning("Attempting to Unbanish panel that wasn't banished: " + panelToUnbanish);
             return;
         }
         //Get the panel's old parent
