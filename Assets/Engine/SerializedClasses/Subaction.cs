@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Subaction
+public class Subaction : ScriptableObject
 {
     public string SubactionName;
     public List<SubactionVarData> arg_list = new List<SubactionVarData>();
-    protected Dictionary<string, SubactionVarData> arg_dict = new Dictionary<string, SubactionVarData>();
+    public SerializableDictionary<string, SubactionVarData> arg_dict = new SerializableDictionary<string, SubactionVarData>();
 
     /// <summary>
     /// Builds the dictionary of variables keyed by name for easier access.
@@ -15,7 +15,7 @@ public class Subaction
     /// </summary>
     protected void BuildDict()
     {
-        arg_dict = new Dictionary<string, SubactionVarData>();
+        arg_dict = new SerializableDictionary<string, SubactionVarData>();
         foreach (SubactionVarData data in arg_list)
         {
             arg_dict[data.name] = data;
