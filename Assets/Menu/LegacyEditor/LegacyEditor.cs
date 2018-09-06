@@ -11,7 +11,6 @@ public class LegacyEditor : MonoBehaviour {
     public delegate void StringMenuFunction(string name);
     public delegate void FighterMenuFunction(FighterInfo fighter_info);
     public delegate void ActionMenuFunction(ActionFile action_file);
-    public delegate void SubActionGroupMenuFunction(SubActionGroup group);
 
     public static event StringMenuFunction OnWindowChanged;
     public static event StringMenuFunction OnSubwindowChanged;
@@ -19,7 +18,6 @@ public class LegacyEditor : MonoBehaviour {
     public static event ActionMenuFunction OnActionFileChanged;
     public static event DynamicActionMenuFunction OnSelectedActionChanged;
     public static event StringMenuFunction OnSubactionCategoryChanged;
-    public static event SubActionGroupMenuFunction OnSubactionGroupChanged;
 
     #region Event Firers
     public static void LoadFighterFromFile(FileInfo info_file)
@@ -39,21 +37,7 @@ public class LegacyEditor : MonoBehaviour {
         if (editor.selected_action != null) //If we don't have an action selected, we can't pull the group from it
         {
             DynamicAction act = editor.selected_action;
-            switch (new_group_name)
-            {
-                case "Set Up":
-                    OnSubactionGroupChanged(act.set_up_subactions);
-                    break;
-                case "Transitions":
-                    OnSubactionGroupChanged(act.state_transition_subactions);
-                    break;
-                case "On Frame":
-                    OnSubactionGroupChanged(act.subactions_on_frame);
-                    break;
-                case "Tear Down":
-                    OnSubactionGroupChanged(act.tear_down_subactions);
-                    break;
-            }
+            throw new System.MissingMethodException("THIS EDITOR IS DEPRECATED");
         }
     }
     public static void ChangeSelectedAction(string new_selection_name)
@@ -90,10 +74,6 @@ public class LegacyEditor : MonoBehaviour {
     public static void FireChangeSubactionCategory(string subaction_category)
     {
         OnSubactionCategoryChanged(subaction_category);
-    }
-    public static void FireChangeSubactionGroup(SubActionGroup group)
-    {
-        OnSubactionGroupChanged(group);
     }
     #endregion
 
@@ -148,12 +128,6 @@ public class LegacyEditor : MonoBehaviour {
     {
         editor.selected_subaction_category = new_subaction_category;
     }
-    
-
-    public void ChangeSubactionGroup(SubActionGroup new_group)
-    {
-        editor.subaction_group = new_group;
-    }
     #endregion
 
     public static DirectoryInfo CurrentFighterDir()
@@ -175,8 +149,7 @@ public class LegacyEditor : MonoBehaviour {
     public string selected_action_name;
     public DynamicAction selected_action;
     public string selected_subaction_category;
-    public SubActionGroup subaction_group;
-
+    
     // Use this for initialization
     void Awake()
     {
@@ -196,7 +169,6 @@ public class LegacyEditor : MonoBehaviour {
         OnActionFileChanged += ChangeActionFile;
         OnSelectedActionChanged += ChangeSelectedAction;
         OnSubactionCategoryChanged += ChangeSubactionCategory;
-        OnSubactionGroupChanged += ChangeSubactionGroup;
     }
 
     private void OnDisable()
@@ -208,7 +180,6 @@ public class LegacyEditor : MonoBehaviour {
         OnActionFileChanged -= ChangeActionFile;
         OnSelectedActionChanged -= ChangeSelectedAction;
         OnSubactionCategoryChanged -= ChangeSubactionCategory;
-        OnSubactionGroupChanged -= ChangeSubactionGroup;
     }
 
     void Update()

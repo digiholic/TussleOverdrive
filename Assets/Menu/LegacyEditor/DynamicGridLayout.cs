@@ -63,7 +63,6 @@ public class DynamicGridLayout : MonoBehaviour, LegacyDataViewer {
         LegacyEditor.OnActionFileChanged        += ActionFileChanged;
         LegacyEditor.OnSelectedActionChanged            += SelectedActionChanged;
         LegacyEditor.OnSubactionCategoryChanged += CategoryChanged;
-        LegacyEditor.OnSubactionGroupChanged    += SubactionGroupChanged;
     }
 
     public void OnDisable()
@@ -74,7 +73,6 @@ public class DynamicGridLayout : MonoBehaviour, LegacyDataViewer {
         LegacyEditor.OnActionFileChanged        -= ActionFileChanged;
         LegacyEditor.OnSelectedActionChanged            -= SelectedActionChanged;
         LegacyEditor.OnSubactionCategoryChanged -= CategoryChanged;
-        LegacyEditor.OnSubactionGroupChanged    -= SubactionGroupChanged;
     }
 
     public void WindowChanged(string window_name)
@@ -101,9 +99,4 @@ public class DynamicGridLayout : MonoBehaviour, LegacyDataViewer {
     {
         Reposition();
     }
-    public void SubactionGroupChanged(SubActionGroup group)
-    {
-        Reposition();
-    }
-
 }

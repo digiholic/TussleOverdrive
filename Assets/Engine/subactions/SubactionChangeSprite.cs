@@ -17,9 +17,9 @@ public class SubactionChangeSprite : Subaction
         obj.GetSpriteHandler().ChangeSprite(sprite);
     }
 
-    public override SubactionCategory getCategory()
+    public override SubactionType getSubactionType()
     {
-        return SubactionCategory.ANIMATION;
+        return SubactionType.ANIMATION;
     }
 
     public override bool executeInBuilder()
@@ -27,9 +27,11 @@ public class SubactionChangeSprite : Subaction
         return true;
     }
 
+    /*
     public override void generateDefaultArguments()
     {
         arg_list.Add(new SubactionVarData("sprite", "constant", "string", "", false));
         BuildDict();
     }
+    */
 }

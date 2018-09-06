@@ -11,6 +11,5 @@ public interface LegacyDataViewer{
     void ActionFileChanged(ActionFile actions);
     void SelectedActionChanged(DynamicAction action);
     void CategoryChanged(string category_name);
-    void SubactionGroupChanged(SubActionGroup group);
-
+    
 }

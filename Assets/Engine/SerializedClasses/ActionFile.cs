@@ -2,14 +2,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using System;
 
+/// <summary>
+/// The ActionFile is the representation of the data that is used to build actions.
+/// It is manipulated in the builder and Unity Editor, but once it's loaded, it should create a bunch of actions and then chill quietly until it needs to save data back to disk.
+/// It has a number of helper methods that let you easily manipulate data in the object.
+/// </summary>
 [System.Serializable]
 public class ActionFile
 {
     public List<DynamicAction> actions = new List<DynamicAction>();
 
+    //If you need to load an action file in the editor, use the path to get it. This won't get serialized.
     [SerializeField]
-    private TextAsset JSONFile;
+    private string fighterDirectory;
+    [SerializeField]
+    private string actionFileName;
+
+    public void LoadFromTextAsset()
+    {
+        string dir = FileLoader.GetFighterPath(fighterDirectory);
+        string combinedPath = Path.Combine(dir, actionFileName);
+        if (File.Exists(combinedPath))
+        {
+            string json = File.ReadAllText(combinedPath);
+            JsonUtility.FromJsonOverwrite(json,this);
+        }
+        else
+        {
+            Debug.LogWarning("No action file found at " + fighterDirectory + "/" + actionFileName);
+        }
+    }
+
 
     /// <summary>
     /// Adds an action to this ActionFile.
@@ -41,7 +66,9 @@ public class ActionFile
                 //TODO this will chain forever if you keep cloning the same action. This might be a problem, but probably not.
                 actions.Add(cloneAction);
             }
-        } else
+        }
+        //If there aren't any existing actions, it's fine to just add this one in.
+        else
         {
             actions.Add(newAction);
         }
@@ -52,7 +79,7 @@ public class ActionFile
         actions.Remove(action);
     }
 
-    public void Delete(string action_name)
+    public void DeleteByName(string action_name)
     {
         foreach (DynamicAction act in actions)
         {
@@ -61,14 +88,6 @@ public class ActionFile
                 Delete(act);
                 return;
             }
-        }
-    }
-
-    public void LoadFromTextAsset()
-    {
-        if (JSONFile != null)
-        {
-            JsonUtility.FromJsonOverwrite(JSONFile.text, this);
         }
     }
 
@@ -91,17 +110,6 @@ public class ActionFile
         Debug.Log(thisjson);
     }
 
-    /// <summary>
-    /// Converts all subactions from the base subaction class to their actual selves. Only needs to be run once.
-    /// </summary>
-    public void ReconcileSubactions()
-    {
-        foreach (DynamicAction act in actions)
-        {
-            act.ReconcileSubactions();
-        }
-    }
-
     public static ActionFile LoadActionsFromFile(string directory, string filename = "fighter_actions.json")
     {
         string dir = FileLoader.GetFighterPath(directory);
@@ -118,25 +126,4 @@ public class ActionFile
             return null;
         }
     }
-}
-
-[System.Serializable]
-public class SubActionGroup
-{
-    public List<Subaction> subactions = new List<Subaction>();
-
-    public void ReconcileSubactions()
-    {
-        List<Subaction> newSubactions = new List<Subaction>();
-        foreach (Subaction subact in subactions)
-        {
-            newSubactions.Add(SubactionFactory.LoadSubactionAs(subact, subact.SubactionName));
-        }
-    }
-}
-
-[System.Serializable]
-public class SubActionFrameGroup : SubActionGroup
-{
-    public int frame;
 }

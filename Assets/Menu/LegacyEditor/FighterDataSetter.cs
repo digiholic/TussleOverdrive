@@ -56,7 +56,6 @@ public class FighterDataSetter : MonoBehaviour, LegacyDataViewer {
     public void ActionFileChanged(ActionFile actions) { }
     public void CategoryChanged(string category_name) { }
     public void SelectedActionChanged(DynamicAction action) { }
-    public void SubactionGroupChanged(SubActionGroup group) { }
     public void SubWindowChanged(string sub_window_name) { }
     public void WindowChanged(string window_name) { }
 

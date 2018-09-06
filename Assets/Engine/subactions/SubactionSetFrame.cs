@@ -21,15 +21,17 @@ public class SubactionSetFrame : Subaction {
         action.ChangeFrame(frame, relative);
     }
 
-    public override SubactionCategory getCategory()
+    public override SubactionType getSubactionType()
     {
-        return SubactionCategory.CONTROL;
+        return SubactionType.CONTROL;
     }
 
+    /*
     public override void generateDefaultArguments()
     {
         arg_list.Add(new SubactionVarData("frame", "constant", "int", "1", false));
         arg_list.Add(new SubactionVarData("relative", "constant", "bool", "true", false));
         BuildDict();
     }
+    */
 }

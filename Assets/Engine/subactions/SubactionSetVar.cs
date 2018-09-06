@@ -18,15 +18,17 @@ public class SubactionSetVar : Subaction {
         arg_dict["variable"].SetVariable(actor, action, arg_dict["value"].GetData(actor, action));
     }
 
-    public override SubactionCategory getCategory()
+    public override SubactionType getSubactionType()
     {
-        return SubactionCategory.CONTROL;
+        return SubactionType.CONTROL;
     }
-
+    
+    /*
     public override void generateDefaultArguments()
     {
         arg_list.Add(new SubactionVarData("variable", "constant", "string", "", false));
         arg_list.Add(new SubactionVarData("value", "constant", "string", "", false));
         BuildDict();
     }
+    */
 }

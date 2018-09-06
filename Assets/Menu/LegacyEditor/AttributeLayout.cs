@@ -55,7 +55,6 @@ public class AttributeLayout : MonoBehaviour, LegacyDataViewer {
     public void ActionFileChanged(ActionFile actions) { }
     public void SelectedActionChanged(DynamicAction action) { }
     public void CategoryChanged(string category_name) { }
-    public void SubactionGroupChanged(SubActionGroup group) { }
 
     public void OnEnable()
     {

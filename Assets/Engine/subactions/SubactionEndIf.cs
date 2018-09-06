@@ -15,9 +15,9 @@ public class SubactionEndIf : Subaction {
         if (action.cond_depth < 0) action.cond_depth = 0;
     }
 
-    public override SubactionCategory getCategory()
+    public override SubactionType getSubactionType()
     {
-        return SubactionCategory.CONTROL;
+        return SubactionType.CONTROL;
     }
 
     public override bool isConditional()

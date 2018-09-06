@@ -32,7 +32,7 @@ public class SubactionDataRowExpanded : MonoBehaviour {
         }
         argDataInserted.Clear();
 
-        foreach (SubactionVarData data in subaction.arg_list)
+        foreach (SubactionVarData data in subaction.arg_dict.Values)
         {
             GameObject obj = NGUITools.AddChild(argumentRig.gameObject, argDataPrefab);
             ArgumentDataRow row = obj.GetComponent<ArgumentDataRow>();

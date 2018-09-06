@@ -16,10 +16,7 @@ public class GameAction {
 
     public int current_frame;
 
-    public SubActionGroup set_up_subactions = new SubActionGroup();
-    public SubActionGroup state_transition_subactions = new SubActionGroup();
-    public SubActionGroup subactions_on_frame = new SubActionGroup();
-    public SubActionGroup tear_down_subactions = new SubActionGroup();
+    public SerializableDictionary<string, List<Subaction>> subactionCategories = new SerializableDictionary<string, List<Subaction>>();
 
     public Dictionary<string, Hitbox> hitboxes = new Dictionary<string, Hitbox>();
     public Dictionary<string, HitboxLock> hitbox_locks = new Dictionary<string, HitboxLock>();
@@ -33,13 +30,33 @@ public class GameAction {
 
     public Dictionary<string, object> variable = new Dictionary<string, object>();
     public Dictionary<string, object> variables_to_pass = new Dictionary<string, object>();
-     
+
+    public void SetDynamicAction(DynamicAction dynAction)
+    {
+        name = dynAction.name;
+        length = dynAction.length;
+        sprite_name = dynAction.sprite;
+        sprite_rate = dynAction.sprite_rate;
+        loop = dynAction.loop;
+        exit_action = dynAction.exit_action;
+        
+        foreach (KeyValuePair<string, List<SubactionData>> keyVal in dynAction.subactionCategories)
+        {
+            List<Subaction> categoryList = new List<Subaction>();
+            foreach (SubactionData data in keyVal.Value)
+            {
+                categoryList.Add(SubactionFactory.GenerateSubactionFromData(data));
+            }
+            subactionCategories.Add(keyVal.Key, categoryList);
+        }
+    }
+
     public virtual void SetUp (BattleObject obj) {
         last_frame = length;
         actor = obj;
         actor.BroadcastMessage("ChangeSprite",sprite_name);
         game_controller = BattleController.current_battle;
-        foreach (Subaction subaction in set_up_subactions.subactions)
+        foreach (Subaction subaction in subactionCategories[SubactionCategory.SETUP])
             CheckCondAndExecute(subaction);
     }
 
@@ -53,7 +70,7 @@ public class GameAction {
             actor.GetSpriteHandler().ChangeSubimage(sprite_number, loop);
         }
 
-        foreach (Subaction subaction in subactions_on_frame.subactions)
+        foreach (Subaction subaction in subactionCategories[SubactionCategory.ONFRAME(current_frame)])
             CheckCondAndExecute(subaction);
         if (current_frame >= last_frame)
             if (exit_action != null && exit_action != "")
@@ -82,29 +99,14 @@ public class GameAction {
             hbox.Deactivate();
             GameObject.Destroy(hbox.gameObject);
         }
-        foreach (Subaction subaction in tear_down_subactions.subactions)
+        foreach (Subaction subaction in subactionCategories[SubactionCategory.TEARDOWN])
             CheckCondAndExecute(subaction);
     }
 
     public virtual void stateTransitions()
     {
-        foreach (Subaction subaction in state_transition_subactions.subactions)
+        foreach (Subaction subaction in subactionCategories[SubactionCategory.STATETRANSITION])
             CheckCondAndExecute(subaction);
-    }
-    
-    public void SetDynamicAction(DynamicAction dynAction)
-    {
-        name = dynAction.name;
-        length = dynAction.length;
-        sprite_name = dynAction.sprite;
-        sprite_rate = dynAction.sprite_rate;
-        loop = dynAction.loop;
-        exit_action = dynAction.exit_action;
-
-        set_up_subactions = dynAction.set_up_subactions;
-        state_transition_subactions = dynAction.state_transition_subactions;
-        tear_down_subactions = dynAction.tear_down_subactions;
-        subactions_on_frame = dynAction.subactions_on_frame;
     }
     
     public void ChangeFrame(int frame, bool relative)

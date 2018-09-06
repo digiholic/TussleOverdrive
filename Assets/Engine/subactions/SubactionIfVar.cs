@@ -68,9 +68,9 @@ public class SubactionIfVar : Subaction {
         action.cond_depth++;
     }
 
-    public override SubactionCategory getCategory()
+    public override SubactionType getSubactionType()
     {
-        return SubactionCategory.CONTROL;
+        return SubactionType.CONTROL;
     }
 
     public override bool isConditional()
@@ -78,6 +78,7 @@ public class SubactionIfVar : Subaction {
         return true;
     }
 
+    /*
     public override void generateDefaultArguments()
     { 
         arg_list.Add(new SubactionVarData("var1", "constant", "string", "", true));
@@ -85,4 +86,5 @@ public class SubactionIfVar : Subaction {
         arg_list.Add(new SubactionVarData("var1", "constant", "string", "", false));
         BuildDict();
     }
+    */
 }

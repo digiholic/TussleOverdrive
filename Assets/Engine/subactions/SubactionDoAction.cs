@@ -9,14 +9,16 @@ public class SubactionDoAction : Subaction {
         obj.BroadcastMessage("DoAction", arg_dict["actionName"].GetData(obj,action));
     }
 
-    public override SubactionCategory getCategory()
+    public override SubactionType getSubactionType()
     {
-        return SubactionCategory.CONTROL;
+        return SubactionType.CONTROL;
     }
 
+    /*
     public override void generateDefaultArguments()
     {
         arg_list.Add(new SubactionVarData("actionName", "constant", "string", "", false));
         BuildDict();
     }
+    */
 }

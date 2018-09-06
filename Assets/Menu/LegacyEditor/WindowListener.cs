@@ -61,7 +61,6 @@ public class WindowListener : MonoBehaviour, LegacyDataViewer {
     public void FighterChanged(FighterInfo fighter_info) {}
     public void ActionFileChanged(ActionFile actions) {}
     public void SelectedActionChanged(DynamicAction action) {}
-    public void SubactionGroupChanged(SubActionGroup group) {}
 }
 
 [System.Serializable]

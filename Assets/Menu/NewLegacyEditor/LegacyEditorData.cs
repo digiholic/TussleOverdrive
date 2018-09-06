@@ -117,6 +117,21 @@ public class LegacyEditorData : MonoBehaviour
         }
     }
     #endregion
+    #region Contextual Panel Controller - the ContextualPanelData of the currently visible Contextual Panel
+    [SerializeField]
+    private ContextualPanelData _contextualPanelController;
+    public bool contextualPanelControllerDirty { get; private set; }
+
+    public ContextualPanelData contextualPanelController
+    {
+        get { return _contextualPanelController; }
+        private set
+        {
+            _contextualPanelController = value;
+            contextualPanelControllerDirty = true;
+        }
+    }
+    #endregion
 
     //TODO
     public string contextFighterCategory;

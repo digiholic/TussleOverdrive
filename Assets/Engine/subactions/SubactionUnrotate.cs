@@ -15,8 +15,8 @@ public class SubactionUnrotate : Subaction {
         actor.GetSpriteHandler().UnRotate();
     }
 
-    public override SubactionCategory getCategory()
+    public override SubactionType getSubactionType()
     {
-        return SubactionCategory.ANIMATION;
+        return SubactionType.ANIMATION;
     }
 }

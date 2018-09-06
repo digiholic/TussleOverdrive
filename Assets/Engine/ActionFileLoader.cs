@@ -26,12 +26,11 @@ public class ActionFileLoader : MonoBehaviour {
             string combinedPath = FileLoader.PathCombine(FileLoader.GetFighterPath(directory),filename);
             string json = FileLoader.LoadTextFile(combinedPath);
             action_file = JsonUtility.FromJson<ActionFile>(json);
-            action_file.ReconcileSubactions();
         }
     }
 
     public void DeleteAction(string action_name)
     {
-        action_file.Delete(action_name);
+        action_file.DeleteByName(action_name);
     }
 }

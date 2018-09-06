@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 
 [Serializable]
-public class VarData : ScriptableObject
+public class VarData
 {
     public string name;
     public string value;

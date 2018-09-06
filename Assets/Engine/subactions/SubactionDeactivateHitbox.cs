@@ -20,9 +20,9 @@ public class SubactionDeactivateHitbox : Subaction
             Debug.LogWarning("Current action has no hitbox names " + name);
     }
 
-    public override SubactionCategory getCategory()
+    public override SubactionType getSubactionType()
     {
-        return SubactionCategory.HITBOX;
+        return SubactionType.HITBOX;
     }
 
     public override bool executeInBuilder()
@@ -30,9 +30,11 @@ public class SubactionDeactivateHitbox : Subaction
         return true;
     }
 
+    /*
     public override void generateDefaultArguments()
     {
         arg_list.Add(new SubactionVarData("name", "constant", "string", "", false));
         BuildDict();
     }
+    */
 }

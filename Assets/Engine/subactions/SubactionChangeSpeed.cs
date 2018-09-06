@@ -43,11 +43,12 @@ public class SubactionChangeSpeed : Subaction {
         }
     }
 
-    public override SubactionCategory getCategory()
+    public override SubactionType getSubactionType()
     {
-        return SubactionCategory.BEHAVIOR;
+        return SubactionType.BEHAVIOR;
     }
 
+    /*
     public override void generateDefaultArguments()
     {
         arg_list.Add(new SubactionVarData("xspeed", "constant", "float", "", false));
@@ -56,4 +57,5 @@ public class SubactionChangeSpeed : Subaction {
         arg_list.Add(new SubactionVarData("ypref", "constant", "float", "", false));
         BuildDict();
     }
+    */
 }

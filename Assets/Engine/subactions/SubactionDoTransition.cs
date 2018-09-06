@@ -16,14 +16,16 @@ public class SubactionDoTransition : Subaction {
         StateTransitions.LoadTransitionState(name, obj.GetAbstractFighter());
     }
 
-    public override SubactionCategory getCategory()
+    public override SubactionType getSubactionType()
     {
-        return SubactionCategory.BEHAVIOR;
+        return SubactionType.BEHAVIOR;
     }
 
+    /*
     public override void generateDefaultArguments()
     {
         arg_list.Add(new SubactionVarData("name", "constant", "string", "", false));
         BuildDict();
     }
+    */
 }

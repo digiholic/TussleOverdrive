@@ -22,11 +22,12 @@ public class SubactionSetAnchor : Subaction
         obj.GetAnchorPoint(name).MoveAnchorPixel(centerx, centery);
     }
 
-    public override SubactionCategory getCategory()
+    public override SubactionType getSubactionType()
     {
-        return SubactionCategory.CONTROL;
+        return SubactionType.CONTROL;
     }
 
+    /*
     public override void generateDefaultArguments()
     {
         arg_list.Add(new SubactionVarData("name", "constant", "string", "", false));
@@ -34,4 +35,5 @@ public class SubactionSetAnchor : Subaction
         arg_list.Add(new SubactionVarData("centery", "constant", "int", "", false));
         BuildDict();
     }
+    */
 }

@@ -5,7 +5,12 @@ using System;
 using System.Linq;
 
 public class SubactionFactory {
-    
+    public static Subaction GenerateSubactionFromData(SubactionData data)
+    {
+        Subaction subaction = (Subaction)ScriptableObject.CreateInstance(data.SubactionName);
+        return subaction;
+    }
+
     public static Subaction GetSubaction(string subactionName)
     {
         Type t = Type.GetType("Subaction"+subactionName);
@@ -22,27 +27,17 @@ public class SubactionFactory {
         return null;
     }
 
-    public static Subaction AddNewSubaction(string subactionName, SubActionGroup group)
+    public static Subaction AddNewSubaction(string subactionName, List<Subaction> group)
     {
         Subaction sub = GetSubaction(subactionName);
         if (sub != null)
         {
             sub.generateDefaultArguments();
-            group.subactions.Add(sub);
+            group.Add(sub);
         }
         return sub;
     }
-
-    public static Subaction LoadSubactionAs(Subaction subact, string subactionName)
-    {
-        Subaction sub = GetSubaction(subactionName);
-        if (sub != null)
-        {
-            sub.CreateFromOther(subact);
-        }
-        return sub;
-    }
-
+    
     public static List<String> GetSubactionNamesByCategory(string cat)
     {
         switch (cat)

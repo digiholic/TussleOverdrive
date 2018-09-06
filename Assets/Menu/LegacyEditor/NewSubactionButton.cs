@@ -13,11 +13,13 @@ public class NewSubactionButton : MonoBehaviour {
     {
         if (pressed)
         {
+            /*
             if (LegacyEditor.editor.subaction_group != null)
             {
                 SubactionFactory.AddNewSubaction(SubactionName, LegacyEditor.editor.subaction_group);
                 LegacyEditor.FireChangeSelectedAction(LegacyEditor.editor.selected_action);
             }
+            */
         }
     }
 }

@@ -14,9 +14,9 @@ public class SubactionElse : Subaction {
         action.cond_list[action.cond_depth] = !action.cond_list[action.cond_depth];
     }
 
-    public override SubactionCategory getCategory()
+    public override SubactionType getSubactionType()
     {
-        return SubactionCategory.CONTROL;
+        return SubactionType.CONTROL;
     }
 
     public override bool isConditional()

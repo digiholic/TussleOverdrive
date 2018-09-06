@@ -18,14 +18,16 @@ public class SubactionPlaySound : Subaction {
         actor.GetAbstractFighter().PlaySound(name);
     }
 
-    public override SubactionCategory getCategory()
+    public override SubactionType getSubactionType()
     {
-        return SubactionCategory.CONTROL;
+        return SubactionType.CONTROL;
     }
 
+    /*
     public override void generateDefaultArguments()
     {
         arg_list.Add(new SubactionVarData("name", "constant", "string", "", false));
         BuildDict();
     }
+    */
 }

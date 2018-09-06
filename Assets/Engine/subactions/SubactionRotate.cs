@@ -18,14 +18,16 @@ public class SubactionRotate : Subaction {
         actor.GetSpriteHandler().RotateSprite(degrees);
     }
 
-    public override SubactionCategory getCategory()
+    public override SubactionType getSubactionType()
     {
-        return SubactionCategory.ANIMATION;
+        return SubactionType.ANIMATION;
     }
 
+    /*
     public override void generateDefaultArguments()
     {
         arg_list.Add(new SubactionVarData("degrees", "constant", "float", "", false));
         BuildDict();
     }
+    */
 }

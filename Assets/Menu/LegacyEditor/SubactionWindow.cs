@@ -16,9 +16,10 @@ public class SubactionWindow : MonoBehaviour, LegacyDataViewer {
     public void RefreshData()
     {
         DynamicAction currentAction = LegacyEditor.editor.selected_action;
-        SubActionGroup currentGroup = LegacyEditor.editor.subaction_group;
         RemoveData();
-        
+        /*
+        SubActionGroup currentGroup = LegacyEditor.editor.subaction_group;
+
         if (currentGroup.subactions.Count > 0)
         {
             foreach (Subaction action_text in currentGroup.subactions)
@@ -27,15 +28,11 @@ public class SubactionWindow : MonoBehaviour, LegacyDataViewer {
             }
             //subaction_rows[0].Select();
         }
+        */
         grid.Reposition(); //FIXME: For some reason, this doesn't actually reposition it in time. It's still stacked on top of each other.
     }
 
     public void SelectedActionChanged(DynamicAction action)
-    {
-        RefreshData();
-    }
-
-    public void SubactionGroupChanged(SubActionGroup group)
     {
         RefreshData();
     }
@@ -69,12 +66,10 @@ public class SubactionWindow : MonoBehaviour, LegacyDataViewer {
     public void OnEnable()
     {
         LegacyEditor.OnSelectedActionChanged += SelectedActionChanged;
-        LegacyEditor.OnSubactionGroupChanged += SubactionGroupChanged;
     }
 
     public void OnDisable()
     {
         LegacyEditor.OnSelectedActionChanged -= SelectedActionChanged;
-        LegacyEditor.OnSubactionGroupChanged -= SubactionGroupChanged;
     }
 }

@@ -82,7 +82,6 @@ public class ActionDataSetter : MonoBehaviour, LegacyDataViewer {
     public void ActionFileChanged(ActionFile actions) {}
     public void CategoryChanged(string category_name) {}
     public void FighterChanged(FighterInfo fighter_info) {}
-    public void SubactionGroupChanged(SubActionGroup group) {}
     public void SubWindowChanged(string sub_window_name) {}
     public void WindowChanged(string window_name) {}
     #endregion

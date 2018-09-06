@@ -17,7 +17,7 @@ public class SubactionCreateHitbox : Subaction {
     {
         string name = "";
         Dictionary<string, string> hbox_dict = new Dictionary<string, string>();
-        foreach (SubactionVarData data in arg_list)
+        foreach (SubactionVarData data in arg_dict.Values)
         {
             if (data.name == "name")
                 name = (string)data.GetData(actor, action);
@@ -33,9 +33,9 @@ public class SubactionCreateHitbox : Subaction {
         }
     }
 
-    public override SubactionCategory getCategory()
+    public override SubactionType getSubactionType()
     {
-        return SubactionCategory.HITBOX;
+        return SubactionType.HITBOX;
     }
 
     public override bool executeInBuilder()
@@ -43,9 +43,11 @@ public class SubactionCreateHitbox : Subaction {
         return true;
     }
 
+    /*
     public override void generateDefaultArguments()
     {
         arg_list.Add(new SubactionVarData("name", "constant", "string", "", false));
         BuildDict();
     }
+    */
 }

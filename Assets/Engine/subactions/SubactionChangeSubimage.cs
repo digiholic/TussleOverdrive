@@ -16,9 +16,9 @@ public class SubactionChangeSubimage : Subaction {
         obj.GetSpriteHandler().ChangeSubimage(subimage);
     }
 
-    public override SubactionCategory getCategory()
+    public override SubactionType getSubactionType()
     {
-        return SubactionCategory.ANIMATION;
+        return SubactionType.ANIMATION;
     }
 
     public override bool executeInBuilder()
@@ -26,9 +26,11 @@ public class SubactionChangeSubimage : Subaction {
         return true;
     }
 
+    /*
     public override void generateDefaultArguments()
     {
         arg_list.Add(new SubactionVarData("subimage", "constant", "int", "", false));
         BuildDict();
     }
+    */
 }
