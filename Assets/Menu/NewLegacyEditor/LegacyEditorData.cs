@@ -87,6 +87,21 @@ public class LegacyEditorData : MonoBehaviour
         }
     }
     #endregion
+    #region Subaction Category - The current selected Subaction Category
+    [SerializeField]
+    private string _subactionCategory;
+    public bool subactionCategoryDirty { get; private set; }
+
+    public string subactionCategory
+    {
+        get { return _subactionCategory; }
+        set
+        {
+            _subactionCategory = value;
+            subactionCategoryDirty = true;
+        }
+    }
+    #endregion
     #region Current Frame - the frame that is currently being shown in the viewer and right pane
     [SerializeField]
     private int _currentFrame;

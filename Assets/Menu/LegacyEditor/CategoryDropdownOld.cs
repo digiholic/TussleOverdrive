@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CategoryDropdown : MonoBehaviour {
+public class CategoryDropdownOld : MonoBehaviour {
     public UIPopupList popup;
     public UILabel display_text;
 

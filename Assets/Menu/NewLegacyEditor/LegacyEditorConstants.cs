@@ -14,7 +14,7 @@ public class LegacyEditorConstants {
     public static Dictionary<string, string[]> RightDropdownOptionsDict = new Dictionary<string, string[]>
     {
         { "Fighter",    new string[] { "Attributes", "Variables", "Palettes"} },
-        { "Actions",    new string[] { "Properties", "SetUp", "TearDown", "Frame" } },
+        { "Actions",    new string[] { "Properties", "Subactions", "Hitboxes", "Hurtboxes" } },
         { "Methods",    new string[] { "" } },
         { "Sprites",    new string[] { "Cropping", "Anchors" } },
         { "Animations", new string[] { "Frame" } }
