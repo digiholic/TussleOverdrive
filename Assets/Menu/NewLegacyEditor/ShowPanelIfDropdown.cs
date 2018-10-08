@@ -53,7 +53,6 @@ public class ShowPanelIfDropdown : MonoBehaviour {
         //If both conditionals are true
         if (leftVal && rightVal)
         {
-            if (debug) Debug.Log("UNBANISHING THIS PANEL: " + gameObject.name);
             LegacyEditorData.Unbanish(gameObject);
         } else
         {

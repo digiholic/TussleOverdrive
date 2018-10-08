@@ -1,0 +1,6 @@
+This asset is governed by the Asset Store EULA.
+
+Please refer to:
+https://unity3d.com/legal/as_terms
+
+For open-source/free components licenses, please refer to Third-Party Notices.txt

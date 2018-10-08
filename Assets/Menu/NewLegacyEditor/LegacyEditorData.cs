@@ -8,6 +8,7 @@ using UnityEngine;
 public class LegacyEditorData : MonoBehaviour
 {
     public static LegacyEditorData instance;
+    public static ContextualPanelData contextualPanel;
 
     public PanelHider ShadowRealm;
     public string FighterDirName;
@@ -117,18 +118,18 @@ public class LegacyEditorData : MonoBehaviour
         }
     }
     #endregion
-    #region Current Selected - the builder object that is currently selected for editing
+    #region Current Subaction - the subaction that is currently selected for editing
     [SerializeField]
-    private BuilderSelectable _currentSelected;
-    public bool currentSelectedDirty { get; private set; }
+    private SubactionData _currentSubaction;
+    public bool currentSubactionDirty { get; private set; }
 
-    public BuilderSelectable currentSelected
+    public SubactionData currentSubaction
     {
-        get { return _currentSelected; }
-        private set
+        get { return _currentSubaction; }
+        set
         {
-            _currentSelected = value;
-            currentSelectedDirty = true;
+            _currentSubaction = value;
+            currentSubactionDirty = true;
         }
     }
     #endregion
@@ -175,7 +176,7 @@ public class LegacyEditorData : MonoBehaviour
         leftDropdownDirty = true;
         rightDropdownDirty = true;
         currentFrameDirty = true;
-        currentSelectedDirty = true;
+        currentSubactionDirty = true;
         FireModelChange();
     }
 
@@ -197,7 +198,7 @@ public class LegacyEditorData : MonoBehaviour
         leftDropdownDirty = false;
         rightDropdownDirty = false;
         currentFrameDirty = false;
-        currentSelectedDirty = false;
+        currentSubactionDirty = false;
     }
 
     private Stack<LegacyEditorAction> undoList = new Stack<LegacyEditorAction>();

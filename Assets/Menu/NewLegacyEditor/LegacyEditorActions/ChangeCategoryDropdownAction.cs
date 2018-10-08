@@ -5,6 +5,7 @@ using UnityEngine;
 public class ChangeCategoryDropdownAction : LegacyEditorAction
 {
     private string previousSelection = null;
+    private SubactionData previousSubaction = null;
     public string nextSelection;
 
     public void init(string selection)
@@ -15,11 +16,14 @@ public class ChangeCategoryDropdownAction : LegacyEditorAction
     public override void execute()
     {
         previousSelection = LegacyEditorData.instance.subactionCategory;
+        previousSubaction = LegacyEditorData.instance.currentSubaction;
         LegacyEditorData.instance.subactionCategory = nextSelection;
+        LegacyEditorData.instance.currentSubaction = null;
     }
 
     public override void undo()
     {
         LegacyEditorData.instance.subactionCategory = previousSelection;
+        LegacyEditorData.instance.currentSubaction = previousSubaction;
     }
 }

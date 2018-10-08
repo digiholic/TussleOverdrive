@@ -6,4 +6,9 @@ using UnityEngine;
 public class SubactionData : ScriptableObject {
     public string SubactionName;
     public SerializableDictionary<string, SubactionVarData> arguments;
+
+    public override string ToString()
+    {
+        return SubactionName;
+    }
 }

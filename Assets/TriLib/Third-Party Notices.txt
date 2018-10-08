@@ -1,0 +1,26 @@
+﻿This asset is governed by the Asset Store EULA; however, the following components are governed by the licenses indicated below:
+
+A. Assimp
+3-Clause BSD License
+Copyright (c) 2006-2015 assimp team. All rights reserved.
+For details, please refer to LICENSE_Assimp.txt
+
+B. STB Image Library.
+MIT License (MIT)
+Copyright (c) 2017, Sean Barrett
+For details, please refer to LICENSE_stb_image.txt
+
+C. Unity Toolbag
+MIT License (MIT)
+Copyright (c) 2017, Nick Gravelyn.
+For details, please refer to LICENSE_UnityToolbag.txt
+
+D. SharpZipLib
+MIT License (MIT)
+﻿Copyright (c) 2000-2016 SharpZipLib Contributors
+For details, please refer to LICENSE_SharpZipLib.txt
+
+E. Roboto Font
+Apache License
+﻿Copyright (c) 2012 Google.
+For details, please refer to LICENSE_Roboto.txt
