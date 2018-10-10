@@ -13,4 +13,10 @@ public abstract class ContextualPanelData : MonoBehaviour {
     /// </summary>
     public abstract void FireContextualPanelChange();
 
+    public static bool isOfType(System.Type panelType)
+    {
+        ContextualPanelData data = LegacyEditorData.contextualPanel;
+        if (data == null) return false;
+        return (data.GetType() == panelType);
+    }
 }
