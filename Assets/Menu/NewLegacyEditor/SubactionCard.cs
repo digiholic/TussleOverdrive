@@ -16,7 +16,7 @@ public class SubactionCard : MonoBehaviour {
 	void Start () {
         SubactionData sub = ScriptableObject.CreateInstance<SubactionData>();
         sub.SubactionName = gameObject.name;
-        sub.arguments = new SerializableDictionary<string, SubactionVarData>();
+        sub.arguments = new SubVarDict();
         sub.arguments.Add("Argument 1", new SubactionVarData("Argument 1", "Fighter", "String", "Foo", true));
         SetSubaction(sub);
 	}
