@@ -51,7 +51,7 @@ public class SubactionIfVar : Subaction {
             if (cond == ">=") value = (var1data >= var2data);
         }
 
-        if (var1.type == "bool" && var2.type == "bool")
+        if (var1.type == SubactionVarType.BOOL && var2.type == SubactionVarType.BOOL)
         {
             bool var1data = (bool)var1.GetData(obj, action);
             bool var2data = (bool)var2.GetData(obj, action);

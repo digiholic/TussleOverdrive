@@ -5,7 +5,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName="SubactionData",menuName="Subactions")]
 public class SubactionData : ScriptableObject {
     public string SubactionName;
+    public SubactionType subType;
     public SubVarDict arguments;
+
+    [TextArea]
+    public string Description;
 
     public override string ToString()
     {

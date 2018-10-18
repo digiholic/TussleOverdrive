@@ -40,8 +40,8 @@ public class ArgumentDataRow : MonoBehaviour {
         }
 
         argname.text = data.name;
-        vartype.selection = data.type;
-        source.selection = data.source;
+        vartype.selection = data.TypeAsString();
+        source.selection = data.SourceAsString();
         value.text = data.data;
     }
 
@@ -53,13 +53,13 @@ public class ArgumentDataRow : MonoBehaviour {
 
     public void UpdateArgType(string type)
     {
-        data.type = type;
+        data.SetTypeString(type);
         UpdateArgument(data);
     }
 
     public void UpdateArgSource(string src)
     {
-        data.source = src;
+        data.SetSourceString(src);
         UpdateArgument(data);
     }
 
