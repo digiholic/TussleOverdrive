@@ -21,4 +21,16 @@ public class SubactionData : ScriptableObject {
 /// This derivation is necessary for the Serializable Dictionary to drawn in inspector
 /// </summary>
 [System.Serializable]
-public class SubVarDict : SerializableDictionary<string, SubactionVarData>{ }
+public class SubVarDict : SerializableDictionary<string, SubactionVarData>{
+
+    public List<SubactionVarData> GetItems()
+    {
+        //Since this.Values is a weird list type that I can't work with, we have to do this stupid thing
+        List<SubactionVarData> retData = new List<SubactionVarData>();
+        foreach(KeyValuePair<string,SubactionVarData> data in this)
+        {
+            retData.Add(data.Value);
+        }
+        return retData;
+    }
+}
