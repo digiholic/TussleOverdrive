@@ -15,6 +15,12 @@ public class SubactionData : ScriptableObject {
     {
         return SubactionName;
     }
+
+    [ExecuteInEditMode]
+    void OnValidate()
+    {
+        SubactionDataDocumentationCreator.generateHtml();
+    }
 }
 
 /// <summary>
