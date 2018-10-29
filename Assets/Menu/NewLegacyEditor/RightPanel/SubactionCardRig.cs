@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIActionGrid : MonoBehaviour {
+public class SubactionCardRig : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

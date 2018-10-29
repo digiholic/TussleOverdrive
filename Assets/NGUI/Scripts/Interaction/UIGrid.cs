@@ -23,7 +23,7 @@ public class UIGrid : MonoBehaviour
 
 	public Arrangement arrangement = Arrangement.Horizontal;
 	public int maxPerLine = 0;
-	public float cellWidth = 200f;
+    public float cellWidth = 200f;
 	public float cellHeight = 200f;
 	public bool repositionNow = false;
 	public bool sorted = false;
@@ -31,7 +31,7 @@ public class UIGrid : MonoBehaviour
 
 	bool mStarted = false;
 
-	void Start ()
+	protected void Start ()
 	{
 		mStarted = true;
 		Reposition();
@@ -54,7 +54,7 @@ public class UIGrid : MonoBehaviour
 
 	public void Reposition ()
 	{
-		if (!mStarted)
+        if (!mStarted)
 		{
 			repositionNow = true;
 			return;
