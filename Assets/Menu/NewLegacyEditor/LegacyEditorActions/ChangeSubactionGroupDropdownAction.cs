@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChangeCategoryDropdownAction : LegacyEditorAction
+public class ChangeSubactionGroupDropdownAction : LegacyEditorAction
 {
     private string previousSelection = null;
     private SubactionData previousSubaction = null;
@@ -15,15 +15,15 @@ public class ChangeCategoryDropdownAction : LegacyEditorAction
 
     public override void execute()
     {
-        previousSelection = LegacyEditorData.instance.subactionCategory;
+        previousSelection = LegacyEditorData.instance.subactionGroup;
         previousSubaction = LegacyEditorData.instance.currentSubaction;
-        LegacyEditorData.instance.subactionCategory = nextSelection;
+        LegacyEditorData.instance.subactionGroup = nextSelection;
         LegacyEditorData.instance.currentSubaction = null;
     }
 
     public override void undo()
     {
-        LegacyEditorData.instance.subactionCategory = previousSelection;
+        LegacyEditorData.instance.subactionGroup = previousSelection;
         LegacyEditorData.instance.currentSubaction = previousSubaction;
     }
 }

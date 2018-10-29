@@ -10,11 +10,7 @@ public class SubactionData : ScriptableObject {
 
     [TextArea]
     public string Description;
-
-    public override string ToString()
-    {
-        return SubactionName;
-    }
+    
 
     [ExecuteInEditMode]
     void OnValidate()

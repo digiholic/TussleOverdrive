@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CategoryDropdown : MonoBehaviour
+public class GroupDropdown : MonoBehaviour
 {
     private UIPopupList list;
     private Collider coll;
 
-    private string[] categoryOptions;
+    private string[] groupOptions;
 
     // Use this for initialization
     void Awake()
@@ -18,14 +18,14 @@ public class CategoryDropdown : MonoBehaviour
 
     void Start()
     {
-        categoryOptions = SubactionCategory.CATEGORY_NAMES;
+        groupOptions = SubactionGroup.CATEGORY_NAMES;
         UpdateListItems();
     }
 
     void UpdateListItems()
     {
         list.items.Clear();
-        foreach (string opt in categoryOptions)
+        foreach (string opt in groupOptions)
         {
             list.items.Add(opt);
         }
@@ -44,7 +44,7 @@ public class CategoryDropdown : MonoBehaviour
 
     void OnModelChanged()
     {
-        if (LegacyEditorData.instance.subactionCategoryDirty)
+        if (LegacyEditorData.instance.subactionGroupDirty)
         {
             UpdateOptionWithoutEvent();
         }
@@ -54,14 +54,14 @@ public class CategoryDropdown : MonoBehaviour
     public void UpdateOptionWithoutEvent()
     {
         list.eventReceiver = null;
-        list.selection = LegacyEditorData.instance.subactionCategory;
+        list.selection = LegacyEditorData.instance.subactionGroup;
         list.eventReceiver = gameObject;
     }
 
     void OnChangeDropdown(string selected)
     {
         //Create a message object to have the model execute
-        ChangeCategoryDropdownAction act = ScriptableObject.CreateInstance<ChangeCategoryDropdownAction>();
+        ChangeSubactionGroupDropdownAction act = ScriptableObject.CreateInstance<ChangeSubactionGroupDropdownAction>();
         act.init(selected);
         LegacyEditorData.instance.DoAction(act);
     }

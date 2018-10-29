@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SubactionCategory {
+public class SubactionGroup {
     public static string SETUP = "set_up";
     public static string TEARDOWN = "tear_down";
     public static string STATETRANSITION = "state_transitions";

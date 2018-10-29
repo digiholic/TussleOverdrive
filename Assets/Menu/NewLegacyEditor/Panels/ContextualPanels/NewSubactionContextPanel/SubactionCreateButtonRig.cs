@@ -26,7 +26,6 @@ public class SubactionCreateButtonRig : MonoBehaviour {
 
             subactionsByCategory[sub.subType].Add(sub);
         }
-        Debug.Log(subactionsByCategory);
 
         //Find a way to get this width
         //grid.maxPerLine = (int)(GetComponent<UIWidget>().width / cellWidth);

@@ -88,18 +88,18 @@ public class LegacyEditorData : MonoBehaviour
         }
     }
     #endregion
-    #region Subaction Category - The current selected Subaction Category
+    #region Subaction Group - The current selected Subaction Group
     [SerializeField]
-    private string _subactionCategory;
-    public bool subactionCategoryDirty { get; private set; }
+    private string _subactionGroup;
+    public bool subactionGroupDirty { get; private set; }
 
-    public string subactionCategory
+    public string subactionGroup
     {
-        get { return _subactionCategory; }
+        get { return _subactionGroup; }
         set
         {
-            _subactionCategory = value;
-            subactionCategoryDirty = true;
+            _subactionGroup = value;
+            subactionGroupDirty = true;
         }
     }
     #endregion

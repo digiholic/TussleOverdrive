@@ -14,11 +14,7 @@ public class SubactionCard : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        SubactionData sub = ScriptableObject.CreateInstance<SubactionData>();
-        sub.SubactionName = gameObject.name;
-        sub.arguments = new SubVarDict();
-        sub.arguments.Add("Argument 1", new SubactionVarData("Argument 1", SubactionSource.OWNER, SubactionVarType.STRING, "Foo", true));
-        SetSubaction(sub);
+
 	}
 	
     void OnModelChanged()

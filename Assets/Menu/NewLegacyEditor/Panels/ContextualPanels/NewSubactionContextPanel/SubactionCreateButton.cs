@@ -16,8 +16,8 @@ public class SubactionCreateButton : MonoBehaviour {
     {
         subData = subDataToSet;
         label.text = subData.SubactionName;
-        //CreateNewSubaction legacyAction = ScriptableObject.CreateInstance<CreateNewSubaction>();
-        //legacyAction.init(subDataToSet);
-        //GetComponent<OnClickSendAction>().action = legacyAction;
+        CreateNewSubaction legacyAction = ScriptableObject.CreateInstance<CreateNewSubaction>();
+        legacyAction.init(subDataToSet);
+        GetComponent<OnClickSendAction>().action = legacyAction;
     }
 }

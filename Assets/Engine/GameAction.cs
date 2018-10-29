@@ -56,7 +56,7 @@ public class GameAction {
         actor = obj;
         actor.BroadcastMessage("ChangeSprite",sprite_name);
         game_controller = BattleController.current_battle;
-        foreach (Subaction subaction in subactionCategories[SubactionCategory.SETUP])
+        foreach (Subaction subaction in subactionCategories[SubactionGroup.SETUP])
             CheckCondAndExecute(subaction);
     }
 
@@ -70,7 +70,7 @@ public class GameAction {
             actor.GetSpriteHandler().ChangeSubimage(sprite_number, loop);
         }
 
-        foreach (Subaction subaction in subactionCategories[SubactionCategory.ONFRAME(current_frame)])
+        foreach (Subaction subaction in subactionCategories[SubactionGroup.ONFRAME(current_frame)])
             CheckCondAndExecute(subaction);
         if (current_frame >= last_frame)
             if (exit_action != null && exit_action != "")
@@ -99,13 +99,13 @@ public class GameAction {
             hbox.Deactivate();
             GameObject.Destroy(hbox.gameObject);
         }
-        foreach (Subaction subaction in subactionCategories[SubactionCategory.TEARDOWN])
+        foreach (Subaction subaction in subactionCategories[SubactionGroup.TEARDOWN])
             CheckCondAndExecute(subaction);
     }
 
     public virtual void stateTransitions()
     {
-        foreach (Subaction subaction in subactionCategories[SubactionCategory.STATETRANSITION])
+        foreach (Subaction subaction in subactionCategories[SubactionGroup.STATETRANSITION])
             CheckCondAndExecute(subaction);
     }
     
