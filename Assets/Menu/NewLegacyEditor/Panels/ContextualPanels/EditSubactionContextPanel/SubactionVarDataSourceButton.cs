@@ -27,6 +27,8 @@ public class SubactionVarDataSourceButton : MonoBehaviour {
         index += 1;
         if (index == sources.Length) index = 0;
         //Generate action to do this later
-        panel.varData.source = sources[index];
+        ChangeSubactionVarDataSource legacyAction = ScriptableObject.CreateInstance<ChangeSubactionVarDataSource>();
+        legacyAction.init(panel.varData, sources[index]);
+        LegacyEditorData.instance.DoAction(legacyAction);
     }
 }

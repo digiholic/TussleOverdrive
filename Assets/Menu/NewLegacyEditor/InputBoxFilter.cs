@@ -10,11 +10,11 @@ public class InputBoxFilter : MonoBehaviour {
     public enum FilterType
     {
         DECIMAL,
-        INT
+        INT,
+        NONE
     }
 
-    [SerializeField]
-    private FilterType filterType;
+    public FilterType filterType;
     public string filterText(string str)
     {
         string retStr = "";
@@ -22,7 +22,7 @@ public class InputBoxFilter : MonoBehaviour {
         if (filterType == FilterType.INT) decimalAllowed = false; //If it's gotta be an INT, then no decimals allowed
         if (filterType == FilterType.DECIMAL || filterType == FilterType.INT)
         {
-            for (int i=0; i < str.Length; i++)
+            for (int i = 0; i < str.Length; i++)
             {
                 //All digits are OK in my book
                 if (char.IsDigit(str[i]))
@@ -37,6 +37,7 @@ public class InputBoxFilter : MonoBehaviour {
                 }
             }
         }
+        else if (filterType == FilterType.NONE) retStr = str;
         return retStr;
     }
 }
