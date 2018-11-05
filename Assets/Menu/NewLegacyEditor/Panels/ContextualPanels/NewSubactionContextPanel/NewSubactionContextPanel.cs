@@ -43,7 +43,7 @@ public class NewSubactionContextPanel : ContextualPanelData
             LegacyEditorData.contextualPanel = this;
         } else {
             LegacyEditorData.Banish(gameObject);
-            LegacyEditorData.contextualPanel = null;
+            //LegacyEditorData.contextualPanel = null;
         }
     }
 
