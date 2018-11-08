@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SubactionVarDataRig : MonoBehaviour {
     public GameObject varDataCardPrefab;
+    public GameObject deleteButtonPrefab;
 
     private List<GameObject> children = new List<GameObject>();
     private UIGrid grid;
@@ -39,6 +40,8 @@ public class SubactionVarDataRig : MonoBehaviour {
                 }
             }
 
+            InstantiateDeleteButton();
+
             grid.Reposition();
             dragPanel.ResetPosition();
         }
@@ -49,6 +52,12 @@ public class SubactionVarDataRig : MonoBehaviour {
         GameObject go = NGUITools.AddChild(gameObject, varDataCardPrefab);
         SubactionVarDataPanel panel = go.GetComponent<SubactionVarDataPanel>();
         panel.varData = varData;
+        children.Add(go);
+    }
+
+    void InstantiateDeleteButton()
+    {
+        GameObject go = NGUITools.AddChild(gameObject, deleteButtonPrefab);
         children.Add(go);
     }
 }

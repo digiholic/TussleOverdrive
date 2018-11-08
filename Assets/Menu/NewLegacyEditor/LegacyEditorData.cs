@@ -255,7 +255,6 @@ public class LegacyEditorData : MonoBehaviour
                 Redo();
             }
         }
-
     }
 
     #region static helper methods
@@ -309,6 +308,17 @@ public class LegacyEditorData : MonoBehaviour
     }
 
     /// <summary>
+    /// This is a quick helper method that notifies the model that the Subaction has changed. It fires the reload method that will cause the view to update.
+    /// Since the actions that modify the data directly access the Subaction's fields, it bypasses the setter that would normally do this. MAKE SURE TO CALL THIS WHENEVER THE SUBACTION CHANGES
+    /// </summary>
+    public static void ChangedSubaction()
+    {
+        instance.currentSubactionDirty = true;
+        instance.subactionGroupDirty = true;
+        instance.FireModelChange();
+    }
+
+    /// <summary>
     /// Returns true if the current action is a new action that is not currently in the ActionFile.
     /// If the action is in the ActionFile, it will return false.
     /// </summary>
@@ -319,6 +329,5 @@ public class LegacyEditorData : MonoBehaviour
         ActionFile actionFile = instance.loadedActionFile;
         return !actionFile.actions.Contains(action);
     }
-
     #endregion
 }

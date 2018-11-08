@@ -17,11 +17,12 @@ public class CreateNewSubaction : LegacyEditorAction {
     {
         actionToAddTo = LegacyEditorData.instance.currentAction;
         groupToAddTo = LegacyEditorData.instance.subactionGroup;
-
+        Debug.Log(actionToAddTo);
+        Debug.Log(groupToAddTo);
         //Since we don't want to add THIS subactionData, but a copy of it, we reinstance the scriptable object
         subDataToAdd = Instantiate(subDataMaster) as SubactionData;
         actionToAddTo.subactionCategories.GetIfKeyExists(groupToAddTo).Add(subDataToAdd);
-
+        Debug.Log(actionToAddTo.subactionCategories);
         LegacyEditorData.ChangedActionData();
     }
 
