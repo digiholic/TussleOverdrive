@@ -10,7 +10,7 @@ public class SubactionCard : MonoBehaviour {
     [SerializeField]
     private UILabel label;
 
-    public SubactionData subaction;
+    public SubactionData subaction = null;
 
 	// Use this for initialization
 	void Start () {

@@ -106,8 +106,6 @@ public class ActionFile
     {
         string thisjson = JsonUtility.ToJson(this, true);
         File.WriteAllText(path, thisjson);
-        Debug.Log(path);
-        Debug.Log(thisjson);
     }
 
     public static ActionFile LoadActionsFromFile(string directory, string filename = "fighter_actions.json")

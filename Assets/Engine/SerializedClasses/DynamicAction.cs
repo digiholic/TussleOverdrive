@@ -49,7 +49,7 @@ public class DynamicAction
 /// This derivation is necessary for the Serializable Dictionary to drawn in inspector
 /// </summary>
 [System.Serializable]
-public class SubGroupDict : SerializableDictionary<string, List<SubactionData>> {
+public class SubGroupDict : SerializableDictionary<string, List<SubactionData>, SubactionDataListStorage> {
 
     /// <summary>
     /// If the key is in the dict, get the list it points to. Create an empty list otherwise.
@@ -71,3 +71,6 @@ public class SubGroupDict : SerializableDictionary<string, List<SubactionData>> 
 
     }
 }
+
+[System.Serializable]
+public class SubactionDataListStorage : SerializableDictionary.Storage<List<SubactionData>> { }

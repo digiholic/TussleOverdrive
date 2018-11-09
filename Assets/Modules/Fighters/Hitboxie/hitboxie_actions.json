@@ -7,17 +7,44 @@
             "sprite_rate": 0,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [
+                    "Set Up"
+                ],
+                "m_values": [
+                    {
+                        "data": [
+                            {
+                                "SubactionName": "ChangeFrame",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [
+                                        "frameNumber",
+                                        "relative"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "frameNumber",
+                                            "source": 0,
+                                            "type": 2,
+                                            "data": "3",
+                                            "description": "The Frame number to change to, or the amount to modify the current frame by.\t"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "relative",
+                                            "source": 0,
+                                            "type": 1,
+                                            "data": "false",
+                                            "description": "If true, will modify the current frame instead of setting directly."
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                ]
             }
         },
         {
@@ -27,17 +54,9 @@
             "sprite_rate": 3,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -47,17 +66,9 @@
             "sprite_rate": 6,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -67,17 +78,9 @@
             "sprite_rate": 1,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -87,17 +90,9 @@
             "sprite_rate": -3,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -107,17 +102,9 @@
             "sprite_rate": 0,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -127,17 +114,9 @@
             "sprite_rate": 1,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -147,17 +126,9 @@
             "sprite_rate": 2,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -167,17 +138,9 @@
             "sprite_rate": 0,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -187,17 +150,9 @@
             "sprite_rate": 3,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -207,17 +162,9 @@
             "sprite_rate": 3,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -227,17 +174,9 @@
             "sprite_rate": -2,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -247,17 +186,9 @@
             "sprite_rate": 3,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -267,17 +198,9 @@
             "sprite_rate": 2,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -287,17 +210,9 @@
             "sprite_rate": -2,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -307,17 +222,9 @@
             "sprite_rate": -4,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -327,17 +234,9 @@
             "sprite_rate": 0,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -347,17 +246,9 @@
             "sprite_rate": -4,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -367,17 +258,9 @@
             "sprite_rate": 0,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -387,17 +270,9 @@
             "sprite_rate": 0,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -407,17 +282,9 @@
             "sprite_rate": 0,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -427,17 +294,9 @@
             "sprite_rate": 0,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -447,17 +306,9 @@
             "sprite_rate": 1,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -467,17 +318,9 @@
             "sprite_rate": 0,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -487,17 +330,9 @@
             "sprite_rate": 0,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -507,17 +342,9 @@
             "sprite_rate": 1,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -527,17 +354,9 @@
             "sprite_rate": 0,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -547,17 +366,9 @@
             "sprite_rate": 0,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -567,17 +378,9 @@
             "sprite_rate": 1,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -587,17 +390,9 @@
             "sprite_rate": 1,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -607,17 +402,9 @@
             "sprite_rate": 2,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -627,17 +414,9 @@
             "sprite_rate": 2,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -647,17 +426,9 @@
             "sprite_rate": 0,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -667,17 +438,9 @@
             "sprite_rate": 0,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -687,17 +450,9 @@
             "sprite_rate": 0,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -707,17 +462,9 @@
             "sprite_rate": 0,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -727,17 +474,9 @@
             "sprite_rate": 0,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -747,17 +486,9 @@
             "sprite_rate": -2,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -767,17 +498,9 @@
             "sprite_rate": 0,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -787,17 +510,9 @@
             "sprite_rate": 1,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -807,17 +522,9 @@
             "sprite_rate": 1,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -827,17 +534,9 @@
             "sprite_rate": 1,
             "loop": true,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -847,17 +546,9 @@
             "sprite_rate": 1,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -867,17 +558,9 @@
             "sprite_rate": 2,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -887,17 +570,9 @@
             "sprite_rate": 2,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -907,17 +582,9 @@
             "sprite_rate": 4,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -927,17 +594,9 @@
             "sprite_rate": 2,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -947,17 +606,9 @@
             "sprite_rate": 2,
             "loop": true,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -967,17 +618,9 @@
             "sprite_rate": 2,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -987,17 +630,9 @@
             "sprite_rate": 1,
             "loop": true,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -1007,17 +642,9 @@
             "sprite_rate": 1,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -1027,17 +654,9 @@
             "sprite_rate": 2,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -1047,17 +666,9 @@
             "sprite_rate": 3,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -1067,17 +678,9 @@
             "sprite_rate": 3,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -1087,17 +690,9 @@
             "sprite_rate": 2,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -1107,17 +702,9 @@
             "sprite_rate": 2,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -1127,17 +714,9 @@
             "sprite_rate": 2,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -1147,17 +726,9 @@
             "sprite_rate": 0,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -1167,17 +738,9 @@
             "sprite_rate": 2,
             "loop": true,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -1187,17 +750,9 @@
             "sprite_rate": 2,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -1207,17 +762,9 @@
             "sprite_rate": 1,
             "loop": true,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -1227,17 +774,9 @@
             "sprite_rate": -2,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -1247,17 +786,9 @@
             "sprite_rate": 2,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -1267,17 +798,9 @@
             "sprite_rate": 0,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -1287,17 +810,9 @@
             "sprite_rate": 2,
             "loop": true,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -1307,17 +822,9 @@
             "sprite_rate": 2,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -1327,17 +834,9 @@
             "sprite_rate": 1,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -1347,17 +846,9 @@
             "sprite_rate": 3,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         },
         {
@@ -1367,21 +858,12 @@
             "sprite_rate": 1,
             "loop": false,
             "exit_action": "",
-            "set_up_subactions": {
-                "subactions": []
-            },
-            "state_transition_subactions": {
-                "subactions": []
-            },
-            "subactions_on_frame": {
-                "subactions": []
-            },
-            "tear_down_subactions": {
-                "subactions": []
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
             }
         }
     ],
-    "JSONFile": {
-        "instanceID": 22166
-    }
+    "fighterDirectory": "",
+    "actionFileName": ""
 }

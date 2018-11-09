@@ -5,14 +5,14 @@ using UnityEngine;
 public class SubactionCreateButton : MonoBehaviour {
     private UILabel label;
 
-    public SubactionData subData;
+    public SubactionDataDefault subData;
 
     private void OnEnable()
     {
         label = GetComponentInChildren<UILabel>();
     }
 
-    public void SetAction(SubactionData subDataToSet)
+    public void SetAction(SubactionDataDefault subDataToSet)
     {
         subData = subDataToSet;
         label.text = subData.SubactionName;

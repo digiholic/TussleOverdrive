@@ -15,7 +15,6 @@ public class SubactionCardRig : MonoBehaviour {
 
     void OnModelChanged()
     {
-        
         if (LegacyEditorData.instance.currentActionDirty || LegacyEditorData.instance.subactionGroupDirty)
         {
             //Get rid of our old list

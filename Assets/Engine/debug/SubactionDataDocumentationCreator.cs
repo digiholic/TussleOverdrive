@@ -7,24 +7,24 @@ public class SubactionDataDocumentationCreator : MonoBehaviour {
     
     public static void generateHtml()
     {
-        Dictionary<SubactionType, List<SubactionData>> subactionsByCategory = new Dictionary<SubactionType, List<SubactionData>>();
+        Dictionary<SubactionType, List<SubactionDataDefault>> subactionsByCategory = new Dictionary<SubactionType, List<SubactionDataDefault>>();
         string htmlString = "";
 
-        SubactionData[] data = Resources.LoadAll<SubactionData>("SubactionData");
-        foreach (SubactionData sub in data)
+        SubactionDataDefault[] data = Resources.LoadAll<SubactionDataDefault>("SubactionData");
+        foreach (SubactionDataDefault sub in data)
         {
             if (!subactionsByCategory.ContainsKey(sub.subType))
-                subactionsByCategory[sub.subType] = new List<SubactionData>();
+                subactionsByCategory[sub.subType] = new List<SubactionDataDefault>();
 
             subactionsByCategory[sub.subType].Add(sub);
         }
 
         
         htmlString += "<html>";
-        foreach(KeyValuePair<SubactionType,List<SubactionData>> subKey in subactionsByCategory){
+        foreach(KeyValuePair<SubactionType,List<SubactionDataDefault>> subKey in subactionsByCategory){
             htmlString += "<h1>" + subKey.Key + "</h1>";
             htmlString += "<ul>";
-            foreach(SubactionData subData in subKey.Value)
+            foreach(SubactionDataDefault subData in subKey.Value)
             {
                 htmlString += "<li>";
                 htmlString += "<b>"+subData.SubactionName+"</b> - ";

@@ -119,8 +119,7 @@ public class LegacyEditorData : MonoBehaviour
     }
     #endregion
     #region Current Subaction - the subaction that is currently selected for editing
-    [SerializeField]
-    private SubactionData _currentSubaction;
+    private SubactionData _currentSubaction = null;
     public bool currentSubactionDirty { get; private set; }
 
     public SubactionData currentSubaction
@@ -171,6 +170,7 @@ public class LegacyEditorData : MonoBehaviour
     {
         loadedFighter.LoadDirectory(FighterDirName);
         loadedFighterDirty = true;
+        loadedActionFile = ActionFile.LoadActionsFromFile(FighterDirName, "hitboxie_actions.json");
         loadedActionFileDirty = true;
         currentActionDirty = true;
         leftDropdownDirty = true;

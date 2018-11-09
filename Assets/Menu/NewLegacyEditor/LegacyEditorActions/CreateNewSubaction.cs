@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CreateNewSubaction : LegacyEditorAction {
+    private SubactionDataDefault subDataMaster;
     private SubactionData subDataToAdd;
-    private SubactionData subDataMaster;
     private DynamicAction actionToAddTo;
     private string groupToAddTo;
 
-	public void init(SubactionData subData) {
+	public void init(SubactionDataDefault subData) {
         subDataMaster = subData;
         
     }
@@ -20,7 +20,8 @@ public class CreateNewSubaction : LegacyEditorAction {
         Debug.Log(actionToAddTo);
         Debug.Log(groupToAddTo);
         //Since we don't want to add THIS subactionData, but a copy of it, we reinstance the scriptable object
-        subDataToAdd = Instantiate(subDataMaster) as SubactionData;
+        //subDataToAdd = Instantiate(subDataMaster) as SubactionData;
+        subDataToAdd = subDataMaster.CreateSubactionData();
         actionToAddTo.subactionCategories.GetIfKeyExists(groupToAddTo).Add(subDataToAdd);
         Debug.Log(actionToAddTo.subactionCategories);
         LegacyEditorData.ChangedActionData();

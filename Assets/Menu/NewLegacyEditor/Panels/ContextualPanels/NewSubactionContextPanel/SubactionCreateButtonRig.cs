@@ -5,7 +5,7 @@ using UnityEngine;
 public class SubactionCreateButtonRig : MonoBehaviour {
     public GameObject subactionButtonPrefab;
 
-    private Dictionary<SubactionType, List<SubactionData>> subactionsByCategory = new Dictionary<SubactionType, List<SubactionData>>();
+    private Dictionary<SubactionType, List<SubactionDataDefault>> subactionsByCategory = new Dictionary<SubactionType, List<SubactionDataDefault>>();
     private List<GameObject> children = new List<GameObject>();
     private UIGrid grid;
     public UIDraggablePanel dragPanel;
@@ -18,11 +18,11 @@ public class SubactionCreateButtonRig : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        SubactionData[] data = Resources.LoadAll<SubactionData>("SubactionData");
-        foreach (SubactionData sub in data)
+        SubactionDataDefault[] data = Resources.LoadAll<SubactionDataDefault>("SubactionData");
+        foreach (SubactionDataDefault sub in data)
         {
             if (!subactionsByCategory.ContainsKey(sub.subType))
-                subactionsByCategory[sub.subType] = new List<SubactionData>();
+                subactionsByCategory[sub.subType] = new List<SubactionDataDefault>();
 
             subactionsByCategory[sub.subType].Add(sub);
         }
@@ -46,7 +46,7 @@ public class SubactionCreateButtonRig : MonoBehaviour {
                 }
                 children.Clear();
                 
-                foreach(SubactionData subData in subactionsByCategory[panel.selectedType])
+                foreach(SubactionDataDefault subData in subactionsByCategory[panel.selectedType])
                 {
                     instantiateSubactionButton(subData);
                 }
@@ -58,7 +58,7 @@ public class SubactionCreateButtonRig : MonoBehaviour {
         }
     }
 
-    void instantiateSubactionButton(SubactionData subData)
+    void instantiateSubactionButton(SubactionDataDefault subData)
     {
         GameObject go = NGUITools.AddChild(gameObject, subactionButtonPrefab);
         SubactionCreateButton button = go.GetComponent<SubactionCreateButton>();
