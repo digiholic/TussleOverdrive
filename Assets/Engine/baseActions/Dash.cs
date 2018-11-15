@@ -18,6 +18,8 @@ public class Dash : GameAction {
     public override void TearDown(GameAction new_action)
     {
         base.TearDown(new_action);
+        //These classes will be phased out as time goes on. Until then, we need to just exit early if we're in the builder since these don't actually use Subactions
+        if (isInBuilder) return;
         if (new_action.HasVar("direction"))
         {
             new_action.SetVar("direction", GetIntVar("direction") * actor.GetIntVar("direction"));
@@ -36,6 +38,8 @@ public class Dash : GameAction {
     public override void Update()
     {
         base.Update();
+        //These classes will be phased out as time goes on. Until then, we need to just exit early if we're in the builder since these don't actually use Subactions
+        if (isInBuilder) return;
         if (current_frame == 0)
             actor.BroadcastMessage("ChangeXPreferred", actor.GetFloatVar(TussleConstants.FighterAttributes.RUN_SPEED) * actor.GetIntVar("facing"));
         StateTransitions.CheckGround(actor.GetAbstractFighter());
@@ -53,6 +57,8 @@ public class Dash : GameAction {
     public override void stateTransitions()
     {
         base.stateTransitions();
+        //These classes will be phased out as time goes on. Until then, we need to just exit early if we're in the builder since these don't actually use Subactions
+        if (isInBuilder) return;
         StateTransitions.DashState(actor.GetAbstractFighter());
     }
 }

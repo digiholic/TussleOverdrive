@@ -9,4 +9,5 @@ using UnityEditor;
 
 [CustomPropertyDrawer(typeof(SubVarDict))]
 [CustomPropertyDrawer(typeof(SubGroupDict))]
+[CustomPropertyDrawer(typeof(SubDict))]
 public class TussleSerializableDictionaryPropertyDrawer : SerializableDictionaryPropertyDrawer {}

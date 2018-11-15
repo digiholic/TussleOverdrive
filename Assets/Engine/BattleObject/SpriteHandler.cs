@@ -8,10 +8,6 @@ using UnityEngine.U2D;
 public class SpriteHandler : BattleComponent {
     public enum SpriteOrientation { LEFT, RIGHT }
 
-    //public string directory;
-    //public string default_sprite;
-    //public string prefix;
-    //public float pixelsPerUnit = 100.0f;
     public SpriteOrientation orientation;
     //public SpriteAtlas sprite_atlas;
     public float pixelsPerUnit;
@@ -27,30 +23,10 @@ public class SpriteHandler : BattleComponent {
 
     private float rot_degrees;
 
-    /*
-    public void SaveSprites()
-    {
-        foreach (KeyValuePair<string,List<Sprite>> sheet in sprites)
-        {
-            int subimage = 0;
-            foreach (Sprite sprite in sheet.Value)
-            {
-                Texture2D spriteTexture = sprite.texture;
-                Rect rec = sprite.textureRect;
-                Texture2D subtex = CropTexture(spriteTexture,(int)rec.x, (int)rec.y, (int)rec.width, (int)rec.height);
-                
-                byte[] data = subtex.EncodeToPNG();
-
-                File.WriteAllBytes(sprite_info.sprite_directory + "/singles/" + sheet.Key + subimage.ToString() + ".png", data);
-                subimage++;
-            }
-        }
-    }
-    */
-
     void Start()
     {
-        RectTransform rect = GetComponent<RectTransform>();
+        if (battleObject != null)
+            battleObject.spriteObject = spriteComponent;
 
         spriteComponent = new GameObject("Sprite");
         RectTransform componentRect = spriteComponent.AddComponent<RectTransform>();
@@ -60,25 +36,17 @@ public class SpriteHandler : BattleComponent {
         componentRect.anchoredPosition = Vector3.zero;
 
         sprite_renderer = spriteComponent.AddComponent<SpriteRenderer>();
-        //sprite_renderer = gameObject.AddComponent<SpriteRenderer>();
+        
+    }
 
-        battleObject.spriteObject = spriteComponent;
-        fighter_info = GetComponent<FighterInfoLoader>().GetFighterInfo();
+    public void OnFighterInfoReady(FighterInfo fInfo)
+    {
+        fighter_info = fInfo;
         sprite_info = fighter_info.sprite_info;
-        //sprite_atlas = sprite_info.sprite_atlas;
 
         pixelsPerUnit = sprite_info.sprite_pixelsPerUnit;
         DirectoryInfo info = new DirectoryInfo(FileLoader.PathCombine(fighter_info.directory_name, sprite_info.sprite_directory));
         string sprite_json_path = Path.Combine(info.FullName, "sprites.json");
-
-        
-        /*
-        float pixelRatio = 100.0f / pixelsPerUnit;
-        Vector3 scale = spriteComponent.transform.localScale;
-        scale.x *= pixelRatio;
-        scale.y *= pixelRatio;
-        spriteComponent.transform.localScale = scale;
-        */
 
         if (File.Exists(sprite_json_path))
         {
@@ -90,7 +58,6 @@ public class SpriteHandler : BattleComponent {
         {
             Debug.LogError("No sprites JSON found: " + sprite_json_path);
         }
-
     }
 
     public override void ManualUpdate()
@@ -201,6 +168,7 @@ public class SpriteHandler : BattleComponent {
 
     public void flip()
     {
+        Debug.Log("Flipping");
         if (orientation == SpriteOrientation.LEFT)
             orientation = SpriteOrientation.RIGHT;
         else

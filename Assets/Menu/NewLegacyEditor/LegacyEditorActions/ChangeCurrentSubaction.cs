@@ -25,11 +25,13 @@ public class ChangeCurrentSubaction : LegacyEditorAction
         Debug.Log("Current value before processing: " + previousSubaction);
         Debug.Log("Will change to: " + subactionToSet);
         LegacyEditorData.instance.currentSubaction = subactionToSet;
+        LegacyEditorData.ChangedSubaction();
     }
 
     public override void undo()
     {
         Debug.Log("Undoing: " + previousSubaction);
         LegacyEditorData.instance.currentSubaction = previousSubaction;
+        LegacyEditorData.ChangedSubaction();
     }
 }

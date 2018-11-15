@@ -366,6 +366,7 @@ public class BattleObject : MonoBehaviour
 
     void OnDestroy()
     {
-        BattleController.current_battle.UnregisterObject(this);
+        if (BattleController.current_battle != null)
+            BattleController.current_battle.UnregisterObject(this);
     }
 }

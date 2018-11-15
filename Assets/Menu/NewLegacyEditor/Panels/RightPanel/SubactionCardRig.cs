@@ -7,9 +7,11 @@ public class SubactionCardRig : MonoBehaviour {
 
     private List<GameObject> children = new List<GameObject>();
     private UIGrid grid;
+    [SerializeField]
+    private UIDraggablePanel dragPanel;
 
-	// Use this for initialization
-	void Awake() {
+    // Use this for initialization
+    void Awake() {
         grid = GetComponent<UIGrid>();	
 	}
 
@@ -36,6 +38,7 @@ public class SubactionCardRig : MonoBehaviour {
 
             //Realign the grid
             grid.Reposition();
+            dragPanel.ResetPosition();
         }
     }
 

@@ -13,36 +13,7 @@
                 ],
                 "m_values": [
                     {
-                        "data": [
-                            {
-                                "SubactionName": "ChangeFrame",
-                                "subType": 0,
-                                "arguments": {
-                                    "m_keys": [
-                                        "frameNumber",
-                                        "relative"
-                                    ],
-                                    "m_values": [
-                                        {
-                                            "editable": false,
-                                            "name": "frameNumber",
-                                            "source": 0,
-                                            "type": 2,
-                                            "data": "3",
-                                            "description": "The Frame number to change to, or the amount to modify the current frame by.\t"
-                                        },
-                                        {
-                                            "editable": false,
-                                            "name": "relative",
-                                            "source": 0,
-                                            "type": 1,
-                                            "data": "false",
-                                            "description": "If true, will modify the current frame instead of setting directly."
-                                        }
-                                    ]
-                                }
-                            }
-                        ]
+                        "data": []
                     }
                 ]
             }

@@ -22,6 +22,7 @@ public class FighterInfoLoader : MonoBehaviour {
         if (json_file != null)
         {
             fighter_info = JsonUtility.FromJson<FighterInfo>(json_file.text);
+            gameObject.BroadcastMessage("OnFighterInfoReady", fighter_info);
         }
         else
         {
@@ -36,6 +37,7 @@ public class FighterInfoLoader : MonoBehaviour {
         else
         {
             fighter_info.LoadDirectory(directory);
+            gameObject.BroadcastMessage("OnFighterInfoReady", fighter_info);
             return fighter_info;
         }
     }

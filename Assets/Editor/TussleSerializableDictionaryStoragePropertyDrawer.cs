@@ -4,4 +4,5 @@ using UnityEngine;
 using UnityEditor;
 
 [CustomPropertyDrawer(typeof(SubactionDataListStorage))]
+[CustomPropertyDrawer(typeof(SubactionListStorage))]
 public class TussleSerializableDictionaryStoragePropertyDrawer : SerializableDictionaryStoragePropertyDrawer { }

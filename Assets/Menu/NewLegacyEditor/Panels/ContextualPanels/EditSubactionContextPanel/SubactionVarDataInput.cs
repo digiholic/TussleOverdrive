@@ -18,11 +18,15 @@ public class SubactionVarDataInput : MonoBehaviour {
         else if (panel.varData.type == SubactionVarType.INT) filter.filterType = InputBoxFilter.FilterType.INT;
         else filter.filterType = InputBoxFilter.FilterType.NONE;
 
+        input.text = panel.varData.data;
     }
 
-    private void Update()
+    private void OnModelChanged()
     {
-        input.text = panel.varData.data;
+        if (LegacyEditorData.instance.currentSubactionDirty)
+        {
+            input.text = panel.varData.data;
+        }
     }
 
     void OnAction(string inputData)

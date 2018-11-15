@@ -30,7 +30,7 @@ public class SubactionActivateHitbox : Subaction
         return SubactionType.HITBOX;
     }
 
-    public override bool executeInBuilder()
+    public override bool canExecuteInBuilder()
     {
         return true;
     }

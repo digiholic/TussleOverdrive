@@ -7,7 +7,7 @@ public class SubactionData {
     public string SubactionName;
     public SubactionType subType;
     public SubVarDict arguments;
-    
+
     public SubactionData(string name, SubactionType subT, SubVarDict args)
     {
         SubactionName = name;

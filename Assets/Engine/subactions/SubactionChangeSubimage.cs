@@ -21,7 +21,7 @@ public class SubactionChangeSubimage : Subaction {
         return SubactionType.ANIMATION;
     }
 
-    public override bool executeInBuilder()
+    public override bool canExecuteInBuilder()
     {
         return true;
     }

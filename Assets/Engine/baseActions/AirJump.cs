@@ -9,6 +9,8 @@ public class AirJump : GameAction {
     public override void Update()
     {
         base.Update();
+        //These classes will be phased out as time goes on. Until then, we need to just exit early if we're in the builder since these don't actually use Subactions
+        if (isInBuilder) return;
         if (current_frame < jump_frame)
         {
             actor.BroadcastMessage("ChangeYSpeed", 0.0f);
@@ -23,6 +25,8 @@ public class AirJump : GameAction {
     public override void stateTransitions()
     {
         base.stateTransitions();
+        //These classes will be phased out as time goes on. Until then, we need to just exit early if we're in the builder since these don't actually use Subactions
+        if (isInBuilder) return;
         //if (actor.GetControllerButton("Attack")) //&& actor.CheckSmash("Up")
         //actor.doAction("UpSmash")
         //if (actor.GetControllerButton("Special")) //&& actor.CheckSmash("Up")

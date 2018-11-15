@@ -50,7 +50,6 @@ public class DynamicAction
 /// </summary>
 [System.Serializable]
 public class SubGroupDict : SerializableDictionary<string, List<SubactionData>, SubactionDataListStorage> {
-
     /// <summary>
     /// If the key is in the dict, get the list it points to. Create an empty list otherwise.
     /// Just a quick convenience method, since there'll be a key for every frame

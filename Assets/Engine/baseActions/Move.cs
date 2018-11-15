@@ -11,6 +11,8 @@ public class Move : GameAction {
     public override void SetUp(BattleObject _actor)
     {
         base.SetUp(_actor);
+        //These classes will be phased out as time goes on. Until then, we need to just exit early if we're in the builder since these don't actually use Subactions
+        if (isInBuilder) return;
         //Debug.Log("MoveAction Created");
         SetVar("direction",actor.GetIntVar("facing"));
     }
@@ -18,6 +20,8 @@ public class Move : GameAction {
     public override void TearDown(GameAction new_action)
     {
         base.TearDown(new_action);
+        //These classes will be phased out as time goes on. Until then, we need to just exit early if we're in the builder since these don't actually use Subactions
+        if (isInBuilder) return;
         if (new_action.HasVar("direction"))
         {
             new_action.SetVar("direction", new_action.GetIntVar("direction") * GetIntVar("direction") * actor.GetIntVar("facing"));
@@ -31,6 +35,8 @@ public class Move : GameAction {
     public override void Update()
     {
         base.Update();
+        //These classes will be phased out as time goes on. Until then, we need to just exit early if we're in the builder since these don't actually use Subactions
+        if (isInBuilder) return;
         actor.SendMessage("ChangeXPreferred", actor.GetFloatVar(TussleConstants.FighterAttributes.MAX_GROUND_SPEED) * actor.GetIntVar("facing"));
 
         if (((actor.GetMotionHandler().XSpeed >= -actor.GetFloatVar(TussleConstants.FighterAttributes.MAX_GROUND_SPEED)) && actor.GetIntVar("facing") == -1) || 
@@ -53,6 +59,8 @@ public class Move : GameAction {
     public override void stateTransitions()
     {
         base.stateTransitions();
+        //These classes will be phased out as time goes on. Until then, we need to just exit early if we're in the builder since these don't actually use Subactions
+        if (isInBuilder) return;
         StateTransitions.CheckGround(actor.GetAbstractFighter());
         StateTransitions.MoveState(actor.GetAbstractFighter());
         if (current_frame > 0)

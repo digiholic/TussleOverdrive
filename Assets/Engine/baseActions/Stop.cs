@@ -9,6 +9,8 @@ public class Stop : GameAction {
     public override void SetUp(BattleObject _actor)
     {
         base.SetUp(_actor);
+        //These classes will be phased out as time goes on. Until then, we need to just exit early if we're in the builder since these don't actually use Subactions
+        if (isInBuilder) return;
         //Debug.Log("StopAction Created");
         //Overrides given length if the pivot grip won't allow it
         int num_frames = Mathf.FloorToInt((actor.GetMotionHandler().XSpeed * actor.GetIntVar("facing")) / actor.GetFloatVar(TussleConstants.FighterAttributes.PIVOT_GRIP)/10);
@@ -26,6 +28,10 @@ public class Stop : GameAction {
             _actor.preferred_xspeed = _actor.stats['max_ground_speed']*_actor.GetAbstractFighter().facing
             _actor.accel(_actor.stats['static_grip'])
         else:*/
+
+        //These classes will be phased out as time goes on. Until then, we need to just exit early if we're in the builder since these don't actually use Subactions
+        if (isInBuilder) return;
+
         actor.BroadcastMessage("ChangeXPreferred", 0.0f);
         actor.GetMotionHandler().accel(actor.GetFloatVar(TussleConstants.FighterAttributes.PIVOT_GRIP));
     }
@@ -33,6 +39,8 @@ public class Stop : GameAction {
     public override void stateTransitions()
     {
         base.stateTransitions();
+        //These classes will be phased out as time goes on. Until then, we need to just exit early if we're in the builder since these don't actually use Subactions
+        if (isInBuilder) return;
         StateTransitions.StopState(actor.GetAbstractFighter());
         StateTransitions.CheckGround(actor.GetAbstractFighter());
         //TODO more moonwalking

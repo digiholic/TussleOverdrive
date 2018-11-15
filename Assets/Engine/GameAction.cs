@@ -16,23 +16,29 @@ public class GameAction {
 
     public int current_frame;
 
-    public SerializableDictionary<string, List<Subaction>> subactionCategories = new SerializableDictionary<string, List<Subaction>>();
+    public SubDict subactionCategories = new SubDict();
 
     public Dictionary<string, Hitbox> hitboxes = new Dictionary<string, Hitbox>();
     public Dictionary<string, HitboxLock> hitbox_locks = new Dictionary<string, HitboxLock>();
 
-    protected int last_frame;
-    protected BattleObject actor;
-    protected BattleController game_controller;
-    
     public List<bool> cond_list = new List<bool> { true };
     public int cond_depth = 0;
 
     public Dictionary<string, object> variable = new Dictionary<string, object>();
     public Dictionary<string, object> variables_to_pass = new Dictionary<string, object>();
 
+    protected int last_frame;
+    protected BattleObject actor;
+    protected BattleController game_controller;
+    protected bool isInBuilder = false;
+
     public void SetDynamicAction(DynamicAction dynAction)
     {
+        if (dynAction == null)
+        {
+            UnityEngine.Debug.LogWarning("Dynamic Action Null. Skipping SetDynamicAction");
+            return;
+        }
         name = dynAction.name;
         length = dynAction.length;
         sprite_name = dynAction.sprite;
@@ -40,6 +46,11 @@ public class GameAction {
         loop = dynAction.loop;
         exit_action = dynAction.exit_action;
         
+        if (dynAction.subactionCategories == null)
+        {
+            UnityEngine.Debug.LogWarning("Dynamic Action subactions are null. This should be an empty dict instead.");
+            return;
+        }
         foreach (KeyValuePair<string, List<SubactionData>> keyVal in dynAction.subactionCategories)
         {
             List<Subaction> categoryList = new List<Subaction>();
@@ -48,6 +59,7 @@ public class GameAction {
                 categoryList.Add(SubactionFactory.GenerateSubactionFromData(data));
             }
             subactionCategories.Add(keyVal.Key, categoryList);
+            UnityEngine.Debug.Log(keyVal);
         }
     }
 
@@ -56,7 +68,7 @@ public class GameAction {
         actor = obj;
         actor.BroadcastMessage("ChangeSprite",sprite_name);
         game_controller = BattleController.current_battle;
-        foreach (Subaction subaction in subactionCategories[SubactionGroup.SETUP])
+        foreach (Subaction subaction in subactionCategories.GetIfKeyExists(SubactionGroup.SETUP))
             CheckCondAndExecute(subaction);
     }
 
@@ -70,7 +82,7 @@ public class GameAction {
             actor.GetSpriteHandler().ChangeSubimage(sprite_number, loop);
         }
 
-        foreach (Subaction subaction in subactionCategories[SubactionGroup.ONFRAME(current_frame)])
+        foreach (Subaction subaction in subactionCategories.GetIfKeyExists(SubactionGroup.ONFRAME(current_frame)))
             CheckCondAndExecute(subaction);
         if (current_frame >= last_frame)
             if (exit_action != null && exit_action != "")
@@ -99,13 +111,13 @@ public class GameAction {
             hbox.Deactivate();
             GameObject.Destroy(hbox.gameObject);
         }
-        foreach (Subaction subaction in subactionCategories[SubactionGroup.TEARDOWN])
+        foreach (Subaction subaction in subactionCategories.GetIfKeyExists(SubactionGroup.TEARDOWN))
             CheckCondAndExecute(subaction);
     }
 
     public virtual void stateTransitions()
     {
-        foreach (Subaction subaction in subactionCategories[SubactionGroup.STATETRANSITION])
+        foreach (Subaction subaction in subactionCategories.GetIfKeyExists(SubactionGroup.STATETRANSITION))
             CheckCondAndExecute(subaction);
     }
     
@@ -177,11 +189,20 @@ public class GameAction {
         variables_to_pass[var_name] = var_value;
     }
 
+    public void setIsInBuilder(bool builderFlag)
+    {
+        isInBuilder = builderFlag;
+    }
+
     private void CheckCondAndExecute(Subaction subact)
     {
         if (!cond_list.Contains(false)) //If there are no falses in the list, execute the action
         {
-            subact.Execute(actor, this);
+            //This will only execute the subaction if we aren't in the builder, or if this one will always execute
+            if (!isInBuilder || subact.canExecuteInBuilder())
+            {
+                subact.Execute(actor, this);
+            }
         }
         else
         {
@@ -191,3 +212,30 @@ public class GameAction {
         }
     }
 }
+
+[System.Serializable]
+public class SubDict : SerializableDictionary<string, List<Subaction>, SubactionListStorage> {
+    /// <summary>
+    /// If the key is in the dict, get the list it points to. Create an empty list otherwise.
+    /// Just a quick convenience method, since there'll be a key for every frame
+    /// Empty lists should be cleaned up before serializing to save space
+    /// </summary>
+    /// <param name="key">The dict key to search for</param>
+    /// <returns>The list from the dict if the key exists, empty list otherwise</returns>
+    public List<Subaction> GetIfKeyExists(string key)
+    {
+        if (ContainsKey(key))
+        {
+            return this[key];
+        }
+        else
+        {
+            this[key] = new List<Subaction>();
+            return this[key];
+        }
+
+    }
+}
+
+[System.Serializable]
+public class SubactionListStorage : SerializableDictionary.Storage<List<Subaction>> { }

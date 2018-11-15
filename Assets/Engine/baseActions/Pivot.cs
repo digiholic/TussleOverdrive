@@ -11,6 +11,8 @@ public class Pivot : GameAction {
     public override void SetUp(BattleObject obj)
     {
         base.SetUp(obj);
+        //These classes will be phased out as time goes on. Until then, we need to just exit early if we're in the builder since these don't actually use Subactions
+        if (isInBuilder) return;
         SetVar("direction", actor.GetIntVar("facing"));
         int num_frames = Mathf.FloorToInt((actor.GetMotionHandler().XSpeed * actor.GetIntVar("facing")) / actor.GetFloatVar(TussleConstants.FighterAttributes.PIVOT_GRIP));
         SetVar("num_frames", num_frames);
@@ -25,6 +27,8 @@ public class Pivot : GameAction {
     public override void TearDown(GameAction new_action)
     {
         base.TearDown(new_action);
+        //These classes will be phased out as time goes on. Until then, we need to just exit early if we're in the builder since these don't actually use Subactions
+        if (isInBuilder) return;
         if (new_action.HasVar("direction"))
             PassVariable("direction", GetIntVar("direction") * actor.GetIntVar("facing"));
         else if (actor.GetIntVar("facing") != GetIntVar("direction"))
@@ -34,6 +38,8 @@ public class Pivot : GameAction {
     public override void stateTransitions()
     {
         base.stateTransitions();
+        //These classes will be phased out as time goes on. Until then, we need to just exit early if we're in the builder since these don't actually use Subactions
+        if (isInBuilder) return;
         StateTransitions.StopState(actor.GetAbstractFighter());
         StateTransitions.CheckGround(actor.GetAbstractFighter());
 
@@ -68,6 +74,8 @@ public class Pivot : GameAction {
     public override void Update()
     {
         base.Update();
+        //These classes will be phased out as time goes on. Until then, we need to just exit early if we're in the builder since these don't actually use Subactions
+        if (isInBuilder) return;
         if (current_frame == 0)
             actor.SendMessage("flip");
         //if _actor.keysContain(key) and _actor.keysContain(invkey):

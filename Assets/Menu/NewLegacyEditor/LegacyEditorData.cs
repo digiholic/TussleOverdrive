@@ -127,6 +127,7 @@ public class LegacyEditorData : MonoBehaviour
         get { return _currentSubaction; }
         set
         {
+            Debug.Log("Changing Subaction");
             _currentSubaction = value;
             currentSubactionDirty = true;
         }
@@ -203,7 +204,7 @@ public class LegacyEditorData : MonoBehaviour
 
     private Stack<LegacyEditorAction> undoList = new Stack<LegacyEditorAction>();
     private Stack<LegacyEditorAction> redoList = new Stack<LegacyEditorAction>();
-
+    
     public void Undo()
     {
         //If we have no history we don't have anything to undo and just quietly don't do anything

@@ -15,12 +15,16 @@ public class HitStun : GameAction {
     public override void SetUp(BattleObject obj)
     {
         base.SetUp(obj);
+        //These classes will be phased out as time goes on. Until then, we need to just exit early if we're in the builder since these don't actually use Subactions
+        if (isInBuilder) return;
         SetVar("tech_cooldown", 0);
     }
 
     public override void stateTransitions()
     {
         base.stateTransitions();
+        //These classes will be phased out as time goes on. Until then, we need to just exit early if we're in the builder since these don't actually use Subactions
+        if (isInBuilder) return;
         int direction = (int) actor.GetMotionHandler().GetDirectionMagnitude().x;
 
         if (actor.GetIntVar("tech_window") > 0)
@@ -92,6 +96,8 @@ public class HitStun : GameAction {
     public override void TearDown(GameAction new_action)
     {
         base.TearDown(new_action);
+        //These classes will be phased out as time goes on. Until then, we need to just exit early if we're in the builder since these don't actually use Subactions
+        if (isInBuilder) return;
         actor.SetVar("elasticity", 0.0f);
         actor.SetVar("ground_elasticity", 0.0f);
         actor.SetVar("tech_window", 0);
@@ -101,6 +107,8 @@ public class HitStun : GameAction {
     public override void Update()
     {
         base.Update();
+        //These classes will be phased out as time goes on. Until then, we need to just exit early if we're in the builder since these don't actually use Subactions
+        if (isInBuilder) return;
         AbstractFighter fighter = actor.GetAbstractFighter();
         if (current_frame > 15 && actor.GetAbstractFighter().KeyBuffered("Shield", 5) && GetIntVar("tech_cooldown") == 0 && !actor.GetBoolVar("grounded"))
         {

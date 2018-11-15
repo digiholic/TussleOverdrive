@@ -12,6 +12,8 @@ public class Fall : GameAction
     public override void stateTransitions()
     {
         base.stateTransitions();
+        //These classes will be phased out as time goes on. Until then, we need to just exit early if we're in the builder since these don't actually use Subactions
+        if (isInBuilder) return;
         StateTransitions.AirState(actor.GetAbstractFighter());
         StateTransitions.CheckLedges(actor.GetAbstractFighter());
     }
@@ -19,6 +21,8 @@ public class Fall : GameAction
     public override void SetUp(BattleObject obj)
     {
         base.SetUp(obj);
+        //These classes will be phased out as time goes on. Until then, we need to just exit early if we're in the builder since these don't actually use Subactions
+        if (isInBuilder) return;
         actor.SendMessage("UnRotate");
     }
 }

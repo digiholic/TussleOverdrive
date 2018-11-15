@@ -59,7 +59,7 @@ public class Subaction : ScriptableObject
     /// Check if the subaction should execute in build mode, like animation and control flow subactions.
     /// </summary>
     /// <returns>If the subaction should be executed in the builder</returns>
-    public virtual bool executeInBuilder()
+    public virtual bool canExecuteInBuilder()
     {
         return false;
     }

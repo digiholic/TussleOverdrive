@@ -15,16 +15,12 @@ public class SubactionVarDataRig : MonoBehaviour {
         grid = GetComponent<UIGrid>();
 	}
 
-    private void Start()
-    {
-        
-    }
-
     public void OnModelChanged()
     {
-        SubactionData sub = LegacyEditorData.instance.currentSubaction;
         if (LegacyEditorData.instance.currentSubactionDirty)
         {
+            SubactionData sub = LegacyEditorData.instance.currentSubaction;
+
             //Since we want to clear the list if we deselect a subaction, we take this part out of the null check
             foreach (GameObject child in children)
             {

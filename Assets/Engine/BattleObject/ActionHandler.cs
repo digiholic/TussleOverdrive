@@ -11,19 +11,28 @@ public class ActionHandler : BattleComponent {
     public ActionFile actions_file = new ActionFile();
 
     private FighterInfo fighter_info;
+    [SerializeField]
+    private bool isInBuilder;
 
     // Use this for initialization
     void Start () {
-        fighter_info = GetComponent<FighterInfoLoader>().GetFighterInfo();
+        _current_action = new NeutralAction();
+        if (isInBuilder) _current_action.setIsInBuilder(true);
+    }
+
+    public void OnFighterInfoReady(FighterInfo fInfo)
+    {
+        fighter_info = fInfo;
         actions_file = fighter_info.action_file;
         _current_action = new NeutralAction();
         _current_action.SetDynamicAction(actions_file.Get("NeutralAction"));
+        if (isInBuilder) _current_action.setIsInBuilder(true);
         _current_action.SetUp(battleObject);
     }
 
     // Update is called once per frame
     public override void ManualUpdate () {
-        _current_action.stateTransitions();
+        if (!isInBuilder) _current_action.stateTransitions();
         _current_action.Update();
     }
 
@@ -33,6 +42,18 @@ public class ActionHandler : BattleComponent {
         GameAction old_action = _current_action;
         _current_action = LoadAction(_actionName);
         _current_action.SetDynamicAction(actions_file.Get(_actionName));
+        if (isInBuilder) _current_action.setIsInBuilder(true);
+        old_action.TearDown(_current_action);
+        _current_action.SetUp(battleObject);
+    }
+
+    public void DoAction(DynamicAction act)
+    {
+        //Debug.Log("GameAction: "+_actionName);
+        GameAction old_action = _current_action;
+        _current_action = LoadAction(act.name);
+        _current_action.SetDynamicAction(act);
+        if (isInBuilder) _current_action.setIsInBuilder(true);
         old_action.TearDown(_current_action);
         _current_action.SetUp(battleObject);
     }

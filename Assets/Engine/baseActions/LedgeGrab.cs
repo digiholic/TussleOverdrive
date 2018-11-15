@@ -8,23 +8,31 @@ public class LedgeGrab : GameAction {
     public override void SetUp(BattleObject obj)
     {
         base.SetUp(obj);
+        //These classes will be phased out as time goes on. Until then, we need to just exit early if we're in the builder since these don't actually use Subactions
+        if (isInBuilder) return;
         grabbed_ledge = actor.GetAbstractFighter().GrabbedLedge;
     }
     public override void stateTransitions()
     {
         base.stateTransitions();
+        //These classes will be phased out as time goes on. Until then, we need to just exit early if we're in the builder since these don't actually use Subactions
+        if (isInBuilder) return;
         StateTransitions.LedgeState(actor.GetAbstractFighter());
     }
 
     public override void TearDown(GameAction new_action)
     {
         base.TearDown(new_action);
+        //These classes will be phased out as time goes on. Until then, we need to just exit early if we're in the builder since these don't actually use Subactions
+        if (isInBuilder) return;
         actor.SendMessage("ReleaseLedge");
     }
 
     public override void Update()
     {
         base.Update();
+        //These classes will be phased out as time goes on. Until then, we need to just exit early if we're in the builder since these don't actually use Subactions
+        if (isInBuilder) return;
         actor.SendMessage("Rest");
         if (grabbed_ledge != null)
         {
