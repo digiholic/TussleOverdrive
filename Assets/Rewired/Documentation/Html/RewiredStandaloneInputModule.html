@@ -81,7 +81,8 @@
               <li><a href="Controllers.html">Controllers</a></li>
               <li><a href="ControllerMaps.html">Controller Maps</a></li>
               <li><a href="MapCategories.html">Map Categories</a></li>
-              <li><a href="ControllerMaps.html"></a><a href="Layouts.html">Layouts</a></li>
+              <li><a href="Layouts.html">Layouts</a></li>
+              <li><a href="ControllerTemplates.html">Controller Templates</a></li>
               <li><a href="CustomControllers.html">Custom Controllers</a></li>
             </ul>
             <strong>Extras:</strong>
@@ -94,6 +95,7 @@
             <strong>Misc:</strong>
             <ul>
 	          <li><a href="ComponentControls.html" title="Component Controls">Component Controls</a></li>
+	          <li><a href="PlayerControllers.html" title="Player Controllers">Player Controllers</a></li>
 	          <li><a href="InputMapper.html" title="Input Mapper">Input Mapper</a></li>
 	          <li><a href="UserDataStore.html" title="User Data Store">User Data Store</a></li>
             </ul>
@@ -140,12 +142,26 @@
             
 			<!-- InstanceBeginEditable name="MainBody" -->
 
-    <p>This is an EventSystem input module component that can be used in place of Unity's StandaloneInputModule. The purpose of this module is to allow Rewired to control navigation of Unity's UI instead of the default UnityEngine.Input.</p>
+    <ul>
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#quick-setup">Quick Setup</a></li>
+      <li><a href="#event-system-and-component">Event System and Component</a></li>
+      <li><a href="#rewired-actions">Rewired Actions</a></li>
+      <li><a href="#rewired-input-manager-settings">Rewired Input Manager Settings</a></li>
+      <li><a href="#inspector-options">Inspector Options</a></li>
+      <li><a href="#player-mouse">Player Mouse</a></li>
+      <li><a href="#troubleshooting">Troubleshooting</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <p>&nbsp;</p>
+    <hr />
+    <h3><a name="overview" id="overview"></a>Overview</h3>
+<p>This is an EventSystem input module component that can be used in place of Unity's StandaloneInputModule. The purpose of this module is to allow Rewired to control navigation of Unity's UI instead of the default UnityEngine.Input.</p>
     <p>When you install or upgrade Rewired, it will automatically install the RewiredStandaloneInputModule.cs file in the Rewired/Integration/UnityUI folder provided you are running Unity 4.6 or greater.</p>
     <p>This component must be added to the EventSystem in the scene and the default StandaloneInputModule must be disabled or removed. This will allow the UnityUI system to receive input from Rewired. You must also create the appropriate Actions in the Rewired Editor to match the Actions listed in the RewiredStandaloneInputModule and assign these Actions to one or more Controller Maps then assign those to one or more Players.</p>
     <p>&nbsp;</p>
     <hr />
-    <h3>Quick Setup</h3>
+    <h3><a name="quick-setup" id="quick-setup"></a>Quick Setup</h3>
     <ol>
       <li>Create your Unity UI as per normal practice.</li>
       <li>Select the EventSystem object in the scene.</li>
@@ -160,7 +176,7 @@
     <p>Now your Unity UI should be controlled by Rewired instead of Unity's input system.</p>
     <p>&nbsp;</p>
     <hr />
-    <h3>Event System and Component</h3>
+    <h3><a name="event-system-and-component" id="event-system-and-component"></a>Event System and Component</h3>
     <p>You can either create a normal Unity Event System and replace the Standalone Input Module with the Rewired Standalone Input Module component or you can create a Rewired Event System from either of the menu items:</p>
     <ul>
       <li>GameObject -&gt; Create Other -&gt; Rewired -&gt; UI -&gt; Rewired Event System</li>
@@ -168,8 +184,8 @@
       </ul>
     <p>&nbsp;</p>
 <hr />
-<h3>Rewired Actions</h3>
-    <p><img src="files/images/controlmapper_rewiredstandaloneinputmodule.png" width="469" height="275" class="right" />Four Actions must be set up in the Rewired Input Manager and the RewiredStandaloneInputModule in order to control the UI. <strong>These four Actions must have names that match exactly in both the Rewired Input Manager and the RewiredStandaloneInputModule</strong>.</p>
+<h3><a name="rewired-actions" id="rewired-actions"></a>Rewired Actions</h3>
+    <p><img src="files/images/rewiredstandaloneinputmodule_inspector_actions.png" class="right" />Four Actions must be set up in the Rewired Input Manager and the RewiredStandaloneInputModule in order to control the UI with a keyboard or joystick. <strong>These four Actions must have names that match exactly in both the Rewired Input Manager and the RewiredStandaloneInputModule</strong>.</p>
     <ol>
       <li>Horizontal Axis - The Action that will control Left/Right movement in the UI.</li>
       <li>Vertical Axis - The Action that will control Up/Down movement in the UI.</li>
@@ -177,14 +193,16 @@
       <li>Cancel - The Action that cancels.</li>
   </ol>
       <p>The actual names you use are up to you. Of course these Actions must also be assigned to one or more keyboard or joystick maps and assigned to a Player to be functional. </p>
-<p>NOTE: It is <strong>HIGHLY</strong> recommended that you create unique menu-only Actions for these UI controls in a separate controller map category from your game Actions. If you use your in-game actions such as &quot;Move Horizonal&quot; or &quot;Jump&quot; for these UI controls, you run the risk of allowing the user to render the UI unusable because they removed an assignment for one of these game Actions which was also  controlling the UI.</p>
+      <p>If you want to use <a href="#player-mouse">mouse pointers</a> exclusively to interact with the UI, you can set all these Actions to blank strings.</p>
+      <p>Alternately, you can set Actions by id by enabling &quot;Set Actions By Id.&quot;</p>
+      <p>NOTE: It is <strong>HIGHLY</strong> recommended that you create unique menu-only Actions for these UI controls in a separate controller map category from your game Actions. If you use your in-game actions such as &quot;Move Horizonal&quot; or &quot;Jump&quot; for these UI controls, you run the risk of allowing the user to render the UI unusable because they removed an assignment for one of these game Actions which was also  controlling the UI.</p>
 <p>The settings in the RewiredStandaloneInputModule will determine which Players can control the UI. If you check &quot;Use All Rewired Game Players&quot;, all Players besides the System Player that have a map configured with these UI Actions will be able to control the UI. If you check &quot;Use Rewired System Player&quot;, the same will be true for the System Player. If instead you only want specific Players to control the UI, you can set these Player Ids individually.</p>
 <p>If the UI control speed with a Joystick seems too slow or fast, adjust the &quot;Input Actions Per Second&quot; setting.</p>
 <p>&nbsp;</p>
 <hr />
-<h3>Rewired Input Manager settings
+<h3><a name="rewired-input-manager-settings" id="rewired-input-manager-settings"></a>Rewired Input Manager settings
 </h3>
-<p>This image shows the 4 actions that have been set up for controlling the UI.</p>
+<p>This image shows the 4 actions that have been set up for controlling the UI with the keyboard or a joystick.</p>
 <p><img src="files/images/controlmapper_rewiredinputmanager_uiactions.png" width="484" height="291" /></p>
 <p><strong>Unknown Controllers:</strong><br />
     It is recommended that you create a map for the <a href="ControllerMaps.html#unknown-controllers">Unknown Controller</a>. This way, if a user attaches a controller Rewired does not recognize, they should still be able to control the UI reasonably well.</p>
@@ -199,13 +217,131 @@
     <p>Of course, the above are only recommendations. You can set up your control scheme however you decide.</p>
     <p>&nbsp;</p>
     <hr />
+    <h3><a name="inspector-options" id="inspector-options"></a>Inspector Options:</h3>
+    <p><img src="files/images/rewiredstandaloneinputmodule_inspector.png" alt="Inspector" /></p>
+    <table width="100%" border="1">
+      <tr>
+        <td>Rewired Input Manager</td>
+        <td>(Optional) Link the Rewired Input Manager here for easier access to Player ids, etc.</td>
+      </tr>
+      <tr>
+        <td>Use Playing Players Only</td>
+        <td>Allow only Players with Player.isPlaying = true to control the UI.</td>
+      </tr>
+      <tr>
+        <td>Use All Rewired Game Players</td>
+        <td>Use all Rewired game Players to control the UI. This does not include the System Player. If enabled, this setting overrides individual Player Ids set in Rewired Player Ids.</td>
+      </tr>
+      <tr>
+        <td>Use Rewired System Player</td>
+        <td>Allow the Rewired System Player to control the UI.</td>
+      </tr>
+      <tr>
+        <td>Rewired Player Ids</td>
+        <td>A list of Player Ids that are allowed to control the UI. If Use All Rewired Game Players = True, this list will be ignored.</td>
+      </tr>
+      <tr>
+        <td>Set Actions By Id</td>
+        <td>If enabled, Action Ids will be used to set the Actions. If disabled, string names will be used to set the Actions.</td>
+      </tr>
+      <tr>
+        <td><p>Horizontal Axis</p></td>
+        <td>Name of the horizontal axis for movement (if axis events are used).</td>
+      </tr>
+      <tr>
+        <td>Vertical Axis</td>
+        <td>Name of the vertical axis for movement (if axis events are used).</td>
+      </tr>
+      <tr>
+        <td>Submit Button</td>
+        <td>Name of the action used to submit.</td>
+      </tr>
+      <tr>
+        <td>Cancel Button</td>
+        <td>Name of the action used to cancel.</td>
+      </tr>
+      <tr>
+        <td>Input Actions Per Second</td>
+        <td>Number of selection changes allowed per second when a movement button/axis is held in a direction.</td>
+      </tr>
+      <tr>
+        <td>Repeat Delay</td>
+        <td>Delay in seconds before vertical/horizontal movement starts repeating continouously when a movement direction is held.</td>
+      </tr>
+      <tr>
+        <td>Move One Element Per Axis Press</td>
+        <td>Makes an axis press always move only one UI selection. Enable if you do not want to allow scrolling through UI elements by holding an axis direction.</td>
+      </tr>
+      <tr>
+        <td>Allow Mouse Input</td>
+        <td>Allows the mouse to be used to select elements.</td>
+      </tr>
+      <tr>
+        <td>Allow Mouse Input If Touch Supported</td>
+        <td>Allows the mouse to be used to select elements if the device also supports touch control.</td>
+      </tr>
+      <tr>
+        <td>Allow Touch Input</td>
+        <td>Allows touch input to be used to select elements.</td>
+      </tr>
+      <tr>
+        <td>Force Module Active</td>
+        <td>Forces the module to always be active.</td>
+      </tr>
+      <tr>
+        <td>Player Mice</td>
+        <td>Player Mice allowed to interact with the UI.  Each Player that owns a Player Mouse must also be allowed to control the UI or the Player Mouse will not function.</td>
+      </tr>
+    </table>
+    <p>&nbsp;</p>
+    <hr />
+    <h3><a name="player-mouse" id="player-mouse"></a>Player Mouse:</h3>
+    <p><strong>Background:</strong></p>
+    <p>Unity's Standalone Input Module supports 3 methods of user interaction:    </p>
+    <ul>
+      <li>Mouse pointer interaction.</li>
+      <li>Touch interaction.</li>
+      <li>Keyboard, joystick, other interaction using the &quot;Selectable&quot; system.</li>
+      </ul>
+    <p>Mouse pointer and touch interaction work in a similar way, using a &quot;pointer&quot; screen position and &quot;clicks&quot; to send enter, exit, click, drag, etc. events to UI components. The pointer position must be over a UI element for the event to be sent.</p>
+    <p>Keyboard, joystick, and other interaction work differently from mouse/touch in that they do not use a &quot;pointer&quot;, but instead use Unity's &quot;Selectable&quot; system which is part of the Event System and the individual UI components. The Event System supports a single &quot;currently selected&quot; GameObject which acts as the highlighted GameObject. UI element navigation happens when a UI element receives a navigation move event. Submit and Cancel happens when the currently selected GameObject is sent a Submit or Cancel event when the correct button/key is pressed.</p>
+    <p><strong>Overview:</strong></p>
+<p>The Rewired Standalone Input Module allows you to use a <a href="PlayerControllers.html#player-mouse">Player Mouse</a> to control a software mouse pointer using any input device to interact with the UI. This can be useful if you want to be able to interact with a UI using a gamepad but do not want the limitations of the &quot;Selectable&quot; UI system. You can also have multiple separate mouse pointers that can interact with the UI simultaneously*. (<a href="#player-mouse-mutli-player-ui-limitations">See important limitations / issues.</a>)</p>
+<p>You do not have to use a Player Mouse for mouse pointer interaction to work. If you do not assign a Player Mouse, the default hardware mouse will be used which works just like the Standalone Input Module.</p>
+<p><strong>Using a Player Mouse to control the UI:</strong></p>
+<ul>
+  <li>See <a href="PlayerControllers.html">Player Controllers</a> and <a href="PlayerControllers.html#player-mouse">Player Mouse</a> to understand the concepts.</li>
+  <li>Create a GameObject with a Player Mouse component and configure its Player and element Actions.</li>
+  <li>Create a pointer GameObject and drive it from the Player Mouse's screen position.</li>
+  <li>Add the Player Mouse in the Rewired Standalone Input Module inspector (or add it through scripting at runtime).</li>
+  <li>Make sure the Player that owns the Player Mouse is allowed to control the UI. (<a href="#inspector-options">See inspector options</a> for setting the Players that can control the UI.)</li>
+</ul>
+<p><strong>Using multiple Player Mouse pointers:</strong></p>
+<p>You can use multiple Player Mice to drive multiple mouse pointers that can all interact with the UI.* (<a href="#player-mouse-mutli-player-ui-limitations">See important limitations.</a>) Simply create multiple Player Mice, set them up for each Player, and assign them to Player Mice field in the inspector.</p>
+<p><strong>Examples:</strong></p>
+<ul>
+  <li><a href="Examples.html#player-mouse-unity-ui">Player Mouse Unity UI</a></li>
+</ul>
+<p><strong>Player Pointer Event Data</strong>:</p>
+<p>The Rewired Standalone Input Module will send a PlayerPointerEventData object to all mouse pointer event handlers (Buttons, your scripts that implement the pointer event handler interfaces, etc.) If the handler script is written to support it, you can get Player, button index, and even source Player Mouseinformation from each event. See the <a href="Examples.html#player-mouse-unity-ui">Player Mouse Unity UI</a> example for a demonstration.</p>
+<p>
+  <a name="player-mouse-mutli-player-ui-limitations" id="player-mouse-mutli-player-ui-limitations"></a><strong>*Important Limitations / Issues:</strong></p>
+<p>Unity's UI controls were not written to support interaction from multiple sources at the same time. Generally, UI controls work when being interacted with by multiple pointers, but there are some issues/artifacts:</p>
+    <ul>
+      <li>Selectable (Button, Toggle, Slider, etc.) highlighting shows artifacts when multiple pointers interact with it simultaneously. If two mouse pointers are pressing on a Button and one pointer moves out of the Button's area, a PointerExit event will be sent to the Button and it will no longer be highlighted. The pointer remaining over the Button can be clicking on the button, but the visual Button graphic will not show any change as the Button is clicked. The Button will still send events, but the visual feedback will be lost.</li>
+      <li>Mutiple pointers trying to drag on a UI slider at the same time will yield unpredictable results.</li>
+      <li>Probably others.</li>
+    </ul>
+<p>Rewired cannot overcome these inherent limitations of Unity UI. The only way to remedy these issues would be to replace all UI components and their base classes with new versions that are multi-pointer aware. This is outside the scope of Rewired, which as input system and not a replacement UI system.</p>
+    <p>&nbsp;</p>
+    <hr />
     <h3><strong><a name="troubleshooting" id="troubleshooting"></a></strong>Troubleshooting:</h3>
     <p>Before contacting support for RewiredStandaloneInputModule issues, be sure your issue has to do with Rewired and not just Unity's UI system in general.</p>
-    <ol>
-      <li>The RewiredStandaloneInputModule is just a modified version of Unity's open-source StandaloneInputModule. The only changes to it are to make it work with Rewired as the input source. No attempt has been made to enhance this UI system to support multiple simultaneous selection controls (for example, a multi-player character selection screen). That is beyond the scope of this convenience component.</li>
+    <ul>
       <li>The Rewired Standalone Input Module does nothing besides control input in Unity's UI system by changing the underlying input source from UnityEngine.Input to Rewired. If you are having difficulties with controlling the UI, please make sure your problems aren't really  pertaining to usage of Unity's UI system before contacting support. I frequently get questions that are actually issues with Unity UI setup and have nothing to do with Rewired. When in doubt, test with the StandaloneInputModule instead of the RewiredStandaloneInputModule. If the problem persists, you know that the issue is not with Rewired but rather something you've missed when setting up Unity UI. </li>
-      </ol>
-    <p><strong>Problem: Receiving duplicate mouse clicks when clicking on a UI button</strong></p>
+      </ul>
+    <p>Please refer to the <a href="http://docs.unity3d.com/Manual/script-StandaloneInputModule.html">Unity documentation on the StandaloneInputModule</a> for basic usage.</p>
+<p><strong>Problem: Receiving duplicate mouse clicks when clicking on a UI button</strong></p>
     <p>Do not assign UI Submit or Cancel Actions to Mouse Left Button or Mouse Right Button or you will receive double-clicks evey time the mouse button is pressed over a button. The mouse button click on a UI element is based on mouse cursor position and does not use the Action system.</p>
 <p></p>
     <p><strong><a name="troubleshooting-joystick-keyboard-doesnt-work" id="troubleshooting-joystick-keyboard-doesnt-work"></a>Problem: Unity UI navigation with joystick or keyboard doesn't work</strong></p>
@@ -226,26 +362,14 @@ void SetSelected(GameObject selectableObject) {
     <p>&nbsp;</p>
     <hr />
     <h3><a name="faq" id="faq"></a>FAQ:</h3>
-    <p class="question">Does the Rewired Standalone Input Module do _________?</p>
-    <p>If the Unity StandaloneInputModule doesn't do it, neither does the RewiredStandaloneInputModule.</p>
-    <p>The RewiredStandaloneInputModule is just a modified version of Unity's open-source StandaloneInputModule. The only changes to it are to make it work with Rewired as the input source. No enhancements have been made to this module.</p>
-    <p>Please refer to the <a href="http://docs.unity3d.com/Manual/script-StandaloneInputModule.html">Unity documentation on the StandaloneInputModule</a> for usage.</p>
     <p class="question">Does it support multi-player UIs?</p>
-    <p>No. Rewired isn't a UI system. It includes the 
-      Rewired Standalone Input Module   to interface with Unity's UI system so you 
-      can control it using Rewired as   the input source. While it includes a few 
-      little tweaks to give you a bit   more control over the UI than the Standalone 
-      Input Module, it is largely a   straight port of Unity's Standalone Input 
-      Module.</p>
-    <p>The issue here is Unity's   UI and Event System do not support more 
-      than one simultaneous &quot;selected&quot;   component. Their entire system is designed 
-      around the concept of one single   user and one selection. To create something 
-      that supports multiple   simultaneous selectables would require a complete 
-      rewrite of Unity's UI   components and event system. This is beyond the 
-      scope of Rewired. Other   users have done it in a simpler way by having 
-      players control individual   cursors, but it still requires implementing 
-      their own UI controls to   handle hover, highlight, etc.<br />
-    </p>
+    <p>Only partially through the use of <a href="#player-mouse">Player Mouse pointers</a>.</p>
+    <p>It does not support multi-player UI navigation using the Unity UI Selectable system. (The system used for joystick/keyboard navigation.)</p>
+    <p>The issue here is Unity's   UI controls and Event System do not support more 
+      than one simultaneous &quot;selected&quot;   object. Their entire system is designed 
+      around the concept of one single   user and one selection at a time. The Rewired Standalone Input Module cannot overcome the inherent limitations of Unity's UI system. Supporting multiple   simultaneous Selectables would require a complete 
+      rewrite of Unity's  Event System and all interactable UI components including Button, Toggle, Slider, etc., and their base classes with new versions that are multi-pointer aware including a new highlighting/transition system. This is outside the scope of Rewired, which is an input system and not a replacement UI system.<br />
+  </p>
 <div class="bottom-pager clearfix">
   <a class="back-button" href="Actions.html" title="Actions"><span class="button-img"></span></a><a class="back-button" href="Documentation.html" title="Actions">Documentation</a></div>
 <!-- InstanceEndEditable -->

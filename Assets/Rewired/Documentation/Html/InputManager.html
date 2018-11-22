@@ -81,7 +81,8 @@
               <li><a href="Controllers.html">Controllers</a></li>
               <li><a href="ControllerMaps.html">Controller Maps</a></li>
               <li><a href="MapCategories.html">Map Categories</a></li>
-              <li><a href="ControllerMaps.html"></a><a href="Layouts.html">Layouts</a></li>
+              <li><a href="Layouts.html">Layouts</a></li>
+              <li><a href="ControllerTemplates.html">Controller Templates</a></li>
               <li><a href="CustomControllers.html">Custom Controllers</a></li>
             </ul>
             <strong>Extras:</strong>
@@ -94,6 +95,7 @@
             <strong>Misc:</strong>
             <ul>
 	          <li><a href="ComponentControls.html" title="Component Controls">Component Controls</a></li>
+	          <li><a href="PlayerControllers.html" title="Player Controllers">Player Controllers</a></li>
 	          <li><a href="InputMapper.html" title="Input Mapper">Input Mapper</a></li>
 	          <li><a href="UserDataStore.html" title="User Data Store">User Data Store</a></li>
             </ul>
@@ -149,6 +151,10 @@
     <p><strong>Creating an Input Manager</strong></p>
     <p>Create an Input Manager in the scene from the menu:
       Window -&gt; Rewired -&gt; Create -&gt; Input Manager</p>
+    <ul>
+      <li>Input Manager (in scene) - Will create the Rewired Input Manager in the current scene.</li>
+      <li>Input Manager (prefab) - Will create the Rewired Input Manager as a prefab asset in the project. This is the recommended option to use. (* Do not save the prefab anywhere within the Rewired folder. This will avoid data loss issues should you need to delete and re-install Rewired. *)</li>
+    </ul>
     <p><strong>Editing Input</strong></p>
 <p>The <a href="RewiredEditor.html">Rewired Editor</a> allows you to create and edit input. Launch the Rewired Editor by clicking on the Rewired Input Manager in the scene hierarchy and clicking the &quot;Launch Rewired Editor&quot; button in the inspector. This will allow you to edit the input configuration data stored in the selected Rewired Input Manager.</p>
 <p><strong>Settings</strong></p>
@@ -171,18 +177,46 @@
         <td valign="top">An object reference to the ControllerDataFiles object. This object contains a list of all supported joysticks and templates and is required for Rewired to function correctly. If you want to customize your own list of supported controllers, you can link this to a separate copy of ControllerDataFiles that you have modified. (See <a href="HowTos.html#new-controller-definitions">Creating Controller Definitions</a> for more information.)</td>
       </tr>
       <tr>
+        <td valign="top">Run in Edit Mode</td>
+        <td valign="top"><p>Makes Rewired run in the editor outside of Play mode.</p>
+          <p><a href="#run-in-edit-mode">See this for important information on running in Edit mode.</a></p></td>
+      </tr>
+      <tr>
         <td valign="top">Debug Information</td>
         <td valign="top">Shows  a wealth of useful information during runtime on Players, Controllers, Controller Maps, etc. Allows you to visualize most runtime objects in the system.</td>
       </tr>
     </table>
     <p>&nbsp;</p>
     <p><strong>Using the Rewired Input Manager in your game</strong></p>
-    <p>For finished game builds, the Rewired Input Manager should exist in your initial game scene. Make sure &quot;Don't Destroy On Load&quot; is checked so Rewired will persist throughout the entire game session.</p>
-    <h5>Testing Individual Scenes</h5>
-    <p>If you need to do testing on an individual scene, you can create a prefab (see note below) out of your Rewired Input Manager and place an instance of it in all your scenes, leaving &quot;Don't Destroy on Load&quot; checked. When a new scene is loaded, the additional Rewired Input Manager in the loaded scene will destroy itself automatically leaving the original intact and continuing to handle input without causing any errors.</p>
-<p>Another way to achieve a setup that allows for both testing individual scenes at will and advancing through levels in your final game is to create a script that instantiates a prefab of your Rewired Input Manager on Awake. You can put this script on a GameObject prefab instance that you place in every scene of your game. On Awake, your script should check if a Rewired Input Manager already exists in the scene first, and if it doesn't, instantiate it. Leave &quot;Don't Destroy On Load&quot; checked in the Rewired Input Manager. Finally, be sure your script has a very low number set for its <a href="http://docs.unity3d.com/Manual/class-ScriptExecution.html" target="_blank">Script Execution Order</a> -- it should execute before any other scripts (apart from Rewired's Input Manager) so that Rewired will be set up and ready by the time any other scripts in your game that rely on input make calls to Rewired. </p>
-    <p><strong>Important Note:</strong> If you make a prefab out of the Rewired Input Manager, always open the Rewired Editor on the prefab, not the one in the scene or your changes will be applied to the scene instance. If you do accidentally make changes to the instance in the scene, you can apply the changes to the prefab and everything will be in sync.</p>
-<p>&nbsp;</p>
+    <p>For finished game builds, the Rewired Input Manager (or a Rewired Initializer) should exist in your initial game scene. Make sure &quot;Don't Destroy On Load&quot; is checked so Rewired will persist throughout the entire game session.    </p>
+    <h5>Testing Individual Scenes    </h5>
+    <p>It is recommended you create a Rewired Initializer in each of your scenes. The Initializer will spawn the Rewired Input Manager as needed on Awake, but will not spawn multiple Rewired Input Managers when loading  new scenes avoiding errors. This will allow you to use the same Rewired Input Manager in each scene and be able to test these scenes individually in the editor or load them during gameplay.</p>
+    <p>Create a Rewired Initializer from the menu: Window -&gt; Rewired -&gt; Create -&gt; Initializer</p>
+    <p>After the Rewired Initializer is created, you will need set up a link to a Rewired Input Manager prefab in the inspector.</p>
+    <h5>Alternate method</h5>
+    <p>You can create a prefab (see note below) out of your Rewired Input Manager and place an instance of it in all your scenes, leaving &quot;Don't Destroy on Load&quot; checked. When a new scene is loaded, the additional Rewired Input Manager in the loaded scene will destroy itself automatically leaving the original intact and continuing to handle input without causing any errors.</p>
+    <p>This method is not recommended however because it is prone to user error. The Rewired Input Manager instance in each scene can be edited directly causing there to be differences in configuration between different instances of the prefab across scenes. This is a frequent cause of support requests, and it is recommended to use the Rewired Initializer method instead to avoid any potential mistakes.</p>
+    <p><strong>Important Note:</strong> If you make a prefab out of the Rewired Input Manager, always open the Rewired Editor on the prefab, not the one in the scene or your changes will be applied to the scene instance. If you do accidentally make changes to the instance in the scene, you can apply the changes to the prefab and everything will be in sync.    </p>
+    <h3>Run in Edit Mode</h3>
+<p>Makes Rewired run in the editor outside of Play mode. This can be used to process input in the Unity editor when not in Play mode for a variety of purposes.</p>
+<p>Press the &quot;Run in Edit Mode&quot; button in the Rewired Input Manager inspector to start Rewired in Edit mode. Note that this button acts as a toggle, so if you leave it enabled, every time you open the scene or exit Play mode, Rewired will immediately start running in Edit mode.</p>
+<p><strong>Important information:</strong></p>
+<ul>
+  <li>Switching between Play and Edit mode will reset Rewired. The state of objects is not maintained between modes. For example, Joystick assignments or other runtime changes you make to any Rewired objects do not persist.</li>
+  <li>You cannot edit the Rewired Input Manager configuration while Rewired is running in Edit mode.</li>
+  <li>Not all editor platforms and input sources support running in Edit mode fully or at all. Some types of input devices may not work on some editor platforms and/or when using certain input sources for input.</li>
+  <li>If you need input to function while a Scene View has focus, enable the option <a href="settings-editor-settings-allow-input-in-editor-scene-views">Allow Input in Editor Scene Views.</a></li>
+  <li>Rewired does not update in the standard Unity Update, FixedUpdate, OnGUI loops in Edit mode because Unity does not  execute these loops every frame when outside Play mode. Because of this, Rewired only runs in a special Editor update loop when in Edit mode. This has some important side effects:
+    <ul>
+      <li>Unity's Time class cannot be used when processing input. For example, if you need to multiply a value by Time.deltaTime, it will always return 0. Instead, you must use <a href="http://guavaman.com/projects/rewired/docs/api-reference/html/P_Rewired_ReInput_TimeHelper_unscaledDeltaTime.htm">ReInput.time.unscaledDeltaTime</a>.</li>
+      <li>When writing scripts, it's recommended you use the <a href="HowTos.html#get-input-player-eventsa">input events method</a> to get input as opposed to polling in Update because the Update loop will not be executed every frame by Unity.</li>
+      <li>Rewired will never run in FixedUpdate in Edit mode. If using input events, only subscribe to events in the Update loop.</li>
+      <li>If you want to poll for input, do so from the <a href="https://docs.unity3d.com/ScriptReference/EditorApplication-update.html">EditorApplication.update</a> callback.</li>
+      </ul>
+  </li>
+  <li><a href="http://guavaman.com/projects/rewired/docs/api-reference/html/P_Rewired_Mouse_screenPosition.htm">Mouse.screenPosition</a> and related properties do not work in Edit mode.</li>
+  <li>To start running in Edit mode from an editor script, set the InputManager.runInEditMode property to true.</li>
+  </ul>
 <div class="bottom-pager clearfix">
   <a class="back-button" href="Documentation.html" title="Documentation"><span class="button-img"></span>Documentation</a>
   <a class="forward-button" href="Players.html" title="Players"><span class="button-img"></span>Players</a>

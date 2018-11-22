@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PropertyLayout : MonoBehaviour, LegacyDataViewer {
-    public UIInput name;
+    public UIInput propName;
     public UIInput length;
     public UIInput sprite;
     public UIInput sprite_rate;
@@ -31,7 +31,7 @@ public class PropertyLayout : MonoBehaviour, LegacyDataViewer {
     }
 
     public void SelectedActionChanged(DynamicAction action) {
-        name.text = action.name;
+        propName.text = action.name;
         length.text = action.length.ToString();
         sprite.text = action.sprite;
         sprite_rate.text = action.sprite_rate.ToString();

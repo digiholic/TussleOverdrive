@@ -81,7 +81,8 @@
               <li><a href="Controllers.html">Controllers</a></li>
               <li><a href="ControllerMaps.html">Controller Maps</a></li>
               <li><a href="MapCategories.html">Map Categories</a></li>
-              <li><a href="ControllerMaps.html"></a><a href="Layouts.html">Layouts</a></li>
+              <li><a href="Layouts.html">Layouts</a></li>
+              <li><a href="ControllerTemplates.html">Controller Templates</a></li>
               <li><a href="CustomControllers.html">Custom Controllers</a></li>
             </ul>
             <strong>Extras:</strong>
@@ -94,6 +95,7 @@
             <strong>Misc:</strong>
             <ul>
 	          <li><a href="ComponentControls.html" title="Component Controls">Component Controls</a></li>
+	          <li><a href="PlayerControllers.html" title="Player Controllers">Player Controllers</a></li>
 	          <li><a href="InputMapper.html" title="Input Mapper">Input Mapper</a></li>
 	          <li><a href="UserDataStore.html" title="User Data Store">User Data Store</a></li>
             </ul>
@@ -192,7 +194,7 @@ public class MyUserDataStore : Rewired.Data.UserDataStore {
         <li>Optionally, controller assignments for mouse, keyboard, and joysticks for each Player.</li>
       </ol>
       <p>If you need to save which Controller Maps are currently assigned to a Player, for example if you've manually loaded an alternate layout at some point and you want that new layout to be loaded the next time you call UserDataStore.Load instead of the default defined in the Rewired Input Manager, you will have to make a new UserDataStore class extension that can handle these special needs. Copy the UserDataStore_PlayerPrefs, change the class name, and make any modifications necessary to what data is saved and loaded.</p>
-      <p><strong>IMPORTANT: Saved XML data is not updated when you make changes to the Rewired Input Manager</strong></p>
+      <p><strong><a name="saved-xml-not-synced" id="saved-xml-not-synced"></a>IMPORTANT: Saved XML data is not updated when you make changes to the Rewired Input Manager</strong></p>
 <p>Control Mapper does not manage changes between the Rewired Input Manager and data that is already saved to XML. If you make changes to the Rewired Input Manager settings such as adding new controls to a Joystick Map, these new changes will not be preserved when loading saved XML data. The only automated solutions would be to either clear the save data by clearing Player Prefs so that the Rewired Input Manager defaults are used instead or load the default maps in the Player for the any controllers that changed and save those to XML overwriting the existing saved mappings.</p>
       <p>Management of saved user data is up to the developer. If you have special needs beyond the basic use cases, you should extend and replace the UserDataStore_PlayerPrefs component with a new UserDataStore component that meets your specific needs.</p>
       <p><strong><a name="clearing-playerprefs" id="clearing-playerprefs"></a>IMPORTANT:</strong></p>

@@ -13,7 +13,6 @@ namespace Rewired.Demos {
      */
 
     [AddComponentMenu("")]
-    [RequireComponent(typeof(Demos.TouchControllerExample))]
     public class CustomControllersTiltDemo : MonoBehaviour {
 
         public Transform target; // the object that will be moving -- the cube in this case

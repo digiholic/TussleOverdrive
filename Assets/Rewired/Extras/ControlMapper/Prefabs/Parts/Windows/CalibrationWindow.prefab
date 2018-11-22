@@ -277,6 +277,7 @@ GameObject:
   - 224: {fileID: 22409804}
   - 222: {fileID: 22209804}
   - 114: {fileID: 11409804}
+  - 114: {fileID: 11400006}
   m_Layer: 5
   m_Name: DeadzoneArea
   m_TagString: Untagged
@@ -794,6 +795,7 @@ GameObject:
   - 224: {fileID: 22409866}
   - 222: {fileID: 22209848}
   - 114: {fileID: 11409876}
+  - 114: {fileID: 11400000}
   m_Layer: 5
   m_Name: CalibratedZeroMarker
   m_TagString: Untagged
@@ -827,6 +829,7 @@ GameObject:
   - 224: {fileID: 22409870}
   - 222: {fileID: 22209850}
   - 114: {fileID: 11409880}
+  - 114: {fileID: 11400004}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -926,6 +929,7 @@ GameObject:
   - 224: {fileID: 22468552}
   - 222: {fileID: 22268552}
   - 114: {fileID: 11468552}
+  - 114: {fileID: 11400002}
   m_Layer: 5
   m_Name: ZeroMarker
   m_TagString: Untagged
@@ -984,6 +988,62 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 109866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caf493bc378f92447a8a228821ba4eaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _elements:
+  - _themeClass: calibrationCalibratedZeroMarker
+    _component: {fileID: 11409876}
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 168552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caf493bc378f92447a8a228821ba4eaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _elements:
+  - _themeClass: calibrationZeroMarker
+    _component: {fileID: 11468552}
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 109870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caf493bc378f92447a8a228821ba4eaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _elements:
+  - _themeClass: calibrationBackground
+    _component: {fileID: 11409880}
+--- !u!114 &11400006
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 109804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caf493bc378f92447a8a228821ba4eaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _elements:
+  - _themeClass: calibrationDeadzone
+    _component: {fileID: 11409804}
 --- !u!114 &11402362
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1837,7 +1897,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 3
+    m_Alignment: 4
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
@@ -2276,7 +2336,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: .566176474, g: 0, b: 0, a: 1}
   m_Sprite: {fileID: 0}
-  m_Type: 1
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2425,7 +2485,7 @@ MonoBehaviour:
     _component: {fileID: 11409844}
   - _themeClass: button
     _component: {fileID: 11409834}
-  - _themeClass: 
+  - _themeClass: invertToggle
     _component: {fileID: 11409854}
   - _themeClass: invertToggle
     _component: {fileID: 11409856}
@@ -3735,8 +3795,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 1, y: .5}
   m_AnchorMax: {x: 1, y: .5}
-  m_AnchoredPosition: {x: -20, y: 0}
-  m_SizeDelta: {x: 45, y: 40}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 85, y: 40}
   m_Pivot: {x: 1, y: .5}
 --- !u!224 &22409836
 RectTransform:
@@ -4216,7 +4276,6 @@ CanvasGroup:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 109856}
-  m_Enabled: 1
   m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1

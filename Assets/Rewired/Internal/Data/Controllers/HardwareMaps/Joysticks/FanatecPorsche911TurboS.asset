@@ -11,9 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 323110133, guid: 09c9b883b79ef864a99683bb36c5776d, type: 3}
   m_Name: FanatecPorsche911TurboS
   m_EditorClassIdentifier: 
-  controllerName: Fanatec Porsche 911 Turbo S
+  controllerName: Fanatec Porsche 911 Wheel
   editorControllerName: 
-  description: 
+  description: Fantec Porsche 911 Turbo S, Fantec Porsche 911 Carrera
   controllerGuid: fe653e2a-aeba-426c-8856-954f37d4d84c
   templateGuids:
   - 104e31d8-9115-4dd5-a398-2e54d35e6c83
@@ -44,14 +44,74 @@ MonoBehaviour:
     _negativeName: 
     _elementType: 0
     _compoundElementType: 0
+  - _id: 10
+    _name: Button 1
+    _positiveName: 
+    _negativeName: 
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 12
+    _name: Button 2
+    _positiveName: 
+    _negativeName: 
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 11
+    _name: Button 3
+    _positiveName: 
+    _negativeName: 
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 13
+    _name: Button 4
+    _positiveName: 
+    _negativeName: 
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 14
+    _name: Button 5
+    _positiveName: 
+    _negativeName: 
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 16
+    _name: Button 6
+    _positiveName: 
+    _negativeName: 
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 15
+    _name: Button 7
+    _positiveName: 
+    _negativeName: 
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 17
+    _name: Button 8
+    _positiveName: 
+    _negativeName: 
+    _elementType: 1
+    _compoundElementType: 0
   - _id: 4
-    _name: Left Paddle
+    _name: Button 9
     _positiveName: 
     _negativeName: 
     _elementType: 1
     _compoundElementType: 0
   - _id: 5
-    _name: Right Paddle
+    _name: Button 10
+    _positiveName: 
+    _negativeName: 
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 18
+    _name: Button 11
+    _positiveName: 
+    _negativeName: 
+    _elementType: 1
+    _compoundElementType: 0
+  - _id: 19
+    _name: Button 12
     _positiveName: 
     _negativeName: 
     _elementType: 1
@@ -80,62 +140,44 @@ MonoBehaviour:
     _negativeName: 
     _elementType: 1
     _compoundElementType: 0
-  - _id: 10
-    _name: Left Action 1
+  - _id: 20
+    _name: Shifter 1
     _positiveName: 
     _negativeName: 
     _elementType: 1
     _compoundElementType: 0
-  - _id: 11
-    _name: Left Action 2
+  - _id: 21
+    _name: Shifter 2
     _positiveName: 
     _negativeName: 
     _elementType: 1
     _compoundElementType: 0
-  - _id: 12
-    _name: Left Action 3
+  - _id: 22
+    _name: Shifter 3
     _positiveName: 
     _negativeName: 
     _elementType: 1
     _compoundElementType: 0
-  - _id: 13
-    _name: Left Action 4
+  - _id: 23
+    _name: Shifter 4
     _positiveName: 
     _negativeName: 
     _elementType: 1
     _compoundElementType: 0
-  - _id: 14
-    _name: Right Action 1
+  - _id: 24
+    _name: Shifter 5
     _positiveName: 
     _negativeName: 
     _elementType: 1
     _compoundElementType: 0
-  - _id: 15
-    _name: Right Action 2
+  - _id: 25
+    _name: Shifter 6
     _positiveName: 
     _negativeName: 
     _elementType: 1
     _compoundElementType: 0
-  - _id: 16
-    _name: Right Action 3
-    _positiveName: 
-    _negativeName: 
-    _elementType: 1
-    _compoundElementType: 0
-  - _id: 17
-    _name: Right Action 4
-    _positiveName: 
-    _negativeName: 
-    _elementType: 1
-    _compoundElementType: 0
-  - _id: 18
-    _name: Back
-    _positiveName: 
-    _negativeName: 
-    _elementType: 1
-    _compoundElementType: 0
-  - _id: 19
-    _name: Start
+  - _id: 26
+    _name: Shifter 7
     _positiveName: 
     _negativeName: 
     _elementType: 1
@@ -149,6 +191,7 @@ MonoBehaviour:
       disabled: 0
       tag: 
       hatCount: 1
+      alternateElementCounts: []
       productName_useRegex: 0
       productName:
       - Porsche Wheel
@@ -173,6 +216,8 @@ MonoBehaviour:
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 0
+        alternateCalibrations: []
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -193,6 +238,8 @@ MonoBehaviour:
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 0
+        alternateCalibrations: []
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -213,6 +260,8 @@ MonoBehaviour:
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 0
+        alternateCalibrations: []
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -233,12 +282,158 @@ MonoBehaviour:
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 0
+        alternateCalibrations: []
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
         sourceHatDirection: 0
         sourceHatRange: 0
       buttons:
+      - customCalculation: {fileID: 0}
+        customCalculationSourceData: []
+        elementIdentifier: 10
+        sourceType: 0
+        sourceButton: 0
+        sourceAxis: 0
+        sourceAxisPole: 0
+        axisDeadZone: 0
+        sourceHat: 0
+        sourceHatType: 0
+        sourceHatDirection: 3
+        requireMultipleButtons: 0
+        requiredButtons: 
+        ignoreIfButtonsActive: 0
+        ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
+      - customCalculation: {fileID: 0}
+        customCalculationSourceData: []
+        elementIdentifier: 12
+        sourceType: 0
+        sourceButton: 1
+        sourceAxis: 0
+        sourceAxisPole: 0
+        axisDeadZone: 0
+        sourceHat: 0
+        sourceHatType: 0
+        sourceHatDirection: 3
+        requireMultipleButtons: 0
+        requiredButtons: 
+        ignoreIfButtonsActive: 0
+        ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
+      - customCalculation: {fileID: 0}
+        customCalculationSourceData: []
+        elementIdentifier: 11
+        sourceType: 0
+        sourceButton: 2
+        sourceAxis: 0
+        sourceAxisPole: 0
+        axisDeadZone: 0
+        sourceHat: 0
+        sourceHatType: 0
+        sourceHatDirection: 3
+        requireMultipleButtons: 0
+        requiredButtons: 
+        ignoreIfButtonsActive: 0
+        ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
+      - customCalculation: {fileID: 0}
+        customCalculationSourceData: []
+        elementIdentifier: 13
+        sourceType: 0
+        sourceButton: 3
+        sourceAxis: 0
+        sourceAxisPole: 0
+        axisDeadZone: 0
+        sourceHat: 0
+        sourceHatType: 0
+        sourceHatDirection: 3
+        requireMultipleButtons: 0
+        requiredButtons: 
+        ignoreIfButtonsActive: 0
+        ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
+      - customCalculation: {fileID: 0}
+        customCalculationSourceData: []
+        elementIdentifier: 14
+        sourceType: 0
+        sourceButton: 4
+        sourceAxis: 0
+        sourceAxisPole: 0
+        axisDeadZone: 0
+        sourceHat: 0
+        sourceHatType: 0
+        sourceHatDirection: 3
+        requireMultipleButtons: 0
+        requiredButtons: 
+        ignoreIfButtonsActive: 0
+        ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
+      - customCalculation: {fileID: 0}
+        customCalculationSourceData: []
+        elementIdentifier: 16
+        sourceType: 0
+        sourceButton: 5
+        sourceAxis: 0
+        sourceAxisPole: 0
+        axisDeadZone: 0
+        sourceHat: 0
+        sourceHatType: 0
+        sourceHatDirection: 3
+        requireMultipleButtons: 0
+        requiredButtons: 
+        ignoreIfButtonsActive: 0
+        ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
+      - customCalculation: {fileID: 0}
+        customCalculationSourceData: []
+        elementIdentifier: 15
+        sourceType: 0
+        sourceButton: 6
+        sourceAxis: 0
+        sourceAxisPole: 0
+        axisDeadZone: 0
+        sourceHat: 0
+        sourceHatType: 0
+        sourceHatDirection: 3
+        requireMultipleButtons: 0
+        requiredButtons: 
+        ignoreIfButtonsActive: 0
+        ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
+      - customCalculation: {fileID: 0}
+        customCalculationSourceData: []
+        elementIdentifier: 17
+        sourceType: 0
+        sourceButton: 7
+        sourceAxis: 0
+        sourceAxisPole: 0
+        axisDeadZone: 0
+        sourceHat: 0
+        sourceHatType: 0
+        sourceHatDirection: 3
+        requireMultipleButtons: 0
+        requiredButtons: 
+        ignoreIfButtonsActive: 0
+        ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
       - customCalculation: {fileID: 0}
         customCalculationSourceData: []
         elementIdentifier: 4
@@ -268,6 +463,42 @@ MonoBehaviour:
         sourceHat: 0
         sourceHatType: 0
         sourceHatDirection: 0
+        requireMultipleButtons: 0
+        requiredButtons: 
+        ignoreIfButtonsActive: 0
+        ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
+      - customCalculation: {fileID: 0}
+        customCalculationSourceData: []
+        elementIdentifier: 18
+        sourceType: 0
+        sourceButton: 10
+        sourceAxis: 0
+        sourceAxisPole: 0
+        axisDeadZone: 0
+        sourceHat: 0
+        sourceHatType: 0
+        sourceHatDirection: 3
+        requireMultipleButtons: 0
+        requiredButtons: 
+        ignoreIfButtonsActive: 0
+        ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
+      - customCalculation: {fileID: 0}
+        customCalculationSourceData: []
+        elementIdentifier: 19
+        sourceType: 0
+        sourceButton: 11
+        sourceAxis: 0
+        sourceAxisPole: 0
+        axisDeadZone: 0
+        sourceHat: 0
+        sourceHatType: 0
+        sourceHatDirection: 3
         requireMultipleButtons: 0
         requiredButtons: 
         ignoreIfButtonsActive: 0
@@ -349,9 +580,9 @@ MonoBehaviour:
           _isPressureSensitive: 0
       - customCalculation: {fileID: 0}
         customCalculationSourceData: []
-        elementIdentifier: 10
+        elementIdentifier: 20
         sourceType: 0
-        sourceButton: 0
+        sourceButton: 12
         sourceAxis: 0
         sourceAxisPole: 0
         axisDeadZone: 0
@@ -367,9 +598,9 @@ MonoBehaviour:
           _isPressureSensitive: 0
       - customCalculation: {fileID: 0}
         customCalculationSourceData: []
-        elementIdentifier: 11
+        elementIdentifier: 21
         sourceType: 0
-        sourceButton: 2
+        sourceButton: 13
         sourceAxis: 0
         sourceAxisPole: 0
         axisDeadZone: 0
@@ -385,9 +616,9 @@ MonoBehaviour:
           _isPressureSensitive: 0
       - customCalculation: {fileID: 0}
         customCalculationSourceData: []
-        elementIdentifier: 12
+        elementIdentifier: 22
         sourceType: 0
-        sourceButton: 1
+        sourceButton: 14
         sourceAxis: 0
         sourceAxisPole: 0
         axisDeadZone: 0
@@ -403,9 +634,9 @@ MonoBehaviour:
           _isPressureSensitive: 0
       - customCalculation: {fileID: 0}
         customCalculationSourceData: []
-        elementIdentifier: 13
+        elementIdentifier: 23
         sourceType: 0
-        sourceButton: 3
+        sourceButton: 15
         sourceAxis: 0
         sourceAxisPole: 0
         axisDeadZone: 0
@@ -421,9 +652,9 @@ MonoBehaviour:
           _isPressureSensitive: 0
       - customCalculation: {fileID: 0}
         customCalculationSourceData: []
-        elementIdentifier: 14
+        elementIdentifier: 24
         sourceType: 0
-        sourceButton: 4
+        sourceButton: 16
         sourceAxis: 0
         sourceAxisPole: 0
         axisDeadZone: 0
@@ -439,9 +670,9 @@ MonoBehaviour:
           _isPressureSensitive: 0
       - customCalculation: {fileID: 0}
         customCalculationSourceData: []
-        elementIdentifier: 15
+        elementIdentifier: 25
         sourceType: 0
-        sourceButton: 6
+        sourceButton: 17
         sourceAxis: 0
         sourceAxisPole: 0
         axisDeadZone: 0
@@ -457,63 +688,9 @@ MonoBehaviour:
           _isPressureSensitive: 0
       - customCalculation: {fileID: 0}
         customCalculationSourceData: []
-        elementIdentifier: 16
+        elementIdentifier: 26
         sourceType: 0
-        sourceButton: 5
-        sourceAxis: 0
-        sourceAxisPole: 0
-        axisDeadZone: 0
-        sourceHat: 0
-        sourceHatType: 0
-        sourceHatDirection: 3
-        requireMultipleButtons: 0
-        requiredButtons: 
-        ignoreIfButtonsActive: 0
-        ignoreIfButtonsActiveButtons: 
-        buttonInfo:
-          _excludeFromPolling: 0
-          _isPressureSensitive: 0
-      - customCalculation: {fileID: 0}
-        customCalculationSourceData: []
-        elementIdentifier: 17
-        sourceType: 0
-        sourceButton: 7
-        sourceAxis: 0
-        sourceAxisPole: 0
-        axisDeadZone: 0
-        sourceHat: 0
-        sourceHatType: 0
-        sourceHatDirection: 3
-        requireMultipleButtons: 0
-        requiredButtons: 
-        ignoreIfButtonsActive: 0
-        ignoreIfButtonsActiveButtons: 
-        buttonInfo:
-          _excludeFromPolling: 0
-          _isPressureSensitive: 0
-      - customCalculation: {fileID: 0}
-        customCalculationSourceData: []
-        elementIdentifier: 18
-        sourceType: 0
-        sourceButton: 10
-        sourceAxis: 0
-        sourceAxisPole: 0
-        axisDeadZone: 0
-        sourceHat: 0
-        sourceHatType: 0
-        sourceHatDirection: 3
-        requireMultipleButtons: 0
-        requiredButtons: 
-        ignoreIfButtonsActive: 0
-        ignoreIfButtonsActiveButtons: 
-        buttonInfo:
-          _excludeFromPolling: 0
-          _isPressureSensitive: 0
-      - customCalculation: {fileID: 0}
-        customCalculationSourceData: []
-        elementIdentifier: 19
-        sourceType: 0
-        sourceButton: 11
+        sourceButton: 18
         sourceAxis: 0
         sourceAxisPole: 0
         axisDeadZone: 0
@@ -536,6 +713,7 @@ MonoBehaviour:
       disabled: 0
       tag: 
       hatCount: 1
+      alternateElementCounts: []
       productName_useRegex: 0
       productName:
       - Porsche Wheel
@@ -560,6 +738,8 @@ MonoBehaviour:
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 0
+        alternateCalibrations: []
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -581,6 +761,8 @@ MonoBehaviour:
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 0
+        alternateCalibrations: []
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -602,6 +784,8 @@ MonoBehaviour:
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 0
+        alternateCalibrations: []
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -623,6 +807,8 @@ MonoBehaviour:
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 0
+        alternateCalibrations: []
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -630,6 +816,158 @@ MonoBehaviour:
         sourceHatRange: 0
         sourceOtherAxis: 0
       buttons:
+      - customCalculation: {fileID: 0}
+        customCalculationSourceData: []
+        elementIdentifier: 10
+        sourceType: 0
+        sourceButton: 0
+        sourceAxis: 0
+        sourceAxisPole: 0
+        axisDeadZone: 0
+        sourceHat: 0
+        sourceHatType: 0
+        sourceHatDirection: 3
+        requireMultipleButtons: 0
+        requiredButtons: 
+        ignoreIfButtonsActive: 0
+        ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
+        sourceOtherAxis: 0
+      - customCalculation: {fileID: 0}
+        customCalculationSourceData: []
+        elementIdentifier: 12
+        sourceType: 0
+        sourceButton: 1
+        sourceAxis: 0
+        sourceAxisPole: 0
+        axisDeadZone: 0
+        sourceHat: 0
+        sourceHatType: 0
+        sourceHatDirection: 3
+        requireMultipleButtons: 0
+        requiredButtons: 
+        ignoreIfButtonsActive: 0
+        ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
+        sourceOtherAxis: 0
+      - customCalculation: {fileID: 0}
+        customCalculationSourceData: []
+        elementIdentifier: 11
+        sourceType: 0
+        sourceButton: 2
+        sourceAxis: 0
+        sourceAxisPole: 0
+        axisDeadZone: 0
+        sourceHat: 0
+        sourceHatType: 0
+        sourceHatDirection: 3
+        requireMultipleButtons: 0
+        requiredButtons: 
+        ignoreIfButtonsActive: 0
+        ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
+        sourceOtherAxis: 0
+      - customCalculation: {fileID: 0}
+        customCalculationSourceData: []
+        elementIdentifier: 13
+        sourceType: 0
+        sourceButton: 3
+        sourceAxis: 0
+        sourceAxisPole: 0
+        axisDeadZone: 0
+        sourceHat: 0
+        sourceHatType: 0
+        sourceHatDirection: 3
+        requireMultipleButtons: 0
+        requiredButtons: 
+        ignoreIfButtonsActive: 0
+        ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
+        sourceOtherAxis: 0
+      - customCalculation: {fileID: 0}
+        customCalculationSourceData: []
+        elementIdentifier: 14
+        sourceType: 0
+        sourceButton: 4
+        sourceAxis: 0
+        sourceAxisPole: 0
+        axisDeadZone: 0
+        sourceHat: 0
+        sourceHatType: 0
+        sourceHatDirection: 3
+        requireMultipleButtons: 0
+        requiredButtons: 
+        ignoreIfButtonsActive: 0
+        ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
+        sourceOtherAxis: 0
+      - customCalculation: {fileID: 0}
+        customCalculationSourceData: []
+        elementIdentifier: 16
+        sourceType: 0
+        sourceButton: 5
+        sourceAxis: 0
+        sourceAxisPole: 0
+        axisDeadZone: 0
+        sourceHat: 0
+        sourceHatType: 0
+        sourceHatDirection: 3
+        requireMultipleButtons: 0
+        requiredButtons: 
+        ignoreIfButtonsActive: 0
+        ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
+        sourceOtherAxis: 0
+      - customCalculation: {fileID: 0}
+        customCalculationSourceData: []
+        elementIdentifier: 15
+        sourceType: 0
+        sourceButton: 6
+        sourceAxis: 0
+        sourceAxisPole: 0
+        axisDeadZone: 0
+        sourceHat: 0
+        sourceHatType: 0
+        sourceHatDirection: 3
+        requireMultipleButtons: 0
+        requiredButtons: 
+        ignoreIfButtonsActive: 0
+        ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
+        sourceOtherAxis: 0
+      - customCalculation: {fileID: 0}
+        customCalculationSourceData: []
+        elementIdentifier: 17
+        sourceType: 0
+        sourceButton: 7
+        sourceAxis: 0
+        sourceAxisPole: 0
+        axisDeadZone: 0
+        sourceHat: 0
+        sourceHatType: 0
+        sourceHatDirection: 3
+        requireMultipleButtons: 0
+        requiredButtons: 
+        ignoreIfButtonsActive: 0
+        ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
+        sourceOtherAxis: 0
       - customCalculation: {fileID: 0}
         customCalculationSourceData: []
         elementIdentifier: 4
@@ -660,6 +998,44 @@ MonoBehaviour:
         sourceHat: 0
         sourceHatType: 0
         sourceHatDirection: 0
+        requireMultipleButtons: 0
+        requiredButtons: 
+        ignoreIfButtonsActive: 0
+        ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
+        sourceOtherAxis: 0
+      - customCalculation: {fileID: 0}
+        customCalculationSourceData: []
+        elementIdentifier: 18
+        sourceType: 0
+        sourceButton: 10
+        sourceAxis: 0
+        sourceAxisPole: 0
+        axisDeadZone: 0
+        sourceHat: 0
+        sourceHatType: 0
+        sourceHatDirection: 3
+        requireMultipleButtons: 0
+        requiredButtons: 
+        ignoreIfButtonsActive: 0
+        ignoreIfButtonsActiveButtons: 
+        buttonInfo:
+          _excludeFromPolling: 0
+          _isPressureSensitive: 0
+        sourceOtherAxis: 0
+      - customCalculation: {fileID: 0}
+        customCalculationSourceData: []
+        elementIdentifier: 19
+        sourceType: 0
+        sourceButton: 11
+        sourceAxis: 0
+        sourceAxisPole: 0
+        axisDeadZone: 0
+        sourceHat: 0
+        sourceHatType: 0
+        sourceHatDirection: 3
         requireMultipleButtons: 0
         requiredButtons: 
         ignoreIfButtonsActive: 0
@@ -746,9 +1122,9 @@ MonoBehaviour:
         sourceOtherAxis: 0
       - customCalculation: {fileID: 0}
         customCalculationSourceData: []
-        elementIdentifier: 10
+        elementIdentifier: 20
         sourceType: 0
-        sourceButton: 0
+        sourceButton: 12
         sourceAxis: 0
         sourceAxisPole: 0
         axisDeadZone: 0
@@ -765,9 +1141,9 @@ MonoBehaviour:
         sourceOtherAxis: 0
       - customCalculation: {fileID: 0}
         customCalculationSourceData: []
-        elementIdentifier: 11
+        elementIdentifier: 21
         sourceType: 0
-        sourceButton: 2
+        sourceButton: 13
         sourceAxis: 0
         sourceAxisPole: 0
         axisDeadZone: 0
@@ -784,9 +1160,9 @@ MonoBehaviour:
         sourceOtherAxis: 0
       - customCalculation: {fileID: 0}
         customCalculationSourceData: []
-        elementIdentifier: 12
+        elementIdentifier: 22
         sourceType: 0
-        sourceButton: 1
+        sourceButton: 14
         sourceAxis: 0
         sourceAxisPole: 0
         axisDeadZone: 0
@@ -803,9 +1179,9 @@ MonoBehaviour:
         sourceOtherAxis: 0
       - customCalculation: {fileID: 0}
         customCalculationSourceData: []
-        elementIdentifier: 13
+        elementIdentifier: 23
         sourceType: 0
-        sourceButton: 3
+        sourceButton: 15
         sourceAxis: 0
         sourceAxisPole: 0
         axisDeadZone: 0
@@ -822,9 +1198,9 @@ MonoBehaviour:
         sourceOtherAxis: 0
       - customCalculation: {fileID: 0}
         customCalculationSourceData: []
-        elementIdentifier: 14
+        elementIdentifier: 24
         sourceType: 0
-        sourceButton: 4
+        sourceButton: 16
         sourceAxis: 0
         sourceAxisPole: 0
         axisDeadZone: 0
@@ -841,9 +1217,9 @@ MonoBehaviour:
         sourceOtherAxis: 0
       - customCalculation: {fileID: 0}
         customCalculationSourceData: []
-        elementIdentifier: 15
+        elementIdentifier: 25
         sourceType: 0
-        sourceButton: 6
+        sourceButton: 17
         sourceAxis: 0
         sourceAxisPole: 0
         axisDeadZone: 0
@@ -860,66 +1236,9 @@ MonoBehaviour:
         sourceOtherAxis: 0
       - customCalculation: {fileID: 0}
         customCalculationSourceData: []
-        elementIdentifier: 16
+        elementIdentifier: 26
         sourceType: 0
-        sourceButton: 5
-        sourceAxis: 0
-        sourceAxisPole: 0
-        axisDeadZone: 0
-        sourceHat: 0
-        sourceHatType: 0
-        sourceHatDirection: 3
-        requireMultipleButtons: 0
-        requiredButtons: 
-        ignoreIfButtonsActive: 0
-        ignoreIfButtonsActiveButtons: 
-        buttonInfo:
-          _excludeFromPolling: 0
-          _isPressureSensitive: 0
-        sourceOtherAxis: 0
-      - customCalculation: {fileID: 0}
-        customCalculationSourceData: []
-        elementIdentifier: 17
-        sourceType: 0
-        sourceButton: 7
-        sourceAxis: 0
-        sourceAxisPole: 0
-        axisDeadZone: 0
-        sourceHat: 0
-        sourceHatType: 0
-        sourceHatDirection: 3
-        requireMultipleButtons: 0
-        requiredButtons: 
-        ignoreIfButtonsActive: 0
-        ignoreIfButtonsActiveButtons: 
-        buttonInfo:
-          _excludeFromPolling: 0
-          _isPressureSensitive: 0
-        sourceOtherAxis: 0
-      - customCalculation: {fileID: 0}
-        customCalculationSourceData: []
-        elementIdentifier: 18
-        sourceType: 0
-        sourceButton: 10
-        sourceAxis: 0
-        sourceAxisPole: 0
-        axisDeadZone: 0
-        sourceHat: 0
-        sourceHatType: 0
-        sourceHatDirection: 3
-        requireMultipleButtons: 0
-        requiredButtons: 
-        ignoreIfButtonsActive: 0
-        ignoreIfButtonsActiveButtons: 
-        buttonInfo:
-          _excludeFromPolling: 0
-          _isPressureSensitive: 0
-        sourceOtherAxis: 0
-      - customCalculation: {fileID: 0}
-        customCalculationSourceData: []
-        elementIdentifier: 19
-        sourceType: 0
-        sourceButton: 11
+        sourceButton: 18
         sourceAxis: 0
         sourceAxisPole: 0
         axisDeadZone: 0
@@ -955,6 +1274,7 @@ MonoBehaviour:
       disabled: 0
       tag: 
       hatCount: 0
+      alternateElementCounts: []
       productName_useRegex: 0
       productName: []
       manufacturer: []
@@ -972,6 +1292,7 @@ MonoBehaviour:
       disabled: 0
       tag: 
       hatCount: 0
+      alternateElementCounts: []
       manufacturer_useRegex: 0
       productName_useRegex: 0
       systemName_useRegex: 0
@@ -991,6 +1312,7 @@ MonoBehaviour:
       disabled: 0
       tag: 
       hatCount: 0
+      alternateElementCounts: []
       manufacturer_useRegex: 0
       productName_useRegex: 0
       manufacturer: []
@@ -1014,6 +1336,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes:
       - elementIdentifier: 0
@@ -1031,9 +1356,11 @@ MonoBehaviour:
         axisZero: 1
         axisMin: -1
         axisMax: 1
+        alternateCalibrations: []
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 0
       - elementIdentifier: 1
         sourceType: 1
         sourceAxis: 3
@@ -1049,9 +1376,11 @@ MonoBehaviour:
         axisZero: 1
         axisMin: -1
         axisMax: 1
+        alternateCalibrations: []
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 0
       - elementIdentifier: 2
         sourceType: 1
         sourceAxis: 4
@@ -1067,9 +1396,11 @@ MonoBehaviour:
         axisZero: 1
         axisMin: -1
         axisMax: 1
+        alternateCalibrations: []
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 0
       - elementIdentifier: 3
         sourceType: 1
         sourceAxis: 2
@@ -1085,9 +1416,11 @@ MonoBehaviour:
         axisZero: 1
         axisMin: -1
         axisMax: 1
+        alternateCalibrations: []
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 0
       buttons:
       - elementIdentifier: 4
         sourceType: 0
@@ -1487,6 +1820,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -1504,6 +1840,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -1521,6 +1860,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -1538,6 +1880,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -1555,6 +1900,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -1572,6 +1920,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -1589,6 +1940,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -1606,6 +1960,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -1623,6 +1980,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -1640,6 +2000,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -1657,6 +2020,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -1674,6 +2040,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -1691,6 +2060,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -1708,6 +2080,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -1725,6 +2100,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -1742,6 +2120,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -1759,6 +2140,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -1776,6 +2160,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -1925,4 +2312,4 @@ MonoBehaviour:
       axes: []
       buttons: []
     variants: []
-  elementIdentifierIdCounter: 20
+  elementIdentifierIdCounter: 27

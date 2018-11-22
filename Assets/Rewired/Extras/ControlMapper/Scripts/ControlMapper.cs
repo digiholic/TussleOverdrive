@@ -1,4 +1,64 @@
 ﻿// Copyright (c) 2015 Augie R. Maddox, Guavaman Enterprises. All rights reserved.
+#if UNITY_2020 || UNITY_2021 || UNITY_2022 || UNITY_2023 || UNITY_2024 || UNITY_2025
+#define UNITY_2020_PLUS
+#endif
+
+#if UNITY_2019 || UNITY_2020_PLUS
+#define UNITY_2019_PLUS
+#endif
+
+#if UNITY_2018 || UNITY_2019_PLUS
+#define UNITY_2018_PLUS
+#endif
+
+#if UNITY_2017 || UNITY_2018_PLUS
+#define UNITY_2017_PLUS
+#endif
+
+#if UNITY_5 || UNITY_2017_PLUS
+#define UNITY_5_PLUS
+#endif
+
+#if UNITY_5_1 || UNITY_5_2 || UNITY_5_3_OR_NEWER || UNITY_2017_PLUS
+#define UNITY_5_1_PLUS
+#endif
+
+#if UNITY_5_2 || UNITY_5_3_OR_NEWER || UNITY_2017_PLUS
+#define UNITY_5_2_PLUS
+#endif
+
+#if UNITY_5_3_OR_NEWER || UNITY_2017_PLUS
+#define UNITY_5_3_PLUS
+#endif
+
+#if UNITY_5_4_OR_NEWER || UNITY_2017_PLUS
+#define UNITY_5_4_PLUS
+#endif
+
+#if UNITY_5_5_OR_NEWER || UNITY_2017_PLUS
+#define UNITY_5_5_PLUS
+#endif
+
+#if UNITY_5_6_OR_NEWER || UNITY_2017_PLUS
+#define UNITY_5_6_PLUS
+#endif
+
+#if UNITY_5_7_OR_NEWER || UNITY_2017_PLUS
+#define UNITY_5_7_PLUS
+#endif
+
+#if UNITY_5_8_OR_NEWER || UNITY_2017_PLUS
+#define UNITY_5_8_PLUS
+#endif
+
+#if UNITY_5_9_OR_NEWER || UNITY_2017_PLUS
+#define UNITY_5_9_PLUS
+#endif
+
+#if UNITY_4_6 || UNITY_4_7 || UNITY_5_PLUS
+#define SUPPORTS_UNITY_UI
+#endif
+
 #pragma warning disable 0219
 #pragma warning disable 0618
 #pragma warning disable 0649
@@ -118,6 +178,9 @@ namespace Rewired.UI.ControlMapper {
         [SerializeField]
         [Tooltip("If enabled, when an element assignment conflict is found, an option will be displayed that allows the user to make the conflicting assignment anyway.")]
         private bool _allowElementAssignmentConflicts = false;
+        [SerializeField]
+        [Tooltip("If enabled, when an element assignment conflict is found, an option will be displayed that allows the user to swap conflicting assignments. This only applies to the first conflicting assignment found. This option will not be displayed if allowElementAssignmentConflicts is true.")]
+        private bool _allowElementAssignmentSwap = false;
 
         [SerializeField]
         [Tooltip("The width in relative pixels of the Action label column.")]
@@ -367,7 +430,7 @@ namespace Rewired.UI.ControlMapper {
         /// </summary>
         public event UnityAction onScreenClosed {
             add {
-                _onScreenClosed.AddListener(value); 
+                _onScreenClosed.AddListener(value);
             }
             remove {
                 _onScreenClosed.RemoveListener(value);
@@ -504,6 +567,7 @@ namespace Rewired.UI.ControlMapper {
         public bool showFullAxisInputFields { get { return _showFullAxisInputFields; } set { _showFullAxisInputFields = value; InspectorPropertyChanged(true); } }
         public bool showSplitAxisInputFields { get { return _showSplitAxisInputFields; } set { _showSplitAxisInputFields = value; InspectorPropertyChanged(true); } }
         public bool allowElementAssignmentConflicts { get { return _allowElementAssignmentConflicts; } set { _allowElementAssignmentConflicts = value; InspectorPropertyChanged(); } }
+        public bool allowElementAssignmentSwap { get { return _allowElementAssignmentSwap; } set { _allowElementAssignmentSwap = value; InspectorPropertyChanged(); } }
         public int actionLabelWidth { get { return _actionLabelWidth; } set { _actionLabelWidth = value; InspectorPropertyChanged(true); } }
         public int keyboardColMaxWidth { get { return _keyboardColMaxWidth; } set { _keyboardColMaxWidth = value; InspectorPropertyChanged(true); } }
         public int mouseColMaxWidth { get { return _mouseColMaxWidth; } set { _mouseColMaxWidth = value; InspectorPropertyChanged(true); } }
@@ -1022,7 +1086,7 @@ namespace Rewired.UI.ControlMapper {
             CloseWindow(windowId);
         }
 
-        private void OnElementAssignmentConflictReplaceConfirmed(int windowId, InputMapping mapping, ElementAssignment assignment, bool skipOtherPlayers) {
+        private void OnElementAssignmentConflictReplaceConfirmed(int windowId, InputMapping mapping, ElementAssignment assignment, bool skipOtherPlayers, bool allowSwap) {
             if(currentPlayer == null || mapping == null) return;
             ElementAssignmentConflictCheck conflictCheck;
             if(!CreateConflictCheck(mapping, assignment, out conflictCheck)) {
@@ -1031,16 +1095,108 @@ namespace Rewired.UI.ControlMapper {
                 return;
             }
 
+            ElementAssignmentConflictInfo firstConflict = new ElementAssignmentConflictInfo();
+            ActionElementMap firstConflictAEM = null;
+            ActionElementMap origAemToReplaceCopy = null;
+            bool swap = false;
+
+            // Check for conflicts for swapping
+            if(allowSwap && mapping.aem != null) { // cannot swap if this is not a replacement mapping
+                // Find the first conflict
+                if(GetFirstElementAssignmentConflict(conflictCheck, out firstConflict, skipOtherPlayers)) {
+                    swap = true;
+                    origAemToReplaceCopy = new ActionElementMap(mapping.aem); // create a copy of the mapping because the original will be modified before we can use it
+                    firstConflictAEM = new ActionElementMap(firstConflict.elementMap); // store this because it will no longer be accessible once the AEM is removed
+                }
+            }
+
             // Remove conflicting mappings
-            if(skipOtherPlayers) { // skip other players, only remove from system and self
-                ReInput.players.SystemPlayer.controllers.conflictChecking.RemoveElementAssignmentConflicts(conflictCheck);
-                currentPlayer.controllers.conflictChecking.RemoveElementAssignmentConflicts(conflictCheck);
-            } else { // remove from all players
-                ReInput.controllers.conflictChecking.RemoveElementAssignmentConflicts(conflictCheck);
+            IList<Player> allPlayers = ReInput.players.AllPlayers;
+            for(int i = 0; i < allPlayers.Count; i++) {
+                Player player = allPlayers[i];
+                if(skipOtherPlayers && player != currentPlayer && player != ReInput.players.SystemPlayer) continue; // skip other players, only remove from system and self
+                player.controllers.conflictChecking.RemoveElementAssignmentConflicts(conflictCheck);
             }
 
             // Create the new mapping or replace existing
             mapping.map.ReplaceOrCreateElementMap(assignment);
+
+            // Handle assignment swapping
+            if(allowSwap && swap) {
+
+                // Take the Action and some properties from the conflict
+                int swapActionId = firstConflictAEM.actionId;
+                Pole swapAxisContribution = firstConflictAEM.axisContribution;
+                bool swapInvert = firstConflictAEM.invert;
+                // Take properties from the original
+                AxisRange swapAxisRange = origAemToReplaceCopy.axisRange;
+                ControllerElementType swapElementType = origAemToReplaceCopy.elementType;
+                int swapElementIdentifierId = origAemToReplaceCopy.elementIdentifierId;
+                KeyCode swapKeyCode = origAemToReplaceCopy.keyCode;
+                ModifierKeyFlags swapModifierKeyFlags = origAemToReplaceCopy.modifierKeyFlags;
+
+                if(swapElementType == firstConflictAEM.elementType && swapElementType == ControllerElementType.Axis) {
+                    if(swapAxisRange != firstConflictAEM.axisRange) {
+                        if(swapAxisRange == AxisRange.Full) { // swapping full-axis into a split-axis mapping
+                            swapAxisRange = AxisRange.Positive; // just make it positive. Triggers would be a problem if trying to match the field pole.
+                        } else if(firstConflictAEM.axisRange == AxisRange.Full) { // swapping split-axis into a full-axis mapping
+                            // do nothing, making this a full mapping would too easily create new conflicts.
+                            // the existing split axis will work if it fits
+                        }
+                    }
+
+                } else if(swapElementType == ControllerElementType.Axis) {
+
+                    if(firstConflictAEM.elementType == ControllerElementType.Button || (firstConflictAEM.elementType == ControllerElementType.Axis && firstConflictAEM.axisRange != AxisRange.Full)) {
+                        // Make sure Axis is split and only one side of it is bound to the Action
+                        if(swapAxisRange == AxisRange.Full) {
+                            swapAxisRange = AxisRange.Positive; // just bind the positive side of the Axis
+                        }
+                    }
+                }
+
+                if(swapElementType != ControllerElementType.Axis || swapAxisRange != AxisRange.Full) swapInvert = false;
+
+                // Determine if there is space for the new swapped assignment
+                // Prevent swap from creating a mapping that the user cannot see because the input fields
+                // are already full. This can happen with a swap between a full-axis mapping and a button mapping.
+                int usedFieldCount = 0;
+
+                // Count how many mappings already exist in the same mapping range
+                foreach(var aem in firstConflict.controllerMap.ElementMapsWithAction(swapActionId)) {
+                    if(
+                        SwapIsSameInputRange(
+                            swapElementType,
+                            swapAxisRange,
+                            swapAxisContribution,
+                            aem.elementType,
+                            aem.axisRange,
+                            aem.axisContribution
+                        )
+                    )
+                    {
+                        usedFieldCount++;
+                    }
+                }
+
+                if(usedFieldCount < GetControllerInputFieldCount(mapping.controllerType)) { // there are unused fields, create it
+                    // Create the new swap assignment
+                    firstConflict.controllerMap.ReplaceOrCreateElementMap(
+                        ElementAssignment.CompleteAssignment(
+                            mapping.controllerType,
+                            swapElementType,
+                            swapElementIdentifierId,
+                            swapAxisRange,
+                            swapKeyCode,
+                            swapModifierKeyFlags,
+                            swapActionId,
+                            swapAxisContribution,
+                            swapInvert
+                        )
+                    );
+                } // otherwise, the swap mapping will be dropped
+            }
+
             CloseWindow(windowId);
         }
 
@@ -1530,10 +1686,14 @@ namespace Rewired.UI.ControlMapper {
             if(blocked) {
                 window.CreateButton(prefabs.fitButton, UI.UIPivot.BottomCenter, UI.UIAnchor.BottomCenter, Vector2.zero, _language.okay, cancelCallback, cancelCallback, true);
             } else {
-                window.CreateButton(prefabs.fitButton, UI.UIPivot.BottomLeft, UI.UIAnchor.BottomLeft, Vector2.zero, _language.replace, () => { OnElementAssignmentConflictReplaceConfirmed(window.id, pendingInputMapping, assignment, skipOtherPlayers); }, cancelCallback, true);
+                window.CreateButton(prefabs.fitButton, UI.UIPivot.BottomLeft, UI.UIAnchor.BottomLeft, Vector2.zero, _language.replace, () => { OnElementAssignmentConflictReplaceConfirmed(window.id, pendingInputMapping, assignment, skipOtherPlayers, false); }, cancelCallback, true);
 
                 if(_allowElementAssignmentConflicts) {
                     window.CreateButton(prefabs.fitButton, UI.UIPivot.BottomCenter, UI.UIAnchor.BottomCenter, Vector2.zero, _language.add, () => { OnElementAssignmentAddConfirmed(window.id, pendingInputMapping, assignment); }, cancelCallback, false);
+                } else {
+                    if(ShowSwapButton(window.id, pendingInputMapping, assignment, skipOtherPlayers)) {
+                        window.CreateButton(prefabs.fitButton, UI.UIPivot.BottomCenter, UI.UIAnchor.BottomCenter, Vector2.zero, _language.swap, () => { OnElementAssignmentConflictReplaceConfirmed(window.id, pendingInputMapping, assignment, skipOtherPlayers, true); }, cancelCallback, false);
+                    }
                 }
 
                 window.CreateButton(prefabs.fitButton, UI.UIPivot.BottomRight, UI.UIAnchor.BottomRight, Vector2.zero, _language.cancel, cancelCallback, cancelCallback, false);
@@ -2150,7 +2310,7 @@ namespace Rewired.UI.ControlMapper {
                         inputGrid.PopulateField(currentMapCategoryId, actionSet.actionId, actionSet.axisRange, controllerType, controllerId, count, aem.id, aem.elementIdentifierName, aem.invert);
 
                     } else if(actionSet.axisRange == AxisRange.Positive) {
-                        if(aem.axisRange == AxisRange.Full) continue;
+                        if(aem.axisRange == AxisRange.Full && ReInput.mapping.GetAction(actionSet.actionId).type != InputActionType.Button) continue;
                         if(aem.axisContribution == Pole.Negative) continue;
 
                         inputGrid.PopulateField(currentMapCategoryId, actionSet.actionId, actionSet.axisRange, controllerType, controllerId, count, aem.id, aem.elementIdentifierName, false);
@@ -2180,6 +2340,11 @@ namespace Rewired.UI.ControlMapper {
         private void ResetInputGridScrollBar() {
             references.inputGridInnerGroup.GetComponent<RectTransform>().anchoredPosition = Vector2.zero; // fix Unity scrollbar bug
             references.inputGridVScrollbar.value = 1.0f;
+#if UNITY_5_2_PLUS
+            // Unity 5.2 adds ScrollBar visibility support to ScrollRect which breaks the old visibility handling
+            // Set it to AutoHide because it default sto Permanent
+            references.inputGridScrollRect.verticalScrollbarVisibility = ScrollRect.ScrollbarVisibility.AutoHide;
+#endif
         }
 
         #endregion
@@ -2774,6 +2939,38 @@ namespace Rewired.UI.ControlMapper {
             }
         }
 
+        private bool GetFirstElementAssignmentConflict(ElementAssignmentConflictCheck conflictCheck, out ElementAssignmentConflictInfo conflict, bool skipOtherPlayers) {
+
+            // Find the first conflict in all applicable Players always checking self first
+            if(GetFirstElementAssignmentConflict(currentPlayer, conflictCheck, out conflict)) return true;
+
+            // Check other applicable Players
+
+            // Check System
+            if(GetFirstElementAssignmentConflict(ReInput.players.SystemPlayer, conflictCheck, out conflict)) return true;
+
+            // Check others
+            if(!skipOtherPlayers) {
+                IList<Player> players = ReInput.players.Players;
+                for(int i = 0; i < players.Count; i++) {
+                    Player player = players[i];
+                    if(player == currentPlayer) continue; // already handled current above
+                    if(GetFirstElementAssignmentConflict(player, conflictCheck, out conflict)) return true;
+                }
+            }
+
+            return false;
+        }
+
+        private bool GetFirstElementAssignmentConflict(Player player, ElementAssignmentConflictCheck conflictCheck, out ElementAssignmentConflictInfo conflict) {
+            foreach(ElementAssignmentConflictInfo c in player.controllers.conflictChecking.ElementAssignmentConflicts(conflictCheck)) {
+                conflict = c;
+                return true;
+            };
+            conflict = new ElementAssignmentConflictInfo();
+            return false;
+        }
+
         #endregion
 
         #region Controller Calibration
@@ -3211,6 +3408,121 @@ namespace Rewired.UI.ControlMapper {
                 if(_InputPollingEndedEvent != null) _InputPollingEndedEvent();
                 if(_onInputPollingEnded != null) _onInputPollingEnded.Invoke();
             }
+        }
+
+        private int GetControllerInputFieldCount(ControllerType controllerType) {
+            switch(controllerType) {
+                case ControllerType.Keyboard: return _keyboardInputFieldCount;
+                case ControllerType.Mouse: return _mouseInputFieldCount;
+                case ControllerType.Joystick: return _controllerInputFieldCount;
+                default: throw new System.NotImplementedException();
+            }
+        }
+
+        private bool ShowSwapButton(int windowId, InputMapping mapping, ElementAssignment assignment, bool skipOtherPlayers) {
+            if(currentPlayer == null) return false;
+            if(!_allowElementAssignmentSwap) return false;
+            if(mapping == null || mapping.aem == null) return false;
+
+            ElementAssignmentConflictCheck conflictCheck;
+            if(!CreateConflictCheck(mapping, assignment, out conflictCheck)) {
+                Debug.LogError("Rewired Control Mapper: Error creating conflict check!");
+                return false;
+            }
+
+            // Check for conflicts for swapping
+            // Only consider this Player and System Player
+            List<ElementAssignmentConflictInfo> conflicts = new List<ElementAssignmentConflictInfo>();
+            conflicts.AddRange(currentPlayer.controllers.conflictChecking.ElementAssignmentConflicts(conflictCheck));
+            conflicts.AddRange(ReInput.players.SystemPlayer.controllers.conflictChecking.ElementAssignmentConflicts(conflictCheck));
+            if(conflicts.Count == 0) return false;
+
+            ActionElementMap origAemToReplace = mapping.aem;
+
+            // Get the first conflict in all applicable Players always checking self first
+            ElementAssignmentConflictInfo firstConflict = conflicts[0];
+
+            // Take the Action and the axis contribution from the conflict
+            int swapActionId = firstConflict.elementMap.actionId;
+            Pole swapAxisContribution = firstConflict.elementMap.axisContribution;
+
+            // Take the axis range and element type from the original
+            AxisRange swapAxisRange = origAemToReplace.axisRange;
+            ControllerElementType swapElementType = origAemToReplace.elementType;
+
+            if(swapElementType == firstConflict.elementMap.elementType && swapElementType == ControllerElementType.Axis) {
+                if(swapAxisRange != firstConflict.elementMap.axisRange) {
+                    if(swapAxisRange == AxisRange.Full) { // converting from full to split
+                        swapAxisRange = AxisRange.Positive; // just use the positive side
+                    } else if(firstConflict.elementMap.axisRange == AxisRange.Full) { // converting from split to full
+                        // This is okay as long as there is space in the correct axis contribution field
+                    }
+                }
+            } else if(swapElementType == ControllerElementType.Axis) {
+                if(firstConflict.elementMap.elementType == ControllerElementType.Button || (firstConflict.elementMap.elementType == ControllerElementType.Axis && firstConflict.elementMap.axisRange != AxisRange.Full)) {
+                    // Make sure Axis is split and only one side of it is bound to the Action
+                    if(swapAxisRange == AxisRange.Full) {
+                        swapAxisRange = AxisRange.Positive; // just bind the positive side of the Axis
+                    }
+                }
+            }
+
+            // Determine if there is space for the new swapped assignment
+            // Prevent swap from creating a mapping that the user cannot see because the input fields
+            // are already full. This can happen with a swap between a full-axis mapping and a button mapping.
+            int usedFieldCount = 0;
+
+            // If swapping into the same Controller Map, must consider the new mapping that would be created
+            if(assignment.actionId == firstConflict.actionId && mapping.map == firstConflict.controllerMap) {
+                Controller controller = ReInput.controllers.GetController(mapping.controllerType, mapping.controllerId);
+                if(
+                    SwapIsSameInputRange(
+                        swapElementType,
+                        swapAxisRange,
+                        swapAxisContribution,
+                        controller.GetElementById(assignment.elementIdentifierId).type,
+                        assignment.axisRange,
+                        assignment.axisContribution
+                    )
+                ) {
+                    usedFieldCount++;
+                }
+            }
+
+            // Count how many mappings already exist in the same mapping range on the target controller map to which we are swapping the mapping
+            foreach(var aem in firstConflict.controllerMap.ElementMapsWithAction(swapActionId)) {
+                if(aem.id == origAemToReplace.id) continue; // skip the original mapping
+                if(conflicts.FindIndex(x => x.elementMapId == aem.id) >= 0) continue; // skip all conflicts because they will have been removed already
+                if(
+                    SwapIsSameInputRange(
+                        swapElementType,
+                        swapAxisRange,
+                        swapAxisContribution,
+                        aem.elementType,
+                        aem.axisRange,
+                        aem.axisContribution
+                    )
+                ) {
+                    usedFieldCount++;
+                }
+            }
+
+            return usedFieldCount < GetControllerInputFieldCount(mapping.controllerType); // there are unused fields, allow it
+        }
+
+        private bool SwapIsSameInputRange(ControllerElementType origElementType, AxisRange origAxisRange, Pole origAxisContribution, ControllerElementType conflictElementType, AxisRange conflictAxisRange, Pole conflictAxisContribution) {
+            if((origElementType == ControllerElementType.Button ||
+                    (origElementType == ControllerElementType.Axis && origAxisRange != AxisRange.Full)) && // the swap is a button or a split-axis
+                    (conflictElementType == ControllerElementType.Button || (conflictElementType == ControllerElementType.Axis && conflictAxisRange != AxisRange.Full)) && // the existing mapping is a button or a split-axis
+                    conflictAxisContribution == origAxisContribution) // the existing mapping has the same axis contribution
+                {
+                return true;
+            } else if(origElementType == ControllerElementType.Axis && origAxisRange == AxisRange.Full && // the swap is a full-axis
+                conflictElementType == ControllerElementType.Axis && conflictAxisRange == AxisRange.Full) // the existing mapping is a full-axis
+            {
+                return true;
+            }
+            return false;
         }
 
         #endregion

@@ -54,7 +54,8 @@ public class ActionHandler : BattleComponent {
         _current_action = LoadAction(act.name);
         _current_action.SetDynamicAction(act);
         if (isInBuilder) _current_action.setIsInBuilder(true);
-        old_action.TearDown(_current_action);
+        if (old_action != null)
+            old_action.TearDown(_current_action);
         _current_action.SetUp(battleObject);
     }
 

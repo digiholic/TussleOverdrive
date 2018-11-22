@@ -81,7 +81,8 @@
               <li><a href="Controllers.html">Controllers</a></li>
               <li><a href="ControllerMaps.html">Controller Maps</a></li>
               <li><a href="MapCategories.html">Map Categories</a></li>
-              <li><a href="ControllerMaps.html"></a><a href="Layouts.html">Layouts</a></li>
+              <li><a href="Layouts.html">Layouts</a></li>
+              <li><a href="ControllerTemplates.html">Controller Templates</a></li>
               <li><a href="CustomControllers.html">Custom Controllers</a></li>
             </ul>
             <strong>Extras:</strong>
@@ -94,6 +95,7 @@
             <strong>Misc:</strong>
             <ul>
 	          <li><a href="ComponentControls.html" title="Component Controls">Component Controls</a></li>
+	          <li><a href="PlayerControllers.html" title="Player Controllers">Player Controllers</a></li>
 	          <li><a href="InputMapper.html" title="Input Mapper">Input Mapper</a></li>
 	          <li><a href="UserDataStore.html" title="User Data Store">User Data Store</a></li>
             </ul>
@@ -140,7 +142,7 @@
             
 			<!-- InstanceBeginEditable name="MainBody" -->
 
-    <p>Custom Controllers are virtual controllers that you can customize, adding as many axes and buttons as you need. A Custom Controller allows you to set your own sources for axis and button input. This could be any type of controller or virtual controller. Anything that can return a float or a boolean value can be used as an element source. Custom Controllers can be used for on-screeen touch controllers and more. (See the example in the Rewired/Examples folder.)</p>
+    <p>Custom Controllers are a type of virtual controller that you can customize, adding as many axes and buttons as you need. A Custom Controller allows you to set your own sources for axis and button input. This could be any type of physical or virtual controller. Anything that can return a float or a boolean value can be used as an element source. Custom Controllers can be used for on-screeen touch controllers and more. (See the example in the Rewired/Examples folder.)</p>
     <p><strong>IMPORTANT NOTE:</strong> Custom Controllers are NOT meant to be used to create new HID joystick definitions for controllers that Rewired doesn't automatically recognize and map for you. They are virtual controllers that  know nothing but what axis and button data is fed into them by your script. They are entirely separate from the Joystick system, are not auto-assigned, don't generate connect or disconnect events, etc. If you are planning to use a Custom Controller to add support for controller that Rewired can detect but doesn't recognize and automatically map for you, don't -- it's the wrong tool for the job. Instead you want to <a href="HowTos.html#new-controller-definitions">create a new controller definition</a> for that or else define a Joystick Map for <a href="ControllerMaps.html#unknown-controllers">Unknown Controller</a> instead. Custom Controllers can however be used to support  devices that  do not show up as joysticks such as special controllers that require the use of an  SDK (most VR controllers).</p>
     <p><strong>Creating/Editing Custom Controllers</strong></p>
 <p>You create and edit Custom Controllers in the <a href="RewiredEditor.html">Rewired Editor</a>. See <a href="RewiredEditor.html#CustomControllers">Rewired Editor - Custom Controllers</a> for more information.</p>
@@ -157,7 +159,7 @@
 <p>Examples of both methods can be seen in the Touch Controller example in the Rewired/Examples folder.</p>
 <p>Note: Both the <a href="http://guavaman.com/projects/rewired/docs/api-reference/html/E_Rewired_ReInput_InputSourceUpdateEvent.htm">InputSourceUpdateEvent</a> and the callbacks may be called more than once per frame. They will be called each time input is updated, which is dependent on the Update Loop setting in the Input Manager. If you're updating input in multiple loops, for example Update and FixedUpdate, the event and the callbacks will be called once for each update loop.</p>
     <div class="bottom-pager clearfix">
-	    <a class="back-button" href="Layouts.html" title="Layouts"><span class="button-img"></span>Layouts</a>
+	    <a class="back-button" href="ControllerTemplates.html" title="Layouts"><span class="button-img"></span>Controller Templates</a>
     	<a class="forward-button" href="HowTos.html" title="How To's"><span class="button-img"></span>How To's</a>
 	</div>
 <!-- InstanceEndEditable -->

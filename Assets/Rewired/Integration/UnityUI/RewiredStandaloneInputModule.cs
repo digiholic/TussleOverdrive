@@ -2,31 +2,79 @@
 // Based on Unity StandaloneInputModule.cs, version 5.3
 // https://bitbucket.org/Unity-Technologies/ui/src/b5f9aae6ff7c2c63a521a1cb8b3e3da6939b191b/UnityEngine.UI/EventSystem/InputModules?at=5.3
 
+#region Defines
+#if UNITY_2020 || UNITY_2021 || UNITY_2022 || UNITY_2023 || UNITY_2024 || UNITY_2025
+#define UNITY_2020_PLUS
+#endif
+#if UNITY_2019 || UNITY_2020_PLUS
+#define UNITY_2019_PLUS
+#endif
+#if UNITY_2018 || UNITY_2019_PLUS
+#define UNITY_2018_PLUS
+#endif
+#if UNITY_2017 || UNITY_2018_PLUS
+#define UNITY_2017_PLUS
+#endif
+#if UNITY_5 || UNITY_2017_PLUS
+#define UNITY_5_PLUS
+#endif
+#if UNITY_5_1 || UNITY_5_2 || UNITY_5_3_OR_NEWER || UNITY_2017_PLUS
+#define UNITY_5_1_PLUS
+#endif
+#if UNITY_5_2 || UNITY_5_3_OR_NEWER || UNITY_2017_PLUS
+#define UNITY_5_2_PLUS
+#endif
+#if UNITY_5_3_OR_NEWER || UNITY_2017_PLUS
+#define UNITY_5_3_PLUS
+#endif
+#if UNITY_5_4_OR_NEWER || UNITY_2017_PLUS
+#define UNITY_5_4_PLUS
+#endif
+#if UNITY_5_5_OR_NEWER || UNITY_2017_PLUS
+#define UNITY_5_5_PLUS
+#endif
+#if UNITY_5_6_OR_NEWER || UNITY_2017_PLUS
+#define UNITY_5_6_PLUS
+#endif
+#if UNITY_5_7_OR_NEWER || UNITY_2017_PLUS
+#define UNITY_5_7_PLUS
+#endif
+#if UNITY_5_8_OR_NEWER || UNITY_2017_PLUS
+#define UNITY_5_8_PLUS
+#endif
+#if UNITY_5_9_OR_NEWER || UNITY_2017_PLUS
+#define UNITY_5_9_PLUS
+#endif
 #pragma warning disable 0219
 #pragma warning disable 0618
 #pragma warning disable 0649
-
-using System;
-using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
-using System.Collections.Generic;
+#endregion
 
 namespace Rewired.Integration.UnityUI {
+    using System;
+    using UnityEngine;
+    using UnityEngine.EventSystems;
+    using UnityEngine.Serialization;
+    using System.Collections.Generic;
+    using Rewired.UI;
 
     [AddComponentMenu("Event/Rewired Standalone Input Module")]
-    public class RewiredStandaloneInputModule : PointerInputModule {
-        
-        #region Rewired Variables and Properties
+    public sealed class RewiredStandaloneInputModule : RewiredPointerInputModule {
+
+        #region Rewired Constants
 
         private const string DEFAULT_ACTION_MOVE_HORIZONTAL = "UIHorizontal";
         private const string DEFAULT_ACTION_MOVE_VERTICAL = "UIVertical";
         private const string DEFAULT_ACTION_SUBMIT = "UISubmit";
         private const string DEFAULT_ACTION_CANCEL = "UICancel";
 
-        private int[] playerIds;
-        private bool recompiling;
-        private bool isTouchSupported;
+        #endregion
+
+        #region Rewired Inspector Variables
+
+        [Tooltip("(Optional) Link the Rewired Input Manager here for easier access to Player ids, etc.")]
+        [SerializeField]
+        private InputManager_Base rewiredInputManager;
 
         /// <summary>
         /// Allow all Rewired game Players to control the UI. This does not include the System Player. If enabled, this setting overrides individual Player Ids set in Rewired Player Ids.
@@ -48,13 +96,20 @@ namespace Rewired.Integration.UnityUI {
         [SerializeField]
         [Tooltip("A list of Player Ids that are allowed to control the UI. If Use All Rewired Game Players = True, this list will be ignored.")]
         private int[] rewiredPlayerIds = new int[1] { 0 };
-        
+
         /// <summary>
         /// Allow only Players with Player.isPlaying = true to control the UI.
         /// </summary>
-        [SerializeField]
+        [SerializeField] 
         [Tooltip("Allow only Players with Player.isPlaying = true to control the UI.")]
         private bool usePlayingPlayersOnly = false;
+
+        /// <summary>
+        /// Player Mice allowed to interact with the UI.
+        /// </summary>
+        [SerializeField]
+        [Tooltip("Player Mice allowed to interact with the UI. Each Player that owns a Player Mouse must also be allowed to control the UI or the Player Mouse will not function.")]
+        private List<Rewired.Components.PlayerMouse> playerMice = new List<Rewired.Components.PlayerMouse>();
 
         /// <summary>
         /// Makes an axis press always move only one UI selection. Enable if you do not want to allow scrolling through UI elements by holding an axis direction.
@@ -64,90 +119,49 @@ namespace Rewired.Integration.UnityUI {
         private bool moveOneElementPerAxisPress;
 
         /// <summary>
-        /// Allow all Rewired game Players to control the UI. This does not include the System Player. If enabled, this setting overrides individual Player Ids set in Rewired Player Ids.
+        /// If enabled, Action Ids will be used to set the Actions. If disabled, string names will be used to set the Actions.
         /// </summary>
-        public bool UseAllRewiredGamePlayers {
-            get { return useAllRewiredGamePlayers; }
-            set {
-                bool changed = value != useAllRewiredGamePlayers;
-                useAllRewiredGamePlayers = value;
-                if(changed) SetupRewiredVars();
-            }
-        }
+        [SerializeField]
+        [Tooltip("If enabled, Action Ids will be used to set the Actions. If disabled, string names will be used to set the Actions.")]
+        private bool setActionsById = false;
 
         /// <summary>
-        /// Allow the Rewired System Player to control the UI.
+        /// Name of the horizontal axis for movement (if axis events are used).
         /// </summary>
-        public bool UseRewiredSystemPlayer {
-            get { return useRewiredSystemPlayer; }
-            set {
-                bool changed = value != useRewiredSystemPlayer;
-                useRewiredSystemPlayer = value;
-                if(changed) SetupRewiredVars();
-            }
-        }
-        /// <summary>
-        /// A list of Player Ids that are allowed to control the UI. If Use All Rewired Game Players = True, this list will be ignored.
-        /// Returns a clone of the array.
-        /// </summary>
-        public int[] RewiredPlayerIds {
-            get { return (int[])rewiredPlayerIds.Clone(); }
-            set {
-                rewiredPlayerIds = (value != null ? (int[])value.Clone() : new int[0]);
-                SetupRewiredVars();
-            }
-        }
-        
-        /// <summary>
-        /// Allow only Players with Player.isPlaying = true to control the UI.
-        /// </summary>
-        public bool UsePlayingPlayersOnly {
-            get { return usePlayingPlayersOnly; }
-            set { usePlayingPlayersOnly = value; }
-        }
+        [SerializeField]
+        [Tooltip("Id of the horizontal Action for movement (if axis events are used).")]
+        private int horizontalActionId = -1;
 
         /// <summary>
-        /// Makes an axis press always move only one UI selection. Enable if you do not want to allow scrolling through UI elements by holding an axis direction.
+        /// Name of the vertical axis for movement (if axis events are used).
         /// </summary>
-        public bool MoveOneElementPerAxisPress {
-            get { return moveOneElementPerAxisPress; }
-            set { moveOneElementPerAxisPress = value; }
-        }
+        [SerializeField]
+        [Tooltip("Id of the vertical Action for movement (if axis events are used).")]
+        private int verticalActionId = -1;
 
         /// <summary>
-        /// Allows the mouse to be used to select elements.
+        /// Name of the action used to submit.
         /// </summary>
-        public bool allowMouseInput {
-            get { return m_allowMouseInput; }
-            set { m_allowMouseInput = value; }
-        }
+        [SerializeField]
+        [Tooltip("Id of the Action used to submit.")]
+        private int submitActionId = -1;
 
         /// <summary>
-        /// Allows the mouse to be used to select elements if the device also supports touch control.
+        /// Name of the action used to cancel.
         /// </summary>
-        public bool allowMouseInputIfTouchSupported {
-            get { return m_allowMouseInputIfTouchSupported; }
-            set { m_allowMouseInputIfTouchSupported = value; }
-        }
-
-        private bool isMouseSupported {
-            get {
-                if(!Input.mousePresent) return false;
-                if(!m_allowMouseInput) return false;
-                return isTouchSupported ? m_allowMouseInputIfTouchSupported : true;
-            }
-        }
+        [SerializeField]
+        [Tooltip("Id of the Action used to cancel.")]
+        private int cancelActionId = -1;
 
         #endregion
 
-        private float m_PrevActionTime;
-        Vector2 m_LastMoveVector;
-        int m_ConsecutiveMoveCount = 0;
+        #region StandaloneInputModule Inspector Variables
 
-        private Vector2 m_LastMousePosition;
-        private Vector2 m_MousePosition;
-
+        /// <summary>
+        /// Name of the horizontal axis for movement (if axis events are used).
+        /// </summary>
         [SerializeField]
+        [Tooltip("Name of the horizontal axis for movement (if axis events are used).")]
         private string m_HorizontalAxis = DEFAULT_ACTION_MOVE_HORIZONTAL;
 
         /// <summary>
@@ -200,12 +214,235 @@ namespace Rewired.Integration.UnityUI {
         private bool m_allowMouseInputIfTouchSupported = true;
 
         /// <summary>
+        /// Allows touch input to be used to select elements.
+        /// </summary>
+        [SerializeField]
+        [Tooltip("Allows touch input to be used to select elements.")]
+        private bool m_allowTouchInput = true;
+
+        /// <summary>
         /// Forces the module to always be active.
         /// </summary>
         [SerializeField]
         [FormerlySerializedAs("m_AllowActivationOnMobileDevice")]
         [Tooltip("Forces the module to always be active.")]
         private bool m_ForceModuleActive;
+
+        #endregion
+
+        #region Rewired Variables and Properties
+
+        [NonSerialized]
+        private int[] playerIds;
+        private bool recompiling;
+        [NonSerialized]
+        private bool isTouchSupported;
+
+        /// <summary>
+        /// (Optional) Link the Rewired Input Manager here for easier access to Player ids, etc.
+        /// </summary>
+        public InputManager_Base RewiredInputManager {
+            get { return rewiredInputManager; }
+            set { rewiredInputManager = value; }
+        }
+
+        /// <summary>
+        /// Allow all Rewired game Players to control the UI. This does not include the System Player. If enabled, this setting overrides individual Player Ids set in Rewired Player Ids.
+        /// </summary>
+        public bool UseAllRewiredGamePlayers {
+            get { return useAllRewiredGamePlayers; }
+            set {
+                bool changed = value != useAllRewiredGamePlayers;
+                useAllRewiredGamePlayers = value;
+                if (changed) SetupRewiredVars();
+            }
+        }
+
+        /// <summary>
+        /// Allow the Rewired System Player to control the UI.
+        /// </summary>
+        public bool UseRewiredSystemPlayer {
+            get { return useRewiredSystemPlayer; }
+            set {
+                bool changed = value != useRewiredSystemPlayer;
+                useRewiredSystemPlayer = value;
+                if (changed) SetupRewiredVars();
+            }
+        }
+        /// <summary>
+        /// A list of Player Ids that are allowed to control the UI. If Use All Rewired Game Players = True, this list will be ignored.
+        /// Returns a clone of the array.
+        /// </summary>
+        public int[] RewiredPlayerIds {
+            get { return (int[])rewiredPlayerIds.Clone(); }
+            set {
+                rewiredPlayerIds = (value != null ? (int[])value.Clone() : new int[0]);
+                SetupRewiredVars();
+            }
+        }
+
+        /// <summary>
+        /// Allow only Players with Player.isPlaying = true to control the UI.
+        /// </summary>
+        public bool UsePlayingPlayersOnly {
+            get { return usePlayingPlayersOnly; }
+            set { usePlayingPlayersOnly = value; }
+        }
+
+        /// <summary>
+        /// Player Mice allowed to interact with the UI.
+        /// Each Player that owns a Player Mouse must also be allowed to control the UI or the Player Mouse will not function.
+        /// </summary>
+        public List<Rewired.Components.PlayerMouse> PlayerMice {
+            get {
+                return new List<Rewired.Components.PlayerMouse>(playerMice);
+            }
+            set {
+                if(value == null) {
+                    playerMice = new List<Rewired.Components.PlayerMouse>();
+                    SetupRewiredVars();
+                    return;
+                }
+                playerMice = new List<Rewired.Components.PlayerMouse>(value);
+                SetupRewiredVars();
+            }
+        }
+
+        /// <summary>
+        /// Makes an axis press always move only one UI selection. Enable if you do not want to allow scrolling through UI elements by holding an axis direction.
+        /// </summary>
+        public bool MoveOneElementPerAxisPress {
+            get { return moveOneElementPerAxisPress; }
+            set { moveOneElementPerAxisPress = value; }
+        }
+
+        /// <summary>
+        /// Allows the mouse to be used to select elements.
+        /// </summary>
+        public bool allowMouseInput {
+            get { return m_allowMouseInput; }
+            set { m_allowMouseInput = value; }
+        }
+
+        /// <summary>
+        /// Allows the mouse to be used to select elements if the device also supports touch control.
+        /// </summary>
+        public bool allowMouseInputIfTouchSupported {
+            get { return m_allowMouseInputIfTouchSupported; }
+            set { m_allowMouseInputIfTouchSupported = value; }
+        }
+
+        /// <summary>
+        /// Allows touch input to be used to select elements.
+        /// </summary>
+        public bool allowTouchInput {
+            get { return m_allowTouchInput; }
+            set { m_allowTouchInput = value; }
+        }
+
+        /// <summary>
+        /// If enabled, Action Ids will be used to set the Actions. If disabled, string names will be used to set the Actions.
+        /// </summary>
+        public bool SetActionsById {
+            get {
+                return setActionsById;
+            }
+            set {
+                if(setActionsById == value) return;
+                setActionsById = value;
+                SetupRewiredVars();
+            }
+        }
+
+        /// <summary>
+        /// Name of the horizontal axis for movement (if axis events are used).
+        /// </summary>
+        public int HorizontalActionId {
+            get {
+                return horizontalActionId;
+            }
+            set {
+                if(value == horizontalActionId) return;
+                horizontalActionId = value;
+                if(ReInput.isReady) {
+                    m_HorizontalAxis = ReInput.mapping.GetAction(value) != null ? ReInput.mapping.GetAction(value).name : string.Empty;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Name of the vertical axis for movement (if axis events are used).
+        /// </summary>
+        public int VerticalActionId {
+            get {
+                return verticalActionId;
+            }
+            set {
+                if(value == verticalActionId) return;
+                verticalActionId = value;
+                if(ReInput.isReady) {
+                    m_VerticalAxis = ReInput.mapping.GetAction(value) != null ? ReInput.mapping.GetAction(value).name : string.Empty;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Name of the action used to submit.
+        /// </summary>
+        public int SubmitActionId {
+            get {
+                return submitActionId;
+            }
+            set {
+                if(value == submitActionId) return;
+                submitActionId = value;
+                if(ReInput.isReady) {
+                    m_SubmitButton = ReInput.mapping.GetAction(value) != null ? ReInput.mapping.GetAction(value).name : string.Empty;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Name of the action used to cancel.
+        /// </summary>
+        public int CancelActionId {
+            get {
+                return cancelActionId;
+            }
+            set {
+                if(value == cancelActionId) return;
+                cancelActionId = value;
+                if(ReInput.isReady) {
+                    m_CancelButton = ReInput.mapping.GetAction(value) != null ? ReInput.mapping.GetAction(value).name : string.Empty;
+                }
+            }
+        }
+
+        protected override bool isMouseSupported {
+            get {
+                if(!base.isMouseSupported) return false;
+                if (!m_allowMouseInput) return false;
+                return isTouchSupported ? m_allowMouseInputIfTouchSupported : true;
+            }
+        }
+
+        private bool isTouchAllowed {
+            get {
+                if (!isTouchSupported) return false;
+                return m_allowTouchInput;
+            }
+        }
+
+        #endregion
+
+        [NonSerialized]
+        private float m_PrevActionTime;
+        [NonSerialized]
+        Vector2 m_LastMoveVector;
+        [NonSerialized]
+        int m_ConsecutiveMoveCount = 0;
+        [NonSerialized]
+        private bool m_HasFocus = true;
 
         /// <summary>
         /// Allows the module to control UI input on mobile devices..
@@ -245,7 +482,13 @@ namespace Rewired.Integration.UnityUI {
         /// </summary>
         public string horizontalAxis {
             get { return m_HorizontalAxis; }
-            set { m_HorizontalAxis = value; }
+            set {
+                if(m_HorizontalAxis == value) return;
+                m_HorizontalAxis = value;
+                if(ReInput.isReady) {
+                    horizontalActionId = ReInput.mapping.GetActionId(value);
+                }
+            }
         }
 
         /// <summary>
@@ -253,7 +496,13 @@ namespace Rewired.Integration.UnityUI {
         /// </summary>
         public string verticalAxis {
             get { return m_VerticalAxis; }
-            set { m_VerticalAxis = value; }
+            set {
+                if(m_VerticalAxis == value) return;
+                m_VerticalAxis = value;
+                if(ReInput.isReady) {
+                    verticalActionId = ReInput.mapping.GetActionId(value);
+                }
+            }
         }
 
         /// <summary>
@@ -261,7 +510,13 @@ namespace Rewired.Integration.UnityUI {
         /// </summary>
         public string submitButton {
             get { return m_SubmitButton; }
-            set { m_SubmitButton = value; }
+            set {
+                if(m_SubmitButton == value) return;
+                m_SubmitButton = value;
+                if(ReInput.isReady) {
+                    submitActionId = ReInput.mapping.GetActionId(value);
+                }
+            }
         }
 
         /// <summary>
@@ -269,12 +524,18 @@ namespace Rewired.Integration.UnityUI {
         /// </summary>
         public string cancelButton {
             get { return m_CancelButton; }
-            set { m_CancelButton = value; }
+            set {
+                if(m_CancelButton == value) return;
+                m_CancelButton = value;
+                if(ReInput.isReady) {
+                    cancelActionId = ReInput.mapping.GetActionId(value);
+                }
+            }
         }
 
         // Constructor
 
-        protected RewiredStandaloneInputModule() { }
+        private RewiredStandaloneInputModule() { }
 
         // Methods
 
@@ -282,16 +543,18 @@ namespace Rewired.Integration.UnityUI {
             base.Awake();
 
             // Determine if touch is supported
-            isTouchSupported = Input.touchSupported;
+            isTouchSupported = defaultTouchInputSource.touchSupported;
 
             // Deactivate the TouchInputModule because it has been deprecated in 5.3. Functionality was moved into here on all versions.
             TouchInputModule tim = GetComponent<TouchInputModule>();
-            if(tim != null) {
+            if (tim != null) {
                 tim.enabled = false;
 #if UNITY_EDITOR
                 Debug.LogWarning("The TouchInputModule is no longer used as the functionality has been moved into the RewiredStandaloneInputModule. Please remove the TouchInputModule component.");
 #endif
             }
+
+            ReInput.InitializedEvent += OnRewiredInitialized;
 
             // Initialize Rewired
             InitializeRewired();
@@ -299,13 +562,10 @@ namespace Rewired.Integration.UnityUI {
 
         public override void UpdateModule() {
             CheckEditorRecompile();
-            if(recompiling) return;
-            if(!ReInput.isReady) return;
-            
-            if(isMouseSupported) {
-                m_LastMousePosition = m_MousePosition;
-                m_MousePosition = UnityEngine.Input.mousePosition;
-            }
+            if (recompiling) return;
+            if (!ReInput.isReady) return;
+
+            if (!m_HasFocus && ShouldIgnoreEventsOnNoFocus()) return;
         }
 
         public override bool IsModuleSupported() {
@@ -313,59 +573,55 @@ namespace Rewired.Integration.UnityUI {
         }
 
         public override bool ShouldActivateModule() {
-            if(!base.ShouldActivateModule()) return false;
-            if(recompiling) return false;
-            if(!ReInput.isReady) return false;
+            if (!base.ShouldActivateModule()) return false;
+            if (recompiling) return false;
+            if (!ReInput.isReady) return false;
 
             bool shouldActivate = m_ForceModuleActive;
 
             // Combine input for all players
-            for(int i = 0; i < playerIds.Length; i++) {
+            for (int i = 0; i < playerIds.Length; i++) {
                 Rewired.Player player = ReInput.players.GetPlayer(playerIds[i]);
-                if(player == null) continue;
-                if(usePlayingPlayersOnly && !player.isPlaying) continue;
+                if (player == null) continue;
+                if (usePlayingPlayersOnly && !player.isPlaying) continue;
 
-                shouldActivate |= player.GetButtonDown(m_SubmitButton);
-                shouldActivate |= player.GetButtonDown(m_CancelButton);
-                if(moveOneElementPerAxisPress) { // axis press moves only to the next UI element with each press
-                    shouldActivate |= player.GetButtonDown(m_HorizontalAxis) || player.GetNegativeButtonDown(m_HorizontalAxis);
-                    shouldActivate |= player.GetButtonDown(m_VerticalAxis) || player.GetNegativeButtonDown(m_VerticalAxis);
+                shouldActivate |= GetButtonDown(player, submitActionId);
+                shouldActivate |= GetButtonDown(player, cancelActionId);
+                if (moveOneElementPerAxisPress) { // axis press moves only to the next UI element with each press
+                    shouldActivate |= GetButtonDown(player, horizontalActionId) || GetNegativeButtonDown(player, horizontalActionId);
+                    shouldActivate |= GetButtonDown(player, verticalActionId) || GetNegativeButtonDown(player, verticalActionId);
                 } else { // default behavior - axis press scrolls quickly through UI elements
-                    shouldActivate |= !Mathf.Approximately(player.GetAxisRaw(m_HorizontalAxis), 0.0f);
-                    shouldActivate |= !Mathf.Approximately(player.GetAxisRaw(m_VerticalAxis), 0.0f);
+                    shouldActivate |= !Mathf.Approximately(GetAxis(player, horizontalActionId), 0.0f);
+                    shouldActivate |= !Mathf.Approximately(GetAxis(player, verticalActionId), 0.0f);
                 }
             }
 
             // Mouse input
-            if(isMouseSupported) {
-                shouldActivate |= (m_MousePosition - m_LastMousePosition).sqrMagnitude > 0.0f;
-                shouldActivate |= UnityEngine.Input.GetMouseButtonDown(0);
+            if (isMouseSupported) {
+                shouldActivate |= DidAnyMouseMove();
+                shouldActivate |= GetMouseButtonDownOnAnyMouse(0);
             }
 
             // Touch input
-            if(isTouchSupported) {
-                for(int i = 0; i < Input.touchCount; ++i) {
-                    Touch input = Input.GetTouch(i);
-                    shouldActivate |= input.phase == TouchPhase.Began
-                        || input.phase == TouchPhase.Moved
-                        || input.phase == TouchPhase.Stationary;
+            if (isTouchAllowed) {
+                for(int i = 0; i < defaultTouchInputSource.touchCount; ++i) {
+                    Touch touch = defaultTouchInputSource.GetTouch(i);
+                    shouldActivate |= touch.phase == TouchPhase.Began
+                        || touch.phase == TouchPhase.Moved
+                        || touch.phase == TouchPhase.Stationary;
                 }
             }
-            
+
             return shouldActivate;
         }
 
         public override void ActivateModule() {
+            if (!m_HasFocus && ShouldIgnoreEventsOnNoFocus()) return;
+
             base.ActivateModule();
 
-            if(isMouseSupported) {
-                Vector2 mousePosition = UnityEngine.Input.mousePosition;
-                m_MousePosition = mousePosition;
-                m_LastMousePosition = mousePosition;
-            }
-
             var toSelect = eventSystem.currentSelectedGameObject;
-            if(toSelect == null)
+            if (toSelect == null)
                 toSelect = eventSystem.firstSelectedGameObject;
 
             eventSystem.SetSelectedGameObject(toSelect, GetBaseEventData());
@@ -377,55 +633,57 @@ namespace Rewired.Integration.UnityUI {
         }
 
         public override void Process() {
-            if(!ReInput.isReady) return;
-            
+            if (!ReInput.isReady) return;
+            if (!m_HasFocus && ShouldIgnoreEventsOnNoFocus()) return;
+            if (!enabled || !gameObject.activeInHierarchy) return;
+
             bool usedEvent = SendUpdateEventToSelectedObject();
 
-            if(eventSystem.sendNavigationEvents) {
-                if(!usedEvent)
+            if (eventSystem.sendNavigationEvents) {
+                if (!usedEvent)
                     usedEvent |= SendMoveEventToSelectedObject();
 
-                if(!usedEvent)
+                if (!usedEvent)
                     SendSubmitEventToSelectedObject();
             }
 
             // touch needs to take precedence because of the mouse emulation layer
-            if(!ProcessTouchEvents()) {
-                if(isMouseSupported) ProcessMouseEvent();
+            if (!ProcessTouchEvents()) {
+                if (isMouseSupported) ProcessMouseEvents();
             }
         }
 
         private bool ProcessTouchEvents() {
-            if(!isTouchSupported) return false;
+            if (!isTouchAllowed) return false;
 
-            for(int i = 0; i < Input.touchCount; ++i) {
-                Touch input = Input.GetTouch(i);
+            for(int i = 0; i < defaultTouchInputSource.touchCount; ++i) {
+                Touch touch = defaultTouchInputSource.GetTouch(i);
 
 #if UNITY_5_3_OR_NEWER
-                if(input.type == TouchType.Indirect)
+                if(touch.type == TouchType.Indirect)
                     continue;
 #endif
 
                 bool released;
                 bool pressed;
-                var pointer = GetTouchPointerEventData(input, out pressed, out released);
+                var pointer = GetTouchPointerEventData(0, 0, touch, out pressed, out released);
 
                 ProcessTouchPress(pointer, pressed, released);
 
-                if(!released) {
+                if (!released) {
                     ProcessMove(pointer);
                     ProcessDrag(pointer);
                 } else
                     RemovePointerData(pointer);
             }
-            return Input.touchCount > 0;
+            return defaultTouchInputSource.touchCount > 0;
         }
 
         private void ProcessTouchPress(PointerEventData pointerEvent, bool pressed, bool released) {
             var currentOverGo = pointerEvent.pointerCurrentRaycast.gameObject;
 
             // PointerDown notification
-            if(pressed) {
+            if (pressed) {
                 pointerEvent.eligibleForClick = true;
                 pointerEvent.delta = Vector2.zero;
                 pointerEvent.dragging = false;
@@ -435,7 +693,7 @@ namespace Rewired.Integration.UnityUI {
 
                 DeselectIfSelectionChanged(currentOverGo, pointerEvent);
 
-                if(pointerEvent.pointerEnter != currentOverGo) {
+                if (pointerEvent.pointerEnter != currentOverGo) {
                     // send a pointer enter to the touched element if it isn't the one to select...
                     HandlePointerExitAndEnter(pointerEvent, currentOverGo);
                     pointerEvent.pointerEnter = currentOverGo;
@@ -447,16 +705,16 @@ namespace Rewired.Integration.UnityUI {
                 var newPressed = ExecuteEvents.ExecuteHierarchy(currentOverGo, pointerEvent, ExecuteEvents.pointerDownHandler);
 
                 // didnt find a press handler... search for a click handler
-                if(newPressed == null)
+                if (newPressed == null)
                     newPressed = ExecuteEvents.GetEventHandler<IPointerClickHandler>(currentOverGo);
 
                 // Debug.Log("Pressed: " + newPressed);
 
                 float time = Time.unscaledTime;
 
-                if(newPressed == pointerEvent.lastPress) {
+                if (newPressed == pointerEvent.lastPress) {
                     var diffTime = time - pointerEvent.clickTime;
-                    if(diffTime < 0.3f)
+                    if (diffTime < 0.3f)
                         ++pointerEvent.clickCount;
                     else
                         pointerEvent.clickCount = 1;
@@ -474,12 +732,12 @@ namespace Rewired.Integration.UnityUI {
                 // Save the drag handler as well
                 pointerEvent.pointerDrag = ExecuteEvents.GetEventHandler<IDragHandler>(currentOverGo);
 
-                if(pointerEvent.pointerDrag != null)
+                if (pointerEvent.pointerDrag != null)
                     ExecuteEvents.Execute(pointerEvent.pointerDrag, pointerEvent, ExecuteEvents.initializePotentialDrag);
             }
 
             // PointerUp notification
-            if(released) {
+            if (released) {
                 // Debug.Log("Executing pressup on: " + pointer.pointerPress);
                 ExecuteEvents.Execute(pointerEvent.pointerPress, pointerEvent, ExecuteEvents.pointerUpHandler);
 
@@ -489,9 +747,9 @@ namespace Rewired.Integration.UnityUI {
                 var pointerUpHandler = ExecuteEvents.GetEventHandler<IPointerClickHandler>(currentOverGo);
 
                 // PointerClick and Drop events
-                if(pointerEvent.pointerPress == pointerUpHandler && pointerEvent.eligibleForClick) {
+                if (pointerEvent.pointerPress == pointerUpHandler && pointerEvent.eligibleForClick) {
                     ExecuteEvents.Execute(pointerEvent.pointerPress, pointerEvent, ExecuteEvents.pointerClickHandler);
-                } else if(pointerEvent.pointerDrag != null && pointerEvent.dragging) {
+                } else if (pointerEvent.pointerDrag != null && pointerEvent.dragging) {
                     ExecuteEvents.ExecuteHierarchy(currentOverGo, pointerEvent, ExecuteEvents.dropHandler);
                 }
 
@@ -499,13 +757,13 @@ namespace Rewired.Integration.UnityUI {
                 pointerEvent.pointerPress = null;
                 pointerEvent.rawPointerPress = null;
 
-                if(pointerEvent.pointerDrag != null && pointerEvent.dragging)
+                if (pointerEvent.pointerDrag != null && pointerEvent.dragging)
                     ExecuteEvents.Execute(pointerEvent.pointerDrag, pointerEvent, ExecuteEvents.endDragHandler);
 
                 pointerEvent.dragging = false;
                 pointerEvent.pointerDrag = null;
 
-                if(pointerEvent.pointerDrag != null)
+                if (pointerEvent.pointerDrag != null)
                     ExecuteEvents.Execute(pointerEvent.pointerDrag, pointerEvent, ExecuteEvents.endDragHandler);
 
                 pointerEvent.pointerDrag = null;
@@ -519,23 +777,23 @@ namespace Rewired.Integration.UnityUI {
         /// <summary>
         /// Process submit keys.
         /// </summary>
-        protected bool SendSubmitEventToSelectedObject() {
-            if(eventSystem.currentSelectedGameObject == null)
+        private bool SendSubmitEventToSelectedObject() {
+            if (eventSystem.currentSelectedGameObject == null)
                 return false;
-            if(recompiling) return false;
+            if (recompiling) return false;
 
             var data = GetBaseEventData();
-            for(int i = 0; i < playerIds.Length; i++) {
+            for (int i = 0; i < playerIds.Length; i++) {
                 Rewired.Player player = ReInput.players.GetPlayer(playerIds[i]);
-                if(player == null) continue;
-                if(usePlayingPlayersOnly && !player.isPlaying) continue;
+                if (player == null) continue;
+                if (usePlayingPlayersOnly && !player.isPlaying) continue;
 
-                if(player.GetButtonDown(m_SubmitButton)) {
+                if (GetButtonDown(player, submitActionId)) {
                     ExecuteEvents.Execute(eventSystem.currentSelectedGameObject, data, ExecuteEvents.submitHandler);
                     break;
                 }
 
-                if(player.GetButtonDown(m_CancelButton)) {
+                if (GetButtonDown(player, cancelActionId)) {
                     ExecuteEvents.Execute(eventSystem.currentSelectedGameObject, data, ExecuteEvents.cancelHandler);
                     break;
                 }
@@ -544,49 +802,49 @@ namespace Rewired.Integration.UnityUI {
         }
 
         private Vector2 GetRawMoveVector() {
-            if(recompiling) return Vector2.zero;
+            if (recompiling) return Vector2.zero;
 
             Vector2 move = Vector2.zero;
             bool horizButton = false;
             bool vertButton = false;
 
             // Combine inputs of all Players
-            for(int i = 0; i < playerIds.Length; i++) {
+            for (int i = 0; i < playerIds.Length; i++) {
                 Rewired.Player player = ReInput.players.GetPlayer(playerIds[i]);
-                if(player == null) continue;
-                if(usePlayingPlayersOnly && !player.isPlaying) continue;
+                if (player == null) continue;
+                if (usePlayingPlayersOnly && !player.isPlaying) continue;
 
-                if(moveOneElementPerAxisPress) { // axis press moves only to the next UI element with each press
+                if (moveOneElementPerAxisPress) { // axis press moves only to the next UI element with each press
                     float x = 0.0f;
-                    if(player.GetButtonDown(m_HorizontalAxis)) x = 1.0f;
-                    else if(player.GetNegativeButtonDown(m_HorizontalAxis)) x = -1.0f;
+                    if (GetButtonDown(player, horizontalActionId)) x = 1.0f;
+                    else if (GetNegativeButtonDown(player, horizontalActionId)) x = -1.0f;
 
                     float y = 0.0f;
-                    if(player.GetButtonDown(m_VerticalAxis)) y = 1.0f;
-                    else if(player.GetNegativeButtonDown(m_VerticalAxis)) y = -1.0f;
-                    
+                    if (GetButtonDown(player, verticalActionId)) y = 1.0f;
+                    else if (GetNegativeButtonDown(player, verticalActionId)) y = -1.0f;
+
                     move.x += x;
                     move.y += y;
 
                 } else { // default behavior - axis press scrolls quickly through UI elements
-                    move.x += player.GetAxisRaw(m_HorizontalAxis);
-                    move.y += player.GetAxisRaw(m_VerticalAxis);
+                    move.x += GetAxis(player, horizontalActionId);
+                    move.y += GetAxis(player, verticalActionId);
                 }
-                
-                horizButton |= player.GetButtonDown(m_HorizontalAxis) || player.GetNegativeButtonDown(m_HorizontalAxis);
-                vertButton |= player.GetButtonDown(m_VerticalAxis) || player.GetNegativeButtonDown(m_VerticalAxis);
+
+                horizButton |= GetButtonDown(player, horizontalActionId) || GetNegativeButtonDown(player, horizontalActionId);
+                vertButton |= GetButtonDown(player, verticalActionId) || GetNegativeButtonDown(player, verticalActionId);
             }
 
-            if(horizButton) {
-                if(move.x < 0)
+            if (horizButton) {
+                if (move.x < 0)
                     move.x = -1f;
-                if(move.x > 0)
+                if (move.x > 0)
                     move.x = 1f;
             }
-            if(vertButton) {
-                if(move.y < 0)
+            if (vertButton) {
+                if (move.y < 0)
                     move.y = -1f;
-                if(move.y > 0)
+                if (move.y > 0)
                     move.y = 1f;
             }
             return move;
@@ -595,93 +853,114 @@ namespace Rewired.Integration.UnityUI {
         /// <summary>
         /// Process keyboard events.
         /// </summary>
-        protected bool SendMoveEventToSelectedObject() {
-            if(recompiling) return false; // never allow movement while recompiling
+        private bool SendMoveEventToSelectedObject() {
+            if (recompiling) return false; // never allow movement while recompiling
 
             float time = Time.unscaledTime; // get the current time
 
             // Check for zero movement and clear
             Vector2 movement = GetRawMoveVector();
-            if(Mathf.Approximately(movement.x, 0f) && Mathf.Approximately(movement.y, 0f)) {
+            if (Mathf.Approximately(movement.x, 0f) && Mathf.Approximately(movement.y, 0f)) {
                 m_ConsecutiveMoveCount = 0;
                 return false;
             }
-            
+
             // Check if movement is in the same direction as previously
             bool similarDir = (Vector2.Dot(movement, m_LastMoveVector) > 0);
 
             // Check if a button/key/axis was just pressed this frame
-            bool buttonJustPressed = CheckButtonOrKeyMovement(time);
+            bool buttonDownHorizontal, buttonDownVertical;
+            CheckButtonOrKeyMovement(time, out buttonDownHorizontal, out buttonDownVertical);
+
+            AxisEventData axisEventData = null;
 
             // If user just pressed button/key/axis, always allow movement
-            bool allow = buttonJustPressed;
-            if(!allow) {
+            bool allow = buttonDownHorizontal || buttonDownVertical;
+            if (allow) { // we had a button down event
 
+                // Get the axis move event now so we can tell the direction it will be moving
+                axisEventData = GetAxisEventData(movement.x, movement.y, 0.6f);
+
+                // Make sure the button down event was in the direction we would be moving, otherwise don't allow it.
+                // This filters out double movements when pressing somewhat diagonally and getting down events for both
+                // horizontal and vertical at the same time but both ending up being resolved in the same direction.
+                MoveDirection moveDir = axisEventData.moveDir;
+                allow = ((moveDir == MoveDirection.Up || moveDir == MoveDirection.Down) && buttonDownVertical) ||
+                    ((moveDir == MoveDirection.Left || moveDir == MoveDirection.Right) && buttonDownHorizontal);
+            }
+
+            if (!allow) {
                 // Apply repeat delay and input actions per second limits
-
-                if(m_RepeatDelay > 0.0f) { // apply repeat delay
+                if (m_RepeatDelay > 0.0f) { // apply repeat delay
                     // Otherwise, user held down key or axis.
                     // If direction didn't change at least 90 degrees, wait for delay before allowing consequtive event.
-                    if(similarDir && m_ConsecutiveMoveCount == 1) { // this is the 2nd tick after the initial that activated the movement in this direction
+                    if (similarDir && m_ConsecutiveMoveCount == 1) { // this is the 2nd tick after the initial that activated the movement in this direction
                         allow = (time > m_PrevActionTime + m_RepeatDelay);
                         // If direction changed at least 90 degree, or we already had the delay, repeat at repeat rate.
                     } else {
                         allow = (time > m_PrevActionTime + 1f / m_InputActionsPerSecond); // apply input actions per second limit
                     }
-                
                 } else { // not using a repeat delay
                     allow = (time > m_PrevActionTime + 1f / m_InputActionsPerSecond); // apply input actions per second limit
                 }
             }
-            if(!allow) return false; // movement not allowed, done
+            if (!allow) return false; // movement not allowed, done
 
             // Get the axis move event
-            var axisEventData = GetAxisEventData(movement.x, movement.y, 0.6f);
-            if(axisEventData.moveDir == MoveDirection.None) return false; // input vector was not enough to move this cycle, done
+            if (axisEventData == null) {
+                axisEventData = GetAxisEventData(movement.x, movement.y, 0.6f);
+            }
 
-            // Execute the move
-            ExecuteEvents.Execute(eventSystem.currentSelectedGameObject, axisEventData, ExecuteEvents.moveHandler);
-            
-            // Update records and counters
-            if(!similarDir) m_ConsecutiveMoveCount = 0;
-            m_ConsecutiveMoveCount++;
-            m_PrevActionTime = time;
-            m_LastMoveVector = movement;
+            if (axisEventData.moveDir != MoveDirection.None) {
+                ExecuteEvents.Execute(eventSystem.currentSelectedGameObject, axisEventData, ExecuteEvents.moveHandler);
+                if (!similarDir)
+                    m_ConsecutiveMoveCount = 0;
+                if (m_ConsecutiveMoveCount == 0 || !(buttonDownHorizontal || buttonDownVertical))
+                    m_ConsecutiveMoveCount++;
+                m_PrevActionTime = time;
+                m_LastMoveVector = movement;
+            } else {
+                m_ConsecutiveMoveCount = 0;
+            }
 
             return axisEventData.used;
         }
 
-        private bool CheckButtonOrKeyMovement(float time) {
-            bool allow = false;
-            
-            for(int i = 0; i < playerIds.Length; i++) {
+        private void CheckButtonOrKeyMovement(float time, out bool downHorizontal, out bool downVertical) {
+            downHorizontal = false;
+            downVertical = false;
+
+            for (int i = 0; i < playerIds.Length; i++) {
                 Rewired.Player player = ReInput.players.GetPlayer(playerIds[i]);
-                if(player == null) continue;
-                if(usePlayingPlayersOnly && !player.isPlaying) continue;
+                if (player == null) continue;
+                if (usePlayingPlayersOnly && !player.isPlaying) continue;
 
-                allow |= player.GetButtonDown(m_HorizontalAxis) || player.GetNegativeButtonDown(m_HorizontalAxis);
-                allow |= player.GetButtonDown(m_VerticalAxis) || player.GetNegativeButtonDown(m_VerticalAxis);
+                downHorizontal |= GetButtonDown(player, horizontalActionId) || GetNegativeButtonDown(player, horizontalActionId);
+                downVertical |= GetButtonDown(player, verticalActionId) || GetNegativeButtonDown(player, verticalActionId);
             }
-
-            return allow;
         }
 
-        protected void ProcessMouseEvent() {
-            ProcessMouseEvent(0);
+        private void ProcessMouseEvents() {
+            for(int i = 0; i < playerIds.Length; i++) {
+                Player player = ReInput.players.GetPlayer(playerIds[i]);
+                if(player == null) continue;
+                if(usePlayingPlayersOnly && !player.isPlaying) continue;
+                int pointerCount = GetMouseInputSourceCount(playerIds[i]);
+                for(int j = 0; j < pointerCount; j++) {
+                    ProcessMouseEvent(playerIds[i], j);
+                }
+            }
         }
 
         /// <summary>
         /// Process all mouse events.
         /// </summary>
-        protected void ProcessMouseEvent(int id) {
+        private void ProcessMouseEvent(int playerId, int pointerIndex) {
 
-            // Breaking change to UnityEngine.EventSystems.PointerInputModule.GetMousePointerEventData() in Unity 5.1.2p1. This code cannot compile in these patch releases because no defines exist for patch releases
-#if !UNITY_5 || (UNITY_5 && (UNITY_5_0 || UNITY_5_1_0 || UNITY_5_1_1 || UNITY_5_1_2))
-            var mouseData = GetMousePointerEventData();
-#else
-            var mouseData = GetMousePointerEventData(id);
-#endif
-            var leftButtonData = mouseData.GetButtonState(PointerEventData.InputButton.Left).eventData;
+            var mouseData = GetMousePointerEventData(playerId, pointerIndex);
+            if(mouseData == null) return;
+
+            var leftButtonData = mouseData.GetButtonState(0).eventData;
 
             // Process the first mouse button fully
             ProcessMousePress(leftButtonData);
@@ -689,19 +968,24 @@ namespace Rewired.Integration.UnityUI {
             ProcessDrag(leftButtonData.buttonData);
 
             // Now process right / middle clicks
-            ProcessMousePress(mouseData.GetButtonState(PointerEventData.InputButton.Right).eventData);
-            ProcessDrag(mouseData.GetButtonState(PointerEventData.InputButton.Right).eventData.buttonData);
-            ProcessMousePress(mouseData.GetButtonState(PointerEventData.InputButton.Middle).eventData);
-            ProcessDrag(mouseData.GetButtonState(PointerEventData.InputButton.Middle).eventData.buttonData);
+            ProcessMousePress(mouseData.GetButtonState(1).eventData);
+            ProcessDrag(mouseData.GetButtonState(1).eventData.buttonData);
+            ProcessMousePress(mouseData.GetButtonState(2).eventData);
+            ProcessDrag(mouseData.GetButtonState(2).eventData.buttonData);
+            IMouseInputSource mouseInputSource = GetMouseInputSource(playerId, pointerIndex);
+            for(int i = 3; i < mouseInputSource.buttonCount; i++) {
+                ProcessMousePress(mouseData.GetButtonState(i).eventData);
+                ProcessDrag(mouseData.GetButtonState(i).eventData.buttonData);
+            }
 
-            if(!Mathf.Approximately(leftButtonData.buttonData.scrollDelta.sqrMagnitude, 0.0f)) {
+            if (!Mathf.Approximately(leftButtonData.buttonData.scrollDelta.sqrMagnitude, 0.0f)) {
                 var scrollHandler = ExecuteEvents.GetEventHandler<IScrollHandler>(leftButtonData.buttonData.pointerCurrentRaycast.gameObject);
                 ExecuteEvents.ExecuteHierarchy(scrollHandler, leftButtonData.buttonData, ExecuteEvents.scrollHandler);
             }
         }
 
-        protected bool SendUpdateEventToSelectedObject() {
-            if(eventSystem.currentSelectedGameObject == null)
+        private bool SendUpdateEventToSelectedObject() {
+            if (eventSystem.currentSelectedGameObject == null)
                 return false;
 
             var data = GetBaseEventData();
@@ -712,12 +996,12 @@ namespace Rewired.Integration.UnityUI {
         /// <summary>
         /// Process the current mouse press.
         /// </summary>
-        protected void ProcessMousePress(MouseButtonEventData data) {
+        private void ProcessMousePress(MouseButtonEventData data) {
             var pointerEvent = data.buttonData;
             var currentOverGo = pointerEvent.pointerCurrentRaycast.gameObject;
 
             // PointerDown notification
-            if(data.PressedThisFrame()) {
+            if (data.PressedThisFrame()) {
                 pointerEvent.eligibleForClick = true;
                 pointerEvent.delta = Vector2.zero;
                 pointerEvent.dragging = false;
@@ -733,16 +1017,16 @@ namespace Rewired.Integration.UnityUI {
                 var newPressed = ExecuteEvents.ExecuteHierarchy(currentOverGo, pointerEvent, ExecuteEvents.pointerDownHandler);
 
                 // didnt find a press handler... search for a click handler
-                if(newPressed == null)
+                if (newPressed == null)
                     newPressed = ExecuteEvents.GetEventHandler<IPointerClickHandler>(currentOverGo);
 
                 // Debug.Log("Pressed: " + newPressed);
 
                 float time = Time.unscaledTime;
 
-                if(newPressed == pointerEvent.lastPress) {
+                if (newPressed == pointerEvent.lastPress) {
                     var diffTime = time - pointerEvent.clickTime;
-                    if(diffTime < 0.3f)
+                    if (diffTime < 0.3f)
                         ++pointerEvent.clickCount;
                     else
                         pointerEvent.clickCount = 1;
@@ -760,12 +1044,12 @@ namespace Rewired.Integration.UnityUI {
                 // Save the drag handler as well
                 pointerEvent.pointerDrag = ExecuteEvents.GetEventHandler<IDragHandler>(currentOverGo);
 
-                if(pointerEvent.pointerDrag != null)
+                if (pointerEvent.pointerDrag != null)
                     ExecuteEvents.Execute(pointerEvent.pointerDrag, pointerEvent, ExecuteEvents.initializePotentialDrag);
             }
 
             // PointerUp notification
-            if(data.ReleasedThisFrame()) {
+            if (data.ReleasedThisFrame()) {
                 // Debug.Log("Executing pressup on: " + pointer.pointerPress);
                 ExecuteEvents.Execute(pointerEvent.pointerPress, pointerEvent, ExecuteEvents.pointerUpHandler);
 
@@ -775,9 +1059,9 @@ namespace Rewired.Integration.UnityUI {
                 var pointerUpHandler = ExecuteEvents.GetEventHandler<IPointerClickHandler>(currentOverGo);
 
                 // PointerClick and Drop events
-                if(pointerEvent.pointerPress == pointerUpHandler && pointerEvent.eligibleForClick) {
+                if (pointerEvent.pointerPress == pointerUpHandler && pointerEvent.eligibleForClick) {
                     ExecuteEvents.Execute(pointerEvent.pointerPress, pointerEvent, ExecuteEvents.pointerClickHandler);
-                } else if(pointerEvent.pointerDrag != null && pointerEvent.dragging) {
+                } else if (pointerEvent.pointerDrag != null && pointerEvent.dragging) {
                     ExecuteEvents.ExecuteHierarchy(currentOverGo, pointerEvent, ExecuteEvents.dropHandler);
                 }
 
@@ -785,7 +1069,7 @@ namespace Rewired.Integration.UnityUI {
                 pointerEvent.pointerPress = null;
                 pointerEvent.rawPointerPress = null;
 
-                if(pointerEvent.pointerDrag != null && pointerEvent.dragging)
+                if (pointerEvent.pointerDrag != null && pointerEvent.dragging)
                     ExecuteEvents.Execute(pointerEvent.pointerDrag, pointerEvent, ExecuteEvents.endDragHandler);
 
                 pointerEvent.dragging = false;
@@ -795,47 +1079,163 @@ namespace Rewired.Integration.UnityUI {
                 // so that if we moused over somethign that ignored it before
                 // due to having pressed on something else
                 // it now gets it.
-                if(currentOverGo != pointerEvent.pointerEnter) {
+                if (currentOverGo != pointerEvent.pointerEnter) {
                     HandlePointerExitAndEnter(pointerEvent, null);
                     HandlePointerExitAndEnter(pointerEvent, currentOverGo);
                 }
             }
         }
 
+        private void OnApplicationFocus(bool hasFocus) {
+            m_HasFocus = hasFocus;
+        }
+
+        private bool ShouldIgnoreEventsOnNoFocus() {
+#if UNITY_EDITOR || UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX || UNITY_WSA || UNITY_WINRT
+#if UNITY_EDITOR && UNITY_5_PLUS
+            if(UnityEditor.EditorApplication.isRemoteConnected) return false;
+#endif
+            if(!ReInput.isReady) return true;
+#else
+            if (!ReInput.isReady) return false;
+#endif
+            return ReInput.configuration.ignoreInputWhenAppNotInFocus;
+        }
+
+#if UNITY_EDITOR
+
+        protected override void OnValidate() {
+            base.OnValidate();
+            SetupRewiredVars();
+        }
+
+#endif
+
+        protected override void OnDestroy() {
+            base.OnDestroy();
+            ReInput.InitializedEvent -= OnRewiredInitialized;
+        }
+
         #region Rewired Methods
 
+        protected override bool IsDefaultPlayer(int playerId) {
+            if(playerIds == null) return false;
+            if(!ReInput.isReady) return false;
+            
+            for(int tries = 0; tries < 3; tries++) {
+
+                // Try 0: Find the first Player that has the mouse assigned and is playing
+                // Try 1: Find the first Player that has the mouse assigned
+                // Try 2: Find the first Player
+
+                for(int i = 0; i < playerIds.Length; i++) {
+                    Player player = ReInput.players.GetPlayer(playerIds[i]);
+                    if(player == null) continue;
+                    if(tries < 1 && usePlayingPlayersOnly && !player.isPlaying) continue;
+                    if(tries < 2 && !player.controllers.hasMouse) continue;
+                    return playerIds[i] == playerId;
+                }
+            }
+
+            return false;
+        }
+
         private void InitializeRewired() {
-            if(!Rewired.ReInput.isReady) {
+            if (!Rewired.ReInput.isReady) {
                 Debug.LogError("Rewired is not initialized! Are you missing a Rewired Input Manager in your scene?");
                 return;
             }
-            Rewired.ReInput.EditorRecompileEvent += OnEditorRecompile;
+            ReInput.ShutDownEvent -= OnRewiredShutDown;
+            ReInput.ShutDownEvent += OnRewiredShutDown;
+            ReInput.EditorRecompileEvent -= OnEditorRecompile;
+            ReInput.EditorRecompileEvent += OnEditorRecompile;
             SetupRewiredVars();
         }
 
         private void SetupRewiredVars() {
+            if(!ReInput.isReady) return;
+
             // Set up Rewired vars
 
+            // Set up actions
+            SetUpRewiredActions();
+
             // Set up Rewired Players
-            if(useAllRewiredGamePlayers) {
+            if (useAllRewiredGamePlayers) {
                 IList<Rewired.Player> rwPlayers = useRewiredSystemPlayer ? Rewired.ReInput.players.AllPlayers : Rewired.ReInput.players.Players;
-                playerIds = new int[rwPlayers.Count];
-                for(int i = 0; i < rwPlayers.Count; i++) {
-                    playerIds[i] = rwPlayers[i].id;
+                this.playerIds = new int[rwPlayers.Count];
+                for (int i = 0; i < rwPlayers.Count; i++) {
+                    this.playerIds[i] = rwPlayers[i].id;
                 }
             } else {
-                int rewiredPlayerCount = rewiredPlayerIds.Length + (useRewiredSystemPlayer ? 1 : 0);
-                playerIds = new int[rewiredPlayerCount];
-                for(int i = 0; i < rewiredPlayerIds.Length; i++) {
-                    playerIds[i] = Rewired.ReInput.players.GetPlayer(rewiredPlayerIds[i]).id;
+                bool foundSystem = false;
+                List<int> playerIds = new List<int>(rewiredPlayerIds.Length + 1);
+                for (int i = 0; i < rewiredPlayerIds.Length; i++) {
+                    Player player = Rewired.ReInput.players.GetPlayer(rewiredPlayerIds[i]);
+                    if(player == null) continue;
+                    if(playerIds.Contains(player.id)) continue; // already in list
+                    playerIds.Add(player.id);
+                    if(player.id == Consts.systemPlayerId) foundSystem = true;
                 }
-                if(useRewiredSystemPlayer) playerIds[rewiredPlayerCount - 1] = Rewired.ReInput.players.GetSystemPlayer().id;
+                if(useRewiredSystemPlayer && !foundSystem) playerIds.Insert(0, Rewired.ReInput.players.GetSystemPlayer().id);
+                this.playerIds = playerIds.ToArray();
+            }
+
+            SetUpRewiredPlayerMice();
+        }
+
+        private void SetUpRewiredPlayerMice() {
+            if(!ReInput.isReady) return;
+            ClearMouseInputSources();
+            for(int i = 0; i < playerMice.Count; i++) {
+                var mouse = playerMice[i];
+                if(Utils.UnityTools.IsNullOrDestroyed(mouse)) continue;
+                AddMouseInputSource(mouse);
             }
         }
 
+        private void SetUpRewiredActions() {
+            if(!ReInput.isReady) return;
+            if(!setActionsById) {
+                horizontalActionId = ReInput.mapping.GetActionId(m_HorizontalAxis);
+                verticalActionId = ReInput.mapping.GetActionId(m_VerticalAxis);
+                submitActionId = ReInput.mapping.GetActionId(m_SubmitButton);
+                cancelActionId = ReInput.mapping.GetActionId(m_CancelButton);
+            } else {
+                InputAction action;
+                action = ReInput.mapping.GetAction(horizontalActionId);
+                m_HorizontalAxis = action != null ? action.name : string.Empty;
+                if(action == null) horizontalActionId = -1;
+                action = ReInput.mapping.GetAction(verticalActionId);
+                m_VerticalAxis = action != null ? action.name : string.Empty;
+                if(action == null) verticalActionId = -1;
+                action = ReInput.mapping.GetAction(submitActionId);
+                m_SubmitButton = action != null ? action.name : string.Empty;
+                if(action == null) submitActionId = -1;
+                action = ReInput.mapping.GetAction(cancelActionId);
+                m_CancelButton = action != null ? action.name : string.Empty;
+                if(action == null) cancelActionId = -1;
+            }
+        }
+
+        private bool GetButtonDown(Player player, int actionId) {
+            if(actionId < 0) return false; // silence warnings
+            return player.GetButtonDown(actionId);
+        }
+
+        private bool GetNegativeButtonDown(Player player, int actionId) {
+            if(actionId < 0) return false; // silence warnings
+            return player.GetNegativeButtonDown(actionId);
+        }
+
+        private float GetAxis(Player player, int actionId) {
+            if(actionId < 0) return 0f; // silence warnings
+            return player.GetAxis(actionId);
+        }
+
         private void CheckEditorRecompile() {
-            if(!recompiling) return;
-            if(!Rewired.ReInput.isReady) return;
+            if (!recompiling) return;
+            if (!Rewired.ReInput.isReady) return;
             recompiling = false;
             InitializeRewired();
         }
@@ -847,8 +1247,73 @@ namespace Rewired.Integration.UnityUI {
 
         private void ClearRewiredVars() {
             Array.Clear(playerIds, 0, playerIds.Length);
+            ClearMouseInputSources();
+        }
+
+        private bool DidAnyMouseMove() {
+            for(int i = 0; i < playerIds.Length; i++) {
+                int playerId = playerIds[i];
+                Player player = ReInput.players.GetPlayer(playerId);
+                if(player == null) continue;
+                if(usePlayingPlayersOnly && !player.isPlaying) continue;
+                int mouseCount = GetMouseInputSourceCount(playerId);
+                for(int j = 0; j < mouseCount; j++) {
+                    IMouseInputSource source = GetMouseInputSource(playerId, j);
+                    if(source == null) continue;
+                    if(source.screenPositionDelta.sqrMagnitude > 0f) return true;
+                }
+            }
+            return false;
+        }
+
+        private bool GetMouseButtonDownOnAnyMouse(int buttonIndex) {
+            for(int i = 0; i < playerIds.Length; i++) {
+                int playerId = playerIds[i];
+                Player player = ReInput.players.GetPlayer(playerId);
+                if(player == null) continue;
+                if(usePlayingPlayersOnly && !player.isPlaying) continue;
+                int mouseCount = GetMouseInputSourceCount(playerId);
+                for(int j = 0; j < mouseCount; j++) {
+                    IMouseInputSource source = GetMouseInputSource(playerId, j);
+                    if(source == null) continue;
+                    if(source.GetButtonDown(buttonIndex)) return true;
+                }
+            }
+            return false;
+        }
+
+        private void OnRewiredInitialized() {
+            InitializeRewired();
+        }
+
+        private void OnRewiredShutDown() {
+            ClearRewiredVars();
         }
 
         #endregion
+
+        [Serializable]
+        public class PlayerSetting {
+
+            public int playerId;
+            public List<Rewired.Components.PlayerMouse> playerMice = new List<Components.PlayerMouse>();
+
+            public PlayerSetting() {
+            }
+            private PlayerSetting(PlayerSetting other) {
+                if(other == null) throw new ArgumentNullException("other");
+                this.playerId = other.playerId;
+                this.playerMice = new List<Components.PlayerMouse>();
+                if(other.playerMice != null) {
+                    foreach(var m in other.playerMice) {
+                        this.playerMice.Add(m);
+                    }
+                }
+            }
+
+            public PlayerSetting Clone() {
+                return new PlayerSetting(this);
+            }
+        }
     }
 }

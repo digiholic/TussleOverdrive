@@ -81,7 +81,8 @@
               <li><a href="Controllers.html">Controllers</a></li>
               <li><a href="ControllerMaps.html">Controller Maps</a></li>
               <li><a href="MapCategories.html">Map Categories</a></li>
-              <li><a href="ControllerMaps.html"></a><a href="Layouts.html">Layouts</a></li>
+              <li><a href="Layouts.html">Layouts</a></li>
+              <li><a href="ControllerTemplates.html">Controller Templates</a></li>
               <li><a href="CustomControllers.html">Custom Controllers</a></li>
             </ul>
             <strong>Extras:</strong>
@@ -94,6 +95,7 @@
             <strong>Misc:</strong>
             <ul>
 	          <li><a href="ComponentControls.html" title="Component Controls">Component Controls</a></li>
+	          <li><a href="PlayerControllers.html" title="Player Controllers">Player Controllers</a></li>
 	          <li><a href="InputMapper.html" title="Input Mapper">Input Mapper</a></li>
 	          <li><a href="UserDataStore.html" title="User Data Store">User Data Store</a></li>
             </ul>
@@ -163,8 +165,7 @@ InputMapper.Default.Start(context);</pre>
 <p>Each Input Mapper has an Options object which allows you to configure various settings to fit your needs. These settings should be configured before starting the Input Mapper.</p>
 <pre class="code">inputMapper.options.timeout = 5f; <span class="comment">// set the timeout to 5 seconds</span>
 inputMapper.options.ignoreMouseXAxis = true; <span class="comment">// ignore the mouse X axis when polling for input</span>
-inputMapper.options.ignoreMouseYAxis = true; <span class="comment">// ignore the mouse Y axis when polling for input</span>
-</pre>
+inputMapper.options.ignoreMouseYAxis = true; <span class="comment">// ignore the mouse Y axis when polling for input</span><br /></pre>
 <p><strong>3. Subscribe to events</strong></p>
 <p>There are numerous events to which you can subscribe to receive notifications when important events take place such as when an input assignment is made or when an assignment conflict is found.</p>
 <pre class="code">
@@ -187,27 +188,67 @@ inputMapper.Start(context);
 private InputMapper.ConflictFoundEventData conflictData;
 
 void OnConflictFound(InputMapper.ConflictFoundEventData data) {
-    conflictData = data; // store the event data for use in user response
+    conflictData = data; <span class="comment">// store the event data for use in user response</span>
 
-    if(data.isProtected) { // the conflicting assignment was protected and cannot be replaced
+    if(data.isProtected) { <span class="comment">// the conflicting assignment was protected and cannot be replaced</span>
         <span class="comment">// Display some message to the user asking whether to cancel or add the new assignment.
         // Protected assignments cannot be replaced.
         // ...</span>
+
+<span class="comment">        // ... After the user has made a decision</span>
+        conflictData.responseCallback(InputMapper.ConflictResponse.Cancel); <span class="comment">// cancel polling</span>
+
     } else {
         <span class="comment">// Display some message to the user asking whether to cancel, replace the existing,
         // or add the new assignment.
         // ...</span>
+
+<span class="comment">        // ... After the user has made a decision</span>
+
+<span class="comment">        // Tell the Input Mapper to replace the conflicting assignments</span>
+        conflictData.responseCallback(InputMapper.ConflictResponse.Replace);
     }
+}</pre>
+<p>If you do not subscribe to the ConflictsFoundEvent and you have left conflict checking enabled in the Options.checkForConflicts property, the default action specified in Options.defaultActionWhenConflictFound will be used to resolve the conflict(s).</p>
+<p><strong>7. Advanced operations (optional)</strong></p>
+<p>Ignoring certain controller elements:</p>
+<pre class="code">
+void Setup() {
+    <span class="comment">// When setting up Options, add a callback to handle element confirmation</span>
+    inputMapper.options.isElementAllowedCallback = OnIsElementAllowed; <span class="comment">// manually allow or ignore specific elements</span>
 }
 
-<span class="comment">// ... After the user has made a decision</span>
+<span class="comment">// Called by InputMapper when a controller element is activated while polling</span>
+bool OnIsElementAllowed(ControllerPollingInfo info) {
+    <span class="comment">// Ignore the Space key on the keyboard</span>
+    if(info.controllerType == ControllerType.Keyboard &amp;&amp; info.keyboardKey == KeyCode.Space) return false;
+<span class="comment">    
+    // Allow all other controller elements</span>
+    return true;
+}</pre>
+<p>Using multiple Input Mappers to listen to multiple input devices at the same time:</p>
+<p><a href="Examples.html#simple-combined-keyboard-mouse-remapping">See Simple Combined Keyboard Mouse Remapping example</a> for a working example.</p>
+<pre class="code">// Begin listening for input on both keyboard and mouse at the same time
 
-<span class="comment">// Tell the Input Mapper to replace the conflicting assignments</span>
-conflictData.responseCallback(InputMapper.ConflictResponse.Replace);</pre>
-<p>If you do not subscribe to the ConflictsFoundEvent and you have left conflict checking enabled in the Options.checkForConflicts property, the default action specified in Options.defaultActionWhenConflictFound will be used to resolve the conflict(s).</p>
-<p>&nbsp;</p>
-    <div class="bottom-pager clearfix">
-      <a class="back-button" href="Documentation.html" title="Actions"><span class="button-img"></span>Documentation</a></div>
+inputMapper_keyboard.Start(
+        new InputMapper.Context() {
+        actionId = actionId,
+        controllerMap = keyboardMap,
+        actionRange = actionRange,
+        actionElementMapToReplace = keyboardMap.GetElementMap(actionElementMapToReplaceId)
+    }
+);
+            
+inputMapper_mouse.Start(
+    new InputMapper.Context() {
+        actionId = actionId,
+        controllerMap = mouseMap,
+        actionRange = actionRange,
+        actionElementMapToReplace = mouseMap.GetElementMap(actionElementMapToReplaceId)
+    }
+);    </pre>
+<div class="bottom-pager clearfix">
+  <a class="back-button" href="Documentation.html" title="Actions"><span class="button-img"></span>Documentation</a></div>
 <!-- InstanceEndEditable -->
         </div>
         

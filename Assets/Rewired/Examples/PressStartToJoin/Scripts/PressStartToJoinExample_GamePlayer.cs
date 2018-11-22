@@ -1,9 +1,8 @@
 ﻿// Copyright (c) 2017 Augie R. Maddox, Guavaman Enterprises. All rights reserved.
 
-using UnityEngine;
-using System.Collections;
-
 namespace Rewired.Demos {
+    using UnityEngine;
+    using System.Collections;
 
     [AddComponentMenu("")]
     [RequireComponent(typeof(CharacterController))]

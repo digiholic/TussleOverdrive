@@ -1,4 +1,65 @@
 ﻿// Copyright (c) 2014 Augie R. Maddox, Guavaman Enterprises. All rights reserved.
+
+#if UNITY_2020 || UNITY_2021 || UNITY_2022 || UNITY_2023 || UNITY_2024 || UNITY_2025
+#define UNITY_2020_PLUS
+#endif
+
+#if UNITY_2019 || UNITY_2020_PLUS
+#define UNITY_2019_PLUS
+#endif
+
+#if UNITY_2018 || UNITY_2019_PLUS
+#define UNITY_2018_PLUS
+#endif
+
+#if UNITY_2017 || UNITY_2018_PLUS
+#define UNITY_2017_PLUS
+#endif
+
+#if UNITY_5 || UNITY_2017_PLUS
+#define UNITY_5_PLUS
+#endif
+
+#if UNITY_5_1 || UNITY_5_2 || UNITY_5_3_OR_NEWER || UNITY_2017_PLUS
+#define UNITY_5_1_PLUS
+#endif
+
+#if UNITY_5_2 || UNITY_5_3_OR_NEWER || UNITY_2017_PLUS
+#define UNITY_5_2_PLUS
+#endif
+
+#if UNITY_5_3_OR_NEWER || UNITY_2017_PLUS
+#define UNITY_5_3_PLUS
+#endif
+
+#if UNITY_5_4_OR_NEWER || UNITY_2017_PLUS
+#define UNITY_5_4_PLUS
+#endif
+
+#if UNITY_5_5_OR_NEWER || UNITY_2017_PLUS
+#define UNITY_5_5_PLUS
+#endif
+
+#if UNITY_5_6_OR_NEWER || UNITY_2017_PLUS
+#define UNITY_5_6_PLUS
+#endif
+
+#if UNITY_5_7_OR_NEWER || UNITY_2017_PLUS
+#define UNITY_5_7_PLUS
+#endif
+
+#if UNITY_5_8_OR_NEWER || UNITY_2017_PLUS
+#define UNITY_5_8_PLUS
+#endif
+
+#if UNITY_5_9_OR_NEWER || UNITY_2017_PLUS
+#define UNITY_5_9_PLUS
+#endif
+
+#if UNITY_5_4_PLUS
+#define SUPPORTS_SCENE_MANAGEMENT
+#endif
+
 #pragma warning disable 0219
 #pragma warning disable 0618
 #pragma warning disable 0649
@@ -10,9 +71,21 @@ namespace Rewired {
     using Rewired.Platforms;
     using Rewired.Utils;
     using Rewired.Utils.Interfaces;
+    using System;
+#if SUPPORTS_SCENE_MANAGEMENT
+    using UnityEngine.SceneManagement;
+#endif
 
     [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
     public sealed class InputManager : InputManager_Base {
+
+        protected override void OnInitialized() {
+            SubscribeEvents();
+        }
+
+        protected override void OnDeinitialized() {
+            UnsubscribeEvents();
+        }
 
         protected override void DetectPlatform() {
             // Set the editor and platform versions
@@ -39,6 +112,12 @@ namespace Rewired {
 
 #if UNITY_EDITOR_OSX
             editorPlatform = EditorPlatform.OSX;
+#endif
+
+#if UNITY_EDITOR && REWIRED_DEBUG_MOCK_BUILD_PLAYER
+        Debug.LogWarning("Rewired is mocking the build player in the editor");
+        isEditor = false;
+        editorPlatform = EditorPlatform.None;
 #endif
 
 #if UNITY_STANDALONE_OSX
@@ -185,15 +264,6 @@ namespace Rewired {
 #endif
         }
 
-        protected override string GetFocusedEditorWindowTitle() {
-#if UNITY_EDITOR
-            UnityEditor.EditorWindow window = UnityEditor.EditorWindow.focusedWindow;
-            return window != null ? window.title : string.Empty;
-#else
-            return string.Empty;
-#endif
-        }
-
         protected override IExternalTools GetExternalTools() {
             return new ExternalTools();
         }
@@ -202,5 +272,31 @@ namespace Rewired {
             return System.Text.RegularExpressions.Regex.IsMatch(deviceName, searchPattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase) ||
                 System.Text.RegularExpressions.Regex.IsMatch(deviceModel, searchPattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase);
         }
+
+        private void SubscribeEvents() {
+            UnsubscribeEvents();
+#if SUPPORTS_SCENE_MANAGEMENT
+            SceneManager.sceneLoaded += OnSceneLoaded;
+#endif
+        }
+
+        private void UnsubscribeEvents() {
+#if SUPPORTS_SCENE_MANAGEMENT
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+#endif    
+        }
+
+#if SUPPORTS_SCENE_MANAGEMENT
+      
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
+            OnSceneLoaded();
+        }
+
+#else
+        private void OnLevelWasLoaded(int index) {
+            OnSceneLoaded();
+        }
+
+#endif
     }
 }

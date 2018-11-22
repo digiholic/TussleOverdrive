@@ -14,19 +14,38 @@ MonoBehaviour:
   controllerName: Flight Pedals
   description: 
   templateGuid: f6fe76f8-be2a-4db2-b853-9e3652075913
+  className: FlightPedalsTemplate
   elementIdentifiers:
   - _id: 0
     _name: Left Pedal
+    _positiveName: 
+    _negativeName: 
     _elementType: 0
-    _compoundElementType: 0
+    _scriptingName: leftPedal
+    _alternateScriptingName: 
+    _excludeFromExport: 0
+    _useEditorElementTypeOverride: 0
+    _editorElementTypeOverride: 0
   - _id: 1
     _name: Right Pedal
+    _positiveName: 
+    _negativeName: 
     _elementType: 0
-    _compoundElementType: 0
+    _scriptingName: rightPedal
+    _alternateScriptingName: 
+    _excludeFromExport: 0
+    _useEditorElementTypeOverride: 0
+    _editorElementTypeOverride: 0
   - _id: 2
     _name: Slide
+    _positiveName: 
+    _negativeName: 
     _elementType: 0
-    _compoundElementType: 0
+    _scriptingName: slide
+    _alternateScriptingName: 
+    _excludeFromExport: 0
+    _useEditorElementTypeOverride: 0
+    _editorElementTypeOverride: 0
   joysticks:
   - id: 0
     name: CH Pro Pedals
@@ -37,17 +56,14 @@ MonoBehaviour:
       joystickId: 0
       joystickId2: 0
       splitAxis: 0
-      sourceAxisPole: 0
     - templateId: 1
       joystickId: 1
       joystickId2: 0
       splitAxis: 0
-      sourceAxisPole: 0
     - templateId: 2
       joystickId: 2
       joystickId2: 0
       splitAxis: 0
-      sourceAxisPole: 0
   - id: 1
     name: Saitek Pro Flight Rudder Pedals
     joystickGuid: 01665f95-8b2d-42d0-8d54-3bc9b0d16b1d
@@ -57,17 +73,14 @@ MonoBehaviour:
       joystickId: 0
       joystickId2: 0
       splitAxis: 0
-      sourceAxisPole: 0
     - templateId: 1
       joystickId: 1
       joystickId2: 0
       splitAxis: 0
-      sourceAxisPole: 0
     - templateId: 2
       joystickId: 2
       joystickId2: 0
       splitAxis: 0
-      sourceAxisPole: 0
   - id: 2
     name: Thrustmaster TWCS Throttle
     joystickGuid: f3506772-fad6-4917-b7ef-581bee2159d7
@@ -77,17 +90,14 @@ MonoBehaviour:
       joystickId: 5
       joystickId2: 0
       splitAxis: 0
-      sourceAxisPole: 0
     - templateId: 1
       joystickId: 6
       joystickId2: 0
       splitAxis: 0
-      sourceAxisPole: 0
     - templateId: 2
       joystickId: 7
       joystickId2: 0
       splitAxis: 0
-      sourceAxisPole: 0
   - id: 3
     name: Thrustmaster T.Flight Rudder Pedals
     joystickGuid: bdd20bc1-5619-4361-91e0-d652ce750d73
@@ -97,17 +107,14 @@ MonoBehaviour:
       joystickId: 0
       joystickId2: 0
       splitAxis: 0
-      sourceAxisPole: 0
     - templateId: 1
       joystickId: 1
       joystickId2: 0
       splitAxis: 0
-      sourceAxisPole: 0
     - templateId: 2
       joystickId: 2
       joystickId2: 0
       splitAxis: 0
-      sourceAxisPole: 0
   - id: 4
     name: Thrustmaster T.Flight HOTAS 4
     joystickGuid: ee5daca0-3791-45d2-b979-bbbfdf5085f8
@@ -117,16 +124,31 @@ MonoBehaviour:
       joystickId: 25
       joystickId2: 0
       splitAxis: 0
-      sourceAxisPole: 0
     - templateId: 1
       joystickId: 26
       joystickId2: 0
       splitAxis: 0
-      sourceAxisPole: 0
     - templateId: 2
       joystickId: 27
       joystickId2: 0
       splitAxis: 0
-      sourceAxisPole: 0
+  - id: 5
+    name: Sony PS4 Flight Stick
+    joystickGuid: a75d195b-27a8-41ac-97db-2bd5a649a817
+    fileGuid: 22d64389a3ac78245a2d54f8ae889fb3
+    elementIdentifierMappings:
+    - templateId: 0
+      joystickId: 11
+      joystickId2: 0
+      splitAxis: 0
+    - templateId: 1
+      joystickId: 12
+      joystickId2: 0
+      splitAxis: 0
+    - templateId: 2
+      joystickId: 10
+      joystickId2: 0
+      splitAxis: 0
+  specialElements: []
   elementIdentifierIdCounter: 3
-  joystickIdCounter: 5
+  joystickIdCounter: 6

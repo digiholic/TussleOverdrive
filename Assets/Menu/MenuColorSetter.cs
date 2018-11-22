@@ -35,7 +35,8 @@ public class MenuColorSetter : MonoBehaviour {
         }
         if (particles != null)
         {
-            particles.startColor = MenuColorChanger.menu_color.getColor();
+            var main = particles.main;
+            main.startColor = MenuColorChanger.menu_color.getColor();
         }
 	}
 }

@@ -24,6 +24,8 @@ namespace Rewired.UI.ControlMapper {
         [SerializeField]
         private string _remove = "Remove";
         [SerializeField]
+        private string _swap = "Swap";
+        [SerializeField]
         private string _cancel = "Cancel";
         [SerializeField]
         private string _none = "None";
@@ -169,6 +171,7 @@ namespace Rewired.UI.ControlMapper {
         public string add { get { return _add; } }
         public string replace { get { return _replace; } }
         public string remove { get { return _remove; } }
+        public string swap { get { return _swap; } }
         public string cancel { get { return _cancel; } }
         public string none { get { return _none; } }
         public string okay { get { return _okay; } }

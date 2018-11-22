@@ -141,6 +141,16 @@ MonoBehaviour:
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 1
+        alternateCalibrations:
+        - key: 1
+          calibration:
+            _applyRangeCalibration: 0
+            _invert: 1
+            _deadZone: 0
+            _zero: 0
+            _min: 0
+            _max: 0
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -162,6 +172,16 @@ MonoBehaviour:
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 1
+        alternateCalibrations:
+        - key: 1
+          calibration:
+            _applyRangeCalibration: 0
+            _invert: 1
+            _deadZone: 0
+            _zero: 0
+            _min: 0
+            _max: 0
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -183,6 +203,16 @@ MonoBehaviour:
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 1
+        alternateCalibrations:
+        - key: 1
+          calibration:
+            _applyRangeCalibration: 0
+            _invert: 1
+            _deadZone: 0
+            _zero: 0
+            _min: 0
+            _max: 0
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -403,9 +433,19 @@ MonoBehaviour:
         axisZero: 1
         axisMin: -1
         axisMax: 1
+        alternateCalibrations:
+        - key: 1
+          calibration:
+            _applyRangeCalibration: 0
+            _invert: 1
+            _deadZone: 0
+            _zero: 0
+            _min: 0
+            _max: 0
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -423,9 +463,19 @@ MonoBehaviour:
         axisZero: 1
         axisMin: -1
         axisMax: 1
+        alternateCalibrations:
+        - key: 1
+          calibration:
+            _applyRangeCalibration: 0
+            _invert: 1
+            _deadZone: 0
+            _zero: 0
+            _min: 0
+            _max: 0
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -443,9 +493,19 @@ MonoBehaviour:
         axisZero: 1
         axisMin: -1
         axisMax: 1
+        alternateCalibrations:
+        - key: 1
+          calibration:
+            _applyRangeCalibration: 0
+            _invert: 1
+            _deadZone: 0
+            _zero: 0
+            _min: 0
+            _max: 0
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -644,9 +704,19 @@ MonoBehaviour:
         axisZero: 1
         axisMin: -1
         axisMax: 1
+        alternateCalibrations:
+        - key: 1
+          calibration:
+            _applyRangeCalibration: 0
+            _invert: 1
+            _deadZone: 0
+            _zero: 0
+            _min: 0
+            _max: 0
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -662,9 +732,19 @@ MonoBehaviour:
         axisZero: 1
         axisMin: -1
         axisMax: 1
+        alternateCalibrations:
+        - key: 1
+          calibration:
+            _applyRangeCalibration: 0
+            _invert: 1
+            _deadZone: 0
+            _zero: 0
+            _min: 0
+            _max: 0
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -680,9 +760,19 @@ MonoBehaviour:
         axisZero: 1
         axisMin: -1
         axisMax: 1
+        alternateCalibrations:
+        - key: 1
+          calibration:
+            _applyRangeCalibration: 0
+            _invert: 1
+            _deadZone: 0
+            _zero: 0
+            _min: 0
+            _max: 0
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -861,9 +951,19 @@ MonoBehaviour:
         axisZero: 1
         axisMin: -1
         axisMax: 1
+        alternateCalibrations:
+        - key: 1
+          calibration:
+            _applyRangeCalibration: 0
+            _invert: 1
+            _deadZone: 0
+            _zero: 0
+            _min: 0
+            _max: 0
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -879,9 +979,19 @@ MonoBehaviour:
         axisZero: 1
         axisMin: -1
         axisMax: 1
+        alternateCalibrations:
+        - key: 1
+          calibration:
+            _applyRangeCalibration: 0
+            _invert: 1
+            _deadZone: 0
+            _zero: 0
+            _min: 0
+            _max: 0
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -897,9 +1007,19 @@ MonoBehaviour:
         axisZero: 1
         axisMin: -1
         axisMax: 1
+        alternateCalibrations:
+        - key: 1
+          calibration:
+            _applyRangeCalibration: 0
+            _invert: 1
+            _deadZone: 0
+            _zero: 0
+            _min: 0
+            _max: 0
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -1082,9 +1202,19 @@ MonoBehaviour:
         axisZero: 1
         axisMin: -1
         axisMax: 1
+        alternateCalibrations:
+        - key: 1
+          calibration:
+            _applyRangeCalibration: 0
+            _invert: 1
+            _deadZone: 0
+            _zero: 0
+            _min: 0
+            _max: 0
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 1
       - elementIdentifier: 1
         sourceType: 1
         sourceAxis: 2
@@ -1100,9 +1230,19 @@ MonoBehaviour:
         axisZero: 1
         axisMin: -1
         axisMax: 1
+        alternateCalibrations:
+        - key: 1
+          calibration:
+            _applyRangeCalibration: 0
+            _invert: 1
+            _deadZone: 0
+            _zero: 0
+            _min: 0
+            _max: 0
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 1
       - elementIdentifier: 2
         sourceType: 1
         sourceAxis: 3
@@ -1118,9 +1258,19 @@ MonoBehaviour:
         axisZero: 1
         axisMin: -1
         axisMax: 1
+        alternateCalibrations:
+        - key: 1
+          calibration:
+            _applyRangeCalibration: 0
+            _invert: 1
+            _deadZone: 0
+            _zero: 0
+            _min: 0
+            _max: 0
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 1
       buttons:
       - elementIdentifier: 3
         sourceType: 0
@@ -1387,9 +1537,19 @@ MonoBehaviour:
         axisZero: 1
         axisMin: -1
         axisMax: 1
+        alternateCalibrations:
+        - key: 1
+          calibration:
+            _applyRangeCalibration: 0
+            _invert: 1
+            _deadZone: 0
+            _zero: 0
+            _min: 0
+            _max: 0
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 1
       - elementIdentifier: 1
         sourceType: 1
         sourceAxis: 2
@@ -1405,9 +1565,19 @@ MonoBehaviour:
         axisZero: 1
         axisMin: -1
         axisMax: 1
+        alternateCalibrations:
+        - key: 1
+          calibration:
+            _applyRangeCalibration: 0
+            _invert: 1
+            _deadZone: 0
+            _zero: 0
+            _min: 0
+            _max: 0
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 1
       - elementIdentifier: 2
         sourceType: 1
         sourceAxis: 3
@@ -1423,9 +1593,19 @@ MonoBehaviour:
         axisZero: 1
         axisMin: -1
         axisMax: 1
+        alternateCalibrations:
+        - key: 1
+          calibration:
+            _applyRangeCalibration: 0
+            _invert: 1
+            _deadZone: 0
+            _zero: 0
+            _min: 0
+            _max: 0
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 1
       buttons:
       - elementIdentifier: 3
         sourceType: 0
@@ -1675,9 +1855,19 @@ MonoBehaviour:
         axisZero: 1
         axisMin: 0
         axisMax: 1
+        alternateCalibrations:
+        - key: 1
+          calibration:
+            _applyRangeCalibration: 1
+            _invert: 1
+            _deadZone: 0
+            _zero: .5
+            _min: 0
+            _max: 1
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 1
       - elementIdentifier: 1
         sourceType: 1
         sourceAxis: 2
@@ -1693,9 +1883,19 @@ MonoBehaviour:
         axisZero: 1
         axisMin: 0
         axisMax: 1
+        alternateCalibrations:
+        - key: 1
+          calibration:
+            _applyRangeCalibration: 1
+            _invert: 1
+            _deadZone: 0
+            _zero: .5
+            _min: 0
+            _max: 1
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 1
       - elementIdentifier: 2
         sourceType: 1
         sourceAxis: 3
@@ -1711,9 +1911,19 @@ MonoBehaviour:
         axisZero: 1
         axisMin: 0
         axisMax: 1
+        alternateCalibrations:
+        - key: 1
+          calibration:
+            _applyRangeCalibration: 1
+            _invert: 1
+            _deadZone: 0
+            _zero: .5
+            _min: 0
+            _max: 1
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 1
       buttons:
       - elementIdentifier: 3
         sourceType: 0
@@ -1980,9 +2190,19 @@ MonoBehaviour:
         axisZero: 1
         axisMin: -1
         axisMax: 1
+        alternateCalibrations:
+        - key: 1
+          calibration:
+            _applyRangeCalibration: 0
+            _invert: 1
+            _deadZone: 0
+            _zero: 0
+            _min: 0
+            _max: 0
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 1
       - elementIdentifier: 1
         sourceType: 1
         sourceAxis: 2
@@ -1998,9 +2218,19 @@ MonoBehaviour:
         axisZero: 1
         axisMin: -1
         axisMax: 1
+        alternateCalibrations:
+        - key: 1
+          calibration:
+            _applyRangeCalibration: 0
+            _invert: 1
+            _deadZone: 0
+            _zero: 0
+            _min: 0
+            _max: 0
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 1
       - elementIdentifier: 2
         sourceType: 1
         sourceAxis: 3
@@ -2016,9 +2246,19 @@ MonoBehaviour:
         axisZero: 1
         axisMin: -1
         axisMax: 1
+        alternateCalibrations:
+        - key: 1
+          calibration:
+            _applyRangeCalibration: 0
+            _invert: 1
+            _deadZone: 0
+            _zero: 0
+            _min: 0
+            _max: 0
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 1
       buttons:
       - elementIdentifier: 3
         sourceType: 0

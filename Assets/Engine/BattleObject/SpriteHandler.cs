@@ -94,7 +94,7 @@ public class SpriteHandler : BattleComponent {
         if (sprites.ContainsKey(current_sprite))
             sprite_renderer.sprite = sprites[current_sprite][current_frame];
         else
-            Debug.LogError("No sprite in dictionary! " + current_sprite);
+            Debug.LogWarning("No sprite in dictionary! Current Sprite: " + current_sprite);
         
         /*
         Sprite spr = sprite_atlas.GetSprite(current_sprite + current_frame.ToString());

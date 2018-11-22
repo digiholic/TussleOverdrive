@@ -54,9 +54,6 @@ namespace TriLib
         {
             if (data == null || data.Length == 0)
             {
-#if TRILIB_OUTPUT_MESSAGES || ASSIMP_OUTPUT_MESSAGES
-                    Debug.LogWarningFormat("Texture '{0}' not found", path);
-#endif
                 return null;
             }
             Texture2D tempTexture2D;
@@ -64,9 +61,6 @@ namespace TriLib
             {
                 return ProccessTextureData(tempTexture2D, name, ref hasAlphaChannel, textureWrapMode, textureCompression, isNormalMap, checkAlphaChannel);
             }
-#if TRILIB_OUTPUT_MESSAGES || ASSIMP_OUTPUT_MESSAGES
-            Debug.LogErrorFormat("Unable to load texture '{0}'", path);
-#endif
             return null;
         }
 

@@ -172,7 +172,7 @@ MonoBehaviour:
   _elements:
   - _themeClass: 
     _component: {fileID: 11496952}
-  - _themeClass: 
+  - _themeClass: invertToggle
     _component: {fileID: 11442744}
   - _themeClass: invertToggle
     _component: {fileID: 11442742}

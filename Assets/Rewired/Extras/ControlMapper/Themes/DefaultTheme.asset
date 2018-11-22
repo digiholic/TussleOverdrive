@@ -249,6 +249,17 @@ MonoBehaviour:
     _fillClockwise: 0
     _fillOrigin: 0
   _invertToggleDisabledColor: {r: .0551480204, g: .0745695606, b: .0862745121, a: 1}
+  _calibrationBackground:
+    _color: {r: 0, g: 0, b: 0, a: 1}
+    _sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+    _materal: {fileID: 0}
+    _type: 1
+    _preserveAspect: 0
+    _fillCenter: 1
+    _fillMethod: 0
+    _fillAmout: 0
+    _fillClockwise: 0
+    _fillOrigin: 0
   _calibrationValueMarker:
     _color: {r: 1, g: 1, b: 1, a: 1}
     _sprite: {fileID: 21300000, guid: 7f4e5f9eac93c0a4ab5e638adf6b02e1, type: 3}
@@ -271,12 +282,54 @@ MonoBehaviour:
     _fillAmout: 0
     _fillClockwise: 0
     _fillOrigin: 0
+  _calibrationZeroMarker:
+    _color: {r: .529411793, g: .529411793, b: .529411793, a: 1}
+    _sprite: {fileID: 0}
+    _materal: {fileID: 0}
+    _type: 0
+    _preserveAspect: 0
+    _fillCenter: 0
+    _fillMethod: 0
+    _fillAmout: 0
+    _fillClockwise: 0
+    _fillOrigin: 0
+  _calibrationCalibratedZeroMarker:
+    _color: {r: .564705908, g: 0, b: 0, a: 1}
+    _sprite: {fileID: 0}
+    _materal: {fileID: 0}
+    _type: 0
+    _preserveAspect: 0
+    _fillCenter: 0
+    _fillMethod: 0
+    _fillAmout: 0
+    _fillClockwise: 0
+    _fillOrigin: 0
+  _calibrationDeadzone:
+    _color: {r: .352941185, g: 0, b: 0, a: 1}
+    _sprite: {fileID: 0}
+    _materal: {fileID: 0}
+    _type: 0
+    _preserveAspect: 0
+    _fillCenter: 0
+    _fillMethod: 0
+    _fillAmout: 0
+    _fillClockwise: 0
+    _fillOrigin: 0
   _textSettings:
     _color: {r: 1, g: 1, b: 1, a: 1}
     _font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    _style: 0
+    _lineSpacing: 1
+    _sizeMultiplier: 1
   _buttonTextSettings:
     _color: {r: 1, g: 1, b: 1, a: 1}
     _font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    _style: 0
+    _lineSpacing: 1
+    _sizeMultiplier: 1
   _inputGridFieldTextSettings:
     _color: {r: 1, g: 1, b: 1, a: 1}
     _font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    _style: 0
+    _lineSpacing: 1
+    _sizeMultiplier: 1

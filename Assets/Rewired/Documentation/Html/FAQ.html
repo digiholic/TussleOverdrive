@@ -81,7 +81,8 @@
               <li><a href="Controllers.html">Controllers</a></li>
               <li><a href="ControllerMaps.html">Controller Maps</a></li>
               <li><a href="MapCategories.html">Map Categories</a></li>
-              <li><a href="ControllerMaps.html"></a><a href="Layouts.html">Layouts</a></li>
+              <li><a href="Layouts.html">Layouts</a></li>
+              <li><a href="ControllerTemplates.html">Controller Templates</a></li>
               <li><a href="CustomControllers.html">Custom Controllers</a></li>
             </ul>
             <strong>Extras:</strong>
@@ -94,6 +95,7 @@
             <strong>Misc:</strong>
             <ul>
 	          <li><a href="ComponentControls.html" title="Component Controls">Component Controls</a></li>
+	          <li><a href="PlayerControllers.html" title="Player Controllers">Player Controllers</a></li>
 	          <li><a href="InputMapper.html" title="Input Mapper">Input Mapper</a></li>
 	          <li><a href="UserDataStore.html" title="User Data Store">User Data Store</a></li>
             </ul>
@@ -158,6 +160,8 @@
       <li><a href="#default-dead-zone">My joystick's dead zone is too large/small. How do I change it?</a></li>
       <li><a href="#gesture-bindings">How can I bind an Action to a button short-press  and another Action to a long-press?</a></li>
       <li><a href="#nintendo-wiiu-adapter-driver">Can the Nintendo WiiU 4-player adapter be used without requiring users to install a driver?</a></li>
+      <li><a href="#nintendo-wiiu-adapter-desktop">Does Rewired support the official Nintendo WiiU adapter on desktop platforms?</a></li>
+      <li><a href="#set-mouse-cursor-position">Can Rewired set the mouse cursor position?</a></li>
       <li><a href="#source-code">Can I get the Rewired source code?</a></li>
       <li><a href="#seat-license">What does &quot;this extension requires one licence per seat&quot; mean?</a></li>
       <li><a href="#discounts">Do you offer educational or bulk license discounts?</a></li>
@@ -176,15 +180,16 @@
     <p>&nbsp;</p>
     <hr />
     <h3><a name="does-rewired-support-x-controller" id="does-rewired-support-x-controller"></a>Does Rewired support this controller?</h3>
-    <p>Usually, this question is asked about exotic controllers such as 3Dconnexion Space Mouse,  Arduino, Oculus Touch and Remote, HTC Vive, exotic VR controllers, or some other special-purpose controller that requires its own SDK to use. Rewired does not support such controllers directly. Any use of such controller would require you set up the company's SDK and use a <a href="CustomControllers.html">Custom Controller</a> to add support for the device. Even this may not work for all devices. (See <a href="#does-rewired-support-vr-controllers">this topic for information</a> on limited support for Oculus Touch and HTC Vive / OpenVR.)</p>
+    <p>Usually, this question is asked about exotic controllers such as Arduino, Oculus Touch and Remote, HTC Vive, exotic VR controllers, or some other special-purpose controller that requires its own SDK to use. Rewired does not support such controllers directly. Any use of such controller would require you set up the company's SDK and use a <a href="CustomControllers.html">Custom Controller</a> to add support for the device. Even this may not work for all devices. (See <a href="#does-rewired-support-vr-controllers">this topic for information</a> on limited support for Oculus Touch and HTC Vive / OpenVR.)</p>
 <p>Rewired is not a general-purpose, low-level API for working with any and all HID devices.</p>
 <p>See <a href="SupportedControllers.html">Supported Controllers</a> for more information.</p>
 <p>&nbsp;</p>
 <hr />
 <h3><a name="addding-controller-definitions" id="does-rewired-support-x-controller3"></a>Can you/I add support for this controller?</h3>
 <p>It depends. Not all controllers are candidates for Rewired's automatic controller recognition system. The controller would have to be evaulated for inclusion.</p>
-<p>Rewired's controller recognition system relies on information returned by the controller in order to be able to recognize it and load a hardware definition. Many times, the identifying information provided by the device is inadequate or too generic to be relied upon for recognition, for example those that show up as &quot;Generic USB Joystick&quot;, &quot;USB Gamepad&quot;, etc. This is true of a huge number of generic PC gamepads. The manufacturers of these gamepads create dozens and dozens of different products under a large variety of brands, some even with different button layouts, yet all of these devices provide exactly the same identifying USB/HID information (both product name and VID/PID). This makes it impossible to auto-recognize these controllers. If you were to add a controller definition for just one of these controllers, all others that don't match the button layout exactly would report incorrect element names and default mappings in the best case, and would be essentially unusable in the worst case. For these controllers, the only solution is to not provide a controller definition so that they will be treated as <a href="ControllerMaps.html#unknown-controllers">Unknown Controller</a> which the user can map manually using <a href="ControlMapper.html">Control Mapper</a> or your own custom control remapping system.</p>
-<p>See <a href="HowTos.html#new-controller-definitions">How To's - Creating new controller definitions</a> for more information.</p>
+<p>Rewired's controller recognition system relies on information returned by the controller in order to be able to recognize it and load a hardware definition. Many times, the identifying information provided by the device is inadequate or too generic to be relied upon for recognition, for example those that show up as &quot;Generic USB Joystick&quot;, &quot;USB Gamepad&quot;, etc. This is true of a huge number of generic PC gamepads. The manufacturers of these gamepads create dozens and dozens of different products under a large variety of brands, some even with different button layouts, yet all of these devices provide exactly the same identifying USB/HID information (both product name and VID/PID). This makes it impossible to auto-recognize these controllers. If you were to add a controller definition for just one of these controllers, all others that don't match the button layout exactly would report incorrect element names and default mappings in the best case, and would be essentially unusable in the worst case. For these controllers, the only solution is to not provide a controller definition so that they will be treated as <a href="ControllerMaps.html#unknown-controllers">Unknown Controller</a> which the user can map manually using <a href="ControlMapper.html">Control Mapper</a> or <a href="HowTos.html#controller-mapping-screen">your own custom control remapping system</a>.</p>
+<p>The solution to allowing users to use these kinds of controllers and others without definitions is to give your players a way to remap their controls. It is a must that you have a system to let your player   remap their controllers so they can use any controller they want. It is a core   feature of Rewired to allow users to be able to use any controller regardless of   whether or not it is recognized, including the ability to save and load their   configurations. The controller recognition system is only really there as a   convenience so that the most common controllers work without manual   configuration out of the box, but it is not a substitute for being able to map   controllers.</p>
+<p>See <a href="HowTos.html#new-controller-definitions">How To's - Creating new controller definitions</a> for more information on adding your own controller definitions.</p>
 <p>&nbsp;</p>
 <hr />
 <h3><a name="supported-platforms" id="does-rewired-support-x-controller4"></a>What platforms does Rewired support?</h3>
@@ -295,9 +300,9 @@
   <tr>
     <td valign="top">Sony DualShock 4</td>
     <td align="center" valign="top">Raw Input<br />
-      <span class="note">(Enhanced Device Support required)</span></td>
+      <span class="note">(<a href="RewiredEditor.html#settings-windows-enhanced-device-support">Enhanced Device Support</a> required)</span></td>
     <td align="center" valign="top">Native<br />
-      <span class="note">(Enhanced Device Support required, wired only)</span></td>
+      <span class="note">(<a href="RewiredEditor.html#settings-osx-enhanced-device-support">Enhanced Device Support</a> required, wired only)</span></td>
     <td align="center" valign="top">&mdash;</td>
     <td align="center" valign="top">&mdash;</td>
     <td align="center" valign="top">&mdash;</td>
@@ -385,6 +390,44 @@
 <hr />
 <h3><a name="nintendo-wiiu-adapter-driver" id="nintendo-wiiu-adapter-driver"></a>Can the Nintendo WiiU 4-player adapter be used without requiring users to install a driver?</h3>
 <p>It is not possible. The Nintendo WiiU adapter is not a standard HID device and   cannot use the default Windows HID driver. This is an issue with the device   because it was not designed for use on Windows / PCs. It cannot be used by any   program without a 3rd party driver installed that can make it appear as a   standard HID device. There is no way around this.</p>
+<p>&nbsp;</p>
+<hr />
+<h3><a name="nintendo-wiiu-adapter-desktop" id="nintendo-wiiu-adapter-desktop"></a>Does Rewired support the official Nintendo WiiU adapter on desktop platforms?</h3>
+<p>Rewired <a href="SupportedControllers.html">does not provide extended support</a> for the Nintendo WiiU adapter.<br />
+  <br />
+  As   it states there:
+  <br />
+  <em>Any controller which does not have a hardware definition   will be usable only 
+  through user mapping or by mapping actions to numbered   axes and buttons in 
+  the Unknown Controller map. These unrecognized   controllers can only be  
+  supported if you provide your users a way to remap   their controls, such as 
+  by using the included Control Mapper or by creating   a custom control 
+  remapping screen. If you do not provide users with a way to   map their 
+  controls, only the above listed recognized controllers will be   usable. If 
+  you do provide your users a way to map their controls, virtually   any 
+  controller will be usable.</em><br />
+  <br />
+  The Nintendo   WiiU adapter does not have an official driver and cannot be 
+  used without   some form of hack or 3rd party driver.  
+  <a href="#nintendo-wiiu-adapter-driver">This device cannot even be detected without a HID driver.</a> If you look at the Dolphin 
+  Wiki, which   is where most people use this adapter, you'll see <a href="https://wiki.dolphin-emu.org/index.php?title=How_to_use_the_Official_GameCube_Controller_Adapter_for_Wii_U_in_Dolphin">several
+  methods to make it   work in Dolphin</a>.<br />
+  <br />
+  All   of these methods are hacks and none of them can provide any proper 
+  identifying HID information which could be used to make a controller 
+  definition for automatic recognition. There is no official or generally-used driver for this device that would identify it explicitly as a Nintendo WiiU Adapter, so it is not a candidate for 
+  automatic controller recognition.<br />
+  <br />
+  If   you've provided a way to remap and assign controls to your users, they 
+  should be able to use the device through user assignment and mapping as long 
+  as they've gone through all the steps to set up the driver to make it be <br />
+  recognized as a HID device.<br />
+</p>
+<p>&nbsp;</p>
+<hr />
+<h3><a name="set-mouse-cursor-position" id="set-mouse-cursor-position"></a>Can Rewired set the mouse cursor position?</h3>
+<p>No. Rewired does not allow you to set the OS mouse cursor position on any platform.</p>
+<p>You can use <a href="http://guavaman.com/projects/rewired/docs/PlayerControllers.html#player-mouse">Player Mouse</a> to move one or more sprite-based cursors with a joystick, keyboard, etc.</p>
 <p>&nbsp;</p>
 <hr />
 <h3><a name="source-code" id="default-dead-zone4"></a>Can I get the Rewired source code?</h3>

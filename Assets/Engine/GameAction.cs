@@ -59,7 +59,6 @@ public class GameAction {
                 categoryList.Add(SubactionFactory.GenerateSubactionFromData(data));
             }
             subactionCategories.Add(keyVal.Key, categoryList);
-            UnityEngine.Debug.Log(keyVal);
         }
     }
 

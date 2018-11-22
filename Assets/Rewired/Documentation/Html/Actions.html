@@ -81,7 +81,8 @@
               <li><a href="Controllers.html">Controllers</a></li>
               <li><a href="ControllerMaps.html">Controller Maps</a></li>
               <li><a href="MapCategories.html">Map Categories</a></li>
-              <li><a href="ControllerMaps.html"></a><a href="Layouts.html">Layouts</a></li>
+              <li><a href="Layouts.html">Layouts</a></li>
+              <li><a href="ControllerTemplates.html">Controller Templates</a></li>
               <li><a href="CustomControllers.html">Custom Controllers</a></li>
             </ul>
             <strong>Extras:</strong>
@@ -94,6 +95,7 @@
             <strong>Misc:</strong>
             <ul>
 	          <li><a href="ComponentControls.html" title="Component Controls">Component Controls</a></li>
+	          <li><a href="PlayerControllers.html" title="Player Controllers">Player Controllers</a></li>
 	          <li><a href="InputMapper.html" title="Input Mapper">Input Mapper</a></li>
 	          <li><a href="UserDataStore.html" title="User Data Store">User Data Store</a></li>
             </ul>
@@ -154,7 +156,7 @@ void Update() {
     player.GetButtonDown("Fire");
 }</pre>
     <p>This way, you don't have to worry about what type or how many controllers the player is using -- you simply get your input based on the Action.</p>
-    <p>You can also get input based on the Action Id instead of by name if you choose. The Action Id is displayed in the <a href="RewiredEditor.html#Actions">Rewired Editor under Actions</a>. You can <a href="HowTos.html#exporting-constants">export a list of Action Id constants</a> which adds the convenience of letting you use your IDE's auto-complete  to find Actions when coding.</p>
+    <p>You can also get input based on the Action id instead. The Action id is displayed in the <a href="RewiredEditor.html#Actions">Rewired Editor under Actions</a>. You can <a href="HowTos.html#exporting-constants">export a list of Action Id constants</a> which adds the convenience of letting you use your IDE's auto-complete  to find Actions when coding. Looking up Actions by id is significantly faster than by name and is  the recommended method.</p>
     <p>Additionally, you have the option of using input events instead of polling for input as shown in the above example. See <a href="HowTos.html#get-input">How To's - Getting Input</a> for more information.</p>
     <p><strong>Creating/Editing Actions</strong></p>
     <p>You must create and edit Actions in the <a href="RewiredEditor.html">Rewired Editor</a>. See <a href="RewiredEditor.html#Actions">Rewired Editor - Actions</a> for more information.</p>

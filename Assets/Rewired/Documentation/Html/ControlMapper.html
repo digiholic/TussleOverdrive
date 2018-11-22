@@ -81,7 +81,8 @@
               <li><a href="Controllers.html">Controllers</a></li>
               <li><a href="ControllerMaps.html">Controller Maps</a></li>
               <li><a href="MapCategories.html">Map Categories</a></li>
-              <li><a href="ControllerMaps.html"></a><a href="Layouts.html">Layouts</a></li>
+              <li><a href="Layouts.html">Layouts</a></li>
+              <li><a href="ControllerTemplates.html">Controller Templates</a></li>
               <li><a href="CustomControllers.html">Custom Controllers</a></li>
             </ul>
             <strong>Extras:</strong>
@@ -94,6 +95,7 @@
             <strong>Misc:</strong>
             <ul>
 	          <li><a href="ComponentControls.html" title="Component Controls">Component Controls</a></li>
+	          <li><a href="PlayerControllers.html" title="Player Controllers">Player Controllers</a></li>
 	          <li><a href="InputMapper.html" title="Input Mapper">Input Mapper</a></li>
 	          <li><a href="UserDataStore.html" title="User Data Store">User Data Store</a></li>
             </ul>
@@ -202,7 +204,7 @@
       <li>GameObject -&gt; Create Other -&gt; Rewired -&gt; UI -&gt; Rewired Event System</li>
       <li>Window -&gt; Rewired -&gt; Create -&gt; UI -&gt; Rewired Event System</li>
       </ul>
-    <p><img src="files/images/controlmapper_rewiredstandaloneinputmodule.png" width="469" height="275" class="right" />Four Actions must be set up in the Rewired Input Manager and the RewiredStandaloneInputModule in order to control the UI. <strong>These four Actions must have names that match exactly in both the Rewired Input Manager and the RewiredStandaloneInputModule</strong>.</p>
+    <p><img src="files/images/rewiredstandaloneinputmodule_inspector_actions.png" class="right" />Four Actions must be set up in the Rewired Input Manager and the RewiredStandaloneInputModule in order to control the UI. <strong>These four Actions must have names that match exactly in both the Rewired Input Manager and the RewiredStandaloneInputModule</strong>.</p>
     <ol>
       <li>Horizontal Axis - The Action that will control Left/Right movement in the UI.</li>
       <li>Vertical Axis - The Action that will control Up/Down movement in the UI.</li>
@@ -210,6 +212,8 @@
       <li>Cancel - The Action that cancels.</li>
     </ol>
       <p>The actual names you use are up to you. Of course these Actions must also be assigned to one or more keyboard or joystick maps and assigned to a Player to be functional. </p>
+      <p>If you want to use <a href="RewiredStandaloneInputModule.html#virtual-mouse">mouse pointers</a> exclusively to interact with the UI, you can set all these Actions to blank strings.</p>
+      <p>Alternately, you can set Actions by id by enabling &quot;Set Actions By Id.&quot;</p>
 <p>NOTE: It is <strong>HIGHLY</strong> recommended that you create unique menu-only Actions for these UI controls in a separate controller map category from your game Actions. If you use your in-game actions such as &quot;Move Horizonal&quot; or &quot;Jump&quot; for these UI controls, you run the risk of allowing the user to render the UI unusable because they removed an assignment for one of these game Actions which was also  controlling the UI.</p>
 <p>The settings in the RewiredStandaloneInputModule will determine which Players can control the UI. If you check &quot;Use All Rewired Game Players&quot;, all Players besides the System Player that have a map configured with these UI Actions will be able to control the UI. If you check &quot;Use Rewired System Player&quot;, the same will be true for the System Player. If instead you only want specific Players to control the UI, you can set these Player Ids individually.</p>
 <p>If the UI control speed with a Joystick seems too slow or fast, adjust the &quot;Input Actions Per Second&quot; setting.</p>
@@ -271,7 +275,6 @@
 <ul>
   <li>Map Category -&gt; User Assignable</li>
 </ul>
-<p>Note that not all &quot;User Assignable&quot; checkboxes in the Rewired Input Manager are equal. The &quot;User Assignable&quot; checkbox also appears in Action Categories and Actions themselves, but only the Map Category &quot;User Assignable&quot; checkbox is used in determining protected controls.</p>
 <p>&nbsp;</p>
 <hr />
     <h2><a name="theming" id="theming"></a>Theming</h2>
@@ -302,8 +305,13 @@
     <p>&nbsp;</p>
     <hr />
     <h2><a name="misc-notes" id="misc-notes"></a>Misc Notes</h2>
+    <p><strong>Other UI Selectables outside or behind Control Mapper</strong></p>
+    <ul>
+      <li>UI auto navigation will find other  UI elements outside Control Mapper and try to navigate to them when a direction is pressed. If you have other UI elements behind Control Mapper, you must disable interactability on them. The easiest way to do that is with a Canvas Group setting CanvasGroup.interactable to false.</li>
+      <li>If you have multiple Canvases in your scene and you want auto navigation to work between elements on the different Canvases, all Canvases must have the same Render Mode.</li>
+    </ul>
     <p><strong>Opening and closing the screen</strong></p>
-    <p>The easiest way to control the screen is by assigning Actions in the <a href="#screen-control-actions">Screen Control Actions section of the inspector</a>.</p>
+<p>The easiest way to control the screen is by assigning Actions in the <a href="#screen-control-actions">Screen Control Actions section of the inspector</a>.</p>
     <p>Another way is by using a Unity UI button and assigning ControlMapper.Open() to the OnClick event.</p>
     <p>You can also control the screen through scripting:</p>
     <ul>
@@ -597,12 +605,16 @@ Even if your game doesn't use analog input, your players may still use physical 
     <p>&nbsp;</p>
     <hr />
     <p><strong>Element Assignment Options</strong></p>
-    <p><img src="files/images/controlmapper_inspector_element-assignment-options.png" width="676" height="74" /></p>
+    <p><img src="files/images/controlmapper_inspector_element-assignment-options.png" /></p>
     <p>Various options for the element assignment.</p>
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
       <tr>
         <td width="22%" valign="top">Allow Element Assignment Conflicts</td>
         <td width="78%" valign="top">If enabled, when an element assignment conflict is found, an option will be displayed that allows the user to make the conflicting assignment anyway.</td>
+      </tr>
+      <tr>
+        <td valign="top">Allow Element Assignment Swap</td>
+        <td valign="top">If enabled, when an element assignment conflict is found, an option will be displayed that allows the user to swap conflicting assignments. This only applies to the first conflicting assignment found. This option will not be displayed if Allow Element Assignment Conflicts is enabled.</td>
       </tr>
     </table>
     <p>&nbsp;</p>

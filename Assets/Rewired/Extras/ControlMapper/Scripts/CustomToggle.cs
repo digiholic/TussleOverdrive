@@ -57,28 +57,28 @@ namespace Rewired.UI.ControlMapper {
 
         public override Selectable FindSelectableOnLeft() {
             if((navigation.mode & Navigation.Mode.Horizontal) != 0 || _autoNavLeft) {
-                return UISelectionUtility.FindNextSelectable(this, transform, Selectable.allSelectables, transform.rotation * Vector3.left);
+                return UISelectionUtility.FindNextSelectable(this, transform, Selectable.allSelectables, Vector3.left);
             }
             return base.FindSelectableOnLeft();
         }
 
         public override Selectable FindSelectableOnRight() {
             if((navigation.mode & Navigation.Mode.Horizontal) != 0 || _autoNavRight) {
-                return Rewired.UI.ControlMapper.UISelectionUtility.FindNextSelectable(this, transform, Selectable.allSelectables, transform.rotation * Vector3.right);
+                return Rewired.UI.ControlMapper.UISelectionUtility.FindNextSelectable(this, transform, Selectable.allSelectables, Vector3.right);
             }
             return base.FindSelectableOnRight();
         }
 
         public override Selectable FindSelectableOnUp() {
             if((navigation.mode & Navigation.Mode.Vertical) != 0 || _autoNavUp) {
-                return Rewired.UI.ControlMapper.UISelectionUtility.FindNextSelectable(this, transform, Selectable.allSelectables, transform.rotation * Vector3.up);
+                return Rewired.UI.ControlMapper.UISelectionUtility.FindNextSelectable(this, transform, Selectable.allSelectables, Vector3.up);
             }
             return base.FindSelectableOnUp();
         }
 
         public override Selectable FindSelectableOnDown() {
             if((navigation.mode & Navigation.Mode.Vertical) != 0 || _autoNavDown) {
-                return Rewired.UI.ControlMapper.UISelectionUtility.FindNextSelectable(this, transform, Selectable.allSelectables, transform.rotation * Vector3.down);
+                return Rewired.UI.ControlMapper.UISelectionUtility.FindNextSelectable(this, transform, Selectable.allSelectables, Vector3.down);
             }
             return base.FindSelectableOnDown();
         }

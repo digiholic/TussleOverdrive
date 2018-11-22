@@ -81,7 +81,8 @@
               <li><a href="Controllers.html">Controllers</a></li>
               <li><a href="ControllerMaps.html">Controller Maps</a></li>
               <li><a href="MapCategories.html">Map Categories</a></li>
-              <li><a href="ControllerMaps.html"></a><a href="Layouts.html">Layouts</a></li>
+              <li><a href="Layouts.html">Layouts</a></li>
+              <li><a href="ControllerTemplates.html">Controller Templates</a></li>
               <li><a href="CustomControllers.html">Custom Controllers</a></li>
             </ul>
             <strong>Extras:</strong>
@@ -94,6 +95,7 @@
             <strong>Misc:</strong>
             <ul>
 	          <li><a href="ComponentControls.html" title="Component Controls">Component Controls</a></li>
+	          <li><a href="PlayerControllers.html" title="Player Controllers">Player Controllers</a></li>
 	          <li><a href="InputMapper.html" title="Input Mapper">Input Mapper</a></li>
 	          <li><a href="UserDataStore.html" title="User Data Store">User Data Store</a></li>
             </ul>
@@ -142,12 +144,11 @@
 
     <h3><a name="controller-mapping" id="controller-mapping"></a>Controller Mapping:</h3>
     <ul>
-      <li><strong>Always make a mapping for the <a href="ControllerMaps.html#dual-analog-gamepad-template">Dual Analog Gamepad Template</a></strong>. The vast majority of players using controllers will be using a gamepad. To save time, map for the Dual Analog Gamepad Template and <a href="SupportedControllers.html">all gamepads recognized by Rewired</a> will just work.</li>
-      <li><strong>Always make a mapping for the <a href="ControllerMaps.html#unknown-controllers">Unknown Controller</a></strong>. If a player uses a controller that isn't recognized, they can at least have some kind of input without manual mapping. <a href="ControllerMaps.html#unknown-controllers">Please see this for more information and recommended mapping guidelines</a>.</li></ul>
-    <ul>
+      <li><strong>Always make a mapping for the <a href="ControllerMaps.html#gamepad-template">Gamepad Template</a></strong>. The vast majority of players using controllers will be using a gamepad. To save time, map for the Gamepad Template and <a href="SupportedControllers.html">all gamepads recognized by Rewired</a> will just work.</li>
+      <li><strong>Always make a mapping for the <a href="ControllerMaps.html#unknown-controllers">Unknown Controller</a></strong>. If a player uses a controller that isn't recognized, they can at least have some kind of input without manual mapping. <a href="ControllerMaps.html#unknown-controllers">Please see this for more information and recommended mapping guidelines</a>.</li>
       <li><strong>Always provide some means for your users to remap their controls.</strong> Many controllers <a href="FAQ.html#addding-controller-definitions">cannot ever be recognized by Rewired due to bad practices by manufacturers</a>. To support these controllers properly and give your users the best experience, you must provide them a way to remap their controls. You can either include <a href="ControlMapper.html">Control Mapper</a> directly in your game or <a href="HowTos.html#controller-mapping-screen">create your own control remapping system</a>.</li>
     </ul>
-    <h3><a name="one-player-games" id="one-player-games"></a>If your game is 1-Player:</h3>
+<h3><a name="one-player-games" id="one-player-games"></a>If your game is 1-Player:</h3>
 <ul>
   <li>Set <a href="RewiredEditor.html#Settings">Max Joysticks Per Player</a> to 100 so all controllers attached to the system may be used by the player.</li>
   </ul>
@@ -159,9 +160,9 @@
 <ul>
   <li>Always initialize Rewired before intializing Steam to avoid potential exceptions being thrown (at least on Windows.) <a href="Troubleshooting.html#steamworks">See this for more information on this issue</a>.</li>
   <li>For the best controller support, it is recommended that you disable Steam's PS4, Xbox, and Generic Gamepad Configuration Support in the Steam developer back-end as well as informing your users to disable these settings in their Steam Big Picture controller configuration settings. <a href="Troubleshooting.html#steam-gamepad-appears-as-two-devices">See this for more information on this issue</a>. Note that doing this has some tradeoffs which are addressed in the previous link.</li>
-  <li><strong>Windows</strong> requires that you <a href="RewiredEditor.html#Settings">enable XInput</a> in order to support the Steam Controller, Steam Streaming, and Steam Link. The recommended <a href="RewiredEditor.html#Settings">primary input source setting</a> is Raw Input + Use XInput.</li>
-  <li><strong>OSX </strong>should be set to <a href="RewiredEditor.html#Settings">Native for the input source</a> as of Rewired 1.1.5.0. Steam Controller, Steam Streaming, and Steam Link work using the Native input source. (<a href="Troubleshooting.html#steam-osx-linux-duplicate-controllers">See this for known issues on OSX with Steam emulated controllers.</a>)</li>
-  <li><strong>Linux</strong> should be set to <a href="RewiredEditor.html#Settings">Native for the input source</a>. Steam Controller, Steam Streaming, and Steam Link work using the Native input source. (<a href="Troubleshooting.html#steam-osx-linux-duplicate-controllers">See this for known issues on Linux with Steam emulated controllers.</a>)</li>
+  <li><strong>Windows</strong> requires that you <a href="RewiredEditor.html#Settings">enable XInput or use Direct Input as the primary input source</a> in order to support the Steam Controller, Steam Streaming, and Steam Link. The recommended <a href="RewiredEditor.html#Settings">primary input source setting</a> is Raw Input + Use XInput.</li>
+  <li><strong>OSX </strong>should be set to <a href="RewiredEditor.html#Settings">Native for the primary input source</a>. Steam Controller, Steam Streaming, and Steam Link work using the Native input source. (<a href="Troubleshooting.html#steam-osx-linux-duplicate-controllers">See this for known issues on OSX with Steam emulated controllers.</a>)</li>
+  <li><strong>Linux</strong> should be set to <a href="RewiredEditor.html#Settings">Native for the primary input source</a>. Steam Controller, Steam Streaming, and Steam Link work using the Native input source. (<a href="Troubleshooting.html#steam-osx-linux-duplicate-controllers">See this for known issues on Linux with Steam emulated controllers.</a>)</li>
 </ul>
 <p><a href="Troubleshooting.html#steam"><a href="Troubleshooting.html#steam">See these Troubleshooting topics for more information on Steam issues.</a><br/>
 </p>

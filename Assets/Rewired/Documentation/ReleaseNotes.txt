@@ -1,3 +1,781 @@
+1.1.21.0:
+
+    Changes:
+      - Added Combined Keyboard and Mouse Mapping example.
+
+    API Changes:
+      - Added InputMapper.mappingContext property.
+      - Added InputMapper.Options.allowButtonsOnFullAxisAssignment property.
+      
+    Bug Fixes:
+      - Fixed bug causing mouse buttons to studder intermittently on and off when polled in FixedUpdate on platforms or configurations that use UnityEngine.Input as the source of mouse input.
+
+1.1.20.0:
+
+    Changes:
+      - Windows Standalone, XInput: Vibration output moved to the input thread to reduce performance spike when setting vibration values on some XInput devices.
+      - Xbox One: Added logging to report when the required Gamepad.dll has not been installed for newer versions of Unity that no longer crash when an exception is thrown on an extern function call.
+      - Xbox One: Not installing the required Gamepad.dll will no longer cause GC every frame as exceptions are thrown and swallowed.
+      - PS4: Changed controller monitoring system to eliminate memory allocations.
+      - Changed virtual button system used for Player.GetButtonTimedPress, Player.GetButtonDoublePress, Player.GetButtonRepeating, etc., to require a button down state to initiate the special button press type. This prevents special button state tracking from initiating after a button press that enabled the Controller Map containing the bindings to the Action being queried for the special button state.
+      - Added Universal Fighting Engine 2 integration.
+      - Control Mapper: Added theming for more calibration window elements.
+      - All controller vibration is now stopped when application loses focus and Run In Backround is disabled in Unity Player settings.
+    
+    New Controller Definitions:
+      - Thrustmaster FireStorm Dual Power
+    
+    Modified Controller Definitions:
+      - Thrustmaster Dual Analog 3: Changed dead zone.
+      - 3Dconnexion Space Mouse, OSX Native: Fixed incorrect axis mappings.
+      - Nintendo Switch Handheld: Changed all element names to match terminology guidelines.
+      - Nintendo Switch Joy-Con (L): Changed all element names to match terminology guidelines.
+      - Nintendo Switch Joy-Con (R): Changed all element names to match terminology guidelines.
+      - Nintendo Switch Joy-Con (Dual): Changed all element names to match terminology guidelines.
+      - Nintendo Switch Pro Controller: Changed all element names to match terminology guidelines.
+      - 8Bitdo NES 30 Pro: Added support for AP 40 controller.
+    
+    New PlayMaker Actions:
+    - RewiredJoystickSetVibration
+    - RewiredJoystickStopVibration
+    
+    New Behavior Designer Actions:
+    - RewiredJoystickSetVibration
+    - RewiredJoystickStopVibration
+    
+    Bug Fixes:
+      - Fixed missing Tooltip attribute compiler error in Unity 4.3.x - 4.5.x.
+      - Control Mapper: Theme custom Invert Toggle sprite now works correctly.
+      - Fixed Player.GetButtonTimedPressUp not working when expireIn set and Activate Action Buttons on Negative Value enabled in Rewired Input Manager Settings.
+      - Unity Windows Editor, Raw Input / Direct Input + Native Mouse Handling: Tearing the Game panel off while Rewired is running no longer causes the mouse to stop to working in Game window.
+      - Build, Windows Standalone, Raw Input / Direct Input + Native Mouse Handling: Mouse clicks in the title bar of the application in windowed mode no longer return mouse button events in Unity 2017+.
+      - Fixed 40 byte memory allocation per frame in Unity 2018+.
+      - Xbox One, Mono Scripting Backend: Added workarounds for a bug in Unity's Xbox One Mono implementation causing it to throw a System Execution Engine exception (Attempting to JIT compile method) on legal code used in internal SerializedObject class used in XML and JSON handling added in 1.1.18.0.
+
+1.1.19.9:
+
+    Changes:
+      - Mouse delta values in Fixed Update are now processed to be consistent with Update on platforms and input sources that use UnityEngine.Input as the underlying input source. Fixed Update must be enabled under Rewired Input Manager -> Settings -> Update Loops.
+
+
+1.1.19.8:
+
+    Bug Fixes:
+      - Windows Standalone, Raw Input/Direct Input + Native Mouse Handling: Fixed bug introduced in 1.1.19.1 causing mouse input values to be cleared in Update after Fixed Update runs if Fixed Update is enabled in Rewired Input Manager settings.
+
+1.1.19.7:
+    
+    Changes:
+      - Universal Fighting Engine integration now blocks input from the Start action while Control Mapper is open.
+      - Windows Standalone, XInput: Removed use of Windows LoadLibraryW function due to Sophos HitmanPro.Alert false positive malware detection due to the use of the LoadLibraryW function.
+    
+    Bug Fixes:
+      - Fixed exception thrown by OnGUIHelper sometimes in edit mode.
+      - Windows Standalone, Raw Input/Direct Input + Native Mouse Handling: Horizontal scroll wheel no longer contributes vertical scroll wheel values.
+
+1.1.19.6:
+
+    Bug Fixes:
+      - Reverted change to Windows Standalone Native Mouse Handling made in 1.1.19.2 to fix issue causing UnityEngine.Input mouse input to stop working when the built application is launched and the application loses focus during with the Unity splash screen logo and Rewired initializes when the application is out of focus. This change caused UnityEngine.Input mouse input to stop working in Exclusive Fullscreen mode. Implemented a new workaround for the launch out of focus issue.
+
+1.1.19.5:
+
+    Bug Fixes:
+      - Joysticks assigned to the System Player are now removed when disconnected.
+
+1.1.19.4:
+
+    Bug Fixes:
+      - Platforms.PS4.PS4GamepadExtension.IsTouching and Platforms.PS4.PS4GamepadExtension.IsTouchingByTouchId now work correctly on the PS4 platform.
+
+1.1.19.3:
+
+    Bug Fixes:
+      - Moved sevaral Rotorz Reorderable List classes in Rewired_Editor.dll into encapsulated namespace to avoid clashes with existing installations of Rotorz Reorderable List in project.
+
+1.1.19.2:
+
+    Changes:
+      - Replaced Cinemachine integration with new version.
+    
+    Bug Fixes:
+      - Windows Standalone, Raw Input, Native Mouse Handling: Fixed bug causing UnityEngine.Input mouse input to stop working when the built application is launched and the application loses focus during with the Unity splash screen logo and Rewired initializes when the application is out of focus.
+      - 3dconnexion Space Mouse buttons now work when mapped from the Six DoF Controller template.
+
+1.1.19.1:
+
+    Bug Fixes:
+      - Editor DLL: Updated Rotorz Reorderable List due to breaking changes made in Unity 2018.2 API.
+      - Windows Standalone, Raw Input + Native Keyboard Handling: Keyboard no longer returns key values the frame after being enabled if any keys were pressed when the Keyboard was disabled.
+      - Windows Standalone, Raw Input + Native Mouse Handling: Mouse no longer returns button values the frame after being enabled if any buttons were pressed when the Mouse was disabled.
+
+1.1.19.0:
+    
+    Changes:
+      - Input Behaviors can now be exported to constants.
+      - Added Player Controllers.
+      - Rewired Standalone Input Module:
+        - Modified Repeat Delay behavior to work better with joystick input.
+        - Added support for interacting with the UI using one or more Player Mouse.
+        - Added PlayerPointerEventData events to send UI pointer events with Player information.
+        - Added custom inspector.
+      - Added Player Mouse Sprite example.
+      - Added Player Mouse Unity UI example.
+      - Added DualShock 4 Special Features example.
+      - Added Cinemachine integration.
+      - Removed Ultimate Survival integration.
+      - Unity UI integration is now part of the base package for Unity 5+. The auto installer has been removed.
+      - Reverted to previous behavior where mouse input is always ignored when the Unity editor window is out of focus regardless of "Ignore Input when App out of Focus" setting.
+      - UserDataStore_PlayerPrefs now saves and loads separate Controller Map data for multiple identical controllers assigned to the same Player.
+    
+    API Changes:
+      - Added ReInput.MappingHelper.GetControllerTemplateMapInstance method.
+      - Added ControllerTemplateActionElementMap.id property.
+      - Added ReInput.InitializedEvent event.
+      - Added PlayerController class.
+      - Added PlayerController.Element class.
+      - Added PlayerController.Axis class.
+      - Added PlayerController.Button class.
+      - Added PlayerController.MouseWheel class.
+      - Added PlayerController.Element.Definition class.
+      - Added PlayerController.Axis.Definition class.
+      - Added PlayerController.Button.Definition class.
+      - Added PlayerController.MouseWheel.Definition class.
+      - Added PlayerMouse class.
+      - Added Components.PlayerController class.
+      - Added Components.PlayerMouse class.
+      - Added UI.IMouseInputSource interface.
+      - Added UI.ITouchInputSource interface.
+      - Added Integration.UnityUI.RewiredPointerInputModule class.
+      - Added Integration.UnityUI.PlayerPointerEventData class.
+      - Added Integration.UnityUI.PointerEventType enum.
+      - Added many new properties and methods to Integration.UnityUI.RewiredStandaloneInputModule.
+      - Added ComponentControls.TouchPad.touchPosition property.
+      - Added ComponentControls.TouchPad.touchStartPosition property.
+      - Added ControllerExtensions.IDualShock4Extension interface.
+      - Added ControllerExtensions.IDualShock4Extension interface to ControllerExtensions.DualShock4Extension.
+      - Added ControllerExtensions.IDualShock4Extension interface to Platforms.PS4.PS4GamepadExtension.
+      - Added ControllerExtensions.DualShock4Extension.touchCount property.
+      
+    Bug Fixes:
+      - Setting Mouse.enabled = true every frame no longer causes mouse input to stop working.
+      - Rewired Standalone Input Module: Fixed Repeat Delay bug in Unity StandaloneInputModule source causing Repeat Delay to be ignored after pressing two orthogonal direction keys quickly in succession.
+      - Input Behavior id is now displayed in the Rewired Editor.
+      - Fixed transposed On Press Down and On Press Up events in Touch Pad touch control.
+      - Inserting a new Action in a non-Default Action Category is no longer set to the Default Action Category.
+
+1.1.18.0:
+
+    Changes:
+      - Added Input Manager mappings for Unity joysticks 12-16 in Unity 2018+.
+      - Improved XML handling.
+      - Added option to export data to JSON.
+      - Added internal checks and error logging when attempting to use invalidated Rewired objects created by a Rewired Input Manager that has been destroyed or reset.
+      - Modified Control Mapper assignment swapping system to prevent user from creating non-visible mappings under certain scenarios when a swap of a certain combination of full-axis and split-axis fields would create an additional mapping that wouldn't fit in the visual display based on the number of columns chosen for the current Controller type. The "Swap" button is no longer displayed if the swap operation would create a non-visible mapping.
+      - Rewired Standalone Input Module: Added "Allow Touch Input" inspector option.
+      - Added support for Flight Stick, Steering Wheel, Guitar, and Drum controller types on PS4 platform.
+      - Added Six DoF Controller Template option to PlayMaker integration.
+      - Added Six DoF Controller Template option to Behavior Designer integration.
+      - Added ControllerTemplateMap system for saving and loading maps for Controller Templates as opposed to maps for specific controllers.
+      - Modified many PlayMaker Actions removing required data storage fields when unnecessary.
+      - Re-created Bolt integration due to breaking changes made in Bolt 1.4.0.
+      
+    API Changes:
+      - Added ControllerMap.ToJsonString method.
+      - Added ControllerMap.ToControllerTemplateMap method.
+      - Added CalibrationMap.ToJsonString method.
+      - Added CalibrationMap.ImportJsonString method.
+      - Added CalibrationMap.ImportXmlString method.
+      - Added InputBehavior.ToJsonString method.
+      - Added InputBehavior.ImportJsonString method.
+      - Added ControllerWithAxes.ImportCalibrationMapFromJsonString method.
+      - Added Player.ControllerHelper.MapHelper.AddMapFromJson methods.
+      - Added PS4ControllerExtension class.
+      - Added ControllerMap.controller property.
+      - Added ControllerTemplateMap class.
+      - Added ControllerTemplateActionElementMap class.
+      - Added ControllerTemplateActionAxisMap class.
+      - Added ControllerTemplateActionButtonMap class.
+
+    New Controller Definitions:
+      - 3Dconnexion SpaceMouse - includes support for SpaceMouse Compact and SpaceMouse Wireless.
+      - Sony PS4 Flight Stick
+      - Sony PS4 Steering Wheel
+      - Sony PS4 Guitar
+      - Sony PS4 Drums
+
+    Modified Controller Definitions:
+      - 3Dconnexion SpaceNavigator: Changed display name to "3Dconnexion SpaceNavigator".
+      - 3Dconnexion SpaceExplorer: Changed display name to "3Dconnexion SpaceExplorer".
+
+    Bug Fixes:
+      - Control Mapper: Fixed issue where swapping assignments on a conflict could drop the assignment instead of swapping it in certain scenarios.
+      - Control Mapper navigation now works properly in all Canvas space modes.
+      - Unity Editor, native input: Fixed crash when a critical exception was thrown during initialization and then subsequently re-importing scripts or DLLs in the project.
+      - Fixed exceptions thrown when recompiling during Play mode introduced in recent update.
+      - WebGL builds no longer log erroneous error message saying native input could not be initialized.
+      - Enabling and disabling the Rewired Input Manager with OnGUI enabled in Settings no longer causes multiple OnGUIHelper components to be added to the Rewired Input Manager.
+
+1.1.17.0:
+
+    Changes
+      - Windows Standalone + Direct Input, Linux Standalone + Native: Added support for 3Dconnexion Space Navigator for Notebooks and 3Dconnexion Space Explorer.
+      - Added 6 DoF Controller Template.
+
+    New Controller Defintions:
+      - 3Dconnexion Space Explorer
+      - 3Dconnexion SpaceMouse Module
+      - 3Dconnexion SpacePilot Pro
+      
+    API Changes:
+      - Added ISixDofControllerTemplate interface.
+      - Added SixDofControllerTemplate class.
+      - Added ControllerTemplateElementType.Stick6D value.
+    
+    Modified Controller Definitions:
+      - 3Dconnexion Space Navigator: Added matching information for 3Dconnexion Space Navigator for Notebooks.
+
+1.1.16.1:
+
+    New Controller Defintions:
+      - 3Dconnexion KMJ Emulator
+
+    Bug Fixes:
+      - Windows Standalone, Direct Input: Fixed major bug introduced in 1.1.16.0 that caused most joysticks to stop working when using Direct Input as the primary input source.
+      - Saitek X52: Removed duplicate "Trigger (Stage 2)" element identifier.
+      - Saitek X52 Pro: Removed duplicate "Trigger (Stage 2)" element identifier.
+      - MadCatz CYBORG V1: Removed duplicate "Button 2" element identifier.
+      - VKB Sim Gladiator MKII: Renamed misnamed duplicate "MODE2 SHIFT POV Hat Up Left" to "SHIFT POV Hat Up Left".
+      - Logitech Driving Force GT: Removed duplicate "Brake" element identifier, removed duplicate "Return" element identifier.
+
+1.1.16.0:
+
+    Changes:
+      - Added "Run in Edit Mode" option to allow Rewired to run outside of Play mode in the Unity editor.
+      - Added "Allow Input in Editor Scene Views" option to Rewired Input Manager settings.
+      - Added workaround to System.Diagnostics.Stopwatch bug on Xbox One platform.
+      - Added Absolute to Relative Axis Sensitivty option to Input Behavior.
+      - Keyboard and mouse input now works when the Unity editor window is not in focus and "Ignore Input When Application Not In Focus" is disabled.
+      - Added support for 3Dconnexion Space Navigator on Windows Raw Input, Windows Direct Input, OSX Native, and Linux Native.
+    
+    API Changes:
+      - Added InputManager_Base.runInEditMode property.
+      - Added InputManager_Base.isRunningInEditMode property.
+    
+    New Controller Definitions:
+      - 3Dconnexion Space Navigator
+    
+    Bug Fixes:
+      - Unity 2018.1+, Windows Standalone, Exclusive Full Screen window mode, Raw Input / Direct Input + Native Mouse Handling - Chaging certain QualitySetings properties at runtime no longer causes mouse to stop working.
+      - Control Mapper, Unity 5.2+: Input field vertical scroll bar now auto-hides properly.
+      - Unity 2018.2.0x-ImprovedPrefabs: Fixed exception thrown by the Rewired Input Manager inspector.
+      - Joystick Auto-Assignment now works properly when "Assign Joysticks to Playing Players Only" is disabled with "Assign Joysticks by PS4 Joy Id" enabled and a Joystick should be assigned to a non-playing Player.
+    
+1.1.15.0:
+
+    Changes:
+      - More properties on ActionElementMap can be modified directly.
+      - Added "Activate Action Buttons on Negative Value" option the Rewired Editor.
+
+    API Changes:
+      - Added ActionElementMap.elementIdentifierId public setter.
+      - Added ActionElementMap.actionId public setter.
+      - Added ActionElementMap.axisRange public setter.
+      - Added ActionElementMap.axisContribution public setter.
+      - Added ActionElementMap.keyboardKeyCode public setter.
+      - Added ActionElementMap.keyCode public setter.
+      - Added ActionElementMap.modifierKey1 public setter.
+      - Added ActionElementMap.modifierKey2 public setter.
+      - Added ActionElementMap.modifierKey3 public setter.
+      - Added ReInput.ConfigHelper.activateActionButtonsOnNegativeValue property.
+      - Added TiltControl.SetRestOrientation method.
+      
+    New PlayMaker Actions:
+      - RewiredGetControllerCount
+      - RewiredConfigGetUseXInput
+      - RewiredConfigSetUseXInput
+      - RewiredConfigGetUpdateLoop
+      - RewiredConfigSetUpdateLoop
+      - RewiredConfigGetWindowsStandalonePrimaryInputSource
+      - RewiredConfigSetWindowsStandalonePrimaryInputSource
+      - RewiredConfigGetOSXStandalonePrimaryInputSource
+      - RewiredConfigSetOSXStandalonePrimaryInputSource
+      - RewiredConfigGetLinuxStandalonePrimaryInputSource
+      - RewiredConfigSetLinuxStandalonePrimaryInputSource
+      - RewiredConfigGetWindowsUWPPrimaryInputSource
+      - RewiredConfigSetWindowsUWPPrimaryInputSource
+      - RewiredConfigGetWindowsUWPSupportHIDDevices
+      - RewiredConfigSetWindowsUWPSupportHIDDevices
+      - RewiredConfigGetXboxOnePrimaryInputSource
+      - RewiredConfigSetXboxOnePrimaryInputSource
+      - RewiredConfigGetPS4PrimaryInputSource
+      - RewiredConfigSetPS4PrimaryInputSource
+      - RewiredConfigGetWebGLPrimaryInputSource
+      - RewiredConfigSetWebGLPrimaryInputSource
+      - RewiredConfigGetAlwaysUseUnityInput
+      - RewiredConfigSetAlwaysUseUnityInput
+      - RewiredConfigGetDisableNativeInput
+      - RewiredConfigSetDisableNativeInput
+      - RewiredConfigGetNativeMouseSupport
+      - RewiredConfigSetNativeMouseSupport
+      - RewiredConfigGetNativeKeyboardSupport
+      - RewiredConfigSetNativeKeyboardSupport
+      - RewiredConfigGetEnhancedDeviceSupport
+      - RewiredConfigSetEnhancedDeviceSupport
+      - RewiredConfigGetJoystickRefreshRate
+      - RewiredConfigSetJoystickRefreshRate
+      - RewiredConfigGetIgnoreInputWhenAppNotInFocus
+      - RewiredConfigSetIgnoreInputWhenAppNotInFocus
+      - RewiredConfigGetAndroidSupportUnknownGamepads
+      - RewiredConfigSetAndroidSupportUnknownGamepads
+      - RewiredConfigGetDefaultJoystickAxis2DDeadZoneType
+      - RewiredConfigSetDefaultJoystickAxis2DDeadZoneType
+      - RewiredConfigGetForce4WayHats
+      - RewiredConfigSetForce4WayHats
+      - RewiredConfigGetActivateActionButtonsOnNegativeValue
+      - RewiredConfigSetActivateActionButtonsOnNegativeValue
+      - RewiredConfigGetThrottleCalibrationMode
+      - RewiredConfigSetThrottleCalibrationMode
+      - RewiredConfigGetDeferControllerConnectedEventsOnStart
+      - RewiredConfigSetDeferControllerConnectedEventsOnStart
+      - RewiredConfigGetAutoAssignJoysticks
+      - RewiredConfigSetAutoAssignJoysticks
+      - RewiredConfigGetMaxJoysticksPerPlayer
+      - RewiredConfigSetMaxJoysticksPerPlayer
+      - RewiredConfigGetDistributeJoysticksEvenly
+      - RewiredConfigSetDistributeJoysticksEvenly
+      - RewiredConfigGetAssignJoysticksToPlayingPlayersOnly
+      - RewiredConfigSetAssignJoysticksToPlayingPlayersOnly
+      - RewiredConfigGetReassignJoystickToPreviousOwnerOnReconnect
+      - RewiredConfigSetReassignJoystickToPreviousOwnerOnReconnect
+      - RewiredConfigGetLogLevel
+      - RewiredConfigSetLogLevel
+      - RewiredActionElementMapSetActionId
+      - RewiredActionElementMapSetElementIdentifierId
+      - RewiredActionElementMapSetAxisRange
+      - RewiredActionElementMapSetAxisContribution
+      - RewiredActionElementMapSetKeyboardKeyCode
+      - RewiredActionElementMapSetModifierKey1
+      - RewiredActionElementMapSetModifierKey2
+      - RewiredActionElementMapSetModifierKey3
+      - RewiredActionElementMapSetKeyCode   
+      - RewiredActionElementMapGetActionDescriptiveName
+      - RewiredControllerImpelementsTemplate
+    
+    New Behavior Designer Tasks:
+      - RewiredGetControllerCount
+      - RewiredConfigGetUseXInput
+      - RewiredConfigSetUseXInput
+      - RewiredConfigGetUpdateLoop
+      - RewiredConfigSetUpdateLoop
+      - RewiredConfigGetWindowsStandalonePrimaryInputSource
+      - RewiredConfigSetWindowsStandalonePrimaryInputSource
+      - RewiredConfigGetOSXStandalonePrimaryInputSource
+      - RewiredConfigSetOSXStandalonePrimaryInputSource
+      - RewiredConfigGetLinuxStandalonePrimaryInputSource
+      - RewiredConfigSetLinuxStandalonePrimaryInputSource
+      - RewiredConfigGetWindowsUWPPrimaryInputSource
+      - RewiredConfigSetWindowsUWPPrimaryInputSource
+      - RewiredConfigGetWindowsUWPSupportHIDDevices
+      - RewiredConfigSetWindowsUWPSupportHIDDevices
+      - RewiredConfigGetXboxOnePrimaryInputSource
+      - RewiredConfigSetXboxOnePrimaryInputSource
+      - RewiredConfigGetPS4PrimaryInputSource
+      - RewiredConfigSetPS4PrimaryInputSource
+      - RewiredConfigGetWebGLPrimaryInputSource
+      - RewiredConfigSetWebGLPrimaryInputSource
+      - RewiredConfigGetAlwaysUseUnityInput
+      - RewiredConfigSetAlwaysUseUnityInput
+      - RewiredConfigGetDisableNativeInput
+      - RewiredConfigSetDisableNativeInput
+      - RewiredConfigGetNativeMouseSupport
+      - RewiredConfigSetNativeMouseSupport
+      - RewiredConfigGetNativeKeyboardSupport
+      - RewiredConfigSetNativeKeyboardSupport
+      - RewiredConfigGetEnhancedDeviceSupport
+      - RewiredConfigSetEnhancedDeviceSupport
+      - RewiredConfigGetJoystickRefreshRate
+      - RewiredConfigSetJoystickRefreshRate
+      - RewiredConfigGetIgnoreInputWhenAppNotInFocus
+      - RewiredConfigSetIgnoreInputWhenAppNotInFocus
+      - RewiredConfigGetAndroidSupportUnknownGamepads
+      - RewiredConfigSetAndroidSupportUnknownGamepads
+      - RewiredConfigGetDefaultJoystickAxis2DDeadZoneType
+      - RewiredConfigSetDefaultJoystickAxis2DDeadZoneType
+      - RewiredConfigGetForce4WayHats
+      - RewiredConfigSetForce4WayHats
+      - RewiredConfigGetActivateActionButtonsOnNegativeValue
+      - RewiredConfigSetActivateActionButtonsOnNegativeValue
+      - RewiredConfigGetThrottleCalibrationMode
+      - RewiredConfigSetThrottleCalibrationMode
+      - RewiredConfigGetDeferControllerConnectedEventsOnStart
+      - RewiredConfigSetDeferControllerConnectedEventsOnStart
+      - RewiredConfigGetAutoAssignJoysticks
+      - RewiredConfigSetAutoAssignJoysticks
+      - RewiredConfigGetMaxJoysticksPerPlayer
+      - RewiredConfigSetMaxJoysticksPerPlayer
+      - RewiredConfigGetDistributeJoysticksEvenly
+      - RewiredConfigSetDistributeJoysticksEvenly
+      - RewiredConfigGetAssignJoysticksToPlayingPlayersOnly
+      - RewiredConfigSetAssignJoysticksToPlayingPlayersOnly
+      - RewiredConfigGetReassignJoystickToPreviousOwnerOnReconnect
+      - RewiredConfigSetReassignJoystickToPreviousOwnerOnReconnect
+      - RewiredConfigGetLogLevel
+      - RewiredConfigSetLogLevel
+      - RewiredActionElementMapSetActionId
+      - RewiredActionElementMapSetElementIdentifierId
+      - RewiredActionElementMapSetAxisRange
+      - RewiredActionElementMapSetAxisContribution
+      - RewiredActionElementMapSetKeyboardKeyCode
+      - RewiredActionElementMapSetModifierKey1
+      - RewiredActionElementMapSetModifierKey2
+      - RewiredActionElementMapSetModifierKey3
+      - RewiredActionElementMapSetKeyCode
+      - RewiredActionElementMapGetActionDescriptiveName
+      - RewiredControllerImpelementsTemplate
+      
+    Bug Fixes:
+      - Fixed exception thrown when a Touch/Tilt control is created while no GameObject is selected and no TouchController or CustomController component exists in the scene.
+      - Fixed extremely rare ObjectDisposedException thrown in a build when application exits on Windows Standalone + Raw Input / Direct Input.
+      - UnityInputOverride now returns true when an Action's value is negative to be consistent with how UnityEngine.Input.GetButton functions work.
+
+1.1.14.4:
+
+    Changes:
+      - Control Mapper: Added option to allow assignment swapping on conflicts.
+      - Modified Rewired_Editor.dll for new method deprecations in Unity 2018.2.
+    
+    Controller Definitions:
+      - Unknown, Nintendo Switch: Added mapping in case a controller is not recognized as a valid type. (This should never happen.)
+      - Fantec Porsche 911 Turbo S: Changed display name to "Fantec Porsche 911 Wheel", all buttons renamed to "Button 1", "Button 2", etc. due to the fact that this definition applies to multiple Fantec Porsche wheels with different button mappings due to poor identifying information supplied by the devices. Added mappings for shifter.
+
+    Bug Fixes:
+      - Fixed compilation error in RewiredStandaloneInputModule.cs in Unity 4.x.
+      - Fixed use of deprecated PS4 methods in Unity 2018 branch.
+
+1.1.14.3:
+
+    Changes:
+      - Updated SDL2 Windows library to version 2.0.8.
+
+    Bug Fixes:
+      - Create Rewired Input Manager (Prefab) no longer throws an exception in Unity 2017+.
+
+1.1.14.2:
+    
+    Changes:
+      - Rewired Editor: Appended the word "Template" to Controller Templates in the joystick list for clarity.
+      - Some included dev tools now use Unity UI to display information on-screen.
+      - Added system to allow for Android version-dependent controller mappings.
+      
+    Controller Definitions:
+      - Sony DualShock 4, Android: Added additional product name matching variations for wired mode connections in some versions of Android.
+      - Sony DualShock 4, Android: Added variant for Android Oreo+.
+
+1.1.14.1:
+
+    Bug Fixes:
+      - Fixed issue in Gamepad Template causing L/R triggers to map incorrectly when bound to individual poles of an Axis-type Action on some gamepads introduced in 1.1.13.0.
+      - Fixed issue ActionElementMap.elementIdentifierName on Keyboard Maps returning null introduced in 1.1.13.0.
+
+1.1.14.0:
+    
+    API Changes:
+      - Added ReInput.ControllerHelper.controllerCount.
+      - Changed ReInput.ControllerHelper.Controllers return type to IList from IEnumerable.
+      - Deprecated ReInput.MappingHelper.GetFirstJoystickTemplateElementIdentifier method.
+
+    Controller Definitions:
+      - Microsoft Xbox 360 Controller, Linux Native: Added mapping for wireless controller on Arch Linux.
+
+1.1.13.0:
+
+    Changes:
+      - Added Unity 2018 branch.
+      - Added Initializer system for spawning the Rewired Input Manager in scenes as necessary.
+      - Added option to create Rewired Input Manager prefab asset file directly.
+      - Added data compact, import, export tools in Rewired Input Manager.
+      - Added script-accessible runtime Controller Template system.
+      - Added Gamepad Template UI example (Unity 5+).
+      - Rewired Editor: Constant exporter now remembers last save location and file name.
+      - Updated Bolt integration for compatibility with Bolt 1.3. Bolt 1.3 is now the minimum supported version.
+    
+    Controller Templates:
+      - Modified all Templates for new runtime Controller Template system.
+      - HOTAS Template: Changed "Throttle Zero Detent" element identifier names to "Throttle Min Detent".
+      - Flight Yoke Template: Changed "Lever Zero Detent" element identifier names to "Lever Min Detent".
+      - Dual Analog Gamepad Template: Changed name to "Gamepad", changed Left Shoulder 2 and Right Shoulder 2 to Axis type elements.
+    
+    Controller Definitions:
+      - Sony DualShock 4: Added support for wireless mode on Android.
+    
+    API Changes:
+      - Added Initializer class.
+      - Added Controller.GetElementById method.
+      - Added Controller.Element.id property.
+      - Added Controller.Element.elementIdentifier property.
+      - Added Controller.CompoundElement.id property.
+      - Added Controller.CompoundElement.elementIdentifier property.
+      - Added ControllerElementIdentifier.GetDisplayName method.
+      - Added ControllerTemplate class.
+      - Added ControllerTemplateElementIdentifier class.
+      - Added ControllerTemplateElementType enum.
+      - Added IControllerElementTarget interface.
+      - Added IControllerTemplate interface.
+      - Added IControllerTemplateAxisSource interface.
+      - Added IControllerTemplateButtonSource interface.
+      - Added IControllerTemplateElement interface.   
+      - Added IControllerTemplateButton interface.
+      - Added IControllerTemplateAxis interface.
+      - Added IControllerTemplateAnalogTrigger interface.
+      - Added IControllerTemplateStick interface.
+      - Added IControllerTemplateThumbStick interface.
+      - Added IControllerTemplateDPad interface.
+      - Added IControllerTemplateThrottle interface.
+      - Added IControllerTemplateHat interface.
+      - Added IControllerTemplateYoke interface.
+      - Added IGamepadTemplate interface.
+      - Added IFlightPedalsTemplate interface.
+      - Added IFlightYokeTemplate interface.
+      - Added IHOTASTemplate interface.
+      - Added IRacingWheelTemplate interface.
+      - Added GamepadTemplate class.
+      - Added FlightPedalsTemplate class.
+      - Added FlightYokeTemplate class.
+      - Added HOTASTemplate class.
+      - Added RacingWheelTemplate class.
+      - Added ReInput.ControllerHelper.GetControllerTemplates method.
+      - Added Player.ControllerHelper.GetControllerTemplates method.
+      - Added Player.ControllerHelper.GetFirstControllerWithTemplate method.
+      - Added Player.ControllerHelper.MapHelper.GetFirstElementMapWithElementTarget method.
+      - Added Player.ControllerHelper.MapHelper.ElementMapsWithElementTarget method.
+      - Added Player.ControllerHelper.MapHelper.GetElementMapsWithElementTarget method.
+      - Player.ControllerHelper.MapHelper.GetAllMaps(..., List<ControllerMap> results) method overloads.
+      - Player.ControllerHelper.MapHelper.GetAllMapsInCategory(..., List<ControllerMap> results) method overloads.
+      - Player.ControllerHelper.MapHelper.GetMapsInCategory(..., List<ControllerMap> results) method overloads.
+      - Player.ControllerHelper.MapHelper.GetButtonMapsWithAction(..., List<ControllerMap> results) method overloads.
+      - Player.ControllerHelper.MapHelper.GetAxisMapsWithAction(..., List<ControllerMap> results) method overloads.
+      - Player.ControllerHelper.MapHelper.GetElementMapsWithAction(..., List<ControllerMap> results) method overloads.
+      - ControllerMap.GetElementMaps(..., List<ActionElementMap> results) method overloads.
+      - ControllerMap.GetElementMapsWithAction(..., List<ActionElementMap> results) method overloads.
+      - ControllerMap.GetButtonMaps(..., List<ActionElementMap> results) method overloads.
+      - ControllerMap.GetButtonMapsWithAction(..., List<ActionElementMap> results) method overloads.
+      - ControllerMapWithAxes.GetAxisMaps(..., List<ActionElementMap> results) method overloads.
+      - ControllerMapWithAxes.GetAxisMapsWithAction(..., List<ActionElementMap> results) method overloads.    
+      - Added ControllerMap.GetFirstElementMapWithAction(string actionName, bool skipDisabledMaps) method overload.
+      - Added ControllerMap.GetFirstElementMapWithElementTarget method.
+      - Added ControllerMap.ElementMapsWithElementTarget method.
+      - Added ControllerMap.GetElementMapsWithElementTarget method.
+      - Added ActionElementMap.actionDescriptiveName method.
+      - Added ActionElementMap.IsTarget method.
+      - Added ReInput.MappingHelper.GetJoystickMapInstance(Guid joystickTypeGuid, ...) method overloads.
+
+    Bug Fixes:
+      - Constant exporter now allows periods in namespace names (for nested namespaces).
+      - When deleting a Controller Map Category or a Layout, Player default Controller Map assignments that use the deleted Category / Layout are removed.
+      - Controller.Elements no longer always returns null.
+
+1.1.12.2:
+
+    Controller Definitions:
+      - Added Thrustmaster Ferrari 458 (Xbox 360 model) definition.
+      - Added XInput Wheel definition.
+      
+    Bug Fixes:
+      - Fixed joystick axis calibration bug introduced in 1.1.11.0 that made certain joystick axes such as gamepad triggers not calibrate correctly.
+      
+1.1.12.1:
+
+    Controller Definitions:
+      - 8Bitdo SN30 Pro: Added support for more connection modes on more platforms.
+
+1.1.12.0:
+
+    Changes:
+      - Added internal logging level settings.
+
+    API Changes:
+      - Added ReInput.ConfigHelper.logLevel property.
+      - Added Rewired.Config.LogLevelFlags enum.
+
+1.1.11.0:
+
+    Changes:
+      - Added Throttle Calibration Mode option to switch default throttle calibration between 0-1 output range and -1 to +1 output range.
+      - Windows Raw Input, OSX Native, Enhanced Device Support: Sony DualShock4 headphone volume is now set to a default value instead of muted on initialization.
+      - Added -1 to +1 throttle calibration for the following controllers:
+        CH Combat Stick USB
+        CH Fighter Stick USB
+        CH Flight Stick Pro
+        CH Eclipse Yoke
+        CH Throttle Quadrant
+        Logitech Extreme 3D Pro
+        Logitech WingMan Attack 2
+        Microsoft SideWinder 3D Pro
+        Microsoft SideWinder Force Feedback Pro
+        Microsoft SideWinder Joystick
+        Microsoft SideWinder Precision 2
+        Microsoft SideWinder Precision Pro
+        Saitek Cyborg Evo
+        Saitek JI3 Cyborg 3D Gold
+        Saitek Pro Flight Cessna Trim Wheel
+        Saitek Pro Flight Quadrant
+        Saitek Pro Flight Yoke
+        Saitek ST290 Pro
+        Saitek X45
+        Saitek X52
+        Saitek X52 Pro
+        Saitek X-55 Rhino Throttle
+        Saitek X-56 Rhino Throttle
+        Thrustmaster HOTAS Warthog Throttle
+        Thrustmaster T.Flight Hotas 4
+        Thrustmaster T.Flight Hotas X
+        Thrustmaster T.Flight Stick X
+        Thrustmaster TWCS Throttle
+        Thrustmaster USB Joystick
+        VKB-Sim Gladiator MKII
+      - Added support for 8Bitdo N30 Pro and F30 Pro firmware update with product name change.
+        
+    API Changes:
+      - Added Rewired.Config.ThrottleCalibrationMode enum.
+      - Added ReInput.ConfigHelper.throttleCalibrationMode property.
+      - Removed AxisCalibration() constructor.
+
+    Bug Fixes:
+      - All flight throttles re-calibrated for consistency across devices.
+      - Saitek X-56 Rhino Throttle: Set default calibrated of throttles to return 0 to 1 range instead of -1 to 1 range.
+      - CH Combat Stick USB: Set default calibrated of throttle to return 0 to 1 range instead of -1 to 1 range.
+      - CH Fighter Stick USB: Set default calibrated of throttle to return 0 to 1 range instead of -1 to 1 range.
+      - CH Fighter Stick Pro: Set default calibrated of throttle to return 0 to 1 range instead of -1 to 1 range.
+      - CH Pro Throttle: Set default calibrated of throttle to return 0 to 1 range instead of -1 to 1 range.
+      - Thrustmaster T-Flight HOTAS 4: Set default calibrated of throttle to return 0 to 1 range instead of -1 to 1 range.
+      - Thrustmaster T-Flight HOTAS X: Set default calibrated of throttle to return 0 to 1 range instead of -1 to 1 range.
+      - Thrustmaster T-Flight Stick X: Set default calibrated of throttle to return 0 to 1 range instead of -1 to 1 range.
+      - Thrustmaster TWCS Throttle: Set default calibrated of throttle to return 0 to 1 range instead of -1 to 1 range.
+      - VKB Sim Gladiator MK II: Set default calibrated of throttle to return 0 to 1 range instead of -1 to 1 range.
+      - Control Mapper: Some UI buttons no longer stays disabled when changing theme button transition to modes other than Color Tint.  
+
+1.1.10.1:
+
+    Changes:
+      - Control Mapper: Full axis mappings are now displayed in input fields for button-type Actions.
+      - Now logs a warning in the editor when the wrong version of Rewired is installed for the Unity editor version being used.
+
+1.1.10.0:
+
+    API Changes:
+      - Added InputMapper.Options.isElementAllowedCallback property.
+      - Added InputMapper.ConflictResponse.Ignore enumeration value.
+
+    Bug Fixes:
+      - Input Mapper: Fixed issue causing conflict found event responses to be ignored.
+
+1.1.9.0:
+    
+    Changes:
+      - Rewrote CustomControllersTouch example to use Unity UI instead of legacy GUI system in Unity 5+.
+      - Added Bolt integration.
+      
+    API Changes:
+      - Added Player.GetButtonDoublePressUp method.
+      - Added Player.GetNegativeButtonDoublePressUp method.
+      - Added Player.GetButtonSinglePressHold method.
+      - Added Player.GetButtonSinglePressDown method.
+      - Added Player.GetButtonSinglePressUp method.
+      - Added Player.GetNegativeButtonSinglePressHold method.
+      - Added Player.GetNegativeButtonSinglePressDown method.
+      - Added Player.GetNegativeButtonSinglePressUp method.
+      - Added InputActionEvent.ButtonDoublePressJustReleased enum value.
+      - Added InputActionEvent.NegativeButtonDoublePressJustReleased enum value.
+      - Added InputActionEvent.ButtonSinglePressed enum value.
+      - Added InputActionEvent.ButtonJustSinglePressed enum value.
+      - Added InputActionEvent.ButtonSinglePressJustReleased enum value.
+      - Added InputActionEvent.NegativeButtonSinglePressed enum value.
+      - Added InputActionEvent.NegativeButtonJustSinglePressed enum value.
+      - Added InputActionEvent.NegativeButtonSinglePressJustReleased enum value.
+      - Added InputActionEventData.GetButtonDoublePressUp method.
+      - Added InputActionEventData.GetNegativeButtonDoublePressUp method.
+      - Added InputActionEventData.GetButtonSinglePressHold method.
+      - Added InputActionEventData.GetButtonSinglePressDown method.
+      - Added InputActionEventData.GetButtonSinglePressUp method.
+      - Added InputActionEventData.GetNegativeButtonSinglePressHold method.
+      - Added InputActionEventData.GetNegativeButtonSinglePressDown method.
+      - Added InputActionEventData.GetNegativeButtonSinglePressUp method.
+    
+    Bug Fixes:
+      - Added workaround for intermittent null reference exception thrown due to inconsistent order of MonoBehaviour.OnApplicationFocused execution by Unity.
+      - Fixed issue in Player.AddInputEventDelegate causing double press events with speed argument passed in to fail.
+      - Fixed null reference exception thrown during runtime recompiling.
+    
+    New PlayMaker Actions:
+      - RewiredPlayerGetButtonDoublePressUp
+      - RewiredPlayerGetNegativeButtonDoublePressUp
+      - RewiredPlayerGetButtonSinglePressHold
+      - RewiredPlayerGetButtonSinglePressDown
+      - RewiredPlayerGetButtonSinglePressUp
+      - RewiredPlayerGetNegativeButtonSinglePressHold
+      - RewiredPlayerGetNegativeButtonSinglePressDown
+      - RewiredPlayerGetNegativeButtonSinglePressUp
+
+    New Behavior Designer Actions:
+      - RewiredPlayerGetButtonDoublePressUp
+      - RewiredPlayerGetNegativeButtonDoublePressUp
+      - RewiredPlayerGetButtonSinglePressHold
+      - RewiredPlayerGetButtonSinglePressDown
+      - RewiredPlayerGetButtonSinglePressUp
+      - RewiredPlayerGetNegativeButtonSinglePressHold
+      - RewiredPlayerGetNegativeButtonSinglePressDown
+      - RewiredPlayerGetNegativeButtonSinglePressUp
+
+1.1.8.3:
+
+      Changes:
+      - Removed .asmdef files due to issues with asset integration dependencies.
+
+1.1.8.2:
+
+    Bug Fixes:
+      - Reverted changes to editor system in 1.1.8.0 which caused installation problems in Unity 5.x.
+
+1.1.8.1:
+
+    Changes:
+      - Changes to editor code to prevent potential installation problems on some systems.
+      
+    Bug Fixes:
+      - Fixed incorrect assembly names in addon .asmdef files.
+
+1.1.8.0:
+
+    Changes:
+      - Updated RewiredStandaloneInputModule to match changes to StandaloneInputModule made in Unity 2017.1 where UI input events are not sent when the application does not have focus.
+      - When updating Rewired in Fixed Update, Direct Input and XInput now refresh low-level input values every Fixed Update instead of only the first update per frame.
+      - Rewired Editor: Changed name of "User Assignable" checkbox in Actions and Action Categories to "Visible in Lists."
+      - Added .asmdef files to Rewired and all addons to compile loose scripts into libraries in preparation for the Unity 2017.3 asmdef system.
+      - Filtered out duplicate devices on OSX and Linux when Steam is creating emulated Steam Controllers from other gamepads when using Steam's PS4, Xbox, and Generic Gamepad Configuration Support.
+      - Windows, Direct Input w/ Use XInput disabled: Added support for Steam emulated controllers.
+      - Added Universal Fighting Engine integration pack.
+      
+    API Changes:
+      - Added ReInput.PreShutDownEvent event.
+      - Added ReInput.ShutDownEvent event.
+      - Added ReInput.ConfigHelper.updateLoop property.
+
+    Modified Controller Definitions:
+      - Steam Controller: Added Direct Input definition.
+
+    Bug Fixes:
+      - Windows UWP, Native w/ Use XInput: Fixed rare exception when disconnecting an XInput-compatible controller.
+      - Windows UWP, Native: Fixed issue added in 1.1.7.8 causing it to poll for new devices every frame.
+      - Fixed bug in ControllerMapWithAxes.ctor(ControllerMapWithAxes) constructor overload causing axis maps to not be copied.
+      - Removed redundant Right Trigger mapping in the Xbox 360 controller Dual Analog Template definition causing the right trigger to be mapped twice.
+
+1.1.7.9:  
+ 
+  Bug Fixes:
+    - OSX, Native: Fixed bug preventing Steam Controller from working the primary input source is set to Native.
+    - Sony DualShock 2 definition, Super Dual Box Pro variant: Fixed Select and Start mappings.
+
 1.1.7.8:
 
     Changes:

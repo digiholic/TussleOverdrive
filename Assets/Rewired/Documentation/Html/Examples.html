@@ -81,7 +81,8 @@
               <li><a href="Controllers.html">Controllers</a></li>
               <li><a href="ControllerMaps.html">Controller Maps</a></li>
               <li><a href="MapCategories.html">Map Categories</a></li>
-              <li><a href="ControllerMaps.html"></a><a href="Layouts.html">Layouts</a></li>
+              <li><a href="Layouts.html">Layouts</a></li>
+              <li><a href="ControllerTemplates.html">Controller Templates</a></li>
               <li><a href="CustomControllers.html">Custom Controllers</a></li>
             </ul>
             <strong>Extras:</strong>
@@ -94,6 +95,7 @@
             <strong>Misc:</strong>
             <ul>
 	          <li><a href="ComponentControls.html" title="Component Controls">Component Controls</a></li>
+	          <li><a href="PlayerControllers.html" title="Player Controllers">Player Controllers</a></li>
 	          <li><a href="InputMapper.html" title="Input Mapper">Input Mapper</a></li>
 	          <li><a href="UserDataStore.html" title="User Data Store">User Data Store</a></li>
             </ul>
@@ -142,6 +144,7 @@
 <p>All examples can be found in the Rewired/Examples folder. You should use these examples to learn how to work with the more advanced features of Rewired. More examples will be added in future updates.</p>
 <ul>
       <li><a href="#simple-control-remapping">Simple Control Remapping</a></li>
+      <li><a href="#simple-combined-keyboard-mouse-remapping">Simple Combined Keyboard Mouse Remapping</a></li>
       <li><a href="#control-remapping-1">Control Remapping 1</a></li>
       <li><a href="#custom-controllers-touch">Custom Controllers Touch</a></li>
       <li><a href="#custom-controllers-tilt">Custom Controllers Tilt</a></li>
@@ -152,12 +155,27 @@
       <li><a href="#touch-controls-1">Touch Controls 1</a></li>
       <li><a href="#touch-buttons-1">Touch Buttons 1</a></li>
       <li><a href="#touch-joysticks-1">Touch Joysticks 1</a></li>
+      <li><a href="#gamepad-template-ui">Gamepad Template UI</a></li>
+      <li><a href="#player-mouse-sprite">Player Mouse Sprite</a></li>
+      <li><a href="#player-mouse-sprite">Player</a><a href="#player-mouse-unity-ui"> Mouse Unity UI</a></li>
+      <li><a href="#dualshock-4-special-features">DualShock 4 Special Features</a></li>
     </ul>
 <hr />
 <h3><a name="simple-control-remapping" id="simple-control-remapping"></a>Simple Control Remapping</h3>
 <p>(Included for Unity 5.0+)</p>
 <p>NOTE: Rewired includes <a href="ControlMapper.html">Control Mapper</a>, a complete, configurable, responsive Unity UI-based control remapping system which can be used directly in your games. You can use it instead of writing your own remapping screen.</p>
 <p>This is a very basic example of control remapping using the <a href="InputMapper.html">InputMapper</a> class. This example only supports 1 Player, 1 Joystick, 1 Controller Map, and 1 mapping per Action, per controller type. No UI windows are used and conflict checking is handled automatically by InputMapper to keep this example small and focused.</p>
+<p>&nbsp;</p>
+<hr />
+<h3><a name="simple-combined-keyboard-mouse-remapping" id="simple-combined-keyboard-mouse-remapping"></a>Simple Combined Keyboard Mouse Remapping</h3>
+<p>(Included for Unity 5.0+)</p>
+<p>NOTE: Rewired includes <a href="ControlMapper.html">Control Mapper</a>, a complete, configurable, responsive Unity UI-based control remapping system which can be used directly in your games. You can use it instead of writing your own remapping screen.</p>
+<p>This is a very basic example of control remapping using the <a href="InputMapper.html">InputMapper</a> class to combine keyboard and mouse bindings into a single column. This is not how
+Rewired is intended to work, but because some developers want to present it this way, this example has been provided.<br />
+<br />
+This example only supports 1 Player, 1 mapping per Action, and only supports keyboard and mouse input. This example is exclusively meant to illustrate how to use multiple Input Mappers to poll for input on multiple input devices simultaneously. It also illustrates how to handle replacement assignments across controller types and Controller Maps.<br />
+<br />
+ No UI windows are used and conflict checking is handled automatically by InputMapper to keep this example small and focused.</p>
 <p>&nbsp;</p>
 <hr />
     <h3><a name="controller-remapping-1" id="dll-not-found-xinput"></a><a name="control-remapping-1" id="control-remapping-1"></a>Control Remapping 1</h3>
@@ -197,7 +215,6 @@
 <h3><a name="press-start-to-join" id="press-start-to-join"></a>Press Start To Join</h3>
 <p>This example shows one possible implementation of a &quot;Press Start to Join&quot; joystick assignment system. This is based on <a href="HowTos.html#press-start-to-join-method-1">the example shown here under Method 1</a>.</p>
 <p>&nbsp;</p>
-<p>&nbsp;</p>
 <hr />
 <h3><a name="press-any-button-to-join" id="press-any-button-to-join"></a>Press Any Button To Join</h3>
 <p>This example shows one possible implementation of a &quot;Press Any Button to Join&quot; joystick assignment system. This is based on <a href="HowTos.html#press-start-to-join-method-2">the example shown here under Method 2</a>.</p>
@@ -215,6 +232,24 @@
 <h3><a name="touch-joysticks-1" id="touch-joysticks-1"></a>Touch Joysticks 1</h3>
 <p>This example shows various Touch Joysticks. See <a href="TouchControls.html">Touch Controls</a> for more information on touch controls.</p>
 <p>Example files are located in Rewired/Extras/TouchControls/Examples.</p>
+<p>&nbsp;</p>
+<hr class="clear" />
+<h3><img src="files/images/examples_gamepadtemplateui.png" alt="Gamepad Template UI" class="right" /><a name="gamepad-template-ui" id="gamepad-template-ui"></a>Gamepad Template UI</h3>
+<p>(Included for Unity 5.0+)</p>
+<p>This example shows how determine which Controller Template elements correspond to mapped Actions in a Player, both those that are currently active and those that are mapped. These concepts can be used to display a Controller Template based mapping UI, display Controller Template element names / glyphs instead of Controller-specific element names / glyphs, etc. The same concepts can be used to display help UI using Controller Template elements instead of Controller-specific elements.</p>
+<p>This example is NOT meant to be modified and used in your game. It is only intended to teach the API.</p>
+<p>&nbsp;</p>
+<hr class="clear" />
+<h3><img src="files/images/examples_playermousesprite.png" alt="Gamepad Template UI" class="right" /><a name="player-mouse-sprite" id="player-mouse-sprite"></a>Player Mouse Sprite</h3>
+<p>(Included for Unity 5.0+)</p>
+<p>This example shows how to use a <a href="PlayerControllers.html#player-mouse">Player Mouse</a> through scripting to control as Sprite mouse pointer using any input device.</p>
+<hr class="clear" />
+<h3><img src="files/images/examples_playermouseunityui.png" alt="Gamepad Template UI" class="right" /><a name="player-mouse-unity-ui" id="player-mouse-unity-ui"></a>Player Mouse Unity UI</h3>
+<p>(Included for Unity 5.0+)</p>
+<p>This example shows how to use <a href="PlayerControllers.html#player-mouse">Player Mouse</a> components and the <a href="RewiredStandaloneInputModule.html">Rewired Standalone Input Module</a> to control 4 mouse pointers using any input device to interact with Unity UI.</p>
+<hr class="clear" />
+<h3><img src="files/images/examples_dualshock4specialfeatures.png" alt="Gamepad Template UI" class="right" /><a name="dualshock-4-special-features" id="dualshock-4-special-features"></a>DualShock 4 Special Features</h3>
+<p>This example shows how to access the special features on the Dual Shock 4.</p>
 <p>&nbsp;</p>
     <div class="bottom-pager clearfix">
 	    <a class="back-button" href="Documentation.html" title="Documentation"><span class="button-img"></span>Documentation</a>

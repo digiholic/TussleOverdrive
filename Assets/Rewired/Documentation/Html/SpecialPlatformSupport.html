@@ -81,7 +81,8 @@
               <li><a href="Controllers.html">Controllers</a></li>
               <li><a href="ControllerMaps.html">Controller Maps</a></li>
               <li><a href="MapCategories.html">Map Categories</a></li>
-              <li><a href="ControllerMaps.html"></a><a href="Layouts.html">Layouts</a></li>
+              <li><a href="Layouts.html">Layouts</a></li>
+              <li><a href="ControllerTemplates.html">Controller Templates</a></li>
               <li><a href="CustomControllers.html">Custom Controllers</a></li>
             </ul>
             <strong>Extras:</strong>
@@ -94,6 +95,7 @@
             <strong>Misc:</strong>
             <ul>
 	          <li><a href="ComponentControls.html" title="Component Controls">Component Controls</a></li>
+	          <li><a href="PlayerControllers.html" title="Player Controllers">Player Controllers</a></li>
 	          <li><a href="InputMapper.html" title="Input Mapper">Input Mapper</a></li>
 	          <li><a href="UserDataStore.html" title="User Data Store">User Data Store</a></li>
             </ul>
@@ -146,6 +148,7 @@
       <li><a href="#windows-uwp">Windows 10 Universal</a></li>
       <li><a href="#ouya">OUYA</a></li>
       <li><a href="#xbox-one">XBox One</a></li>
+      <li><a href="#ps4">Playstation 4</a></li>
       <li><a href="#nintendo-switch">Nintendo Switch</a></li>
     </ul>
     <p>&nbsp;</p>
@@ -212,8 +215,8 @@
 <p>For older versions of Unity, in order to enable support for HID joysticks, after building the project in Unity, open the new Windows 10 Universal project in Visual Studio and edit the Package.appxmanifest file with the XML text editor and add the following lines:</p>
 <pre class="code">&lt;Capabilities&gt;<br />    &lt;DeviceCapability Name=&quot;humaninterfacedevice&quot;&gt;<br />        &lt;Device Id=&quot;any&quot;&gt;<br />            &lt;Function Type=&quot;usage:0001 0004&quot; /&gt;<br />            &lt;Function Type=&quot;usage:0001 0005&quot; /&gt;<br />        &lt;/Device&gt;<br />    &lt;/DeviceCapability&gt;<br />&lt;/Capabilities&gt;</pre>
 <p>The &lt;Capabilities&gt; tag and its contents must be placed between the &lt;Package&gt; and &lt;/Package&gt; tags. This gives the app permission to read HID joysticks and gamepads. If you do not add this or do not add it correctly, HID joysticks will not work. However, the XBox 360 Controller and other XInput-compatible controllers will still function.</p>
-<p><strong>*IMPORTANT*: </strong>It is recommended that you do not enable HID joystick support in UWP due to an oversight by Microsoft that will cause some devices to show up twice if enabled. <a href="KnownIssues.html#uwp-gamepads-appear-twice">See this for more information</a>. If you need support for non-gamepad devices like flight controllers, racing wheels, or want support for a wider range of gamepads including older gamepads and Android gamepads, it is recommended that you disable XInput support and only use HID device support. However, note that disabling XInput support will disable support for gamepad vibration.</p>
-<p><strong>WARNING:</strong> There is a known issue with Unity in IL2CPP builds when enabling support for HID joysticks in versions of Unity less than 5.3.5p1. <a href="KnownIssues.html#uwp-il2cpp-controller-disconnect-crash">See this for more information</a>.</p>
+<p><strong>*IMPORTANT*: </strong>It is recommended that you do not enable HID joystick support in UWP due to an oversight by Microsoft that will cause some devices to show up twice if enabled. <a href="KnownIssues.html#uwp-gamepads-appear-twice">See this for more information</a>. If you need support for non-gamepad devices like flight controllers, racing wheels, or want support for a wider range of gamepads including older gamepads and Android gamepads, it is recommended that you disable XInput support and only use HID device support. However, note that disabling XInput support will disable support for gamepad vibration. Warning: Disabling XInput support will also cause the application to <a href="KnownIssues.html#uwp-il2cpp-controller-disconnect-crash">crash when an Xbox One S controller is unplugged</a>.</p>
+<p><strong>WARNING:</strong> There is a known issue with Unity in IL2CPP builds when enabling support for HID joysticks. <a href="KnownIssues.html#uwp-il2cpp-controller-disconnect-crash">See this for more information</a>.</p>
 <p><strong>Error On DLL Import</strong></p>
 <p>Unity reports this error every time the Rewired_Core.dll for Windows 10 Universal .NET is imported or reimported into the project:</p>
 <pre class="code">System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---&gt; Mono.Cecil.AssemblyResolutionException: Failed to resolve assembly: 'System.Runtime, Version=4.0.20.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a'
@@ -240,7 +243,7 @@
 <p>To enable Ouya Everywhere SDK  on the Razer Forge TV, follow the above steps and additionally check the &quot;Use Ouya SDK on Razer Forge TV&quot; option in the Rewired Global Options window.</p>
 <p>&nbsp;</p>
 <hr />
-<h3><a name="xbox-one" id="ouya2"></a>XBox One</h3>
+<h3><a name="xbox-one" id="xbox-one"></a>XBox One</h3>
 <p>Rewired includes special support for XBox One for better controller support and more accurate hot-plugging behavior. Rewired supports gamepad vibration on XBox One, however you must first install the prerequisite Xbox One native library provided by Unity.</p>
 <p>If you receive an error when switching to the Xbox One build target in Unity, make sure the <a href="Troubleshooting.html#compile-errors-ps4-xbone">Xbox One platform is checked on the Rewired_Core.dll import options</a>.</p>
 <p><strong>Dependencies</strong></p>
@@ -249,14 +252,22 @@
   <li>Gamepad.dll</li>
   </ul>
 <p>To get the library, go to:<br />
-Unity Xbox Forums &gt; Build Downloads (Sticky Topic) &gt; Under &quot;Latest Builds&quot;   is &quot;Unity's Xbox One Native Plugins&quot; </p>
+Unity Xbox Forums &gt; Unity for Xbox One Downloads (Sticky Topic) &gt; Under the &quot;Plugins&quot; section</p>
 <p>The file Gamepad.dll can be found in Binaries\Native\Variations\Durango_Release in the plugins package.</p>
 <p>If this dependiency is not installed correctly, XBox One builds will not function. You will only see black screen when launching the build on the Xbox One if the library is not installed.</p>
 <p><strong>Crashes on Start</strong></p>
 <p>This is <em>always</em> due to improper set up of the dependency noted above. If Gamepad.dll is not found, not in the proper location, or does not have the proper inspector settings to enable it to be included with the XBox One build, all p/invoke calls to Gamepad.dll will fail, which crashes the XBox One rather than throwing an exception which can be caught and handled as happens on all other platforms. If the version of Gamepad.dll you are using does not have the exact method signature  Rewired expects, it will also crash. If you upgrade Unity versions but do not update the Gamepad.dll also, it may also crash if the gamepad.dll has been built to a different version of the Xbox One SDK.</p>
 <p>If for any reason you cannot get the Gamepad.dll, you can disable all calls to the DLL by setting &quot;Xbox One: Disable Vibration&quot; in the Rewired Global Options window which can be found at:  Window -&gt; Rewired -&gt; Global Options. This will disable support for gamepad vibration.</p>
 <p><strong>Accessing XBox One Controller Features</strong></p>
-<p>Special controller features of the XBox One gamepad such as vibration can be accessed via the <a href="http://guavaman.com/projects/rewired/docs/api-reference/html/T_Rewired_Platforms_XboxOne_XboxOneGamepadExtension.htm">XboxOneGamepadExtension</a> class available in the Joystick class <a href="HowTo's.html#xbox-one-controller-special-features">as seen in this example</a>.</p>
+<p>Special controller features of the XBox One gamepad such as vibration can be accessed via the <a href="http://guavaman.com/projects/rewired/docs/api-reference/html/T_Rewired_Platforms_XboxOne_XboxOneGamepadExtension.htm">XboxOneGamepadExtension</a> class available in the Joystick class <a href="HowTos.html#xbox-one-controller-special-features">as seen in this example</a>.</p>
+<p><strong>Troubleshooting</strong></p>
+<p>See <a href="Troubleshooting.html#xbox-one">Troubleshooting - Xbox One</a> for solutions to issues on the Xbox One platform.</p>
+<p>&nbsp;</p>
+<hr />
+<h3><a name="ps4" id="ps4"></a>Playstation 4</h3>
+<p>Rewired includes special support for Playstation 4 for better controller support.</p>
+<p><strong>Accessing PS4 Controller Features</strong></p>
+<p>Special controller features of the PS4 gamepad can be accessed via the <a href="http://guavaman.com/projects/rewired/docs/api-reference/html/T_Rewired_Platforms_PS4_PS4GamepadExtension.htm">PS4GamepadExtension</a> class available in the Joystick class <a href="HowTos.html#ps4-gamepad-special-features">as seen in this example</a>.</p>
 <p>&nbsp;</p>
 <hr />
 <h3><a name="nintendo-switch" id="nintendo-switch"></a>Nintendo Switch</h3>

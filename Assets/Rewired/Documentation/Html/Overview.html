@@ -81,7 +81,8 @@
               <li><a href="Controllers.html">Controllers</a></li>
               <li><a href="ControllerMaps.html">Controller Maps</a></li>
               <li><a href="MapCategories.html">Map Categories</a></li>
-              <li><a href="ControllerMaps.html"></a><a href="Layouts.html">Layouts</a></li>
+              <li><a href="Layouts.html">Layouts</a></li>
+              <li><a href="ControllerTemplates.html">Controller Templates</a></li>
               <li><a href="CustomControllers.html">Custom Controllers</a></li>
             </ul>
             <strong>Extras:</strong>
@@ -94,6 +95,7 @@
             <strong>Misc:</strong>
             <ul>
 	          <li><a href="ComponentControls.html" title="Component Controls">Component Controls</a></li>
+	          <li><a href="PlayerControllers.html" title="Player Controllers">Player Controllers</a></li>
 	          <li><a href="InputMapper.html" title="Input Mapper">Input Mapper</a></li>
 	          <li><a href="UserDataStore.html" title="User Data Store">User Data Store</a></li>
             </ul>
@@ -153,7 +155,7 @@
       <li>Intelligent auto assignment and re-assignment of controllers to players on connect/disconnect with configurable options to tune the assignment to your needs.</li>
       <li>Connect, pre-disconnect, and disconnect events.</li>
       <li>Get input in Update, Fixed Update, and OnGUI -- you choose which loops update runs in, one or multiple as needed.</li>
-      <li>Customizable and saveable controller maps -- export mappings to XML and save how you choose (example included using PlayerPrefs, but save however you like.)</li>
+      <li>Customizable and saveable controller maps -- export mappings to XML or JSON and save how you choose (example included using PlayerPrefs, but save however you like.)</li>
       <li>Included Control Mapper system using Unity GUI allows your players to rebind controls at runtime.</li>
       <li>Unlimited mapping layouts per controller.</li>
       <li>Controller Templates (see Controllers section).</li>
@@ -170,9 +172,9 @@
       <li><a href="SupportedControllers.html">Extended support for many game controllers of all types</a> on numerous platforms. You can create additional controller definitions to support more, or if you'd like you can mail me your controller and I'll add the definitions and mail it back! :)</li>
       <li>Supported controllers are recognized on each platform and are fully mapable by element name and have standardized axis directions.</li>
       <li>For any controller not included, you can map an Unknown controller which includes all possible buttons/axes on the platform (Windows 128 buttons &amp; 32 axes, etc.) Regardless of whether you define a map for this, users will always be able to manually map every element on the controller. This means support for the vast majority of USB and Bluetooth controllers. <span style="vertical-align: super; font-size: 65%;">[<a href="#clarifications">1</a>]</span></li>
-      <li>Controller template system so you can either choose to create default maps for every controller you wish to explicitly support, or save time and just map the template. All controllers that use that template will be mapped automatically. (Comes with a Dual Axis Gamepad template that works for the included gamepads.) User can always map any remaining controller elements even if they're not defined on the template.</li>
+      <li>Controller template system so you can either choose to create default maps for every controller you wish to explicitly support, or save time and just map the template. All controllers that use that template will be mapped automatically. Rewired comes with controller templates for gamepads, flight controllers, racing wheels, and 6-dof controllers. User can always map any remaining controller elements even if they're not defined on the template.</li>
       <li>Named buttons and controller elements for supported controllers (for help messages and config screens).</li>
-      <li>Vibration (Windows, Windows 8 Store, Windows 10 Universal, OSX, Linux, XBox One, PS4 currently).</li>
+      <li>Vibration (Windows, Windows 8 Store, Windows 10 Universal, OSX, Linux, XBox One, PS4, Switch currently).</li>
       <li>Advanced controller features such as vibration, touchpad, light, and gyro on the Dual Shock 4.</li>
       <li>Custom Controllers  - Any source can be used to drive the controller's element values. Custom Controllers can be used for on-screeen touch controllers and more.</li>
     </ul>
@@ -180,7 +182,7 @@
     </h4>
     <ul>
       <li>Powerful controller mapping system that allows you to create highly complex input schemes for any style of game.</li>
-      <li>Unlimited, stackable, maps per controller.</li>
+      <li>Unlimited maps per controller, per Player.</li>
       <li>Maps stack so you can have as many maps for each controller as you need. For example: If you have multiple game modes such as Infantry, Tank, Airplane, you can have shared controls on one map, and mode-specific controls each on its own map. You can have even more maps as needed: A Menu map for when you're in the menus, a system map for controls like Save/Load and Quit, multiple maps for different players on the keyboard, etc.</li>
       <li>Enable / disable maps as needed, for example, when changing game modes.</li>
       <li>A shared controller (the keyboard for example) can be mapped by any number of players with any number of maps.</li>
@@ -188,7 +190,7 @@
       <li>Map axes to buttons and buttons to axes if you choose.</li>
       <li>Split axes - allows you to map one pole of an axis to an action and the other pole to another action if you want.</li>
       <li>Axis Contribution - you can choose how your button or axis affects the final Action's value. A button can generate positive or negative values on an Action's final axis value.</li>
-      <li>Save maps to XML.</li>
+      <li>Save maps to XML or JSON.</li>
     </ul>
     <h4>Input:<br />
     </h4>
@@ -225,7 +227,7 @@
       <li>Input Behaviors allow you to set options for digital axis simulation (sensitivity, gravity, etc.), how to handle mouse axes, a GetButtonDown buffer, button double press speed, button dead zone, and more.</li>
       <li>Each Action is assigned an Input Behavior, so if you have many actions that need to behave the same way, you don't have to duplicate the information, just set them to use the same Input Behavior.</li>
       <li>Per-player, and run-time modifiable.</li>
-      <li>Save to XML.</li>
+      <li>Save to XML or JSON.</li>
     </ul>
     <h4>Map categories:<br />
     </h4>
@@ -267,34 +269,140 @@
 	    <li>OSX 10.5 or later is required for the OSX Unity editor and OSX Standalone builds.</li>
 	    </ul>
     <h4><a name="tested-platforms" id="tested-platforms"></a>Tested Platforms:</h4>
-    <p>Rewired has been tested on the following platforms. Others may work but have not been tested.</p>
-    <ul>
-      <li>Windows Standalone 32-bit/64-bit*</li>
-      <li>Windows Webplayer</li>
-      <li>Windows 8 Store*</li>
-      <li>Windows 8.1 Universal*</li>
-      <li>Windows 10 Universal 32-bit/64-bit (.NET and IL2CPP)*</li>
-      <li>OSX Standalone 32-bit/64-bit/Universal*</li>
-      <li>OSX Webplayer</li>
-      <li>WebGL*</li>
-      <li>Android</li>
-      <li>iOS</li>
-      <li>Linux*</li>
-      <li>Sony PSM (Sony PlayStation Vita)</li>
-      <li>Sony PlayStation 4* <span style="vertical-align: super; font-size: 65%">[<a href="#clarifications">2</a>]</span></li>
-      <li>Microsoft XBox One* <span style="vertical-align: super; font-size: 65%">[<a href="#clarifications">2</a>]</span></li>
-      <li>Nintendo Switch*</li>
-      <li>Ouya*</li>
-      <li>Apple TV (tvOS)</li>
-      <li>Amazon Fire TV</li>
-      <li>Google Nexus Player</li>
-      <li>Razer Forge TV</li>
-      <li>GameStick</li>
-    </ul>
-    <p style="font-size: 85%">* Platform features Extended Native Support</p>
-    <a name="clarifications" id="clarifications"></a>
-    <p style="font-size: 65%"><span style="vertical-align: super">1</span> Controller must be compatible with underlying system. On Windows the controller must be compatible with Raw Input, Direct Input, or XInput. On OSX, it must be compatible with I/O Kit. Support for exotic controller types not guaranteed.</p>
+    <p>Rewired has been tested on the following platforms. Others may work but have not been tested. The following table shows which platforms / scripting backends include native input libraries for enhanced reliability and feature support. All non-native platforms will run on top of Unity's input system and still provide most features.</p>
+    <p>For platforms using native libraries, the devices supported natively are listed below. If a device type is not listed such as &quot;mouse&quot;, it is supported through the use of Unity's input system at the base but will still work as expected.</p>
+    <table width="100%" border="1">
+      <tr>
+        <td><strong>Platform</strong></td>
+        <td><strong>.NET/Mono Scripting Backend</strong></td>
+        <td><p><strong>IL2CPP Scripting Backend</strong></p></td>
+      </tr>
+      <tr>
+        <td>Windows Standalone 32-bit/64-bit</td>
+        <td align="center"><span class="native">Native</span><br />
+          <span class="note">(keyboard, mouse, controllers)</span></td>
+        <td align="center"><span class="unity-input">Unity <span style="vertical-align: super; font-size: 65%">[<a href="#clarifications">4</a>]</span></span></td>
+      </tr>
+      <tr>
+        <td>Windows 8 Store</td>
+        <td align="center"><span class="native">Native<br />
+          <span class="note">(controllers)</span>        </span></td>
+        <td align="center">--</td>
+      </tr>
+      <tr>
+        <td>Windows 8.1 Universal</td>
+        <td align="center"><span class="native">Native<br />
+          <span class="note">(controllers)</span>        </span></td>
+        <td align="center">--</td>
+      </tr>
+      <tr>
+        <td>Windows 10 Universal 32-bit/64-bit</td>
+        <td align="center"><span class="native">Native<br />
+          <span class="note">(controllers)</span>        </span></td>
+        <td align="center"><span class="native">Native<br />
+          <span class="note">(controllers)</span>        </span></td>
+      </tr>
+      <tr>
+        <td>Windows Webplayer</td>
+        <td align="center"><p><span class="unity-input">Unity</span></p></td>
+        <td align="center">--</td>
+      </tr>
+      <tr>
+        <td>OSX Standalone 32-bit/64-bit/Universal</td>
+        <td align="center"><span class="native">Native<br />
+          <span class="note">(controllers)</span>        </span></td>
+        <td align="center"><span class="unity-input">Unity <span style="vertical-align: super; font-size: 65%">[<a href="#clarifications">4</a>]</span></span></td>
+      </tr>
+      <tr>
+        <td>OSX Webplayer</td>
+        <td align="center"><span class="unity-input">Unity</span></td>
+        <td align="center">--</td>
+      </tr>
+      <tr>
+        <td>Linux <span style="vertical-align: super; font-size: 65%">[<a href="#clarifications">3</a>]</span></td>
+        <td align="center"><span class="native">Native<br />
+          <span class="note">(controllers)</span>        </span></td>
+        <td align="center"><span class="unity-input">Unity <span style="vertical-align: super; font-size: 65%">[<a href="#clarifications">4</a>]</span></span></td>
+      </tr>
+      <tr>
+        <td>WebGL</td>
+        <td align="center">--</td>
+        <td align="center"><span class="native">Native<br />
+          <span class="note">(controllers)</span>        </span></td>
+      </tr>
+      <tr>
+        <td>Android</td>
+        <td align="center"><span class="unity-input">Unity</span></td>
+        <td align="center"><span class="unity-input">Unity</span></td>
+      </tr>
+      <tr>
+        <td>iOS</td>
+        <td align="center"><span class="unity-input">Unity</span></td>
+        <td align="center"><span class="unity-input">Unity</span></td>
+      </tr>
+      <tr>
+        <td>Sony PSM (Sony PlayStation Vita)</td>
+        <td align="center"><span class="unity-input">Unity</span></td>
+        <td align="center">--</td>
+      </tr>
+      <tr>
+        <td>Sony PlayStation 4</td>
+        <td align="center"><span class="semi-native">Semi Native</span> <span style="vertical-align: super; font-size: 65%">[<a href="#clarifications">2</a>]</span><br />
+          <span class="note">(controllers)</span></td>
+        <td align="center"><span class="semi-native">Semi Native</span> <span style="vertical-align: super; font-size: 65%">[<a href="#clarifications">2</a>]</span><br /><span class="note">(controllers)</span></td>
+      </tr>
+      <tr>
+        <td>Microsoft XBox One</td>
+        <td align="center"><span class="semi-native">Semi Native</span> <span style="vertical-align: super; font-size: 65%">[<a href="#clarifications">2</a>]</span><br />
+          <span class="note">(controllers)</span></td>
+        <td align="center"><span class="semi-native">Semi Native</span> <span style="vertical-align: super; font-size: 65%">[<a href="#clarifications">2</a>]</span><br />
+          <span class="note">(controllers)</span></td>
+      </tr>
+      <tr>
+        <td>Nintendo Switch</td>
+        <td align="center">--</td>
+        <td align="center"><span class="native">Native<br />
+          <span class="note">(keyboard, controllers)</span><br />
+        </span></td>
+      </tr>
+      <tr>
+        <td>Ouya</td>
+        <td align="center"><span class="native">Native<br />
+            <span class="note">(controllers)</span></span></td>
+        <td align="center"><span class="native">Native<br />
+          <span class="note">(controllers)</span>        </span></td>
+      </tr>
+      <tr>
+        <td>Apple TV (tvOS)</td>
+        <td align="center"><span class="unity-input">Unity</span></td>
+        <td align="center"><span class="unity-input">Unity</span></td>
+      </tr>
+      <tr>
+        <td>Amazon Fire TV</td>
+        <td align="center"><span class="unity-input">Unity</span></td>
+        <td align="center"><span class="unity-input">Unity</span></td>
+      </tr>
+      <tr>
+        <td>Google Nexus Player</td>
+        <td align="center"><span class="unity-input">Unity</span></td>
+        <td align="center"><span class="unity-input">Unity</span></td>
+      </tr>
+      <tr>
+        <td>Razer Forge TV</td>
+        <td align="center"><span class="unity-input">Unity</span></td>
+        <td align="center"><span class="unity-input">Unity</span></td>
+      </tr>
+      <tr>
+        <td>GameStick</td>
+        <td align="center"><span class="unity-input">Unity</span></td>
+        <td align="center"><span class="unity-input">Unity</span></td>
+      </tr>
+    </table>
+    <p><a name="clarifications" id="clarifications"></a>    </p>
+    <p style="font-size: 65%"><span style="vertical-align: super">1</span> Controller must be compatible with underlying system. On Windows the controller must be compatible with Raw Input, Direct Input, or XInput. On OSX, it must be compatible with I/O Kit. On Linux, it must be compatible with UDev. Support for exotic controller types not guaranteed.</p>
     <p style="font-size: 65%"><span class="superscript">2</span> These platforms make use of Unity's special platform-specific input classes which allow for much greater control over input than with just UnityEngine.Input and are functionally equivalent to native input libraries.</p>
+    <p style="font-size: 65%">3 Linux native support has been tested under Ubuntu 12.04 amd64, Ubuntu 14.04 x86/amd64, Ubuntu 15.04 amd64, Ubuntu 17.04 amd64, Mint 17.2 amd64, and SteamOS. Compatibility with other distros is not guranteed or implied.</p>
+    <p style="font-size: 65%">4 <a href="KnownIssues.html#windows-standalone-il2cpp">Please see this for more information about the IL2CPP scripting backend on desktop Standalone builds</a>.</p>
     <p>&nbsp;</p>
 <div class="bottom-pager clearfix">
 	    <a class="back-button" href="Documentation.html" title="Documentation"><span class="button-img"></span>Documentation</a>

@@ -1176,7 +1176,7 @@ MonoBehaviour:
           customCalculationSourceData: []
           elementIdentifier: 12
           sourceType: 0
-          sourceButton: 8
+          sourceButton: 9
           sourceAxis: 0
           sourceAxisPole: 0
           axisDeadZone: 0
@@ -1194,7 +1194,7 @@ MonoBehaviour:
           customCalculationSourceData: []
           elementIdentifier: 13
           sourceType: 0
-          sourceButton: 9
+          sourceButton: 8
           sourceAxis: 0
           sourceAxisPole: 0
           axisDeadZone: 0
@@ -3154,7 +3154,7 @@ MonoBehaviour:
             _isPressureSensitive: 0
         - elementIdentifier: 12
           sourceType: 0
-          sourceButton: 8
+          sourceButton: 9
           sourceStick: 0
           sourceAxis: 0
           sourceOtherAxis: 0
@@ -3172,7 +3172,7 @@ MonoBehaviour:
             _isPressureSensitive: 0
         - elementIdentifier: 13
           sourceType: 0
-          sourceButton: 9
+          sourceButton: 8
           sourceStick: 0
           sourceAxis: 0
           sourceOtherAxis: 0
@@ -4213,7 +4213,7 @@ MonoBehaviour:
             _isPressureSensitive: 0
         - elementIdentifier: 12
           sourceType: 0
-          sourceButton: 8
+          sourceButton: 9
           sourceAxis: 0
           sourceAxisPole: 0
           axisDeadZone: 0
@@ -4229,7 +4229,7 @@ MonoBehaviour:
             _isPressureSensitive: 0
         - elementIdentifier: 13
           sourceType: 0
-          sourceButton: 9
+          sourceButton: 8
           sourceAxis: 0
           sourceAxisPole: 0
           axisDeadZone: 0

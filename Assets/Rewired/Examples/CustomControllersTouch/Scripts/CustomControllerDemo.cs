@@ -19,7 +19,6 @@ namespace Rewired.Demos {
     */
 
     [AddComponentMenu("")]
-    [RequireComponent(typeof(Demos.TouchControllerExample))]
     public class CustomControllerDemo : MonoBehaviour {
 
         public int playerId;
@@ -31,7 +30,8 @@ namespace Rewired.Demos {
         private float[] axisValues;
         private bool[] buttonValues;
 
-        private Demos.TouchControllerExample touchController;
+        private TouchJoystickExample[] joysticks;
+        private TouchButtonExample[] buttons;
         private CustomController controller;
 
         [NonSerialized] // Don't serialize this so the value is lost on an editor script recompile.
@@ -48,12 +48,13 @@ namespace Rewired.Demos {
             // Subscribe to the input source update event so we can update our source element data before controllers are updated
             ReInput.InputSourceUpdateEvent += OnInputSourceUpdate;
 
-            // Get the touch controller
-            touchController = GetComponent<Demos.TouchControllerExample>();
+            // Get the touch controls
+            joysticks = GetComponentsInChildren<TouchJoystickExample>();
+            buttons = GetComponentsInChildren<TouchButtonExample>();
 
             // Get expected element counts
-            axisCount = touchController.joysticks.Length * 2; // 2 axes per stick
-            buttonCount = touchController.buttons.Length;
+            axisCount = joysticks.Length * 2; // 2 axes per stick
+            buttonCount = buttons.Length;
 
             // Set up arrays to store our current source element values
             axisValues = new float[axisCount];
@@ -112,9 +113,9 @@ namespace Rewired.Demos {
             // Get the current element values from our source and store them
             for(int i = 0; i < axisValues.Length; i++) {
                 if(i % 2 != 0) {// odd
-                    axisValues[i] = touchController.joysticks[i/2].position.y;
+                    axisValues[i] = joysticks[i/2].position.y;
                 } else { // even
-                    axisValues[i] = touchController.joysticks[i / 2].position.x;
+                    axisValues[i] = joysticks[i / 2].position.x;
                 }
             }
         }
@@ -122,7 +123,7 @@ namespace Rewired.Demos {
         private void GetSourceButtonValues() {
             // Get the current element values from our source and store them
             for(int i = 0; i < buttonValues.Length; i++) {
-                buttonValues[i] = touchController.buttons[i].isPressed;
+                buttonValues[i] = buttons[i].isPressed;
             }
         }
 

@@ -47,6 +47,7 @@ namespace Rewired.UI.ControlMapper {
         private const string c_showSplitAxisInputFields = "_showSplitAxisInputFields";
 
         private const string c_allowElementAssignmentConflicts = "_allowElementAssignmentConflicts";
+        private const string c_allowElementAssignmentSwap = "_allowElementAssignmentSwap";
 
         private const string c_actionLabelWidth = "_actionLabelWidth";
         private const string c_keyboardColMaxWidth = "_keyboardColMaxWidth";
@@ -155,6 +156,7 @@ namespace Rewired.UI.ControlMapper {
             AddProperty(c_showSplitAxisInputFields);
 
             AddProperty(c_allowElementAssignmentConflicts);
+            AddProperty(c_allowElementAssignmentSwap);
 
             AddProperty(c_actionLabelWidth);
             AddProperty(c_keyboardColMaxWidth);
@@ -381,6 +383,7 @@ namespace Rewired.UI.ControlMapper {
                 EditorGUILayout.LabelField(new GUIContent("Element Assignment Options:", "Various options for the element assignment."), style_sectionLabel);
                 EditorGUILayout.Space();
                 EditorGUILayout.PropertyField(properties[c_allowElementAssignmentConflicts]);
+                EditorGUILayout.PropertyField(properties[c_allowElementAssignmentSwap]);
             }
 
             // Timer options

@@ -1,0 +1,410 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/BasicTemplate.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>Rewired Documentation | Player Controllers</title>
+<!-- InstanceEndEditable -->
+<!-- InstanceParam name="isRoot" type="boolean" value="false" -->
+<!-- InstanceParam name="wide" type="boolean" value="false" -->
+<link href="files/css/styles.css" rel="stylesheet" type="text/css" />
+<!-- Favicons -->
+<link rel="icon" type="image/x-icon" href="/projects/rewired/files/images/favicon.ico?v=1" />
+<!-- Apple Icons -->
+<!-- For iPad with high-resolution Retina display running iOS = 7: -->
+<link rel="apple-touch-icon-precomposed" sizes="152x152" href="files/images/favicon_152x152.png?v=1">
+<!-- For iPad with high-resolution Retina display running iOS = 6: -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="files/images/favicon_144x144.png?v=1">
+<!-- For iPhone with high-resolution Retina display running iOS = 7: -->
+<link rel="apple-touch-icon-precomposed" sizes="120x120" href="files/images/favicon_120x120.png?v=1">
+<!-- For iPhone with high-resolution Retina display running iOS = 6: -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="files/images/favicon_114x114.png?v=1">
+<!-- For the iPad mini and the first- and second-generation iPad on iOS = 7: -->
+<link rel="apple-touch-icon-precomposed" sizes="76x76" href="files/images/favicon_76x76.png?v=1">
+<!-- For the iPad mini and the first- and second-generation iPad on iOS = 6: -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="files/images/favicon_72x72.png?v=1">
+<!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+<link rel="apple-touch-icon-precomposed" href="files/images/favicon_57x57.png?v=1">
+</head>
+
+<body>
+
+
+<div class="container">
+
+    <div class="google-search-bar">
+        <script>
+          (function() {
+            var cx = '007961148920562332911:oocvtwz5jce';
+            var gcse = document.createElement('script');
+            gcse.type = 'text/javascript';
+            gcse.async = true;
+            gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(gcse, s);
+          })();
+        </script>
+        <gcse:search></gcse:search>
+    </div>
+
+  <div class="content">
+	
+	
+	 
+    <div class="page-body">
+	
+    
+         
+	    
+      	<div class="sidebar-nav">
+	        <h4><a href="Documentation.html">Documentation</a></h4>
+	        <ul>
+	          <li><a href="Overview.html">Overview</a></li>
+	          <li><a href="ReleaseNotes.txt">Release Notes</a></li>
+          </ul>
+	        <strong>Essentials:</strong>
+            <ol>
+              <li><a href="Installation.html">Installation</a></li>
+              <li><a href="QuickStart.html">Quick Start</a></li>
+              <li><a href="BasicUsage.html">Basic Usage</a></li>
+              <li><a href="Deployment.html">Deployment</a></li>
+              <li><a href="BestPractices.html">Best Practices</a></li>
+              <li><a href="RewiredEditor.html">Rewired Editor</a></li>
+              <li><a href="http://guavaman.com/projects/rewired/docs/api-reference" target="_blank">API Reference</a></li>
+            </ol>
+            <strong>Concepts:</strong>
+            <ul>
+              <li><a href="InputManager.html">Input Manager</a></li>
+              <li><a href="Players.html">Players</a></li>
+              <li><a href="Actions.html">Actions</a></li>
+              <li><a href="InputBehaviors.html">Input Behaviors</a></li>
+              <li><a href="Controllers.html">Controllers</a></li>
+              <li><a href="ControllerMaps.html">Controller Maps</a></li>
+              <li><a href="MapCategories.html">Map Categories</a></li>
+              <li><a href="Layouts.html">Layouts</a></li>
+              <li><a href="ControllerTemplates.html">Controller Templates</a></li>
+              <li><a href="CustomControllers.html">Custom Controllers</a></li>
+            </ul>
+            <strong>Extras:</strong>
+            <ul>
+              <li><a href="ControlMapper.html" title="Control Mapper">Control Mapper</a></li>
+	          <li><a href="TouchControls.html" title="Touch Controls">Touch Controls</a></li>
+              <li><a href="RewiredStandaloneInputModule.html">Rewired Standalone Input Module</a></li>
+	          <li><a href="UnityInputOverride.html" title="Unity Input Override">Unity Input Override</a></li>
+            </ul>
+            <strong>Misc:</strong>
+            <ul>
+	          <li><a href="ComponentControls.html" title="Component Controls">Component Controls</a></li>
+	          <li><a href="PlayerControllers.html" title="Player Controllers">Player Controllers</a></li>
+	          <li><a href="InputMapper.html" title="Input Mapper">Input Mapper</a></li>
+	          <li><a href="UserDataStore.html" title="User Data Store">User Data Store</a></li>
+            </ul>
+            <strong>How To's:</strong>
+            <ul>
+            	<li><a href="HowTos.html">See all topics...</a></li>
+            </ul>
+            <strong>Help:</strong>
+            <ul>
+              <li><a href="SupportedControllers.html" title="Supported Controllers">Supported Controllers</a></li>
+              <li><a href="Overview.html#tested-platforms" title="Tested Platforms">Tested Platforms</a></li>
+              <li><a href="Troubleshooting.html" title="Troubleshooting">Troubleshooting</a></li>
+              <li><a href="KnownIssues.html">Known Issues</a></li>
+              <li><a href="SpecialPlatformSupport.html" title="Special Platform Support">Special Platform Support</a></li>
+	          <li><a href="Examples.html" title="Examples">Examples</a></li>
+              <li><a href="Integration.html">Integrations</a></li>
+	          <li><a href="Updating.html" title="Updating Rewired">Updating Rewired</a></li>
+            </ul>
+            <strong>FAQ</strong>
+            <ul>
+            	<li><a href="FAQ.html">See all topics...</a></li>
+            </ul>
+            <strong>Unity Help:</strong>
+            <ul>
+              <li><a href="http://docs.unity3d.com/Manual/" target="_blank">Unity Manual</a></li>
+              <li><a href="http://docs.unity3d.com/ScriptReference/" target="_blank">Unity Script Reference</a></li>
+              <li><a href="http://unity3d.com/learn/tutorials/modules" target="_blank">Unity Tutorials</a></li>
+            </ul>
+            <strong>Links:</strong>
+            <ul>
+              <li><a href="http://guavaman.com/projects/rewired">Rewired Website</a></li>
+              <li><a href="http://guavaman.com/projects/rewired/docs">Web Documentation</a></li>
+            </ul>
+        </div>
+        
+    
+    	<div class="main-body">
+	        <div class="logo"><a href="http://guavaman.com/projects/rewired" title="Rewired"><img src="files/images/rewired-logo.png" width="173" height="139" alt="Rewired" /></a></div>
+                     
+            <h1>
+            <!-- InstanceBeginEditable name="PageHeader" -->Player Controllers<!-- InstanceEndEditable -->
+            </h1>
+            
+			<!-- InstanceBeginEditable name="MainBody" -->
+
+    <p><strong><a href="#overview">Overview</a></strong></p>
+<p><strong><a href="#controllers">Controllers</a></strong></p>
+    <ul>
+      <li><a href="#player-controller">Player Controller</a></li>
+      <li><a href="#player-mouse">Player Mouse</a></li>
+    </ul>
+    <p>&nbsp;</p>
+<hr />
+    <h2><a name="overview" id="overview"></a>Overview</h2>
+    <p>A Player Controller is a form of a controller that uses a Player's Actions as the source of input for element values. Essentially, it is a controller-shaped interface for a Rewired Player. Player Controllers were primarily developed for the Player Mouse which can be used to easily create a virtual mouse pointer which can be used to interact with Unity UI using any underlying controller type. Regardless, a Player Controller could  be used for any purpose you want.</p>
+    <p>Player Controllers are not equivalent to other Rewired Controllers and do not perform the same function. They do not exist unless you instantiate them, they cannot be mapped with Controller Maps, their bindings can't be saved and loaded, etc. They exist completely separately from all other Controllers in Rewired, and they are completely managed from creation to destruction by you.</p>
+    <p>To illustrate the relationship between a Player Controller's element values and the underlying Player, take for example, a Player Controller with 2 axes and 1 button. These elements could be mapped as follows:</p>
+    <ul>
+      <li>X Axis = Player 0, &quot;Move Horizontal&quot;</li>
+      <li>Y Axis = Player 0, &quot;Move Vertical&quot;</li>
+      <li>Button 1 = Player 0, &quot;Fire&quot;</li>
+    </ul>
+    <p>When you get the value of &quot;Button 1&quot; from the Player Controller, it is equivalent to calling player.GetButton(&quot;Fire&quot;) on Player 0.</p>
+    <p>Player Controller elements may modify the values received from the Player  and output a processed value. For example, for a Player Mouse, you would normally want the X and Y axes to return relative delta values like a real mouse. The Player Mouse's axes can transform absolute axis input coming from a Player into a relative delta value so the consumer of the input can be written to simply expect mouse delta values.</p>
+    <p>Do not confuse Player Controllers with <a href="CustomControllers.html">Custom Controllers</a>. They do not serve the same purpose.</p>
+    <p>&nbsp;</p>
+<hr />
+<h2><a name="controllers" id="controllers"></a>Controllers</h2>
+<h3><a name="player-controller" id="player-controller"></a>Player Controller</h3>
+<p>Player Controller is a controller that uses Player Actions as the input sources for controller elements. Player Controller can be created with any number of axes and buttons and may be configured however you like.</p>
+<p>A Player Controller uses a single Player as the source of input for its elements. Each element must have an Action assigned to it in order for it to return input values.</p>
+<p><strong>Creating</strong></p>
+<p>You can create a Player Controller in two ways:</p>
+<ul>
+  <li>Add the Player Controller component to a GameObject and configure settings in the inspector.</li>
+  <li>Instantiate a PlayerController via scripting:</li>
+  </ul>
+<pre class="code"><span class="comment">// Create definition object to pass in values when creating the Player Controller</span>
+PlayerController.Definition definition = new PlayerController.Definition() {
+    playerId = 0 <span class="comment">// set the owning Player</span>
+};
+
+<span class="comment">// Create a list of elements you want in the Player Controller</span>
+definition.elements = new List&lt;PlayerController.Element.Definition&gt;() {
+    <span class="comment">// Create an Axis 2D called "Stick" and assign "Horizontal" and "Vertical" to the two axes.</span>
+    new PlayerController.Axis2D.Definition() {
+        name = "Stick",
+        xAxis = new PlayerController.Axis.Definition() {
+            actionName = "Horizontal"
+        },
+        yAxis = new PlayerController.Axis.Definition() {
+            actionName = "Vertical"
+        }
+    },
+    <span class="comment">// Create a Button called "Button 1" and assign "Fire".</span>
+    new PlayerController.Button.Definition() {
+        name = "Button 1",
+        actionName = "Fire"
+    }
+};
+
+<span class="comment">// Create the Player Controller</span>
+PlayerController playerController = PlayerController.Factory.Create(definition);
+
+<span class="comment">// ... use the controller</span>
+</pre>
+<p><strong><a name="player-controller-inspector-options" id="player-controller-inspector-options"></a>Inspector Options</strong></p>
+<p><img src="files/images/playercontrollers_playercontroller_inspector.png" alt="Touch Controller Inspector" /></p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="22%" valign="top"><strong>General Options</strong></td>
+    <td width="78%" valign="top"><p>&nbsp;</p></td>
+  </tr>
+  <tr>
+    <td valign="top">Rewired Input Manager</td>
+    <td valign="top">(Optional) Link the Rewired Input Manager here for easier access to Action ids, Player ids, etc.</td>
+  </tr>
+  <tr>
+    <td valign="top">&nbsp;</td>
+    <td valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>Properties</strong></td>
+    <td valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top">Player Id / Player</td>
+    <td valign="top">The Player  used for the source of input.</td>
+  </tr>
+  <tr>
+    <td valign="top">&nbsp;</td>
+    <td valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>Elements</strong></td>
+    <td valign="top">The elements that will be created in the controller.</td>
+  </tr>
+  <tr>
+    <td valign="top">&nbsp;</td>
+    <td valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>Events</strong></td>
+    <td valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top">On Button State Changed</td>
+    <td valign="top">Triggered the first frame the button is pressed or released.</td>
+  </tr>
+  <tr>
+    <td valign="top">On Axis Value Changed</td>
+    <td valign="top">Triggered when the axis value changes.</td>
+  </tr>
+  <tr>
+    <td valign="top">On Enabled State Changed</td>
+    <td valign="top">Triggered when the controller is enabled or disabled.</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<hr />
+<h3><a name="player-mouse" id="player-mouse"></a>Player Mouse</h3>
+<p>A Player Mouse is a type of <a href="#player-controller">Player Controller</a>. In addition to the features of Player Controller, Player Mouse also tracks a screen position which can be used to drive a software mouse pointer. The default setup's axes output delta values  regardless of the underlying input source for those axes, so a Player Mouse can be used in scripts that were written expecting mouse input, but the actual input can come from a joystick or the keyboard for example.</p>
+<p><strong>Creating</strong></p>
+<p>You can create a Player Mouse in two ways:</p>
+<ul>
+  <li>Add the Player Mouse component to a GameObject and configure settings in the inspector.</li>
+  <li>Instantiate a PlayerMouse via scripting:</li>
+</ul>
+<pre class="code"><span class="comment">// Create the Player Mouse with the default elements and options</span>
+PlayerMouse mouse = PlayerMouse.Factory.Create();
+<span class="comment">
+// Set the owner</span>
+mouse.playerId = playerId;
+
+<span class="comment">// Set up Actions for each axis and button</span>
+mouse.xAxis.actionName = horizontalAction;
+mouse.yAxis.actionName = verticalAction;
+mouse.wheel.yAxis.actionName = wheelAction;
+mouse.leftButton.actionName = leftButtonAction;
+mouse.rightButton.actionName = rightButtonAction;
+mouse.middleButton.actionName = middleButtonAction;
+
+<span class="comment">// ... use the mouse</span></pre>
+<p><strong>Element Actions</strong></p>
+<p>Actions are used to provide value to each controller element.</p>
+<p>You must create Actions in the Rewired Input Manager for each of mouse elements you want to use. It doesn't matter what these Actions are named, but each Player Mouse element must be assigned an Action from which it will draw its value. As per standard Rewired practice, the you must assign these Actions to Controller Maps of various types and assign those to the Player in order for them to be used.</p>
+<p>For example, if you want to control the mouse pointer with the physical mouse, you will need to create a Mouse Map with at least the Left Button assigned to your Action, then assign that Mouse Map to your Player. (The X and Y axis values will be taken from the physical mouse's screen position if Use Hardware Pointer Position is enabled and the Player has the physical mouse assigned to it -- player.controllers.hasMouse == true.) </p>
+<p>If you want to control the mouse pointer with a gamepad, you will need to create a Joystick Map with  the Actions assigned to at least the Left Stick X/Y and some buttons. That Joysick Map needs to be assigned to the same Player that owns the Player Mouse.</p>
+<p>In both cases, you must assign the Actions that you want to control the Player Mouse's X, Y, Wheel axes and Left, Right, and Middle buttons in the Elements fields in the inspector or via scripting after instantiating the Player Mouse.</p>
+<p>If this sounds confusing, study the <a href="#player-mouse-inspector-options">Player Controller inspector</a> above looking at the Elements section. See how the X axis is assigned the Action &quot;Horizontal&quot; and the Y axis is assigned the Action &quot;Vertical&quot;. This means the value of the X axis comes from the Player's &quot;Horizontal&quot; Action and the value of the Y axis comes from the Player's &quot;Vertical&quot; Action. It's exactly the equvalent of this:</p>
+<ul>
+  <li>Player Mouse X = player0.GetAxis(&quot;Horizontal&quot;);</li>
+  <li>Player Mouse Y = player0.GetAxis(&quot;Vertical&quot;);</li>
+</ul>
+<p><strong>Displaying a Pointer</strong></p>
+<p>The Player Mouse does not include a pointer. It is up to you to provide a pointer of the type you choose and set it up to be driven by the Player Mouse's screen position. The most common way to do this would be to use the OnScreenPositionChangedEvent in the inspector and link it to a script on your pointer which takes the screen position and moves the object. (You can also use the equivalent event in scripting to achieve the same thing.)</p>
+<p>An example of how to position a Sprite pointer:</p>
+<pre class="code">public void OnScreenPositionChanged(Vector2 screenPosition) {
+    Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(screenPosition.x, screenPosition.y, distanceFromCamera));
+    pointer.transform.position = worldPos;
+}</pre>
+<p>An example of how to position the pointer on a Unity UI Canvas:</p>
+<pre class="code">public void OnScreenPositionChanged(Vector2 screenPosition) {
+    RectTransform canvasRectTransform = transform.root.GetComponentInChildren&lt;Canvas&gt;().GetComponent&lt;RectTransform&gt;();
+    Rect rootCanvasRect = canvasRectTransform.rect;
+    Vector2 viewportPos = Camera.main.ScreenToViewportPoint(screenPosition);
+    viewportPos.x = (viewportPos.x * rootCanvasRect.width) - canvasRectTransform.pivot.x * rootCanvasRect.width;
+    viewportPos.y = (viewportPos.y * rootCanvasRect.height) - canvasRectTransform.pivot.y * rootCanvasRect.height;
+    (transform as RectTransform).anchoredPosition = viewportPos;
+}</pre>
+<p><strong>Enabling and Disabling</strong></p>
+<p>When the Player Mouse component or GameObject is disabled, the Player Mouse will no longer return any values or trigger any events. You can use the OnEnabledStateChanged event to enable and disable the target pointer by simply enabling and disabling the Player Mouse.</p>
+<p><strong>Examples</strong></p>
+<ul>
+  <li><a href="Examples.html#player-mouse-sprite">Player Mouse Sprite</a></li>
+  <li><a href="Examples.html#player-mouse-unity-ui">Player Mouse Unity UI</a></li>
+</ul>
+<p><strong><a name="player-mouse-inspector-options" id="player-mouse-inspector-options"></a>Inspector Options</strong></p>
+<p><img src="files/images/playercontrollers_playermouse_inspector.png" alt="Touch Controller Inspector" /></p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="22%" valign="top"><strong>General Options</strong></td>
+    <td width="78%" valign="top"><p>&nbsp;</p></td>
+  </tr>
+  <tr>
+    <td valign="top">Rewired Input Manager</td>
+    <td valign="top">(Optional) Link the Rewired Input Manager here for easier access to Action ids, Player ids, etc.</td>
+  </tr>
+  <tr>
+    <td valign="top">&nbsp;</td>
+    <td valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>Properties</strong></td>
+    <td valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top">Player Id / Player</td>
+    <td valign="top">The Player  used for the source of input.</td>
+  </tr>
+  <tr>
+    <td valign="top">Pointer Speed</td>
+    <td valign="top">The pointer speed. This does not affect the speed of input from the mouse x/y axes if useHardwarePointerPosition is enabled. It only affects the speed from input sources other than mouse x/y or if mouse x/y are mapped to Actions assigned to Axes.</td>
+  </tr>
+  <tr>
+    <td valign="top">Movement Area</td>
+    <td valign="top">The allowed movement area for the mouse pointer. 
+  Set Movement Area Unit to determine the data format of this value.
+  This rect is a screen-space rect with 0, 0 at the lower-left corner.</td>
+  </tr>
+  <tr>
+    <td valign="top">Movement Area Unit</td>
+    <td valign="top">The unit format of the movement area. This is used to determine the data format of Movement Area.</td>
+  </tr>
+  <tr>
+    <td valign="top">Use Hardware Pointer Position</td>
+    <td valign="top">If enabled, the hardware pointer position will be used for mouse input. Otherwise, the position of the pointer will be calculated only from the Axis Action values. The Player that owns this Player Mouse must have the physical mouse assigned to it in order for the hardware position to be used, ex: player.controllers.hasMouse == true.</td>
+  </tr>
+  <tr>
+    <td valign="top"><p>Default To Center</p></td>
+    <td valign="top">  If enabled, the screen position will default to the center of the allowed movement area. Otherwise, it will default to the lower-left corner of the allowed movement area.</td>
+  </tr>
+  <tr>
+    <td valign="top">&nbsp;</td>
+    <td valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>Elements</strong></td>
+    <td valign="top">The elements that will be created in the controller.</td>
+  </tr>
+  <tr>
+    <td valign="top">&nbsp;</td>
+    <td valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>Events</strong></td>
+    <td valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top">On Button State Changed</td>
+    <td valign="top">Triggered the first frame the button is pressed or released.</td>
+  </tr>
+  <tr>
+    <td valign="top">On Axis Value Changed</td>
+    <td valign="top">Triggered when the axis value changes.</td>
+  </tr>
+  <tr>
+    <td valign="top">On Enabled State Changed</td>
+    <td valign="top">Triggered when the controller is enabled or disabled.</td>
+  </tr>
+  <tr>
+    <td valign="top">On Screen Position Changed</td>
+    <td valign="top">Triggers when the screen position changes.  Link this to your pointer to drive its position.</td>
+  </tr>
+</table>
+<div class="bottom-pager clearfix">
+  <a class="back-button" href="Actions.html" title="Actions"><span class="button-img"></span></a><a class="back-button" href="Documentation.html" title="Actions">Documentation</a></div>
+<!-- InstanceEndEditable -->
+        </div>
+        
+    </div>
+  <div class="footer clearfix">
+   	<p class="left">Copyright &copy;2014-2016 <a href="http://guavaman.com" title="Guavaman Enterprises">Guavaman Enterprises</a>. All rights reserved. No materials may be reproduced without permission.</p>
+  	<p class="right"><a href="http://guavaman.com/projects/rewired" title="Return to Rewired Website">Return to Rewired Website</a></p>
+  </div>
+  <!-- end .content --></div>
+  <!-- end .container --></div>
+  
+  
+</body>
+<!-- InstanceEnd --></html>

@@ -258,23 +258,29 @@ a.forward-button .button-img {
   font-size: 80%;
 }
 
-.supported-controllers-table .yes {
+.yes,
+.native,
+.semi-native {
   color: #008800;
 }
 
-.supported-controllers-table .no {
+.unity-input {
+  color: #667;
+}
+
+.no {
   color: #aa0000;
 }
 
-.supported-controllers-table .maybe {
+.maybe {
   color: #aa00aa;
 }
 
-.supported-controllers-table .partial {
+.partial {
   color: #777;
 }
 
-.supported-controllers-table .note {
+.note {
   color: #777;
   font-size: 80%;
 }
@@ -308,6 +314,10 @@ a.forward-button .button-img {
 
 .supported-controllers-table .template-icon-racing-wheel {
     background-image: url("../images/icon-template-racing-wheel.png");
+}
+
+.supported-controllers-table .template-icon-6-dof-controller {
+    background-image: url("../images/icon-template-6-dof-controller.png");
 }
 
 .question:before {

@@ -81,7 +81,8 @@
               <li><a href="Controllers.html">Controllers</a></li>
               <li><a href="ControllerMaps.html">Controller Maps</a></li>
               <li><a href="MapCategories.html">Map Categories</a></li>
-              <li><a href="ControllerMaps.html"></a><a href="Layouts.html">Layouts</a></li>
+              <li><a href="Layouts.html">Layouts</a></li>
+              <li><a href="ControllerTemplates.html">Controller Templates</a></li>
               <li><a href="CustomControllers.html">Custom Controllers</a></li>
             </ul>
             <strong>Extras:</strong>
@@ -94,6 +95,7 @@
             <strong>Misc:</strong>
             <ul>
 	          <li><a href="ComponentControls.html" title="Component Controls">Component Controls</a></li>
+	          <li><a href="PlayerControllers.html" title="Player Controllers">Player Controllers</a></li>
 	          <li><a href="InputMapper.html" title="Input Mapper">Input Mapper</a></li>
 	          <li><a href="UserDataStore.html" title="User Data Store">User Data Store</a></li>
             </ul>
@@ -173,15 +175,15 @@
   </tr>
   <tr>
     <td valign="top">Update</td>
-    <td valign="top">Updates input only in the Update loop. If you try to get input from the FixedUpdate loop, you will miss some input data. Ex: GetButtonDown and GetKeyDown will not always return correctly. (Required)</td>
+    <td valign="top">Updates input in the Update loop. If you try to get input from the FixedUpdate loop, you will miss some input data. Ex: GetButtonDown and GetKeyDown will not always return correctly. (Required)</td>
   </tr>
   <tr>
     <td valign="top">FixedUpdate</td>
-    <td valign="top"><p>Updates input only in the FixedUpdate loop. If you try to get input from the Update loop, you will miss some input data. Ex: GetButtonDown and GetKeyDown will not always return correctly.</p></td>
+    <td valign="top"><p>Updates input in the FixedUpdate loop. If you try to get input from the Update loop, you will miss some input data. Ex: GetButtonDown and GetKeyDown will not always return correctly.</p></td>
   </tr>
   <tr>
     <td valign="top">OnGUI</td>
-    <td valign="top"><p>Updates input only in the OnGUI loop. Only necessary if you need GetButtonDown to work within the Unity GUI.</p>
+    <td valign="top"><p>Updates input in the OnGUI loop. Only necessary if you need GetButtonDown to work within the Unity GUI.</p>
       <p>WARNING: Enabling this will cause a 300-500 byte memory allocation per frame due to the way OnGUI works. This will contribute to garbage collection overhead.</p></td>
   </tr>
   <tr>
@@ -245,7 +247,7 @@
       <p>(Only available when Input Source is set to Raw Input or Direct Input.)</p></td>
   </tr>
   <tr>
-    <td valign="top">Enhanced Device Support</td>
+    <td valign="top"><a name="settings-windows-enhanced-device-support" id="settings-windows-enhanced-device-support"></a>Enhanced Device Support</td>
     <td valign="top"><p>Enable low-level enhanced support for certain devices. If enhanced support is available for a particular device, this will enable device-specific features such as vibration / force feedback, lights, gyroscopes, accelerometers, touchpads, etc.</p>
       <p>(Only available when Input Source is set to Raw Input.)</p></td>
   </tr>
@@ -261,7 +263,7 @@
       <p>Unity Input - Use Unity fallback input. </p></td>
   </tr>
   <tr>
-    <td valign="top">Enhanced Device Support</td>
+    <td valign="top"><a name="settings-osx-enhanced-device-support" id="settings-osx-enhanced-device-support"></a>Enhanced Device Support</td>
     <td valign="top"><p>Enable low-level enhanced support for certain devices. If enhanced support is available for a particular device, this will enable device-specific features such as vibration / force feedback, lights, gyroscopes, accelerometers, touchpads, etc.</p>
       <p>(Only available when Input Source is set to Native.)</p></td>
   </tr>
@@ -297,11 +299,15 @@
       <p>(Only available when Input Source is set to Native.)</p></td>
   </tr>
   <tr>
+    <td valign="top">&nbsp;</td>
+    <td valign="top">&nbsp;</td>
+  </tr>
+  <tr>
     <td valign="top"><strong><a name="settings-android" id="settings-android"></a>Android:</strong></td>
     <td valign="top">&nbsp;</td>
   </tr>
   <tr>
-    <td valign="top">Support Unknown Gamepads</td>
+    <td valign="top"><a name="settings-android-support-unknown-gamepads" id="settings-android-support-unknown-gamepads"></a>Support Unknown Gamepads</td>
     <td valign="top"><p>Treat all unrecognized controllers as gamepads using the standardized Android gamepad layout. All recognized controllers will be treated normally.</p>
       <p>Warning: While most Android gamepads conform to this layout, there are exceptions. Addtionally, with this option enabled, all unrecognized non-gamepad joystick devices used will be limited to only the set of elements available on a gamepad. If your game needs to support devices other than Android gamepads, disable this option.</p>
       <p>This option only applies to the Android platform.</p></td>
@@ -328,7 +334,7 @@
   </tr>
   <tr>
     <td valign="top">Assign Joysticks by PS4 Joy Id</td>
-    <td valign="top">If this option is enabled, joysticks will be assigned to Rewired Players based on the PS4 joystick id assigned by the system. This option ensures that the PS4 joystick id will match to the Rewired Player when auto-assigned. This option overrides some other joystick auto-assignment settings. Only one joystick will be assigned per Player.</td>
+    <td valign="top">If this option is enabled, joysticks will be assigned to Rewired Players based on the PS4 joystick id assigned by the system. This option ensures that the PS4 joystick id will match to the Rewired Player when auto-assigned. This option overrides some other joystick auto-assignment settings. More than one joystick will be assigned to a Player if multiple joysticks are found for that PS4 player id.</td>
   </tr>
   <tr>
     <td valign="top"><strong>Each Platform:</strong></td>
@@ -388,12 +394,37 @@
       <p>This setting only applies to joysticks on recognized controllers.</p></td>
   </tr>
   <tr>
+    <td valign="top"><a name="settings-activate-action-buttons-on-negative-value" id="settings-activate-action-buttons-on-negative-value"></a>Activate Action Buttons on Negative Value</td>
+    <td valign="top">Determines how button values are calculated by Player Actions. If enabled, Actions with either a negative or positive Axis value will return True when queried with player.GetButton. If disabled, Actions with a negative Axis value will always return False when queried with player.GetButton, and must be queried with player.GetNegativeButton.</td>
+  </tr>
+  <tr>
     <td valign="top">Force 4-Way Hats</td>
     <td valign="top">Force all 8-way hats on recognized joysticks to be treated as 4-way hats. If enabled, the corner directions on all hats will activate the adjacent 2 cardinal direction buttons instead of the corner button. This is useful if you need joystick hats to behave like D-Pads instead of 8-way hats.</td>
   </tr>
   <tr>
+    <td valign="top">Throttle Calibration Mode</td>
+    <td valign="top">Determines how throttles on recognized controllers are calibrated. By default, throttles are calibrated for a range of 0 to +1. This is suitable for most flight and racing games. Some games may require a range of -1 to +1 such as space flight games where a negative value denotes a reverse thrust. Changing this setting will revert all throttle calibrations to the default values for the chosen calibration mode.</td>
+  </tr>
+  <tr>
     <td valign="top"><a name="settings-defer-controller-connected-events-on-start" id="settings-defer-controller-connected-events-on-start"></a>Defer Controller Connected Events On Start</td>
     <td valign="top">Defer controller connected events for controllers already connected when Rewired initializes until the Start event instead of during initialization. Normally, it's impossible to receive controller connection events at the start of runtime because Rewired initializes before any other script is able to subscribe to the controller connected event. Enabling this will defer the controller connected events until the Start event, allowing your scripts to subscribe to the controller connected event in Awake and still receive the event callback. If disabled, controller connection events for controllers already connected before runtime starts will be missed.</td>
+  </tr>
+  <tr>
+    <td valign="top">Logging</td>
+    <td valign="top">Determines the level of internal logging.</td>
+  </tr>
+  <tr>
+    <td valign="top">&nbsp;</td>
+    <td valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top"><strong><a name="settings-editor-settings" id="settings-editor-settings"></a>Editor Settings:</strong></td>
+    <td valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top"><a name="settings-editor-settings-allow-input-in-editor-scene-views" id="settings-editor-settings-allow-input-in-editor-scene-views"></a>Allow Input in Editor Scene Views</td>
+    <td valign="top"><p>If enabled, input will be allowed when any Scene View has focus. This option will have no effect when native input is not used as the input source for a device.</p>
+      <p>Note: Due to the limitated information available from the Unity Editor about the current state of focus, when this option is enabled, input will still be processed when the Unity Editor is not in focus on OSX and Linux.</p></td>
   </tr>
  </table>
 <p>&nbsp;</p>
@@ -488,6 +519,23 @@
     <td valign="top"> Name of the class that will contain the Button constants. Only valid C# class name characters are allowed. This class name must be unique.</td>
   </tr>
 </table>
+<p>&nbsp;</p>
+<p><strong>Data Management:</strong></p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td valign="top">Import Data</td>
+    <td valign="top">Import data from a file. Imported data can replace or be merged with existing data.</td>
+  </tr>
+  <tr>
+    <td width="19%" valign="top">Export Data</td>
+    <td width="81%" valign="top">Export all data to a file.</td>
+  </tr>
+  <tr>
+    <td valign="top">Compact Ids</td>
+    <td valign="top">This  renumbers all id's so they start at 0 and have no gaps.</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
 <hr />
 <h3><a name="Players" id="Players"></a>Players</h3>
 <p><img src="files/images/rewirededitor_players.png" alt="Players" /></p>
@@ -606,8 +654,8 @@
     <td valign="top">The behavior that determines the final processed axis and button values of this action.</td>
   </tr>
   <tr>
-    <td valign="top">User Assignable</td>
-    <td valign="top">Determines whether this action appears in certain lists.</td>
+    <td valign="top">Visible in Lists</td>
+    <td valign="top">Determines whether this action appears in certain lists  such as in a control remapping UI..</td>
   </tr>
 </table>
 <p>&nbsp;</p>
@@ -765,7 +813,7 @@
 <h4><a name="ActionCategories" id="ActionCategories"></a>Action Categories</h4>
 <p><img src="files/images/rewirededitor_actioncategories.png" alt="Action Categories" /></p>
 <p>The Action Categories page allows you to create and edit Action Categories.</p>
-<p>Action Categories can be used to organize your Actions. Action Categories can also be used in user control mapping screens.</p>
+<p>Action Categories can be used to organize your Actions. Action Categories can also be used in a user control mapping UI to display categorized lists of Actions to the user.</p>
 <p><strong>Action Category Properties:</strong></p>
  <table width="100%" border="0" cellpadding="0" cellspacing="0">
   <tr>
@@ -785,8 +833,8 @@
     <td valign="top">Allows you to tag a group of categories and search for categories by tag in scripting.</td>
   </tr>
   <tr>
-    <td valign="top">User Assignable</td>
-    <td valign="top">Determines whether this category appears in certain lists.</td>
+    <td valign="top">Visible in Lists</td>
+    <td valign="top">Determines whether this category appears in certain lists  such as in a control remapping UI.</td>
   </tr>
 </table>
 <p>&nbsp;</p>

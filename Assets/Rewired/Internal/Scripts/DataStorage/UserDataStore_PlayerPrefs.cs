@@ -1,10 +1,10 @@
 ﻿// Copyright (c) 2015 Augie R. Maddox, Guavaman Enterprises. All rights reserved.
 
-#if UNITY_6 || UNITY_2017 || UNITY_2018 || UNITY_2019 || UNITY_2020
-#define UNITY_6_PLUS
+#if UNITY_2017 || UNITY_2018 || UNITY_2019 || UNITY_2020 || UNITY_2021 || UNITY_2022 || UNITY_2023 || UNITY_2024 || UNITY_2025
+#define UNITY_2017_PLUS
 #endif
 
-#if UNITY_5 || UNITY_6_PLUS
+#if UNITY_5 || UNITY_2017_PLUS
 #define UNITY_5_PLUS
 #endif
 
@@ -32,7 +32,7 @@ namespace Rewired.Data {
     public class UserDataStore_PlayerPrefs : UserDataStore {
 
         private const string thisScriptName = "UserDataStore_PlayerPrefs";
-        private const string editorLoadedMessage = "\nIf unexpected input issues occur, the loaded XML data may be outdated or invalid. Clear PlayerPrefs using the inspector option on the UserDataStore_PlayerPrefs component.";
+        private const string editorLoadedMessage = "\n***IMPORTANT:*** Changes made to the Rewired Input Manager configuration after the last time XML data was saved WILL NOT be used because the loaded old saved data has overwritten these values. If you change something in the Rewired Input Manager such as a Joystick Map or Input Behavior settings, you will not see these changes reflected in the current configuration. Clear PlayerPrefs using the inspector option on the UserDataStore_PlayerPrefs component.";
         private const string playerPrefsKeySuffix_controllerAssignments = "ControllerAssignments";
 
 #if UNITY_4_6_PLUS
@@ -206,7 +206,7 @@ namespace Rewired.Data {
             int count = LoadAll();
 
 #if UNITY_EDITOR
-            if(count > 0) Debug.Log("Rewired: " + thisScriptName + " loaded all user data from XML. " + editorLoadedMessage);
+            if(count > 0) Debug.LogWarning("Rewired: " + thisScriptName + " loaded all user data from XML. " + editorLoadedMessage);
 #endif
         }
 
@@ -224,7 +224,7 @@ namespace Rewired.Data {
             int count = LoadControllerDataNow(playerId, controllerType, controllerId);
 
 #if UNITY_EDITOR
-            if(count > 0) Debug.Log("Rewired: " + thisScriptName + " loaded user data for " + controllerType + " " + controllerId + " for Player " + playerId + " from XML. " + editorLoadedMessage);
+            if(count > 0) Debug.LogWarning("Rewired: " + thisScriptName + " loaded user data for " + controllerType + " " + controllerId + " for Player " + playerId + " from XML. " + editorLoadedMessage);
 #endif
         }
 
@@ -241,7 +241,7 @@ namespace Rewired.Data {
             int count = LoadControllerDataNow(controllerType, controllerId);
 
 #if UNITY_EDITOR
-            if(count > 0) Debug.Log("Rewired: " + thisScriptName + " loaded user data for " + controllerType + " " + controllerId + " from XML. " + editorLoadedMessage);
+            if(count > 0) Debug.LogWarning("Rewired: " + thisScriptName + " loaded user data for " + controllerType + " " + controllerId + " from XML. " + editorLoadedMessage);
 #endif
         }
 
@@ -257,7 +257,7 @@ namespace Rewired.Data {
             int count = LoadPlayerDataNow(playerId);
 
 #if UNITY_EDITOR
-            if(count > 0) Debug.Log("Rewired: " + thisScriptName + " loaded Player + " + playerId + " user data from XML. " + editorLoadedMessage);
+            if(count > 0) Debug.LogWarning("Rewired: " + thisScriptName + " loaded Player + " + playerId + " user data from XML. " + editorLoadedMessage);
 #endif
         }
 
@@ -274,7 +274,7 @@ namespace Rewired.Data {
             int count = LoadInputBehaviorNow(playerId, behaviorId);
 
 #if UNITY_EDITOR
-            if(count > 0) Debug.Log("Rewired: " + thisScriptName + " loaded Player + " + playerId + " InputBehavior data from XML. " + editorLoadedMessage);
+            if(count > 0) Debug.LogWarning("Rewired: " + thisScriptName + " loaded Player + " + playerId + " InputBehavior data from XML. " + editorLoadedMessage);
 #endif
         }
 
@@ -315,7 +315,7 @@ namespace Rewired.Data {
             if(args.controllerType == ControllerType.Joystick) {
                 int count = LoadJoystickData(args.controllerId);
 #if UNITY_EDITOR
-                if(count > 0) Debug.Log("Rewired: " + thisScriptName + " loaded Joystick " + args.controllerId + " (" + ReInput.controllers.GetJoystick(args.controllerId).hardwareName + ") data from XML. " + editorLoadedMessage);
+                if(count > 0) Debug.LogWarning("Rewired: " + thisScriptName + " loaded Joystick " + args.controllerId + " (" + ReInput.controllers.GetJoystick(args.controllerId).hardwareName + ") data from XML. " + editorLoadedMessage);
 #endif
 
                 // Load joystick assignments once on connect, but deferred until the end of the frame so all joysticks can connect first.
@@ -324,7 +324,7 @@ namespace Rewired.Data {
                 // Unity starts. Also allows the user to start the game with no joysticks connected and on the first
                 // joystick connected, load the assignments for a better user experience on phones/tablets.
                 // No further joystick assignments will be made on connect.
-                if(loadDataOnStart && loadJoystickAssignments && !wasJoystickEverDetected) {
+                if (loadDataOnStart && loadJoystickAssignments && !wasJoystickEverDetected) {
                     this.StartCoroutine(LoadJoystickAssignmentsDeferred());
                 }
 
@@ -542,7 +542,7 @@ namespace Rewired.Data {
                 }
 
 #if UNITY_EDITOR
-                Debug.Log("Rewired: " + thisScriptName + " loaded controller assignments from PlayerPrefs.");
+                Debug.LogWarning("Rewired: " + thisScriptName + " loaded controller assignments from PlayerPrefs.");
 #endif
             } catch {
 #if UNITY_EDITOR
@@ -707,10 +707,10 @@ namespace Rewired.Data {
             // Load the joystick assignments
             if(LoadJoystickAssignmentsNow(null)) {
 #if UNITY_EDITOR
-                Debug.Log("Rewired: " + thisScriptName + " loaded joystick assignments from PlayerPrefs.");
+                Debug.LogWarning("Rewired: " + thisScriptName + " loaded joystick assignments from PlayerPrefs.");
 #endif
             }
-            
+
             // Save the controller assignments after loading in case anything has been
             // re-assigned to a different Player or a new joystick was connected.
             SaveControllerAssignments();
@@ -840,12 +840,12 @@ namespace Rewired.Data {
         private void SaveControllerMap(Player player, ControllerMapSaveData saveData) {
 
             // Save the Controller Map
-            string key = GetControllerMapPlayerPrefsKey(player, saveData.controller, saveData.categoryId, saveData.layoutId);
+            string key = GetControllerMapPlayerPrefsKey(player, saveData.controller, saveData.categoryId, saveData.layoutId, true);
             PlayerPrefs.SetString(key, saveData.map.ToXmlString()); // save the map to player prefs in XML format
 
             // Save the Action ids list for this Controller Map used to allow new Actions to be added to the
             // Rewired Input Manager and have the new mappings show up when saved data is loaded
-            key = GetControllerMapKnownActionIdsPlayerPrefsKey(player, saveData.controller, saveData.categoryId, saveData.layoutId);
+            key = GetControllerMapKnownActionIdsPlayerPrefsKey(player, saveData.controller, saveData.categoryId, saveData.layoutId, true);
             PlayerPrefs.SetString(key, GetAllActionIdsString());
         }
 
@@ -963,7 +963,7 @@ namespace Rewired.Data {
             return key;
         }
 
-        private string GetControllerMapPlayerPrefsKey(Player player, Controller controller, int categoryId, int layoutId) {
+        private string GetControllerMapPlayerPrefsKey(Player player, Controller controller, int categoryId, int layoutId, bool includeDuplicateIndex) {
             // Create a player prefs key like a web querystring so we can search for player prefs key when loading maps
             string key = GetBasePlayerPrefsKey(player);
             key += "|dataType=ControllerMap";
@@ -972,11 +972,13 @@ namespace Rewired.Data {
             key += "|hardwareIdentifier=" + controller.hardwareIdentifier; // the hardware identifier string helps us identify maps for unknown hardware because it doesn't have a Guid
             if(controller.type == ControllerType.Joystick) { // store special info for joystick maps
                 key += "|hardwareGuid=" + ((Joystick)controller).hardwareTypeGuid.ToString(); // the identifying GUID that determines which known joystick this is
+                // Added in Rewired 1.1.19.0
+                if(includeDuplicateIndex) key += "|duplicate=" + GetDuplicateIndex(player, controller).ToString();
             }
             return key;
         }
 
-        private string GetControllerMapKnownActionIdsPlayerPrefsKey(Player player, Controller controller, int categoryId, int layoutId) {
+        private string GetControllerMapKnownActionIdsPlayerPrefsKey(Player player, Controller controller, int categoryId, int layoutId, bool includeDuplicateIndex) {
             // Create a player prefs key like a web querystring so we can search for player prefs key when loading maps
             string key = GetBasePlayerPrefsKey(player);
             key += "|dataType=ControllerMap_KnownActionIds";
@@ -985,6 +987,8 @@ namespace Rewired.Data {
             key += "|hardwareIdentifier=" + controller.hardwareIdentifier; // the hardware identifier string helps us identify maps for unknown hardware because it doesn't have a Guid
             if(controller.type == ControllerType.Joystick) { // store special info for joystick maps
                 key += "|hardwareGuid=" + ((Joystick)controller).hardwareTypeGuid.ToString(); // the identifying GUID that determines which known joystick this is
+                // Added in Rewired 1.1.19.0
+                if(includeDuplicateIndex) key += "|duplicate=" + GetDuplicateIndex(player, controller).ToString();
             }
             return key;
         }
@@ -1008,17 +1012,30 @@ namespace Rewired.Data {
         }
 
         private string GetControllerMapXml(Player player, Controller controller, int categoryId, int layoutId) {
-            string key = GetControllerMapPlayerPrefsKey(player, controller, categoryId, layoutId);
-            if(!PlayerPrefs.HasKey(key)) return string.Empty; // key does not exist
+            string key;
+            
+            // Must try twice because of new additions in 1.1.19.0 to keep backward compatibility
+            key = GetControllerMapPlayerPrefsKey(player, controller, categoryId, layoutId, true);
+            if(!PlayerPrefs.HasKey(key)) {
+                if(controller.type != ControllerType.Joystick) return string.Empty; // key does not exist
+                // Fall back to old version for data saved before 1.1.19.0
+                key = GetControllerMapPlayerPrefsKey(player, controller, categoryId, layoutId, false);
+                if(!PlayerPrefs.HasKey(key)) return string.Empty; // key does not exist
+            }
             return PlayerPrefs.GetString(key); // return the data
         }
 
         private List<int> GetControllerMapKnownActionIds(Player player, Controller controller, int categoryId, int layoutId) {
             List<int> actionIds = new List<int>();
 
-            string key = GetControllerMapKnownActionIdsPlayerPrefsKey(player, controller, categoryId, layoutId);
-
-            if(!PlayerPrefs.HasKey(key)) return actionIds; // key does not exist
+            // Must try twice because of new additions in 1.1.19.0 to keep backward compatibility
+            string key = GetControllerMapKnownActionIdsPlayerPrefsKey(player, controller, categoryId, layoutId, true);
+            if(!PlayerPrefs.HasKey(key)) {
+                if(controller.type != ControllerType.Joystick) return actionIds; // key does not exist
+                // Fall back to old version for data saved before 1.1.19.0
+                key = GetControllerMapKnownActionIdsPlayerPrefsKey(player, controller, categoryId, layoutId, false);
+                if(!PlayerPrefs.HasKey(key)) return actionIds; // key does not exist
+            }
 
             // Get the data and try to parse it
             string data = PlayerPrefs.GetString(key);
@@ -1178,6 +1195,23 @@ namespace Rewired.Data {
                 }
             }
             return matches != null;
+        }
+
+        private static int GetDuplicateIndex(Player player, Controller controller) {
+            // Determine how many duplicates of this controller are owned by this Player
+            int duplicateCount = 0;
+            foreach(var c in player.controllers.Controllers) {
+                if(c.type != controller.type) continue;
+                bool isRecognized = false;
+                if(controller.type == ControllerType.Joystick) {
+                    if((c as Joystick).hardwareTypeGuid != (controller as Joystick).hardwareTypeGuid) continue;
+                    if((controller as Joystick).hardwareTypeGuid != Guid.Empty) isRecognized = true;
+                }
+                if(!isRecognized && c.hardwareIdentifier != controller.hardwareIdentifier) continue;
+                if(c == controller) return duplicateCount;
+                duplicateCount++;
+            }
+            return duplicateCount;
         }
 
         #endregion
