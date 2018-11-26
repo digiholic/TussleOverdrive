@@ -6,19 +6,42 @@ using UnityEngine;
 public class HitboxLoader : MonoBehaviour {
     public static HitboxLoader loader;
 
+    public Hitbox hitbox_prefab;
+    
     private void Start()
     {
         loader = this;
     }
 
-    public Hitbox hitbox_prefab;
+    public static Hitbox CreateHitbox(GameObject owner, Dictionary<string, string> dict)
+    {
+        GameObject hboxObj = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        hboxObj.name = "Hitbox";
+        Hitbox hbox = hboxObj.AddComponent<Hitbox>();
+        hbox.transform.SetParent(owner.transform);
+
+        Renderer rend = hbox.GetComponent<Renderer>();
+        Material mat = rend.material;
+        mat.SetColor("_Color", new Color(1.0f, 0, 0, 0.5f));
+        StandardShaderUtils.ChangeRenderMode(mat, StandardShaderUtils.BlendMode.Transparent);
+        rend.enabled = false;
+
+        dict.Add("Width", "100");
+        dict.Add("Height", "100");
+        dict.Add("CenterX", "0");
+        dict.Add("CenterY", "20");
+        hbox.LoadValuesFromDict(dict);
+        hbox.SizeToOwner(owner.GetComponent<BattleObject>());
+
+        return hbox;
+    }
 
     public Hitbox LoadHitbox(AbstractFighter owner, GameAction action, Dictionary<string, string> dict)
     {
         Hitbox hbox = Instantiate(hitbox_prefab);
         hbox.owner = owner.battleObject;
         hbox.transform.parent = owner.transform;
-        hbox.LoadValuesFromDict(owner, dict);
+        hbox.LoadValuesFromDict(dict);
 
         //Flip it if the fighter is flipped
         if (owner.GetIntVar("facing") == -1)

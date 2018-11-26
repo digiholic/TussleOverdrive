@@ -222,7 +222,7 @@ public class SubactionLoader : BattleComponent {
                 }
                 if (action.hitboxes.ContainsKey(name))
                 {
-                    action.hitboxes[name].LoadValuesFromDict(actor.GetAbstractFighter(),hbox_dict);
+                    action.hitboxes[name].LoadValuesFromDict(hbox_dict);
                 }
                 break;
             default:

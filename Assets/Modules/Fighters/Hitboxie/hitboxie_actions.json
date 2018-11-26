@@ -13,7 +13,27 @@
                 ],
                 "m_values": [
                     {
-                        "data": []
+                        "data": [
+                            {
+                                "SubactionName": "CreateHitbox",
+                                "subType": 3,
+                                "arguments": {
+                                    "m_keys": [
+                                        "hitboxName"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "hitboxName",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "name",
+                                            "description": "The name of the hitbox to create. If the hitbox already exists for this Action, it will be overwritten with an empty one, so be careful! Each Hitbox should have a unique name."
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
                     }
                 ]
             }
@@ -518,8 +538,34 @@
             "loop": false,
             "exit_action": "",
             "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
+                "m_keys": [
+                    "Set Up"
+                ],
+                "m_values": [
+                    {
+                        "data": [
+                            {
+                                "SubactionName": "CreateHitbox",
+                                "subType": 3,
+                                "arguments": {
+                                    "m_keys": [
+                                        "hitboxName"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "hitboxName",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "jabbox",
+                                            "description": "The name of the hitbox to create. If the hitbox already exists for this Action, it will be overwritten with an empty one, so be careful! Each Hitbox should have a unique name."
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                ]
             }
         },
         {

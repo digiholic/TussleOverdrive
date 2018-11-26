@@ -28,7 +28,7 @@ public class SubactionModifyHitbox : Subaction
         }
         if (name != "" && action.hitboxes.ContainsKey(name))
         {
-            action.hitboxes[name].LoadValuesFromDict(actor.GetAbstractFighter(), hbox_dict);
+            action.hitboxes[name].LoadValuesFromDict(hbox_dict);
         }
     }
 

@@ -6,7 +6,7 @@ using UnityEngine;
 public class Subaction : ScriptableObject
 {
     public string SubactionName;
-    public SerializableDictionary<string, SubactionVarData> arg_dict = new SerializableDictionary<string, SubactionVarData>();
+    public SubVarDict arg_dict = new SubVarDict();
 
     /// <summary>
     /// Executes the subaction

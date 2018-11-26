@@ -7,7 +7,8 @@ using System.Linq;
 public class SubactionFactory {
     public static Subaction GenerateSubactionFromData(SubactionData data)
     {
-        Subaction subaction = ScriptableObject.CreateInstance(data.SubactionName) as Subaction;
+        Subaction subaction = ScriptableObject.CreateInstance("Subaction"+data.SubactionName) as Subaction;
+        subaction.arg_dict = data.arguments;
         return subaction;
     }
 

@@ -30,15 +30,18 @@ public class SubactionCardRig : MonoBehaviour {
             DynamicAction action = LegacyEditorData.instance.currentAction;
             string category = LegacyEditorData.instance.subactionGroup;
             
-            //Create all the new buttons
-            foreach (SubactionData subData in action.subactionCategories.GetIfKeyExists(category))
+            if (action != null)
             {
-                instantiateButton(subData);
-            }
+                //Create all the new buttons
+                foreach (SubactionData subData in action.subactionCategories.GetIfKeyExists(category))
+                {
+                    instantiateButton(subData);
+                }
 
-            //Realign the grid
-            grid.Reposition();
-            dragPanel.ResetPosition();
+                //Realign the grid
+                grid.Reposition();
+                dragPanel.ResetPosition();
+            }
         }
     }
 

@@ -16,7 +16,7 @@ public class SubactionActivateHitbox : Subaction
     public override void Execute(BattleObject obj, GameAction action)
     {
         base.Execute(obj, action);
-        string name = (string)GetArgument("name", obj, action);
+        string name = (string)GetArgument("hitboxName", obj, action);
         int life = (int)GetArgument("life", obj, action, -1);
 
         if (action.hitboxes.ContainsKey(name))

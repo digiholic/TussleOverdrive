@@ -17,9 +17,11 @@ public class SubactionCreateHitbox : Subaction {
     {
         string name = "";
         Dictionary<string, string> hbox_dict = new Dictionary<string, string>();
+        Debug.Log(arg_dict.Count);
         foreach (SubactionVarData data in arg_dict.Values)
         {
-            if (data.name == "name")
+            Debug.Log(data.name);
+            if (data.name == "hitboxName")
                 name = (string)data.GetData(actor, action);
             else
             {
@@ -28,8 +30,11 @@ public class SubactionCreateHitbox : Subaction {
         }
         if (name != "")
         {
-            Hitbox hbox = HitboxLoader.loader.LoadHitbox(actor.GetAbstractFighter(), action, hbox_dict);
+            Debug.Log(HitboxLoader.loader);
+            Hitbox hbox = HitboxLoader.CreateHitbox(actor.gameObject, hbox_dict);
+            //Hitbox hbox = HitboxLoader.loader.LoadHitbox(actor.GetAbstractFighter(), action, hbox_dict);
             action.hitboxes.Add(name, hbox);
+            Debug.Log(hbox);
         }
     }
 

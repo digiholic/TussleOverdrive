@@ -27,6 +27,8 @@ public class Hitbox : MonoBehaviour {
 	void Awake () {
         col = GetComponent<Collider>();
         mesh = GetComponent<MeshRenderer>();
+        Debug.Log("Hitbox Awakens");
+        Debug.Log(mesh);
 	}
 	
     void Start()
@@ -37,8 +39,9 @@ public class Hitbox : MonoBehaviour {
         }
     }
 
-	// Update is called once per frame
-	public void StepFrame () {
+
+    // Update is called once per frame
+    public void StepFrame () {
         if (active)
         {
             //Debug.Log("Checking for hitbox connections");
@@ -59,28 +62,14 @@ public class Hitbox : MonoBehaviour {
         }
 	}
 
-    public void LoadValuesFromDict(AbstractFighter owner, Dictionary<string,string> dict)
+    public void LoadValuesFromDict(Dictionary<string,string> dict)
     {
-        //Set the centerpoint
-        if (dict.ContainsKey("center"))
-        {
-            string[] center = dict["center"].Split(',');
-            centerx = int.Parse(center[0]);
-            centery = int.Parse(center[1]);
-        }
-        //Set the size
-        if (dict.ContainsKey("size"))
-        {
-            string[] size = dict["size"].Split(',');
-            width = int.Parse(size[0]);
-            height = int.Parse(size[1]);
-        }
-
-        float scale = owner.GetComponent<SpriteHandler>().pixelsPerUnit;
-        //float scale = 50;
-        transform.localPosition = new Vector3(centerx / scale, centery / scale, 0.0f);
-        transform.localScale = new Vector3(width / scale, height / scale, 1.0f);
-
+        centerx = int.Parse(dict["CenterX"]);
+        centery = int.Parse(dict["CenterY"]);
+        
+        width = int.Parse(dict["Width"]);
+        height = int.Parse(dict["Height"]);
+        
         //The all-important lock name
         if (dict.ContainsKey("lock_name"))
             lock_name = dict["lock_name"];
@@ -94,17 +83,27 @@ public class Hitbox : MonoBehaviour {
             knockback_growth = float.Parse(dict["knockback_growth"]);
         if (dict.ContainsKey("trajectory"))
             trajectory = int.Parse(dict["trajectory"]);
-        
+
+        if (owner != null)
+            SizeToOwner(owner);
+    }
+
+    public void SizeToOwner(BattleObject obj)
+    {
+        float scale = obj.GetComponent<SpriteHandler>().pixelsPerUnit;
+        //float scale = 50;
+        transform.localPosition = new Vector3(centerx / scale, centery / scale, -0.1f);
+        transform.localScale = new Vector3(width / scale, height / scale, 1.0f);
     }
 
     public void Activate(int life = -1)
     {
         _life = life;
         active = true;
-        if (FindObjectOfType<Settings>().display_hitboxes)
-        {
+        //if (FindObjectOfType<Settings>().display_hitboxes)
+        //{
             mesh.enabled = true;
-        }
+        //}
         
     }
 
@@ -142,7 +141,8 @@ public class Hitbox : MonoBehaviour {
 
     void OnDestroy()
     {
-        BattleController.current_battle.UnregisterHitbox(this);
+        if (BattleController.current_battle != null)
+            BattleController.current_battle.UnregisterHitbox(this);
     }
 }
 
