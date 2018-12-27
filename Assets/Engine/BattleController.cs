@@ -13,7 +13,7 @@ public class BattleController : MonoBehaviour {
     private List<AbstractFighter> fighters = new List<AbstractFighter>();
     private List<Hitbox> hitboxes = new List<Hitbox>();
     public bool UpdateOnFrame;
-    
+
     // Use this for initialization
     void Start()
     {
@@ -78,7 +78,7 @@ public class BattleController : MonoBehaviour {
         if (fighter != null)
         {
             fighters.Add(fighter);
-            fighterDict.Add(fighter.player_num, fighter);
+            fighterDict.Add(fighter.GetIntVar(TussleConstants.FighterVariableNames.PLAYER_NUM), fighter);
             SendMessage("LoadFighterIcons"); //Reload icons when a new fighter is added
         }
     }

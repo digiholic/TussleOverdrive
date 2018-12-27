@@ -51,7 +51,7 @@ public class EnvironmentCollider : BattleComponent {
         checkCollisions = true;
         if (!Physics.Raycast(transform.position, -Vector3.up, yDist + 0.3f)) //If we're way off base
         {
-            SetVar("grounded", false);
+            SetVar(TussleConstants.FighterVariableNames.IS_GROUNDED, false);
         }
     }
 
@@ -61,8 +61,8 @@ public class EnvironmentCollider : BattleComponent {
         Vector3 leftPos = new Vector3(pos.x - xDist, pos.y, pos.z);
         Vector3 rightPos = new Vector3(pos.x + xDist, pos.y, pos.z);
 
-        SetVar("grounded", false);
-        if (controller.isGrounded) SetVar("grounded", true);
+        SetVar(TussleConstants.FighterVariableNames.IS_GROUNDED, false);
+        if (controller.isGrounded) SetVar(TussleConstants.FighterVariableNames.IS_GROUNDED, true);
         else
         {
             RaycastHit rayHit;
@@ -75,9 +75,9 @@ public class EnvironmentCollider : BattleComponent {
                     {
                         if (slopeHit.collider.gameObject.GetComponent<Platform>() != null)
                         {
-                            if (battleObject.GetYSpeed() <= 0.0f) //If we're going down
+                            if (GetFloatVar(TussleConstants.MotionVariableNames.YSPEED) <= 0.0f) //If we're going down
                             {
-                                SetVar("grounded", true);
+                                SetVar(TussleConstants.FighterVariableNames.IS_GROUNDED, true);
                                 transform.position = new Vector3(rayHit.point.x, rayHit.point.y + controller.height / 2, rayHit.point.z);
                             }
                         }
@@ -86,9 +86,9 @@ public class EnvironmentCollider : BattleComponent {
                     {
                         if (slopeHit.collider.gameObject.GetComponent<Platform>() != null)
                         {
-                            if (battleObject.GetYSpeed() <= 0.0f) //If we're going down
+                            if (GetFloatVar(TussleConstants.MotionVariableNames.YSPEED) <= 0.0f) //If we're going down
                             {
-                                SetVar("grounded", true);
+                                SetVar(TussleConstants.FighterVariableNames.IS_GROUNDED, true);
                                 transform.position = new Vector3(rayHit.point.x, rayHit.point.y + controller.height / 2, rayHit.point.z);
                             }
                         }
@@ -125,7 +125,7 @@ public class EnvironmentCollider : BattleComponent {
                     //rigid.velocity = reflectAngle * GetFloatVar("elasticity");
                 }
             }
-            else if (GetBoolVar("grounded"))
+            else if (GetBoolVar(TussleConstants.FighterVariableNames.IS_GROUNDED))
             {
                 if (col.transform.eulerAngles.z < 41 || col.transform.eulerAngles.z > 319) //TODO un-hardcode this number
                 {
@@ -139,7 +139,7 @@ public class EnvironmentCollider : BattleComponent {
     void OnCollisionExit(Collision col)
     {
         //Reset back to vertical if you leave the ground
-        if (!GetBoolVar("grounded"))
+        if (!GetBoolVar(TussleConstants.FighterVariableNames.IS_GROUNDED))
         {
             Vector3 rot = transform.eulerAngles;
             transform.eulerAngles = new Vector3(rot.x, rot.y, 0);
@@ -154,19 +154,17 @@ public class EnvironmentCollider : BattleComponent {
 
         if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Terrain"))
         {
-            MotionHandler mot = battleObject.GetMotionHandler();
-            if (GetFloatVar("elasticity") > 0.0f)
+            if (GetFloatVar(TussleConstants.FighterVariableNames.ELASTICITY) > 0.0f)
             {
                 battleObject.SendMessage("WallBounce", hit);
             }
-            else if (GetBoolVar("grounded"))
+            else if (GetBoolVar(TussleConstants.FighterVariableNames.IS_GROUNDED))
             {
-
                 if (hit.transform.eulerAngles.z < 41 || hit.transform.eulerAngles.z > 319) //TODO un-hardcode this number
                 {
 
                     float angle = hit.transform.eulerAngles.z;
-                    if (GetIntVar("facing") < 0)
+                    if (GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION) < 0)
                         angle = 360.0f - angle;
                     SendMessage("SetRotation", angle);
                 }

@@ -69,49 +69,49 @@ public class SubactionLoader : BattleComponent {
                  *      changes the xSpeed, ySpeed, xPreferred, yPreferred speeds. If set to null, value will remain the same
                  */
                 if (args[1] != "_")
-                    actor.GetMotionHandler().ChangeXSpeed(float.Parse(args[1]));
+                    actor.SendMessage("ChangeXSpeed", float.Parse(args[1]));
                 if (args[2] != "_")
-                    actor.GetMotionHandler().ChangeYSpeed(float.Parse(args[2]));
+                    actor.SendMessage("ChangeYSpeed", float.Parse(args[2]));
                 if (args[3] != "_")
-                    actor.GetMotionHandler().ChangeXPreferred(float.Parse(args[3]));
+                    actor.SendMessage("ChangeXPreferred", float.Parse(args[3]));
                 if (args[4] != "_")
-                    actor.GetMotionHandler().ChangeYPreferred(float.Parse(args[4]));
+                    actor.SendMessage("ChangeYPreferred", float.Parse(args[4]));
                 break;
             case "ChangeXSpeed":
                 /* changeXSpeed x:float rel:bool
                  *      changes the xSpeed of the fighter
                  */
                 if (args.Length > 2)
-                    actor.GetMotionHandler().ChangeXSpeedBy(float.Parse(args[1]) * actor.GetIntVar("facing"));
+                    actor.SendMessage("ChangeXSpeedBy", float.Parse(args[1]) * actor.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION));
                 else
-                    actor.GetMotionHandler().ChangeXSpeed(float.Parse(args[1]) * actor.GetIntVar("facing"));
+                    actor.SendMessage("ChangeXSpeed", float.Parse(args[1]) * actor.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION));
                 break;
             case "ChangeYSpeed":
                 /* changeYSpeed y:float rel:bool
                  *      changes the ySpeed of the fighter
                  */
                 if (args.Length > 2)
-                    actor.GetMotionHandler().ChangeYSpeedBy(float.Parse(args[1]));
+                    actor.SendMessage("ChangeYSpeedBy", float.Parse(args[1]));
                 else
-                    actor.GetMotionHandler().ChangeYSpeed(float.Parse(args[1]));
+                    actor.SendMessage("ChangeYSpeed", float.Parse(args[1]));
                 break;
             case "ChangeXPreferred":
                 /* changeXPreferred x:float rel:bool
                  *      changes the preferred xSpeed of the fighter
                  */
                 if (args.Length > 2)
-                    actor.GetMotionHandler().ChangeXPreferredBy(float.Parse(args[1]) * actor.GetIntVar("facing"));
+                    actor.SendMessage("ChangeXPreferredBy", float.Parse(args[1]) * actor.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION));
                 else
-                    actor.GetMotionHandler().ChangeXPreferred(float.Parse(args[1]) * actor.GetIntVar("facing"));
+                    actor.SendMessage("ChangeXPreferred", float.Parse(args[1]) * actor.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION));
                 break;
             case "ChangeYPreferred":
                 /* changeXPreferred y:float rel:bool
                  *      changes the yPreferred of the fighter
                  */
                 if (args.Length > 2)
-                    actor.GetMotionHandler().ChangeYPreferredBy(float.Parse(args[1]) * actor.GetIntVar("facing"));
+                    actor.SendMessage("ChangeYPreferredBy", float.Parse(args[1]));
                 else
-                    actor.GetMotionHandler().ChangeYPreferred(float.Parse(args[1]) * actor.GetIntVar("facing"));
+                    actor.SendMessage("ChangeYPreferred", float.Parse(args[1]));
                 break;
             case "ShiftPosition":
                 /* shiftPosition x:float|0 y:float|0 relative:bool|true

@@ -15,7 +15,7 @@ public class SubactionRotate : Subaction {
     {
         base.Execute(actor, action);
         float degrees = (float) GetArgument("degrees", actor, action);
-        actor.GetSpriteHandler().RotateSprite(degrees);
+        actor.SendMessage("RotateSprite", degrees);
     }
 
     public override SubactionType getSubactionType()

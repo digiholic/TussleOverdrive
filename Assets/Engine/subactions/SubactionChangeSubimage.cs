@@ -13,7 +13,7 @@ public class SubactionChangeSubimage : Subaction {
     public override void Execute(BattleObject obj, GameAction action)
     {
         int subimage = (int) GetArgument("subimage", obj, action);
-        obj.GetSpriteHandler().ChangeSubimage(subimage);
+        obj.SendMessage("ChangeSubimage", subimage);
     }
 
     public override SubactionType getSubactionType()

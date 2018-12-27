@@ -3,13 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
+[RequireComponent(typeof(BattleObject))]
 public class BattleComponent : MonoBehaviour {
     public BattleObject battleObject;
+    public string BattleComponentType;
 
 	// Use this for initialization
-	void Awake () {
+	void Awake() {
         battleObject = GetComponent<BattleObject>();
 	}
+
+    public string ToJson(bool prettyPrint = false)
+    {
+        PrintDebug(this, 3, JsonUtility.ToJson(this, true));
+        return JsonUtility.ToJson(this, prettyPrint);
+    }
+
+    public void PrintDebug(object callingObject, int debugLevel, string message)
+    {
+        getBattleObject().PrintDebug(callingObject, debugLevel, message);
+    }
 
     public virtual void ManualUpdate()
     {
@@ -18,12 +31,12 @@ public class BattleComponent : MonoBehaviour {
 
     public void SetVar(string var_name, object obj)
     {
-        battleObject.SetVar(var_name, obj);
+        getBattleObject().SetVar(var_name, obj);
     }
 
     public bool HasVar(string var_name)
     {
-        return battleObject.HasVar(var_name);
+        return getBattleObject().HasVar(var_name);
     }
 
     /// <summary>
@@ -33,26 +46,36 @@ public class BattleComponent : MonoBehaviour {
     /// <returns>The variable from the dict as an object</returns>
     public object GetVar(string var_name)
     {
-        return battleObject.GetVar(var_name);
+        return getBattleObject().GetVarData(var_name);
     }
 
     public int GetIntVar(string var_name)
     {
-        return battleObject.GetIntVar(var_name);
+        return getBattleObject().GetIntVar(var_name);
     }
 
     public float GetFloatVar(string var_name)
     {
-        return battleObject.GetFloatVar(var_name);
+        return getBattleObject().GetFloatVar(var_name);
     }
 
     public bool GetBoolVar(string var_name)
     {
-        return battleObject.GetBoolVar(var_name);
+        return getBattleObject().GetBoolVar(var_name);
     }
 
     public string GetStringVar(string var_name)
     {
-        return battleObject.GetStringVar(var_name);
+        return getBattleObject().GetStringVar(var_name);
     }
+
+    protected BattleObject getBattleObject()
+    {
+        if (battleObject == null)
+        {
+            battleObject = GetComponent<BattleObject>();
+        }
+        return battleObject;
+    }
+
 }

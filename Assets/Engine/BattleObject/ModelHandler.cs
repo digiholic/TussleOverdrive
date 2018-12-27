@@ -14,4 +14,9 @@ public class ModelHandler : BattleComponent {
 	void Update () {
 		
 	}
+
+    void flip()
+    {
+        transform.Rotate(transform.rotation.x, 180, transform.rotation.z);
+    }
 }

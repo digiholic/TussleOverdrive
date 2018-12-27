@@ -13,7 +13,7 @@ public class Stop : GameAction {
         if (isInBuilder) return;
         //Debug.Log("StopAction Created");
         //Overrides given length if the pivot grip won't allow it
-        int num_frames = Mathf.FloorToInt((actor.GetMotionHandler().XSpeed * actor.GetIntVar("facing")) / actor.GetFloatVar(TussleConstants.FighterAttributes.PIVOT_GRIP)/10);
+        int num_frames = Mathf.FloorToInt((actor.GetFloatVar(TussleConstants.MotionVariableNames.XSPEED) * actor.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION)) / actor.GetFloatVar(TussleConstants.FighterAttributes.PIVOT_GRIP)/10);
         if (num_frames < last_frame)
             current_frame = Mathf.Min(last_frame - num_frames, last_frame - 1);
         else
@@ -33,7 +33,7 @@ public class Stop : GameAction {
         if (isInBuilder) return;
 
         actor.BroadcastMessage("ChangeXPreferred", 0.0f);
-        actor.GetMotionHandler().accel(actor.GetFloatVar(TussleConstants.FighterAttributes.PIVOT_GRIP));
+        actor.SendMessage("accel",actor.GetFloatVar(TussleConstants.FighterAttributes.PIVOT_GRIP));
     }
 
     public override void stateTransitions()

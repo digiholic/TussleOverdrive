@@ -13,8 +13,8 @@ public class Pivot : GameAction {
         base.SetUp(obj);
         //These classes will be phased out as time goes on. Until then, we need to just exit early if we're in the builder since these don't actually use Subactions
         if (isInBuilder) return;
-        SetVar("direction", actor.GetIntVar("facing"));
-        int num_frames = Mathf.FloorToInt((actor.GetMotionHandler().XSpeed * actor.GetIntVar("facing")) / actor.GetFloatVar(TussleConstants.FighterAttributes.PIVOT_GRIP));
+        SetVar("direction", actor.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION));
+        int num_frames = Mathf.FloorToInt((actor.GetFloatVar(TussleConstants.MotionVariableNames.XSPEED) * actor.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION)) / actor.GetFloatVar(TussleConstants.FighterAttributes.PIVOT_GRIP));
         SetVar("num_frames", num_frames);
         //If the pivot grip would have us with a shorter amount than the length shows it should be
         //then we need to start partway through the pivot
@@ -30,8 +30,8 @@ public class Pivot : GameAction {
         //These classes will be phased out as time goes on. Until then, we need to just exit early if we're in the builder since these don't actually use Subactions
         if (isInBuilder) return;
         if (new_action.HasVar("direction"))
-            PassVariable("direction", GetIntVar("direction") * actor.GetIntVar("facing"));
-        else if (actor.GetIntVar("facing") != GetIntVar("direction"))
+            PassVariable("direction", GetIntVar("direction") * actor.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION));
+        else if (actor.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION) != GetIntVar("direction"))
             actor.BroadcastMessage("flip");
     }
 
@@ -83,6 +83,6 @@ public class Pivot : GameAction {
         //_actor.accel(_actor.stats['static_grip'])
         //else:
         actor.SendMessage("ChangeXPreferred", 0.0f);
-        actor.GetMotionHandler().accel(actor.GetFloatVar(TussleConstants.FighterAttributes.PIVOT_GRIP));
+        actor.SendMessage("accel", actor.GetFloatVar(TussleConstants.FighterAttributes.PIVOT_GRIP));
     }
 }

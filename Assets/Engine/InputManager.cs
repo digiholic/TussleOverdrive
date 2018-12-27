@@ -309,7 +309,7 @@ public static class InputTypeUtil
 {
     public static string GetForward(BattleObject actor)
     {
-        if (actor.GetIntVar("facing") == 1) //facing right
+        if (actor.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION) == 1) //facing right
             return "Right";
         else
             return "Left";
@@ -317,7 +317,7 @@ public static class InputTypeUtil
 
     public static string GetBackward(BattleObject actor)
     {
-        if (actor.GetIntVar("facing") == 1) //facing right
+        if (actor.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION) == 1) //facing right
             return "Left";
         else
             return "Right";
@@ -325,7 +325,7 @@ public static class InputTypeUtil
     /*
     public static InputType GetForwardSmash(BattleObject actor)
     {
-        if (actor.GetIntVar("facing") == 1) //facing right
+        if (actor.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION) == 1) //facing right
             return InputType.RightSmash;
         else
             return InputType.LeftSmash;
@@ -333,7 +333,7 @@ public static class InputTypeUtil
 
     public static InputType GetBackwardSmash(BattleObject actor)
     {
-        if (actor.GetIntVar("facing") == 1) //facing right
+        if (actor.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION) == 1) //facing right
             return InputType.LeftSmash;
         else
             return InputType.RightSmash;

@@ -38,7 +38,7 @@ public class Crouch : GameAction {
         base.Update();
         //These classes will be phased out as time goes on. Until then, we need to just exit early if we're in the builder since these don't actually use Subactions
         if (isInBuilder) return;
-        actor.GetMotionHandler().accel(actor.GetFloatVar(TussleConstants.FighterAttributes.PIVOT_GRIP));
+        actor.SendMessage("accel", actor.GetFloatVar(TussleConstants.FighterAttributes.PIVOT_GRIP));
         //TODO crawl action
         //actor.BroadcastMessage("ChangeXPreferred", actor.GetAbstractFighter().GetControllerAxis("Horizontal") * actor.GetFloatVar(TussleConstants.FighterAttributes.CRAWL_SPEED));
 

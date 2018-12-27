@@ -7,18 +7,16 @@ public class MotionHandler : BattleComponent {
     private CharacterController _charController;
     //private Rigidbody rigid;
 
-    public float XSpeed { get; private set; }
-    public float YSpeed { get; private set; }
-
-    public float XPreferred { get; private set; }
-    public float YPreferred { get; private set; }
-
-
     public float gravity;
     public float max_fall_speed;
     
     // Use this for initialization
     void Start () {
+        SetVar(TussleConstants.MotionVariableNames.XSPEED, 0f);
+        SetVar(TussleConstants.MotionVariableNames.YSPEED, 0f);
+        SetVar(TussleConstants.MotionVariableNames.XPREF, 0f);
+        SetVar(TussleConstants.MotionVariableNames.YPREF, 0f);
+
         _charController = GetComponent<CharacterController>();
         //rigid = GetComponent<Rigidbody>();
         if (_charController == null)
@@ -29,16 +27,16 @@ public class MotionHandler : BattleComponent {
 
     // Update is called once per frame
     public override void ManualUpdate () {
-        //if (_charController.isGrounded) SetVar("grounded", true);
-        //else SetVar("grounded",false);
+        //if (_charController.isGrounded) SetVar(TussleConstants.FighterVariableNames.IS_GROUNDED, true);
+        //else SetVar(TussleConstants.FighterVariableNames.IS_GROUNDED,false);
     }
 
     public void ExecuteMovement()
     {
         Vector3 movement = new Vector3(0, 0, 0);
-        movement.y = YSpeed;
-        movement.x = XSpeed;
-
+        movement.x = GetFloatVar(TussleConstants.MotionVariableNames.XSPEED);
+        movement.y = GetFloatVar(TussleConstants.MotionVariableNames.YSPEED);
+        
         movement *= Time.deltaTime;
         _charController.Move(movement);
         
@@ -50,8 +48,8 @@ public class MotionHandler : BattleComponent {
     void Update()
     {
         Vector3 movement = new Vector3(0, 0, 0);
-        movement.y = YSpeed;
-        movement.x = XSpeed;
+        movement.x = GetFloatVar(TussleConstants.MotionVariableNames.XSPEED);
+        movement.y = GetFloatVar(TussleConstants.MotionVariableNames.YSPEED);
         movement *= Time.deltaTime;
         Debug.DrawRay(transform.position, movement * 10);
 
@@ -63,7 +61,7 @@ public class MotionHandler : BattleComponent {
     /// <param name="_xSpeed">The speed to set X to</param>
     public void ChangeXSpeed(float _xSpeed)
     {
-        XSpeed = _xSpeed;
+        SetVar(TussleConstants.MotionVariableNames.XSPEED, _xSpeed);
     }
 
     /// <summary>
@@ -72,7 +70,8 @@ public class MotionHandler : BattleComponent {
     /// <param name="_xSpeed">The value to change X Speed By</param>
     public void ChangeXSpeedBy(float _xSpeed)
     {
-        XSpeed += _xSpeed;
+        float xSpeed = GetFloatVar(TussleConstants.MotionVariableNames.XSPEED);
+        SetVar(TussleConstants.MotionVariableNames.XSPEED, xSpeed + _xSpeed);
     }
 
     /// <summary>
@@ -81,7 +80,7 @@ public class MotionHandler : BattleComponent {
     /// <param name="_ySpeed">The speed to set Y to</param>
     public void ChangeYSpeed(float _ySpeed)
     {
-        YSpeed = _ySpeed;
+        SetVar(TussleConstants.MotionVariableNames.YSPEED, _ySpeed);
     }
 
     /// <summary>
@@ -90,7 +89,8 @@ public class MotionHandler : BattleComponent {
     /// <param name="_ySpeed">The value to change Y Speed By</param>
     public void ChangeYSpeedBy(float _ySpeed)
     {
-        YSpeed += _ySpeed;
+        float ySpeed = GetFloatVar(TussleConstants.MotionVariableNames.YSPEED);
+        SetVar(TussleConstants.MotionVariableNames.YSPEED, ySpeed + _ySpeed);
     }
 
     /// <summary>
@@ -120,7 +120,7 @@ public class MotionHandler : BattleComponent {
     /// <param name="_xPreferred">The Preferred to set X to</param>
     public void ChangeXPreferred(float _xPreferred)
     {
-        XPreferred = _xPreferred;
+        SetVar(TussleConstants.MotionVariableNames.XPREF, _xPreferred);
     }
 
     /// <summary>
@@ -129,7 +129,8 @@ public class MotionHandler : BattleComponent {
     /// <param name="_xPreferred">The value to change X Preferred By</param>
     public void ChangeXPreferredBy(float _xPreferred)
     {
-        XPreferred += _xPreferred;
+        float xpref = GetFloatVar(TussleConstants.MotionVariableNames.XPREF);
+        SetVar(TussleConstants.MotionVariableNames.XSPEED, xpref + _xPreferred);
     }
 
     /// <summary>
@@ -138,7 +139,7 @@ public class MotionHandler : BattleComponent {
     /// <param name="_yPreferred">The Preferred to set Y to</param>
     public void ChangeYPreferred(float _yPreferred)
     {
-        YPreferred = _yPreferred;
+        SetVar(TussleConstants.MotionVariableNames.YPREF, _yPreferred);
     }
 
     /// <summary>
@@ -147,7 +148,8 @@ public class MotionHandler : BattleComponent {
     /// <param name="_yPreferred">The value to change Y Preferred By</param>
     public void ChangeYPreferredBy(float _yPreferred)
     {
-        YPreferred += _yPreferred;
+        float ypref = GetFloatVar(TussleConstants.MotionVariableNames.YPREF);
+        SetVar(TussleConstants.MotionVariableNames.XSPEED, ypref + _yPreferred);
     }
 
     /// <summary>
@@ -173,6 +175,9 @@ public class MotionHandler : BattleComponent {
 
     public void accel(float _xFactor)
     {
+        float XSpeed = GetFloatVar(TussleConstants.MotionVariableNames.XSPEED);
+        float XPreferred = GetFloatVar(TussleConstants.MotionVariableNames.XPREF);
+
         if (XSpeed > XPreferred)
         {
             float diff = XSpeed - XPreferred;
@@ -183,6 +188,7 @@ public class MotionHandler : BattleComponent {
             float diff = XPreferred - XSpeed;
             XSpeed += Mathf.Min(diff, _xFactor);
         }
+        ChangeXSpeed(XSpeed);
     }
 
     /// <summary>
@@ -197,13 +203,27 @@ public class MotionHandler : BattleComponent {
     public void CalcGrav(float gravity, float max_fall_speed)
     {
         ChangeYSpeedBy(gravity * 5 * Time.deltaTime);
-        if (YSpeed < max_fall_speed)
+        if (GetFloatVar(TussleConstants.MotionVariableNames.YSPEED) < max_fall_speed)
         {
             ChangeYSpeed(max_fall_speed);
         }
     }
 
-    public Vector2 GetDirectionMagnitude()
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.gameObject.layer == LayerMask.NameToLayer("Terrain"))
+        {
+            
+        }
+        
+    }
+
+    public static Vector2 GetDirectionMagnitude(BattleObject actor)
+    {
+        return GetDirectionMagnitude(actor.GetFloatVar(TussleConstants.MotionVariableNames.XSPEED), actor.GetFloatVar(TussleConstants.MotionVariableNames.YSPEED));
+    }
+
+    public static Vector2 GetDirectionMagnitude(float XSpeed,float YSpeed)
     {
         float magnitude;
         float direction;
@@ -223,25 +243,20 @@ public class MotionHandler : BattleComponent {
             else
                 direction = 0;
         }
-        direction = Mathf.Atan2(YSpeed,XSpeed) * Mathf.Rad2Deg;
+
+        direction = Mathf.Atan2(YSpeed, XSpeed) * Mathf.Rad2Deg;
         direction = Mathf.Round(direction);
         magnitude = new Vector2(XSpeed, YSpeed).magnitude;
 
         Vector2 retVec = new Vector2(direction, magnitude);
         return retVec;
     }
-    
+
     public Vector3 GetMotionVector()
     {
-        return new Vector3(XSpeed, YSpeed, 0.0f);
-    }
+        float XSpeed = GetFloatVar(TussleConstants.MotionVariableNames.XSPEED);
+        float YSpeed = GetFloatVar(TussleConstants.MotionVariableNames.YSPEED);
 
-    void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        if (hit.gameObject.layer == LayerMask.NameToLayer("Terrain"))
-        {
-            
-        }
-        
+        return new Vector3(XSpeed, YSpeed, 0.0f);
     }
 }

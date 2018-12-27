@@ -72,8 +72,8 @@ public class SubactionVarData
 
     /// <summary>
     /// Sets the fighter or action variable that this data corresponds to to a given value.
-    /// For example, if this SubactionVarData is meant to get the "facing" variable from fighter, you could use
-    /// this function on it and pass it a value to set "facing" to the given value.
+    /// For example, if this SubactionVarData is meant to get the TussleConstants.FighterVariableNames.FACING_DIRECTION variable from fighter, you could use
+    /// this function on it and pass it a value to set TussleConstants.FighterVariableNames.FACING_DIRECTION to the given value.
     /// 
     /// If called on a "constant" SubactionVarData, this function does nothing.
     /// </summary>

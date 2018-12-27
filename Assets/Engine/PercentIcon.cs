@@ -23,6 +23,6 @@ public class PercentIcon : MonoBehaviour {
         textComponent.text = damage.ToString() + "%";
         float r = Mathf.Min(1.0f, damage / 300.0f);
         textComponent.color = new Color(1.0f, 1.0f - r, 1.0f - r);
-        iconBg.color = Settings.current_settings.player_colors[fighter.player_num];
+        iconBg.color = Settings.current_settings.player_colors[fighter.GetIntVar(TussleConstants.FighterVariableNames.PLAYER_NUM)];
     }
 }

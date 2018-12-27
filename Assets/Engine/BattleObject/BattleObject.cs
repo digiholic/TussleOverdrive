@@ -22,7 +22,6 @@ public class BattleObject : MonoBehaviour
     /// </summary>
     public int DebugLevel = 2;
 
-
     /* Each component has a public accessor that will route commands to the right objects for the purposes of reading data,
      * but most methods should be called via the BroadcastMessage function, so that it could potentially hit multiple Components.
      */
@@ -37,24 +36,31 @@ public class BattleObject : MonoBehaviour
     private SpriteHandler spriteHandler;
     private InputBuffer inputBuffer;
 
-    public Dictionary<string, object> variable = new Dictionary<string, object>();
+    private List<BattleComponent> components;
+
+    [SerializeField,HideInInspector]
+    private List<string> componentsAsJson;
+
+    public Dictionary<string, BattleObjectVarData> variables = new Dictionary<string, BattleObjectVarData>();
     private Dictionary<string, AnchorPoint> anchor_points = new Dictionary<string, AnchorPoint>();
 
     public GameObject hurtboxObject;
     public GameObject spriteObject;
 
-    //These are used only when serializing the main object
-    [SerializeField,HideInInspector]
-    private string abstractFighterJSON, actionHandlerJSON, environmentColliderJSON, hitboxLoaderJSON, hurtboxLoaderJSON, modelHandlerJSON, motionHandlerJSON, platformJSON, spriteHandlerJSON = "";
-    
     // Use this for initialization
     void Awake()
     {
-        LoadComponents();
+        components = new List<BattleComponent>(gameObject.GetComponents<BattleComponent>());
     }
+    
     public void LoadComponents()
     {
+        components = new List<BattleComponent>(gameObject.GetComponents<BattleComponent>());
+
         abstractFighter = GetComponent<AbstractFighter>();
+        inputBuffer = GetComponent<InputBuffer>();
+
+        /*
         actionHandler = GetComponent<ActionHandler>();
         environmentCollider = GetComponent<EnvironmentCollider>();
         hitboxLoader = GetComponent<HitboxLoader>();
@@ -63,8 +69,9 @@ public class BattleObject : MonoBehaviour
         motionHandler = GetComponent<MotionHandler>();
         platform = GetComponent<Platform>();
         spriteHandler = GetComponent<SpriteHandler>();
-        inputBuffer = GetComponent<InputBuffer>();
+        */
     }
+
     public void Start()
     {
         SetVar("StopFrames", 0);
@@ -76,24 +83,11 @@ public class BattleObject : MonoBehaviour
 
     public string ToJson(bool prettyPrint = false)
     {
-        if (abstractFighter != null)
-            abstractFighterJSON = JsonUtility.ToJson(abstractFighter);
-        if (actionHandler != null)
-            actionHandlerJSON = JsonUtility.ToJson(actionHandler);
-        if (environmentCollider != null)
-            environmentColliderJSON = JsonUtility.ToJson(environmentCollider);
-        if (hitboxLoader != null)
-            hitboxLoaderJSON = JsonUtility.ToJson(hitboxLoader);
-        if (hurtboxLoader != null)
-            hurtboxLoaderJSON = JsonUtility.ToJson(hurtboxLoader);
-        if (modelHandler != null)
-            modelHandlerJSON = JsonUtility.ToJson(modelHandler);
-        if (motionHandler != null)
-            motionHandlerJSON = JsonUtility.ToJson(motionHandler);
-        if (platform != null)
-            platformJSON = JsonUtility.ToJson(platform);
-        if (spriteHandler != null)
-            spriteHandlerJSON = JsonUtility.ToJson(spriteHandler);
+        componentsAsJson = new List<string>();
+        foreach (BattleComponent comp in components)
+        {
+            componentsAsJson.Add(comp.ToJson(prettyPrint));
+        }
         PrintDebug(this, 2, JsonUtility.ToJson(this, true));
         return JsonUtility.ToJson(this,prettyPrint);
     }
@@ -101,17 +95,34 @@ public class BattleObject : MonoBehaviour
     public void FromJson(string JSONObject)
     {
         JsonUtility.FromJsonOverwrite(JSONObject, this);
-        if (abstractFighterJSON != "")
+        foreach (string compJSON in componentsAsJson)
         {
-            if (GetComponent<AbstractFighter>() == null)
-                abstractFighter = gameObject.AddComponent<AbstractFighter>();
-            JsonUtility.FromJsonOverwrite(abstractFighterJSON, abstractFighter);
+            BattleComponent comp = JsonUtility.FromJson<BattleComponent>(compJSON);
+            AddComponent(comp.BattleComponentType, compJSON);
         }
-        if (actionHandlerJSON != "")
+    }
+    
+    public void AddComponent(string componentType, string componentJSON)
+    {
+        switch (componentType)
         {
-            if (GetComponent<ActionHandler>() == null)
-                actionHandler = gameObject.AddComponent<ActionHandler>();
-            JsonUtility.FromJsonOverwrite(actionHandlerJSON, actionHandler);
+            case "AbstractFighter":
+                AbstractFighter abstractFighter = GetComponent<AbstractFighter>();
+                if (abstractFighter == null)
+                    abstractFighter = gameObject.AddComponent<AbstractFighter>();
+                JsonUtility.FromJsonOverwrite(componentJSON, abstractFighter);
+                break;
+            case "ActionHandler":
+                ActionHandler actionHandler = GetComponent<ActionHandler>();
+                if (actionHandler == null)
+                    actionHandler = gameObject.AddComponent<ActionHandler>();
+                JsonUtility.FromJsonOverwrite(componentJSON, actionHandler);
+                break;
+            default:
+                PrintDebug(this, 1, "Battle Component of Unrecognized type in JSON: " + componentType);
+                BattleComponent comp = gameObject.AddComponent<BattleComponent>();
+                JsonUtility.FromJsonOverwrite(componentJSON, comp);
+                break;
         }
     }
 
@@ -128,12 +139,7 @@ public class BattleObject : MonoBehaviour
         SendMessage("ManualUpdate");
 
         //Motion must be done after all of the components resolve.
-        if (motionHandler != null) motionHandler.ExecuteMovement();
-    }
-
-    public void Update()
-    {
-            
+        SendMessage("ExecuteMovement");
     }
 
     /// <summary>
@@ -163,15 +169,32 @@ public class BattleObject : MonoBehaviour
         }
         return ret;
     }
+    //Initialize the variable if it's not set yet, then return it
+    public BattleObjectVarData GetVar(string var_name)
+    {
+        if (!HasVar(var_name))
+        {
+            Debug.Log("Attempting to get variable without setting one: " + var_name);
+            SetVar(var_name, null);
+        }
+        return variables[var_name];
+    }
+
 
     public void SetVar(string var_name, object obj)
     {
-        variable[var_name] = obj;
+        if (HasVar(var_name))
+        {
+            variables[var_name].SetData(obj);
+        } else
+        {
+            variables[var_name] = new BattleObjectVarData(var_name,obj);
+        }
     }
 
     public bool HasVar(string var_name)
     {
-        if (variable.ContainsKey(var_name))
+        if (variables.ContainsKey(var_name))
             return true;
         else
             return false;
@@ -182,161 +205,44 @@ public class BattleObject : MonoBehaviour
     /// </summary>
     /// <param name="var_name">The name of the variable to pull</param>
     /// <returns>The variable from the dict as an object</returns>
-    public object GetVar(string var_name)
+    public object GetVarData(string var_name)
     {
-        if (variable.ContainsKey(var_name))
-        {
-            return variable[var_name];
-        }
-        else
-        {
-            Debug.LogWarning("Could not find variable " + var_name + " in BattleObject " + this.ToString());
-            return null;
-        }
+        return GetVar(var_name).GetData();
+    }
+
+    public AbstractFighter GetAbstractFighter()
+    {
+        if (abstractFighter == null)
+            abstractFighter = GetComponent<AbstractFighter>();
+        return abstractFighter;
+    }
+
+    public InputBuffer GetInputBuffer()
+    {
+        if (inputBuffer == null)
+            inputBuffer = GetComponent<InputBuffer>();
+        return inputBuffer;
     }
 
     public int GetIntVar(string var_name)
     {
-        object val = GetVar(var_name);
-        if (val is string)
-            return int.Parse((string) val);
-        else
-            return (int)val;
+        return GetVar(var_name).GetIntData();
     }
 
     public float GetFloatVar(string var_name)
     {
-        object val = GetVar(var_name);
-        if (val is string)
-            return float.Parse((string)val);
-        else
-            return (float)val;
+        return GetVar(var_name).GetFloatData();
     }
 
     public bool GetBoolVar(string var_name)
     {
-        object val = GetVar(var_name);
-        if (val is string)
-            return bool.Parse((string)val);
-        else
-            return (bool)val;
+        return GetVar(var_name).GetBoolData();
     }
 
     public string GetStringVar(string var_name)
     {
-        return GetVar(var_name).ToString();
+        return GetVar(var_name).GetStringData();
     }
-
-    /// <summary>
-    /// Gets the AbstractFighter component of the object.
-    /// </summary>
-    /// <returns>The Abstract Fighter component of the Object</returns>
-    public AbstractFighter GetAbstractFighter()
-    {
-        return abstractFighter;
-    }
-
-    /// <summary>
-    /// Gets the Action Handler component of the object.
-    /// </summary>
-    /// <returns>The Action Handler component of the Object</returns>
-    public ActionHandler GetActionHandler()
-    {
-        return actionHandler;
-    }
-
-    /// <summary>
-    /// Gets the EnvironmentCollider component of the object.
-    /// </summary>
-    /// <returns>The Environment Collider component of the Object</returns>
-    public EnvironmentCollider GetEnvironmentCollider()
-    {
-        return environmentCollider;
-    }
-
-    /// <summary>
-    /// Gets the HitboxLoader component of the object.
-    /// </summary>
-    /// <returns>The Hitbox Loader component of the Object</returns>
-    public HitboxLoader GetHitboxLoader()
-    {
-        return hitboxLoader;
-    }
-
-    /// <summary>
-    /// Gets the HurtboxLoader component of the object.
-    /// </summary>
-    /// <returns>The Hurtbox Loader component of the Object</returns>
-    public HurtboxLoader GetHurtboxLoader()
-    {
-        return hurtboxLoader;
-    }
-
-    /// <summary>
-    /// Gets the ModelHandler component of the object.
-    /// </summary>
-    /// <returns>The Model Handler component of the Object</returns>
-    public ModelHandler GetModelHandler()
-    {
-        return modelHandler;
-    }
-
-    /// <summary>
-    /// Gets the Motion Handler component of the object.
-    /// </summary>
-    /// <returns>The Motion Handler component of the Object</returns>
-    public MotionHandler GetMotionHandler()
-    {
-        return motionHandler;
-    }
-
-    /// <summary>
-    /// Gets the Platform component of the object.
-    /// </summary>
-    /// <returns>The Platform component of the Object</returns>
-    public Platform GetPlatform()
-    {
-        return platform;
-    }
-
-    /// <summary>
-    /// Gets the SpriteHandler component of the object.
-    /// </summary>
-    /// <returns>The Sprite Handler component of the Object</returns>
-    public SpriteHandler GetSpriteHandler()
-    {
-        return spriteHandler;
-    }
-
-    /// <summary>
-    /// Gets the InputBuffer component of the object.
-    /// </summary>
-    /// <returns>The InputBuffer component of the object</returns>
-    public InputBuffer GetInputBuffer()
-    {
-        return inputBuffer;
-    }
-
-    /// <summary>
-    /// Shortcut to get the x speed from the motion handler
-    /// </summary>
-    /// <returns></returns>
-    public float GetXSpeed()
-    {
-        if (motionHandler) return motionHandler.XSpeed;
-        return 0.0f;
-    }
-
-    /// <summary>
-    /// Shortcut to get the y speed from the motion handler
-    /// </summary>
-    /// <returns></returns>
-    public float GetYSpeed()
-    {
-        if (motionHandler) return motionHandler.YSpeed;
-        return 0.0f;
-    }
-
 
     public AnchorPoint GetAnchorPoint(string name)
     {

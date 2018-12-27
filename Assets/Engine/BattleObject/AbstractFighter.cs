@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Profiling;
 
 [System.Serializable]
+[RequireComponent(typeof(ActionHandler),typeof(InputBuffer))]
 public class AbstractFighter : BattleComponent {
     public static Dictionary<string, object> DefaultStats = new Dictionary<string, object>
     {
@@ -35,15 +36,17 @@ public class AbstractFighter : BattleComponent {
         {TussleConstants.FighterAttributes.WAVEDASH_LAG, 12 }
     };
 
-    public int player_num = 0;
-
     [HideInInspector]
     public float ground_elasticity = 0.0f, damage_percent = 0;
-    
+
+    public int player_num = 0;
+
     private FighterInfo fighter_info;
     private SpriteHandler sprite_loader;
     private Animator anim;
     private InputBuffer inputBuffer;
+    //FIXME: maybe this action handler reference isn't needed? It's only used for setting vars
+    private ActionHandler actionHandler;
     private PlatformPhase platform_phaser;
     private AudioSource sound_player;
     private Dictionary<string, AudioClip> sounds = new Dictionary<string, AudioClip>();
@@ -90,7 +93,8 @@ public class AbstractFighter : BattleComponent {
     /// </summary>
     private void LoadComponents()
     {
-        inputBuffer = battleObject.GetInputBuffer();
+        inputBuffer = GetComponent<InputBuffer>();
+        actionHandler = GetComponent<ActionHandler>();
 
         platform_phaser = GetComponent<PlatformPhase>();
         if (platform_phaser == null)
@@ -104,13 +108,15 @@ public class AbstractFighter : BattleComponent {
 
     void SetVariables()
     {
-        SetVar(TussleConstants.FighterAttributes.JUMPS, 0);
-        SetVar("facing", 1);
-        SetVar("landing_lag", 0);
-        SetVar("tech_window", 0);
-        SetVar("air_dodges", 1);
-        SetVar("grounded", false);
-        SetVar("elasticity", 0.0f);
+        SetVar(TussleConstants.FighterVariableNames.PLAYER_NUM, player_num);
+
+        SetVar(TussleConstants.FighterVariableNames.JUMPS_REMAINING, 0);
+        SetVar(TussleConstants.FighterVariableNames.FACING_DIRECTION, 1);
+        SetVar(TussleConstants.FighterVariableNames.LANDING_LAG, 0);
+        SetVar(TussleConstants.FighterVariableNames.TECH_WINDOW, 0);
+        SetVar(TussleConstants.FighterVariableNames.AIR_DODGES_REMAINING, 1);
+        SetVar(TussleConstants.FighterVariableNames.IS_GROUNDED, false);
+        SetVar(TussleConstants.FighterVariableNames.ELASTICITY, 0.0f);
 
         //Change variables according to Settings
         Settings settings = Settings.current_settings;
@@ -120,13 +126,16 @@ public class AbstractFighter : BattleComponent {
         SetVar(TussleConstants.FighterAttributes.AIR_CONTROL, GetFloatVar(TussleConstants.FighterAttributes.AIR_CONTROL) * settings.aircontrol_ratio);
     }
 
-    void Start() {
+    private void Awake()
+    {
         LoadComponents();
         LoadInfo();
         SetVariables();
-        
-        SetVar("facing", 1);
+    }
 
+    void Start() {
+        SetVar(TussleConstants.FighterVariableNames.FACING_DIRECTION, 1);
+        
         SendMessage("ChangeYSpeed", 0f);
         Rest();
 
@@ -151,23 +160,21 @@ public class AbstractFighter : BattleComponent {
     // Update is called once per frame
     public override void ManualUpdate () {
         //Set gravity, or reset jumps
-        if (GetBoolVar("grounded"))
+        if (GetBoolVar(TussleConstants.FighterVariableNames.IS_GROUNDED))
             Rest();
         else
         {
             SendMessage("CalcGrav",new float[] { GetFloatVar(TussleConstants.FighterAttributes.GRAVITY), GetFloatVar(TussleConstants.FighterAttributes.MAX_FALL_SPEED) });
         }
 
-        //Enable Phasing
-        if (CheckSmash("DownSmash"))
-            platform_phaser.EnableDownPhase = true;
-        else
-            platform_phaser.EnableDownPhase = false;
+        //Enable Phasing if the joystick is smashed down
+        platform_phaser.EnableDownPhase = CheckSmash("DownSmash");
 
-        if (GetBoolVar("grounded"))
-            battleObject.GetMotionHandler().accel(GetFloatVar(TussleConstants.FighterAttributes.FRICTION));
+        if (GetBoolVar(TussleConstants.FighterVariableNames.IS_GROUNDED))
+            SendMessage("accel",GetFloatVar(TussleConstants.FighterAttributes.FRICTION));
         else
-            battleObject.GetMotionHandler().accel(GetFloatVar(TussleConstants.FighterAttributes.AIR_RESISTANCE));
+            SendMessage("accel", GetFloatVar(TussleConstants.FighterAttributes.AIR_RESISTANCE));
+
     }
 
     public void WallBounce(ControllerColliderHit hit)
@@ -180,16 +187,17 @@ public class AbstractFighter : BattleComponent {
         impact.SetActive(true);
         impact.SendMessage("Burst");
 
-        MotionHandler mot = battleObject.GetMotionHandler();
-
-        Vector3 refVector = Vector3.Reflect(mot.GetMotionVector(), hit.normal);
+        float XSpeed = GetFloatVar(TussleConstants.MotionVariableNames.XSPEED);
+        float YSpeed = GetFloatVar(TussleConstants.MotionVariableNames.YSPEED);
+        Vector3 motVector = new Vector3(XSpeed, YSpeed, 0.0f); ;
+        Vector3 refVector = Vector3.Reflect(motVector, hit.normal);
         transform.Translate(refVector.normalized * 0.3f);
-        mot.ChangeSpeedVector(refVector * GetFloatVar("elasticity"));
+        SendMessage("ChangeSpeedVector", refVector * GetFloatVar(TussleConstants.FighterVariableNames.ELASTICITY));
 
         //rotate to the new bounce direction
-        Vector2 directMagn = mot.GetDirectionMagnitude();
+        Vector2 directMagn = MotionHandler.GetDirectionMagnitude(battleObject);
         SendMessage("UnRotate");
-        SendMessage("RotateSprite", (directMagn.x - 90) * GetIntVar("facing"));
+        SendMessage("RotateSprite", (directMagn.x - 90) * GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION));
 
         SetVar("StopFrames", 5);
     }
@@ -211,11 +219,7 @@ public class AbstractFighter : BattleComponent {
     
     public void flip()
     {
-        if (battleObject.GetSpriteHandler() != null) //Sprites get flipped
-            transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-        if (battleObject.GetModelHandler() != null) //Models get rotated
-            transform.Rotate(transform.rotation.x, 180, transform.rotation.z);
-        SetVar("facing", -1 * battleObject.GetIntVar("facing"));
+        SetVar(TussleConstants.FighterVariableNames.FACING_DIRECTION, -1 * battleObject.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION));
     }
 
     public void doGroundAttack()
@@ -317,7 +321,9 @@ public class AbstractFighter : BattleComponent {
         }
         else
         {
+            //Asks the hitbox lock to put itself in the given list. This is odd, but since the lock is responsible for removing itself, it's easier this way
             hitbox.hitbox_lock.PutInList(hitbox_locks);
+            //Starts the timer to remove this lock from the list
             StartCoroutine(RemoveLock(hitbox.hitbox_lock));
             return true;
         }
@@ -327,8 +333,14 @@ public class AbstractFighter : BattleComponent {
     {
         if (LockHitbox(hitbox)) //If the hitbox is not already locked to us
         {
-            hitTagged = hitbox.owner.GetAbstractFighter();
-            StartCoroutine(RemoveTag());
+            //Gah! A non-initialization getcomponent! Kill it with fire!
+            //...as soon as I figure out HOW
+            AbstractFighter otherFighter = hitbox.owner.GetComponent<AbstractFighter>();
+            if (otherFighter != null)
+            {
+                hitTagged = otherFighter;
+                StartCoroutine(RemoveTag());
+            }
 
             float weight_constant = 1.4f;
             float flat_constant = 5.0f;
@@ -389,7 +401,7 @@ public class AbstractFighter : BattleComponent {
         {
             //if not isinstance(self.current_action, baseActions.HitStun) or (self.current_action.last_frame-self.current_action.frame) / float(settingsManager.getSetting('hitstun')) <= hitstun_frames+15:
             DoHitStun(hitstun_frames * Settings.current_settings.hitstun_ratio, _trajectory);
-            battleObject.GetActionHandler().CurrentAction.SetVar("tech_cooldown", Mathf.RoundToInt(_total_kb * _hitstunMultiplier));
+            actionHandler.CurrentAction.SetVar("tech_cooldown", Mathf.RoundToInt(_total_kb * _hitstunMultiplier));
         }
     }
 
@@ -428,12 +440,12 @@ public class AbstractFighter : BattleComponent {
     {
         if (key == "ForwardSmash")
         {
-            if (GetIntVar("facing") == 1) key = "RightSmash";
+            if (GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION) == 1) key = "RightSmash";
             else key = "LeftSmash";
         }
         if (key == "BackwardSmash")
         {
-            if (GetIntVar("facing") == 1) key = "LeftSmash";
+            if (GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION) == 1) key = "LeftSmash";
             else key = "RightSmash";
         }
         return inputBuffer.KeyBuffered(key);
@@ -460,7 +472,7 @@ public class AbstractFighter : BattleComponent {
         if (!other.transform.IsChildOf(this.transform))
         {
             contacted_colliders.Add(other);
-            battleObject.PrintDebug(this, 3, "Enterred Collider " + other);
+            battleObject.PrintDebug(this, 3, "Entered Collider " + other);
         }
     }
 
@@ -481,8 +493,8 @@ public class AbstractFighter : BattleComponent {
             //TODO change color to that of the player that kill
             deathBurst.SetActive(true);
 
-            Color deathCol = Settings.current_settings.player_colors[player_num];
-            if (hitTagged != null) deathCol = Settings.current_settings.player_colors[hitTagged.player_num];
+            Color deathCol = Settings.current_settings.player_colors[GetIntVar(TussleConstants.FighterVariableNames.PLAYER_NUM)];
+            if (hitTagged != null) deathCol = Settings.current_settings.player_colors[hitTagged.GetIntVar(TussleConstants.FighterVariableNames.PLAYER_NUM)];
             deathBurst.SendMessage("ChangeColor", deathCol);
 
             deathBurst.SendMessage("Burst");
@@ -557,8 +569,8 @@ public class AbstractFighter : BattleComponent {
     /// </summary>
     void Rest()
     {
-        SetVar(TussleConstants.FighterAttributes.JUMPS, GetIntVar(TussleConstants.FighterAttributes.MAX_JUMPS));
-        SetVar("air_dodges", 1); //TODO change this based on settings
+        SetVar(TussleConstants.FighterVariableNames.JUMPS_REMAINING, GetIntVar(TussleConstants.FighterAttributes.MAX_JUMPS));
+        SetVar(TussleConstants.FighterVariableNames.AIR_DODGES_REMAINING, 1); //TODO change this based on settings
     }
 
     private Ledge grabbed_ledge;
@@ -602,7 +614,7 @@ public class AbstractFighter : BattleComponent {
 
     public void SetPlayerNum(int playernum)
     {
-        player_num = playernum;
+        SetVar(TussleConstants.FighterVariableNames.PLAYER_NUM, playernum);
     }
 
 
@@ -613,8 +625,8 @@ public class AbstractFighter : BattleComponent {
     void DoHitStun(float hitstun, float trajectory)
     {
         doAction("HitStun");
-        battleObject.GetActionHandler().CurrentAction.SetVar("angle", trajectory);
-        battleObject.GetActionHandler().CurrentAction.AdjustLength(Mathf.RoundToInt(hitstun));
+        actionHandler.CurrentAction.SetVar("angle", trajectory);
+        actionHandler.CurrentAction.AdjustLength(Mathf.RoundToInt(hitstun));
 
     }
 }

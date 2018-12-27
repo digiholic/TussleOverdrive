@@ -17,7 +17,7 @@ public class AnchorPoint : MonoBehaviour {
 
     void SnapAnchorToPoint(Vector3 snapPoint)
     {
-        int facingDir = parent.GetIntVar("facing");
+        int facingDir = parent.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION);
         snapPoint.x = snapPoint.x - (transform.localPosition.x * facingDir);
         snapPoint.y = snapPoint.y - transform.localPosition.y;
         snapPoint.z = parent.transform.localPosition.z;
@@ -31,7 +31,7 @@ public class AnchorPoint : MonoBehaviour {
 
     public void MoveAnchorPixel(int centerx, int centery)
     {
-        float pixelsPerUnit = parent.GetSpriteHandler().pixelsPerUnit;
+        float pixelsPerUnit = parent.GetFloatVar(TussleConstants.SpriteVariableNames.PIXELS_PER_UNIT);
         transform.localPosition = new Vector3(centerx / pixelsPerUnit, centery / pixelsPerUnit, 0.0f);
     }
 }

@@ -30,7 +30,7 @@ public class Dash : GameAction {
             //_actor.sprite.flipX()
         }
         
-        if (actor.GetIntVar("facing") != direction)
+        if (actor.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION) != direction)
             actor.SendMessage("flip");
         actor.BroadcastMessage("ChangeXPreferred", 0.0f);
     }
@@ -41,12 +41,12 @@ public class Dash : GameAction {
         //These classes will be phased out as time goes on. Until then, we need to just exit early if we're in the builder since these don't actually use Subactions
         if (isInBuilder) return;
         if (current_frame == 0)
-            actor.BroadcastMessage("ChangeXPreferred", actor.GetFloatVar(TussleConstants.FighterAttributes.RUN_SPEED) * actor.GetIntVar("facing"));
+            actor.BroadcastMessage("ChangeXPreferred", actor.GetFloatVar(TussleConstants.FighterAttributes.RUN_SPEED) * actor.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION));
         StateTransitions.CheckGround(actor.GetAbstractFighter());
         if (actor.GetInputBuffer().DirectionHeld("Backward"))
-            direction = actor.GetIntVar("facing") * -1;
+            direction = actor.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION) * -1;
         else
-            direction = actor.GetIntVar("facing");
+            direction = actor.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION);
 
         if (current_frame > last_frame)
             //current_frame = run_start_frame;

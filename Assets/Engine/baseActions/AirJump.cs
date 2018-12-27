@@ -18,7 +18,7 @@ public class AirJump : GameAction {
         if (current_frame == jump_frame)
         {
             actor.BroadcastMessage("ChangeYSpeed", actor.GetFloatVar(TussleConstants.FighterAttributes.AIR_JUMP_HEIGHT));
-            actor.SetVar(TussleConstants.FighterAttributes.JUMPS, actor.GetIntVar(TussleConstants.FighterAttributes.JUMPS) - 1);
+            actor.SetVar(TussleConstants.FighterVariableNames.JUMPS_REMAINING, actor.GetIntVar(TussleConstants.FighterVariableNames.JUMPS_REMAINING) - 1);
         }
     }
 

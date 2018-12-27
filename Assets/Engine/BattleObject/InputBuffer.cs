@@ -10,7 +10,7 @@ public class InputBuffer : BattleComponent {
 
     // Use this for initialization
     void Start () {
-        player = ReInput.players.GetPlayer(battleObject.GetAbstractFighter().player_num);
+        player = ReInput.players.GetPlayer(battleObject.GetIntVar(TussleConstants.FighterVariableNames.PLAYER_NUM));
 
         player.AddInputEventDelegate(ButtonPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed);
         player.AddInputEventDelegate(ButtonReleased, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased);
@@ -187,14 +187,14 @@ public class InputBuffer : BattleComponent {
     {
         if (direction == "Forward")
         {
-            if (GetIntVar("facing") == 1) direction = "Right";
-            if (GetIntVar("facing") == -1) direction = "Left";
+            if (GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION) == 1) direction = "Right";
+            if (GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION) == -1) direction = "Left";
         }
 
         if (direction == "Backward")
         {
-            if (GetIntVar("facing") == 1) direction = "Left";
-            if (GetIntVar("facing") == -1) direction = "Right";
+            if (GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION) == 1) direction = "Left";
+            if (GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION) == -1) direction = "Right";
         }
 
         if (direction == "Left") return player.GetAxis("Horizontal") < -0.2f;
