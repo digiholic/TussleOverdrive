@@ -13,7 +13,6 @@ public class NeutralAction : GameAction {
         base.stateTransitions();
         //These classes will be phased out as time goes on. Until then, we need to just exit early if we're in the builder since these don't actually use Subactions
         if (isInBuilder) return;
-        Debug.Log("Action's actor is: "+actor);
         StateTransitions.NeutralState(actor.GetAbstractFighter());
         StateTransitions.CheckGround(actor.GetAbstractFighter());
     }

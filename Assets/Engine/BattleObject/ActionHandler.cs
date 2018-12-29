@@ -36,6 +36,7 @@ public class ActionHandler : BattleComponent {
     public override void ManualUpdate () {
         if (!isInBuilder) _current_action.stateTransitions();
         _current_action.Update();
+        _current_action.current_frame++;
     }
 
     public void DoAction(string _actionName)

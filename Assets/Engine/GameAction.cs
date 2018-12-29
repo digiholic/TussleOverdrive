@@ -91,8 +91,6 @@ public class GameAction {
         if (current_frame >= last_frame)
             if (exit_action != null && exit_action != "")
                 actor.SendMessage("DoAction", exit_action);
-
-        current_frame++;
     }
 
     public virtual void TearDown(GameAction new_action)
