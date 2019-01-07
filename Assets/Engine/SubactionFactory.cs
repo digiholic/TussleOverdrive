@@ -53,7 +53,8 @@ public class SubactionFactory {
                     "SubactionIfVar",
                     "SubactionSetAnchor",
                     "SubactionSetFrame",
-                    "SubactionSetVar"
+                    "SubactionSetVar",
+                    "PrintDebug"
                 };
             case "Behavior":
                 return new List<String>()

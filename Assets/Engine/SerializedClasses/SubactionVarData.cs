@@ -25,6 +25,11 @@ public class SubactionVarData
         editable = _editable;
     }
 
+    public SubactionVarData Copy()
+    {
+        return new SubactionVarData(name, source, type, data, editable);
+    }
+
     public object GetData(BattleObject owner, GameAction action)
     {
         if (source == SubactionSource.CONSTANT)

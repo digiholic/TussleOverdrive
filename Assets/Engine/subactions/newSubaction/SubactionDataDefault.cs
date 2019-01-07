@@ -13,15 +13,29 @@ public class SubactionDataDefault : ScriptableObject
     [TextArea]
     public string Description;
 
+    /// <summary>
+    /// We can't just create a subaction with our argument dict, since dicts are passed by reference.
+    /// First we have to clone the dictionary so it doesn't modify our Default object.
+    /// </summary>
+    /// <returns></returns>
     public SubactionData CreateSubactionData()
     {
-        return new SubactionData(SubactionName, subType, arguments);
+        SubVarDict copyArguments = new SubVarDict();
+        foreach (KeyValuePair<string,SubactionVarData> dataPair in arguments){
+            copyArguments[dataPair.Key] = dataPair.Value.Copy();
+        }
+        return new SubactionData(SubactionName, subType, copyArguments);
     }
 
     [ExecuteInEditMode]
     void OnValidate()
     {
         SubactionDataDocumentationCreator.generateHtml();
+    }
+
+    public static SubactionData GetByName(string name)
+    {
+        return Resources.Load<SubactionDataDefault>(name).CreateSubactionData();
     }
 }
 
