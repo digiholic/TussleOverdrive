@@ -1,7 +1,5 @@
 fileFormatVersion: 2
 guid: f46800c4aa1ef1442a05572268dc2877
-timeCreated: 1521259793
-licenseType: Free
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -22,6 +20,7 @@ TrueTypeFontImporter:
   fontRenderingMode: 0
   ascentCalculationMode: 1
   useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
   userData: 
   assetBundleName: 
   assetBundleVariant: 

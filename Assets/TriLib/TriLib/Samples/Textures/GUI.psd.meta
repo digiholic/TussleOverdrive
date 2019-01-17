@@ -1,7 +1,5 @@
 fileFormatVersion: 2
 guid: b6923f7eb2b3c5449a22cf5ab607945e
-timeCreated: 1494118549
-licenseType: Store
 TextureImporter:
   fileIDToRecycleName:
     21300000: GUI_0
@@ -19,7 +17,8 @@ TextureImporter:
     21300024: GUI_12
     21300026: GUI_13
     21300028: GUI_14
-  serializedVersion: 4
+  externalObjects: {}
+  serializedVersion: 7
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -27,6 +26,8 @@ TextureImporter:
     linearTexture: 0
     fadeOut: 0
     borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
     mipMapFadeDistanceStart: 1
     mipMapFadeDistanceEnd: 3
   bumpmap:
@@ -35,6 +36,8 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -42,10 +45,13 @@ TextureImporter:
   textureFormat: 1
   maxTextureSize: 2048
   textureSettings:
+    serializedVersion: 2
     filterMode: 0
     aniso: 16
-    mipBias: -1
-    wrapMode: 1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -54,41 +60,52 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 0
   spriteTessellationDetail: -1
   textureType: 8
   textureShape: 1
+  singleChannelComponent: 0
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
   platformSettings:
-  - buildTarget: DefaultTexturePlatform
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
+    resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-  - buildTarget: Standalone
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
     maxTextureSize: 2048
+    resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-  - buildTarget: Android
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Android
     maxTextureSize: 2048
+    resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -104,7 +121,14 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 11, y: 16, z: 14, w: 35}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 37a8f69483cbc994c828af91ddecb754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: GUI_1
       rect:
@@ -117,7 +141,14 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 4, y: 4, z: 4, w: 4}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: fc06b57202be51b4b94deaca16bf273a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: GUI_10
       rect:
@@ -130,7 +161,14 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 4, y: 4, z: 4, w: 4}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: a9060db42c4a5e349b816e738928afb4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: GUI_13
       rect:
@@ -143,7 +181,14 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 4, y: 4, z: 4, w: 4}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: ec71722afc972f643b0f7247fe154e29
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: GUI_0
       rect:
@@ -156,7 +201,14 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 9574b08244c636c49b348fd9e76a1d8b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: GUI_2
       rect:
@@ -169,7 +221,14 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 7467113267b8fe0468fe841cac38bdd3
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: GUI_3
       rect:
@@ -182,7 +241,14 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 3972c1e1440b9884d87c01cd4a71c05a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: GUI_4
       rect:
@@ -195,7 +261,14 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: b728aba4de0fbfd4d9adee703c798345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: GUI_5
       rect:
@@ -208,7 +281,14 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 4, y: 4, z: 4, w: 4}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 1ee15c40d434a9a4b9c1bdde2ee7789e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: GUI_6
       rect:
@@ -221,7 +301,14 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 4, y: 4, z: 4, w: 4}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: efa9734550bd79a409ad1ba2b190448b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: GUI_7
       rect:
@@ -234,7 +321,14 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 4, y: 4, z: 4, w: 4}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 901df0dfb03202f4ab689e332f7c5324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: GUI_8
       rect:
@@ -247,7 +341,14 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 11, y: 16, z: 14, w: 46}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: b5a11956ee4787149b19fb40c63108e5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: GUI_9
       rect:
@@ -260,7 +361,14 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 4, y: 4, z: 4, w: 4}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: afac880ed71359b4b823efc2c31f055c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: GUI_12
       rect:
@@ -273,7 +381,14 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 4, y: 4, z: 4, w: 4}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 9e4bdb1765013c3408a78689f780e9e5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: GUI_14
       rect:
@@ -286,9 +401,25 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: a170d195e8e9d494daff56712cbc0059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
   spritePackingTag: 
+  pSDRemoveMatte: 1
+  pSDShowRemoveMatteOption: 1
   userData: 
   assetBundleName: 
   assetBundleVariant: 

@@ -1,6 +1,7 @@
 fileFormatVersion: 2
 guid: edac79059a45d244a8050315593a7e9e
 MonoImporter:
+  externalObjects: {}
   serializedVersion: 2
   defaultReferences:
   - _rewiredInputManager: {instanceID: 0}
@@ -9,3 +10,5 @@ MonoImporter:
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
+  assetBundleName: 
+  assetBundleVariant: 

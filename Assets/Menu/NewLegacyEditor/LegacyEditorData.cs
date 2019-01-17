@@ -184,6 +184,7 @@ public class LegacyEditorData : MonoBehaviour
     private void Update()
     {
         CheckKeyboardShortcuts();
+        Debug.Log(Screen.width);
     }
     /// <summary>
     /// Calls everything's OnModelChanged methods, then unsets the dirty bits for everything

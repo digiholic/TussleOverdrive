@@ -24,8 +24,10 @@ PluginImporter:
   executionOrder:
     Rewired.Initializer: -31999
     Rewired.Internal.OnGUIHelper: -31990
+  defineConstraints: []
   isPreloaded: 0
   isOverridable: 0
+  isExplicitlyReferenced: 0
   platformData:
   - first:
       '': Any
