@@ -38,6 +38,14 @@ public class StateTransitions : ScriptableObject {
 
     public static void CrouchState(AbstractFighter actor)
     {
+        //The getup state has everything we need, except for actually calling "getup" so we use that, and then add our extra bit at the end
+        CrouchGetupState(actor);
+        if (!actor.DirectionHeld("Down"))
+            actor.doAction("CrouchGetup");
+    }
+
+    public static void CrouchGetupState(AbstractFighter actor)
+    {
         if (actor.KeyBuffered("Shield"))
         {
             //TODO forward backward roll
@@ -47,19 +55,17 @@ public class StateTransitions : ScriptableObject {
             if (actor.CheckSmash("DownSmash")) actor.doAction("DownSmash");
             else actor.doAction("DownAttack");
         }
-            
+
         if (actor.KeyBuffered("Special"))
             actor.doAction("DownSpecial");
         if (actor.KeyBuffered("Jump"))
             actor.doAction("Jump");
-        if (!actor.DirectionHeld("Down") && actor.battleObject.GetActionHandler().ActionIsOfType(typeof(CrouchGetup)))
-            actor.doAction("CrouchGetup");
     }
 
     public static void AirState(AbstractFighter actor)
     {
         StateTransitions.AirControl(actor);
-        if (actor.KeyBuffered("Shield") && actor.GetIntVar("air_dodges") >= 1)
+        if (actor.KeyBuffered("Shield") && actor.GetIntVar(TussleConstants.FighterVariableNames.AIR_DODGES_REMAINING) >= 1)
         {
             //actor.doAction("AirDodge");
         }
@@ -71,15 +77,15 @@ public class StateTransitions : ScriptableObject {
         {
             actor.doAirSpecial();
         }
-        if (actor.KeyBuffered("Jump") && actor.GetIntVar(TussleConstants.FighterAttributes.JUMPS) > 0)
+        if (actor.KeyBuffered("Jump") && actor.GetIntVar(TussleConstants.FighterVariableNames.JUMPS_REMAINING) > 0)
         {
             actor.doAction("AirJump");
         }
         actor.SendMessage("CheckForGround");
-        if (actor.GetBoolVar("grounded") && actor.ground_elasticity == 0 && actor.GetIntVar("tech_window") == 0)
+        if (actor.GetBoolVar(TussleConstants.FighterVariableNames.IS_GROUNDED) && actor.ground_elasticity == 0 && actor.GetIntVar("tech_window") == 0)
         {
             actor.BroadcastMessage("ChangeXPreferred", 0.0f);
-            actor.BroadcastMessage("ChangeYPreferred", actor.GetFloatVar("max_fall_speed"));
+            actor.BroadcastMessage("ChangeYPreferred", actor.GetFloatVar(TussleConstants.FighterAttributes.MAX_FALL_SPEED));
             actor.doAction("Land");
         }
         //TODO fastfal
@@ -230,9 +236,9 @@ public class StateTransitions : ScriptableObject {
     public static void AirControl(AbstractFighter actor)
     {
         actor.BroadcastMessage("ChangeXPreferred", actor.GetAxis("Horizontal") * actor.GetFloatVar(TussleConstants.FighterAttributes.MAX_AIR_SPEED));
-        if (Mathf.Abs(actor.battleObject.GetMotionHandler().XSpeed) > actor.GetFloatVar(TussleConstants.FighterAttributes.MAX_AIR_SPEED))
+        if (Mathf.Abs(actor.GetFloatVar(TussleConstants.MotionVariableNames.XSPEED)) > actor.GetFloatVar(TussleConstants.FighterAttributes.MAX_AIR_SPEED))
             actor.SendMessage("accel", actor.GetFloatVar(TussleConstants.FighterAttributes.AIR_CONTROL));
-        if (Mathf.Abs(actor.battleObject.GetMotionHandler().YSpeed) > Mathf.Abs(actor.GetFloatVar("max_fall_speed")))
+        if (Mathf.Abs(actor.GetFloatVar(TussleConstants.MotionVariableNames.YSPEED)) > Mathf.Abs(actor.GetFloatVar("max_fall_speed")))
             actor.SetVar("landing_lag", actor.GetFloatVar("heavy_land_lag"));
     }
     
@@ -262,7 +268,7 @@ public class StateTransitions : ScriptableObject {
     public static void CheckGround(AbstractFighter actor)
     {
         actor.SendMessage("CheckForGround");
-        if (!actor.GetBoolVar("grounded"))
+        if (!actor.GetBoolVar(TussleConstants.FighterVariableNames.IS_GROUNDED))
         {
             actor.doAction("Fall");
         }

@@ -69,6 +69,8 @@ public class GameAction {
         game_controller = BattleController.current_battle;
         foreach (Subaction subaction in subactionCategories.GetIfKeyExists(SubactionGroup.SETUP))
             CheckCondAndExecute(subaction);
+
+        UnityEngine.Debug.Log("Setting up " + name + " with actor: "+actor);
     }
 
     // Update is called once per frame
@@ -78,7 +80,10 @@ public class GameAction {
             int sprite_number = Mathf.FloorToInt(current_frame / sprite_rate);
             if (sprite_rate < 0)
                 sprite_number = Mathf.FloorToInt(current_frame / sprite_rate) - 1;
-            actor.GetSpriteHandler().ChangeSubimage(sprite_number, loop);
+            if (loop)
+                actor.SendMessage("ChangeSubimageWithLoop", sprite_number,SendMessageOptions.RequireReceiver);
+            else
+                actor.SendMessage("ChangeSubimage", sprite_number,SendMessageOptions.RequireReceiver);
         }
 
         foreach (Subaction subaction in subactionCategories.GetIfKeyExists(SubactionGroup.ONFRAME(current_frame)))
@@ -86,8 +91,6 @@ public class GameAction {
         if (current_frame >= last_frame)
             if (exit_action != null && exit_action != "")
                 actor.SendMessage("DoAction", exit_action);
-
-        current_frame++;
     }
 
     public virtual void TearDown(GameAction new_action)
@@ -149,7 +152,7 @@ public class GameAction {
     /// </summary>
     /// <param name="var_name">The name of the variable to pull</param>
     /// <returns>The variable from the dict as an object</returns>
-    public object GetVar(string var_name)
+    public object GetVarData(string var_name)
     {
         if (variable.ContainsKey(var_name))
         {
@@ -165,22 +168,22 @@ public class GameAction {
 
     public int GetIntVar(string var_name)
     {
-        return (int)GetVar(var_name);
+        return (int)GetVarData(var_name);
     }
 
     public float GetFloatVar(string var_name)
     {
-        return (float)GetVar(var_name);
+        return (float)GetVarData(var_name);
     }
 
     public bool GetBoolVar(string var_name)
     {
-        return (bool)GetVar(var_name);
+        return (bool)GetVarData(var_name);
     }
 
     public string GetStringVar(string var_name)
     {
-        return (string)GetVar(var_name);
+        return (string)GetVarData(var_name);
     }
 
     public void PassVariable(string var_name, object var_value)

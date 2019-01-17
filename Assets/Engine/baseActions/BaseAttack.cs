@@ -19,7 +19,7 @@ public class BaseAttack : GameAction {
         //These classes will be phased out as time goes on. Until then, we need to just exit early if we're in the builder since these don't actually use Subactions
         if (isInBuilder) return;
         if (current_frame >= last_frame)
-            if (actor.GetBoolVar("grounded"))
+            if (actor.GetBoolVar(TussleConstants.FighterVariableNames.IS_GROUNDED))
                 actor.BroadcastMessage("DoAction", "NeutralAction");
             else
                 actor.BroadcastMessage("DoAction", "Fall");
@@ -45,11 +45,11 @@ public class AirAttack : GameAction
         if (isInBuilder) return;
         actor.SendMessage("CheckForGround");
         if (current_frame >= last_frame)
-            if (actor.GetBoolVar("grounded"))
+            if (actor.GetBoolVar(TussleConstants.FighterVariableNames.IS_GROUNDED))
                 actor.BroadcastMessage("DoAction", "NeutralAction");
             else
                 actor.BroadcastMessage("DoAction", "Fall");
-        if (actor.GetBoolVar("grounded"))
+        if (actor.GetBoolVar(TussleConstants.FighterVariableNames.IS_GROUNDED))
             actor.BroadcastMessage("DoAction", "Land");
     }
 }

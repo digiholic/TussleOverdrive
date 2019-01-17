@@ -14,7 +14,7 @@ public class SubactionChangeSprite : Subaction
     public override void Execute(BattleObject obj, GameAction action)
     {
         string sprite = (string)GetArgument("sprite", obj, action);
-        obj.GetSpriteHandler().ChangeSprite(sprite);
+        obj.SendMessage("ChangeSprite", sprite);
     }
 
     public override SubactionType getSubactionType()

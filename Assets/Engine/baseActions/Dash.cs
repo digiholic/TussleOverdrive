@@ -3,14 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Dash : GameAction {
-
-    public int run_start_frame = 0;
-    public int direction = 1;
-    public bool accel = true;
-
     public Dash()
     {
-        SetVar("run_start_frame", 0);
+        SetVar("run_start_frame", 1);
         SetVar("direction", 1);
         SetVar("accel", true);
     }
@@ -30,7 +25,7 @@ public class Dash : GameAction {
             //_actor.sprite.flipX()
         }
         
-        if (actor.GetIntVar("facing") != direction)
+        if (actor.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION) != GetIntVar("direction"))
             actor.SendMessage("flip");
         actor.BroadcastMessage("ChangeXPreferred", 0.0f);
     }
@@ -41,17 +36,21 @@ public class Dash : GameAction {
         //These classes will be phased out as time goes on. Until then, we need to just exit early if we're in the builder since these don't actually use Subactions
         if (isInBuilder) return;
         if (current_frame == 0)
-            actor.BroadcastMessage("ChangeXPreferred", actor.GetFloatVar(TussleConstants.FighterAttributes.RUN_SPEED) * actor.GetIntVar("facing"));
-        StateTransitions.CheckGround(actor.GetAbstractFighter());
+        {
+            actor.SendMessage("ChangeXPreferred", actor.GetFloatVar(TussleConstants.FighterAttributes.RUN_SPEED) * actor.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION));
+        }
+        //StateTransitions.CheckGround(actor.GetAbstractFighter());
         if (actor.GetInputBuffer().DirectionHeld("Backward"))
-            direction = actor.GetIntVar("facing") * -1;
+            SetVar("direction",actor.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION) * -1);
         else
-            direction = actor.GetIntVar("facing");
+            SetVar("direction", actor.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION));
 
         if (current_frame > last_frame)
+        {
             //current_frame = run_start_frame;
             //VERY TODO UNTIL VARIABLES IN ACTION
             current_frame = GetIntVar("run_start_frame");
+        }
     }
 
     public override void stateTransitions()

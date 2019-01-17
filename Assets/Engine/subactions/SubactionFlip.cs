@@ -11,7 +11,7 @@ public class SubactionFlip : Subaction {
     public override void Execute(BattleObject actor, GameAction action)
     {
         base.Execute(actor, action);
-        actor.GetSpriteHandler().flip();
+        actor.SendMessage("flip");
     }
 
     public override SubactionType getSubactionType()

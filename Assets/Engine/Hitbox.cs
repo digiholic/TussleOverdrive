@@ -27,8 +27,6 @@ public class Hitbox : MonoBehaviour {
 	void Awake () {
         col = GetComponent<Collider>();
         mesh = GetComponent<MeshRenderer>();
-        Debug.Log("Hitbox Awakens");
-        Debug.Log(mesh);
 	}
 	
     void Start()
@@ -90,7 +88,7 @@ public class Hitbox : MonoBehaviour {
 
     public void SizeToOwner(BattleObject obj)
     {
-        float scale = obj.GetComponent<SpriteHandler>().pixelsPerUnit;
+        float scale = obj.GetFloatVar(TussleConstants.SpriteVariableNames.PIXELS_PER_UNIT);
         //float scale = 50;
         transform.localPosition = new Vector3(centerx / scale, centery / scale, -0.1f);
         transform.localScale = new Vector3(width / scale, height / scale, 1.0f);

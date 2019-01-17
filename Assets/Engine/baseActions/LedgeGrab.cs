@@ -42,7 +42,7 @@ public class LedgeGrab : GameAction {
             actor.SendMessage("ChangeXSpeed", 0f);
             actor.SendMessage("ChangeYSpeed", 0f);
 
-            int facingDir = actor.GetIntVar("facing");
+            int facingDir = actor.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION);
 
             if (grabbed_ledge.grabSide == Ledge.Side.LEFT)
                 if (facingDir == -1)

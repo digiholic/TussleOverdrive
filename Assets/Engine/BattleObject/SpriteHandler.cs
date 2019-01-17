@@ -10,24 +10,23 @@ public class SpriteHandler : BattleComponent {
 
     public SpriteOrientation orientation;
     //public SpriteAtlas sprite_atlas;
-    public float pixelsPerUnit;
 
     private FighterInfo fighter_info;
     private SpriteInfo sprite_info;
     private Dictionary<string,List<Sprite>> sprites = new Dictionary<string,List<Sprite>>();
-    private string current_sprite = "idle";
-    private int current_frame = 0;
-
+    
     private SpriteRenderer sprite_renderer;
     private GameObject spriteComponent;
 
     private float rot_degrees;
 
-    void Start()
+    void Awake()
     {
         if (battleObject != null)
             battleObject.spriteObject = spriteComponent;
 
+        SetVar(TussleConstants.SpriteVariableNames.SPRITE_CURRENT, "idle");
+        SetVar(TussleConstants.SpriteVariableNames.FRAME_CURRENT, 0);
         spriteComponent = new GameObject("Sprite");
         RectTransform componentRect = spriteComponent.AddComponent<RectTransform>();
         spriteComponent.transform.SetParent(transform);
@@ -44,7 +43,7 @@ public class SpriteHandler : BattleComponent {
         fighter_info = fInfo;
         sprite_info = fighter_info.sprite_info;
 
-        pixelsPerUnit = sprite_info.sprite_pixelsPerUnit;
+        SetVar(TussleConstants.SpriteVariableNames.PIXELS_PER_UNIT, sprite_info.sprite_pixelsPerUnit);
         DirectoryInfo info = new DirectoryInfo(FileLoader.PathCombine(fighter_info.directory_name, sprite_info.sprite_directory));
         string sprite_json_path = Path.Combine(info.FullName, "sprites.json");
 
@@ -82,15 +81,18 @@ public class SpriteHandler : BattleComponent {
             List<Sprite> spriteFrames = new List<Sprite>();
             foreach (Vector2 startPos in data.subimage)
             {
-                Sprite newSprite = Sprite.Create(SpriteTexture, new Rect(startPos.x, startPos.y, data.sprite_size.x, data.sprite_size.y), data.pivot_point, pixelsPerUnit);
+                Sprite newSprite = Sprite.Create(SpriteTexture, new Rect(startPos.x, startPos.y, data.sprite_size.x, data.sprite_size.y), data.pivot_point, GetFloatVar(TussleConstants.SpriteVariableNames.PIXELS_PER_UNIT));
                 spriteFrames.Add(newSprite);
             }
             sprites.Add(data.sprite_name, spriteFrames);
         }
     }
     
-    private void ChangeRenderer(string current_sprite, int current_frame)
+    private void ChangeRenderer()
     {
+        string current_sprite = GetStringVar(TussleConstants.SpriteVariableNames.SPRITE_CURRENT);
+        int current_frame = GetIntVar(TussleConstants.SpriteVariableNames.FRAME_CURRENT);
+
         if (sprites.ContainsKey(current_sprite))
             sprite_renderer.sprite = sprites[current_sprite][current_frame];
         else
@@ -113,26 +115,29 @@ public class SpriteHandler : BattleComponent {
     {
         if (_sprite_name == null)
         {
-            Debug.LogWarning("No Sprite found");
+            Debug.LogWarning("ChangeSprite given null name");
             _sprite_name = "idle";
         }
-        current_sprite = _sprite_name;
-        current_frame = 0;
-        ChangeRenderer(current_sprite, current_frame);
+        SetVar(TussleConstants.SpriteVariableNames.SPRITE_CURRENT, _sprite_name);
+        SetVar(TussleConstants.SpriteVariableNames.FRAME_CURRENT, 0);
+        ChangeRenderer();
     }
 
     public void ChangeSubimage(int _frame)
     {
-        if (_frame < 0)
-            _frame += sprites[current_sprite].Count;
-        current_frame = Mathf.Min(_frame, sprites[current_sprite].Count - 1);
-        
+        ChangeSubimage(_frame, false);
+    }
 
-        ChangeRenderer(current_sprite, current_frame);
+    public void ChangeSubimageWithLoop(int _frame)
+    {
+        ChangeSubimage(_frame, true);
     }
 
     public void ChangeSubimage(int _frame, bool _loop)
     {
+        string current_sprite = GetStringVar(TussleConstants.SpriteVariableNames.SPRITE_CURRENT);
+        int current_frame = GetIntVar(TussleConstants.SpriteVariableNames.FRAME_CURRENT);
+
         if (_frame < 0)
             _frame += sprites[current_sprite].Count;
         if (_loop)
@@ -142,8 +147,10 @@ public class SpriteHandler : BattleComponent {
             current_frame = Mathf.Min(_frame, sprites[current_sprite].Count - 1);
         }
 
-        ChangeRenderer(current_sprite, current_frame);
+        SetVar(TussleConstants.SpriteVariableNames.FRAME_CURRENT, current_frame);
+        ChangeRenderer();
     }
+
 
     public void RotateSprite(float degrees)
     {
@@ -168,6 +175,8 @@ public class SpriteHandler : BattleComponent {
 
     public void flip()
     {
+        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+
         Debug.Log("Flipping");
         if (orientation == SpriteOrientation.LEFT)
             orientation = SpriteOrientation.RIGHT;
@@ -180,9 +189,9 @@ public class SpriteHandler : BattleComponent {
 
     public void ReconcileDirection()
     {
-        if (HasVar("facing"))
+        if (HasVar(TussleConstants.FighterVariableNames.FACING_DIRECTION))
         {
-            int facing = GetIntVar("facing");
+            int facing = GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION);
             if ((facing == 1 && orientation == SpriteOrientation.LEFT) ||
                     (facing == -1 && orientation == SpriteOrientation.RIGHT))
                 flip();

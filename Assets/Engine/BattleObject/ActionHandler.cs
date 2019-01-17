@@ -17,6 +17,8 @@ public class ActionHandler : BattleComponent {
     // Use this for initialization
     void Start () {
         _current_action = new NeutralAction();
+        _current_action.SetDynamicAction(actions_file.Get("NeutralAction"));
+        _current_action.SetUp(getBattleObject());
         if (isInBuilder) _current_action.setIsInBuilder(true);
     }
 
@@ -34,11 +36,12 @@ public class ActionHandler : BattleComponent {
     public override void ManualUpdate () {
         if (!isInBuilder) _current_action.stateTransitions();
         _current_action.Update();
+        _current_action.current_frame++;
     }
 
     public void DoAction(string _actionName)
     {
-        //Debug.Log("GameAction: "+_actionName);
+        Debug.Log("GameAction: "+_actionName);
         GameAction old_action = _current_action;
         _current_action = LoadAction(_actionName);
         _current_action.SetDynamicAction(actions_file.Get(_actionName));

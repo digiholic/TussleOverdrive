@@ -17,8 +17,8 @@ public class CreateNewSubaction : LegacyEditorAction {
     {
         actionToAddTo = LegacyEditorData.instance.currentAction;
         groupToAddTo = LegacyEditorData.instance.subactionGroup;
-        Debug.Log(actionToAddTo);
-        Debug.Log(groupToAddTo);
+        Debug.Log("CreateNewSubaction actionToAddTo: "+actionToAddTo);
+        Debug.Log("CreateNewSubaction groupToAddTo: " +groupToAddTo);
         //Since we don't want to add THIS subactionData, but a copy of it, we reinstance the scriptable object
         //subDataToAdd = Instantiate(subDataMaster) as SubactionData;
         subDataToAdd = subDataMaster.CreateSubactionData();

@@ -13,7 +13,7 @@ public class DynamicAction
     public string exit_action;
 
     //Dictionary keys are the SubactionCategories defined in the SubactionGroup enum, or "Frame_XX" for each frame.
-    public SubGroupDict subactionCategories;
+    public SubGroupDict subactionCategories = new SubGroupDict();
     
     public DynamicAction(string _name, int _length = 1, string _sprite = "idle", int _sprite_rate = 1, bool _loop = false, string _exit_action = "NeutralAction")
     {

@@ -7,6 +7,7 @@ public class NeutralAction : GameAction {
     {
         exit_action = "NeutralAction";
     }
+
     public override void stateTransitions()
     {
         base.stateTransitions();

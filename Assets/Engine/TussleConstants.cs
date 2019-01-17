@@ -27,9 +27,35 @@ public class TussleConstants {
         public static string SHIELD_SIZE             = "shield_size";
         public static string AERIAL_TRANSITION_SPEED = "aerial_transition_speed";
         public static string PIXELS_PER_UNIT         = "pixels_per_unit";
-        public static string JUMPS                   = "jumps";
         public static string MAX_JUMPS               = "max_jumps";
         public static string HEAVY_LANDING_LAG       = "heavy_land_lag";
         public static string WAVEDASH_LAG            = "wavedash_lag";
+    }
+
+    public class FighterVariableNames
+    {
+        public static string PLAYER_NUM = "player_num";
+        public static string JUMPS_REMAINING = "jumps";
+        public static string FACING_DIRECTION = "facing";
+        public static string LANDING_LAG = "landing_lag";
+        public static string TECH_WINDOW = "tech_window";
+        public static string AIR_DODGES_REMAINING = "air_dodges";
+        public static string IS_GROUNDED = "grounded";
+        public static string ELASTICITY = "elasticity";
+    }
+
+    public class MotionVariableNames
+    {
+        public static string XSPEED = "XSpeed";
+        public static string YSPEED = "YSpeed";
+        public static string XPREF = "XPref";
+        public static string YPREF = "YPref";
+    }
+
+    public class SpriteVariableNames
+    {
+        public static string SPRITE_CURRENT = "currentSprite";
+        public static string FRAME_CURRENT = "currentFrame";
+        public static string PIXELS_PER_UNIT = "PixelsPerUnit";
     }
 }

@@ -14,4 +14,12 @@ public class SubactionData {
         subType = subT;
         arguments = args;
     }
+
+    public void SetArgument(string key, object value)
+    {
+        if (arguments.ContainsKey(key))
+        {
+            arguments[key].data = value.ToString();
+        }
+    }
 }

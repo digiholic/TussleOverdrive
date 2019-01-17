@@ -25,7 +25,7 @@ public class SubactionCreateHitbox : Subaction {
                 name = (string)data.GetData(actor, action);
             else
             {
-                hbox_dict.Add(data.name, (string)data.GetData(actor, action));
+                hbox_dict.Add(data.name, data.GetData(actor, action).ToString());
             }
         }
         if (name != "")

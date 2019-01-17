@@ -12,7 +12,7 @@ public class SubactionUnrotate : Subaction {
     public override void Execute(BattleObject actor, GameAction action)
     {
         base.Execute(actor, action);
-        actor.GetSpriteHandler().UnRotate();
+        actor.SendMessage("UnRotate");
     }
 
     public override SubactionType getSubactionType()

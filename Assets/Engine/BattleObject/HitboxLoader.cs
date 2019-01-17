@@ -44,7 +44,7 @@ public class HitboxLoader : MonoBehaviour {
         hbox.LoadValuesFromDict(dict);
 
         //Flip it if the fighter is flipped
-        if (owner.GetIntVar("facing") == -1)
+        if (owner.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION) == -1)
             hbox.trajectory = 180 - hbox.trajectory;
 
         //Set up the hitbox lock, if applicable

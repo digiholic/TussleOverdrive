@@ -25,7 +25,7 @@ public class HitStun : GameAction {
         base.stateTransitions();
         //These classes will be phased out as time goes on. Until then, we need to just exit early if we're in the builder since these don't actually use Subactions
         if (isInBuilder) return;
-        int direction = (int) actor.GetMotionHandler().GetDirectionMagnitude().x;
+        int direction = (int)MotionHandler.GetDirectionMagnitude(actor).x;
 
         if (actor.GetIntVar("tech_window") > 0)
         {
@@ -37,22 +37,22 @@ public class HitStun : GameAction {
         {
             if (last_frame > 15 && current_frame > 2) //If the hitstun is long enough and we're past the start of it
             {
-                if (actor.GetMotionHandler().YSpeed >= actor.GetFloatVar("max_fall_speed"))
+                if (actor.GetFloatVar(TussleConstants.MotionVariableNames.YSPEED) >= actor.GetFloatVar("max_fall_speed"))
                 {
-                    actor.SetVar("ground_elasticity", actor.GetVar(TussleConstants.FighterAttributes.HITSTUN_ELASTICITY));
+                    actor.SetVar("ground_elasticity", actor.GetVarData(TussleConstants.FighterAttributes.HITSTUN_ELASTICITY));
                 }
-                else if (Mathf.Abs(actor.GetMotionHandler().XSpeed) > actor.GetFloatVar(TussleConstants.FighterAttributes.RUN_SPEED)) //skid trip
+                else if (Mathf.Abs(actor.GetFloatVar(TussleConstants.MotionVariableNames.XSPEED)) > actor.GetFloatVar(TussleConstants.FighterAttributes.RUN_SPEED)) //skid trip
                 {
                     actor.SetVar("ground_elasticity", 0);
-                    if (actor.GetBoolVar("grounded") && !GetBoolVar("feet_planted"))
+                    if (actor.GetBoolVar(TussleConstants.FighterVariableNames.IS_GROUNDED) && !GetBoolVar("feet_planted"))
                     {
                         actor.SendMessage("DoAction", "Prone");
                     }
                 }
-                else if (actor.GetMotionHandler().YSpeed < actor.GetFloatVar("max_fall_speed"))
+                else if (actor.GetFloatVar(TussleConstants.MotionVariableNames.YSPEED) < actor.GetFloatVar("max_fall_speed"))
                 {
                     actor.SetVar("ground_elasticity", 0);
-                    if (actor.GetBoolVar("grounded") && !GetBoolVar("feet_planted"))
+                    if (actor.GetBoolVar(TussleConstants.FighterVariableNames.IS_GROUNDED) && !GetBoolVar("feet_planted"))
                     {
                         actor.SendMessage("DoAction", "Prone");
                     }
@@ -63,21 +63,21 @@ public class HitStun : GameAction {
             else if (last_frame <= 15) //If the hitstun is short, we don
                 actor.SetVar("ground_elasticity", 0);
             else
-                actor.SetVar("ground_elasticity", actor.GetVar(TussleConstants.FighterAttributes.HITSTUN_ELASTICITY));
+                actor.SetVar("ground_elasticity", actor.GetVarData(TussleConstants.FighterAttributes.HITSTUN_ELASTICITY));
         }
 
         if (current_frame == last_frame)
         {
             if (last_frame > 15) //if it was long enough, tumble
             {
-                if (actor.GetBoolVar("grounded"))
+                if (actor.GetBoolVar(TussleConstants.FighterVariableNames.IS_GROUNDED))
                     actor.SendMessage("DoAction", "NeutralAction");
                 else
                     actor.SendMessage("DoAction", "Fall"); //"Tumble");
             }
             else
             {
-                if (actor.GetBoolVar("grounded"))
+                if (actor.GetBoolVar(TussleConstants.FighterVariableNames.IS_GROUNDED))
                 {
                     if (GetBoolVar("slow_getup"))
                         actor.SendMessage("DoAction", "SlowGetup"); //Jab Reset
@@ -110,7 +110,7 @@ public class HitStun : GameAction {
         //These classes will be phased out as time goes on. Until then, we need to just exit early if we're in the builder since these don't actually use Subactions
         if (isInBuilder) return;
         AbstractFighter fighter = actor.GetAbstractFighter();
-        if (current_frame > 15 && actor.GetAbstractFighter().KeyBuffered("Shield", 5) && GetIntVar("tech_cooldown") == 0 && !actor.GetBoolVar("grounded"))
+        if (current_frame > 15 && actor.GetAbstractFighter().KeyBuffered("Shield", 5) && GetIntVar("tech_cooldown") == 0 && !actor.GetBoolVar(TussleConstants.FighterVariableNames.IS_GROUNDED))
         {
             actor.SetVar("tech_window", 12);
             //anti_grab = statusEffect.TemporaryHitFilter(_actor, hurtbox.GrabImmunity(_actor), 10)
@@ -120,21 +120,21 @@ public class HitStun : GameAction {
         if (actor.GetIntVar("tech_window") > 0)
             actor.SetVar("elasticity", 0.0f);
         else
-            actor.SetVar("elasticity", actor.GetVar(TussleConstants.FighterAttributes.HITSTUN_ELASTICITY));
-        SetVar("feet_planted",actor.GetBoolVar("grounded"));
+            actor.SetVar("elasticity", actor.GetVarData(TussleConstants.FighterAttributes.HITSTUN_ELASTICITY));
+        SetVar("feet_planted",actor.GetBoolVar(TussleConstants.FighterVariableNames.IS_GROUNDED));
         if (GetIntVar("tech_cooldown") > 0) SetVar("tech_cooldown",GetIntVar("tech_cooldown")-1);
         if (current_frame == 0)
         {
             //anti_grab = statusEffect.TemporaryHitFilter(_actor, hurtbox.GrabImmunity(_actor), 10)
             //anti_grab.activate()
-            Vector2 directMagn = actor.GetMotionHandler().GetDirectionMagnitude();
+            Vector2 directMagn = MotionHandler.GetDirectionMagnitude(actor.GetFloatVar(TussleConstants.MotionVariableNames.XSPEED), actor.GetFloatVar(TussleConstants.MotionVariableNames.XSPEED));
             if (directMagn.x != 0 && directMagn.x != 180)
             {
-                actor.SetVar("grounded", false);
+                actor.SetVar(TussleConstants.FighterVariableNames.IS_GROUNDED, false);
                 if (directMagn.y > 10)
                 {
                     actor.SendMessage("UnRotate");
-                    actor.SendMessage("RotateSprite", (directMagn.x-90)*actor.GetIntVar("facing"));
+                    actor.SendMessage("RotateSprite", (directMagn.x-90)*actor.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION));
                 }
                     
             }
@@ -144,7 +144,7 @@ public class HitStun : GameAction {
                 particles.SetActive(true);
                 if (fighter.hitTagged != null)
                 {
-                    particles.SendMessage("ChangeColor", Settings.current_settings.player_colors[fighter.hitTagged.player_num]);
+                    particles.SendMessage("ChangeColor", Settings.current_settings.player_colors[fighter.hitTagged.GetIntVar(TussleConstants.FighterVariableNames.PLAYER_NUM)]);
                 }
                 particles.SendMessage("Play", last_frame);
             }

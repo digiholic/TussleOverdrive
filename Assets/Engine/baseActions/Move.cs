@@ -14,7 +14,7 @@ public class Move : GameAction {
         //These classes will be phased out as time goes on. Until then, we need to just exit early if we're in the builder since these don't actually use Subactions
         if (isInBuilder) return;
         //Debug.Log("MoveAction Created");
-        SetVar("direction",actor.GetIntVar("facing"));
+        SetVar("direction",actor.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION));
     }
 
     public override void TearDown(GameAction new_action)
@@ -24,9 +24,9 @@ public class Move : GameAction {
         if (isInBuilder) return;
         if (new_action.HasVar("direction"))
         {
-            new_action.SetVar("direction", new_action.GetIntVar("direction") * GetIntVar("direction") * actor.GetIntVar("facing"));
+            new_action.SetVar("direction", new_action.GetIntVar("direction") * GetIntVar("direction") * actor.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION));
         }
-        else if (actor.GetIntVar("facing") != GetIntVar("direction"))
+        else if (actor.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION) != GetIntVar("direction"))
                 actor.BroadcastMessage("flip");
             
         actor.BroadcastMessage("ChangeXPreferred", 0.0f);
@@ -37,20 +37,20 @@ public class Move : GameAction {
         base.Update();
         //These classes will be phased out as time goes on. Until then, we need to just exit early if we're in the builder since these don't actually use Subactions
         if (isInBuilder) return;
-        actor.SendMessage("ChangeXPreferred", actor.GetFloatVar(TussleConstants.FighterAttributes.MAX_GROUND_SPEED) * actor.GetIntVar("facing"));
+        actor.SendMessage("ChangeXPreferred", actor.GetFloatVar(TussleConstants.FighterAttributes.MAX_GROUND_SPEED) * actor.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION));
 
-        if (((actor.GetMotionHandler().XSpeed >= -actor.GetFloatVar(TussleConstants.FighterAttributes.MAX_GROUND_SPEED)) && actor.GetIntVar("facing") == -1) || 
-            ((actor.GetMotionHandler().XSpeed <=  actor.GetFloatVar(TussleConstants.FighterAttributes.MAX_GROUND_SPEED)) && actor.GetIntVar("facing") ==  1))
+        if (((actor.GetFloatVar(TussleConstants.MotionVariableNames.XSPEED) >= -actor.GetFloatVar(TussleConstants.FighterAttributes.MAX_GROUND_SPEED)) && actor.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION) == -1) || 
+            ((actor.GetFloatVar(TussleConstants.MotionVariableNames.XSPEED) <=  actor.GetFloatVar(TussleConstants.FighterAttributes.MAX_GROUND_SPEED)) && actor.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION) ==  1))
         {
-            actor.GetMotionHandler().accel(actor.GetFloatVar(TussleConstants.FighterAttributes.STATIC_GRIP));
+            actor.SendMessage("accel", actor.GetFloatVar(TussleConstants.FighterAttributes.STATIC_GRIP));
         }
         if (actor.GetInputBuffer().DirectionHeld("Backward"))
         {
-            SetVar("direction", -1 * actor.GetIntVar("facing"));
+            SetVar("direction", -1 * actor.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION));
         }
         else
         {
-            SetVar("direction", actor.GetIntVar("facing"));
+            SetVar("direction", actor.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION));
         }
         
         //If direction and sprite don't match up, flip. Pretty sure this is some moonwalk stuff.
