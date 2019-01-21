@@ -383,8 +383,12 @@ public class UIPopupList : MonoBehaviour
 			mBackground = null;
 			mHighlight = null;
 			mChild = null;
-		}
-	}
+
+            //Reset the depth change we had to hack together in the on click ~digi
+            textLabel.depth = textLabel.depth - 2;
+
+        }
+    }
 
 	/// <summary>
 	/// Helper function that causes the widget to smoothly fade in.
@@ -473,12 +477,17 @@ public class UIPopupList : MonoBehaviour
 			t.localPosition = bounds.min;
 			t.localRotation = Quaternion.identity;
 			t.localScale = Vector3.one;
+            //We want this to be set as a child of this object instead of a sibling, the depth is getting all out of whack. ~digi
+            t.SetParent(myTrans, true);
 
 			// Add a sprite for the background
 			mBackground = NGUITools.AddSprite(mChild, atlas, backgroundSprite);
 			mBackground.pivot = UIWidget.Pivot.TopLeft;
 			mBackground.depth = NGUITools.CalculateNextDepth(mPanel.gameObject);
 			mBackground.color = backgroundColor;
+            
+            //The text label always ends up drawing below the dropdown menu, so we need its depth to increase after creating the others.
+            textLabel.depth = NGUITools.CalculateNextDepth(mPanel.gameObject);
 
 			// We need to know the size of the background sprite for padding purposes
 			Vector4 bgPadding = mBackground.border;

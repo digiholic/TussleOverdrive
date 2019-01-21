@@ -9,6 +9,7 @@ public class LegacyEditorData : MonoBehaviour
 {
     public static LegacyEditorData instance;
     public static ContextualPanelData contextualPanel;
+    public static AnchorPositions anchors;
 
     public PanelHider ShadowRealm;
     public string FighterDirName;
@@ -162,6 +163,7 @@ public class LegacyEditorData : MonoBehaviour
     private void OnEnable()
     {
         instance = this;
+        anchors = GetComponent<AnchorPositions>();
     }
 
     /// <summary>
@@ -184,7 +186,8 @@ public class LegacyEditorData : MonoBehaviour
     private void Update()
     {
         CheckKeyboardShortcuts();
-        Debug.Log(Screen.width);
+        //TODO screen with hook here maybe? Or maybe it should be in the individual components...
+        //Debug.Log(Screen.width);
     }
     /// <summary>
     /// Calls everything's OnModelChanged methods, then unsets the dirty bits for everything
