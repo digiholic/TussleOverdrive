@@ -139,12 +139,16 @@ public class SpriteHandler : BattleComponent {
         int current_frame = GetIntVar(TussleConstants.SpriteVariableNames.FRAME_CURRENT);
 
         if (_frame < 0)
+        {
             _frame += sprites[current_sprite].Count;
+        }
         if (_loop)
+        {
             current_frame = _frame % sprites[current_sprite].Count;
+        }
         else
         {
-            current_frame = Mathf.Min(_frame, sprites[current_sprite].Count - 1);
+            current_frame = Mathf.Clamp(_frame, 0, sprites[current_sprite].Count - 1);
         }
 
         SetVar(TussleConstants.SpriteVariableNames.FRAME_CURRENT, current_frame);

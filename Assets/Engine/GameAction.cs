@@ -69,8 +69,6 @@ public class GameAction {
         game_controller = BattleController.current_battle;
         foreach (Subaction subaction in subactionCategories.GetIfKeyExists(SubactionGroup.SETUP))
             CheckCondAndExecute(subaction);
-
-        UnityEngine.Debug.Log("Setting up " + name + " with actor: "+actor);
     }
 
     // Update is called once per frame

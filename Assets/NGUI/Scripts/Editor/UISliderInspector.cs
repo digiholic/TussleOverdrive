@@ -56,7 +56,7 @@ public class UISliderInspector : Editor
 			UnityEditor.EditorUtility.SetDirty(slider);
 		}
 
-		int steps = EditorGUILayout.IntSlider("Steps", slider.numberOfSteps, 0, 11);
+		int steps = EditorGUILayout.IntSlider("Steps", slider.numberOfSteps, 0, 300);
 
 		if (slider.numberOfSteps != steps)
 		{

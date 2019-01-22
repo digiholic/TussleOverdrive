@@ -17,7 +17,7 @@ public class SubactionCardRig : MonoBehaviour {
 
     void OnModelChanged()
     {
-        if (LegacyEditorData.instance.currentActionDirty || LegacyEditorData.instance.subactionGroupDirty)
+        if (LegacyEditorData.instance.currentActionDirty || LegacyEditorData.instance.subactionGroupDirty || LegacyEditorData.instance.currentFrameDirty)
         {
             //Get rid of our old list
             foreach (GameObject child in children)
@@ -28,12 +28,15 @@ public class SubactionCardRig : MonoBehaviour {
 
             //Create all the new buttons
             DynamicAction action = LegacyEditorData.instance.currentAction;
-            string category = LegacyEditorData.instance.subactionGroup;
-            
+            string subGroup = LegacyEditorData.instance.subactionGroup;
+            if (subGroup == "Current Frame")
+            {
+                subGroup = SubactionGroup.ONFRAME(LegacyEditorData.instance.currentFrame);
+            }
             if (action != null)
             {
                 //Create all the new buttons
-                foreach (SubactionData subData in action.subactionCategories.GetIfKeyExists(category))
+                foreach (SubactionData subData in action.subactionCategories.GetIfKeyExists(subGroup))
                 {
                     instantiateButton(subData);
                 }

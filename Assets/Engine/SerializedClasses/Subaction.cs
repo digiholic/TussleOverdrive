@@ -7,7 +7,7 @@ public class Subaction : ScriptableObject
 {
     public string SubactionName;
     public SubVarDict arg_dict = new SubVarDict();
-
+    
     /// <summary>
     /// Executes the subaction
     /// </summary>

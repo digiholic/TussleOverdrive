@@ -97,9 +97,17 @@
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [
-                    "Current Frame"
+                    "Current Frame",
+                    "Set Up",
+                    "frame_6"
                 ],
                 "m_values": [
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
                     {
                         "data": []
                     }

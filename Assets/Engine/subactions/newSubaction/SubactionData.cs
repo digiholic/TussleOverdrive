@@ -4,6 +4,7 @@ using UnityEngine;
 
 [System.Serializable]
 public class SubactionData {
+    public int order = 0;
     public string SubactionName;
     public SubactionType subType;
     public SubVarDict arguments;

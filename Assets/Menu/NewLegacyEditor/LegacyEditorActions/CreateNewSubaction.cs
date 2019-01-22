@@ -21,6 +21,11 @@ public class CreateNewSubaction : LegacyEditorAction {
         Debug.Log("CreateNewSubaction groupToAddTo: " +groupToAddTo);
         //Since we don't want to add THIS subactionData, but a copy of it, we reinstance the scriptable object
         //subDataToAdd = Instantiate(subDataMaster) as SubactionData;
+        if (groupToAddTo == "Current Frame")
+        {
+            groupToAddTo = SubactionGroup.ONFRAME(LegacyEditorData.instance.currentFrame);
+            Debug.Log("Current Group: " + groupToAddTo);
+        }
         subDataToAdd = subDataMaster.CreateSubactionData();
         actionToAddTo.subactionCategories.GetIfKeyExists(groupToAddTo).Add(subDataToAdd);
         Debug.Log(actionToAddTo.subactionCategories);

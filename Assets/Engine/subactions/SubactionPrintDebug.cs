@@ -6,7 +6,7 @@ public class SubactionPrintDebug : Subaction
 {
     public override void Execute(BattleObject actor, GameAction action)
     {
-        Debug.Log(GetArgument("statement", actor, action));
+        Debug.Log(GetArgument("Text", actor, action));
     }
 
     public override SubactionType getSubactionType()

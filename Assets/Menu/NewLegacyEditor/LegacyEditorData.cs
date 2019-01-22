@@ -96,7 +96,13 @@ public class LegacyEditorData : MonoBehaviour
 
     public string subactionGroup
     {
-        get { return _subactionGroup; }
+        get {
+            if (_subactionGroup == "Current Frame")
+            {
+                return SubactionGroup.ONFRAME(currentFrame);
+            }
+            return _subactionGroup;
+        }
         set
         {
             _subactionGroup = value;

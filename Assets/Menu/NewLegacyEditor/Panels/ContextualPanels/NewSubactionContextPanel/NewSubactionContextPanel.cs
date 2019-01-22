@@ -46,6 +46,10 @@ public class NewSubactionContextPanel : ContextualPanelData
             //LegacyEditorData.contextualPanel = null;
         }
     }
+    public void Start()
+    {
+        FireContextualPanelChange();
+    }
 
     public override void FireContextualPanelChange()
     {
