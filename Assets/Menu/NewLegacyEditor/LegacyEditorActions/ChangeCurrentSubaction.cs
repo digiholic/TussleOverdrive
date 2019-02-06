@@ -19,18 +19,14 @@ public class ChangeCurrentSubaction : LegacyEditorAction
         previousSubaction = LegacyEditorData.instance.currentSubaction;
         if (previousSubaction == nextSubaction)
         {
-            Debug.Log("Subactions match, deselecting");
             subactionToSet = null;
         }
-        Debug.Log("Current value before processing: " + previousSubaction);
-        Debug.Log("Will change to: " + subactionToSet);
         LegacyEditorData.instance.currentSubaction = subactionToSet;
         LegacyEditorData.ChangedSubaction();
     }
 
     public override void undo()
     {
-        Debug.Log("Undoing: " + previousSubaction);
         LegacyEditorData.instance.currentSubaction = previousSubaction;
         LegacyEditorData.ChangedSubaction();
     }

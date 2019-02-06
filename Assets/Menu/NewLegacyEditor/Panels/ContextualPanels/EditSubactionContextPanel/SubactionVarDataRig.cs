@@ -19,6 +19,7 @@ public class SubactionVarDataRig : MonoBehaviour {
     {
         if (LegacyEditorData.instance.currentSubactionDirty)
         {
+            Debug.Log("Loading new Subaction");
             SubactionData sub = LegacyEditorData.instance.currentSubaction;
 
             //Since we want to clear the list if we deselect a subaction, we take this part out of the null check
