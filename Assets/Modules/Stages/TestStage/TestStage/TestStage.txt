@@ -1,0 +1,34 @@
+(DATA)
+{Name} [Test Map]
+{Music} [Music/TEST1.mp3,Music/TEST2.wav]
+{Icon} [Images/Splash.jpg]
+
+(SCRIPTS)
+{Collision} [Base/Collision.ent]
+{Collision Platform} [Base/Collision_Platform.ent]
+{Blast Zone} [Base/Blast_Zone.ent]
+{Blast Zone Top} [Base/Blast_Zone_Top.ent]
+{Ledge L} [Base/Ledge_L.ent]
+{Ledge R} [Base/Ledge_R.ent]
+
+{Moving Platform} [Entities/Platform.ent]
+
+(VISUAL)
+
+{Background} [Images/Background.png]
+{PlatformImg} [Images/Platform.png]
+{Stage} [Models/Stage.fbx]
+
+(OBJECTS)
+{Collision} [LINE2D:-4,2, -3,0, 3,0, 4,2, -4,2]
+{Stage} [TLBR:-4,2, 4,0]
+
+{Moving Platform, Collision Platform} [TLBR:2,4, 1,4]
+{PlatformImg, Moving Platform} [TLBR:1,4, 2,2]
+
+{Blast Zone} [LINE2D:10,10, 10,-10, -10,-10, -10,10]
+{Blast Zone Fuzzy} [LINE2D:10,10, -10,10]
+{Ledge L} [XY:-2,1]
+{Ledge R} [XY:2,1]
+
+{Background} [TLFBRC:-10,10,-10, 10,-10,-10]
