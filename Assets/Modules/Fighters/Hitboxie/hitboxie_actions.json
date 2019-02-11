@@ -166,6 +166,7 @@
                     {
                         "data": [
                             {
+                                "order": 0,
                                 "SubactionName": "PrintDebug",
                                 "subType": 0,
                                 "arguments": {
@@ -597,6 +598,7 @@
                     {
                         "data": [
                             {
+                                "order": 0,
                                 "SubactionName": "CreateHitbox",
                                 "subType": 3,
                                 "arguments": {

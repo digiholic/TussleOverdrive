@@ -224,7 +224,7 @@ public class LegacyEditorData : MonoBehaviour
             act.undo();
             Debug.Log("Undoing Action: " + act);
             redoList.Push(act);
-            BroadcastMessage("OnModelChanged");
+            FireModelChange();
         }
     }
 
@@ -236,7 +236,7 @@ public class LegacyEditorData : MonoBehaviour
             LegacyEditorAction act = redoList.Pop();
             act.execute();
             undoList.Push(act);
-            BroadcastMessage("OnModelChanged");
+            FireModelChange();
         }
     }
 
@@ -248,7 +248,7 @@ public class LegacyEditorData : MonoBehaviour
         act.execute();
         //This is a special tool that will help us later
         undoList.Push(act);
-        BroadcastMessage("OnModelChanged");
+        FireModelChange();
     }
 
     private void CheckKeyboardShortcuts()
