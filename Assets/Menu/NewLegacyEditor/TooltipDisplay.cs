@@ -76,6 +76,7 @@ public class TooltipDisplay : MonoBehaviour
 
     public static void DisplayTooltip(string tooltip,GameObject callingObject)
     {
+        if (tooltip == null) tooltip = "";
         tooltip = tooltip.Replace("\n", " ").Replace("\r", " ");
         instance.changeTooltipDisplay(tooltip, callingObject);
     }
