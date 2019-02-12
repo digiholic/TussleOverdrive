@@ -17,10 +17,8 @@ public class SubactionCreateHitbox : Subaction {
     {
         string name = "";
         Dictionary<string, string> hbox_dict = new Dictionary<string, string>();
-        Debug.Log(arg_dict.Count);
         foreach (SubactionVarData data in arg_dict.Values)
         {
-            Debug.Log(data.name);
             if (data.name == "hitboxName")
                 name = (string)data.GetData(actor, action);
             else

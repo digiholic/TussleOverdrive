@@ -30,7 +30,7 @@ public class EditSubactionContextPanel : ContextualPanelData {
         }
         else
         {
-            //DeactivatePanel();
+            DeactivatePanel();
         }
     }
 

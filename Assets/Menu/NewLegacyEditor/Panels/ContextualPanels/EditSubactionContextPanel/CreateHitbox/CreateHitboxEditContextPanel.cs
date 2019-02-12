@@ -12,7 +12,8 @@ public class CreateHitboxEditContextPanel : EditSubactionContextPanel
     {
         PROPERTIES,
         DAMAGE,
-        CHARGE
+        CHARGE,
+        ADVANCED
     }
 
     public static HitboxEditorCategory CategoryFromString(string s)

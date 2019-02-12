@@ -24,7 +24,7 @@ public class SubactionDataDefault : ScriptableObject
         foreach (KeyValuePair<string,SubactionVarData> dataPair in arguments){
             copyArguments[dataPair.Key] = dataPair.Value.Copy();
         }
-        return new SubactionData(SubactionName, subType, copyArguments);
+        return new SubactionData(SubactionName, subType, copyArguments,Description);
     }
 
     [ExecuteInEditMode]

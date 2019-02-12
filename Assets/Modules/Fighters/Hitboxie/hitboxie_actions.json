@@ -14,7 +14,173 @@
                 ],
                 "m_values": [
                     {
-                        "data": []
+                        "data": [
+                            {
+                                "order": 0,
+                                "SubactionName": "CreateHitbox",
+                                "subType": 3,
+                                "arguments": {
+                                    "m_keys": [
+                                        "hitboxName",
+                                        "lockGroup",
+                                        "centerX",
+                                        "centerY",
+                                        "width",
+                                        "height",
+                                        "damage",
+                                        "angle",
+                                        "baseKnockback",
+                                        "knockbackGrowth",
+                                        "chargeDamage",
+                                        "chargeBaseKnockback",
+                                        "chargeKnockbackGrowth",
+                                        "shieldDamage",
+                                        "hitstunScaling",
+                                        "shieldstunScaling",
+                                        "sakuraiThreshold"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "hitboxName",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "",
+                                            "description": ""
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "lockGroup",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "",
+                                            "description": ""
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "centerX",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": ""
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "centerY",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": ""
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "width",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "100",
+                                            "description": ""
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "height",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "100",
+                                            "description": ""
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "damage",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": ""
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "angle",
+                                            "source": 0,
+                                            "type": 2,
+                                            "data": "0",
+                                            "description": ""
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "baseKnockback",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": ""
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "knockbackGrowth",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": ""
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "chargeDamage",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": ""
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "chargeBaseKnockback",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": ""
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "chargeKnockbackGrowth",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": ""
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "shieldDamage",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": ""
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "hitstunScaling",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "1",
+                                            "description": ""
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "shieldstunScaling",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "1",
+                                            "description": ""
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "sakuraiThreshold",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": ""
+                                        }
+                                    ]
+                                },
+                                "description": "Creates a Hitbox of the given name. This Hitbox will have all the properties defined in the Hitbox Editor."
+                            }
+                        ]
                     },
                     {
                         "data": []
@@ -183,7 +349,8 @@
                                             "description": "The data to print"
                                         }
                                     ]
-                                }
+                                },
+                                "description": ""
                             }
                         ]
                     },
@@ -615,7 +782,8 @@
                                             "description": "The name of the hitbox to create. If the hitbox already exists for this Action, it will be overwritten with an empty one, so be careful! Each Hitbox should have a unique name."
                                         }
                                     ]
-                                }
+                                },
+                                "description": ""
                             }
                         ]
                     }

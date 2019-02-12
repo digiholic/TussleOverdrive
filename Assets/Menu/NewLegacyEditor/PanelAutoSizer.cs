@@ -9,6 +9,9 @@ public class PanelAutoSizer : MonoBehaviour
     public bool resizeSprite;
 
     private UIPanel panel = null;
+    private Vector3 startingPosition;
+    private Vector3 startingScale;
+
     // Start is called before the first frame update
     void Start()
     {
