@@ -275,7 +275,13 @@ public class LegacyEditorData : MonoBehaviour
     /// <param name="panelToBanish">The panel to banish. Can technically be any gameObject, but it's mostly used for panels.</param>
     public static void Banish(GameObject panelToBanish)
     {
-        instance.ShadowRealm.Banish(panelToBanish);
+        if (instance == null || instance.ShadowRealm == null)
+        {
+            FindObjectOfType<PanelHider>().Banish(panelToBanish);
+        } else
+        {
+            instance.ShadowRealm.Banish(panelToBanish);
+        }
     }
 
     /// <summary>
@@ -284,7 +290,31 @@ public class LegacyEditorData : MonoBehaviour
     /// <param name="panelToBanish">An object in the shadow realm to be returned from whence it came</param>
     public static void Unbanish(GameObject panelToBanish)
     {
-        instance.ShadowRealm.Unbanish(panelToBanish);
+        if (instance == null || instance.ShadowRealm == null)
+        {
+            FindObjectOfType<PanelHider>().Unbanish(panelToBanish);
+        }
+        else
+        {
+            instance.ShadowRealm.Unbanish(panelToBanish);
+        }
+    }
+
+    /// <summary>
+    /// Returns a panel to the the given parent
+    /// </summary>
+    /// <param name="panelToBanish">An object in the shadow realm to be returned from whence it came</param>
+    /// <param name="destinationPanel">The object to return this object to</param>
+    public static void Unbanish(GameObject panelToBanish, GameObject destinationPanel)
+    {
+        if (instance == null || instance.ShadowRealm == null)
+        {
+            FindObjectOfType<PanelHider>().Unbanish(panelToBanish,destinationPanel);
+        }
+        else
+        {
+            instance.ShadowRealm.Unbanish(panelToBanish);
+        }
     }
 
     /// <summary>

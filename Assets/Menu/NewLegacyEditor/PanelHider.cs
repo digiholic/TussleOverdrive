@@ -39,11 +39,16 @@ public class PanelHider : MonoBehaviour {
         }
         //Get the panel's old parent
         GameObject parent = panelToParentDict[panelToUnbanish];
+        Unbanish(panelToUnbanish, parent);
+        //Remove it from our list
+        panelToParentDict.Remove(panelToUnbanish);
+    }
+
+    public void Unbanish(GameObject panelToUnbanish, GameObject parent)
+    {
         //Update it to that object and maintain it's relative position
         Vector3 oldPosition = panelToUnbanish.transform.localPosition;
         panelToUnbanish.transform.SetParent(parent.transform);
         panelToUnbanish.transform.localPosition = oldPosition;
-        //Remove it from our list
-        panelToParentDict.Remove(panelToUnbanish);
     }
 }
