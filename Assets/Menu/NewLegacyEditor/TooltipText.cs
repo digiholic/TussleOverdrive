@@ -11,7 +11,7 @@ public class TooltipText : MonoBehaviour
     {
         if (UICamera.hoveredObject == gameObject)
         {
-            TooltipDisplay.DisplayTooltip(tooltipText);
+            TooltipDisplay.DisplayTooltip(tooltipText,gameObject);
         }
     }
 

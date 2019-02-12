@@ -17,7 +17,7 @@ public class TooltipSubactionCreateButton : MonoBehaviour
     {
         if (UICamera.hoveredObject == gameObject)
         {
-            TooltipDisplay.DisplayTooltip(button.subData.Description);
+            TooltipDisplay.DisplayTooltip(button.subData.Description,gameObject);
         }
     }
 }

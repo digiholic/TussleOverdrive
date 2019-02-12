@@ -15,7 +15,7 @@ public class TooltipSubaction : MonoBehaviour
     {
         if (UICamera.hoveredObject == gameObject)
         {
-            TooltipDisplay.DisplayTooltip(subactionCard.subaction.SubactionName);
+            TooltipDisplay.DisplayTooltip(subactionCard.subaction.description,gameObject);
         }
     }
 }
