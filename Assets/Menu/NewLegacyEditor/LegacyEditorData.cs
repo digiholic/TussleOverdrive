@@ -186,6 +186,7 @@ public class LegacyEditorData : MonoBehaviour
         rightDropdownDirty = true;
         currentFrameDirty = true;
         currentSubactionDirty = true;
+        currentAction = loadedActionFile.GetFirst();
         FireModelChange();
     }
 

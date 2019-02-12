@@ -41,6 +41,8 @@ public class NewSubactionContextPanel : ContextualPanelData
         if (leftValid && rightValid && subValid) {
             LegacyEditorData.Unbanish(gameObject);
             LegacyEditorData.contextualPanel = this;
+            selectedTypeDirty = true;
+            FireContextualPanelChange();
         } else {
             LegacyEditorData.Banish(gameObject);
             //LegacyEditorData.contextualPanel = null;
@@ -48,7 +50,7 @@ public class NewSubactionContextPanel : ContextualPanelData
     }
     public void Start()
     {
-        FireContextualPanelChange();
+        
     }
 
     public override void FireContextualPanelChange()

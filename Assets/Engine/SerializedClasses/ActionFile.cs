@@ -102,6 +102,14 @@ public class ActionFile
         return new DynamicAction("Null");
     }
 
+    public DynamicAction GetFirst()
+    {
+        if (actions.Count > 0)
+        {
+            return actions[0];
+        }
+        else return new DynamicAction("Null");
+    }
     public void WriteJSON(string path)
     {
         string thisjson = JsonUtility.ToJson(this, true);

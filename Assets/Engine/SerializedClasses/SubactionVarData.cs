@@ -16,18 +16,19 @@ public class SubactionVarData
     [TextArea]
     public string description;
 
-    public SubactionVarData(string _name, SubactionSource _source, SubactionVarType _type, string _data, bool _editable = true)
+    public SubactionVarData(string _name, SubactionSource _source, SubactionVarType _type, string _data, string desc, bool _editable = true)
     {
         name = _name;
         source = _source;
         type = _type;
         data = _data;
         editable = _editable;
+        description = desc;
     }
 
     public SubactionVarData Copy()
     {
-        return new SubactionVarData(name, source, type, data, editable);
+        return new SubactionVarData(name, source, type, data, description, editable);
     }
 
     public object GetData(BattleObject owner, GameAction action)
