@@ -21,7 +21,7 @@ public class StartsBanished : MonoBehaviour {
 
     public void Unbanish()
     {
-        LegacyEditorData.Unbanish(gameObject);
+        LegacyEditorData.Unbanish(gameObject,intendedParent);
         //if it's not starting banished, we don't need to use this component
         this.enabled = false;
     }
