@@ -39,13 +39,10 @@ public class NewSubactionContextPanel : ContextualPanelData
         }
             
         if (leftValid && rightValid && subValid) {
-            LegacyEditorData.Unbanish(gameObject);
-            LegacyEditorData.contextualPanel = this;
             selectedTypeDirty = true;
-            FireContextualPanelChange();
+            ActivatePanel();
         } else {
-            LegacyEditorData.Banish(gameObject);
-            //LegacyEditorData.contextualPanel = null;
+            DeactivatePanel();
         }
     }
     public void Start()

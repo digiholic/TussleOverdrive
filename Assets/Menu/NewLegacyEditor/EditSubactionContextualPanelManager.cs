@@ -21,9 +21,17 @@ public class EditSubactionContextualPanelManager : MonoBehaviour
             {
                 if (uniqueContextPanels.ContainsKey(subaction.SubactionName))
                 {
+                    if (LegacyEditorData.contextualPanel != null)
+                    {
+                        LegacyEditorData.contextualPanel.DeactivatePanel();
+                    }
                     uniqueContextPanels[subaction.SubactionName].ActivatePanel();
                 } else
                 {
+                    if (LegacyEditorData.contextualPanel != null)
+                    {
+                        LegacyEditorData.contextualPanel.DeactivatePanel();
+                    }
                     defaultSubactionContextPanel.ActivatePanel();
                 }
             }

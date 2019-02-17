@@ -13,11 +13,6 @@ public class SubactionCreateButtonRig : MonoBehaviour {
     void Awake()
     {
         grid = GetComponent<UIGrid>();
-    }
-
-    // Use this for initialization
-    void Start () {
-
         SubactionDataDefault[] data = Resources.LoadAll<SubactionDataDefault>("SubactionData");
         foreach (SubactionDataDefault sub in data)
         {
@@ -26,10 +21,7 @@ public class SubactionCreateButtonRig : MonoBehaviour {
 
             subactionsByCategory[sub.subType].Add(sub);
         }
-
-        //Find a way to get this width
-        //grid.maxPerLine = (int)(GetComponent<UIWidget>().width / cellWidth);
-	}
+    }
 
     void OnContextualPanelChanged()
     {
@@ -45,7 +37,7 @@ public class SubactionCreateButtonRig : MonoBehaviour {
                     NGUITools.Destroy(child);
                 }
                 children.Clear();
-                
+
                 foreach(SubactionDataDefault subData in subactionsByCategory[panel.selectedType])
                 {
                     instantiateSubactionButton(subData);
