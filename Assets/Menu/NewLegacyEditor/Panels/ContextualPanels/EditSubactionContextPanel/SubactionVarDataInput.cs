@@ -29,8 +29,9 @@ public class SubactionVarDataInput : MonoBehaviour {
         }
     }
 
-    void OnAction(string inputData)
+    public void OnAction(string inputData)
     {
+        Debug.Log("Changing VarDataInput: " + inputData);
         //If we have a filter object, make sure to filter the incoming text before we do anything with it.
         if (filter != null) inputData = filter.filterText(inputData);
 
@@ -39,5 +40,6 @@ public class SubactionVarDataInput : MonoBehaviour {
         legacyAction.init(panel.varData, inputData);
 
         LegacyEditorData.instance.DoAction(legacyAction);
+        input.text = panel.varData.data;
     }
 }

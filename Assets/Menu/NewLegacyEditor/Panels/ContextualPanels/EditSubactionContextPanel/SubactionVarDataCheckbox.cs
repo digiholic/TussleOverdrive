@@ -9,12 +9,13 @@ public class SubactionVarDataCheckbox : MonoBehaviour
     private UICheckbox checkbox;
 
     // Use this for initialization
-    void OnEnable()
+    void Awake()
     {
         checkbox = GetComponent<UICheckbox>();
 
         //The type doesn't change during runtime, so we can just set it here
         checkbox.isChecked = (panel.varData.data == "true");
+        checkbox.eventReceiver = gameObject;
     }
 
     private void OnModelChanged()
@@ -28,8 +29,11 @@ public class SubactionVarDataCheckbox : MonoBehaviour
     void OnAction()
     {
         //Convert this to a LegacyAction
-        ChangeSubactionVarDataInput legacyAction = ScriptableObject.CreateInstance<ChangeSubactionVarDataInput>();
-        legacyAction.init(panel.varData, checkbox.isChecked.ToString().ToLower());
-        LegacyEditorData.instance.DoAction(legacyAction);
+        if (panel.varData.type == SubactionVarType.BOOL && panel.varData.source == SubactionSource.CONSTANT)
+        {
+            ChangeSubactionVarDataInput legacyAction = ScriptableObject.CreateInstance<ChangeSubactionVarDataInput>();
+            legacyAction.init(panel.varData, checkbox.isChecked.ToString().ToLower());
+            LegacyEditorData.instance.DoAction(legacyAction);
+        }
     }
 }
