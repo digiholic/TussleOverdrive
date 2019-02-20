@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SubactionVarDataVarPicker : MonoBehaviour
+public class SetInputFromPopup : MonoBehaviour
 {
     [SerializeField]
-    private SubactionVarDataInput input;
+    private UIInput input;
     private UIPopupList popup;
 
     private void Start()
@@ -25,7 +25,8 @@ public class SubactionVarDataVarPicker : MonoBehaviour
 
     void OnSelectionChange(string selectedInput)
     {
-        Debug.Log("=====VARPICKER CHOSEN=====");
-        input.OnAction(selectedInput);
+        //Doing a bit of dark voodoo magic to call this private method in a library without modifying the library
+        //This will let us do everything the UIInput does as if we typed it in
+        input.SendMessage("Append", selectedInput+'\n');
     }
 }
