@@ -9,11 +9,19 @@ public class PopulatePopupWithVarSource : MonoBehaviour
     [SerializeField]
     private InputPickerPopup popup;
 
-    private List<VarData> fighterList = new List<VarData>();
-    private List<VarData> actionList = new List<VarData>();
+    public List<VarData> fighterList = new List<VarData>();
+    public List<VarData> actionList = new List<VarData>();
 
     //TODO change this to use a listener so it behaves like everyting else does
     private SubactionSource lastSource;
+
+    private void Start()
+    {
+        if (LegacyEditorData.instance.loadedFighter != null)
+        {
+            fighterList = LegacyEditorData.instance.loadedFighter.variables;
+        }
+    }
 
     private void OnModelChanged()
     {

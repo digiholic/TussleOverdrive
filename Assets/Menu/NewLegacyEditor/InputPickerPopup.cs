@@ -33,7 +33,10 @@ public class InputPickerPopup : MonoBehaviour
     public void refreshGridAndLabels()
     {
         grid.Reposition();
-        grid.transform.GetChild(0).GetComponent<LabelDepthUnfucker>().UnfuckLabelDepth();
+        if (grid.transform.childCount > 0)
+        {
+            grid.transform.GetChild(0).GetComponent<LabelDepthUnfucker>().UnfuckLabelDepth();
+        }
     }
     public List<string> getItems()
     {
