@@ -171,6 +171,20 @@ public class UIPopupListInspector : Editor
 				mList.eventReceiver = go;
 				mList.functionName = fn;
 			}
-		}
-	}
+
+
+            //begin added by digi
+            bool isScrollable = EditorGUILayout.Toggle("Scrollable", mList.makeScrollable);
+            float maxh = EditorGUILayout.FloatField("Scrollable Height", mList.scrollPanelMaxHeight);
+
+            if (mList.makeScrollable != isScrollable ||
+                mList.scrollPanelMaxHeight != maxh)
+            {
+                RegisterUndo();
+                mList.makeScrollable = isScrollable;
+                mList.scrollPanelMaxHeight = maxh;
+            }
+            //end added by digi
+        }
+    }
 }

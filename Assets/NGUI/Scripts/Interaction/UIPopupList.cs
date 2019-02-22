@@ -115,6 +115,9 @@ public class UIPopupList : MonoBehaviour
 
 	public bool isLocalized = false;
 
+    public bool makeScrollable = false; //added by digi
+    public float scrollPanelMaxHeight = 0; //added by digi
+
 	/// <summary>
 	/// Target game object that will be notified when selection changes.
 	/// </summary>

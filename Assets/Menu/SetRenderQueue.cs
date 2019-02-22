@@ -6,7 +6,25 @@ public class SetRenderQueue : MonoBehaviour
 
     Material mMat;
 
+    private int oldRenderQueue;
+
     void Start()
+    {
+        oldRenderQueue = renderQueue;
+        UpdateRenderer();
+    }
+
+    void Update()
+    {
+        if (renderQueue != oldRenderQueue)
+        {
+            UpdateRenderer();
+            oldRenderQueue = renderQueue;
+            Debug.Log("Updating renderer");
+        }
+    }
+
+    void UpdateRenderer()
     {
         Renderer ren = GetComponent<Renderer>();
 

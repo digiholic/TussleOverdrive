@@ -5,27 +5,11 @@ using UnityEngine;
 public class SubactionVarDataVarPicker : MonoBehaviour
 {
     [SerializeField]
-    private SubactionVarDataInput input;
-    private UIPopupList popup;
+    private InputPickerPopup popupBox;
 
-    private void Start()
+    void OnPress()
     {
-        popup = GetComponent<UIPopupList>();
-    }
-
-    private void OnModelChanged()
-    {
-        //Don't enable this listener until the fighter is ready.
-        //This gives us some time until the vars have already loaded before we set it
-        if (LegacyEditorData.instance.loadedFighterDirty)
-        {
-            popup.eventReceiver = gameObject;
-        }
-    }
-
-    void OnSelectionChange(string selectedInput)
-    {
-        Debug.Log("=====VARPICKER CHOSEN=====");
-        input.OnAction(selectedInput);
+        NGUITools.SetActive(popupBox.gameObject,true);
+        popupBox.refreshGridAndLabels();
     }
 }

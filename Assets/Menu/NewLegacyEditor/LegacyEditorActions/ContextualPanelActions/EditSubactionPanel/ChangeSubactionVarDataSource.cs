@@ -17,10 +17,12 @@ public class ChangeSubactionVarDataSource : LegacyEditorAction {
     {
         previousSource = varDataToEdit.source;
         varDataToEdit.source = sourceToSet;
+        LegacyEditorData.instance.FireModelChange();
     }
 
     public override void undo()
     {
         varDataToEdit.source = previousSource;
+        LegacyEditorData.instance.FireModelChange();
     }
 }

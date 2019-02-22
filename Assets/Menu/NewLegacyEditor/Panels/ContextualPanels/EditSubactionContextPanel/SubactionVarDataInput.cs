@@ -31,7 +31,6 @@ public class SubactionVarDataInput : MonoBehaviour {
 
     public void OnAction(string inputData)
     {
-        Debug.Log("Changing VarDataInput: " + inputData);
         //If we have a filter object, make sure to filter the incoming text before we do anything with it.
         if (filter != null) inputData = filter.filterText(inputData);
 
