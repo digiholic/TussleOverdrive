@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SubactionVarDataVarPicker : MonoBehaviour
+public class SetInputFromPopup : MonoBehaviour
 {
     [SerializeField]
     private InputPickerPopup popupBox;
