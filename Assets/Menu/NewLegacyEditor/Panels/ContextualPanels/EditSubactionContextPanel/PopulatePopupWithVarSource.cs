@@ -1,16 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
-public class PopulatePopupWithVarSource : MonoBehaviour
+public class PopulatePopupWithVarSource : PopulatePopup
 {
     [SerializeField]
-    private SubactionVarDataPanel panel;
-    [SerializeField]
-    private InputPickerPopup popup;
+    protected SubactionVarDataPanel panel;
 
-    public List<VarData> fighterList = new List<VarData>();
-    public List<VarData> actionList = new List<VarData>();
+    public List<string> fighterList = new List<string>();
+    public List<string> actionList = new List<string>();
 
     //TODO change this to use a listener so it behaves like everyting else does
     private SubactionSource lastSource;
@@ -19,7 +18,7 @@ public class PopulatePopupWithVarSource : MonoBehaviour
     {
         if (LegacyEditorData.instance.loadedFighter != null)
         {
-            fighterList = LegacyEditorData.instance.loadedFighter.variables;
+            fighterList = LegacyEditorData.instance.loadedFighter.variables.Select(varData => varData.name).ToList();
         }
     }
 
@@ -27,23 +26,25 @@ public class PopulatePopupWithVarSource : MonoBehaviour
     {
         if (LegacyEditorData.instance.loadedFighterDirty)
         {
-            fighterList = LegacyEditorData.instance.loadedFighter.variables;
+            fighterList = LegacyEditorData.instance.loadedFighter.variables.Select(varData => varData.name).ToList();
         }
         if (LegacyEditorData.instance.currentActionDirty)
         {
             //TODO add variables to action
-            actionList = new List<VarData>();
+            actionList = new List<string>();
         }
     }
     void Update()
     {
+        if (popup == null) return; //This can sometimes get called before Awake. Somehow.
+
         if (panel.varData.source != lastSource)
         {
             lastSource = panel.varData.source;
             switch (panel.varData.source)
             {
                 case SubactionSource.OWNER:
-                    GenerateVarList(fighterList);
+                    PopulateList(fighterList);
                     break;
                 case SubactionSource.ACTION:
                     break;
@@ -51,16 +52,5 @@ public class PopulatePopupWithVarSource : MonoBehaviour
                     break;
             }
         }
-    }
-
-    private void GenerateVarList(List<VarData> varDataList)
-    {
-        if (popup == null) return; //This can sometimes get called before Awake. Somehow.
-        popup.getItems().Clear();
-        foreach (VarData vardata in varDataList)
-        {
-            popup.getItems().Add(vardata.name);
-        }
-        popup.generateItems();
     }
 }

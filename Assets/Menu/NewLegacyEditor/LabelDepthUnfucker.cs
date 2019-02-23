@@ -28,16 +28,28 @@ public class LabelDepthUnfucker : MonoBehaviour
         Invoke("incrementLabelDepth", 0.1f);
     }
 
+    public void RefuckLabelDepth()
+    {
+        decrementLabelDepth();
+    }
+
     private void incrementLabelDepth()
     {
+        //Don't unfuck twice
+        if (!isUnfucked)
+        {
+            label.depth = label.depth + 1;
+            isUnfucked = true;
+        }
+    }
+
+    private void decrementLabelDepth()
+    {
+        //Don't unfuck twice
         if (isUnfucked)
         {
             label.depth = label.depth - 1;
+            isUnfucked = false;
         }
-        else
-        {
-            label.depth = label.depth + 1;
-        }
-        isUnfucked = !isUnfucked;
     }
 }

@@ -96,6 +96,24 @@ public class FighterInfo {
         return null;
     }
 
+    public SpriteDataCollection getSpriteData()
+    {
+        DirectoryInfo info = new DirectoryInfo(FileLoader.PathCombine(directory_name, sprite_info.sprite_directory));
+        string sprite_json_path = Path.Combine(info.FullName, "sprites.json");
+
+        if (File.Exists(sprite_json_path))
+        {
+            string sprite_json = File.ReadAllText(sprite_json_path);
+            SpriteDataCollection sprite_list = JsonUtility.FromJson<SpriteDataCollection>(sprite_json);
+            return sprite_list;
+        }
+        else
+        {
+            Debug.LogError("No sprites JSON found: " + sprite_json_path);
+            return null;
+        }
+    }
+
     public void CreateOrUpdateVarData(VarData newData)
     {
         foreach (VarData data in variables)

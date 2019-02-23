@@ -42,21 +42,8 @@ public class SpriteHandler : BattleComponent {
     {
         fighter_info = fInfo;
         sprite_info = fighter_info.sprite_info;
-
         SetVar(TussleConstants.SpriteVariableNames.PIXELS_PER_UNIT, sprite_info.sprite_pixelsPerUnit);
-        DirectoryInfo info = new DirectoryInfo(FileLoader.PathCombine(fighter_info.directory_name, sprite_info.sprite_directory));
-        string sprite_json_path = Path.Combine(info.FullName, "sprites.json");
-
-        if (File.Exists(sprite_json_path))
-        {
-            string sprite_json = File.ReadAllText(sprite_json_path);
-            SpriteDataCollection sprite_list = JsonUtility.FromJson<SpriteDataCollection>(sprite_json);
-            LoadSpritesFromData(sprite_list);
-        }
-        else
-        {
-            Debug.LogError("No sprites JSON found: " + sprite_json_path);
-        }
+        LoadSpritesFromData(fInfo.getSpriteData());
     }
 
     public override void ManualUpdate()
@@ -95,8 +82,8 @@ public class SpriteHandler : BattleComponent {
 
         if (sprites.ContainsKey(current_sprite))
             sprite_renderer.sprite = sprites[current_sprite][current_frame];
-        else
-            Debug.LogWarning("No sprite in dictionary! Current Sprite: " + current_sprite);
+        //else
+            //Debug.LogWarning("No sprite in dictionary! Current Sprite: " + current_sprite);
         
         /*
         Sprite spr = sprite_atlas.GetSprite(current_sprite + current_frame.ToString());

@@ -5,7 +5,7 @@ using UnityEngine;
 public class InputPickerPopup : MonoBehaviour
 {
     [SerializeField]
-    private SubactionVarDataInput input;
+    private UIInput input;
     [SerializeField]
     private GameObject inputPickerDataPrefab;
     [SerializeField]
@@ -15,7 +15,10 @@ public class InputPickerPopup : MonoBehaviour
 
     public void OnInputSelected(string selectedInput)
     {
-        input.OnAction(selectedInput);
+        //Doing a bit of dark voodoo magic to call this private method in a library without modifying the library
+        //This will let us do everything the UIInput does as if we typed it in
+        input.text = "";
+        input.SendMessage("Append", selectedInput + '\n');
     }
 
     public void generateItems()
@@ -35,7 +38,7 @@ public class InputPickerPopup : MonoBehaviour
         grid.Reposition();
         if (grid.transform.childCount > 0)
         {
-            grid.transform.GetChild(0).GetComponent<LabelDepthUnfucker>().UnfuckLabelDepth();
+            grid.BroadcastMessage("UnfuckLabelDepth",SendMessageOptions.DontRequireReceiver);
         }
     }
     public List<string> getItems()
@@ -49,7 +52,7 @@ public class InputPickerPopup : MonoBehaviour
 
     public void Dispose()
     {
-        grid.transform.GetChild(0).GetComponent<LabelDepthUnfucker>().UnfuckLabelDepth();
+        grid.BroadcastMessage("RefuckLabelDepth",SendMessageOptions.DontRequireReceiver);
         NGUITools.SetActive(gameObject, false);
     }
 }
