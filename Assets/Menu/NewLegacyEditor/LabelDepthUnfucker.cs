@@ -7,16 +7,17 @@ using UnityEngine;
 /// no matter what the depth is, until their depth is changed and it sort of "wakes up" the
 /// renderer. This class will unfuck the renderer up by shifting it forward whenever you need to.
 /// </summary>
-[RequireComponent(typeof(UILabel))]
 public class LabelDepthUnfucker : MonoBehaviour
 {
     private UILabel label;
+    private UISprite sprite;
     private bool isUnfucked = false;
 
     // Start is called before the first frame update
     void Awake()
     {
         label = GetComponent<UILabel>();
+        sprite = GetComponent<UISprite>();
     }
 
     /// <summary>
@@ -38,7 +39,8 @@ public class LabelDepthUnfucker : MonoBehaviour
         //Don't unfuck twice
         if (!isUnfucked)
         {
-            label.depth = label.depth + 1;
+            if (label != null) label.depth = label.depth + 1;
+            if (sprite != null) sprite.depth = sprite.depth + 1;
             isUnfucked = true;
         }
     }
@@ -48,7 +50,8 @@ public class LabelDepthUnfucker : MonoBehaviour
         //Don't unfuck twice
         if (isUnfucked)
         {
-            label.depth = label.depth - 1;
+            if (label != null) label.depth = label.depth - 1;
+            if (sprite != null) sprite.depth = sprite.depth - 1;
             isUnfucked = false;
         }
     }

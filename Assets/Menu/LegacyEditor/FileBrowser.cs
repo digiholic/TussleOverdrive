@@ -4,6 +4,8 @@ using UnityEngine;
 using System.IO;
 
 public class FileBrowser : MonoBehaviour {
+    delegate void FileBrowserCallback(FileInfo chosenFile);
+
     public PopupWindow main_popup;
     public UIGrid gridPanel;
     public FileBrowserDataRow data_row_prefab;
@@ -23,7 +25,7 @@ public class FileBrowser : MonoBehaviour {
 
     void Start()
     {
-        //Initialize(FileLoader.FighterDir, ValidateFighter, null);
+        Initialize(FileLoader.FighterDir, ValidateFighter, null);
     }
 
     public void Initialize(DirectoryInfo starting_directory, ValidateFile validation_method, FileCallback callback)
@@ -55,6 +57,7 @@ public class FileBrowser : MonoBehaviour {
             NGUITools.Destroy(data.gameObject);
         }
         data_rows = new List<FileBrowserDataRow>();
+        BroadcastMessage("RefuckLabelDepth", SendMessageOptions.DontRequireReceiver);
     }
 
     void LoadData()
@@ -70,6 +73,7 @@ public class FileBrowser : MonoBehaviour {
                 InstantiateFileRow(fname);
         }
         gridPanel.Reposition();
+        BroadcastMessage("UnfuckLabelDepth",SendMessageOptions.DontRequireReceiver);
     }
 
     private FileBrowserDataRow InstantiateDirectoryRow(DirectoryInfo directory)

@@ -857,7 +857,7 @@ public class UIAtlasMaker : EditorWindow
 					GUI.backgroundColor = Color.white;
 					GUILayout.Label(index.ToString(), GUILayout.Width(24f));
 
-					if (GUILayout.Button(iter.Key, "OL TextField", GUILayout.Height(20f)))
+					if (GUILayout.Button(iter.Key, "TextField", GUILayout.Height(20f)))
 						selection = iter.Key;
 
 					if (iter.Value == 2)
