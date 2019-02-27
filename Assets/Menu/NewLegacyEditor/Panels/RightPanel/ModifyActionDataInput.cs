@@ -25,7 +25,7 @@ public class ModifyActionDataInput : MonoBehaviour
     private void OnModelChanged()
     {
         if (LegacyEditorData.instance.currentActionDirty)
-        { 
+        {
             input.text = getActionVar().ToString();
         }
     }
@@ -54,23 +54,32 @@ public class ModifyActionDataInput : MonoBehaviour
         DynamicAction action = LegacyEditorData.instance.currentAction;
         if (varSource == ActionVarType.FIELD)
         {
-            switch (varType)
+            object actionVar = action.GetType().GetField(varName).GetValue(action);
+            if (actionVar != null)
             {
-                case VarType.BOOL:
-                    return (bool)action.GetType().GetField(varName).GetValue(action);
-                case VarType.INT:
-                    return (int)action.GetType().GetField(varName).GetValue(action);
-                case VarType.FLOAT:
-                    return (float)action.GetType().GetField(varName).GetValue(action);
-                default:
-                    return (string)action.GetType().GetField(varName).GetValue(action);
+                switch (varType)
+                {
+                    case VarType.BOOL:
+                        return (bool)actionVar;
+                    case VarType.INT:
+                        return (int)actionVar;
+                    case VarType.FLOAT:
+                        return (float)actionVar;
+                    default:
+                        return (string)actionVar;
+                }
+            }
+            else
+            {
+                Debug.LogWarning("Action " + action.name + " has null value for var: " + varName);
+                return "";
             }
         }
         //else
         //{
         //return action.GetVar(varName);
         //}
-        return null;
+        return "";
     }
 
     private object stringToObjectType(string val)

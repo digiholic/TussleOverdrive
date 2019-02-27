@@ -15,12 +15,13 @@ public class ButtonLoadFile : MonoBehaviour {
             PopupWindow.current_popup_manager.OpenFileBrowser(LegacyEditor.CurrentFighterDir(), FileBrowser.ValidateFighter, CallbackFunction);
     }
 
-    void CallbackFunction(FileInfo info)
+    bool CallbackFunction(FileInfo info)
     {
         string value = FileLoader.GetRelativePath(LegacyEditor.CurrentFighterDir(), info);
         FighterInfo fighter = LegacyEditor.editor.current_fighter;
         fighter.GetType().GetField(variable_name).SetValue(fighter, value);
         LegacyEditor.FireChangeFighter(fighter);
+        return true;
     }
 
     public enum FileBrowserType

@@ -20,12 +20,24 @@ public class FileBrowser : MonoBehaviour {
     public delegate bool ValidateFile(FileInfo finfo);
     public ValidateFile validate_method;
 
-    public delegate void FileCallback(FileInfo finfo);
+    public delegate bool FileCallback(FileInfo finfo);
     public FileCallback callback_function;
+
+    bool LoadFighter(FileInfo info)
+    {
+        FighterInfo fInfo = FighterInfo.LoadFighterInfoFile(info.DirectoryName,info.Name);
+        if (fInfo != null)
+        {
+            
+            LegacyEditorData.instance.LoadNewFighter(fInfo);
+            return true;
+        }
+        return false;
+    }
 
     void Start()
     {
-        Initialize(FileLoader.FighterDir, ValidateFighter, null);
+        Initialize(FileLoader.FighterDir, ValidateFighter, LoadFighter);
     }
 
     public void Initialize(DirectoryInfo starting_directory, ValidateFile validation_method, FileCallback callback)
@@ -43,16 +55,10 @@ public class FileBrowser : MonoBehaviour {
         current_directory = new_directory;
         LoadData();
     }
-    
-    public void ConfirmSelection()
-    {
-        PopupWindow.current_popup_manager.CloseFileBrowser();
-        callback_function(current_file);
-    }
 
     public void RemoveData()
     {
-        foreach(FileBrowserDataRow data in data_rows)
+        foreach (FileBrowserDataRow data in data_rows)
         {
             NGUITools.Destroy(data.gameObject);
         }
@@ -60,7 +66,25 @@ public class FileBrowser : MonoBehaviour {
         BroadcastMessage("RefuckLabelDepth", SendMessageOptions.DontRequireReceiver);
     }
 
-    void LoadData()
+    void ConfirmSelection()
+    {
+        //PopupWindow.current_popup_manager.CloseFileBrowser();
+        if (callback_function != null && current_file != null && current_file.Exists)
+        {
+            bool callbackSuccessful = callback_function(current_file);
+            if (callbackSuccessful)
+            {
+                Dispose();
+            }
+        }
+    }
+
+    public void Dispose()
+    {
+        NGUITools.SetActive(transform.parent.gameObject, false);
+    }
+
+    private void LoadData()
     {
         up_one_level.current_directory = current_directory.Parent;
         foreach(DirectoryInfo directory in current_directory.GetDirectories())
@@ -98,6 +122,7 @@ public class FileBrowser : MonoBehaviour {
         return data;
     }
 
+    #region static validators
     public static bool ValidateFighter(FileInfo info)
     {
         return (info.Extension == ".json");
@@ -113,7 +138,7 @@ public class FileBrowser : MonoBehaviour {
         return true;
     }
 
-    public static void LoadFighterCallback(FileInfo file_info)
+    public static bool LoadFighterCallback(FileInfo file_info)
     {
         FighterInfo fighter_info = JsonUtility.FromJson<FighterInfo>(File.ReadAllText(file_info.FullName));
         if (fighter_info.display_name != null)
@@ -121,10 +146,13 @@ public class FileBrowser : MonoBehaviour {
             LegacyEditor.editor.fighter_file = file_info;
             fighter_info.LoadDirectory(file_info.DirectoryName);
             LegacyEditor.FireChangeFighter(fighter_info);
+            return true;
         }
         else
         {
             PopupWindow.current_popup_manager.OpenInfoBox("Could not find a fighter at " + file_info.Name + " Maybe the file is malformed, or an incorrect json file?");
+            return false;
         }
     }
+    #endregion
 }

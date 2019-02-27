@@ -179,7 +179,7 @@ public class LegacyEditorData : MonoBehaviour
     {
         loadedFighter.LoadDirectory(FighterDirName);
         loadedFighterDirty = true;
-        loadedActionFile = ActionFile.LoadActionsFromFile(FighterDirName, "hitboxie_actions.json");
+        loadedActionFile = ActionFile.LoadActionsFromFile(FighterDirName, loadedFighter.action_file_path);
         loadedActionFileDirty = true;
         currentActionDirty = true;
         leftDropdownDirty = true;
@@ -195,6 +195,23 @@ public class LegacyEditorData : MonoBehaviour
         CheckKeyboardShortcuts();
         //TODO screen with hook here maybe? Or maybe it should be in the individual components...
         //Debug.Log(Screen.width);
+    }
+
+    public void LoadNewFighter(FighterInfo fInfo)
+    {
+        FighterDirName = fInfo.directory_name;
+
+        loadedFighter = fInfo;
+        loadedFighterDirty = true;
+        loadedActionFile = ActionFile.LoadActionsFromFile(FighterDirName, fInfo.action_file_path);
+        loadedActionFileDirty = true;
+        currentActionDirty = true;
+        leftDropdownDirty = true;
+        rightDropdownDirty = true;
+        currentFrameDirty = true;
+        currentSubactionDirty = true;
+        currentAction = loadedActionFile.GetFirst();
+        FireModelChange();
     }
     /// <summary>
     /// Calls everything's OnModelChanged methods, then unsets the dirty bits for everything
