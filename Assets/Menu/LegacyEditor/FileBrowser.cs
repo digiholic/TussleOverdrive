@@ -37,11 +37,12 @@ public class FileBrowser : MonoBehaviour {
 
     void Start()
     {
-        Initialize(FileLoader.FighterDir, ValidateFighter, LoadFighter);
+        //Initialize(FileLoader.FighterDir, ValidateFighter, LoadFighter);
     }
 
     public void Initialize(DirectoryInfo starting_directory, ValidateFile validation_method, FileCallback callback)
     {
+        NGUITools.SetActive(gameObject, true);
         validate_method = validation_method;
         current_directory = starting_directory;
         callback_function = callback;
@@ -81,7 +82,7 @@ public class FileBrowser : MonoBehaviour {
 
     public void Dispose()
     {
-        NGUITools.SetActive(transform.parent.gameObject, false);
+        NGUITools.SetActive(gameObject, false);
     }
 
     private void LoadData()

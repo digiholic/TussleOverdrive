@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 /// <summary>
@@ -11,7 +12,13 @@ public class LegacyEditorData : MonoBehaviour
     public static ContextualPanelData contextualPanel;
     public static AnchorPositions anchors;
 
-    public PanelHider ShadowRealm;
+    [Header("Component Accessors")]
+    [SerializeField]
+    private PanelHider ShadowRealm;
+    [SerializeField]
+    private FileBrowser fileBrowser;
+
+    [Header("Fighter Data")]
     public string FighterDirName;
 
     #region Loaded Fighter - the currently loaded fighter info
@@ -59,6 +66,7 @@ public class LegacyEditorData : MonoBehaviour
         }
     }
     #endregion
+    [Header("Navigation")]
     #region Left Dropdown - what is selected on the left dropdown menu
     [SerializeField]
     private string _leftDropdown;
@@ -284,6 +292,22 @@ public class LegacyEditorData : MonoBehaviour
                 Redo();
             }
         }
+    }
+
+    private void LoadFighterClicked()
+    {
+        fileBrowser.Initialize(FileLoader.FighterDir, FileBrowser.ValidateFighter, LoadFighterFromFile);
+    }
+
+    private bool LoadFighterFromFile(FileInfo info)
+    {
+        FighterInfo fInfo = FighterInfo.LoadFighterInfoFile(info.DirectoryName, info.Name);
+        if (fInfo != null)
+        {
+            LoadNewFighter(fInfo);
+            return true;
+        }
+        return false;
     }
 
     #region static helper methods
