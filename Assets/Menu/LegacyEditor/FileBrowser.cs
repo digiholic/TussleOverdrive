@@ -6,10 +6,17 @@ using System.IO;
 public class FileBrowser : MonoBehaviour {
     delegate void FileBrowserCallback(FileInfo chosenFile);
 
-    public PopupWindow main_popup;
-    public UIGrid gridPanel;
-    public FileBrowserDataRow data_row_prefab;
-    public FileBrowserDataRow up_one_level;
+    [SerializeField]
+    private PopupWindow main_popup;
+    [SerializeField]
+    private UIGrid gridPanel;
+    [SerializeField]
+    private FileBrowserDataRow data_row_prefab;
+    [SerializeField]
+    private FileBrowserDataRow up_one_level;
+    [SerializeField]
+    private PopupErrorLabel errorLabel;
+
     public UILabel SelectedFileText;
 
     public DirectoryInfo current_directory;
@@ -76,12 +83,16 @@ public class FileBrowser : MonoBehaviour {
             if (callbackSuccessful)
             {
                 Dispose();
+            } else
+            {
+                errorLabel.DisplayError();
             }
         }
     }
 
     public void Dispose()
     {
+        RemoveData();
         NGUITools.SetActive(gameObject, false);
     }
 

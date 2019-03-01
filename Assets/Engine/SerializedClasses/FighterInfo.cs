@@ -69,6 +69,7 @@ public class FighterInfo {
         {
             string json = File.ReadAllText(combinedPath);
             FighterInfo info = JsonUtility.FromJson<FighterInfo>(json);
+            if (info.display_name == null) return null; //If it doesn't have a display name it's not a fighter
             info.LoadDirectory(directory);
             return info;
         }
