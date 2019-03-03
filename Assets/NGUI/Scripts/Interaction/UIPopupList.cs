@@ -388,8 +388,10 @@ public class UIPopupList : MonoBehaviour
 			mChild = null;
 
             //Reset the depth change we had to hack together in the on click ~digi
-            textLabel.depth = textLabel.depth - 2;
-
+            if (textLabel != null)
+            {
+                textLabel.depth = textLabel.depth - 2;
+            }
         }
     }
 
@@ -488,9 +490,12 @@ public class UIPopupList : MonoBehaviour
 			mBackground.pivot = UIWidget.Pivot.TopLeft;
 			mBackground.depth = NGUITools.CalculateNextDepth(mPanel.gameObject);
 			mBackground.color = backgroundColor;
-            
+
             //The text label always ends up drawing below the dropdown menu, so we need its depth to increase after creating the others.
-            textLabel.depth = NGUITools.CalculateNextDepth(mPanel.gameObject);
+            if (textLabel != null)
+            {
+                textLabel.depth = NGUITools.CalculateNextDepth(mPanel.gameObject);
+            }
 
 			// We need to know the size of the background sprite for padding purposes
 			Vector4 bgPadding = mBackground.border;

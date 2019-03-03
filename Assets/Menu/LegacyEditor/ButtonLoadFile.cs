@@ -17,7 +17,7 @@ public class ButtonLoadFile : MonoBehaviour {
 
     bool CallbackFunction(FileInfo info)
     {
-        string value = FileLoader.GetRelativePath(LegacyEditor.CurrentFighterDir(), info);
+        string value = FileLoader.GetPathFromDir(LegacyEditor.CurrentFighterDir(), info);
         FighterInfo fighter = LegacyEditor.editor.current_fighter;
         fighter.GetType().GetField(variable_name).SetValue(fighter, value);
         LegacyEditor.FireChangeFighter(fighter);

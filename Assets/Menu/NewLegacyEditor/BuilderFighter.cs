@@ -9,7 +9,6 @@ public class BuilderFighter : MonoBehaviour {
     {
         if (LegacyEditorData.instance.loadedFighterDirty)
         {
-            Debug.Log("Setting Fighter");
             fighterObject.SendMessage("OnFighterInfoReady", LegacyEditorData.instance.loadedFighter);
             SpriteHandler spriteHandler = fighterObject.GetComponent<SpriteHandler>();
             spriteHandler.ChangeSprite("idle");

@@ -294,9 +294,17 @@ public class LegacyEditorData : MonoBehaviour
         }
     }
 
-    private void LoadFighterClicked()
+    public void LoadFighterClicked()
     {
         fileBrowser.Initialize(FileLoader.FighterDir, FileBrowser.ValidateFighter, LoadFighterFromFile);
+    }
+
+    public void SaveFighterClicked()
+    {
+        loadedFighter.Save();
+        string path = FileLoader.PathCombine(FileLoader.GetFighterPath(FighterDirName), loadedFighter.action_file_path);
+        loadedActionFile.WriteJSON(path);
+        Debug.Log("Saved Fighter: " + path);
     }
 
     private bool LoadFighterFromFile(FileInfo info)

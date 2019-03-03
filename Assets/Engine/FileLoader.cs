@@ -83,10 +83,10 @@ public class FileLoader {
         return "";
     }
 
-    public static string GetRelativePath(DirectoryInfo directory_info, FileInfo file_info)
+    public static string GetPathFromDir(DirectoryInfo start_directory, FileInfo destination_file)
     {
-        string file_string = file_info.FullName;
-        string directory_string = directory_info.FullName;
+        string file_string = destination_file.FullName;
+        string directory_string = start_directory.FullName;
         if (file_string.StartsWith(directory_string))
         {
             return file_string.Remove(0, directory_string.Length + 1); //We add one here to remove the leading slash
