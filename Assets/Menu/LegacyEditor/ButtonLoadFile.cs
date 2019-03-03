@@ -12,7 +12,7 @@ public class ButtonLoadFile : MonoBehaviour {
         if (file_type == FileBrowserType.Image)
             PopupWindow.current_popup_manager.OpenFileBrowser(LegacyEditor.CurrentFighterDir(), FileBrowser.ValidateImage, CallbackFunction);
         else if (file_type == FileBrowserType.Json)
-            PopupWindow.current_popup_manager.OpenFileBrowser(LegacyEditor.CurrentFighterDir(), FileBrowser.ValidateFighter, CallbackFunction);
+            PopupWindow.current_popup_manager.OpenFileBrowser(LegacyEditor.CurrentFighterDir(), FileBrowser.ValidateJSONFile, CallbackFunction);
     }
 
     bool CallbackFunction(FileInfo info)

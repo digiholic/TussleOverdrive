@@ -296,7 +296,8 @@ public class LegacyEditorData : MonoBehaviour
 
     public void LoadFighterClicked()
     {
-        fileBrowser.Initialize(FileLoader.FighterDir, FileBrowser.ValidateFighter, LoadFighterFromFile);
+        fileBrowser.BrowseForJSON(FileLoader.FighterDir, LoadFighterFromFile);
+        fileBrowser.SetErrorText("File does not contain a fighter");
     }
 
     public void SaveFighterClicked()

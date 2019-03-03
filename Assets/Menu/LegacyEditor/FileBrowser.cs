@@ -16,6 +16,10 @@ public class FileBrowser : MonoBehaviour {
     private FileBrowserDataRow up_one_level;
     [SerializeField]
     private PopupErrorLabel errorLabel;
+    [SerializeField]
+    private UILabel directory_label;
+    [SerializeField]
+    private UIDraggablePanel dragPanel;
 
     public UILabel SelectedFileText;
 
@@ -29,6 +33,9 @@ public class FileBrowser : MonoBehaviour {
 
     public delegate bool FileCallback(FileInfo finfo);
     public FileCallback callback_function;
+
+    public delegate bool DirectoryCallback(DirectoryInfo dInfo);
+    public DirectoryCallback directory_callback;
 
     bool LoadFighter(FileInfo info)
     {
@@ -44,16 +51,49 @@ public class FileBrowser : MonoBehaviour {
 
     void Start()
     {
-        //Initialize(FileLoader.FighterDir, ValidateFighter, LoadFighter);
+        //Initialize(FileLoader.FighterDir, ValidateJSONFile, LoadFighter);
     }
 
-    public void Initialize(DirectoryInfo starting_directory, ValidateFile validation_method, FileCallback callback)
+    public void SetErrorText(string errorText)
+    {
+        errorLabel.SetErrorText(errorText);
+    }
+
+    public void Initialize(DirectoryInfo starting_directory, ValidateFile validation_method, FileCallback fileCallback, DirectoryCallback directoryCallback)
     {
         NGUITools.SetActive(gameObject, true);
+        SelectedFileText.text = "";
+        dragPanel.ResetPosition();
         validate_method = validation_method;
         current_directory = starting_directory;
-        callback_function = callback;
+        callback_function = fileCallback;
+        directory_callback = directoryCallback;
+        directory_label.text = starting_directory.Name;
         LoadData();
+    }
+
+    public void BrowseForJSON(DirectoryInfo starting_directory, FileCallback fileCallback)
+    {
+        Initialize(starting_directory, ValidateJSONFile, fileCallback, null);
+        SetErrorText("Invalid JSON File");
+    }
+
+    public void BrowseForImage(DirectoryInfo starting_directory, FileCallback fileCallback)
+    {
+        Initialize(starting_directory, ValidateImage, fileCallback, null);
+        SetErrorText("Invalid Image File");
+    }
+
+    public void BrowseForFile(DirectoryInfo starting_directory, FileCallback fileCallback)
+    {
+        Initialize(starting_directory, ValidateEverything, fileCallback, null);
+        SetErrorText("Could Not Open File");
+    }
+
+    public void BrowseForDirectory(DirectoryInfo starting_directory, DirectoryCallback directoryCallback)
+    {
+        Initialize(starting_directory, ValidateNothing, null, directoryCallback);
+        SetErrorText("Could Not Open Directory");
     }
 
     public void ChangeDirectory(DirectoryInfo new_directory)
@@ -61,6 +101,7 @@ public class FileBrowser : MonoBehaviour {
         GetComponentInChildren<UIDraggablePanel>().ResetPosition();
         RemoveData();
         current_directory = new_directory;
+        directory_label.text = new_directory.Name;
         LoadData();
     }
 
@@ -76,7 +117,19 @@ public class FileBrowser : MonoBehaviour {
 
     void ConfirmSelection()
     {
-        //PopupWindow.current_popup_manager.CloseFileBrowser();
+        if (directory_callback != null && current_directory != null && current_directory.Exists)
+        {
+            bool callbackSuccessful = directory_callback(current_directory);
+            if (callbackSuccessful)
+            {
+                Dispose();
+            }
+            else
+            {
+                errorLabel.DisplayError();
+            }
+        }
+
         if (callback_function != null && current_file != null && current_file.Exists)
         {
             bool callbackSuccessful = callback_function(current_file);
@@ -135,8 +188,9 @@ public class FileBrowser : MonoBehaviour {
     }
 
     #region static validators
-    public static bool ValidateFighter(FileInfo info)
+    public static bool ValidateJSONFile(FileInfo info)
     {
+        Debug.Log(info.Name);
         return (info.Extension == ".json");
     }
 
@@ -148,6 +202,11 @@ public class FileBrowser : MonoBehaviour {
     public static bool ValidateEverything(FileInfo info)
     {
         return true;
+    }
+
+    public static bool ValidateNothing(FileInfo info)
+    {
+        return false;
     }
 
     public static bool LoadFighterCallback(FileInfo file_info)

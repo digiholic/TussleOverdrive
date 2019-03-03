@@ -20,7 +20,7 @@ public class PopupWindow : MonoBehaviour {
     {
         BlockerPanel.SetActive(true);
         FileBrowserPanel.gameObject.SetActive(true);
-        FileBrowserPanel.Initialize(starting_directory, validate_function, callback_function);
+        FileBrowserPanel.Initialize(starting_directory, validate_function, callback_function, null);
     }
 
     public void CloseFileBrowser()
@@ -47,7 +47,7 @@ public class PopupWindow : MonoBehaviour {
 
     public void OpenFighterBrowser()
     {
-        OpenFileBrowser(FileLoader.FighterDir, FileBrowser.ValidateFighter, FileBrowser.LoadFighterCallback);
+        OpenFileBrowser(FileLoader.FighterDir, FileBrowser.ValidateJSONFile, FileBrowser.LoadFighterCallback);
     }
 
     public void OpenImageBrowser()

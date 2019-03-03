@@ -93,4 +93,15 @@ public class FileLoader {
         }
         return null;
     }
+
+    public static string GetPathFromDir(DirectoryInfo start_directory, DirectoryInfo destination_file)
+    {
+        string file_string = destination_file.FullName;
+        string directory_string = start_directory.FullName;
+        if (file_string.StartsWith(directory_string))
+        {
+            return file_string.Remove(0, directory_string.Length + 1); //We add one here to remove the leading slash
+        }
+        return null;
+    }
 }
