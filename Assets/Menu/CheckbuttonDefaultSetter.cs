@@ -12,18 +12,18 @@ public class CheckbuttonDefaultSetter : MonoBehaviour {
     }
 
     public CheckValueList value;
-    private UICheckbox checkbox;
+    private UIToggle checkbox;
 
 	// Use this for initialization
 	void Start () {
-        checkbox = GetComponent<UICheckbox>();
+        checkbox = GetComponent<UIToggle>();
         if (value == CheckValueList.DisplayHitboxes)
-            checkbox.startsChecked = Settings.current_settings.display_hitboxes;
+            checkbox.value = Settings.current_settings.display_hitboxes;
         else if (value == CheckValueList.DisplayHurtboxes)
-            checkbox.startsChecked = Settings.current_settings.display_hurtboxes;
+            checkbox.value = Settings.current_settings.display_hurtboxes;
         else if (value == CheckValueList.DisplayColliders)
-            checkbox.startsChecked = Settings.current_settings.display_colliders;
+            checkbox.value = Settings.current_settings.display_colliders;
         else if (value == CheckValueList.DisplayPlatforms)
-            checkbox.startsChecked = Settings.current_settings.display_platforms;
+            checkbox.value = Settings.current_settings.display_platforms;
     }
 }

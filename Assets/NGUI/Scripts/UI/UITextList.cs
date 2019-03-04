@@ -1,7 +1,11 @@
-//----------------------------------------------
+//-------------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2013 Tasharen Entertainment
-//----------------------------------------------
+// Copyright © 2011-2019 Tasharen Entertainment Inc
+//-------------------------------------------------
+
+#if !UNITY_3_5 && !UNITY_FLASH
+#define DYNAMIC_FONT
+#endif
 
 using UnityEngine;
 using System.Collections.Generic;
@@ -15,18 +19,35 @@ using System.Text;
 [AddComponentMenu("NGUI/UI/Text List")]
 public class UITextList : MonoBehaviour
 {
-	public enum Style
+	[DoNotObfuscateNGUI] public enum Style
 	{
 		Text,
 		Chat,
 	}
 
-	public Style style = Style.Text;
+	/// <summary>
+	/// Label the contents of which will be modified with the chat entries.
+	/// </summary>
+
 	public UILabel textLabel;
-	public float maxWidth = 0f;
-	public float maxHeight = 0f;
-	public int maxEntries = 50;
-	public bool supportScrollWheel = true;
+
+	/// <summary>
+	/// Vertical scroll bar associated with the text list.
+	/// </summary>
+
+	public UIProgressBar scrollBar;
+
+	/// <summary>
+	/// Text style. Text entries go top to bottom. Chat entries go bottom to top.
+	/// </summary>
+
+	public Style style = Style.Text;
+
+	/// <summary>
+	/// Maximum number of chat log entries to keep before discarding them.
+	/// </summary>
+
+	public int paragraphHistory = 100;
 
 	// Text list is made up of paragraphs
 	protected class Paragraph
@@ -36,10 +57,103 @@ public class UITextList : MonoBehaviour
 	}
 
 	protected char[] mSeparator = new char[] { '\n' };
-	protected List<Paragraph> mParagraphs = new List<Paragraph>();
 	protected float mScroll = 0f;
-	protected bool mSelected = false;
 	protected int mTotalLines = 0;
+	protected int mLastWidth = 0;
+	protected int mLastHeight = 0;
+	BetterList<Paragraph> mParagraphs;
+
+	/// <summary>
+	/// Chat history is in a dictionary so that there can be multiple chat window tabs, each with its own text list.
+	/// The dictionary is static so that it travels from one scene to another without losing chat history.
+	/// </summary>
+
+	static Dictionary<string, BetterList<Paragraph>> mHistory = new Dictionary<string, BetterList<Paragraph>>();
+
+	/// <summary>
+	/// Paragraphs belonging to this text list.
+	/// </summary>
+
+	protected BetterList<Paragraph> paragraphs
+	{
+		get
+		{
+			if (mParagraphs == null)
+			{
+				if (!mHistory.TryGetValue(name, out mParagraphs))
+				{
+					mParagraphs = new BetterList<Paragraph>();
+					mHistory.Add(name, mParagraphs);
+				}
+			}
+			return mParagraphs;
+		}
+	}
+
+	/// <summary>
+	/// Return the number of paragraphs currently in the text list.
+	/// </summary>
+
+	public int paragraphCount { get { return paragraphs.size; } }
+
+	/// <summary>
+	/// Whether the text list is usable.
+	/// </summary>
+
+#if DYNAMIC_FONT
+	public bool isValid { get { return textLabel != null && textLabel.ambigiousFont != null; } }
+#else
+	public bool isValid { get { return textLabel != null && textLabel.bitmapFont != null; } }
+#endif
+
+	/// <summary>
+	/// Relative (0-1 range) scroll value, with 0 being the oldest entry and 1 being the newest entry.
+	/// </summary>
+
+	public float scrollValue
+	{
+		get
+		{
+			return mScroll;
+		}
+		set
+		{
+			value = Mathf.Clamp01(value);
+
+			if (isValid && mScroll != value)
+			{
+				if (scrollBar != null)
+				{
+					scrollBar.value = value;
+				}
+				else
+				{
+					mScroll = value;
+					UpdateVisibleText();
+				}
+			}
+		}
+	}
+
+	/// <summary>
+	/// Height of each line.
+	/// </summary>
+
+	protected float lineHeight { get { return (textLabel != null) ? textLabel.fontSize + textLabel.effectiveSpacingY : 20f; } }
+
+	/// <summary>
+	/// Height of the scrollable area (outside of the visible area's bounds).
+	/// </summary>
+
+	protected int scrollHeight
+	{
+		get
+		{
+			if (!isValid) return 0;
+			int maxLines = Mathf.FloorToInt((float)textLabel.height / lineHeight);
+			return Mathf.Max(0, mTotalLines - maxLines);
+		}
+	}
 
 	/// <summary>
 	/// Clear the text.
@@ -47,7 +161,83 @@ public class UITextList : MonoBehaviour
 
 	public void Clear ()
 	{
-		mParagraphs.Clear();
+		paragraphs.Clear();
+		UpdateVisibleText();
+	}
+
+	/// <summary>
+	/// Automatically find the values if none were specified.
+	/// </summary>
+
+	void Start ()
+	{
+		if (textLabel == null)
+			textLabel = GetComponentInChildren<UILabel>();
+
+		if (scrollBar != null)
+			EventDelegate.Add(scrollBar.onChange, OnScrollBar);
+
+		textLabel.overflowMethod = UILabel.Overflow.ClampContent;
+
+		if (style == Style.Chat)
+		{
+			textLabel.pivot = UIWidget.Pivot.BottomLeft;
+			scrollValue = 1f;
+		}
+		else
+		{
+			textLabel.pivot = UIWidget.Pivot.TopLeft;
+			scrollValue = 0f;
+		}
+	}
+
+	/// <summary>
+	/// Keep an eye on the size of the label, and if it changes -- rebuild everything.
+	/// </summary>
+
+	void Update ()
+	{
+		if (isValid && (textLabel.width != mLastWidth || textLabel.height != mLastHeight))
+			Rebuild();
+	}
+
+	/// <summary>
+	/// Allow scrolling of the text list.
+	/// </summary>
+
+	public void OnScroll (float val)
+	{
+		int sh = scrollHeight;
+
+		if (sh != 0)
+		{
+			val *= lineHeight;
+			scrollValue = mScroll - val / sh;
+		}
+	}
+
+	/// <summary>
+	/// Allow dragging of the text list.
+	/// </summary>
+
+	public void OnDrag (Vector2 delta)
+	{
+		int sh = scrollHeight;
+
+		if (sh != 0)
+		{
+			float val = delta.y / lineHeight;
+			scrollValue = mScroll + val / sh;
+		}
+	}
+
+	/// <summary>
+	/// Delegate function called when the scroll bar's value changes.
+	/// </summary>
+
+	void OnScrollBar ()
+	{
+		mScroll = UIScrollBar.current.value;
 		UpdateVisibleText();
 	}
 
@@ -65,61 +255,65 @@ public class UITextList : MonoBehaviour
 	{
 		Paragraph ce = null;
 
-		if (mParagraphs.Count < maxEntries)
+		if (paragraphs.size < paragraphHistory)
 		{
 			ce = new Paragraph();
 		}
 		else
 		{
-			ce = mParagraphs[0];
+			ce = mParagraphs.buffer[0];
 			mParagraphs.RemoveAt(0);
 		}
 
 		ce.text = text;
 		mParagraphs.Add(ce);
-		
-		if (textLabel != null && textLabel.font != null)
+		Rebuild();
+	}
+
+	/// <summary>
+	/// Rebuild the visible text.
+	/// </summary>
+
+	protected void Rebuild ()
+	{
+		if (isValid)
 		{
-			// Rebuild the line
-			Vector3 scale = textLabel.transform.localScale;
-			string line;
-			textLabel.font.WrapText(ce.text, out line, maxWidth / scale.x, maxHeight / scale.y,
-				textLabel.maxLineCount, textLabel.supportEncoding, textLabel.symbolStyle);
-			ce.lines = line.Split(mSeparator);
+			mLastWidth = textLabel.width;
+			mLastHeight = textLabel.height;
+
+			// Although we could simply use UILabel.Wrap, it would mean setting the same data
+			// over and over every paragraph, which is not ideal. It's faster to only do it once
+			// and then do wrapping ourselves in the 'for' loop below.
+			textLabel.UpdateNGUIText();
+			NGUIText.rectHeight = 1000000;
+			NGUIText.regionHeight = 1000000;
+			mTotalLines = 0;
+
+			for (int i = 0; i < paragraphs.size; ++i)
+			{
+				string final;
+				Paragraph p = mParagraphs.buffer[i];
+				NGUIText.WrapText(p.text, out final, false, true);
+				p.lines = final.Split('\n');
+				mTotalLines += p.lines.Length;
+			}
 
 			// Recalculate the total number of lines
 			mTotalLines = 0;
-			for (int i = 0, imax = mParagraphs.Count; i < imax; ++i) mTotalLines += mParagraphs[i].lines.Length;
-		}
+			for (int i = 0, imax = mParagraphs.size; i < imax; ++i)
+				mTotalLines += mParagraphs.buffer[i].lines.Length;
 
-		// Update the visible text
-		if (updateVisible) UpdateVisibleText();
-	}
+			// Update the bar's size
+			if (scrollBar != null)
+			{
+				UIScrollBar sb = scrollBar as UIScrollBar;
+				if (sb != null) sb.barSize = (mTotalLines == 0) ? 1f : 1f - (float)scrollHeight / mTotalLines;
+			}
 
-	/// <summary>
-	/// Automatically find the values if none were specified.
-	/// </summary>
-
-	void Awake ()
-	{
-		if (textLabel == null) textLabel = GetComponentInChildren<UILabel>();
-		if (textLabel != null) textLabel.lineWidth = 0;
-
-		Collider col = GetComponent<Collider>();
-
-		if (col != null)
-		{
-			// Automatically set the width and height based on the collider
-			if (maxHeight <= 0f) maxHeight = col.bounds.size.y / transform.lossyScale.y;
-			if (maxWidth  <= 0f) maxWidth  = col.bounds.size.x / transform.lossyScale.x;
+			// Update the visible text
+			UpdateVisibleText();
 		}
 	}
-
-	/// <summary>
-	/// Remember whether the widget is selected.
-	/// </summary>
-
-	void OnSelect (bool selected) { mSelected = selected; }
 
 	/// <summary>
 	/// Refill the text label based on what's currently visible.
@@ -127,68 +321,42 @@ public class UITextList : MonoBehaviour
 
 	protected void UpdateVisibleText ()
 	{
-		if (textLabel != null)
+		if (isValid)
 		{
-			UIFont font = textLabel.font;
-
-			if (font != null)
+			if (mTotalLines == 0)
 			{
-				int lines = 0;
-				int maxLines = maxHeight > 0 ? Mathf.FloorToInt(maxHeight / textLabel.cachedTransform.localScale.y) : 100000;
-				int offset = Mathf.RoundToInt(mScroll);
-
-				// Don't let scrolling to exceed the visible number of lines
-				if (maxLines + offset > mTotalLines)
-				{
-					offset = Mathf.Max(0, mTotalLines - maxLines);
-					mScroll = offset;
-				}
-
-				if (style == Style.Chat)
-				{
-					offset = Mathf.Max(0, mTotalLines - maxLines - offset);
-				}
-
-				StringBuilder final = new StringBuilder();
-
-				for (int i = 0, imax = mParagraphs.Count; i < imax; ++i)
-				{
-					Paragraph p = mParagraphs[i];
-
-					for (int b = 0, bmax = p.lines.Length; b < bmax; ++b)
-					{
-						string s = p.lines[b];
-
-						if (offset > 0)
-						{
-							--offset;
-						}
-						else
-						{
-							if (final.Length > 0) final.Append("\n");
-							final.Append(s);
-							++lines;
-							if (lines >= maxLines) break;
-						}
-					}
-					if (lines >= maxLines) break;
-				}
-				textLabel.text = final.ToString();
+				textLabel.text = "";
+				return;
 			}
-		}
-	}
 
-	/// <summary>
-	/// Allow scrolling of the text list.
-	/// </summary>
+			int maxLines = Mathf.FloorToInt((float)textLabel.height / lineHeight);
+			int sh = Mathf.Max(0, mTotalLines - maxLines);
+			int offset = Mathf.RoundToInt(mScroll * sh);
+			if (offset < 0) offset = 0;
 
-	void OnScroll (float val)
-	{
-		if (mSelected && supportScrollWheel)
-		{
-			val *= (style == Style.Chat) ? 10f : -10f;
-			mScroll = Mathf.Max(0f, mScroll + val);
-			UpdateVisibleText();
+			StringBuilder final = new StringBuilder();
+
+			for (int i = 0, imax = paragraphs.size; maxLines > 0 && i < imax; ++i)
+			{
+				Paragraph p = mParagraphs.buffer[i];
+
+				for (int b = 0, bmax = p.lines.Length; maxLines > 0 && b < bmax; ++b)
+				{
+					string s = p.lines[b];
+
+					if (offset > 0)
+					{
+						--offset;
+					}
+					else
+					{
+						if (final.Length > 0) final.Append("\n");
+						final.Append(s);
+						--maxLines;
+					}
+				}
+			}
+			textLabel.text = final.ToString();
 		}
 	}
 }

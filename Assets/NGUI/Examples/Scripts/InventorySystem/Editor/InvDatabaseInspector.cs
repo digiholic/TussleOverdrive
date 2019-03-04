@@ -94,7 +94,7 @@ public class InvDatabaseInspector : Editor
 
 	public override void OnInspectorGUI ()
 	{
-		EditorGUIUtility.LookLikeControls(80f);
+		NGUIEditorTools.SetLabelWidth(80f);
 		InvDatabase db = target as InvDatabase;
 		NGUIEditorTools.DrawSeparator();
 
@@ -135,7 +135,9 @@ public class InvDatabaseInspector : Editor
 		else
 		{
 			// Database icon atlas
-			UIAtlas atlas = EditorGUILayout.ObjectField("Icon Atlas", db.iconAtlas, typeof(UIAtlas), false) as UIAtlas;
+			var atlas = db.iconAtlas;
+			if (atlas is UIAtlas) atlas = EditorGUILayout.ObjectField("Icon Atlas", atlas, typeof(UIAtlas), false) as UIAtlas;
+			else atlas = EditorGUILayout.ObjectField("Icon Atlas", atlas, typeof(NGUIAtlas), false) as NGUIAtlas;
 
 			if (atlas != db.iconAtlas)
 			{
@@ -243,21 +245,22 @@ public class InvDatabaseInspector : Editor
 				float iconSize = 64f;
 				bool drawIcon = false;
 				float extraSpace = 0f;
+				var ia = item.iconAtlas as INGUIAtlas;
 
-				if (item.iconAtlas != null)
+				if (ia != null)
 				{
-					BetterList<string> sprites = item.iconAtlas.GetListOfSprites();
+					var sprites = ia.GetListOfSprites();
 					sprites.Insert(0, "<None>");
 
 					int index = 0;
-					string spriteName = (item.iconName != null) ? item.iconName : sprites[0];
+					string spriteName = (item.iconName != null) ? item.iconName : sprites.buffer[0];
 
 					// We need to find the sprite in order to have it selected
 					if (!string.IsNullOrEmpty(spriteName))
 					{
 						for (int i = 1; i < sprites.size; ++i)
 						{
-							if (spriteName.Equals(sprites[i], System.StringComparison.OrdinalIgnoreCase))
+							if (spriteName.Equals(sprites.buffer[i], System.StringComparison.OrdinalIgnoreCase))
 							{
 								index = i;
 								break;
@@ -267,13 +270,13 @@ public class InvDatabaseInspector : Editor
 
 					// Draw the sprite selection popup
 					index = EditorGUILayout.Popup("Icon", index, sprites.ToArray());
-					UIAtlas.Sprite sprite = (index > 0) ? item.iconAtlas.GetSprite(sprites[index]) : null;
+					UISpriteData sprite = (index > 0) ? ia.GetSprite(sprites.buffer[index]) : null;
 
 					if (sprite != null)
 					{
 						iconName = sprite.name;
 
-						Material mat = item.iconAtlas.spriteMaterial;
+						var mat = ia.spriteMaterial;
 
 						if (mat != null)
 						{
@@ -282,12 +285,8 @@ public class InvDatabaseInspector : Editor
 							if (tex != null)
 							{
 								drawIcon = true;
-								Rect rect = sprite.outer;
-
-								if (item.iconAtlas.coordinates == UIAtlas.Coordinates.Pixels)
-								{
-									rect = NGUIMath.ConvertToTexCoords(rect, tex.width, tex.height);
-								}
+								Rect rect = new Rect(sprite.x, sprite.y, sprite.width, sprite.height);
+								rect = NGUIMath.ConvertToTexCoords(rect, tex.width, tex.height);
 
 								GUILayout.Space(4f);
 								GUILayout.BeginHorizontal();
@@ -297,7 +296,7 @@ public class InvDatabaseInspector : Editor
 								}
 								GUILayout.EndHorizontal();
 
-								extraSpace = iconSize * (float)sprite.outer.height / sprite.outer.width;
+								extraSpace = iconSize * (float)sprite.height / sprite.width;
 							}
 						}
 					}

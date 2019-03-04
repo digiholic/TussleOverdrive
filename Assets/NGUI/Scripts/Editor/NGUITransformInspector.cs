@@ -1,158 +1,13 @@
-//----------------------------------------------
+//-------------------------------------------------
 //			  NGUI: Next-Gen UI kit
-// Copyright © 2011-2013 Tasharen Entertainment
-//----------------------------------------------
+// Copyright © 2011-2019 Tasharen Entertainment Inc
+//-------------------------------------------------
 
-#if UNITY_3_5
-
-using UnityEngine;
-using UnityEditor;
-
-[CustomEditor(typeof(Transform))]
-public class NGUITransformInspector : Editor
-{
-	/// <summary>
-	/// Draw the inspector widget.
-	/// </summary>
-
-	public override void OnInspectorGUI ()
-	{
-		Transform trans = target as Transform;
-		EditorGUIUtility.LookLikeControls(15f);
-
-		Vector3 pos;
-		Vector3 rot;
-		Vector3 scale;
-
-		// Position
-		EditorGUILayout.BeginHorizontal();
-		{
-			if (DrawButton("P", "Reset Position", IsResetPositionValid(trans), 20f))
-			{
-				NGUIEditorTools.RegisterUndo("Reset Position", trans);
-				trans.localPosition = Vector3.zero;
-			}
-			pos = DrawVector3(trans.localPosition);
-		}
-		EditorGUILayout.EndHorizontal();
-
-		// Rotation
-		EditorGUILayout.BeginHorizontal();
-		{
-			if (DrawButton("R", "Reset Rotation", IsResetRotationValid(trans), 20f))
-			{
-				NGUIEditorTools.RegisterUndo("Reset Rotation", trans);
-				trans.localEulerAngles = Vector3.zero;
-			}
-			rot = DrawVector3(trans.localEulerAngles);
-		}
-		EditorGUILayout.EndHorizontal();
-
-		// Scale
-		EditorGUILayout.BeginHorizontal();
-		{
-			if (DrawButton("S", "Reset Scale", IsResetScaleValid(trans), 20f))
-			{
-				NGUIEditorTools.RegisterUndo("Reset Scale", trans);
-				trans.localScale = Vector3.one;
-			}
-			scale = DrawVector3(trans.localScale);
-		}
-		EditorGUILayout.EndHorizontal();
-
-		// If something changes, set the transform values
-		if (GUI.changed)
-		{
-			NGUIEditorTools.RegisterUndo("Transform Change", trans);
-			trans.localPosition = Validate(pos);
-			trans.localEulerAngles = Validate(rot);
-			trans.localScale = Validate(scale);
-		}
-	}
-
-	/// <summary>
-	/// Helper function that draws a button in an enabled or disabled state.
-	/// </summary>
-
-	static bool DrawButton (string title, string tooltip, bool enabled, float width)
-	{
-		if (enabled)
-		{
-			// Draw a regular button
-			return GUILayout.Button(new GUIContent(title, tooltip), GUILayout.Width(width));
-		}
-		else
-		{
-			// Button should be disabled -- draw it darkened and ignore its return value
-			Color color = GUI.color;
-			GUI.color = new Color(1f, 1f, 1f, 0.25f);
-			GUILayout.Button(new GUIContent(title, tooltip), GUILayout.Width(width));
-			GUI.color = color;
-			return false;
-		}
-	}
-
-	/// <summary>
-	/// Helper function that draws a field of 3 floats.
-	/// </summary>
-
-	static Vector3 DrawVector3 (Vector3 value)
-	{
-		GUILayoutOption opt = GUILayout.MinWidth(30f);
-		value.x = EditorGUILayout.FloatField("X", value.x, opt);
-		value.y = EditorGUILayout.FloatField("Y", value.y, opt);
-		value.z = EditorGUILayout.FloatField("Z", value.z, opt);
-		return value;
-	}
-
-	/// <summary>
-	/// Helper function that determines whether its worth it to show the reset position button.
-	/// </summary>
-
-	static bool IsResetPositionValid (Transform targetTransform)
-	{
-		Vector3 v = targetTransform.localPosition;
-		return (v.x != 0f || v.y != 0f || v.z != 0f);
-	}
-
-	/// <summary>
-	/// Helper function that determines whether its worth it to show the reset rotation button.
-	/// </summary>
-
-	static bool IsResetRotationValid (Transform targetTransform)
-	{
-		Vector3 v = targetTransform.localEulerAngles;
-		return (v.x != 0f || v.y != 0f || v.z != 0f);
-	}
-
-	/// <summary>
-	/// Helper function that determines whether its worth it to show the reset scale button.
-	/// </summary>
-
-	static bool IsResetScaleValid (Transform targetTransform)
-	{
-		Vector3 v = targetTransform.localScale;
-		return (v.x != 1f || v.y != 1f || v.z != 1f);
-	}
-
-	/// <summary>
-	/// Helper function that removes not-a-number values from the vector.
-	/// </summary>
-
-	static Vector3 Validate (Vector3 vector)
-	{
-		vector.x = float.IsNaN(vector.x) ? 0f : vector.x;
-		vector.y = float.IsNaN(vector.y) ? 0f : vector.y;
-		vector.z = float.IsNaN(vector.z) ? 0f : vector.z;
-		return vector;
-	}
-}
-#else
 using UnityEngine;
 using UnityEditor;
 
 [CanEditMultipleObjects]
-[CustomEditor(typeof(Transform))]
+[CustomEditor(typeof(Transform), true)]
 public class NGUITransformInspector : Editor
 {
 	static public NGUITransformInspector instance;
@@ -165,9 +20,17 @@ public class NGUITransformInspector : Editor
 	{
 		instance = this;
 
-		mPos = serializedObject.FindProperty("m_LocalPosition");
-		mRot = serializedObject.FindProperty("m_LocalRotation");
-		mScale = serializedObject.FindProperty("m_LocalScale");
+		if (this)
+		{
+			try
+			{
+				var so = serializedObject;
+				mPos = so.FindProperty("m_LocalPosition");
+				mRot = so.FindProperty("m_LocalRotation");
+				mScale = so.FindProperty("m_LocalScale");
+			}
+			catch { }
+		}
 	}
 
 	void OnDestroy () { instance = null; }
@@ -178,7 +41,7 @@ public class NGUITransformInspector : Editor
 
 	public override void OnInspectorGUI ()
 	{
-		EditorGUIUtility.LookLikeControls(15f);
+		NGUIEditorTools.SetLabelWidth(15f);
 
 		serializedObject.Update();
 
@@ -200,21 +63,43 @@ public class NGUITransformInspector : Editor
 		DrawScale(widgets);
 
 		serializedObject.ApplyModifiedProperties();
+
+		if (NGUISettings.unifiedTransform)
+		{
+			NGUIEditorTools.SetLabelWidth(80f);
+			
+			if (UIWidgetInspector.instance != null)
+			{
+				UIWidgetInspector.instance.serializedObject.Update();
+				UIWidgetInspector.instance.DrawWidgetTransform();
+				if (NGUISettings.minimalisticLook) GUILayout.Space(-4f);
+				UIWidgetInspector.instance.serializedObject.ApplyModifiedProperties();
+			}
+
+			if (UIRectEditor.instance != null)
+			{
+				UIRectEditor.instance.serializedObject.Update();
+				UIRectEditor.instance.DrawAnchorTransform();
+				UIRectEditor.instance.serializedObject.ApplyModifiedProperties();
+			}
+		}
 	}
 
 	void DrawPosition ()
 	{
 		GUILayout.BeginHorizontal();
-		{
-			bool reset = GUILayout.Button("P", GUILayout.Width(20f));
-
-			EditorGUILayout.PropertyField(mPos.FindPropertyRelative("x"));
-			EditorGUILayout.PropertyField(mPos.FindPropertyRelative("y"));
-			EditorGUILayout.PropertyField(mPos.FindPropertyRelative("z"));
-
-			if (reset) mPos.vector3Value = Vector3.zero;
-		}
+		bool reset = GUILayout.Button("P", GUILayout.Width(20f));
+		EditorGUILayout.PropertyField(mPos.FindPropertyRelative("x"));
+		EditorGUILayout.PropertyField(mPos.FindPropertyRelative("y"));
+		EditorGUILayout.PropertyField(mPos.FindPropertyRelative("z"));
 		GUILayout.EndHorizontal();
+
+		//GUILayout.BeginHorizontal();
+		//reset = GUILayout.Button("W", GUILayout.Width(20f));
+		//EditorGUILayout.Vector3Field("", (target as Transform).position);
+
+		if (reset) mPos.vector3Value = Vector3.zero;
+		//GUILayout.EndHorizontal();
 	}
 
 	void DrawScale (bool isWidget)
@@ -223,10 +108,9 @@ public class NGUITransformInspector : Editor
 		{
 			bool reset = GUILayout.Button("S", GUILayout.Width(20f));
 
+			if (isWidget) GUI.color = new Color(0.7f, 0.7f, 0.7f);
 			EditorGUILayout.PropertyField(mScale.FindPropertyRelative("x"));
 			EditorGUILayout.PropertyField(mScale.FindPropertyRelative("y"));
-
-			if (isWidget) GUI.color = new Color(0.7f, 0.7f, 0.7f);
 			EditorGUILayout.PropertyField(mScale.FindPropertyRelative("z"));
 			if (isWidget) GUI.color = Color.white;
 
@@ -331,6 +215,11 @@ public class NGUITransformInspector : Editor
 			bool reset = GUILayout.Button("R", GUILayout.Width(20f));
 
 			Vector3 visible = (serializedObject.targetObject as Transform).localEulerAngles;
+
+			visible.x = NGUIMath.WrapAngle(visible.x);
+			visible.y = NGUIMath.WrapAngle(visible.y);
+			visible.z = NGUIMath.WrapAngle(visible.z);
+
 			Axes changed = CheckDifference(mRot);
 			Axes altered = Axes.None;
 
@@ -365,4 +254,3 @@ public class NGUITransformInspector : Editor
 	}
 #endregion
 }
-#endif

@@ -26,7 +26,7 @@ public class ModifyActionDataInput : MonoBehaviour
     {
         if (LegacyEditorData.instance.currentActionDirty)
         {
-            input.text = getActionVar().ToString();
+            input.value = getActionVar().ToString();
         }
     }
 

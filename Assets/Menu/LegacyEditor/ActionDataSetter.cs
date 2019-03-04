@@ -5,7 +5,7 @@ using UnityEngine;
 public class ActionDataSetter : MonoBehaviour, LegacyDataViewer {
     public ActionDataPropertyType variable;
     private UIInput display_area;
-    private UICheckbox bool_display;
+    private UIToggle bool_display;
 
     void Start()
     {
@@ -45,7 +45,7 @@ public class ActionDataSetter : MonoBehaviour, LegacyDataViewer {
     public void OnEnable()
     {
         display_area = GetComponent<UIInput>();
-        bool_display = GetComponent<UICheckbox>();
+        bool_display = GetComponent<UIToggle>();
         LegacyEditor.OnSelectedActionChanged += SelectedActionChanged;
     }
 
@@ -58,22 +58,22 @@ public class ActionDataSetter : MonoBehaviour, LegacyDataViewer {
     {
         switch (variable) {
             case ActionDataPropertyType.NAME:
-                display_area.text = action.name;
+                display_area.value = action.name;
                 break;
             case ActionDataPropertyType.LENGTH:
-                display_area.text = action.length.ToString();
+                display_area.value = action.length.ToString();
                 break;
             case ActionDataPropertyType.SPRITE:
-                display_area.text = action.sprite;
+                display_area.value = action.sprite;
                 break;
             case ActionDataPropertyType.SPRITE_RATE:
-                display_area.text = action.sprite_rate.ToString();
+                display_area.value = action.sprite_rate.ToString();
                 break;
             case ActionDataPropertyType.LOOP:
-                bool_display.isChecked = action.loop;
+                bool_display.value = action.loop;
                 break;
             case ActionDataPropertyType.EXIT_ACTION:
-                display_area.text = action.exit_action;
+                display_area.value = action.exit_action;
                 break;
         }
     }

@@ -1,7 +1,7 @@
-//----------------------------------------------
+//-------------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2013 Tasharen Entertainment
-//----------------------------------------------
+// Copyright © 2011-2019 Tasharen Entertainment Inc
+//-------------------------------------------------
 
 using UnityEngine;
 
@@ -17,9 +17,9 @@ public class UIButtonOffset : MonoBehaviour
 	public Vector3 pressed = new Vector3(2f, -2f);
 	public float duration = 0.2f;
 
-	Vector3 mPos;
-	bool mStarted = false;
-	bool mHighlighted = false;
+	[System.NonSerialized] Vector3 mPos;
+	[System.NonSerialized] bool mStarted = false;
+	[System.NonSerialized] bool mPressed = false;
 
 	void Start ()
 	{
@@ -31,7 +31,7 @@ public class UIButtonOffset : MonoBehaviour
 		}
 	}
 
-	void OnEnable () { if (mStarted && mHighlighted) OnHover(UICamera.IsHighlighted(gameObject)); }
+	void OnEnable () { if (mStarted) OnHover(UICamera.IsHighlighted(gameObject)); }
 
 	void OnDisable ()
 	{
@@ -41,7 +41,7 @@ public class UIButtonOffset : MonoBehaviour
 
 			if (tc != null)
 			{
-				tc.position = mPos;
+				tc.value = mPos;
 				tc.enabled = false;
 			}
 		}
@@ -49,6 +49,8 @@ public class UIButtonOffset : MonoBehaviour
 
 	void OnPress (bool isPressed)
 	{
+		mPressed = isPressed;
+
 		if (enabled)
 		{
 			if (!mStarted) Start();
@@ -63,7 +65,22 @@ public class UIButtonOffset : MonoBehaviour
 		{
 			if (!mStarted) Start();
 			TweenPosition.Begin(tweenTarget.gameObject, duration, isOver ? mPos + hover : mPos).method = UITweener.Method.EaseInOut;
-			mHighlighted = isOver;
 		}
+	}
+
+	void OnDragOver ()
+	{
+		if (mPressed) TweenPosition.Begin(tweenTarget.gameObject, duration, mPos + hover).method = UITweener.Method.EaseInOut;
+	}
+
+	void OnDragOut ()
+	{
+		if (mPressed) TweenPosition.Begin(tweenTarget.gameObject, duration, mPos).method = UITweener.Method.EaseInOut;
+	}
+
+	void OnSelect (bool isSelected)
+	{
+		if (enabled && (!isSelected || UICamera.currentScheme == UICamera.ControlScheme.Controller))
+			OnHover(isSelected);
 	}
 }

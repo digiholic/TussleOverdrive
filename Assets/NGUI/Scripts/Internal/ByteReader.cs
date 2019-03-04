@@ -1,11 +1,12 @@
-﻿//----------------------------------------------
+//-------------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2013 Tasharen Entertainment
-//----------------------------------------------
+// Copyright © 2011-2019 Tasharen Entertainment Inc
+//-------------------------------------------------
 
 using UnityEngine;
 using System.Text;
 using System.Collections.Generic;
+using System.IO;
 
 /// <summary>
 /// MemoryStream.ReadLine has an interesting oddity: it doesn't always advance the stream's position by the correct amount:
@@ -20,6 +21,28 @@ public class ByteReader
 
 	public ByteReader (byte[] bytes) { mBuffer = bytes; }
 	public ByteReader (TextAsset asset) { mBuffer = asset.bytes; }
+
+	/// <summary>
+	/// Read the contents of the specified file and return a Byte Reader to work with.
+	/// </summary>
+
+	static public ByteReader Open (string path)
+	{
+#if UNITY_EDITOR || (!UNITY_FLASH && !NETFX_CORE && !UNITY_WP8 && !UNITY_WP_8_1)
+		FileStream fs = File.OpenRead(path);
+
+		if (fs != null)
+		{
+			fs.Seek(0, SeekOrigin.End);
+			byte[] buffer = new byte[fs.Position];
+			fs.Seek(0, SeekOrigin.Begin);
+			fs.Read(buffer, 0, buffer.Length);
+			fs.Close();
+			return new ByteReader(buffer);
+		}
+#endif
+		return null;
+	}
 
 	/// <summary>
 	/// Whether the buffer is readable.
@@ -104,12 +127,21 @@ public class ByteReader
 	/// Read a single line from the buffer.
 	/// </summary>
 
-	public string ReadLine ()
+	public string ReadLine () { return ReadLine(true); }
+
+	/// <summary>
+	/// Read a single line from the buffer.
+	/// </summary>
+
+	public string ReadLine (bool skipEmptyLines)
 	{
 		int max = mBuffer.Length;
 
 		// Skip empty characters
-		while (mOffset < max && mBuffer[mOffset] < 32) ++mOffset;
+		if (skipEmptyLines)
+		{
+			while (mOffset < max && mBuffer[mOffset] < 32) ++mOffset;
+		}
 
 		int end = mOffset;
 
@@ -162,5 +194,89 @@ public class ByteReader
 			}
 		}
 		return dict;
+	}
+
+	static BetterList<string> mTemp = new BetterList<string>();
+
+	/// <summary>
+	/// Read a single line of Comma-Separated Values from the file.
+	/// </summary>
+
+	public BetterList<string> ReadCSV ()
+	{
+		mTemp.Clear();
+		string line = "";
+		bool insideQuotes = false;
+		int wordStart = 0;
+
+		while (canRead)
+		{
+			if (insideQuotes)
+			{
+				string s = ReadLine(false);
+				if (s == null) return null;
+				s = s.Replace("\\n", "\n");
+				line += "\n" + s;
+			}
+			else
+			{
+				line = ReadLine(true);
+				if (line == null) return null;
+				line = line.Replace("\\n", "\n");
+				wordStart = 0;
+			}
+
+			for (int i = wordStart, imax = line.Length; i < imax; ++i)
+			{
+				char ch = line[i];
+
+				if (ch == ',')
+				{
+					if (!insideQuotes)
+					{
+						mTemp.Add(line.Substring(wordStart, i - wordStart));
+						wordStart = i + 1;
+					}
+				}
+				else if (ch == '"')
+				{
+					if (insideQuotes)
+					{
+						if (i + 1 >= imax)
+						{
+							mTemp.Add(line.Substring(wordStart, i - wordStart).Replace("\"\"", "\""));
+							return mTemp;
+						}
+
+						if (line[i + 1] != '"')
+						{
+							mTemp.Add(line.Substring(wordStart, i - wordStart).Replace("\"\"", "\""));
+							insideQuotes = false;
+
+							if (line[i + 1] == ',')
+							{
+								++i;
+								wordStart = i + 1;
+							}
+						}
+						else ++i;
+					}
+					else
+					{
+						wordStart = i + 1;
+						insideQuotes = true;
+					}
+				}
+			}
+
+			if (wordStart < line.Length)
+			{
+				if (insideQuotes) continue;
+				mTemp.Add(line.Substring(wordStart, line.Length - wordStart));
+			}
+			else mTemp.Add("");
+			return mTemp;
+		}
+		return null;
 	}
 }

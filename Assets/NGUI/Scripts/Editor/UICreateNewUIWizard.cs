@@ -1,19 +1,19 @@
-//----------------------------------------------
+//-------------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2013 Tasharen Entertainment
-//----------------------------------------------
+// Copyright © 2011-2019 Tasharen Entertainment Inc
+//-------------------------------------------------
 
 using UnityEditor;
 using UnityEngine;
 using System.Collections.Generic;
 
 /// <summary>
-/// UI Creation Wizard
+/// UI Creation Wizard. This tool has been made obsolete with NGUI 3.0.6.
 /// </summary>
 
 public class UICreateNewUIWizard : EditorWindow
 {
-	public enum CameraType
+	[DoNotObfuscateNGUI] public enum CameraType
 	{
 		None,
 		Simple2D,
@@ -34,7 +34,7 @@ public class UICreateNewUIWizard : EditorWindow
 
 	void OnGUI ()
 	{
-		EditorGUIUtility.LookLikeControls(80f);
+		NGUIEditorTools.SetLabelWidth(80f);
 
 		GUILayout.Label("Create a new UI with the following parameters:");
 		NGUIEditorTools.DrawSeparator();
@@ -57,114 +57,19 @@ public class UICreateNewUIWizard : EditorWindow
 		bool create = GUILayout.Button("Create Your UI", GUILayout.Width(120f));
 		GUILayout.EndHorizontal();
 
-		if (create) CreateNewUI();
+		if (create) CreateNewUI(camType);
+
+		EditorGUILayout.HelpBox("This tool has become obsolete with NGUI 3.0.6. You can create UIs from the NGUI -> Create menu.", MessageType.Warning);
 	}
 
 	/// <summary>
 	/// Create a brand-new UI hierarchy.
 	/// </summary>
 
-	static public GameObject CreateNewUI ()
+	static public GameObject CreateNewUI (CameraType type)
 	{
-		NGUIEditorTools.RegisterUndo("Create New UI");
-
-		// Root for the UI
-		GameObject root = null;
-
-		if (camType == CameraType.Simple2D)
-		{
-			root = new GameObject("UI Root (2D)");
-			root.AddComponent<UIRoot>().scalingStyle = UIRoot.Scaling.PixelPerfect;
-		}
-		else
-		{
-			root = new GameObject((camType == CameraType.Advanced3D) ? "UI Root (3D)" : "UI Root");
-			root.transform.localScale = new Vector3(0.0025f, 0.0025f, 0.0025f);
-			root.AddComponent<UIRoot>().scalingStyle = UIRoot.Scaling.FixedSize;
-		}
-
-		// Assign the layer to be used by everything
-		root.layer = NGUISettings.layer;
-
-		// Figure out the depth of the highest camera
-		if (camType == CameraType.None)
-		{
-			// No camera requested -- simply add a panel
-			UIPanel panel = NGUITools.AddChild<UIPanel>(root.gameObject);
-			panel.sortByDepth = true;
-			Selection.activeGameObject = panel.gameObject;
-		}
-		else
-		{
-			int mask = 1 << NGUISettings.layer;
-			float depth = -1f;
-			bool clearColor = true;
-			bool audioListener = true;
-
-			List<Camera> cameras = NGUIEditorTools.FindInScene<Camera>();
-
-			foreach (Camera c in cameras)
-			{
-				// Choose the maximum depth
-				depth = Mathf.Max(depth, c.depth);
-
-				// Automatically exclude the specified layer mask from the camera if it can see more than that layer
-				if (NGUISettings.layer != 0 && c.cullingMask != mask) c.cullingMask = (c.cullingMask & (~mask));
-
-				// Only consider this object if it's active
-				if (c.enabled && NGUITools.GetActive(c.gameObject)) clearColor = false;
-
-				// If this camera has an audio listener, we won't need to add one
-				if (c.GetComponent<AudioListener>() != null) audioListener = false;
-			}
-
-			// Camera and UICamera for this UI
-			Camera cam = NGUITools.AddChild<Camera>(root);
-			cam.depth = depth + 1;
-			cam.backgroundColor = Color.grey;
-			cam.cullingMask = mask;
-
-			if (camType == CameraType.Simple2D)
-			{
-				cam.orthographicSize = 1f;
-				cam.orthographic = true;
-				cam.nearClipPlane = -2f;
-				cam.farClipPlane = 2f;
-			}
-			else
-			{
-				cam.nearClipPlane = 0.1f;
-				cam.farClipPlane = 4f;
-				cam.transform.localPosition = new Vector3(0f, 0f, -700f);
-			}
-
-			// We don't want to clear color if this is not the first camera
-			if (cameras.Count > 0) cam.clearFlags = clearColor ? CameraClearFlags.Skybox : CameraClearFlags.Depth;
-
-			// Add an audio listener if we need one
-			if (audioListener) cam.gameObject.AddComponent<AudioListener>();
-
-			// Add a UI Camera for event handling
-			cam.gameObject.AddComponent<UICamera>();
-
-			if (camType == CameraType.Simple2D)
-			{
-				// Anchor is useful to have
-				UIAnchor anchor = NGUITools.AddChild<UIAnchor>(cam.gameObject);
-				anchor.uiCamera = cam;
-
-				// And finally -- the first UI panel
-				UIPanel panel = NGUITools.AddChild<UIPanel>(anchor.gameObject);
-				panel.sortByDepth = true;
-				Selection.activeGameObject = panel.gameObject;
-			}
-			else
-			{
-				UIPanel panel = NGUITools.AddChild<UIPanel>(root);
-				panel.sortByDepth = true;
-				Selection.activeGameObject = panel.gameObject;
-			}
-		}
+		UIPanel p = NGUITools.CreateUI(type == CameraType.Advanced3D, NGUISettings.layer);
+		Selection.activeGameObject = p.gameObject;
 		return Selection.activeGameObject;
 	}
 }

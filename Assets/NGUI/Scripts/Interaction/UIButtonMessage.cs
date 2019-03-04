@@ -1,7 +1,7 @@
-﻿//----------------------------------------------
+//-------------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2013 Tasharen Entertainment
-//----------------------------------------------
+// Copyright © 2011-2019 Tasharen Entertainment Inc
+//-------------------------------------------------
 
 using UnityEngine;
 
@@ -9,10 +9,10 @@ using UnityEngine;
 /// Sends a message to the remote object when something happens.
 /// </summary>
 
-[AddComponentMenu("NGUI/Interaction/Button Message")]
+[AddComponentMenu("NGUI/Interaction/Button Message (Legacy)")]
 public class UIButtonMessage : MonoBehaviour
 {
-	public enum Trigger
+	[DoNotObfuscateNGUI] public enum Trigger
 	{
 		OnClick,
 		OnMouseOver,
@@ -24,16 +24,14 @@ public class UIButtonMessage : MonoBehaviour
 
 	public GameObject target;
 	public string functionName;
-    public string argData;
-    public Trigger trigger = Trigger.OnClick;
+	public Trigger trigger = Trigger.OnClick;
 	public bool includeChildren = false;
-    
+
 	bool mStarted = false;
-	bool mHighlighted = false;
 
 	void Start () { mStarted = true; }
 
-	void OnEnable () { if (mStarted && mHighlighted) OnHover(UICamera.IsHighlighted(gameObject)); }
+	void OnEnable () { if (mStarted) OnHover(UICamera.IsHighlighted(gameObject)); }
 
 	void OnHover (bool isOver)
 	{
@@ -41,7 +39,6 @@ public class UIButtonMessage : MonoBehaviour
 		{
 			if (((isOver && trigger == Trigger.OnMouseOver) ||
 				(!isOver && trigger == Trigger.OnMouseOut))) Send();
-			mHighlighted = isOver;
 		}
 	}
 
@@ -54,6 +51,12 @@ public class UIButtonMessage : MonoBehaviour
 		}
 	}
 
+	void OnSelect (bool isSelected)
+	{
+		if (enabled && (!isSelected || UICamera.currentScheme == UICamera.ControlScheme.Controller))
+			OnHover(isSelected);
+	}
+
 	void OnClick () { if (enabled && trigger == Trigger.OnClick) Send(); }
 
 	void OnDoubleClick () { if (enabled && trigger == Trigger.OnDoubleClick) Send(); }
@@ -63,23 +66,19 @@ public class UIButtonMessage : MonoBehaviour
 		if (string.IsNullOrEmpty(functionName)) return;
 		if (target == null) target = gameObject;
 
-        object arg = argData;
-        if (argData == "" || argData == null)
-            arg = gameObject;
-
-        if (includeChildren)
+		if (includeChildren)
 		{
 			Transform[] transforms = target.GetComponentsInChildren<Transform>();
 
 			for (int i = 0, imax = transforms.Length; i < imax; ++i)
 			{
 				Transform t = transforms[i];
-				t.gameObject.SendMessage(functionName, arg, SendMessageOptions.DontRequireReceiver);
+				t.gameObject.SendMessage(functionName, gameObject, SendMessageOptions.DontRequireReceiver);
 			}
 		}
 		else
 		{
-            target.SendMessage(functionName, arg, SendMessageOptions.DontRequireReceiver);
+			target.SendMessage(functionName, gameObject, SendMessageOptions.DontRequireReceiver);
 		}
 	}
 }

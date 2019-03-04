@@ -22,14 +22,14 @@ public class ModifyFighterDataInput : MonoBehaviour {
 
     private void OnSelect()
     {
-        //input.text = getFighterVar();
+        //input.vale = getFighterVar();
     }
 
     private void OnModelChanged()
     {
         if (LegacyEditorData.instance.loadedFighterDirty)
         {
-            input.text = getFighterVar();
+            input.value = getFighterVar();
         }
     }
 

@@ -1,44 +1,52 @@
-//----------------------------------------------
+//-------------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2013 Tasharen Entertainment
-//----------------------------------------------
+// Copyright © 2011-2019 Tasharen Entertainment Inc
+//-------------------------------------------------
 
 using UnityEngine;
 using AnimationOrTween;
+using System.Collections.Generic;
 
 /// <summary>
 /// Mainly an internal script used by UIButtonPlayAnimation, but can also be used to call
 /// the specified function on the game object after it finishes animating.
 /// </summary>
 
-[RequireComponent(typeof(Animation))]
 [AddComponentMenu("NGUI/Internal/Active Animation")]
-public class ActiveAnimation : IgnoreTimeScale
+public class ActiveAnimation : MonoBehaviour
 {
-	public delegate void OnFinished (ActiveAnimation anim);
-
 	/// <summary>
-	/// Delegate for subscriptions. Faster than using the 'eventReceiver' and allows for multiple receivers.
+	/// Active animation that resulted in the event notification.
 	/// </summary>
 
-	public OnFinished onFinished;
+	static public ActiveAnimation current;
 
 	/// <summary>
-	/// Game object on which to call the callback function.
+	/// Event delegates called when the animation finishes.
 	/// </summary>
 
-	public GameObject eventReceiver;
+	public List<EventDelegate> onFinished = new List<EventDelegate>();
 
-	/// <summary>
-	/// Function to call when the animation finishes playing.
-	/// </summary>
-
-	public string callWhenFinished;
+	// Deprecated functionality, kept for backwards compatibility
+	[HideInInspector] public GameObject eventReceiver;
+	[HideInInspector] public string callWhenFinished;
 
 	Animation mAnim;
 	Direction mLastDirection = Direction.Toggle;
 	Direction mDisableDirection = Direction.Toggle;
 	bool mNotify = false;
+
+	Animator mAnimator;
+	string mClip = "";
+
+	float playbackTime
+	{
+		get
+		{
+			AnimatorStateInfo state = mAnimator.GetCurrentAnimatorStateInfo(0);
+			return Mathf.Clamp01(state.normalizedTime);
+		}
+	}
 
 	/// <summary>
 	/// Whether the animation is currently playing.
@@ -48,7 +56,19 @@ public class ActiveAnimation : IgnoreTimeScale
 	{
 		get
 		{
-			if (mAnim == null) return false;
+			if (mAnim == null)
+			{
+				if (mAnimator != null)
+				{
+					if (mLastDirection == Direction.Reverse)
+					{
+						if (playbackTime == 0f) return false;
+					}
+					else if (playbackTime == 1f) return false;
+					return true;
+				}
+				return false;
+			}
 
 			foreach (AnimationState state in mAnim)
 			{
@@ -69,6 +89,27 @@ public class ActiveAnimation : IgnoreTimeScale
 	}
 
 	/// <summary>
+	/// Immediately finish playing the animation.
+	/// </summary>
+
+	public void Finish ()
+	{
+		if (mAnim != null)
+		{
+			foreach (AnimationState state in mAnim)
+			{
+				if (mLastDirection == Direction.Forward) state.time = state.length;
+				else if (mLastDirection == Direction.Reverse) state.time = 0f;
+			}
+			mAnim.Sample();
+		}
+		else if (mAnimator != null)
+		{
+			mAnimator.Play(mClip, 0, (mLastDirection == Direction.Forward) ? 1f : 0f);
+		}
+	}
+
+	/// <summary>
 	/// Manually reset the active animation to the beginning.
 	/// </summary>
 
@@ -82,6 +123,23 @@ public class ActiveAnimation : IgnoreTimeScale
 				else if (mLastDirection == Direction.Forward) state.time = 0f;
 			}
 		}
+		else if (mAnimator != null)
+		{
+			mAnimator.Play(mClip, 0, (mLastDirection == Direction.Reverse) ? 1f : 0f);
+		}
+	}
+
+	/// <summary>
+	/// Event receiver is only kept for backwards compatibility purposes. It's removed on start if new functionality is used.
+	/// </summary>
+
+	void Start ()
+	{
+		if (eventReceiver != null && EventDelegate.IsValid(onFinished))
+		{
+			eventReceiver = null;
+			callWhenFinished = null;
+		}
 	}
 
 	/// <summary>
@@ -90,12 +148,19 @@ public class ActiveAnimation : IgnoreTimeScale
 
 	void Update ()
 	{
-		float delta = UpdateRealTimeDelta();
+		float delta = RealTime.deltaTime;
 		if (delta == 0f) return;
 
-		if (mAnim != null)
+		if (mAnimator != null)
 		{
-			bool isPlaying = false;
+			mAnimator.Update((mLastDirection == Direction.Reverse) ? -delta : delta);
+			if (isPlaying) return;
+			mAnimator.enabled = false;
+			enabled = false;
+		}
+		else if (mAnim != null)
+		{
+			bool playing = false;
 
 			foreach (AnimationState state in mAnim)
 			{
@@ -105,40 +170,44 @@ public class ActiveAnimation : IgnoreTimeScale
 
 				if (movement < 0f)
 				{
-					if (state.time > 0f) isPlaying = true;
+					if (state.time > 0f) playing = true;
 					else state.time = 0f;
 				}
 				else
 				{
-					if (state.time < state.length) isPlaying = true;
+					if (state.time < state.length) playing = true;
 					else state.time = state.length;
 				}
 			}
 
 			mAnim.Sample();
-			if (isPlaying) return;
+			if (playing) return;
 			enabled = false;
-
-			if (mNotify)
-			{
-				mNotify = false;
-
-				// Notify the delegate
-				if (onFinished != null) onFinished(this);
-
-				// Notify the event listener
-				if (eventReceiver != null && !string.IsNullOrEmpty(callWhenFinished))
-				{
-					eventReceiver.SendMessage(callWhenFinished, this, SendMessageOptions.DontRequireReceiver);
-				}
-
-				if (mDisableDirection != Direction.Toggle && mLastDirection == mDisableDirection)
-				{
-					NGUITools.SetActive(gameObject, false);
-				}
-			}
 		}
-		else enabled = false;
+		else
+		{
+			enabled = false;
+			return;
+		}
+
+		if (mNotify)
+		{
+			mNotify = false;
+
+			if (current == null)
+			{
+				current = this;
+				EventDelegate.Execute(onFinished);
+
+				// Deprecated functionality, kept for backwards compatibility
+				if (eventReceiver != null && !string.IsNullOrEmpty(callWhenFinished))
+					eventReceiver.SendMessage(callWhenFinished, SendMessageOptions.DontRequireReceiver);
+
+				current = null;
+			}
+			if (mDisableDirection != Direction.Toggle && mLastDirection == mDisableDirection)
+				NGUITools.SetActive(gameObject, false);
+		}
 	}
 
 	/// <summary>
@@ -147,17 +216,15 @@ public class ActiveAnimation : IgnoreTimeScale
 
 	void Play (string clipName, Direction playDirection)
 	{
+		// Determine the play direction
+		if (playDirection == Direction.Toggle)
+			playDirection = (mLastDirection != Direction.Forward) ? Direction.Forward : Direction.Reverse;
+
 		if (mAnim != null)
 		{
 			// We will sample the animation manually so that it works when the time is paused
 			enabled = true;
 			mAnim.enabled = false;
-
-			// Determine the play direction
-			if (playDirection == Direction.Toggle)
-			{
-				playDirection = (mLastDirection != Direction.Forward) ? Direction.Forward : Direction.Reverse;
-			}
 
 			bool noName = string.IsNullOrEmpty(clipName);
 
@@ -190,6 +257,26 @@ public class ActiveAnimation : IgnoreTimeScale
 			mNotify = true;
 			mAnim.Sample();
 		}
+		else if (mAnimator != null)
+		{
+			if (enabled && isPlaying)
+			{
+				if (mClip == clipName)
+				{
+					mLastDirection = playDirection;
+					return;
+				}
+			}
+
+			enabled = true;
+			mNotify = true;
+			mLastDirection = playDirection;
+			mClip = clipName;
+			mAnimator.Play(mClip, 0, (playDirection == Direction.Forward) ? 0f : 1f);
+
+			// NOTE: If you are getting a message "Animator.GotoState: State could not be found"
+			// it means that you chose a state name that doesn't exist in the Animator window.
+		}
 	}
 
 	/// <summary>
@@ -216,10 +303,11 @@ public class ActiveAnimation : IgnoreTimeScale
 		if (aa == null) aa = anim.gameObject.AddComponent<ActiveAnimation>();
 		aa.mAnim = anim;
 		aa.mDisableDirection = (Direction)(int)disableCondition;
-		aa.eventReceiver = null;
-		aa.callWhenFinished = null;
-		aa.onFinished = null;
+		aa.onFinished.Clear();
 		aa.Play(clipName, playDirection);
+
+		if (aa.mAnim != null) aa.mAnim.Sample();
+		else if (aa.mAnimator != null) aa.mAnimator.Update(0f);
 		return aa;
 	}
 
@@ -239,5 +327,37 @@ public class ActiveAnimation : IgnoreTimeScale
 	static public ActiveAnimation Play (Animation anim, Direction playDirection)
 	{
 		return Play(anim, null, playDirection, EnableCondition.DoNothing, DisableCondition.DoNotDisable);
+	}
+
+	/// <summary>
+	/// Play the specified animation on the specified object.
+	/// </summary>
+
+	static public ActiveAnimation Play (Animator anim, string clipName, Direction playDirection,
+		EnableCondition enableBeforePlay, DisableCondition disableCondition)
+	{
+		if (enableBeforePlay != EnableCondition.IgnoreDisabledState && !NGUITools.GetActive(anim.gameObject))
+		{
+			// If the object is disabled, don't do anything
+			if (enableBeforePlay != EnableCondition.EnableThenPlay) return null;
+
+			// Enable the game object before animating it
+			NGUITools.SetActive(anim.gameObject, true);
+
+			// Refresh all panels right away so that there is no one frame delay
+			UIPanel[] panels = anim.gameObject.GetComponentsInChildren<UIPanel>();
+			for (int i = 0, imax = panels.Length; i < imax; ++i) panels[i].Refresh();
+		}
+
+		ActiveAnimation aa = anim.GetComponent<ActiveAnimation>();
+		if (aa == null) aa = anim.gameObject.AddComponent<ActiveAnimation>();
+		aa.mAnimator = anim;
+		aa.mDisableDirection = (Direction)(int)disableCondition;
+		aa.onFinished.Clear();
+		aa.Play(clipName, playDirection);
+
+		if (aa.mAnim != null) aa.mAnim.Sample();
+		else if (aa.mAnimator != null) aa.mAnimator.Update(0f);
+		return aa;
 	}
 }

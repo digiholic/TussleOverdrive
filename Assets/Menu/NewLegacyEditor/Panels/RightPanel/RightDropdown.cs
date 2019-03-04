@@ -37,7 +37,8 @@ public class RightDropdown : MonoBehaviour {
             coll.enabled = true;
         }
         UpdateOptionWithoutEvent();
-        list.eventReceiver = gameObject;
+        EventDelegate.Set(list.onChange, OnChangeDropdown);
+        //list.eventReceiver = gameObject; ^^
     }
 
     void OnModelChanged()
@@ -56,9 +57,11 @@ public class RightDropdown : MonoBehaviour {
     //This is hacky as fuck, isn't it? I'm unsetting the event receiver so I can change this data without firing another change, preventing a double-fire and blowing up the redoList
     public void UpdateOptionWithoutEvent()
     {
-        list.eventReceiver = null;
-        list.selection = LegacyEditorData.instance.rightDropdown;
-        list.eventReceiver = gameObject;
+        EventDelegate.Remove(list.onChange, OnChangeDropdown);
+        //list.eventReceiver = null; ^^
+        list.value = LegacyEditorData.instance.rightDropdown;
+        //list.eventReceiver = gameObject; ^^
+        EventDelegate.Set(list.onChange, OnChangeDropdown);
     }
 
     // Update is called once per frame
@@ -67,8 +70,10 @@ public class RightDropdown : MonoBehaviour {
 
     }
 
-    void OnChangeDropdown(string selected)
+    void OnChangeDropdown()
     {
+        string selected = UIPopupList.current.value;
+
         //Create a message object to have the model execute
         ChangeRightDropdownAction act = ScriptableObject.CreateInstance<ChangeRightDropdownAction>();
         act.init(selected);

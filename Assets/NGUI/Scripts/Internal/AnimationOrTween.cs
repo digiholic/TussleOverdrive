@@ -1,13 +1,13 @@
-﻿//----------------------------------------------
+﻿//-------------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2013 Tasharen Entertainment
-//----------------------------------------------
+// Copyright © 2011-2019 Tasharen Entertainment Inc
+//-------------------------------------------------
 
 using UnityEngine;
 
 namespace AnimationOrTween
 {
-	public enum Trigger
+	[DoNotObfuscateNGUI] public enum Trigger
 	{
 		OnClick,
 		OnHover,
@@ -23,22 +23,24 @@ namespace AnimationOrTween
 		OnSelect,
 		OnSelectTrue,
 		OnSelectFalse,
+		Manual,
 	}
 
-	public enum Direction
+	[DoNotObfuscateNGUI] public enum Direction
 	{
 		Reverse = -1,
 		Toggle = 0,
 		Forward = 1,
 	}
 
-	public enum EnableCondition
+	[DoNotObfuscateNGUI] public enum EnableCondition
 	{
 		DoNothing = 0,
 		EnableThenPlay,
+		IgnoreDisabledState,
 	}
 
-	public enum DisableCondition
+	[DoNotObfuscateNGUI] public enum DisableCondition
 	{
 		DisableAfterReverse = -1,
 		DoNotDisable = 0,

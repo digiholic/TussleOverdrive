@@ -23,7 +23,7 @@ public class BuilderControlPane : MonoBehaviour {
 
         if (isHovered && Input.GetMouseButtonDown(2))
         {
-            middleClickLastPos = UICamera.lastTouchPosition;
+            middleClickLastPos = UICamera.lastEventPosition;
             middleClickHeld = true;
 
         }
@@ -33,7 +33,7 @@ public class BuilderControlPane : MonoBehaviour {
 
         if (middleClickHeld)
         {
-            Vector2 middleClickCurrentPos = UICamera.lastTouchPosition;
+            Vector2 middleClickCurrentPos = UICamera.lastEventPosition;
             Vector2 diff = middleClickCurrentPos - middleClickLastPos;
             //We want to avoid jittering so we'll only move if the difference is above a threshold.
             if (diff.magnitude >= dragThreshold)

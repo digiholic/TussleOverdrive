@@ -8,7 +8,7 @@ public class SubactionCreateButtonRig : MonoBehaviour {
     private Dictionary<SubactionType, List<SubactionDataDefault>> subactionsByCategory = new Dictionary<SubactionType, List<SubactionDataDefault>>();
     private List<GameObject> children = new List<GameObject>();
     private UIGrid grid;
-    public UIDraggablePanel dragPanel;
+    public UIScrollView dragPanel;
 
     void Awake()
     {

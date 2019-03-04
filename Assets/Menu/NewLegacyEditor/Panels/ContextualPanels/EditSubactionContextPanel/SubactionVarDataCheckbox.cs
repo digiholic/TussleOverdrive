@@ -6,23 +6,24 @@ public class SubactionVarDataCheckbox : MonoBehaviour
 {
     [SerializeField]
     private SubactionVarDataPanel panel;
-    private UICheckbox checkbox;
+    private UIToggle checkbox;
 
     // Use this for initialization
     void Awake()
     {
-        checkbox = GetComponent<UICheckbox>();
+        checkbox = GetComponent<UIToggle>();
 
         //The type doesn't change during runtime, so we can just set it here
-        checkbox.isChecked = (panel.varData.data == "true");
-        checkbox.eventReceiver = gameObject;
+        checkbox.value = (panel.varData.data == "true");
+        EventDelegate.Set(checkbox.onChange, OnAction);
+        //checkbox.eventReceiver = gameObject; ^^
     }
 
     private void OnModelChanged()
     {
         if (LegacyEditorData.instance.currentSubactionDirty)
         {
-            checkbox.isChecked = (panel.varData.data == "true");
+            checkbox.value = (panel.varData.data == "true");
         }
     }
 
@@ -32,7 +33,7 @@ public class SubactionVarDataCheckbox : MonoBehaviour
         if (panel.varData.type == SubactionVarType.BOOL && panel.varData.source == SubactionSource.CONSTANT)
         {
             ChangeSubactionVarDataInput legacyAction = ScriptableObject.CreateInstance<ChangeSubactionVarDataInput>();
-            legacyAction.init(panel.varData, checkbox.isChecked.ToString().ToLower());
+            legacyAction.init(panel.varData, checkbox.value.ToString().ToLower());
             LegacyEditorData.instance.DoAction(legacyAction);
         }
     }

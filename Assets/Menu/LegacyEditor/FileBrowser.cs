@@ -19,7 +19,7 @@ public class FileBrowser : MonoBehaviour {
     [SerializeField]
     private UILabel directory_label;
     [SerializeField]
-    private UIDraggablePanel dragPanel;
+    private UIScrollView dragPanel;
 
     public UILabel SelectedFileText;
 
@@ -51,7 +51,7 @@ public class FileBrowser : MonoBehaviour {
 
     void Start()
     {
-        //Initialize(FileLoader.FighterDir, ValidateJSONFile, LoadFighter);
+        Initialize(FileLoader.FighterDir, ValidateJSONFile, LoadFighter, null);
     }
 
     public void SetErrorText(string errorText)
@@ -98,7 +98,7 @@ public class FileBrowser : MonoBehaviour {
 
     public void ChangeDirectory(DirectoryInfo new_directory)
     {
-        GetComponentInChildren<UIDraggablePanel>().ResetPosition();
+        GetComponentInChildren<UIScrollView>().ResetPosition();
         RemoveData();
         current_directory = new_directory;
         directory_label.text = new_directory.Name;
@@ -190,7 +190,6 @@ public class FileBrowser : MonoBehaviour {
     #region static validators
     public static bool ValidateJSONFile(FileInfo info)
     {
-        Debug.Log(info.Name);
         return (info.Extension == ".json");
     }
 

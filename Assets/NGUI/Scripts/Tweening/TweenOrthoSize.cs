@@ -1,7 +1,7 @@
-//----------------------------------------------
+//-------------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2013 Tasharen Entertainment
-//----------------------------------------------
+// Copyright © 2011-2019 Tasharen Entertainment Inc
+//-------------------------------------------------
 
 using UnityEngine;
 
@@ -10,11 +10,11 @@ using UnityEngine;
 /// </summary>
 
 [RequireComponent(typeof(Camera))]
-[AddComponentMenu("NGUI/Tween/Orthographic Size")]
+[AddComponentMenu("NGUI/Tween/Tween Orthographic Size")]
 public class TweenOrthoSize : UITweener
 {
-	public float from;
-	public float to;
+	public float from = 1f;
+	public float to = 1f;
 
 	Camera mCam;
 
@@ -22,26 +22,30 @@ public class TweenOrthoSize : UITweener
 	/// Camera that's being tweened.
 	/// </summary>
 
+#if UNITY_4_3 || UNITY_4_5 || UNITY_4_6 || UNITY_4_7
+	public Camera cachedCamera { get { if (mCam == null) mCam = camera; return mCam; } }
+#else
 	public Camera cachedCamera { get { if (mCam == null) mCam = GetComponent<Camera>(); return mCam; } }
+#endif
+
+	[System.Obsolete("Use 'value' instead")]
+	public float orthoSize { get { return this.value; } set { this.value = value; } }
 
 	/// <summary>
-	/// Current field of view value.
+	/// Tween's current value.
 	/// </summary>
 
-	public float orthoSize
+	public float value
 	{
 		get { return cachedCamera.orthographicSize; }
 		set { cachedCamera.orthographicSize = value; }
 	}
 
 	/// <summary>
-	/// Perform the tween.
+	/// Tween the value.
 	/// </summary>
 
-	protected override void OnUpdate (float factor, bool isFinished)
-	{
-		cachedCamera.orthographicSize = from * (1f - factor) + to * factor;
-	}
+	protected override void OnUpdate (float factor, bool isFinished) { value = from * (1f - factor) + to * factor; }
 
 	/// <summary>
 	/// Start the tweening operation.
@@ -50,7 +54,7 @@ public class TweenOrthoSize : UITweener
 	static public TweenOrthoSize Begin (GameObject go, float duration, float to)
 	{
 		TweenOrthoSize comp = UITweener.Begin<TweenOrthoSize>(go, duration);
-		comp.from = comp.orthoSize;
+		comp.from = comp.value;
 		comp.to = to;
 
 		if (duration <= 0f)
@@ -60,4 +64,7 @@ public class TweenOrthoSize : UITweener
 		}
 		return comp;
 	}
+
+	public override void SetStartToCurrentValue () { from = value; }
+	public override void SetEndToCurrentValue () { to = value; }
 }

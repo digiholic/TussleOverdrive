@@ -1,7 +1,7 @@
-﻿//----------------------------------------------
+//-------------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2013 Tasharen Entertainment
-//----------------------------------------------
+// Copyright © 2011-2019 Tasharen Entertainment Inc
+//-------------------------------------------------
 
 using UnityEngine;
 
@@ -9,7 +9,7 @@ using UnityEngine;
 /// Tween the object's position, rotation and scale.
 /// </summary>
 
-[AddComponentMenu("NGUI/Tween/Transform")]
+[AddComponentMenu("NGUI/Tween/Tween Transform")]
 public class TweenTransform : UITweener
 {
 	public Transform from;

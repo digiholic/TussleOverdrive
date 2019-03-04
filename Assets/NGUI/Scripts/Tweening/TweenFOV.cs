@@ -1,7 +1,7 @@
-//----------------------------------------------
+//-------------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2013 Tasharen Entertainment
-//----------------------------------------------
+// Copyright © 2011-2019 Tasharen Entertainment Inc
+//-------------------------------------------------
 
 using UnityEngine;
 
@@ -10,34 +10,34 @@ using UnityEngine;
 /// </summary>
 
 [RequireComponent(typeof(Camera))]
-[AddComponentMenu("NGUI/Tween/Field of View")]
+[AddComponentMenu("NGUI/Tween/Tween Field of View")]
 public class TweenFOV : UITweener
 {
-	public float from;
-	public float to;
+	public float from = 45f;
+	public float to = 45f;
 
 	Camera mCam;
 
-	/// <summary>
-	/// Camera that's being tweened.
-	/// </summary>
-
+#if UNITY_4_3 || UNITY_4_5 || UNITY_4_6 || UNITY_4_7
+	public Camera cachedCamera { get { if (mCam == null) mCam = camera; return mCam; } }
+#else
 	public Camera cachedCamera { get { if (mCam == null) mCam = GetComponent<Camera>(); return mCam; } }
+#endif
+
+	[System.Obsolete("Use 'value' instead")]
+	public float fov { get { return this.value; } set { this.value = value; } }
 
 	/// <summary>
-	/// Current field of view value.
+	/// Tween's current value.
 	/// </summary>
 
-	public float fov { get { return cachedCamera.fieldOfView; } set { cachedCamera.fieldOfView = value; } }
+	public float value { get { return cachedCamera.fieldOfView; } set { cachedCamera.fieldOfView = value; } }
 
 	/// <summary>
-	/// Perform the tween.
+	/// Tween the value.
 	/// </summary>
 
-	protected override void OnUpdate (float factor, bool isFinished)
-	{
-		cachedCamera.fieldOfView = from * (1f - factor) + to * factor;
-	}
+	protected override void OnUpdate (float factor, bool isFinished) { value = from * (1f - factor) + to * factor; }
 
 	/// <summary>
 	/// Start the tweening operation.
@@ -46,7 +46,7 @@ public class TweenFOV : UITweener
 	static public TweenFOV Begin (GameObject go, float duration, float to)
 	{
 		TweenFOV comp = UITweener.Begin<TweenFOV>(go, duration);
-		comp.from = comp.fov;
+		comp.from = comp.value;
 		comp.to = to;
 
 		if (duration <= 0f)
@@ -56,4 +56,16 @@ public class TweenFOV : UITweener
 		}
 		return comp;
 	}
+
+	[ContextMenu("Set 'From' to current value")]
+	public override void SetStartToCurrentValue () { from = value; }
+
+	[ContextMenu("Set 'To' to current value")]
+	public override void SetEndToCurrentValue () { to = value; }
+
+	[ContextMenu("Assume value of 'From'")]
+	void SetCurrentValueToStart () { value = from; }
+
+	[ContextMenu("Assume value of 'To'")]
+	void SetCurrentValueToEnd () { value = to; }
 }

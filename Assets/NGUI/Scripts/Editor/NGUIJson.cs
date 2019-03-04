@@ -3,16 +3,17 @@ using System.Collections;
 using System.Text;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 // Source: UIToolkit -- https://github.com/prime31/UIToolkit/blob/master/Assets/Plugins/MiniJSON.cs
 
-// Based on the JSON parser from 
+// Based on the JSON parser from
 // http://techblog.procurios.nl/k/618/news/view/14605/14863/How-do-I-write-my-own-parser-for-JSON.html
 
 /// <summary>
 /// This class encodes and decodes JSON strings.
 /// Spec. details, see http://www.json.org/
-/// 
+///
 /// JSON uses Arrays and Objects. These correspond here to the datatypes ArrayList and Hashtable.
 /// All numbers are parsed to doubles.
 /// </summary>
@@ -43,34 +44,62 @@ public class NGUIJson
 	/// Parse the specified JSon file, loading sprite information for the specified atlas.
 	/// </summary>
 
-	public static void LoadSpriteData (UIAtlas atlas, TextAsset asset)
+	static public void LoadSpriteData (INGUIAtlas atlas, TextAsset asset)
 	{
 		if (asset == null || atlas == null) return;
 
 		string jsonString = asset.text;
+
 		Hashtable decodedHash = jsonDecode(jsonString) as Hashtable;
-		
+
 		if (decodedHash == null)
 		{
 			Debug.LogWarning("Unable to parse Json file: " + asset.name);
-			return;
 		}
+		else LoadSpriteData(atlas, decodedHash);
 
-		atlas.coordinates = UIAtlas.Coordinates.Pixels;
-		List<UIAtlas.Sprite> oldSprites = atlas.spriteList;
-		atlas.spriteList = new List<UIAtlas.Sprite>();
+		asset = null;
+		Resources.UnloadUnusedAssets();
+	}
+
+	/// <summary>
+	/// Parse the specified JSon file, loading sprite information for the specified atlas.
+	/// </summary>
+
+	static public void LoadSpriteData (INGUIAtlas atlas, string jsonData)
+	{
+		if (string.IsNullOrEmpty(jsonData) || atlas == null) return;
+
+		Hashtable decodedHash = jsonDecode(jsonData) as Hashtable;
+
+		if (decodedHash == null)
+		{
+			Debug.LogWarning("Unable to parse the provided Json string");
+		}
+		else LoadSpriteData(atlas, decodedHash);
+	}
+
+	/// <summary>
+	/// Parse the specified JSon file, loading sprite information for the specified atlas.
+	/// </summary>
+
+	static void LoadSpriteData (INGUIAtlas atlas, Hashtable decodedHash)
+	{
+		if (decodedHash == null || atlas == null) return;
+		List<UISpriteData> oldSprites = atlas.spriteList;
+		atlas.spriteList = new List<UISpriteData>();
 
 		Hashtable frames = (Hashtable)decodedHash["frames"];
 
 		foreach (System.Collections.DictionaryEntry item in frames)
 		{
-			UIAtlas.Sprite newSprite = new UIAtlas.Sprite();
+			UISpriteData newSprite = new UISpriteData();
 			newSprite.name = item.Key.ToString();
 
 			bool exists = false;
 
 			// Check to see if this sprite exists
-			foreach (UIAtlas.Sprite oldSprite in oldSprites)
+			foreach (UISpriteData oldSprite in oldSprites)
 			{
 				if (oldSprite.name.Equals(newSprite.name, StringComparison.OrdinalIgnoreCase))
 				{
@@ -97,19 +126,12 @@ public class NGUIJson
 			int frameH = int.Parse(frame["h"].ToString());
 
 			// Read the rotation value
-			newSprite.rotated = (bool)table["rotated"];
+			//newSprite.rotated = (bool)table["rotated"];
 
-			// Fill in the proper values
-			if (newSprite.rotated)
-			{
-				newSprite.outer = new Rect(frameX, frameY, frameH, frameW);
-				newSprite.inner = new Rect(frameX, frameY, frameH, frameW);
-			}
-			else
-			{
-				newSprite.outer = new Rect(frameX, frameY, frameW, frameH);
-				newSprite.inner = new Rect(frameX, frameY, frameW, frameH);
-			}
+			newSprite.x = frameX;
+			newSprite.y = frameY;
+			newSprite.width = frameW;
+			newSprite.height = frameH;
 
 			// Support for trimmed sprites
 			Hashtable sourceSize = (Hashtable)table["sourceSize"];
@@ -120,31 +142,34 @@ public class NGUIJson
 				// TODO: Account for rotated sprites
 				if (frameW > 0)
 				{
-					float spriteX = int.Parse(spriteSize["x"].ToString());
-					float spriteW = int.Parse(spriteSize["w"].ToString());
-					float sourceW = int.Parse(sourceSize["w"].ToString());
+					int spriteX = int.Parse(spriteSize["x"].ToString());
+					int spriteW = int.Parse(spriteSize["w"].ToString());
+					int sourceW = int.Parse(sourceSize["w"].ToString());
 
-					newSprite.paddingLeft = spriteX / frameW;
-					newSprite.paddingRight = (sourceW - (spriteX + spriteW)) / frameW;
+					newSprite.paddingLeft = spriteX;
+					newSprite.paddingRight = sourceW - (spriteX + spriteW);
 				}
 
 				if (frameH > 0)
 				{
-					float spriteY = int.Parse(spriteSize["y"].ToString());
-					float spriteH = int.Parse(spriteSize["h"].ToString());
-					float sourceH = int.Parse(sourceSize["h"].ToString());
+					int spriteY = int.Parse(spriteSize["y"].ToString());
+					int spriteH = int.Parse(spriteSize["h"].ToString());
+					int sourceH = int.Parse(sourceSize["h"].ToString());
 
-					newSprite.paddingTop = spriteY / frameH;
-					newSprite.paddingBottom = (sourceH - (spriteY + spriteH)) / frameH;
+					newSprite.paddingTop = spriteY;
+					newSprite.paddingBottom = sourceH - (spriteY + spriteH);
 				}
 			}
 
 			// If the sprite was present before, see if we can copy its inner rect
-			foreach (UIAtlas.Sprite oldSprite in oldSprites)
+			foreach (UISpriteData oldSprite in oldSprites)
 			{
 				if (oldSprite.name.Equals(newSprite.name, StringComparison.OrdinalIgnoreCase))
 				{
-					CopyInnerRect(oldSprite, newSprite);
+					newSprite.borderLeft = oldSprite.borderLeft;
+					newSprite.borderRight = oldSprite.borderRight;
+					newSprite.borderBottom = oldSprite.borderBottom;
+					newSprite.borderTop = oldSprite.borderTop;
 				}
 			}
 
@@ -155,47 +180,20 @@ public class NGUIJson
 		// Sort imported sprites alphabetically
 		atlas.spriteList.Sort(CompareSprites);
 		Debug.Log("Imported " + atlas.spriteList.Count + " sprites");
-
-		// Unload the asset
-		asset = null;
-		Resources.UnloadUnusedAssets();
 	}
 
 	/// <summary>
 	/// Sprite comparison function for sorting.
 	/// </summary>
 
-	static int CompareSprites (UIAtlas.Sprite a, UIAtlas.Sprite b) { return a.name.CompareTo(b.name); }
-
-	/// <summary>
-	/// Copy the inner rectangle from one sprite to another.
-	/// </summary>
-
-	static void CopyInnerRect (UIAtlas.Sprite oldSprite, UIAtlas.Sprite newSprite)
-	{
-		float offsetX = oldSprite.inner.xMin - oldSprite.outer.xMin;
-		float offsetY = oldSprite.inner.yMin - oldSprite.outer.yMin;
-		float sizeX = oldSprite.inner.width;
-		float sizeY = oldSprite.inner.height;
-
-		if (Mathf.Approximately(newSprite.outer.width, oldSprite.outer.width))
-		{
-			// The sprite has not been rotated or it's a square
-			newSprite.inner = new Rect(newSprite.outer.xMin + offsetX, newSprite.outer.yMin + offsetY, sizeX, sizeY);
-		}
-		else if (Mathf.Approximately(newSprite.outer.width, oldSprite.outer.height))
-		{
-			// The sprite was rotated since the last time it was imported
-			newSprite.inner = new Rect(newSprite.outer.xMin + offsetY, newSprite.outer.yMin + offsetX, sizeY, sizeX);
-		}
-	}
+	static int CompareSprites (UISpriteData a, UISpriteData b) { return a.name.CompareTo(b.name); }
 
 	/// <summary>
 	/// Parses the string json into a value
 	/// </summary>
 	/// <param name="json">A JSON string.</param>
 	/// <returns>An ArrayList, a Hashtable, a double, a string, null, true, or false</returns>
-	public static object jsonDecode( string json )
+	static public object jsonDecode( string json )
 	{
 		// save the string for debug information
 		NGUIJson.lastDecode = json;
@@ -226,11 +224,11 @@ public class NGUIJson
 	/// </summary>
 	/// <param name="json">A Hashtable / ArrayList</param>
 	/// <returns>A JSON encoded string, or null if object 'json' is not serializable</returns>
-	public static string jsonEncode( object json )
+	static public string jsonEncode( object json )
 	{
 		var builder = new StringBuilder( BUILDER_CAPACITY );
 		var success = NGUIJson.serializeValue( json, builder );
-		
+
 		return ( success ? builder.ToString() : null );
 	}
 
@@ -239,7 +237,7 @@ public class NGUIJson
 	/// On decoding, this function returns the position at which the parse failed (-1 = no error).
 	/// </summary>
 	/// <returns></returns>
-	public static bool lastDecodeSuccessful()
+	static public bool lastDecodeSuccessful()
 	{
 		return ( NGUIJson.lastErrorIndex == -1 );
 	}
@@ -249,18 +247,18 @@ public class NGUIJson
 	/// On decoding, this function returns the position at which the parse failed (-1 = no error).
 	/// </summary>
 	/// <returns></returns>
-	public static int getLastErrorIndex()
+	static public int getLastErrorIndex()
 	{
 		return NGUIJson.lastErrorIndex;
 	}
 
 
 	/// <summary>
-	/// If a decoding error occurred, this function returns a piece of the JSON string 
+	/// If a decoding error occurred, this function returns a piece of the JSON string
 	/// at which the error took place. To ease debugging.
 	/// </summary>
 	/// <returns></returns>
-	public static string getLastErrorSnippet()
+	static public string getLastErrorSnippet()
 	{
 		if( NGUIJson.lastErrorIndex == -1 )
 		{
@@ -280,9 +278,9 @@ public class NGUIJson
 		}
 	}
 
-	
+
 	#region Parsing
-	
+
 	protected static Hashtable parseObject( char[] json, ref int index )
 	{
 		Hashtable table = new Hashtable();
@@ -335,7 +333,7 @@ public class NGUIJson
 		return table;
 	}
 
-	
+
 	protected static ArrayList parseArray( char[] json, ref int index )
 	{
 		ArrayList array = new ArrayList();
@@ -374,7 +372,7 @@ public class NGUIJson
 		return array;
 	}
 
-	
+
 	protected static object parseValue( char[] json, ref int index, ref bool success )
 	{
 		switch( lookAhead( json, index ) )
@@ -404,14 +402,14 @@ public class NGUIJson
 		return null;
 	}
 
-	
+
 	protected static string parseString( char[] json, ref int index )
 	{
 		string s = "";
 		char c;
 
 		eatWhitespace( json, ref index );
-		
+
 		// "
 		c = json[index++];
 
@@ -504,8 +502,8 @@ s += Char.ConvertFromUtf32((int)codePoint);
 
 		return s;
 	}
-	
-	
+
+
 	protected static double parseNumber( char[] json, ref int index )
 	{
 		eatWhitespace( json, ref index );
@@ -518,8 +516,8 @@ s += Char.ConvertFromUtf32((int)codePoint);
 		index = lastIndex + 1;
 		return Double.Parse( new string( numberCharArray ) ); // , CultureInfo.InvariantCulture);
 	}
-	
-	
+
+
 	protected static int getLastIndexOfNumber( char[] json, int index )
 	{
 		int lastIndex;
@@ -530,8 +528,8 @@ s += Char.ConvertFromUtf32((int)codePoint);
 			}
 		return lastIndex - 1;
 	}
-	
-	
+
+
 	protected static void eatWhitespace( char[] json, ref int index )
 	{
 		for( ; index < json.Length; index++ )
@@ -540,15 +538,15 @@ s += Char.ConvertFromUtf32((int)codePoint);
 				break;
 			}
 	}
-	
-	
+
+
 	protected static int lookAhead( char[] json, int index )
 	{
 		int saveIndex = index;
 		return nextToken( json, ref saveIndex );
 	}
 
-	
+
 	protected static int nextToken( char[] json, ref int index )
 	{
 		eatWhitespace( json, ref index );
@@ -557,7 +555,7 @@ s += Char.ConvertFromUtf32((int)codePoint);
 		{
 			return NGUIJson.TOKEN_NONE;
 		}
-		
+
 		char c = json[index];
 		index++;
 		switch( c )
@@ -578,13 +576,13 @@ s += Char.ConvertFromUtf32((int)codePoint);
 			case '1':
 			case '2':
 			case '3':
-			case '4': 
+			case '4':
 			case '5':
 			case '6':
 			case '7':
 			case '8':
 			case '9':
-			case '-': 
+			case '-':
 				return NGUIJson.TOKEN_NUMBER;
 			case ':':
 				return NGUIJson.TOKEN_COLON;
@@ -637,10 +635,10 @@ s += Char.ConvertFromUtf32((int)codePoint);
 	}
 
 	#endregion
-	
-	
+
+
 	#region Serialization
-	
+
 	protected static bool serializeObjectOrArray( object objectOrArray, StringBuilder builder )
 	{
 		if( objectOrArray is Hashtable )
@@ -657,7 +655,7 @@ s += Char.ConvertFromUtf32((int)codePoint);
 			}
 	}
 
-	
+
 	protected static bool serializeObject( Hashtable anObject, StringBuilder builder )
 	{
 		builder.Append( "{" );
@@ -687,18 +685,18 @@ s += Char.ConvertFromUtf32((int)codePoint);
 		builder.Append( "}" );
 		return true;
 	}
-	
-	
+
+
 	protected static bool serializeDictionary( Dictionary<string,string> dict, StringBuilder builder )
 	{
 		builder.Append( "{" );
-		
+
 		bool first = true;
 		foreach( var kv in dict )
 		{
 			if( !first )
 				builder.Append( ", " );
-			
+
 			serializeString( kv.Key, builder );
 			builder.Append( ":" );
 			serializeString( kv.Value, builder );
@@ -709,8 +707,8 @@ s += Char.ConvertFromUtf32((int)codePoint);
 		builder.Append( "}" );
 		return true;
 	}
-	
-	
+
+
 	protected static bool serializeArray( ArrayList anArray, StringBuilder builder )
 	{
 		builder.Append( "[" );
@@ -737,7 +735,7 @@ s += Char.ConvertFromUtf32((int)codePoint);
 		return true;
 	}
 
-	
+
 	protected static bool serializeValue( object value, StringBuilder builder )
 	{
 		// Type t = value.GetType();
@@ -791,7 +789,7 @@ s += Char.ConvertFromUtf32((int)codePoint);
 		return true;
 	}
 
-	
+
 	protected static void serializeString( string aString, StringBuilder builder )
 	{
 		builder.Append( "\"" );
@@ -845,12 +843,12 @@ s += Char.ConvertFromUtf32((int)codePoint);
 		builder.Append( "\"" );
 	}
 
-	
+
 	protected static void serializeNumber( double number, StringBuilder builder )
 	{
 		builder.Append( Convert.ToString( number ) ); // , CultureInfo.InvariantCulture));
 	}
-	
+
 	#endregion
-	
+
 }

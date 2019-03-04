@@ -11,11 +11,11 @@ public class ModifyActionDataCheckbox : MonoBehaviour {
 
     public ActionVarType varSource;
     public string varName;
-    private UICheckbox input;
+    private UIToggle input;
 
     private void Start()
     {
-        input = GetComponent<UICheckbox>();
+        input = GetComponent<UIToggle>();
     }
 
     private void OnModelChanged()
@@ -24,7 +24,7 @@ public class ModifyActionDataCheckbox : MonoBehaviour {
         {
             if (LegacyEditorData.instance.currentAction.name != "")
             {
-                input.isChecked = getActionVar();
+                input.value = getActionVar();
             }
         }
     }

@@ -1,7 +1,7 @@
-//----------------------------------------------
+//-------------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2013 Tasharen Entertainment
-//----------------------------------------------
+// Copyright © 2011-2019 Tasharen Entertainment Inc
+//-------------------------------------------------
 
 using UnityEngine;
 using System.Collections.Generic;
@@ -16,7 +16,7 @@ public class BMSymbol
 	public string sequence;
 	public string spriteName;
 
-	UIAtlas.Sprite mSprite = null;
+	UISpriteData mSprite = null;
 	bool mIsValid = false;
 	int mLength = 0;
 	int mOffsetX = 0;		// (outer - inner) in pixels
@@ -38,13 +38,13 @@ public class BMSymbol
 	/// Mark this symbol as dirty, clearing the sprite reference.
 	/// </summary>
 
-	public void MarkAsDirty () { mIsValid = false; }
+	public void MarkAsChanged () { mIsValid = false; }
 
 	/// <summary>
 	/// Validate this symbol, given the specified atlas.
 	/// </summary>
 
-	public bool Validate (UIAtlas atlas)
+	public bool Validate (INGUIAtlas atlas)
 	{
 		if (atlas == null) return false;
 
@@ -56,35 +56,25 @@ public class BMSymbol
 		{
 			if (string.IsNullOrEmpty(spriteName)) return false;
 
-			mSprite = (atlas != null) ? atlas.GetSprite(spriteName) : null;
+			Texture tex = null;
+			mSprite = atlas.GetSprite(spriteName);
+			tex = atlas.texture;
 
 			if (mSprite != null)
 			{
-				Texture tex = atlas.texture;
-
 				if (tex == null)
 				{
 					mSprite = null;
 				}
 				else
 				{
-					Rect outer = mSprite.outer;
-					mUV = outer;
-
-					if (atlas.coordinates == UIAtlas.Coordinates.Pixels)
-					{
-						mUV = NGUIMath.ConvertToTexCoords(mUV, tex.width, tex.height);
-					}
-					else
-					{
-						outer = NGUIMath.ConvertToPixels(outer, tex.width, tex.height, true);
-					}
-
-					mOffsetX = Mathf.RoundToInt(mSprite.paddingLeft * outer.width);
-					mOffsetY = Mathf.RoundToInt(mSprite.paddingTop * outer.width);
-					mWidth = Mathf.RoundToInt(outer.width);
-					mHeight = Mathf.RoundToInt(outer.height);
-					mAdvance = Mathf.RoundToInt(outer.width + (mSprite.paddingRight + mSprite.paddingLeft) * outer.width);
+					mUV = new Rect(mSprite.x, mSprite.y, mSprite.width, mSprite.height);
+					mUV = NGUIMath.ConvertToTexCoords(mUV, tex.width, tex.height);
+					mOffsetX = mSprite.paddingLeft;
+					mOffsetY = mSprite.paddingTop;
+					mWidth = mSprite.width;
+					mHeight = mSprite.height;
+					mAdvance = mSprite.width + (mSprite.paddingLeft + mSprite.paddingRight);
 					mIsValid = true;
 				}
 			}

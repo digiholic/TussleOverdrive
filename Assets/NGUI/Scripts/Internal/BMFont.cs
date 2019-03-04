@@ -1,7 +1,7 @@
-﻿//----------------------------------------------
+//-------------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2013 Tasharen Entertainment
-//----------------------------------------------
+// Copyright © 2011-2019 Tasharen Entertainment Inc
+//-------------------------------------------------
 
 using UnityEngine;
 using System.Collections.Generic;
@@ -13,7 +13,7 @@ using System.Collections.Generic;
 [System.Serializable]
 public class BMFont
 {
-	[HideInInspector][SerializeField] int mSize = 0;			// How much to move the cursor when moving to the next line
+	[HideInInspector][SerializeField] int mSize = 16;			// How much to move the cursor when moving to the next line
 	[HideInInspector][SerializeField] int mBase = 0;			// Offset from the top of the line to the base of each character
 	[HideInInspector][SerializeField] int mWidth = 0;			// Original width of the texture
 	[HideInInspector][SerializeField] int mHeight = 0;			// Original height of the texture
@@ -66,6 +66,12 @@ public class BMFont
 	/// </summary>
 
 	public string spriteName { get { return mSpriteName; } set { mSpriteName = value; } }
+
+	/// <summary>
+	/// Access to BMFont's entire set of glyphs.
+	/// </summary>
+
+	public List<BMGlyph> glyphs { get { return mSaved; } }
 
 	/// <summary>
 	/// Helper function that retrieves the specified glyph, creating it if necessary.

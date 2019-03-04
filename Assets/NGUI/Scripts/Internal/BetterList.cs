@@ -1,13 +1,17 @@
-//----------------------------------------------
+//-------------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2013 Tasharen Entertainment
-//----------------------------------------------
+// Copyright © 2011-2019 Tasharen Entertainment Inc
+//-------------------------------------------------
 
 using UnityEngine;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 /// <summary>
-/// This improved version of the System.Collections.Generic.List that doesn't release the buffer on Clear(), resulting in better performance and less garbage collection.
+/// This improved version of the System.Collections.Generic.List that doesn't release the buffer on Clear(),
+/// resulting in better performance and less garbage collection.
+/// PRO: BetterList performs faster than List when you Add and Remove items (although slower if you remove from the beginning).
+/// CON: BetterList performs worse when sorting the list. If your operations involve sorting, use the standard List instead.
 /// </summary>
 
 public class BetterList<T>
@@ -15,21 +19,21 @@ public class BetterList<T>
 #if UNITY_FLASH
 
 	List<T> mList = new List<T>();
-	
+
 	/// <summary>
 	/// Direct access to the buffer. Note that you should not use its 'Length' parameter, but instead use BetterList.size.
 	/// </summary>
-	
+
 	public T this[int i]
 	{
 		get { return mList[i]; }
 		set { mList[i] = value; }
 	}
-	
+
 	/// <summary>
 	/// Compatibility with the non-flash syntax.
 	/// </summary>
-	
+
 	public List<T> buffer { get { return mList; } }
 
 	/// <summary>
@@ -66,13 +70,23 @@ public class BetterList<T>
 	/// Insert an item at the specified index, pushing the entries back.
 	/// </summary>
 
-	public void Insert (int index, T item) { mList.Insert(index, item); }
+	public void Insert (int index, T item)
+	{
+		if (index > -1 && index < mList.Count) mList.Insert(index, item);
+		else mList.Add(item);
+	}
 
 	/// <summary>
 	/// Returns 'true' if the specified item is within the list.
 	/// </summary>
 
 	public bool Contains (T item) { return mList.Contains(item); }
+
+	/// <summary>
+	/// Return the index of the specified item.
+	/// </summary>
+
+	public int IndexOf (T item) { return mList.IndexOf(item); }
 
 	/// <summary>
 	/// Remove the specified item from the list. Note that RemoveAt() is faster and is advisable if you already know the index.
@@ -85,6 +99,21 @@ public class BetterList<T>
 	/// </summary>
 
 	public void RemoveAt (int index) { mList.RemoveAt(index); }
+
+	/// <summary>
+	/// Remove an item from the end.
+	/// </summary>
+
+	public T Pop ()
+	{
+		if (buffer != null && size != 0)
+		{
+			T val = buffer[mList.Count - 1];
+			mList.RemoveAt(mList.Count - 1);
+			return val;
+		}
+		return default(T);
+	}
 
 	/// <summary>
 	/// Mimic List's ToArray() functionality, except that in this case the list is resized to match the current size.
@@ -116,6 +145,8 @@ public class BetterList<T>
 	/// For 'foreach' functionality.
 	/// </summary>
 
+	[DebuggerHidden]
+	[DebuggerStepThrough]
 	public IEnumerator<T> GetEnumerator ()
 	{
 		if (buffer != null)
@@ -126,11 +157,13 @@ public class BetterList<T>
 			}
 		}
 	}
-	
+
 	/// <summary>
 	/// Convenience function. I recommend using .buffer instead.
 	/// </summary>
-	
+
+	[DebuggerHidden]
+	[System.Obsolete("Access the list.buffer[index] instead -- direct array access avoids a copy, so it can be much faster")]
 	public T this[int i]
 	{
 		get { return buffer[i]; }
@@ -197,7 +230,7 @@ public class BetterList<T>
 	{
 		if (buffer == null || size == buffer.Length) AllocateMore();
 
-		if (index < size)
+		if (index > -1 && index < size)
 		{
 			for (int i = size; i > index; --i) buffer[i] = buffer[i - 1];
 			buffer[index] = item;
@@ -218,6 +251,17 @@ public class BetterList<T>
 	}
 
 	/// <summary>
+	/// Return the index of the specified item.
+	/// </summary>
+
+	public int IndexOf (T item)
+	{
+		if (buffer == null) return -1;
+		for (int i = 0; i < size; ++i) if (buffer[i].Equals(item)) return i;
+		return -1;
+	}
+
+	/// <summary>
 	/// Remove the specified item from the list. Note that RemoveAt() is faster and is advisable if you already know the index.
 	/// </summary>
 
@@ -234,6 +278,7 @@ public class BetterList<T>
 					--size;
 					buffer[i] = default(T);
 					for (int b = i; b < size; ++b) buffer[b] = buffer[b + 1];
+					buffer[size] = default(T);
 					return true;
 				}
 			}
@@ -247,11 +292,12 @@ public class BetterList<T>
 
 	public void RemoveAt (int index)
 	{
-		if (buffer != null && index < size)
+		if (buffer != null && index > -1 && index < size)
 		{
 			--size;
 			buffer[index] = default(T);
 			for (int b = index; b < size; ++b) buffer[b] = buffer[b + 1];
+			buffer[size] = default(T);
 		}
 	}
 
@@ -276,29 +322,67 @@ public class BetterList<T>
 
 	public T[] ToArray () { Trim(); return buffer; }
 
+	//class Comparer : System.Collections.IComparer
+	//{
+	//    public System.Comparison<T> func;
+	//    public int Compare (object x, object y) { return func((T)x, (T)y); }
+	//}
+
+	//Comparer mComp = new Comparer();
+
 	/// <summary>
-	/// List.Sort equivalent.
+	/// List.Sort equivalent. Doing Array.Sort causes GC allocations.
 	/// </summary>
 
-	public void Sort (System.Comparison<T> comparer)
+	//public void Sort (System.Comparison<T> comparer)
+	//{
+	//    if (size > 0)
+	//    {
+	//        mComp.func = comparer;
+	//        System.Array.Sort(buffer, 0, size, mComp);
+	//    }
+	//}
+
+	/// <summary>
+	/// List.Sort equivalent. Manual sorting causes no GC allocations.
+	/// </summary>
+
+	[DebuggerHidden]
+	[DebuggerStepThrough]
+	public void Sort (CompareFunc comparer)
 	{
+		int start = 0;
+		int max = size - 1;
 		bool changed = true;
 
 		while (changed)
 		{
 			changed = false;
 
-			for (int i = 1; i < size; ++i)
+			for (int i = start; i < max; ++i)
 			{
-				if (comparer.Invoke(buffer[i - 1], buffer[i]) > 0)
+				// Compare the two values
+				if (comparer(buffer[i], buffer[i + 1]) > 0)
 				{
+					// Swap the values
 					T temp = buffer[i];
-					buffer[i] = buffer[i - 1];
-					buffer[i - 1] = temp;
+					buffer[i] = buffer[i + 1];
+					buffer[i + 1] = temp;
 					changed = true;
+				}
+				else if (!changed)
+				{
+					// Nothing has changed -- we can start here next time
+					start = (i == 0) ? 0 : i - 1;
 				}
 			}
 		}
 	}
+
+	/// <summary>
+	/// Comparison function should return -1 if left is less than right, 1 if left is greater than right, and 0 if they match.
+	/// </summary>
+
+	public delegate int CompareFunc (T left, T right);
 #endif
 }

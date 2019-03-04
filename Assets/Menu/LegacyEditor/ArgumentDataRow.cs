@@ -39,10 +39,10 @@ public class ArgumentDataRow : MonoBehaviour {
             vartype.SendMessage("SetEditable", true);
         }
 
-        argname.text = data.name;
-        vartype.selection = data.TypeAsString();
-        source.selection = data.SourceAsString();
-        value.text = data.data;
+        argname.value = data.name;
+        vartype.value = data.TypeAsString();
+        source.value = data.SourceAsString();
+        value.value = data.data;
     }
 
     public void UpdateArgName(string name)

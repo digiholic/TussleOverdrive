@@ -1,349 +1,165 @@
-//----------------------------------------------
+//-------------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2013 Tasharen Entertainment
-//----------------------------------------------
+// Copyright © 2011-2019 Tasharen Entertainment Inc
+//-------------------------------------------------
 
 using UnityEngine;
+using System.Collections.Generic;
 
 /// <summary>
-/// Simple slider functionality.
+/// Extended progress bar that has backwards compatibility logic and adds interaction support.
 /// </summary>
 
-[AddComponentMenu("NGUI/Interaction/Slider")]
-public class UISlider : IgnoreTimeScale
+[ExecuteInEditMode]
+[AddComponentMenu("NGUI/Interaction/NGUI Slider")]
+public class UISlider : UIProgressBar
 {
-	public enum Direction
+	enum Direction
 	{
 		Horizontal,
 		Vertical,
+		Upgraded,
 	}
 
-	public delegate void OnValueChange (float val);
+	// Deprecated functionality. Use 'foregroundWidget' instead.
+	[HideInInspector][SerializeField] Transform foreground = null;
+
+	// Deprecated functionality
+	[HideInInspector][SerializeField] float rawValue = 1f; // Use 'value'
+	[HideInInspector][SerializeField] Direction direction = Direction.Upgraded; // Use 'fillDirection'
+	[HideInInspector][SerializeField] protected bool mInverted = false;
 
 	/// <summary>
-	/// Current slider. This value is set prior to the callback function being triggered.
+	/// Whether the collider is enabled and the widget can be interacted with.
 	/// </summary>
 
-	static public UISlider current;
-
-	/// <summary>
-	/// Object used for the foreground.
-	/// </summary>
-
-	public Transform foreground;
-
-	/// <summary>
-	/// Object that acts as a thumb.
-	/// </summary>
-
-	public Transform thumb;
-
-	/// <summary>
-	/// Direction the slider will expand in.
-	/// </summary>
-
-	public Direction direction = Direction.Horizontal;
-
-	/// <summary>
-	/// Event receiver that will be notified of the value changes.
-	/// </summary>
-
-	public GameObject eventReceiver;
-
-	/// <summary>
-	/// Function on the event receiver that will receive the value changes.
-	/// </summary>
-
-	public string functionName = "OnSliderChange";
-
-	/// <summary>
-	/// Allow for delegate-based subscriptions for faster events than 'eventReceiver', and allowing for multiple receivers.
-	/// </summary>
-
-	public OnValueChange onValueChange;
-
-	/// <summary>
-	/// Number of steps the slider should be divided into. For example 5 means possible values of 0, 0.25, 0.5, 0.75, and 1.0.
-	/// </summary>
-
-	public int numberOfSteps = 0;
-
-	// Used to be public prior to 1.87
-	[HideInInspector][SerializeField] float rawValue = 1f;
-
-	BoxCollider mCol;
-	Transform mTrans;
-	Transform mFGTrans;
-	UIWidget mFGWidget;
-	UISprite mFGFilled;
-	bool mInitDone = false;
-	Vector2 mSize = Vector2.zero;
-	Vector2 mCenter = Vector3.zero;
-
-	/// <summary>
-	/// Value of the slider.
-	/// </summary>
-
-	public float sliderValue
+	public bool isColliderEnabled
 	{
 		get
 		{
-			float val = rawValue;
-			if (numberOfSteps > 1) val = Mathf.Round(val * (numberOfSteps - 1)) / (numberOfSteps - 1);
-			return val;
-		}
-		set
-		{
-			Set(value, false);
+			Collider c = GetComponent<Collider>();
+			if (c != null) return c.enabled;
+			Collider2D b = GetComponent<Collider2D>();
+			return (b != null && b.enabled);
 		}
 	}
 
+	[System.Obsolete("Use 'value' instead")]
+	public float sliderValue { get { return this.value; } set { this.value = value; } }
+
+	[System.Obsolete("Use 'fillDirection' instead")]
+	public bool inverted { get { return isInverted; } set { } }
+
 	/// <summary>
-	/// Change the full size of the slider, in case you need to.
+	/// Upgrade from legacy functionality.
 	/// </summary>
 
-	public Vector2 fullSize { get { return mSize; } set { if (mSize != value) { mSize = value; ForceUpdate(); } } }
-
-	/// <summary>
-	/// Initialize the cached values.
-	/// </summary>
-
-	void Init ()
+	protected override void Upgrade ()
 	{
-		mInitDone = true;
+		if (direction != Direction.Upgraded)
+		{
+			mValue = rawValue;
 
-		if (foreground != null)
-		{
-			mFGWidget = foreground.GetComponent<UIWidget>();
-			mFGFilled = (mFGWidget != null) ? mFGWidget as UISprite : null;
-			mFGTrans = foreground.transform;
-			if (mSize == Vector2.zero) mSize = foreground.localScale;
-			if (mCenter == Vector2.zero) mCenter = foreground.localPosition + foreground.localScale * 0.5f;
-		}
-		else if (mCol != null)
-		{
-			if (mSize == Vector2.zero) mSize = mCol.size;
-			if (mCenter == Vector2.zero) mCenter = mCol.center;
-		}
-		else
-		{
-			Debug.LogWarning("UISlider expected to find a foreground object or a box collider to work with", this);
+			if (foreground != null)
+				mFG = foreground.GetComponent<UIWidget>();
+
+			if (direction == Direction.Horizontal)
+			{
+				mFill = mInverted ? FillDirection.RightToLeft : FillDirection.LeftToRight;
+			}
+			else
+			{
+				mFill = mInverted ? FillDirection.TopToBottom : FillDirection.BottomToTop;
+			}
+			direction = Direction.Upgraded;
+#if UNITY_EDITOR
+			NGUITools.SetDirty(this);
+#endif
 		}
 	}
 
 	/// <summary>
-	/// Ensure that we have a background and a foreground object to work with.
+	/// Register an event listener.
 	/// </summary>
 
-	void Awake ()
+	protected override void OnStart ()
 	{
-		mTrans = transform;
-		mCol = GetComponent<Collider>() as BoxCollider;
-	}
+#if UNITY_4_3 || UNITY_4_5 || UNITY_4_6 || UNITY_4_7
+		GameObject bg = (mBG != null && (mBG.collider != null || mBG.GetComponent<Collider2D>() != null)) ? mBG.gameObject : gameObject;
+		UIEventListener bgl = UIEventListener.Get(bg);
+		bgl.onPress += OnPressBackground;
+		bgl.onDrag += OnDragBackground;
 
-	/// <summary>
-	/// We want to receive drag events from the thumb.
-	/// </summary>
+		if (thumb != null && (thumb.collider != null || thumb.GetComponent<Collider2D>() != null) && (mFG == null || thumb != mFG.cachedTransform))
+#else
+		GameObject bg = (mBG != null && (mBG.GetComponent<Collider>() != null || mBG.GetComponent<Collider2D>() != null)) ? mBG.gameObject : gameObject;
+		UIEventListener bgl = UIEventListener.Get(bg);
+		bgl.onPress += OnPressBackground;
+		bgl.onDrag += OnDragBackground;
 
-	void Start ()
-	{
-		Init();
-
-		if (Application.isPlaying && thumb != null && thumb.GetComponent<Collider>() != null)
+		if (thumb != null && (thumb.GetComponent<Collider>() != null || thumb.GetComponent<Collider2D>() != null) && (mFG == null || thumb != mFG.cachedTransform))
+#endif
 		{
-			UIEventListener listener = UIEventListener.Get(thumb.gameObject);
-			listener.onPress += OnPressThumb;
-			listener.onDrag += OnDragThumb;
+			UIEventListener fgl = UIEventListener.Get(thumb.gameObject);
+			fgl.onPress += OnPressForeground;
+			fgl.onDrag += OnDragForeground;
 		}
-		Set(rawValue, true);
 	}
 
 	/// <summary>
-	/// Update the slider's position on press.
+	/// Position the scroll bar to be under the current touch.
 	/// </summary>
 
-	void OnPress (bool pressed) { if (enabled && pressed && UICamera.currentTouchID != -100) UpdateDrag(); }
+	protected void OnPressBackground (GameObject go, bool isPressed)
+	{
+		if (UICamera.currentScheme == UICamera.ControlScheme.Controller) return;
+		mCam = UICamera.currentCamera;
+		value = ScreenToValue(UICamera.lastEventPosition);
+		if (!isPressed && onDragFinished != null) onDragFinished();
+	}
 
 	/// <summary>
-	/// When dragged, figure out where the mouse is and calculate the updated value of the slider.
+	/// Position the scroll bar to be under the current touch.
 	/// </summary>
 
-	void OnDrag (Vector2 delta) { if (enabled) UpdateDrag(); }
+	protected void OnDragBackground (GameObject go, Vector2 delta)
+	{
+		if (UICamera.currentScheme == UICamera.ControlScheme.Controller) return;
+		mCam = UICamera.currentCamera;
+		value = ScreenToValue(UICamera.lastEventPosition);
+	}
 
 	/// <summary>
-	/// Callback from the thumb.
+	/// Save the position of the foreground on press.
 	/// </summary>
 
-	void OnPressThumb (GameObject go, bool pressed) { if (enabled && pressed) UpdateDrag(); }
+	protected void OnPressForeground (GameObject go, bool isPressed)
+	{
+		if (UICamera.currentScheme == UICamera.ControlScheme.Controller) return;
+		mCam = UICamera.currentCamera;
+
+		if (isPressed)
+		{
+			mOffset = (mFG == null) ? 0f :
+				value - ScreenToValue(UICamera.lastEventPosition);
+		}
+		else if (onDragFinished != null) onDragFinished();
+	}
 
 	/// <summary>
-	/// Callback from the thumb.
+	/// Drag the scroll bar in the specified direction.
 	/// </summary>
 
-	void OnDragThumb (GameObject go, Vector2 delta) { if (enabled) UpdateDrag(); }
+	protected void OnDragForeground (GameObject go, Vector2 delta)
+	{
+		if (UICamera.currentScheme == UICamera.ControlScheme.Controller) return;
+		mCam = UICamera.currentCamera;
+		value = mOffset + ScreenToValue(UICamera.lastEventPosition);
+	}
 
 	/// <summary>
 	/// Watch for key events and adjust the value accordingly.
 	/// </summary>
 
-	void OnKey (KeyCode key)
-	{
-		if (enabled)
-		{
-			float step = (numberOfSteps > 1f) ? 1f / (numberOfSteps - 1) : 0.125f;
-
-			if (direction == Direction.Horizontal)
-			{
-				if (key == KeyCode.LeftArrow) Set(rawValue - step, false);
-				else if (key == KeyCode.RightArrow) Set(rawValue + step, false);
-			}
-			else
-			{
-				if (key == KeyCode.DownArrow) Set(rawValue - step, false);
-				else if (key == KeyCode.UpArrow) Set(rawValue + step, false);
-			}
-		}
-	}
-
-	/// <summary>
-	/// Update the slider's position based on the mouse.
-	/// </summary>
-
-	void UpdateDrag ()
-	{
-		// Create a plane for the slider
-		if (mCol == null || UICamera.currentCamera == null || UICamera.currentTouch == null) return;
-
-		// Don't consider the slider for click events
-		UICamera.currentTouch.clickNotification = UICamera.ClickNotification.None;
-
-		// Create a ray and a plane
-		Ray ray = UICamera.currentCamera.ScreenPointToRay(UICamera.currentTouch.pos);
-		Plane plane = new Plane(mTrans.rotation * Vector3.back, mTrans.position);
-
-		// If the ray doesn't hit the plane, do nothing
-		float dist;
-		if (!plane.Raycast(ray, out dist)) return;
-
-		// Collider's bottom-left corner in local space
-		Vector3 localOrigin = mTrans.localPosition + (Vector3)(mCenter - mSize * 0.5f);
-		Vector3 localOffset = mTrans.localPosition - localOrigin;
-
-		// Direction to the point on the plane in scaled local space
-		Vector3 localCursor = mTrans.InverseTransformPoint(ray.GetPoint(dist));
-		Vector3 dir = localCursor + localOffset;
-
-		// Update the slider
-		Set((direction == Direction.Horizontal) ? dir.x / mSize.x : dir.y / mSize.y, false);
-	}
-
-	/// <summary>
-	/// Update the visible slider.
-	/// </summary>
-
-	void Set (float input, bool force)
-	{
-		if (!mInitDone) Init();
-
-		// Clamp the input
-		float val = Mathf.Clamp01(input);
-		if (val < 0.001f) val = 0f;
-
-		float prevStep = sliderValue;
-
-		// Save the raw value
-		rawValue = val;
-
-		// Take steps into account
-		float stepValue = sliderValue;
-
-		// If the stepped value doesn't match the last one, it's time to update
-		if (force || prevStep != stepValue)
-		{
-			Vector3 scale = mSize;
-
-#if UNITY_EDITOR
-			if (Application.isPlaying)
-			{
-				if (direction == Direction.Horizontal) scale.x *= stepValue;
-				else scale.y *= stepValue;
-			}
-#else
-			if (direction == Direction.Horizontal) scale.x *= stepValue;
-			else scale.y *= stepValue;
-#endif
-
-#if UNITY_EDITOR
-			if (Application.isPlaying)
-#endif
-			{
-				if (mFGFilled != null && mFGFilled.type == UISprite.Type.Filled)
-				{
-					mFGFilled.fillAmount = stepValue;
-				}
-				else if (foreground != null)
-				{
-					mFGTrans.localScale = scale;
-
-					if (mFGWidget != null)
-					{
-						if (stepValue > 0.001f)
-						{
-							mFGWidget.enabled = true;
-							mFGWidget.MarkAsChanged();
-						}
-						else
-						{
-							mFGWidget.enabled = false;
-						}
-					}
-				}
-			}
-
-			if (thumb != null)
-			{
-				Vector3 pos = thumb.localPosition;
-
-				if (mFGFilled != null && mFGFilled.type == UISprite.Type.Filled)
-				{
-					if (mFGFilled.fillDirection == UISprite.FillDirection.Horizontal)
-					{
-						pos.x = mFGFilled.invert ? mSize.x - scale.x : scale.x;
-					}
-					else if (mFGFilled.fillDirection == UISprite.FillDirection.Vertical)
-					{
-						pos.y = mFGFilled.invert ? mSize.y - scale.y : scale.y;
-					}
-					else
-					{
-						Debug.LogWarning("Slider thumb is only supported with Horizontal or Vertical fill direction", this);
-					}
-				}
-				else if (direction == Direction.Horizontal)
-				{
-					pos.x = scale.x;
-				}
-				else
-				{
-					pos.y = scale.y;
-				}
-				thumb.localPosition = pos;
-			}
-
-			current = this;
-
-			if (eventReceiver != null && !string.IsNullOrEmpty(functionName) && Application.isPlaying)
-			{
-				eventReceiver.SendMessage(functionName, stepValue, SendMessageOptions.DontRequireReceiver);
-			}
-			if (onValueChange != null) onValueChange(stepValue);
-			current = null;
-		}
-	}
-
-	/// <summary>
-	/// Force-update the slider. Useful if you've changed the properties and want it to update visually.
-	/// </summary>
-
-	public void ForceUpdate () { Set(rawValue, true); }
+	public override void OnPan (Vector2 delta) { if (enabled && isColliderEnabled) base.OnPan(delta); }
 }

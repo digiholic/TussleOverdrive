@@ -9,7 +9,7 @@ public class SubactionVarDataRig : MonoBehaviour {
     private List<GameObject> children = new List<GameObject>();
     private UIGrid grid;
     [SerializeField]
-    private UIDraggablePanel dragPanel;
+    private UIScrollView dragPanel;
 	// Use this for initialization
 	void Awake () {
         grid = GetComponent<UIGrid>();

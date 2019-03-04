@@ -1,7 +1,7 @@
-﻿//----------------------------------------------
+//-------------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2013 Tasharen Entertainment
-//----------------------------------------------
+// Copyright © 2011-2019 Tasharen Entertainment Inc
+//-------------------------------------------------
 
 using UnityEngine;
 using UnityEditor;
@@ -11,8 +11,9 @@ using System.Collections.Generic;
 /// Inspector class used to edit UITextures.
 /// </summary>
 
-[CustomEditor(typeof(UITexture))]
-public class UITextureInspector : UIWidgetInspector
+[CanEditMultipleObjects]
+[CustomEditor(typeof(UITexture), true)]
+public class UITextureInspector : UIBasicSpriteEditor
 {
 	UITexture mTex;
 
@@ -22,49 +23,35 @@ public class UITextureInspector : UIWidgetInspector
 		mTex = target as UITexture;
 	}
 
-	protected override bool DrawProperties ()
+	protected override bool ShouldDrawProperties ()
 	{
-		if (mTex.material != null || mTex.mainTexture == null)
-		{
-			Material mat = EditorGUILayout.ObjectField("Material", mTex.material, typeof(Material), false) as Material;
+		if (target == null) return false;
+		SerializedProperty sp = NGUIEditorTools.DrawProperty("Texture", serializedObject, "mTexture");
+		NGUIEditorTools.DrawProperty("Material", serializedObject, "mMat");
 
-			if (mTex.material != mat)
-			{
-				NGUIEditorTools.RegisterUndo("Material Selection", mTex);
-				mTex.material = mat;
-			}
+		if (sp != null) NGUISettings.texture = sp.objectReferenceValue as Texture;
+
+		if (mTex != null && (mTex.material == null || serializedObject.isEditingMultipleObjects))
+		{
+			NGUIEditorTools.DrawProperty("Shader", serializedObject, "mShader");
 		}
 
-		if (mTex.material == null || mTex.hasDynamicMaterial)
+		EditorGUI.BeginDisabledGroup(mTex == null || mTex.mainTexture == null || serializedObject.isEditingMultipleObjects);
+
+		NGUIEditorTools.DrawRectProperty("UV Rect", serializedObject, "mRect");
+
+		sp = serializedObject.FindProperty("mFixedAspect");
+		bool before = sp.boolValue;
+		NGUIEditorTools.DrawProperty("Fixed Aspect", sp);
+		if (sp.boolValue != before) (target as UIWidget).drawRegion = new Vector4(0f, 0f, 1f, 1f);
+
+		if (sp.boolValue)
 		{
-			Shader shader = EditorGUILayout.ObjectField("Shader", mTex.shader, typeof(Shader), false) as Shader;
-
-			if (mTex.shader != shader)
-			{
-				NGUIEditorTools.RegisterUndo("Shader Selection", mTex);
-				mTex.shader = shader;
-			}
-
-			Texture tex = EditorGUILayout.ObjectField("Texture", mTex.mainTexture, typeof(Texture), false) as Texture;
-
-			if (mTex.mainTexture != tex)
-			{
-				NGUIEditorTools.RegisterUndo("Texture Selection", mTex);
-				mTex.mainTexture = tex;
-			}
+			EditorGUILayout.HelpBox("Note that Fixed Aspect mode is not compatible with Draw Region modifications done by sliders and progress bars.", MessageType.Info);
 		}
 
-		if (mTex.mainTexture != null)
-		{
-			Rect rect = EditorGUILayout.RectField("UV Rectangle", mTex.uvRect);
-
-			if (rect != mTex.uvRect)
-			{
-				NGUIEditorTools.RegisterUndo("UV Rectangle Change", mTex);
-				mTex.uvRect = rect;
-			}
-		}
-		return (mWidget.material != null);
+		EditorGUI.EndDisabledGroup();
+		return true;
 	}
 
 	/// <summary>
@@ -73,7 +60,8 @@ public class UITextureInspector : UIWidgetInspector
 
 	public override bool HasPreviewGUI ()
 	{
-		return (mTex != null) && (mTex.mainTexture as Texture2D != null);
+		return (Selection.activeGameObject == null || Selection.gameObjects.Length == 1) &&
+			(mTex != null) && (mTex.mainTexture as Texture2D != null);
 	}
 
 	/// <summary>
@@ -86,9 +74,12 @@ public class UITextureInspector : UIWidgetInspector
 
 		if (tex != null)
 		{
-			Rect uv = mTex.uvRect;
-			Rect outer = NGUIMath.ConvertToPixels(uv, tex.width, tex.height, true);
-			NGUIEditorTools.DrawSprite(tex, rect, outer, outer, uv, mTex.color);
+			Rect tc = mTex.uvRect;
+			tc.xMin *= tex.width;
+			tc.xMax *= tex.width;
+			tc.yMin *= tex.height;
+			tc.yMax *= tex.height;
+			NGUIEditorTools.DrawSprite(tex, rect, mTex.color, tc, mTex.border);
 		}
 	}
 }

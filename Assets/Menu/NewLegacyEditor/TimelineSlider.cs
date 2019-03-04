@@ -25,17 +25,20 @@ public class TimelineSlider : MonoBehaviour
                 int maxFrame = LegacyEditorData.instance.currentAction.length;
                 slider.numberOfSteps = maxFrame+1;
 
-                slider.eventReceiver = null;
-                slider.sliderValue = (float)LegacyEditorData.instance.currentFrame / maxFrame;
-                slider.eventReceiver = gameObject;
+                EventDelegate.Remove(slider.onChange, OnSliderChange);
+                //slider.eventReceiver = null; ^^
+                slider.value = (float)LegacyEditorData.instance.currentFrame / maxFrame;
+                //slider.eventReceiver = gameObject; ^^
+                EventDelegate.Set(slider.onChange, OnSliderChange);
             }
         }
     }
 
-    void OnSliderChange(float val)
+    void OnSliderChange()
     {
+        float val = UISlider.current.value;
         ChangeCurrentFrame legacyAction = ScriptableObject.CreateInstance<ChangeCurrentFrame>();
-        legacyAction.init(Mathf.FloorToInt(Mathf.Lerp(0, slider.numberOfSteps - 1, slider.sliderValue)), false, false);
+        legacyAction.init(Mathf.FloorToInt(Mathf.Lerp(0, slider.numberOfSteps - 1, slider.value)), false, false);
         LegacyEditorData.instance.DoAction(legacyAction);
     }
 }

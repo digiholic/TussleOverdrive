@@ -64,7 +64,7 @@ public class InputFilePickerButton : MonoBehaviour
         //Doing a bit of dark voodoo magic to call this private method in a library without modifying the library
         //This will let us do everything the UIInput does as if we typed it in
         Debug.Log(selectedInput);
-        input.text = "";
+        input.value = "";
         input.SendMessage("Append", selectedInput + '\n');
     }
 

@@ -1,10 +1,11 @@
-//----------------------------------------------
+//-------------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2013 Tasharen Entertainment
-//----------------------------------------------
+// Copyright © 2011-2019 Tasharen Entertainment Inc
+//-------------------------------------------------
 
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 /// <summary>
 /// Popup list can be used to display pop-up menus and drop-down lists.
@@ -12,42 +13,119 @@ using System.Collections.Generic;
 
 [ExecuteInEditMode]
 [AddComponentMenu("NGUI/Interaction/Popup List")]
-public class UIPopupList : MonoBehaviour
+public class UIPopupList : UIWidgetContainer
 {
 	/// <summary>
 	/// Current popup list. Only available during the OnSelectionChange event callback.
 	/// </summary>
 
 	static public UIPopupList current;
+	static protected GameObject mChild;
+	static protected float mFadeOutComplete = 0f;
 
 	const float animSpeed = 0.15f;
 
-	public enum Position
+	[DoNotObfuscateNGUI] public enum Position
 	{
 		Auto,
 		Above,
 		Below,
 	}
 
-	public delegate void OnSelectionChange (string item);
+	[DoNotObfuscateNGUI] public enum Selection
+	{
+		OnPress,
+		OnClick,
+	}
 
 	/// <summary>
 	/// Atlas used by the sprites.
 	/// </summary>
 
-	public UIAtlas atlas;
+	public Object atlas;
 
 	/// <summary>
 	/// Font used by the labels.
 	/// </summary>
 
-	public UIFont font;
+	public Object bitmapFont;
 
 	/// <summary>
-	/// Label with text to auto-update, if any.
+	/// True type font used by the labels. Alternative to specifying a bitmap font ('font').
 	/// </summary>
 
-	public UILabel textLabel;
+	public Font trueTypeFont;
+
+	/// <summary>
+	/// NGUI font interface, if it's using a bitmap font.
+	/// </summary>
+
+	public INGUIFont font
+	{
+		get
+		{
+			if (bitmapFont != null)
+			{
+				if (bitmapFont is GameObject) return (bitmapFont as GameObject).GetComponent<UIFont>();
+				return bitmapFont as INGUIFont;
+			}
+			return null;
+		}
+		set
+		{
+			bitmapFont = (value as Object);
+			trueTypeFont = null;
+		}
+	}
+
+	/// <summary>
+	/// Font used by the popup list. Conveniently wraps both dynamic and bitmap fonts into one property.
+	/// </summary>
+
+	public Object ambigiousFont
+	{
+		get
+		{
+			if (trueTypeFont != null) return trueTypeFont;
+
+			if (bitmapFont != null)
+			{
+				if (bitmapFont is GameObject) return (bitmapFont as GameObject).GetComponent<UIFont>();
+				return bitmapFont as Object;
+			}
+			return null;
+		}
+		set
+		{
+			if (value is Font)
+			{
+				trueTypeFont = value as Font;
+				bitmapFont = null;
+			}
+			else if (value is INGUIFont)
+			{
+				bitmapFont = value as Object;
+				trueTypeFont = null;
+			}
+			else if (value is GameObject)
+			{
+				bitmapFont = (value as GameObject).GetComponent<UIFont>();
+				trueTypeFont = null;
+			}
+		}
+	}
+
+	/// <summary>
+	/// Size of the font to use for the popup list's labels.
+	/// </summary>
+
+	public int fontSize = 16;
+
+	/// <summary>
+	/// Font style used by the dynamic font.
+	/// </summary>
+
+	public FontStyle fontStyle = FontStyle.Normal;
 
 	/// <summary>
 	/// Name of the sprite used to create the popup's background.
@@ -62,10 +140,34 @@ public class UIPopupList : MonoBehaviour
 	public string highlightSprite;
 
 	/// <summary>
+	/// Name of the sprite used to create the popup's background.
+	/// </summary>
+
+	public Sprite background2DSprite;
+
+	/// <summary>
+	/// Name of the sprite used to highlight items.
+	/// </summary>
+
+	public Sprite highlight2DSprite;
+
+	/// <summary>
 	/// Popup list's display style.
 	/// </summary>
 
 	public Position position = Position.Auto;
+
+	/// <summary>
+	/// Whether the popup item selection is chosen by pressing on it or by clicking on it.
+	/// </summary>
+
+	public Selection selection = Selection.OnPress;
+
+	/// <summary>
+	/// Label alignment to use.
+	/// </summary>
+
+	public NGUIText.Alignment alignment = NGUIText.Alignment.Left;
 
 	/// <summary>
 	/// New line-delimited list of items.
@@ -74,16 +176,23 @@ public class UIPopupList : MonoBehaviour
 	public List<string> items = new List<string>();
 
 	/// <summary>
+	/// You can associate arbitrary data to be associated with your entries if you like.
+	/// The only downside is that this must be done via code.
+	/// </summary>
+
+	public List<object> itemData = new List<object>();
+
+	/// <summary>
+	/// You can associate specific callbacks with each entry if you like.
+	/// </summary>
+
+	public List<System.Action> itemCallbacks = new List<System.Action>();
+
+	/// <summary>
 	/// Amount of padding added to labels.
 	/// </summary>
 
 	public Vector2 padding = new Vector3(4f, 4f);
-
-	/// <summary>
-	/// Scaling factor applied to labels within the drop-down menu.
-	/// </summary>
-
-	public float textScale = 1f;
 
 	/// <summary>
 	/// Color tint applied to labels inside the list.
@@ -101,7 +210,7 @@ public class UIPopupList : MonoBehaviour
 	/// Color tint applied to the highlighter.
 	/// </summary>
 
-	public Color highlightColor = new Color(152f / 255f, 1f, 51f / 255f, 1f);
+	public Color highlightColor = new Color(225f / 255f, 200f / 255f, 150f / 255f, 1f);
 
 	/// <summary>
 	/// Whether the popup list is animated or not. Disable for better performance.
@@ -115,173 +224,479 @@ public class UIPopupList : MonoBehaviour
 
 	public bool isLocalized = false;
 
-    public bool makeScrollable = false; //added by digi
-    public float scrollPanelMaxHeight = 0; //added by digi
-
 	/// <summary>
-	/// Target game object that will be notified when selection changes.
+	/// Custom text modifier for child labels.
 	/// </summary>
 
-	public GameObject eventReceiver;
+	public UILabel.Modifier textModifier = UILabel.Modifier.None;
 
 	/// <summary>
-	/// Function to call when the selection changes. Function prototype: void OnSelectionChange (string selectedItemName);
+	/// Whether a separate panel will be used to ensure that the popup will appear on top of everything else.
 	/// </summary>
 
-	public string functionName = "OnSelectionChange";
+	public bool separatePanel = true;
 
 	/// <summary>
-	/// Delegate that will be called when the selection changes. Faster than using the 'eventReceiver'.
+	/// Amount by which the popup's border will overlap with the content that opened it.
 	/// </summary>
 
-	public OnSelectionChange onSelectionChange;
+	public int overlap = 0;
 
-	[HideInInspector][SerializeField] string mSelectedItem;
-	UIPanel mPanel;
-	GameObject mChild;
-	UISprite mBackground;
-	UISprite mHighlight;
-	UILabel mHighlightedLabel = null;
-	List<UILabel> mLabelList = new List<UILabel>();
-	float mBgBorder = 0f;
+	[DoNotObfuscateNGUI] public enum OpenOn
+	{
+		ClickOrTap,
+		RightClick,
+		DoubleClick,
+		Manual,
+	}
+
+	/// <summary>
+	/// What kind of click is needed in order to open the popup list.
+	/// </summary>
+
+	public OpenOn openOn = OpenOn.ClickOrTap;
+
+	/// <summary>
+	/// Callbacks triggered when the popup list gets a new item selection.
+	/// </summary>
+
+	public List<EventDelegate> onChange = new List<EventDelegate>();
+
+	// Currently selected item
+	[HideInInspector][SerializeField] protected string mSelectedItem;
+	[HideInInspector][SerializeField] protected UIPanel mPanel;
+	[HideInInspector][SerializeField] protected UIBasicSprite mBackground;
+	[HideInInspector][SerializeField] protected UIBasicSprite mHighlight;
+	[HideInInspector][SerializeField] protected UILabel mHighlightedLabel = null;
+	[HideInInspector][SerializeField] protected List<UILabel> mLabelList = new List<UILabel>();
+	[HideInInspector][SerializeField] protected float mBgBorder = 0f;
+
+	[Tooltip("Whether the selection will be persistent even after the popup list is closed. By default the selection is " +
+		"cleared when the popup is closed so that the same selection can be chosen again the next time the popup list is opened. " +
+		"If enabled, the selection will persist, but selecting the same choice in succession will not result in the onChange " +
+		"notification being triggered more than once.")]
+	public bool keepValue = false;
+
+	[System.NonSerialized] protected GameObject mSelection;
+	[System.NonSerialized] protected int mOpenFrame = 0;
+
+	// Deprecated functionality
+	[HideInInspector][SerializeField] GameObject eventReceiver;
+	[HideInInspector][SerializeField] string functionName = "OnSelectionChange";
+	[HideInInspector][SerializeField] float textScale = 0f;
+
+	// This functionality is no longer needed as the same can be achieved by choosing a
+	// OnValueChange notification targeting a label's SetCurrentSelection function.
+	// If your code was list.textLabel = myLabel, change it to:
+	// EventDelegate.Add(list.onChange, lbl.SetCurrentSelection);
+	[HideInInspector][SerializeField] UILabel textLabel;
+
+	// Popup list's starting position
+	[System.NonSerialized] public Vector3 startingPosition;
+
+	public delegate void LegacyEvent (string val);
+	LegacyEvent mLegacyEvent;
+
+	[System.Obsolete("Use EventDelegate.Add(popup.onChange, YourCallback) instead, and UIPopupList.current.value to determine the state")]
+	public LegacyEvent onSelectionChange { get { return mLegacyEvent; } set { mLegacyEvent = value; } }
 
 	/// <summary>
 	/// Whether the popup list is currently open.
 	/// </summary>
 
-	public bool isOpen { get { return mChild != null; } }
+	static public bool isOpen { get { return current != null && (mChild != null || mFadeOutComplete > Time.unscaledTime); } }
 
 	/// <summary>
 	/// Current selection.
 	/// </summary>
 
-	public string selection
+	public virtual string value { get { return mSelectedItem; } set { Set(value); } }
+
+	/// <summary>
+	/// Item data associated with the current selection.
+	/// </summary>
+
+	public virtual object data
 	{
 		get
 		{
-			return mSelectedItem;
-		}
-		set
-		{
-			bool trigger = false;
-
-			if (mSelectedItem != value)
-			{
-				mSelectedItem = value;
-				if (mSelectedItem == null) return;
-				
-				if (textLabel != null)
-				{
-					textLabel.text = (isLocalized) ? Localization.Localize(value) : value;
-#if UNITY_EDITOR
-					UnityEditor.EditorUtility.SetDirty(textLabel.gameObject);
-#endif
-				}
-				trigger = true;
-			}
-
-			if (mSelectedItem != null && (trigger || textLabel == null))
-			{
-				current = this;
-				if (onSelectionChange != null) onSelectionChange(mSelectedItem);
-
-				if (eventReceiver != null && !string.IsNullOrEmpty(functionName) && Application.isPlaying)
-				{
-					eventReceiver.SendMessage(functionName, mSelectedItem, SendMessageOptions.DontRequireReceiver);
-				}
-				current = null;
-			}
+			int index = items.IndexOf(mSelectedItem);
+			return (index > -1) && index < itemData.Count ? itemData[index] : null;
 		}
 	}
 
 	/// <summary>
-	/// Whether the popup list will be handling keyboard, joystick and controller events.
+	/// Callback associated with the current selection.
 	/// </summary>
 
-	bool handleEvents
+	public System.Action callback
 	{
 		get
 		{
-			UIButtonKeys keys = GetComponent<UIButtonKeys>();
-			return (keys == null || !keys.enabled);
+			int index = items.IndexOf(mSelectedItem);
+			return (index > -1) && index < itemCallbacks.Count ? itemCallbacks[index] : null;
+		}
+	}
+
+	/// <summary>
+	/// Whether the collider is enabled and the widget can be interacted with.
+	/// </summary>
+
+	public bool isColliderEnabled
+	{
+		get
+		{
+			Collider c = GetComponent<Collider>();
+			if (c != null) return c.enabled;
+			Collider2D b = GetComponent<Collider2D>();
+			return (b != null && b.enabled);
 		}
 		set
 		{
-			UIButtonKeys keys = GetComponent<UIButtonKeys>();
-			if (keys != null) keys.enabled = !value;
+			Collider c = GetComponent<Collider>();
+			if (c != null) { c.enabled = value; return; }
+			Collider2D b = GetComponent<Collider2D>();
+			if (b != null) { b.enabled = value; return; }
 		}
 	}
+
+	/// <summary>
+	/// Whether the popup list is actually usable.
+	/// </summary>
+
+	protected bool isValid { get { return ambigiousFont != null; } }
+
+	/// <summary>
+	/// Active font size.
+	/// </summary>
+
+	protected int activeFontSize
+	{
+		get
+		{
+			var bm = font;
+			if (trueTypeFont != null || bm == null) return fontSize;
+			return (bm != null) ? bm.defaultSize : fontSize;
+		}
+	}
+
+	/// <summary>
+	/// Font scale applied to the popup list's text.
+	/// </summary>
+
+	protected float activeFontScale
+	{
+		get
+		{
+			var bm = font;
+			if (trueTypeFont != null || bm == null) return 1f;
+			return (bm != null) ? (float)fontSize / bm.defaultSize : 1f;
+		}
+	}
+
+	/// <summary>
+	/// Scale needed to be applied to the popup in order for it to fit on the screen.
+	/// </summary>
+
+	protected float fitScale
+	{
+		get
+		{
+			if (separatePanel)
+			{
+				var height = items.Count * (fontSize + padding.y) + padding.y;
+				var size = NGUITools.screenSize.y;
+				if (height > size) return size / height;
+			}
+			else if (mPanel != null && mPanel.anchorCamera != null && mPanel.anchorCamera.orthographic)
+			{
+				var height = items.Count * (fontSize + padding.y) + padding.y;
+				var size = mPanel.height;
+				if (height > size) return size / height;
+			}
+			return 1f;
+		}
+	}
+
+	/// <summary>
+	/// Set the current selection.
+	/// </summary>
+
+	public void Set (string value, bool notify = true)
+	{
+		if (mSelectedItem != value)
+		{
+			mSelectedItem = value;
+
+			if (mSelectedItem == null) return;
+#if UNITY_EDITOR
+			if (!Application.isPlaying) return;
+#endif
+			if (notify && mSelectedItem != null)
+				TriggerCallbacks();
+
+			if (!keepValue) mSelectedItem = null;
+		}
+	}
+
+	/// <summary>
+	/// Clear the popup list's contents.
+	/// </summary>
+
+	public virtual void Clear ()
+	{
+		items.Clear();
+		itemData.Clear();
+		itemCallbacks.Clear();
+	}
+
+	/// <summary>
+	/// Add a new item to the popup list.
+	/// </summary>
+
+	public virtual void AddItem (string text)
+	{
+		items.Add(text);
+		itemData.Add(text);
+		itemCallbacks.Add(null);
+	}
+
+	/// <summary>
+	/// Add a new item to the popup list.
+	/// </summary>
+
+	public virtual void AddItem (string text, System.Action del)
+	{
+		items.Add(text);
+		itemCallbacks.Add(del);
+	}
+
+	/// <summary>
+	/// Add a new item to the popup list.
+	/// </summary>
+
+	public virtual void AddItem (string text, object data, System.Action del = null)
+	{
+		items.Add(text);
+		itemData.Add(data);
+		itemCallbacks.Add(del);
+	}
+
+	/// <summary>
+	/// Remove the specified item.
+	/// </summary>
+
+	public virtual void RemoveItem (string text)
+	{
+		int index = items.IndexOf(text);
+
+		if (index != -1)
+		{
+			items.RemoveAt(index);
+			itemData.RemoveAt(index);
+			if (index < itemCallbacks.Count) itemCallbacks.RemoveAt(index);
+		}
+	}
+
+	/// <summary>
+	/// Remove the specified item.
+	/// </summary>
+
+	public virtual void RemoveItemByData (object data)
+	{
+		int index = itemData.IndexOf(data);
+
+		if (index != -1)
+		{
+			items.RemoveAt(index);
+			itemData.RemoveAt(index);
+			if (index < itemCallbacks.Count) itemCallbacks.RemoveAt(index);
+		}
+	}
+
+	[System.NonSerialized] protected bool mExecuting = false;
+
+	/// <summary>
+	/// Trigger all event notification callbacks.
+	/// </summary>
+
+	protected void TriggerCallbacks ()
+	{
+		if (!mExecuting)
+		{
+			mExecuting = true;
+			UIPopupList old = current;
+			current = this;
+
+			// Legacy functionality
+			if (mLegacyEvent != null) mLegacyEvent(mSelectedItem);
+
+			if (EventDelegate.IsValid(onChange))
+			{
+				EventDelegate.Execute(onChange);
+			}
+			else if (eventReceiver != null && !string.IsNullOrEmpty(functionName))
+			{
+				// Legacy functionality support (for backwards compatibility)
+				eventReceiver.SendMessage(functionName, mSelectedItem, SendMessageOptions.DontRequireReceiver);
+			}
+
+			var cb = callback;
+			if (cb != null) cb();
+
+			current = old;
+			mExecuting = false;
+		}
+	}
+
+	/// <summary>
+	/// Remove legacy functionality.
+	/// </summary>
+
+	protected virtual void OnEnable ()
+	{
+		if (EventDelegate.IsValid(onChange))
+		{
+			eventReceiver = null;
+			functionName = null;
+		}
+
+		var bm = font;
+
+		// 'textScale' is no longer used
+		if (textScale != 0f)
+		{
+			fontSize = (bm != null) ? Mathf.RoundToInt(bm.defaultSize * textScale) : 16;
+			textScale = 0f;
+		}
+
+		// Auto-upgrade to the true type font
+		if (trueTypeFont == null && bm != null && bm.isDynamic && bm.replacement == null)
+		{
+			trueTypeFont = bm.dynamicFont;
+			bitmapFont = null;
+		}
+	}
+
+	[System.NonSerialized] protected bool mStarted = false;
 
 	/// <summary>
 	/// Send out the selection message on start.
 	/// </summary>
 
-	void Start ()
+	public virtual void Start ()
 	{
-		// Automatically choose the first item
-		if (string.IsNullOrEmpty(mSelectedItem))
+		if (mStarted) return;
+		mStarted = true;
+
+		if (keepValue)
 		{
-			if (items.Count > 0) selection = items[0];
-		}
-		else
-		{
-			string s = mSelectedItem;
+			var sel = mSelectedItem;
 			mSelectedItem = null;
-			selection = s;
+			value = sel;
 		}
+		else mSelectedItem = null;
+
+		// Auto-upgrade legacy functionality
+		if (textLabel != null)
+		{
+			EventDelegate.Add(onChange, textLabel.SetCurrentSelection);
+			textLabel = null;
+#if UNITY_EDITOR
+			NGUITools.SetDirty(this);
+#endif
+		}
+
+		// Automatically choose the first item
+		// Removed: This triggers callbacks, which messes with popup setting the input field's value,
+		// with input field set to auto-save its value.
+		//if (Application.isPlaying)
+		//{
+		//    if (string.IsNullOrEmpty(mSelectedItem) && items.Count > 0)
+		//        mSelectedItem = items[0];
+		//    if (!string.IsNullOrEmpty(mSelectedItem))
+		//        TriggerCallbacks();
+		//}
 	}
 
 	/// <summary>
 	/// Localize the text label.
 	/// </summary>
 
-	void OnLocalize (Localization loc)
-	{
-		if (isLocalized && textLabel != null)
-		{
-			textLabel.text = loc.Get(mSelectedItem);
-		}
-	}
+	protected virtual void OnLocalize () { if (isLocalized) TriggerCallbacks(); }
 
 	/// <summary>
 	/// Visibly highlight the specified transform by moving the highlight sprite to be over it.
 	/// </summary>
 
-	void Highlight (UILabel lbl, bool instant)
+	protected virtual void Highlight (UILabel lbl, bool instant)
 	{
 		if (mHighlight != null)
 		{
-			// Don't allow highlighting while the label is animating to its intended position
-			TweenPosition tp = lbl.GetComponent<TweenPosition>();
-			if (tp != null && tp.enabled) return;
-
 			mHighlightedLabel = lbl;
 
-			UIAtlas.Sprite sp = mHighlight.GetAtlasSprite();
-			if (sp == null) return;
+			Vector3 pos = GetHighlightPosition();
 
-			float scaleFactor = atlas.pixelSize;
-			float offsetX = (sp.inner.xMin - sp.outer.xMin) * scaleFactor;
-			float offsetY = (sp.inner.yMin - sp.outer.yMin) * scaleFactor;
-
-			Vector3 pos = lbl.cachedTransform.localPosition + new Vector3(-offsetX, offsetY, 1f);
-
-			if (instant || !isAnimated)
-			{
-				mHighlight.cachedTransform.localPosition = pos;
-			}
-			else
+			if (!instant && isAnimated)
 			{
 				TweenPosition.Begin(mHighlight.gameObject, 0.1f, pos).method = UITweener.Method.EaseOut;
+
+				if (!mTweening)
+				{
+					mTweening = true;
+					StartCoroutine("UpdateTweenPosition");
+				}
+			}
+			else mHighlight.cachedTransform.localPosition = pos;
+		}
+	}
+
+	/// <summary>
+	/// Helper function that calculates where the tweened position should be.
+	/// </summary>
+
+	protected virtual Vector3 GetHighlightPosition ()
+	{
+		if (mHighlightedLabel == null || mHighlight == null) return Vector3.zero;
+
+		Vector4 border = mHighlight.border;
+		float scaleFactor = 1f;
+
+		var atl = atlas as INGUIAtlas;
+		if (atl != null) scaleFactor = atl.pixelSize;
+
+		float offsetX = border.x * scaleFactor;
+		float offsetY = border.w * scaleFactor;
+		return mHighlightedLabel.cachedTransform.localPosition + new Vector3(-offsetX, offsetY, 1f);
+	}
+
+	protected bool mTweening = false;
+
+	/// <summary>
+	/// Periodically update the tweened target position.
+	/// It's needed because the popup list animates into view, and the target position changes.
+	/// </summary>
+
+	protected virtual IEnumerator UpdateTweenPosition ()
+	{
+		if (mHighlight != null && mHighlightedLabel != null)
+		{
+			TweenPosition tp = mHighlight.GetComponent<TweenPosition>();
+
+			while (tp != null && tp.enabled)
+			{
+				tp.to = GetHighlightPosition();
+				yield return null;
 			}
 		}
+		mTweening = false;
 	}
 
 	/// <summary>
 	/// Event function triggered when the mouse hovers over an item.
 	/// </summary>
 
-	void OnItemHover (GameObject go, bool isOver)
+	protected virtual void OnItemHover (GameObject go, bool isOver)
 	{
 		if (isOver)
 		{
@@ -291,44 +706,51 @@ public class UIPopupList : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Select the specified label.
+	/// Event function triggered when the drop-down list item gets pressed on.
 	/// </summary>
 
-	void Select (UILabel lbl, bool instant)
+	protected virtual void OnItemPress (GameObject go, bool isPressed)
 	{
-		Highlight(lbl, instant);
-		
-		UIEventListener listener = lbl.gameObject.GetComponent<UIEventListener>();
-		selection = listener.parameter as string;
-
-		UIButtonSound[] sounds = GetComponents<UIButtonSound>();
-
-		for (int i = 0, imax = sounds.Length; i < imax; ++i)
-		{
-			UIButtonSound snd = sounds[i];
-
-			if (snd.trigger == UIButtonSound.Trigger.OnClick)
-			{
-				NGUITools.PlaySound(snd.audioClip, snd.volume, 1f);
-			}
-		}
+		if (isPressed && selection == Selection.OnPress) OnItemClick(go);
 	}
 
 	/// <summary>
 	/// Event function triggered when the drop-down list item gets clicked on.
 	/// </summary>
 
-	void OnItemPress (GameObject go, bool isPressed) { if (isPressed) Select(go.GetComponent<UILabel>(), true); }
+	protected virtual void OnItemClick (GameObject go)
+	{
+		Select(go.GetComponent<UILabel>(), true);
+
+		UIEventListener listener = go.GetComponent<UIEventListener>();
+		value = listener.parameter as string;
+		UIPlaySound[] sounds = GetComponents<UIPlaySound>();
+
+		for (int i = 0, imax = sounds.Length; i < imax; ++i)
+		{
+			UIPlaySound snd = sounds[i];
+			if (snd.trigger == UIPlaySound.Trigger.OnClick)
+				NGUITools.PlaySound(snd.audioClip, snd.volume, 1f);
+		}
+		CloseSelf();
+	}
+
+	/// <summary>
+	/// Select the specified label.
+	/// </summary>
+
+	void Select (UILabel lbl, bool instant) { Highlight(lbl, instant); }
 
 	/// <summary>
 	/// React to key-based input.
 	/// </summary>
 
-	void OnKey (KeyCode key)
+	protected virtual void OnNavigate (KeyCode key)
 	{
-		if (enabled && NGUITools.GetActive(gameObject) && handleEvents)
+		if (enabled && current == this)
 		{
 			int index = mLabelList.IndexOf(mHighlightedLabel);
+			if (index == -1) index = 0;
 
 			if (key == KeyCode.UpArrow)
 			{
@@ -344,23 +766,67 @@ public class UIPopupList : MonoBehaviour
 					Select(mLabelList[++index], false);
 				}
 			}
-			else if (key == KeyCode.Escape)
-			{
-				OnSelect(false);
-			}
 		}
 	}
+
+	/// <summary>
+	/// React to key-based input.
+	/// </summary>
+
+	protected virtual void OnKey (KeyCode key)
+	{
+		if (enabled && current == this)
+		{
+			if (key == UICamera.current.cancelKey0 || key == UICamera.current.cancelKey1)
+				OnSelect(false);
+		}
+	}
+
+	/// <summary>
+	/// Close the popup list when disabled.
+	/// </summary>
+
+	protected virtual void OnDisable () { CloseSelf(); }
 
 	/// <summary>
 	/// Get rid of the popup dialog when the selection gets lost.
 	/// </summary>
 
-	void OnSelect (bool isSelected)
+	protected virtual void OnSelect (bool isSelected)
 	{
-		if (!isSelected && mChild != null)
+		if (!isSelected)
 		{
+			var sel = UICamera.selectedObject;
+			if (sel == null || !(sel == mChild || (mChild != null && sel != null && NGUITools.IsChild(mChild.transform, sel.transform))))
+				CloseSelf();
+		}
+	}
+
+	/// <summary>
+	/// Manually close the popup list.
+	/// </summary>
+
+	static public void Close ()
+	{
+		if (current != null)
+		{
+			current.CloseSelf();
+			current = null;
+		}
+	}
+
+	/// <summary>
+	/// Manually close the popup list.
+	/// </summary>
+
+	public virtual void CloseSelf ()
+	{
+		if (mChild != null && current == this)
+		{
+			StopCoroutine("CloseIfUnselected");
+			mSelection = null;
+
 			mLabelList.Clear();
-			handleEvents = false;
 
 			if (isAnimated)
 			{
@@ -377,29 +843,27 @@ public class UIPopupList : MonoBehaviour
 				Collider[] cols = mChild.GetComponentsInChildren<Collider>();
 				for (int i = 0, imax = cols.Length; i < imax; ++i) cols[i].enabled = false;
 				Destroy(mChild, animSpeed);
+
+				mFadeOutComplete = Time.unscaledTime + Mathf.Max(0.1f, animSpeed);
 			}
 			else
 			{
 				Destroy(mChild);
+				mFadeOutComplete = Time.unscaledTime + 0.1f;
 			}
 
 			mBackground = null;
 			mHighlight = null;
 			mChild = null;
-
-            //Reset the depth change we had to hack together in the on click ~digi
-            if (textLabel != null)
-            {
-                textLabel.depth = textLabel.depth - 2;
-            }
-        }
-    }
+			current = null;
+		}
+	}
 
 	/// <summary>
 	/// Helper function that causes the widget to smoothly fade in.
 	/// </summary>
 
-	void AnimateColor (UIWidget widget)
+	protected virtual void AnimateColor (UIWidget widget)
 	{
 		Color c = widget.color;
 		widget.color = new Color(c.r, c.g, c.b, 0f);
@@ -410,7 +874,7 @@ public class UIPopupList : MonoBehaviour
 	/// Helper function that causes the widget to smoothly move into position.
 	/// </summary>
 
-	void AnimatePosition (UIWidget widget, bool placeAbove, float bottom)
+	protected virtual void AnimatePosition (UIWidget widget, bool placeAbove, float bottom)
 	{
 		Vector3 target = widget.cachedTransform.localPosition;
 		Vector3 start = placeAbove ? new Vector3(target.x, bottom, target.z) : new Vector3(target.x, 0f, target.z);
@@ -425,20 +889,20 @@ public class UIPopupList : MonoBehaviour
 	/// Helper function that causes the widget to smoothly grow until it reaches its original size.
 	/// </summary>
 
-	void AnimateScale (UIWidget widget, bool placeAbove, float bottom)
+	protected virtual void AnimateScale (UIWidget widget, bool placeAbove, float bottom)
 	{
 		GameObject go = widget.gameObject;
 		Transform t = widget.cachedTransform;
-		float minSize = font.size * textScale + mBgBorder * 2f;
 
-		Vector3 scale = t.localScale;
-		t.localScale = new Vector3(scale.x, minSize, scale.z);
-		TweenScale.Begin(go, animSpeed, scale).method = UITweener.Method.EaseOut;
+		var fitScale = this.fitScale;
+		var minHeight = activeFontSize * activeFontScale + mBgBorder * 2f;
+		t.localScale = new Vector3(fitScale, fitScale * minHeight / widget.height, fitScale);
+		TweenScale.Begin(go, animSpeed, Vector3.one).method = UITweener.Method.EaseOut;
 
 		if (placeAbove)
 		{
 			Vector3 pos = t.localPosition;
-			t.localPosition = new Vector3(pos.x, pos.y - scale.y + minSize, pos.z);
+			t.localPosition = new Vector3(pos.x, pos.y - fitScale * widget.height + fitScale * minHeight, pos.z);
 			TweenPosition.Begin(go, animSpeed, pos).method = UITweener.Method.EaseOut;
 		}
 	}
@@ -447,7 +911,7 @@ public class UIPopupList : MonoBehaviour
 	/// Helper function used to animate widgets.
 	/// </summary>
 
-	void Animate (UIWidget widget, bool placeAbove, float bottom)
+	protected void Animate (UIWidget widget, bool placeAbove, float bottom)
 	{
 		AnimateColor(widget);
 		AnimatePosition(widget, placeAbove, bottom);
@@ -457,159 +921,370 @@ public class UIPopupList : MonoBehaviour
 	/// Display the drop-down list when the game object gets clicked on.
 	/// </summary>
 
-	void OnClick()
+	protected virtual void OnClick ()
 	{
-		if (enabled && NGUITools.GetActive(gameObject) && mChild == null && atlas != null && font != null && items.Count > 0)
+		if (mOpenFrame == Time.frameCount) return;
+
+		if (mChild == null)
+		{
+			if (openOn == OpenOn.DoubleClick || openOn == OpenOn.Manual) return;
+			if (openOn == OpenOn.RightClick && UICamera.currentTouchID != -2) return;
+			Show();
+		}
+		else if (mHighlightedLabel != null)
+		{
+			OnItemPress(mHighlightedLabel.gameObject, true);
+		}
+	}
+
+	/// <summary>
+	/// Show the popup list on double-click.
+	/// </summary>
+
+	protected virtual void OnDoubleClick () { if (openOn == OpenOn.DoubleClick) Show(); }
+
+	/// <summary>
+	/// Used to keep an eye on the selected object, closing the popup if it changes.
+	/// </summary>
+
+	IEnumerator CloseIfUnselected ()
+	{
+		for (; ; )
+		{
+			yield return null;
+
+			var sel = UICamera.selectedObject;
+
+			if (sel != mSelection && (sel == null || !(sel == mChild || NGUITools.IsChild(mChild.transform, sel.transform))))
+			{
+				CloseSelf();
+				break;
+			}
+		}
+	}
+
+	public GameObject source;
+
+	/// <summary>
+	/// Show the popup list dialog.
+	/// </summary>
+
+	public virtual void Show ()
+	{
+		if (enabled && NGUITools.GetActive(gameObject) && mChild == null && isValid && items.Count > 0)
 		{
 			mLabelList.Clear();
+			StopCoroutine("CloseIfUnselected");
 
-			// Disable the navigation script
-			handleEvents = true;
+			// Ensure the popup's source has the selection
+			UICamera.selectedObject = (UICamera.hoveredObject ?? gameObject);
+			mSelection = UICamera.selectedObject;
+			source = mSelection;
+
+			if (source == null)
+			{
+				Debug.LogError("Popup list needs a source object...");
+				return;
+			}
+
+			mOpenFrame = Time.frameCount;
 
 			// Automatically locate the panel responsible for this object
-			if (mPanel == null) mPanel = UIPanel.Find(transform, true);
+			if (mPanel == null)
+			{
+				mPanel = UIPanel.Find(transform);
+				if (mPanel == null) return;
+			}
 
 			// Calculate the dimensions of the object triggering the popup list so we can position it below it
-			Transform myTrans = transform;
-			Bounds bounds = NGUIMath.CalculateRelativeWidgetBounds(myTrans.parent, myTrans);
+			Vector3 min;
+			Vector3 max;
 
 			// Create the root object for the list
 			mChild = new GameObject("Drop-down List");
 			mChild.layer = gameObject.layer;
 
+			if (separatePanel)
+			{
+				if (GetComponent<Collider>() != null)
+				{
+					Rigidbody rb = mChild.AddComponent<Rigidbody>();
+					rb.isKinematic = true;
+				}
+				else if (GetComponent<Collider2D>() != null)
+				{
+					Rigidbody2D rb = mChild.AddComponent<Rigidbody2D>();
+					rb.isKinematic = true;
+				}
+
+				var panel = mChild.AddComponent<UIPanel>();
+				panel.depth = 1000000;
+				panel.sortingOrder = mPanel.sortingOrder;
+			}
+
+			current = this;
+
+			var pTrans = mPanel.cachedTransform;
 			Transform t = mChild.transform;
-			t.parent = myTrans.parent;
-			t.localPosition = bounds.min;
+			t.parent = pTrans;
+			Transform rootTrans = pTrans;
+
+			if (separatePanel)
+			{
+				var root = mPanel.GetComponentInParent<UIRoot>();
+				if (root == null && UIRoot.list.Count != 0) root = UIRoot.list[0];
+				if (root != null) rootTrans = root.transform;
+			}
+
+			// Manually triggered popup list on some other game object
+			if (openOn == OpenOn.Manual && mSelection != gameObject)
+			{
+				startingPosition = UICamera.lastEventPosition;
+				min = pTrans.InverseTransformPoint(mPanel.anchorCamera.ScreenToWorldPoint(startingPosition));
+				max = min;
+				t.localPosition = min;
+				startingPosition = t.position;
+			}
+			else
+			{
+				Bounds bounds = NGUIMath.CalculateRelativeWidgetBounds(pTrans, transform, false, false);
+				min = bounds.min;
+				max = bounds.max;
+				t.localPosition = min;
+				startingPosition = t.position;
+			}
+
+			StartCoroutine("CloseIfUnselected");
+
+			var f = fitScale;
 			t.localRotation = Quaternion.identity;
-			t.localScale = Vector3.one;
-            //We want this to be set as a child of this object instead of a sibling, the depth is getting all out of whack. ~digi
-            t.SetParent(myTrans, true);
+			t.localScale = new Vector3(f, f, f);
+
+			int depth = separatePanel ? 0 : NGUITools.CalculateNextDepth(mPanel.gameObject);
 
 			// Add a sprite for the background
-			mBackground = NGUITools.AddSprite(mChild, atlas, backgroundSprite);
-			mBackground.pivot = UIWidget.Pivot.TopLeft;
-			mBackground.depth = NGUITools.CalculateNextDepth(mPanel.gameObject);
-			mBackground.color = backgroundColor;
+			if (background2DSprite != null)
+			{
+				UI2DSprite sp2 = mChild.AddWidget<UI2DSprite>(depth);
+				sp2.sprite2D = background2DSprite;
+				mBackground = sp2;
+			}
+			else if (atlas != null) mBackground = NGUITools.AddSprite(mChild, atlas as INGUIAtlas, backgroundSprite, depth);
+			else return;
 
-            //The text label always ends up drawing below the dropdown menu, so we need its depth to increase after creating the others.
-            if (textLabel != null)
-            {
-                textLabel.depth = NGUITools.CalculateNextDepth(mPanel.gameObject);
-            }
+			bool placeAbove = (position == Position.Above);
+
+			if (position == Position.Auto)
+			{
+				UICamera cam = UICamera.FindCameraForLayer(mSelection.layer);
+
+				if (cam != null)
+				{
+					Vector3 viewPos = cam.cachedCamera.WorldToViewportPoint(startingPosition);
+					placeAbove = (viewPos.y < 0.5f);
+				}
+			}
+
+			mBackground.pivot = UIWidget.Pivot.TopLeft;
+			mBackground.color = backgroundColor;
 
 			// We need to know the size of the background sprite for padding purposes
 			Vector4 bgPadding = mBackground.border;
 			mBgBorder = bgPadding.y;
-
-			mBackground.cachedTransform.localPosition = new Vector3(0f, bgPadding.y, 0f);
+			mBackground.cachedTransform.localPosition = new Vector3(0f, placeAbove ? bgPadding.y * 2f - overlap : overlap, 0f);
 
 			// Add a sprite used for the selection
-			mHighlight = NGUITools.AddSprite(mChild, atlas, highlightSprite);
+			if (highlight2DSprite != null)
+			{
+				UI2DSprite sp2 = mChild.AddWidget<UI2DSprite>(++depth);
+				sp2.sprite2D = highlight2DSprite;
+				mHighlight = sp2;
+			}
+			else if (atlas != null) mHighlight = NGUITools.AddSprite(mChild, atlas as INGUIAtlas, highlightSprite, ++depth);
+			else return;
+
+			float hlspHeight = 0f, hlspLeft = 0f;
+
+			if (mHighlight.hasBorder)
+			{
+				hlspHeight = mHighlight.border.w;
+				hlspLeft = mHighlight.border.x;
+			}
+
 			mHighlight.pivot = UIWidget.Pivot.TopLeft;
-            mHighlight.transform.localPosition = new Vector3(0, 0, 0); //Changed by digi, getting rid of that awkward float back to position
 			mHighlight.color = highlightColor;
 
-			UIAtlas.Sprite hlsp = mHighlight.GetAtlasSprite();
-			if (hlsp == null) return;
-
-			float hlspHeight = hlsp.inner.yMin - hlsp.outer.yMin;
-			float fontScale = font.size * font.pixelSize * textScale;
-			float x = 0f, y = -padding.y;
+			float labelHeight = activeFontSize * activeFontScale;
+			float lineHeight = labelHeight + padding.y;
+			float x = 0f, y = placeAbove ? bgPadding.y - padding.y - overlap : -padding.y - bgPadding.y + overlap;
+			float contentHeight = bgPadding.y * 2f + padding.y;
 			List<UILabel> labels = new List<UILabel>();
+
+			// Clear the selection if it's no longer present
+			if (!items.Contains(mSelectedItem))
+				mSelectedItem = null;
 
 			// Run through all items and create labels for each one
 			for (int i = 0, imax = items.Count; i < imax; ++i)
 			{
 				string s = items[i];
 
-				UILabel lbl = NGUITools.AddWidget<UILabel>(mChild);
+				UILabel lbl = NGUITools.AddWidget<UILabel>(mChild, mBackground.depth + 2);
+				lbl.name = i.ToString();
 				lbl.pivot = UIWidget.Pivot.TopLeft;
-				lbl.font = font;
-				lbl.text = (isLocalized && Localization.instance != null) ? Localization.instance.Get(s) : s;
+				lbl.bitmapFont = bitmapFont as INGUIFont;
+				lbl.trueTypeFont = trueTypeFont;
+				lbl.fontSize = fontSize;
+				lbl.fontStyle = fontStyle;
+				lbl.text = isLocalized ? Localization.Get(s) : s;
+				lbl.modifier = textModifier;
 				lbl.color = textColor;
-				lbl.cachedTransform.localPosition = new Vector3(bgPadding.x + padding.x, y, -1f);
-				lbl.MakePixelPerfect();
-
-				if (textScale != 1f)
-				{
-					Vector3 scale = lbl.cachedTransform.localScale;
-					lbl.cachedTransform.localScale = scale * textScale;
-				}
+				lbl.cachedTransform.localPosition = new Vector3(bgPadding.x + padding.x - lbl.pivotOffset.x, y, -1f);
+				lbl.overflowMethod = UILabel.Overflow.ResizeFreely;
+				lbl.alignment = alignment;
+				lbl.symbolStyle = NGUIText.SymbolStyle.Colored;
 				labels.Add(lbl);
 
-				y -= fontScale;
-				y -= padding.y;
-				x = Mathf.Max(x, lbl.relativeSize.x * fontScale);
+				contentHeight += lineHeight;
+
+				y -= lineHeight;
+				x = Mathf.Max(x, lbl.printedSize.x);
 
 				// Add an event listener
 				UIEventListener listener = UIEventListener.Get(lbl.gameObject);
 				listener.onHover = OnItemHover;
 				listener.onPress = OnItemPress;
+				listener.onClick = OnItemClick;
 				listener.parameter = s;
 
 				// Move the selection here if this is the right label
-				if (mSelectedItem == s) Highlight(lbl, true);
+				if (mSelectedItem == s || (i == 0 && string.IsNullOrEmpty(mSelectedItem)))
+					Highlight(lbl, true);
 
 				// Add this label to the list
 				mLabelList.Add(lbl);
 			}
 
 			// The triggering widget's width should be the minimum allowed width
-			x = Mathf.Max(x, bounds.size.x - (bgPadding.x + padding.x) * 2f);
+			x = Mathf.Max(x, (max.x - min.x) - (bgPadding.x + padding.x) * 2f);
 
-			Vector3 bcCenter = new Vector3((x * 0.5f) / fontScale, -0.5f, 0f);
-			Vector3 bcSize = new Vector3(x / fontScale, (fontScale + padding.y) / fontScale, 1f);
+			float cx = x;
+			Vector3 bcCenter = new Vector3(cx * 0.5f, -labelHeight * 0.5f, 0f);
+			Vector3 bcSize = new Vector3(cx, (labelHeight + padding.y), 1f);
 
 			// Run through all labels and add colliders
 			for (int i = 0, imax = labels.Count; i < imax; ++i)
 			{
 				UILabel lbl = labels[i];
-				BoxCollider bc = NGUITools.AddWidgetCollider(lbl.gameObject);
-				bcCenter.z = bc.center.z;
-				bc.center = bcCenter;
-				bc.size = bcSize;
+				NGUITools.AddWidgetCollider(lbl.gameObject);
+				lbl.autoResizeBoxCollider = false;
+				BoxCollider bc = lbl.GetComponent<BoxCollider>();
+
+				if (bc != null)
+				{
+					bcCenter.z = bc.center.z;
+					bc.center = bcCenter;
+					bc.size = bcSize;
+				}
+				else
+				{
+					BoxCollider2D b2d = lbl.GetComponent<BoxCollider2D>();
+#if UNITY_4_3 || UNITY_4_5 || UNITY_4_6 || UNITY_4_7
+					b2d.center = bcCenter;
+#else
+					b2d.offset = bcCenter;
+#endif
+					b2d.size = bcSize;
+				}
 			}
 
+			int lblWidth = Mathf.RoundToInt(x);
 			x += (bgPadding.x + padding.x) * 2f;
 			y -= bgPadding.y;
 
 			// Scale the background sprite to envelop the entire set of items
-			mBackground.cachedTransform.localScale = new Vector3(x, -y + bgPadding.y, 1f);
+			mBackground.width = Mathf.RoundToInt(x);
+			mBackground.height = Mathf.RoundToInt(contentHeight);
+
+			// Set the label width to make alignment work
+			for (int i = 0, imax = labels.Count; i < imax; ++i)
+			{
+				UILabel lbl = labels[i];
+				lbl.overflowMethod = UILabel.Overflow.ShrinkContent;
+				lbl.width = lblWidth;
+			}
 
 			// Scale the highlight sprite to envelop a single item
-			float scaleFactor = 2f * atlas.pixelSize;
-			mHighlight.cachedTransform.localScale = new Vector3(
-				   x - (bgPadding.x + padding.x) * 2f + (hlsp.inner.xMin - hlsp.outer.xMin) * scaleFactor,
-				   fontScale + hlspHeight * scaleFactor, 1f);
 
-			bool placeAbove = (position == Position.Above);
+			float scaleFactor = 2f;
+			var atl = atlas as INGUIAtlas;
+			if (atl != null) scaleFactor *= atl.pixelSize;
 
-			if (position == Position.Auto)
-			{
-				UICamera cam = UICamera.FindCameraForLayer(gameObject.layer);
-
-				if (cam != null)
-				{
-					Vector3 viewPos = cam.cachedCamera.WorldToViewportPoint(myTrans.position);
-					placeAbove = (viewPos.y < 0.5f);
-				}
-			}
+			float w = x - (bgPadding.x + padding.x) * 2f + hlspLeft * scaleFactor;
+			float h = labelHeight + hlspHeight * scaleFactor;
+			mHighlight.width = Mathf.RoundToInt(w);
+			mHighlight.height = Mathf.RoundToInt(h);
 
 			// If the list should be animated, let's animate it by expanding it
 			if (isAnimated)
 			{
-				float bottom = y + fontScale;
-				Animate(mHighlight, placeAbove, bottom);
-				for (int i = 0, imax = labels.Count; i < imax; ++i) Animate(labels[i], placeAbove, bottom);
 				AnimateColor(mBackground);
-				AnimateScale(mBackground, placeAbove, bottom);
+
+				if (Time.timeScale == 0f || Time.timeScale >= 0.1f)
+				{
+					float bottom = y + labelHeight;
+					Animate(mHighlight, placeAbove, bottom);
+					for (int i = 0, imax = labels.Count; i < imax; ++i)
+						Animate(labels[i], placeAbove, bottom);
+					AnimateScale(mBackground, placeAbove, bottom);
+				}
 			}
 
 			// If we need to place the popup list above the item, we need to reposition everything by the size of the list
 			if (placeAbove)
 			{
-				t.localPosition = new Vector3(bounds.min.x, bounds.max.y - y - bgPadding.y, bounds.min.z);
+				var bgY = bgPadding.y * f;
+				min.y = max.y - bgPadding.y * f;
+				max.y = min.y + (mBackground.height - bgPadding.y * 2f) * f;
+				max.x = min.x + mBackground.width * f;
+				t.localPosition = new Vector3(min.x, max.y - bgY, min.z);
 			}
+			else
+			{
+				max.y = min.y + bgPadding.y * f;
+				min.y = max.y - mBackground.height * f;
+				max.x = min.x + mBackground.width * f;
+			}
+
+			var absoluteParent = mPanel;// UIRoot.list[0].GetComponent<UIPanel>();
+
+			for (;;)
+			{
+				var p = absoluteParent.parent;
+				if (p == null) break;
+				var pp = p.GetComponentInParent<UIPanel>();
+				if (pp == null) break;
+				absoluteParent = pp;
+			}
+
+			if (pTrans != null)
+			{
+				min = pTrans.TransformPoint(min);
+				max = pTrans.TransformPoint(max);
+				min = absoluteParent.cachedTransform.InverseTransformPoint(min);
+				max = absoluteParent.cachedTransform.InverseTransformPoint(max);
+				var adj = UIRoot.GetPixelSizeAdjustment(gameObject);
+				min /= adj;
+				max /= adj;
+			}
+
+			// Ensure that everything fits into the panel's visible range
+			var offset = absoluteParent.CalculateConstrainOffset(min, max);
+			var pos = t.localPosition + offset;
+			pos.x = Mathf.Round(pos.x);
+			pos.y = Mathf.Round(pos.y);
+			t.localPosition = pos;
+			t.parent = rootTrans;
 		}
 		else OnSelect(false);
 	}

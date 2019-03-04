@@ -1,7 +1,7 @@
-//----------------------------------------------
+//-------------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2013 Tasharen Entertainment
-//----------------------------------------------
+// Copyright © 2011-2019 Tasharen Entertainment Inc
+//-------------------------------------------------
 
 using UnityEngine;
 
@@ -11,18 +11,34 @@ using UnityEngine;
 
 [RequireComponent(typeof(UIPanel))]
 [AddComponentMenu("NGUI/Internal/Spring Panel")]
-public class SpringPanel : IgnoreTimeScale
+public class SpringPanel : MonoBehaviour
 {
+	static public SpringPanel current;
+
+	/// <summary>
+	/// Target position to spring the panel to.
+	/// </summary>
+
 	public Vector3 target = Vector3.zero;
+
+	/// <summary>
+	/// Strength of the spring. The higher the value, the faster the movement.
+	/// </summary>
+
 	public float strength = 10f;
 
 	public delegate void OnFinished ();
+
+	/// <summary>
+	/// Delegate function to call when the operation finishes.
+	/// </summary>
+
 	public OnFinished onFinished;
 
-	UIPanel mPanel;
-	Transform mTrans;
-	float mThreshold = 0f;
-	UIDraggablePanel mDrag;
+	[System.NonSerialized] UIPanel mPanel;
+	[System.NonSerialized] Transform mTrans;
+	[System.NonSerialized] UIScrollView mDrag;
+	[System.NonSerialized] float mDelta = 0f;
 
 	/// <summary>
 	/// Cache the transform.
@@ -31,7 +47,7 @@ public class SpringPanel : IgnoreTimeScale
 	void Start ()
 	{
 		mPanel = GetComponent<UIPanel>();
-		mDrag = GetComponent<UIDraggablePanel>();
+		mDrag = GetComponent<UIScrollView>();
 		mTrans = transform;
 	}
 
@@ -39,36 +55,53 @@ public class SpringPanel : IgnoreTimeScale
 	/// Advance toward the target position.
 	/// </summary>
 
-	void Update ()
+	void Update () { AdvanceTowardsPosition(); }
+
+	/// <summary>
+	/// Advance toward the target position.
+	/// </summary>
+
+	protected virtual void AdvanceTowardsPosition ()
 	{
-		float delta = UpdateRealTimeDelta();
+		mDelta += RealTime.deltaTime;
 
-		if (mThreshold == 0f)
-		{
-			mThreshold = (target - mTrans.localPosition).magnitude * 0.005f;
-			mThreshold = Mathf.Max(mThreshold, 0.00001f);
-		}
+		var trigger = false;
+		var before = mTrans.localPosition;
+		var after = NGUIMath.SpringLerp(before, target, strength, mDelta);
 
-		bool trigger = false;
-		Vector3 before = mTrans.localPosition;
-		Vector3 after = NGUIMath.SpringLerp(mTrans.localPosition, target, strength, delta);
-
-		if (mThreshold >= Vector3.Magnitude(after - target))
+		if ((before - target).sqrMagnitude < 0.01f)
 		{
 			after = target;
 			enabled = false;
 			trigger = true;
+			mDelta = 0f;
 		}
+		else
+		{
+			after.x = Mathf.Round(after.x);
+			after.y = Mathf.Round(after.y);
+			after.z = Mathf.Round(after.z);
+
+			if ((after - before).sqrMagnitude < 0.01f) return;
+			else mDelta = 0f;
+		}
+
 		mTrans.localPosition = after;
 
-		Vector3 offset = after - before;
-		Vector4 cr = mPanel.clipRange;
+		var offset = after - before;
+		var cr = mPanel.clipOffset;
 		cr.x -= offset.x;
 		cr.y -= offset.y;
-		mPanel.clipRange = cr;
+		mPanel.clipOffset = cr;
 
 		if (mDrag != null) mDrag.UpdateScrollbars(false);
-		if (trigger && onFinished != null) onFinished();
+
+		if (trigger && onFinished != null)
+		{
+			current = this;
+			onFinished();
+			current = null;
+		}
 	}
 
 	/// <summary>
@@ -77,13 +110,28 @@ public class SpringPanel : IgnoreTimeScale
 
 	static public SpringPanel Begin (GameObject go, Vector3 pos, float strength)
 	{
-		SpringPanel sp = go.GetComponent<SpringPanel>();
+		var sp = go.GetComponent<SpringPanel>();
 		if (sp == null) sp = go.AddComponent<SpringPanel>();
 		sp.target = pos;
 		sp.strength = strength;
 		sp.onFinished = null;
-		sp.mThreshold = 0f;
 		sp.enabled = true;
+		return sp;
+	}
+
+	/// <summary>
+	/// Stop the tweening process.
+	/// </summary>
+
+	static public SpringPanel Stop (GameObject go)
+	{
+		var sp = go.GetComponent<SpringPanel>();
+
+		if (sp != null && sp.enabled)
+		{
+			if (sp.onFinished != null) sp.onFinished();
+			sp.enabled = false;
+		}
 		return sp;
 	}
 }
