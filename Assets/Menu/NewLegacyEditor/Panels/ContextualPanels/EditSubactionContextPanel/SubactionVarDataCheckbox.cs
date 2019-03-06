@@ -15,8 +15,7 @@ public class SubactionVarDataCheckbox : MonoBehaviour
 
         //The type doesn't change during runtime, so we can just set it here
         checkbox.value = (panel.varData.data == "true");
-        EventDelegate.Set(checkbox.onChange, OnAction);
-        //checkbox.eventReceiver = gameObject; ^^
+        //EventDelegate.Set(checkbox.onChange, OnAction); ^^
     }
 
     private void OnModelChanged()
@@ -27,7 +26,7 @@ public class SubactionVarDataCheckbox : MonoBehaviour
         }
     }
 
-    void OnAction()
+    public void OnAction()
     {
         //Convert this to a LegacyAction
         if (panel.varData.type == SubactionVarType.BOOL && panel.varData.source == SubactionSource.CONSTANT)

@@ -17,8 +17,7 @@ public class LeftDropdown : MonoBehaviour {
             list.items.Add(opt);
         }
         UpdateOptionWithoutEvent();
-        EventDelegate.Add(list.onChange, OnChangeDropdown);
-        //list.eventReceiver = gameObject; ^^
+        //EventDelegate.Add(list.onChange, OnChangeDropdown); ^^
     }
 
     void OnModelChanged()
@@ -32,11 +31,13 @@ public class LeftDropdown : MonoBehaviour {
     //This is hacky as fuck, isn't it? I'm unsetting the event receiver so I can change this data without firing another change, preventing a double-fire and blowing up the redoList
     public void UpdateOptionWithoutEvent()
     {
+        /* ^^
         EventDelegate.Remove(list.onChange, OnChangeDropdown);
         //list.eventReceiver = null; ^^
         list.value = LegacyEditorData.instance.leftDropdown;
         //list.eventReceiver = gameObject; ^^
         EventDelegate.Set(list.onChange, OnChangeDropdown);
+        */
     }
 
     // Update is called once per frame
@@ -44,7 +45,7 @@ public class LeftDropdown : MonoBehaviour {
 		
 	}
 
-    void OnChangeDropdown()
+    public void OnChangeDropdown()
     {
         string selected = UIPopupList.current.value;
 
