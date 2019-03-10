@@ -191,7 +191,7 @@ public class LegacyEditorData : MonoBehaviour
     {
         instance = this;
         anchors = GetComponent<AnchorPositions>();
-        Debug.Log(instance);
+        BroadcastMessage("InitializeWidget");
     }
 
     /// <summary>

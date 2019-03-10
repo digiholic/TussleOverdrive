@@ -13,14 +13,14 @@ public abstract class LegacyEditorWidget : MonoBehaviour
         this.editor = editor;
     }
 
-    private void Start()
+    private void InitializeWidget()
     {
         SetEditor(LegacyEditorData.instance);
         RegisterListeners();
         registeredListeners = true;
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         if (registeredListeners)
         {

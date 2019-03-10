@@ -12,7 +12,7 @@ public class InputFilePickerButton : MonoBehaviour
     [SerializeField]
     ValidationType fileType;
 
-    private void OnAction()
+    public void OnAction()
     {
         //Open File Browser
         DirectoryInfo fighterDir = FileLoader.GetFighterDir(LegacyEditorData.instance.FighterDirName);

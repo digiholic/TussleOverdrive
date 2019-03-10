@@ -31,7 +31,7 @@ TextureImporter:
   maxTextureSize: 4096
   textureSettings:
     serializedVersion: 2
-    filterMode: 2
+    filterMode: 0
     aniso: 4
     mipBias: -100
     wrapU: 1

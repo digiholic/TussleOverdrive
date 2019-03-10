@@ -37,10 +37,10 @@ public class LeftDropdown : LegacyEditorWidget {
         */
     }
     
-    void OnChangeDropdown()
+    public void OnChangeDropdown()
     {
         string selected = UIPopupList.current.value;
-
+        
         //Create a message object to have the model execute
         ChangeLeftDropdownAction act = ScriptableObject.CreateInstance<ChangeLeftDropdownAction>();
         act.init(selected);
