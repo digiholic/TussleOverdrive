@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ModifyFighterDataInput : MonoBehaviour {
+public class ModifyFighterDataInput : LegacyEditorWidget {
     public enum FighterVarType
     {
         FIELD,
@@ -25,12 +25,9 @@ public class ModifyFighterDataInput : MonoBehaviour {
         //input.vale = getFighterVar();
     }
 
-    private void OnModelChanged()
+    void OnFighterInfoChanged(FighterInfo info)
     {
-        if (LegacyEditorData.instance.loadedFighterDirty)
-        {
-            input.value = getFighterVar();
-        }
+        input.value = getFighterVar(info);
     }
 
     public void OnAction(string inputData)
@@ -52,9 +49,8 @@ public class ModifyFighterDataInput : MonoBehaviour {
         LegacyEditorData.instance.DoAction(action);
     }
 
-    private string getFighterVar()
+    private string getFighterVar(FighterInfo info)
     {
-        FighterInfo info = LegacyEditorData.instance.loadedFighter;
         if (varType == FighterVarType.FIELD)
         {
             return (string)info.GetType().GetField(varName).GetValue(info);
@@ -65,4 +61,13 @@ public class ModifyFighterDataInput : MonoBehaviour {
         }
     }
 
+    public override void RegisterListeners()
+    {
+        editor.FighterInfoChangedEvent += OnFighterInfoChanged;
+    }
+
+    public override void UnregisterListeners()
+    {
+        editor.FighterInfoChangedEvent -= OnFighterInfoChanged;
+    }
 }

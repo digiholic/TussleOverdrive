@@ -7,10 +7,11 @@ public class InputPickerData : MonoBehaviour
 {
     public InputPickerPopup popup;
     
-    private UILabel label;
+    public UILabel label;
 
     void Awake()
     {
+        Debug.Log("Setting InputPickerData");
         label = GetComponent<UILabel>();
     }
 
@@ -22,6 +23,7 @@ public class InputPickerData : MonoBehaviour
 
     public void SetLabel(string text)
     {
+        Debug.Log(text);
         label.text = text;
     }
 }

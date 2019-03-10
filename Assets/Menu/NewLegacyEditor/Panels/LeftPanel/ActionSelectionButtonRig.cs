@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActionSelectionButtonRig : MonoBehaviour {
+public class ActionSelectionButtonRig : LegacyEditorWidget {
     public GameObject actionSelectionButtonPrefab;
 
     private List<GameObject> children = new List<GameObject>();
@@ -11,46 +11,43 @@ public class ActionSelectionButtonRig : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
         grid = GetComponent<UIGrid>();
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
 
-    void OnModelChanged()
+    void OnActionFileChanged(ActionFile actionFile)
     {
-        //If the action file has changed, we need to reload all of our action buttons
-        if (LegacyEditorData.instance.loadedActionFileDirty)
+        //Get rid of our old list
+        foreach (GameObject child in children)
         {
-            //Get rid of our old list
-            foreach(GameObject child in children)
-            {
-                NGUITools.Destroy(child);
-            }
-            children.Clear(); //Empty the list for future use
+            NGUITools.Destroy(child);
+        }
+        children.Clear(); //Empty the list for future use
 
-            //Create all the new buttons
-            foreach(DynamicAction action in LegacyEditorData.instance.loadedActionFile.actions)
-            {
-                instantiateButton(action);
-            }
-
-            //Realign the grid
-            grid.Reposition();
+        //Create all the new buttons
+        foreach (DynamicAction action in actionFile.actions)
+        {
+            instantiateButton(action);
         }
 
-        if (LegacyEditorData.instance.leftDropdownDirty)
+        //Realign the grid
+        grid.Reposition();
+    }
+
+    void OnLeftDropdownChanged(string s)
+    {
+        //If the option is "Actions", sets all the children to enabled. Otherwise, disables them.
+        //Yes I know this doesn't need to be if/else but readability > efficiency
+        if (s == "Actions")
         {
-            //If the option is "Actions", sets all the children to enabled. Otherwise, disables them.
-            //Yes I know this doesn't need to be if/else but readability > efficiency
-            if (LegacyEditorData.instance.leftDropdown == "Actions")
-            {
-                NGUITools.SetActiveChildren(gameObject, true);
-            } else
-            {
-                NGUITools.SetActiveChildren(gameObject, false);
-            }
+            NGUITools.SetActiveChildren(gameObject, true);
+        }
+        else
+        {
+            NGUITools.SetActiveChildren(gameObject, false);
         }
     }
 
@@ -60,5 +57,17 @@ public class ActionSelectionButtonRig : MonoBehaviour {
         ActionSelectionButton button = go.GetComponent<ActionSelectionButton>();
         button.SetAction(action);
         children.Add(go);
+    }
+
+    public override void RegisterListeners()
+    {
+        editor.ActionFileChangedEvent += OnActionFileChanged;
+        editor.LeftDropdownChangedEvent += OnLeftDropdownChanged;
+    }
+
+    public override void UnregisterListeners()
+    {
+        editor.ActionFileChangedEvent -= OnActionFileChanged;
+        editor.LeftDropdownChangedEvent -= OnLeftDropdownChanged;
     }
 }

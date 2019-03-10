@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ModifyActionDataInput : MonoBehaviour
+public class ModifyActionDataInput : LegacyEditorWidget
 {
     public enum ActionVarType
     {
@@ -22,12 +22,9 @@ public class ModifyActionDataInput : MonoBehaviour
         filter = GetComponent<InputBoxFilter>();
     }
 
-    private void OnModelChanged()
+    void OnActionChanged(DynamicAction action)
     {
-        if (LegacyEditorData.instance.currentActionDirty)
-        {
-            input.value = getActionVar().ToString();
-        }
+        input.value = getActionVar().ToString();
     }
 
     public void OnAction(string inputData)
@@ -97,5 +94,14 @@ public class ModifyActionDataInput : MonoBehaviour
         }
     }
 
+    public override void RegisterListeners()
+    {
+        editor.CurrentActionChangedEvent += OnActionChanged;
+    }
+
+    public override void UnregisterListeners()
+    {
+        editor.CurrentActionChangedEvent -= OnActionChanged;
+    }
 }
 

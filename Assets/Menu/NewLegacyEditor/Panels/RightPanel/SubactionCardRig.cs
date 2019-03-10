@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SubactionCardRig : MonoBehaviour {
+public class SubactionCardRig : LegacyEditorWidget {
     public GameObject SubactionCardPrefab;
 
     private List<GameObject> children = new List<GameObject>();
@@ -12,39 +12,51 @@ public class SubactionCardRig : MonoBehaviour {
 
     // Use this for initialization
     void Awake() {
-        grid = GetComponent<UIGrid>();	
-	}
+        grid = GetComponent<UIGrid>();
+    }
 
-    void OnModelChanged()
+    void OnActionChanged(DynamicAction action)
     {
-        if (LegacyEditorData.instance.currentActionDirty || LegacyEditorData.instance.subactionGroupDirty || LegacyEditorData.instance.currentFrameDirty)
+        UpdateCard();
+    }
+
+    void OnGroupChanged(string s)
+    {
+        UpdateCard();
+    }
+
+    void OnFrameChanged(int frame)
+    {
+        UpdateCard();
+    }
+
+    void UpdateCard()
+    {
+        //Get rid of our old list
+        foreach (GameObject child in children)
         {
-            //Get rid of our old list
-            foreach (GameObject child in children)
-            {
-                NGUITools.Destroy(child);
-            }
-            children.Clear(); //Empty the list for future use
+            NGUITools.Destroy(child);
+        }
+        children.Clear(); //Empty the list for future use
 
+        //Create all the new buttons
+        DynamicAction action = LegacyEditorData.instance.currentAction;
+        string subGroup = LegacyEditorData.instance.subactionGroup;
+        if (subGroup == "Current Frame")
+        {
+            subGroup = SubactionGroup.ONFRAME(LegacyEditorData.instance.currentFrame);
+        }
+        if (action != null)
+        {
             //Create all the new buttons
-            DynamicAction action = LegacyEditorData.instance.currentAction;
-            string subGroup = LegacyEditorData.instance.subactionGroup;
-            if (subGroup == "Current Frame")
+            foreach (SubactionData subData in action.subactionCategories.GetIfKeyExists(subGroup))
             {
-                subGroup = SubactionGroup.ONFRAME(LegacyEditorData.instance.currentFrame);
+                instantiateButton(subData);
             }
-            if (action != null)
-            {
-                //Create all the new buttons
-                foreach (SubactionData subData in action.subactionCategories.GetIfKeyExists(subGroup))
-                {
-                    instantiateButton(subData);
-                }
 
-                //Realign the grid
-                grid.Reposition();
-                dragPanel.ResetPosition();
-            }
+            //Realign the grid
+            grid.Reposition();
+            dragPanel.ResetPosition();
         }
     }
 
@@ -54,5 +66,19 @@ public class SubactionCardRig : MonoBehaviour {
         SubactionCard card = go.GetComponent<SubactionCard>();
         card.SetSubaction(subDataToSet);
         children.Add(go);
+    }
+
+    public override void RegisterListeners()
+    {
+        editor.CurrentActionChangedEvent += OnActionChanged;
+        editor.GroupDropdownChangedEvent += OnGroupChanged;
+        editor.CurrentFrameChangedEvent += OnFrameChanged;
+    }
+
+    public override void UnregisterListeners()
+    {
+        editor.CurrentActionChangedEvent -= OnActionChanged;
+        editor.GroupDropdownChangedEvent -= OnGroupChanged;
+        editor.CurrentFrameChangedEvent -= OnFrameChanged;
     }
 }

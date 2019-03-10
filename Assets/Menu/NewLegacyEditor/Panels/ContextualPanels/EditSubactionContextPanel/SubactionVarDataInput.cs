@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SubactionVarDataInput : MonoBehaviour {
+public class SubactionVarDataInput : LegacyEditorWidget {
     [SerializeField]
     private SubactionVarDataPanel panel;
     private UIInput input;
@@ -21,12 +21,9 @@ public class SubactionVarDataInput : MonoBehaviour {
         input.value = panel.varData.data;
     }
 
-    private void OnModelChanged()
+    void OnSubactionChanged(SubactionData subaction)
     {
-        if (LegacyEditorData.instance.currentSubactionDirty)
-        {
-            input.value = panel.varData.data;
-        }
+        input.value = panel.varData.data;
     }
 
     public void OnAction(string inputData)
@@ -40,5 +37,15 @@ public class SubactionVarDataInput : MonoBehaviour {
 
         LegacyEditorData.instance.DoAction(legacyAction);
         input.value = panel.varData.data;
+    }
+
+    public override void RegisterListeners()
+    {
+        editor.CurrentSubactionChangedEvent += OnSubactionChanged;
+    }
+
+    public override void UnregisterListeners()
+    {
+        editor.CurrentSubactionChangedEvent -= OnSubactionChanged;
     }
 }

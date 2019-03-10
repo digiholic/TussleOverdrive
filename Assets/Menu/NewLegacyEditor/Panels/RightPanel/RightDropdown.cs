@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RightDropdown : MonoBehaviour {
+public class RightDropdown : LegacyEditorWidget {
     private UIPopupList list;
     private Collider coll;
 
@@ -41,17 +41,15 @@ public class RightDropdown : MonoBehaviour {
         //list.eventReceiver = gameObject; ^^
     }
 
-    void OnModelChanged()
+    void OnLeftDropdownChanged(string s)
     {
-        if (LegacyEditorData.instance.leftDropdownDirty)
-        {
-            rightDropdownOptions = LegacyEditorConstants.RightDropdownOptionsDict[LegacyEditorData.instance.leftDropdown];
-            UpdateListItems();
-        }
-        if (LegacyEditorData.instance.rightDropdownDirty)
-        {
-            UpdateOptionWithoutEvent();
-        }
+        rightDropdownOptions = LegacyEditorConstants.RightDropdownOptionsDict[LegacyEditorData.instance.leftDropdown];
+        UpdateListItems();
+    }
+
+    void OnRightDropdownChanged(string s)
+    {
+        UpdateOptionWithoutEvent();
     }
 
     //This is hacky as fuck, isn't it? I'm unsetting the event receiver so I can change this data without firing another change, preventing a double-fire and blowing up the redoList
@@ -64,12 +62,6 @@ public class RightDropdown : MonoBehaviour {
         EventDelegate.Set(list.onChange, OnChangeDropdown);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     void OnChangeDropdown()
     {
         string selected = UIPopupList.current.value;
@@ -78,5 +70,17 @@ public class RightDropdown : MonoBehaviour {
         ChangeRightDropdownAction act = ScriptableObject.CreateInstance<ChangeRightDropdownAction>();
         act.init(selected);
         LegacyEditorData.instance.DoAction(act);
+    }
+
+    public override void RegisterListeners()
+    {
+        editor.LeftDropdownChangedEvent += OnLeftDropdownChanged;
+        editor.RightDropdownChangedEvent += OnRightDropdownChanged;
+    }
+
+    public override void UnregisterListeners()
+    {
+        editor.LeftDropdownChangedEvent -= OnLeftDropdownChanged;
+        editor.RightDropdownChangedEvent -= OnRightDropdownChanged;
     }
 }

@@ -2,41 +2,49 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EditSubactionContextualPanelManager : MonoBehaviour
+public class EditSubactionContextualPanelManager : LegacyEditorWidget
 {
 
     public EditSubactionContextPanel defaultSubactionContextPanel;
     public SubactionToContextPanelDict uniqueContextPanels;
-    
-    public void OnModelChanged()
+
+    void OnSubactionChanged(SubactionData subaction)
     {
-        if (LegacyEditorData.instance.currentSubactionDirty)
+        if (subaction == null)
         {
-            SubactionData subaction = LegacyEditorData.instance.currentSubaction;
-            if (subaction == null)
+            defaultSubactionContextPanel.DeactivatePanel();
+        }
+        else
+        {
+            if (uniqueContextPanels.ContainsKey(subaction.SubactionName))
             {
-                defaultSubactionContextPanel.DeactivatePanel();
+                if (LegacyEditorData.contextualPanel != null)
+                {
+                    LegacyEditorData.contextualPanel.DeactivatePanel();
+                }
+                uniqueContextPanels[subaction.SubactionName].ActivatePanel();
             }
             else
             {
-                if (uniqueContextPanels.ContainsKey(subaction.SubactionName))
+                if (LegacyEditorData.contextualPanel != null)
                 {
-                    if (LegacyEditorData.contextualPanel != null)
-                    {
-                        LegacyEditorData.contextualPanel.DeactivatePanel();
-                    }
-                    uniqueContextPanels[subaction.SubactionName].ActivatePanel();
-                } else
-                {
-                    if (LegacyEditorData.contextualPanel != null)
-                    {
-                        LegacyEditorData.contextualPanel.DeactivatePanel();
-                    }
-                    defaultSubactionContextPanel.ActivatePanel();
+                    LegacyEditorData.contextualPanel.DeactivatePanel();
                 }
+                defaultSubactionContextPanel.ActivatePanel();
             }
         }
     }
+
+    public override void RegisterListeners()
+    {
+        editor.CurrentSubactionChangedEvent += OnSubactionChanged;
+    }
+
+    public override void UnregisterListeners()
+    {
+        editor.CurrentSubactionChangedEvent -= OnSubactionChanged;
+    }
+
 }
 
 

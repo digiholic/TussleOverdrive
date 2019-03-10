@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GroupDropdown : MonoBehaviour
+public class GroupDropdown : LegacyEditorWidget
 {
     private UIPopupList list;
     private Collider coll;
@@ -42,13 +42,10 @@ public class GroupDropdown : MonoBehaviour
         EventDelegate.Set(list.onChange, OnChangeDropdown);
         //list.eventReceiver = gameObject; ^^
     }
-
-    void OnModelChanged()
+    
+    void OnGroupChanged(string s)
     {
-        if (LegacyEditorData.instance.subactionGroupDirty)
-        {
-            UpdateOptionWithoutEvent();
-        }
+        UpdateOptionWithoutEvent();
     }
 
     //This is hacky as fuck, isn't it? I'm unsetting the event receiver so I can change this data without firing another change, preventing a double-fire and blowing up the redoList
@@ -68,5 +65,15 @@ public class GroupDropdown : MonoBehaviour
         ChangeSubactionGroupDropdownAction act = ScriptableObject.CreateInstance<ChangeSubactionGroupDropdownAction>();
         act.init(selected);
         LegacyEditorData.instance.DoAction(act);
+    }
+
+    public override void RegisterListeners()
+    {
+        editor.GroupDropdownChangedEvent += OnGroupChanged;
+    }
+
+    public override void UnregisterListeners()
+    {
+        editor.GroupDropdownChangedEvent -= OnGroupChanged;
     }
 }

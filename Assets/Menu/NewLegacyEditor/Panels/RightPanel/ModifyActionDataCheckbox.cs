@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ModifyActionDataCheckbox : MonoBehaviour {
+public class ModifyActionDataCheckbox : LegacyEditorWidget {
     public enum ActionVarType
     {
         FIELD,
@@ -18,14 +18,11 @@ public class ModifyActionDataCheckbox : MonoBehaviour {
         input = GetComponent<UIToggle>();
     }
 
-    private void OnModelChanged()
+    void OnActionChanged(DynamicAction action)
     {
-        if (LegacyEditorData.instance.currentActionDirty)
+        if (LegacyEditorData.instance.currentAction.name != "")
         {
-            if (LegacyEditorData.instance.currentAction.name != "")
-            {
-                input.value = getActionVar();
-            }
+            input.value = getActionVar();
         }
     }
 
@@ -60,5 +57,15 @@ public class ModifyActionDataCheckbox : MonoBehaviour {
         //return action.GetVar(varName);
         //}
         return false;
+    }
+
+    public override void RegisterListeners()
+    {
+        editor.CurrentActionChangedEvent += OnActionChanged;
+    }
+
+    public override void UnregisterListeners()
+    {
+        editor.CurrentActionChangedEvent -= OnActionChanged;
     }
 }

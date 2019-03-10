@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LeftDropdown : MonoBehaviour {
+public class LeftDropdown : LegacyEditorWidget {
     private UIPopupList list;
 
 	// Use this for initialization
 	void Awake () {
         list = GetComponent<UIPopupList>();
-	}
+    }
 
     void Start()
     {
@@ -21,14 +21,11 @@ public class LeftDropdown : MonoBehaviour {
         //list.eventReceiver = gameObject; ^^
     }
 
-    void OnModelChanged()
+    void OnLeftDropdownChanged(string s)
     {
-        if (LegacyEditorData.instance.leftDropdownDirty)
-        {
-            UpdateOptionWithoutEvent();
-        }
+        UpdateOptionWithoutEvent();
     }
-
+    
     //This is hacky as fuck, isn't it? I'm unsetting the event receiver so I can change this data without firing another change, preventing a double-fire and blowing up the redoList
     public void UpdateOptionWithoutEvent()
     {
@@ -38,12 +35,7 @@ public class LeftDropdown : MonoBehaviour {
         //list.eventReceiver = gameObject; ^^
         EventDelegate.Set(list.onChange, OnChangeDropdown);
     }
-
-    // Update is called once per frame
-    void Update () {
-		
-	}
-
+    
     void OnChangeDropdown()
     {
         string selected = UIPopupList.current.value;
@@ -52,5 +44,15 @@ public class LeftDropdown : MonoBehaviour {
         ChangeLeftDropdownAction act = ScriptableObject.CreateInstance<ChangeLeftDropdownAction>();
         act.init(selected);
         LegacyEditorData.instance.DoAction(act);
+    }
+
+    public override void RegisterListeners()
+    {
+        editor.LeftDropdownChangedEvent += OnLeftDropdownChanged;
+    }
+
+    public override void UnregisterListeners()
+    {
+        editor.LeftDropdownChangedEvent -= OnLeftDropdownChanged;
     }
 }

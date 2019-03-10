@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PopulatePopup : MonoBehaviour
+public abstract class PopulatePopup : LegacyEditorWidget
 {
     [SerializeField]
     protected InputPickerPopup popup;
-
+    
     protected void PopulateList(List<string> textList)
     {
         popup.getItems().Clear();

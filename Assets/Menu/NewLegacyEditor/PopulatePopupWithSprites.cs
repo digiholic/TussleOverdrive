@@ -7,14 +7,21 @@ public class PopulatePopupWithSprites : PopulatePopup
 {
     private List<string> sprite_names = new List<string>();
     
-    private void OnModelChanged()
+    void OnFighterChanged(FighterInfo info)
     {
-        if (LegacyEditorData.instance.loadedFighterDirty)
-        {
-            List<SpriteData> sprites = new List<SpriteData>(LegacyEditorData.instance.loadedFighter.getSpriteData().sprites);
-            sprite_names = sprites.Select(spriteData => spriteData.sprite_name).ToList();
-            sprite_names.Sort();
-            PopulateList(sprite_names);
-        }
+        List<SpriteData> sprites = new List<SpriteData>(LegacyEditorData.instance.loadedFighter.getSpriteData().sprites);
+        sprite_names = sprites.Select(spriteData => spriteData.sprite_name).ToList();
+        sprite_names.Sort();
+        PopulateList(sprite_names);
+    }
+
+    public override void RegisterListeners()
+    {
+        editor.FighterInfoChangedEvent += OnFighterChanged;
+    }
+
+    public override void UnregisterListeners()
+    {
+        editor.FighterInfoChangedEvent -= OnFighterChanged;
     }
 }

@@ -2,26 +2,46 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuilderFighter : MonoBehaviour {
+public class BuilderFighter : LegacyEditorWidget{
     public GameObject fighterObject;
 
-    void OnModelChanged()
+    void OnFighterChanged(FighterInfo info)
     {
-        if (LegacyEditorData.instance.loadedFighterDirty)
+        fighterObject.SendMessage("OnFighterInfoReady", info);
+        SpriteHandler spriteHandler = fighterObject.GetComponent<SpriteHandler>();
+        spriteHandler.ChangeSprite("idle");
+        spriteHandler.ChangeSubimage(0);
+    }
+
+    void OnFrameChange(int frame)
+    {
+        UpdateFighterAction();
+    }
+
+    void OnActionChange(DynamicAction act)
+    {
+        UpdateFighterAction();
+    }
+
+    void UpdateFighterAction()
+    {
+        ActionHandler actionHandler = fighterObject.GetComponent<ActionHandler>();
+        actionHandler.DoAction(editor.currentAction);
+        while (actionHandler.CurrentAction.current_frame < editor.currentFrame)
         {
-            fighterObject.SendMessage("OnFighterInfoReady", LegacyEditorData.instance.loadedFighter);
-            SpriteHandler spriteHandler = fighterObject.GetComponent<SpriteHandler>();
-            spriteHandler.ChangeSprite("idle");
-            spriteHandler.ChangeSubimage(0);
+            actionHandler.ManualUpdate();
         }
-        if (LegacyEditorData.instance.currentFrameDirty || LegacyEditorData.instance.currentActionDirty)
-        {
-            ActionHandler actionHandler = fighterObject.GetComponent<ActionHandler>();
-            actionHandler.DoAction(LegacyEditorData.instance.currentAction);
-            while (actionHandler.CurrentAction.current_frame < LegacyEditorData.instance.currentFrame)
-            {
-                actionHandler.ManualUpdate();
-            }
-        }
+    }
+
+    public override void RegisterListeners()
+    {
+        editor.FighterInfoChangedEvent += OnFighterChanged;
+        editor.CurrentActionChangedEvent += OnActionChange;
+    }
+
+    public override void UnregisterListeners()
+    {
+        editor.FighterInfoChangedEvent -= OnFighterChanged;
+        editor.CurrentActionChangedEvent -= OnActionChange;
     }
 }

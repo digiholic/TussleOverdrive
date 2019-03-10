@@ -21,48 +21,64 @@ public class LegacyEditorData : MonoBehaviour
     [Header("Fighter Data")]
     public string FighterDirName;
 
+    public delegate void FighterInfoChangeResults(FighterInfo info);
+    public delegate void ActionFileChangeResults(ActionFile actions);
+    public delegate void DynamicActionChangeResults(DynamicAction action);
+    public delegate void StringChangeResults(string s);
+    public delegate void IntChangeResults(int i);
+    public delegate void SubactionDataChangeResults(SubactionData data);
+
+    public event FighterInfoChangeResults        FighterInfoChangedEvent;
+    public event ActionFileChangeResults         ActionFileChangedEvent;
+    public event DynamicActionChangeResults      CurrentActionChangedEvent;
+    public event StringChangeResults             LeftDropdownChangedEvent;
+    public event StringChangeResults             RightDropdownChangedEvent;
+    public event StringChangeResults             GroupDropdownChangedEvent;
+    public event IntChangeResults                CurrentFrameChangedEvent;
+    public event SubactionDataChangeResults      CurrentSubactionChangedEvent;
+
     #region Loaded Fighter - the currently loaded fighter info
     [SerializeField]
     private FighterInfo _loadedFighter;
-    public bool loadedFighterDirty { get; private set; }
-
+    
     public FighterInfo loadedFighter
     {
         get { return _loadedFighter; }
         private set
         {
             _loadedFighter = value;
-            loadedFighterDirty = true;
+            if (FighterInfoChangedEvent != null)
+                FighterInfoChangedEvent(value);
         }
     }
     #endregion
     #region Loaded Action File - the currently loaded action set
     [SerializeField]
     private ActionFile _loadedActionFile;
-    public bool loadedActionFileDirty { get; private set; }
-
+    
     public ActionFile loadedActionFile
     {
         get { return _loadedActionFile; }
         private set
         {
             _loadedActionFile = value;
-            loadedActionFileDirty = true;
+            if (ActionFileChangedEvent != null)
+                ActionFileChangedEvent(value);
         }
     }
     #endregion
     #region Current Action - the action that is currently selected from the left panel
     [SerializeField]
     private DynamicAction _currentAction;
-    public bool currentActionDirty { get; private set; }
-
+    
     public DynamicAction currentAction
     {
         get { return _currentAction; }
         set
         {
             _currentAction = value;
-            currentActionDirty = true;
+            if (CurrentActionChangedEvent != null)
+                CurrentActionChangedEvent(value);
         }
     }
     #endregion
@@ -70,38 +86,37 @@ public class LegacyEditorData : MonoBehaviour
     #region Left Dropdown - what is selected on the left dropdown menu
     [SerializeField]
     private string _leftDropdown;
-    public bool leftDropdownDirty { get; private set; }
-
+    
     public string leftDropdown
     {
         get { return _leftDropdown; }
         set
         {
             _leftDropdown = value;
-            leftDropdownDirty = true;
+            if (LeftDropdownChangedEvent != null)
+                LeftDropdownChangedEvent(value);
         }
     }
     #endregion
     #region Right Dropdown - what is selected on the right dropdown menu
     [SerializeField]
     private string _rightDropdown;
-    public bool rightDropdownDirty { get; private set; }
-
+    
     public string rightDropdown
     {
         get { return _rightDropdown; }
         set
         {
             _rightDropdown = value;
-            rightDropdownDirty = true;
+            if (RightDropdownChangedEvent != null)
+                RightDropdownChangedEvent(value);
         }
     }
     #endregion
     #region Subaction Group - The current selected Subaction Group
     [SerializeField]
     private string _subactionGroup;
-    public bool subactionGroupDirty { get; private set; }
-
+    
     public string subactionGroup
     {
         get {
@@ -114,52 +129,50 @@ public class LegacyEditorData : MonoBehaviour
         set
         {
             _subactionGroup = value;
-            subactionGroupDirty = true;
+            if (GroupDropdownChangedEvent != null)
+                GroupDropdownChangedEvent(value);
         }
     }
     #endregion
     #region Current Frame - the frame that is currently being shown in the viewer and right pane
     [SerializeField]
     private int _currentFrame;
-    public bool currentFrameDirty { get; private set; }
-
+    
     public int currentFrame
     {
         get { return _currentFrame; }
         set
         {
             _currentFrame = value;
-            currentFrameDirty = true;
+            if (CurrentFrameChangedEvent != null)
+                CurrentFrameChangedEvent(value);
         }
     }
     #endregion
     #region Current Subaction - the subaction that is currently selected for editing
     private SubactionData _currentSubaction = null;
-    public bool currentSubactionDirty { get; private set; }
-
+    
     public SubactionData currentSubaction
     {
         get { return _currentSubaction; }
         set
         {
-            Debug.Log("Changing Subaction");
             _currentSubaction = value;
-            currentSubactionDirty = true;
+            if (CurrentSubactionChangedEvent != null)
+                CurrentSubactionChangedEvent(value);
         }
     }
     #endregion
     #region Contextual Panel Controller - the ContextualPanelData of the currently visible Contextual Panel
     [SerializeField]
     private ContextualPanelData _contextualPanelController;
-    public bool contextualPanelControllerDirty { get; private set; }
-
+    
     public ContextualPanelData contextualPanelController
     {
         get { return _contextualPanelController; }
         private set
         {
             _contextualPanelController = value;
-            contextualPanelControllerDirty = true;
         }
     }
     #endregion
@@ -178,6 +191,7 @@ public class LegacyEditorData : MonoBehaviour
     {
         instance = this;
         anchors = GetComponent<AnchorPositions>();
+        Debug.Log(instance);
     }
 
     /// <summary>
@@ -186,14 +200,7 @@ public class LegacyEditorData : MonoBehaviour
     private void Start()
     {
         loadedFighter.LoadDirectory(FighterDirName);
-        loadedFighterDirty = true;
         loadedActionFile = ActionFile.LoadActionsFromFile(FighterDirName, loadedFighter.action_file_path);
-        loadedActionFileDirty = true;
-        currentActionDirty = true;
-        leftDropdownDirty = true;
-        rightDropdownDirty = true;
-        currentFrameDirty = true;
-        currentSubactionDirty = true;
         currentAction = loadedActionFile.GetFirst();
         FireModelChange();
     }
@@ -210,32 +217,31 @@ public class LegacyEditorData : MonoBehaviour
         FighterDirName = fInfo.directory_name;
 
         loadedFighter = fInfo;
-        loadedFighterDirty = true;
         loadedActionFile = ActionFile.LoadActionsFromFile(FighterDirName, fInfo.action_file_path);
-        loadedActionFileDirty = true;
-        currentActionDirty = true;
-        leftDropdownDirty = true;
-        rightDropdownDirty = true;
-        currentFrameDirty = true;
-        currentSubactionDirty = true;
         currentAction = loadedActionFile.GetFirst();
         FireModelChange();
     }
     /// <summary>
-    /// Calls everything's OnModelChanged methods, then unsets the dirty bits for everything
+    /// Calls every event listener
     /// </summary>
     public void FireModelChange()
     {
-        BroadcastMessage("OnModelChanged");
-        
-        //After the broadcast, clear all the "dirty" bits
-        loadedFighterDirty = false;
-        loadedActionFileDirty = false;
-        currentActionDirty = false;
-        leftDropdownDirty = false;
-        rightDropdownDirty = false;
-        currentFrameDirty = false;
-        currentSubactionDirty = false;
+        /*
+        if (FighterInfoChangedEvent != null)
+            FighterInfoChangedEvent(loadedFighter);
+        if (ActionFileChangedEvent != null)
+            ActionFileChangedEvent(loadedActionFile);
+        if (CurrentActionChangedEvent != null)
+            CurrentActionChangedEvent(currentAction);
+        if (LeftDropdownChangedEvent != null)
+            LeftDropdownChangedEvent(leftDropdown);
+        if (RightDropdownChangedEvent != null)
+            RightDropdownChangedEvent(rightDropdown);
+        if (CurrentFrameChangedEvent != null)
+            CurrentFrameChangedEvent(currentFrame);
+        if (CurrentSubactionChangedEvent != null)
+            CurrentSubactionChangedEvent(currentSubaction);
+        */
     }
 
     private Stack<LegacyEditorAction> undoList = new Stack<LegacyEditorAction>();
@@ -374,8 +380,8 @@ public class LegacyEditorData : MonoBehaviour
     /// </summary>
     public static void ChangedFighterData()
     {
-        instance.loadedFighterDirty = true;
-        instance.FireModelChange();
+        if (instance.FighterInfoChangedEvent != null)
+            instance.FighterInfoChangedEvent(instance.loadedFighter);
     }
 
     /// <summary>
@@ -384,9 +390,10 @@ public class LegacyEditorData : MonoBehaviour
     /// </summary>
     public static void ChangedActionData()
     {
-        instance.currentActionDirty = true;
-        instance.loadedActionFileDirty = true; //? maybe don't need this? Revisit later
-        instance.FireModelChange();
+        if (instance.CurrentActionChangedEvent != null)
+            instance.CurrentActionChangedEvent(instance.currentAction);
+        if (instance.ActionFileChangedEvent != null)
+            instance.ActionFileChangedEvent(instance.loadedActionFile);
     }
 
     /// <summary>
@@ -395,8 +402,8 @@ public class LegacyEditorData : MonoBehaviour
     /// </summary>
     public static void ChangedActionFile()
     {
-        instance.loadedActionFileDirty = true;
-        instance.FireModelChange();
+        if (instance.ActionFileChangedEvent != null)
+            instance.ActionFileChangedEvent(instance.loadedActionFile);
     }
 
     /// <summary>
@@ -405,9 +412,10 @@ public class LegacyEditorData : MonoBehaviour
     /// </summary>
     public static void ChangedSubaction()
     {
-        instance.currentSubactionDirty = true;
-        instance.subactionGroupDirty = true;
-        instance.FireModelChange();
+        if (instance.CurrentSubactionChangedEvent != null)
+            instance.CurrentSubactionChangedEvent(instance.currentSubaction);
+        if (instance.GroupDropdownChangedEvent != null)
+            instance.GroupDropdownChangedEvent(instance.subactionGroup);
     }
 
     /// <summary>

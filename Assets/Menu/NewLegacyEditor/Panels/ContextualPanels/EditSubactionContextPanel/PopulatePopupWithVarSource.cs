@@ -22,18 +22,17 @@ public class PopulatePopupWithVarSource : PopulatePopup
         }
     }
 
-    private void OnModelChanged()
+    void OnFighterChanged(FighterInfo info)
     {
-        if (LegacyEditorData.instance.loadedFighterDirty)
-        {
-            fighterList = LegacyEditorData.instance.loadedFighter.variables.Select(varData => varData.name).ToList();
-        }
-        if (LegacyEditorData.instance.currentActionDirty)
-        {
-            //TODO add variables to action
-            actionList = new List<string>();
-        }
+        fighterList = LegacyEditorData.instance.loadedFighter.variables.Select(varData => varData.name).ToList();
     }
+
+    void OnActionChanged(DynamicAction action)
+    {
+        //TODO add variables to action
+        actionList = new List<string>();
+    }
+
     void Update()
     {
         if (popup == null) return; //This can sometimes get called before Awake. Somehow.
@@ -52,5 +51,17 @@ public class PopulatePopupWithVarSource : PopulatePopup
                     break;
             }
         }
+    }
+
+    public override void RegisterListeners()
+    {
+        editor.FighterInfoChangedEvent += OnFighterChanged;
+        editor.CurrentActionChangedEvent += OnActionChanged;
+    }
+
+    public override void UnregisterListeners()
+    {
+        editor.FighterInfoChangedEvent -= OnFighterChanged;
+        editor.CurrentActionChangedEvent -= OnActionChanged;
     }
 }

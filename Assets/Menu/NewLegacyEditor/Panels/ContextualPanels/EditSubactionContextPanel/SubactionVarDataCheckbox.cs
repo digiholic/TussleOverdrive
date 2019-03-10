@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SubactionVarDataCheckbox : MonoBehaviour
+public class SubactionVarDataCheckbox : LegacyEditorWidget
 {
     [SerializeField]
     private SubactionVarDataPanel panel;
@@ -19,12 +19,9 @@ public class SubactionVarDataCheckbox : MonoBehaviour
         //checkbox.eventReceiver = gameObject; ^^
     }
 
-    private void OnModelChanged()
+    void OnSubactionChanged(SubactionData data)
     {
-        if (LegacyEditorData.instance.currentSubactionDirty)
-        {
-            checkbox.value = (panel.varData.data == "true");
-        }
+        checkbox.value = (panel.varData.data == "true");
     }
 
     void OnAction()
@@ -36,5 +33,15 @@ public class SubactionVarDataCheckbox : MonoBehaviour
             legacyAction.init(panel.varData, checkbox.value.ToString().ToLower());
             LegacyEditorData.instance.DoAction(legacyAction);
         }
+    }
+
+    public override void RegisterListeners()
+    {
+        editor.CurrentSubactionChangedEvent += OnSubactionChanged;
+    }
+
+    public override void UnregisterListeners()
+    {
+        editor.CurrentSubactionChangedEvent -= OnSubactionChanged;
     }
 }

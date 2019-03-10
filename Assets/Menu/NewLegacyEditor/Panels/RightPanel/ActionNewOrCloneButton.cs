@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActionNewOrCloneButton : MonoBehaviour {
+public class ActionNewOrCloneButton : LegacyEditorWidget {
     private UIButton button;
     private UILabel label;
 
@@ -12,25 +12,32 @@ public class ActionNewOrCloneButton : MonoBehaviour {
         label = GetComponentInChildren<UILabel>();
     }
 
-    void OnModelChanged()
+    void OnActionChanged(DynamicAction action)
     {
-        if (LegacyEditorData.instance.currentActionDirty)
+        if (LegacyEditorData.CurrentActionIsNew())
         {
-            DynamicAction action = LegacyEditorData.instance.currentAction;
-            if (LegacyEditorData.CurrentActionIsNew())
-            {
-                label.text = "Create New Action";
-            } else
-            {
-                label.text = "Duplicate Action";
-            }
+            label.text = "Create New Action";
+        }
+        else
+        {
+            label.text = "Duplicate Action";
         }
     }
-
+    
     void OnAction()
     {
         CreateNewAction action = ScriptableObject.CreateInstance<CreateNewAction>();
         action.init(LegacyEditorData.instance.currentAction);
         LegacyEditorData.instance.DoAction(action);
+    }
+
+    public override void RegisterListeners()
+    {
+        editor.CurrentActionChangedEvent += OnActionChanged;
+    }
+
+    public override void UnregisterListeners()
+    {
+        editor.CurrentActionChangedEvent -= OnActionChanged;
     }
 }

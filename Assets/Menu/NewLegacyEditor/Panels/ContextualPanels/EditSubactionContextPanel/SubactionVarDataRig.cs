@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SubactionVarDataRig : MonoBehaviour {
+public class SubactionVarDataRig : LegacyEditorWidget {
     public GameObject varDataCardPrefab;
     public GameObject deleteButtonPrefab;
 
@@ -13,35 +13,32 @@ public class SubactionVarDataRig : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
         grid = GetComponent<UIGrid>();
-	}
+    }
 
-    public void OnModelChanged()
+    void OnSubactionChanged(SubactionData subaction)
     {
-        if (LegacyEditorData.instance.currentSubactionDirty)
+        Debug.Log("Loading new Subaction");
+        SubactionData sub = LegacyEditorData.instance.currentSubaction;
+
+        //Since we want to clear the list if we deselect a subaction, we take this part out of the null check
+        foreach (GameObject child in children)
         {
-            Debug.Log("Loading new Subaction");
-            SubactionData sub = LegacyEditorData.instance.currentSubaction;
-
-            //Since we want to clear the list if we deselect a subaction, we take this part out of the null check
-            foreach (GameObject child in children)
-            {
-                NGUITools.Destroy(child);
-            }
-            children.Clear();
-
-            if (sub != null)
-            {
-                foreach(SubactionVarData varData in sub.arguments.GetItems())
-                {
-                    InstantiateSubactionVarDataCard(varData);
-                }
-            }
-
-            InstantiateDeleteButton();
-
-            grid.Reposition();
-            dragPanel.ResetPosition();
+            NGUITools.Destroy(child);
         }
+        children.Clear();
+
+        if (sub != null)
+        {
+            foreach (SubactionVarData varData in sub.arguments.GetItems())
+            {
+                InstantiateSubactionVarDataCard(varData);
+            }
+        }
+
+        InstantiateDeleteButton();
+
+        grid.Reposition();
+        dragPanel.ResetPosition();
     }
     
     void InstantiateSubactionVarDataCard(SubactionVarData varData)
@@ -56,5 +53,15 @@ public class SubactionVarDataRig : MonoBehaviour {
     {
         GameObject go = NGUITools.AddChild(gameObject, deleteButtonPrefab);
         children.Add(go);
+    }
+
+    public override void RegisterListeners()
+    {
+        editor.CurrentSubactionChangedEvent += OnSubactionChanged;
+    }
+
+    public override void UnregisterListeners()
+    {
+        editor.CurrentSubactionChangedEvent -= OnSubactionChanged;
     }
 }
