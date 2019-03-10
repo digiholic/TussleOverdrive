@@ -32,7 +32,6 @@ public class TimelineSlider : LegacyEditorWidget
         {
             int maxFrame = LegacyEditorData.instance.currentAction.length;
             slider.numberOfSteps = maxFrame + 1;
-
             EventDelegate.Remove(slider.onChange, OnSliderChange);
             //slider.eventReceiver = null; ^^
             slider.value = (float)LegacyEditorData.instance.currentFrame / maxFrame;

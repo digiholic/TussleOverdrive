@@ -37,8 +37,7 @@ public class RightDropdown : LegacyEditorWidget {
             coll.enabled = true;
         }
         UpdateOptionWithoutEvent();
-        EventDelegate.Set(list.onChange, OnChangeDropdown);
-        //list.eventReceiver = gameObject; ^^
+        //EventDelegate.Set(list.onChange, OnChangeDropdown); ^^
     }
 
     void OnLeftDropdownChanged(string s)
@@ -55,11 +54,13 @@ public class RightDropdown : LegacyEditorWidget {
     //This is hacky as fuck, isn't it? I'm unsetting the event receiver so I can change this data without firing another change, preventing a double-fire and blowing up the redoList
     public void UpdateOptionWithoutEvent()
     {
+        /* ^^
         EventDelegate.Remove(list.onChange, OnChangeDropdown);
         //list.eventReceiver = null; ^^
         list.value = LegacyEditorData.instance.rightDropdown;
         //list.eventReceiver = gameObject; ^^
         EventDelegate.Set(list.onChange, OnChangeDropdown);
+        */
     }
 
     void OnChangeDropdown()
