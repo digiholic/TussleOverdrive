@@ -43,9 +43,14 @@ public class TimelineSlider : LegacyEditorWidget
     void OnSliderChange()
     {
         float val = UISlider.current.value;
-        ChangeCurrentFrame legacyAction = ScriptableObject.CreateInstance<ChangeCurrentFrame>();
-        legacyAction.init(Mathf.FloorToInt(Mathf.Lerp(0, slider.numberOfSteps - 1, slider.value)), false, false);
-        LegacyEditorData.instance.DoAction(legacyAction);
+        
+        //If the slider is different than the editor's data, we need to update the model
+        if (editor.currentFrame != val)
+        {
+            ChangeCurrentFrame legacyAction = ScriptableObject.CreateInstance<ChangeCurrentFrame>();
+            legacyAction.init(Mathf.FloorToInt(Mathf.Lerp(0, slider.numberOfSteps - 1, slider.value)), false, false);
+            editor.DoAction(legacyAction);
+        }
     }
 
     public override void RegisterListeners()
