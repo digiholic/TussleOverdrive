@@ -23,7 +23,6 @@ public class InputPickerData : MonoBehaviour
 
     public void SetLabel(string text)
     {
-        Debug.Log(text);
         label.text = text;
     }
 }

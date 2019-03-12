@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StartsBanished : MonoBehaviour {
+public class BanishablePanel : MonoBehaviour {
     public GameObject intendedParent;
     public PanelHider shadowRealm;
 
@@ -15,14 +15,10 @@ public class StartsBanished : MonoBehaviour {
     public void Banish()
     {
         LegacyEditorData.Banish(gameObject);
-        //if it's banished, we need to make sure this component is enabled
-        this.enabled = true;
     }
 
     public void Unbanish()
     {
         LegacyEditorData.Unbanish(gameObject,intendedParent);
-        //if it's not starting banished, we don't need to use this component
-        this.enabled = false;
     }
 }

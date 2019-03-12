@@ -191,7 +191,7 @@ public class LegacyEditorData : MonoBehaviour
     {
         instance = this;
         anchors = GetComponent<AnchorPositions>();
-        BroadcastMessage("InitializeWidget");
+        BroadcastMessage("InitializeWidget",null,SendMessageOptions.DontRequireReceiver);
     }
 
     /// <summary>
@@ -226,7 +226,6 @@ public class LegacyEditorData : MonoBehaviour
     /// </summary>
     public void FireModelChange()
     {
-        /*
         if (FighterInfoChangedEvent != null)
             FighterInfoChangedEvent(loadedFighter);
         if (ActionFileChangedEvent != null)
@@ -241,7 +240,6 @@ public class LegacyEditorData : MonoBehaviour
             CurrentFrameChangedEvent(currentFrame);
         if (CurrentSubactionChangedEvent != null)
             CurrentSubactionChangedEvent(currentSubaction);
-        */
     }
 
     private Stack<LegacyEditorAction> undoList = new Stack<LegacyEditorAction>();

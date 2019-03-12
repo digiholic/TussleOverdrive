@@ -14,7 +14,7 @@ public class ModifyFighterDataInput : LegacyEditorWidget {
     private UIInput input;
     private InputBoxFilter filter;
 
-    private void Start()
+    private void Awake()
     {
         input = GetComponent<UIInput>();
         filter = GetComponent<InputBoxFilter>();
@@ -30,8 +30,10 @@ public class ModifyFighterDataInput : LegacyEditorWidget {
         input.value = getFighterVar(info);
     }
 
-    public void OnAction(string inputData)
+    public void OnAction()
     {
+        string inputData = input.value;
+
         //If we have a filter object, make sure to filter the incoming text before we do anything with it.
         if (filter != null) inputData = filter.filterText(inputData);
 

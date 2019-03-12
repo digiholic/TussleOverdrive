@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class FileMenu : MonoBehaviour
 {
-    void OnSelectionChange(string selected)
+    private UIPopupList list;
+
+    private void Start()
     {
+        list = GetComponent<UIPopupList>();
+    }
+
+    public void OnSelectionChange()
+    {
+        string selected = list.value;
+        Debug.Log(selected);
         switch (selected)
         {
             case "Load":

@@ -7,14 +7,14 @@ public class ActionSelectionButton : MonoBehaviour {
 
     public DynamicAction action;
 	// Use this for initialization
-	void OnEnable () {
+	void Awake () {
         label = GetComponentInChildren<UILabel>();
-        OnModelChanged();
+        SetColor(null);
     }
 	
 	// Update is called once per frame
-	void OnModelChanged() {
-        if (LegacyEditorData.instance.currentAction == action)
+	void SetColor(DynamicAction act) {
+        if (act != null && act == action)
         {
             label.color = new Color(1, 1, 1, 1);
         }
@@ -31,5 +31,15 @@ public class ActionSelectionButton : MonoBehaviour {
         ChangeCurrentAction legacyAction = ScriptableObject.CreateInstance<ChangeCurrentAction>();
         legacyAction.init(actionToSet);
         GetComponent<OnClickSendAction>().action = legacyAction;
+    }
+
+    private void OnEnable()
+    {
+        LegacyEditorData.instance.CurrentActionChangedEvent += SetColor;
+    }
+
+    private void OnDisable()
+    {
+        LegacyEditorData.instance.CurrentActionChangedEvent -= SetColor;
     }
 }
