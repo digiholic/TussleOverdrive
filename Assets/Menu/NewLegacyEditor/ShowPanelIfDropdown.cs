@@ -2,20 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShowPanelIfDropdown : MonoBehaviour {
+public class ShowPanelIfDropdown : LegacyEditorWidget {
     public string leftDropdownCond;
     public string rightDropdownCond;
 
     public bool debug;
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    void OnDropdownChanged(string s)
+    {
+        OnModelChanged();
+    }
 
     void OnModelChanged()
     {
@@ -24,7 +20,7 @@ public class ShowPanelIfDropdown : MonoBehaviour {
         //If the dropdown conditional is empty, we just keep the condition true
         if (!leftDropdownCond.Equals(""))
         {
-            if (LegacyEditorData.instance.leftDropdown.Equals(leftDropdownCond))
+            if (editor.leftDropdown.Equals(leftDropdownCond))
             {
                 if (debug) Debug.Log("Left Value Valid");
                 leftVal = true;
@@ -38,7 +34,7 @@ public class ShowPanelIfDropdown : MonoBehaviour {
         //If the dropdown conditional is empty, we just keep the condition true
         if (!rightDropdownCond.Equals(""))
         {
-            if (LegacyEditorData.instance.rightDropdown.Equals(rightDropdownCond))
+            if (editor.rightDropdown.Equals(rightDropdownCond))
             {
                 if (debug) Debug.Log("Right Value Valid");
                 rightVal = true;
@@ -58,5 +54,17 @@ public class ShowPanelIfDropdown : MonoBehaviour {
         {
             LegacyEditorData.Banish(gameObject);
         }
+    }
+
+    public override void RegisterListeners()
+    {
+        editor.LeftDropdownChangedEvent += OnDropdownChanged;
+        editor.RightDropdownChangedEvent += OnDropdownChanged;
+    }
+
+    public override void UnregisterListeners()
+    {
+        editor.LeftDropdownChangedEvent -= OnDropdownChanged;
+        editor.RightDropdownChangedEvent -= OnDropdownChanged;
     }
 }
