@@ -63,7 +63,7 @@ public class RightDropdown : LegacyEditorWidget {
         */
     }
 
-    void OnChangeDropdown()
+    public void OnChangeDropdown()
     {
         string selected = UIPopupList.current.value;
 

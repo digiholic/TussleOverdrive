@@ -31,15 +31,19 @@ public class InputPickerPopup : MonoBehaviour
             data.SetLabel(item);
             data.popup = this;
         }
+        refreshGridAndLabels();
     }
 
     public void refreshGridAndLabels()
     {
+        Debug.Log("Refreshing");
         grid.Reposition();
+        /*
         if (grid.transform.childCount > 0)
         {
             grid.BroadcastMessage("UnfuckLabelDepth",SendMessageOptions.DontRequireReceiver);
         }
+        */
     }
     public List<string> getItems()
     {
@@ -52,7 +56,7 @@ public class InputPickerPopup : MonoBehaviour
 
     public void Dispose()
     {
-        grid.BroadcastMessage("RefuckLabelDepth",SendMessageOptions.DontRequireReceiver);
+        //grid.BroadcastMessage("RefuckLabelDepth",SendMessageOptions.DontRequireReceiver);
         NGUITools.SetActive(gameObject, false);
     }
 }
