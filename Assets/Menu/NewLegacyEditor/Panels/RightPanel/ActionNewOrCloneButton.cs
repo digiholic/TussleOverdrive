@@ -24,7 +24,7 @@ public class ActionNewOrCloneButton : LegacyEditorWidget {
         }
     }
     
-    void OnAction()
+    public void OnAction()
     {
         CreateNewAction action = ScriptableObject.CreateInstance<CreateNewAction>();
         action.init(LegacyEditorData.instance.currentAction);

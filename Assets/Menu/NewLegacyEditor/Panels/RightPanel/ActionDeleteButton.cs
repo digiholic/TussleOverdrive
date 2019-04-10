@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ActionDeleteButton : MonoBehaviour {
 
-    void OnAction()
+    public void OnAction()
     {
         DeleteAction action = ScriptableObject.CreateInstance<DeleteAction>();
         action.init(LegacyEditorData.instance.currentAction);

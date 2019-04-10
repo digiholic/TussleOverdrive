@@ -22,7 +22,7 @@ public class SubactionVarDataSourceButton : MonoBehaviour {
         label.text = panel.varData.SourceAsString();   
     }
 
-    void OnSourceClicked()
+    public void OnSourceClicked()
     {
         index += 1;
         if (index == sources.Length) index = 0;
