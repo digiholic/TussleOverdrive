@@ -21,6 +21,10 @@ public class BuilderControlPane : MonoBehaviour {
 	void Update () {
         isHovered = (UICamera.hoveredObject == gameObject);
 
+        if (isHovered && Input.GetMouseButtonDown(1))
+        {
+            recenterCamera();
+        }
         if (isHovered && Input.GetMouseButtonDown(2))
         {
             middleClickLastPos = UICamera.lastEventPosition;
@@ -47,5 +51,10 @@ public class BuilderControlPane : MonoBehaviour {
     void OnScroll(float delta)
     {
         viewerCamera.transform.Translate(new Vector3(0, 0, delta*0.1f));
+    }
+
+    public void recenterCamera()
+    {
+        viewerCamera.transform.localPosition = new Vector3(0, 0, -10);
     }
 }
