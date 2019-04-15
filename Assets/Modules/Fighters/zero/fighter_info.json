@@ -87,11 +87,11 @@
             "value": "0.8",
             "type": 0
         },
-        {
-            "name": "jumps",
-            "value": "1",
-            "type": 1
-        },
+      {
+        "name": "max_jumps",
+        "value": "1",
+        "type": 1
+      },
         {
             "name": "jump_height",
             "value": "14",
