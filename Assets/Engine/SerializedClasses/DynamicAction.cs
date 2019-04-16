@@ -43,6 +43,8 @@ public class DynamicAction
         //TODO clones currently have no subactions. I'll figure this out later.
         //set_upsub_actions = sourceAction.set_up_subactions; etc.
     }
+
+    public static DynamicAction NullAction = new DynamicAction("null");
 }
 
 /// <summary>
@@ -67,9 +69,11 @@ public class SubGroupDict : SerializableDictionary<string, List<SubactionData>, 
             this[key] = new List<SubactionData>();
             return this[key];
         }
-
     }
 }
 
+/// <summary>
+/// In order to properly serialize a list to a Serializeable Dict, it needs to have a class
+/// </summary>
 [System.Serializable]
 public class SubactionDataListStorage : SerializableDictionary.Storage<List<SubactionData>> { }

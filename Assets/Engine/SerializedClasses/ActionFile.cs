@@ -99,7 +99,7 @@ public class ActionFile
                 return action;
         }
         //Debug.LogWarning("Could not find action " + name + " in ActionFile");
-        return new DynamicAction("Null");
+        return DynamicAction.NullAction;
     }
 
     public DynamicAction GetFirst()
@@ -108,8 +108,31 @@ public class ActionFile
         {
             return actions[0];
         }
-        else return new DynamicAction("Null");
+        else return DynamicAction.NullAction;
     }
+
+    public void Save(string path)
+    {
+        //AssignOrdersToSubactions();    
+        WriteJSON(path);
+    }
+
+    private void AssignOrdersToSubactions()
+    {
+        foreach (DynamicAction act in actions)
+        {
+            foreach (KeyValuePair<string,List<SubactionData>> item in act.subactionCategories)
+            {
+                //Each group has its own ordering
+                int orderCount = 0;
+                foreach (SubactionData subData in item.Value)
+                {
+                    subData.order = orderCount++;
+                }
+            }
+        }
+    }
+
     public void WriteJSON(string path)
     {
         string thisjson = JsonUtility.ToJson(this, true);

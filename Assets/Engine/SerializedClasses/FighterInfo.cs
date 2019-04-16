@@ -44,6 +44,11 @@ public class FighterInfo {
         File.WriteAllText(path, json);
     }
 
+    public void Save(string path)
+    {
+        WriteJSON(path);
+    }
+
     public void Save()
     {
         WriteJSON(FileLoader.PathCombine(directory_name, "fighter_info.json"));
