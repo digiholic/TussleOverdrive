@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [System.Serializable]
@@ -44,6 +45,38 @@ public class DynamicAction
         //set_upsub_actions = sourceAction.set_up_subactions; etc.
     }
 
+    /// <summary>
+    /// Add a Subaction to the action in the given category. Optionally, insert the subaction at a given position
+    /// Defaults to -1, which will be interpreted as 'add it to the end'
+    /// </summary>
+    /// <param name="category">The subaction category to add it to</param>
+    /// <param name="subData">The SubactionData to add to the list</param>
+    /// <param name="order">Where to put it in the list (zero indexed). The SubactionData at that position and everything afterwards will get bumped up one. -1 means add to the end</param>
+    public void AddSubaction(string category, SubactionData subData,int position=LAST_POSITION)
+    {
+        List<SubactionData> subList = subactionCategories.GetIfKeyExists(category);
+        if (position == LAST_POSITION)
+        {
+            subList.Add(subData);
+        } else
+        {
+            subList.Insert(position, subData);
+            for (int i = position + 1; i < subList.Count; i++)
+            {
+                subList[i].order += 1;
+            }
+        }
+    }
+
+    public void SortSubactions()
+    {
+        foreach (var item in subactionCategories)
+        {
+            item.Value.Sort((item1, item2) => item1.order.CompareTo(item2.order));
+        }
+    }
+
+    public const int LAST_POSITION = -1;
     public static DynamicAction NullAction = new DynamicAction("null");
 }
 

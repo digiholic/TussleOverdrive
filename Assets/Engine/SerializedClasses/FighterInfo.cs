@@ -95,10 +95,6 @@ public class FighterInfo {
 
     public VarData GetVarByName(string name)
     {
-        if (name.Equals("max_jumps"))
-        {
-            Debug.Log(variables);
-        }
         foreach (VarData data in variables)
         {
             if (data.name == name) return data;

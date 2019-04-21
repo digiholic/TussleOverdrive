@@ -28,6 +28,8 @@ public class ActionFile
         {
             string json = File.ReadAllText(combinedPath);
             JsonUtility.FromJsonOverwrite(json,this);
+            //In case the file we loaded didn't have everything in the right order already, sort them.
+            SortAllActions();
         }
         else
         {
@@ -63,7 +65,7 @@ public class ActionFile
             { 
                 DynamicAction cloneAction = new DynamicAction(newAction);
                 cloneAction.name += "_new";
-                //TODO this will chain forever if you keep cloning the same action. This might be a problem, but probably not.
+                //TODO this name convention will chain forever if you keep cloning the same action. This might be a problem, but probably not.
                 actions.Add(cloneAction);
             }
         }
@@ -113,7 +115,7 @@ public class ActionFile
 
     public void Save(string path)
     {
-        //AssignOrdersToSubactions();    
+        AssignOrdersToSubactions();    
         WriteJSON(path);
     }
 
@@ -127,9 +129,18 @@ public class ActionFile
                 int orderCount = 0;
                 foreach (SubactionData subData in item.Value)
                 {
+                    Debug.Log(orderCount);
                     subData.order = orderCount++;
                 }
             }
+        }
+    }
+
+    private void SortAllActions()
+    {
+        foreach(DynamicAction act in actions)
+        {
+            act.SortSubactions();
         }
     }
 
@@ -147,6 +158,7 @@ public class ActionFile
         {
             string json = File.ReadAllText(combinedPath);
             ActionFile info = JsonUtility.FromJson<ActionFile>(json);
+            info.SortAllActions();
             return info;
         }
         else

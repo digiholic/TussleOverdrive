@@ -10,6 +10,11 @@ public class SubactionCardRig : LegacyEditorWidget {
     [SerializeField]
     private UIScrollView dragPanel;
 
+
+    private DynamicAction lastKnownAction = null;
+    private string lastKnownGroup = "";
+    private int lastKnownFrame = -1;
+
     // Use this for initialization
     void Awake() {
         grid = GetComponent<UIGrid>();
@@ -17,21 +22,32 @@ public class SubactionCardRig : LegacyEditorWidget {
 
     void OnActionChanged(DynamicAction action)
     {
-        UpdateCard();
+        //We only want to fire the update if the action actually changed, in case we fired an event earlier for the group or frame
+        if (action != lastKnownAction)
+            UpdateCard();
     }
 
     void OnGroupChanged(string s)
     {
-        UpdateCard();
+        //We only want to fire the update if the action actually changed, in case we fired an event earlier for the action or frame
+        if (s != lastKnownGroup)
+            UpdateCard();
     }
 
     void OnFrameChanged(int frame)
     {
-        UpdateCard();
+        //We only want to fire the update if the action actually changed, in case we fired an event earlier for the group or action
+        if (frame != lastKnownFrame)
+            UpdateCard();
     }
 
     void UpdateCard()
     {
+        //If we're updating, set the flags so we don't update multiple times in a row
+        lastKnownAction = editor.currentAction;
+        lastKnownFrame = editor.currentFrame;
+        lastKnownGroup = editor.subactionGroup;
+
         //Get rid of our old list
         foreach (GameObject child in children)
         {
@@ -65,6 +81,8 @@ public class SubactionCardRig : LegacyEditorWidget {
         GameObject go = NGUITools.AddChild(gameObject, SubactionCardPrefab);
         SubactionCard card = go.GetComponent<SubactionCard>();
         card.SetSubaction(subDataToSet);
+        card.SetEditor(editor);
+        card.RegisterListeners();
         children.Add(go);
     }
 

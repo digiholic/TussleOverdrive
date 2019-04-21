@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SubactionDataDeleteButton : MonoBehaviour {
 
-    void OnAction()
+    public void OnAction()
     {
         DeleteSubactionData legacyAction = ScriptableObject.CreateInstance<DeleteSubactionData>();
         legacyAction.init(LegacyEditorData.instance.currentSubaction);

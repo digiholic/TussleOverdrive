@@ -25,4 +25,8 @@ public class SubactionData {
             arguments[key].data = value.ToString();
         }
     }
+
+    public override string ToString() {
+        return "SubactionData[" + SubactionName + "]";
+    }
 }

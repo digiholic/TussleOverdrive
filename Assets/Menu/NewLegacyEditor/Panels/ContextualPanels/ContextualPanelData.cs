@@ -6,12 +6,13 @@ using UnityEngine;
 /// The contextual panel is similar to the LegacyEditorData on a smaller scale.
 /// It has its own sets of data that it can manipulate and pass functionality
 /// </summary>
-public abstract class ContextualPanelData : MonoBehaviour {
+public abstract class ContextualPanelData : LegacyEditorWidget {
 
     /// <summary>
     /// Calls all of the OnContextualPanelChanged methods in child objects of the contextual panel
     /// </summary>
     public abstract void FireContextualPanelChange();
+    public bool debug = false;
 
     public static bool isOfType(System.Type panelType)
     {
@@ -22,18 +23,23 @@ public abstract class ContextualPanelData : MonoBehaviour {
 
     public void ActivatePanel()
     {
+        if (debug) Debug.Log("Activating Panel", this);
+
+        LegacyEditorData.Unbanish(gameObject);
+        
         if (LegacyEditorData.contextualPanel != this)
         {
-            LegacyEditorData.Unbanish(gameObject);
             LegacyEditorData.contextualPanel = this;
             //Since this activation gets called in the middle of an update, the panel we just activated isn't getting the function call.
             BroadcastMessage("OnModelChanged");
             FireContextualPanelChange();
+
         }
     }
 
     public void DeactivatePanel()
     {
+        if (debug) Debug.Log("Deactivating Panel", this);
         LegacyEditorData.Banish(gameObject);
         FireContextualPanelChange();
     }

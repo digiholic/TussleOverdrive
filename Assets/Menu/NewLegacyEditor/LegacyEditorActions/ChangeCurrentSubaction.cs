@@ -21,6 +21,7 @@ public class ChangeCurrentSubaction : LegacyEditorAction
         {
             subactionToSet = null;
         }
+        Debug.Log("Changing Subaction from <" + previousSubaction + "> to <" + subactionToSet + ">");
         LegacyEditorData.instance.currentSubaction = subactionToSet;
         LegacyEditorData.ChangedSubaction();
     }

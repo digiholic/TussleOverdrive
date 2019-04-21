@@ -179,6 +179,98 @@
                                     ]
                                 },
                                 "description": "Creates a Hitbox of the given name. This Hitbox will have all the properties defined in the Hitbox Editor."
+                            },
+                            {
+                                "order": 1,
+                                "SubactionName": "ChangeFrame",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [
+                                        "frameNumber",
+                                        "relative"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "frameNumber",
+                                            "source": 0,
+                                            "type": 2,
+                                            "data": "1",
+                                            "description": "The Frame number to change to, or the amount to modify the current frame by.\t"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "relative",
+                                            "source": 0,
+                                            "type": 1,
+                                            "data": "false",
+                                            "description": "If true, will modify the current frame instead of setting directly."
+                                        }
+                                    ]
+                                },
+                                "description": "Changes the next execution frame of the action. Note that the current frame finishes execution, and will switch to the given one for the next execution. Can be given a number, or if relative is true, will add the given number to the current frame instead."
+                            },
+                            {
+                                "order": 2,
+                                "SubactionName": "DoAction",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [
+                                        "actionName"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "actionName",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "",
+                                            "description": "The name of the action to change to"
+                                        }
+                                    ]
+                                },
+                                "description": "Change the current action. The current action will continue executing the rest of its current frame."
+                            },
+                            {
+                                "order": 5,
+                                "SubactionName": "DoTransition",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [
+                                        "transitionState"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "transitionState",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "",
+                                            "description": "The name of the pre-defined Transition State to check."
+                                        }
+                                    ]
+                                },
+                                "description": "Check one of the pre-defined Transition States. A list of transition states can be found in the documentation."
+                            },
+                            {
+                                "order": 3,
+                                "SubactionName": "Else",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [],
+                                    "m_values": []
+                                },
+                                "description": "Inverts the current action condition"
+                            },
+                            {
+                                "order": 4,
+                                "SubactionName": "EndIf",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [],
+                                    "m_values": []
+                                },
+                                "description": "Unsets the current action condition, ending the innermost if block."
                             }
                         ]
                     },

@@ -37,17 +37,12 @@ public class NewSubactionContextPanel : ContextualPanelData
         {
             subValid = true;
         }
-            
         if (leftValid && rightValid && subValid) {
             selectedTypeDirty = true;
             ActivatePanel();
         } else {
             DeactivatePanel();
         }
-    }
-    public void Start()
-    {
-        
     }
 
     public override void FireContextualPanelChange()
@@ -56,5 +51,29 @@ public class NewSubactionContextPanel : ContextualPanelData
 
         //After the broadcast, clear all the "dirty" bits
         selectedTypeDirty = false;
+    }
+
+    private void OnDropdownChanged(string dropdown)
+    {
+        OnModelChanged();
+    }
+
+    private void SubactionChanged(SubactionData sub)
+    {
+        OnModelChanged();
+    }
+
+    public override void RegisterListeners()
+    {
+        editor.LeftDropdownChangedEvent += OnDropdownChanged;
+        editor.RightDropdownChangedEvent += OnDropdownChanged;
+        editor.CurrentSubactionChangedEvent += SubactionChanged;
+    }
+
+    public override void UnregisterListeners()
+    {
+        editor.LeftDropdownChangedEvent -= OnDropdownChanged;
+        editor.RightDropdownChangedEvent -= OnDropdownChanged;
+        editor.CurrentSubactionChangedEvent -= SubactionChanged;
     }
 }

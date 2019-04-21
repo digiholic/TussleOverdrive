@@ -308,7 +308,7 @@ public class LegacyEditorData : MonoBehaviour
     {
         loadedFighter.Save();
         string path = FileLoader.PathCombine(FileLoader.GetFighterPath(FighterDirName), loadedFighter.action_file_path);
-        loadedActionFile.WriteJSON(path);
+        loadedActionFile.Save(path);
         Debug.Log("Saved Fighter: " + path);
     }
 

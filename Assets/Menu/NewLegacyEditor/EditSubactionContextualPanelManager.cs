@@ -10,8 +10,10 @@ public class EditSubactionContextualPanelManager : LegacyEditorWidget
 
     void OnSubactionChanged(SubactionData subaction)
     {
+        Debug.Log("Subaction Changed: " + subaction,this);
         if (subaction == null)
         {
+            //Debug.Log("Deactivating default", defaultSubactionContextPanel);
             defaultSubactionContextPanel.DeactivatePanel();
         }
         else
@@ -20,16 +22,20 @@ public class EditSubactionContextualPanelManager : LegacyEditorWidget
             {
                 if (LegacyEditorData.contextualPanel != null)
                 {
+                    //Debug.Log("Deactivating old panel for unique", LegacyEditorData.contextualPanel);
                     LegacyEditorData.contextualPanel.DeactivatePanel();
                 }
+                //Debug.Log("Activating unique panel", uniqueContextPanels[subaction.SubactionName]);
                 uniqueContextPanels[subaction.SubactionName].ActivatePanel();
             }
             else
             {
                 if (LegacyEditorData.contextualPanel != null)
                 {
+                    //Debug.Log("Deactivating old panel for default", LegacyEditorData.contextualPanel);
                     LegacyEditorData.contextualPanel.DeactivatePanel();
                 }
+                //Debug.Log("Activating default panel", defaultSubactionContextPanel);
                 defaultSubactionContextPanel.ActivatePanel();
             }
         }

@@ -32,7 +32,6 @@ public class ActionHandler : BattleComponent {
         _current_action.SetUp(battleObject);
     }
 
-    // Update is called once per frame
     public override void ManualUpdate () {
         if (!isInBuilder) _current_action.stateTransitions();
         _current_action.Update();
