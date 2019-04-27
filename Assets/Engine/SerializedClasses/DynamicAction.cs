@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+/// <summary>
+/// Dynamic Actions are the meat and potatoes of BattleObjects. They define a state for the object, and get updates every frame.
+/// They contain various groups of Subactions that are all executed when their trigger or frame happens.
+/// </summary>
 [System.Serializable]
-public class DynamicAction
+public class DynamicAction : IVarDataContainer
 {
     public string name;
     public int length;
@@ -15,7 +19,8 @@ public class DynamicAction
 
     //Dictionary keys are the SubactionCategories defined in the SubactionGroup enum, or "Frame_XX" for each frame.
     public SubGroupDict subactionCategories = new SubGroupDict();
-    
+    public Dictionary<string, BattleObjectVarData> variables = new Dictionary<string, BattleObjectVarData>();
+
     public DynamicAction(string _name, int _length = 1, string _sprite = "idle", int _sprite_rate = 1, bool _loop = false, string _exit_action = "NeutralAction")
     {
         name = _name;
@@ -75,6 +80,49 @@ public class DynamicAction
             item.Value.Sort((item1, item2) => item1.order.CompareTo(item2.order));
         }
     }
+    #region VarData Functions
+    //Initialize the variable if it's not set yet, then return it
+    public BattleObjectVarData GetVar(string var_name)
+    {
+        if (!HasVar(var_name))
+        {
+            Debug.Log("Attempting to get variable without setting one: " + var_name);
+            SetVar(var_name, null);
+        }
+        return variables[var_name];
+    }
+
+
+    public void SetVar(string var_name, object obj)
+    {
+        if (HasVar(var_name))
+        {
+            variables[var_name].SetData(obj);
+        }
+        else
+        {
+            variables[var_name] = new BattleObjectVarData(var_name, obj);
+        }
+    }
+
+    public bool HasVar(string var_name)
+    {
+        if (variables.ContainsKey(var_name))
+            return true;
+        else
+            return false;
+    }
+
+    /// <summary>
+    /// Gets the variable with the given name from the variables list
+    /// </summary>
+    /// <param name="var_name">The name of the variable to pull</param>
+    /// <returns>The variable from the dict as an object</returns>
+    public object GetVarData(string var_name)
+    {
+        return GetVar(var_name).GetData();
+    }
+    #endregion
 
     public const int LAST_POSITION = -1;
     public static DynamicAction NullAction = new DynamicAction("null");

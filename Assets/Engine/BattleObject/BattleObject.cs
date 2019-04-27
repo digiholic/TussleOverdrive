@@ -10,7 +10,7 @@ using UnityEngine;
 /// </summary>
 /// 
 [System.Serializable]
-public class BattleObject : MonoBehaviour
+public class BattleObject : MonoBehaviour, IVarDataContainer
 {
     /// <summary>
     /// DebugLevel will be checked against all throughout the object to determine when to log information.
