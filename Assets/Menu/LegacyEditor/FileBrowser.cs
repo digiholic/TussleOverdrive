@@ -115,7 +115,7 @@ public class FileBrowser : MonoBehaviour {
         BroadcastMessage("RefuckLabelDepth", SendMessageOptions.DontRequireReceiver);
     }
 
-    void ConfirmSelection()
+    public void ConfirmSelection()
     {
         if (directory_callback != null && current_directory != null && current_directory.Exists)
         {
@@ -151,6 +151,7 @@ public class FileBrowser : MonoBehaviour {
 
     private void LoadData()
     {
+        RemoveData();
         up_one_level.current_directory = current_directory.Parent;
         foreach(DirectoryInfo directory in current_directory.GetDirectories())
         {
@@ -162,7 +163,7 @@ public class FileBrowser : MonoBehaviour {
                 InstantiateFileRow(fname);
         }
         gridPanel.Reposition();
-        BroadcastMessage("UnfuckLabelDepth",SendMessageOptions.DontRequireReceiver);
+        //BroadcastMessage("UnfuckLabelDepth",SendMessageOptions.DontRequireReceiver);
     }
 
     private FileBrowserDataRow InstantiateDirectoryRow(DirectoryInfo directory)

@@ -24,7 +24,7 @@ public class GameAction {
     public List<bool> cond_list = new List<bool> { true };
     public int cond_depth = 0;
 
-    public Dictionary<string, object> variable = new Dictionary<string, object>();
+    public Dictionary<string, BattleObjectVarData> variables = new Dictionary<string, BattleObjectVarData>();
     public Dictionary<string, object> variables_to_pass = new Dictionary<string, object>();
 
     protected int last_frame;
@@ -132,19 +132,37 @@ public class GameAction {
         last_frame = new_length;
     }
 
-    public bool HasVar(string var_name)
+    //Initialize the variable if it's not set yet, then return it
+    public BattleObjectVarData GetVar(string var_name)
     {
-        if (variable.ContainsKey(var_name))
-            return true;
-        else
-            return false;
+        if (!HasVar(var_name))
+        {
+            UnityEngine.Debug.Log("Attempting to get variable without setting one: " + var_name);
+            //return new BattleObjectVarData(var_name, null);
+            SetVar(var_name, null);
+        }
+        return variables[var_name];
     }
 
     public void SetVar(string var_name, object obj)
     {
-        variable[var_name] = obj;
+        if (HasVar(var_name))
+        {
+            variables[var_name].SetData(obj);
+        }
+        else
+        {
+            variables[var_name] = new BattleObjectVarData(var_name, obj);
+        }
     }
 
+    public bool HasVar(string var_name)
+    {
+        if (variables.ContainsKey(var_name))
+            return true;
+        else
+            return false;
+    }
     /// <summary>
     /// Gets the variable with the given name from the variables list
     /// </summary>
@@ -152,36 +170,27 @@ public class GameAction {
     /// <returns>The variable from the dict as an object</returns>
     public object GetVarData(string var_name)
     {
-        if (variable.ContainsKey(var_name))
-        {
-            return variable[var_name];
-        }
-        else
-        {
-            UnityEngine.Debug.LogWarning("Could not find variable " + var_name + " in Action " + this.ToString());
-            UnityEngine.Debug.Log(stackTrace.GetFrame(1).GetMethod().Name);
-            return null;
-        }
+        return GetVar(var_name).GetData();
     }
 
     public int GetIntVar(string var_name)
     {
-        return (int)GetVarData(var_name);
+        return GetVar(var_name).GetIntData();
     }
 
     public float GetFloatVar(string var_name)
     {
-        return (float)GetVarData(var_name);
+        return GetVar(var_name).GetFloatData();
     }
 
     public bool GetBoolVar(string var_name)
     {
-        return (bool)GetVarData(var_name);
+        return GetVar(var_name).GetBoolData();
     }
 
     public string GetStringVar(string var_name)
     {
-        return (string)GetVarData(var_name);
+        return GetVar(var_name).GetStringData();
     }
 
     public void PassVariable(string var_name, object var_value)

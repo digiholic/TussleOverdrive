@@ -12,7 +12,7 @@ public class SubactionVarDataSourceButton : MonoBehaviour {
     private SubactionSource[] sources = new SubactionSource[] { SubactionSource.CONSTANT, SubactionSource.OWNER, SubactionSource.ACTION };
     private int index = 0;
 
-    private void Awake()
+    private void Start()
     {
         index = Array.IndexOf(sources, panel.varData.source);
     }

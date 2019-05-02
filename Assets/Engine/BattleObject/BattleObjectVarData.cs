@@ -23,6 +23,11 @@ public class BattleObjectVarData
         //Debug.Log("Getting Float Data: " + varName + " - " + varData);
         if (varData is string)
             return float.Parse((string)varData);
+        else if (varData == null)
+        {
+            Debug.LogWarning("Attempting to get FloatData from null VarData");
+            return 0.0f;
+        }
         else
             return (float)varData;
     }
@@ -31,6 +36,11 @@ public class BattleObjectVarData
     {
         if (varData is string)
             return int.Parse((string)varData);
+        else if (varData == null)
+        {
+            Debug.LogWarning("Attempting to get IntData from null VarData");
+            return 0;
+        }
         else
             return (int)varData;
     }
@@ -39,13 +49,26 @@ public class BattleObjectVarData
     {
         if (varData is string)
             return bool.Parse((string)varData);
+        else if (varData == null)
+        {
+            Debug.LogWarning("Attempting to get BoolData from null VarData");
+            return false;
+        }
         else
             return (bool)varData;
     }
 
     public string GetStringData()
     {
-        return varData.ToString();
+        if (varData == null)
+        {
+            Debug.LogWarning("Attempting to get StrubgData from null VarData");
+            return "";
+        }
+        else
+        {
+            return varData.ToString();
+        }
     }
 
     public void SetData(object data)

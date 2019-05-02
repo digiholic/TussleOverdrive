@@ -101,7 +101,6 @@ public class BuilderControlPane : MonoBehaviour {
 
         //If we make the zoom and it's too far or too close, undo the zoom
         Vector3 distanceToFighter = viewerCamera.transform.localPosition - targetObject.transform.localPosition;
-        Debug.Log(distanceToFighter);
         if (distanceToFighter.magnitude < minZoomDist  || distanceToFighter.magnitude > maxZoomDist)
         {
             viewerCamera.transform.localPosition = oldZoom;

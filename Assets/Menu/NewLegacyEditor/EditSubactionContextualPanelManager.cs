@@ -10,7 +10,7 @@ public class EditSubactionContextualPanelManager : LegacyEditorWidget
 
     void OnSubactionChanged(SubactionData subaction)
     {
-        Debug.Log("Subaction Changed: " + subaction,this);
+        //Debug.Log("Subaction Changed: " + subaction,this);
         if (subaction == null)
         {
             //Debug.Log("Deactivating default", defaultSubactionContextPanel);

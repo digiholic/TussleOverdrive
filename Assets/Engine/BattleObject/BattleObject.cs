@@ -175,6 +175,7 @@ public class BattleObject : MonoBehaviour, IVarDataContainer
         if (!HasVar(var_name))
         {
             Debug.Log("Attempting to get variable without setting one: " + var_name);
+            //return new BattleObjectVarData(var_name, null);
             SetVar(var_name, null);
         }
         return variables[var_name];
