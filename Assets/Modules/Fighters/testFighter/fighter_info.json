@@ -1,0 +1,23 @@
+{
+    "display_name": "testFighter",
+    "franchise_icon_path": "",
+    "css_icon_path": "",
+    "css_portrait_path": "",
+    "action_file_path": "",
+    "sound_path": "",
+    "sprite_info": {
+        "sprite_directory": "",
+        "sprite_prefix": "",
+        "sprite_default": "",
+        "sprite_pixelsPerUnit": 0.0,
+        "sprite_atlas_path": "",
+        "sprite_atlas": {
+            "instanceID": 0
+        }
+    },
+    "colorPalettes": [],
+    "variables": [],
+    "JSONFile": {
+        "instanceID": 0
+    }
+}

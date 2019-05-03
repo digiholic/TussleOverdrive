@@ -1440,7 +1440,8 @@ public class UIInput : MonoBehaviour
 					mCaret.mainTexture = mBlankTex;
 					mCaret.fillGeometry = false;
 					mCaret.pivot = label.pivot;
-					mCaret.SetAnchor(label.cachedTransform);
+					mCaret.SetAnchor(label.cachedTransform.gameObject,10,0,0,0);
+                    
 				}
 				else
 				{
