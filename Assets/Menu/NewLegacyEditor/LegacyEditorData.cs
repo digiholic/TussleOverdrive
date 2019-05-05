@@ -17,6 +17,8 @@ public class LegacyEditorData : MonoBehaviour
     private PanelHider ShadowRealm;
     [SerializeField]
     private FileBrowser fileBrowser;
+    [SerializeField]
+    private NewFighterPopup newFighterPopup;
 
     [Header("Fighter Data")]
     public string FighterDirName;
@@ -310,6 +312,11 @@ public class LegacyEditorData : MonoBehaviour
         string path = FileLoader.PathCombine(FileLoader.GetFighterPath(FighterDirName), loadedFighter.action_file_path);
         loadedActionFile.Save(path);
         Debug.Log("Saved Fighter: " + path);
+    }
+
+    public void NewFighterClicked()
+    {
+        newFighterPopup.Initialize();
     }
 
     private bool LoadFighterFromFile(FileInfo info)

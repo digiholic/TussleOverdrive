@@ -65,7 +65,7 @@ public class GameAction {
     public virtual void SetUp (BattleObject obj) {
         last_frame = length;
         actor = obj;
-        actor.BroadcastMessage("ChangeSprite",sprite_name);
+        actor.BroadcastMessage("ChangeSprite",sprite_name,SendMessageOptions.DontRequireReceiver);
         game_controller = BattleController.current_battle;
         foreach (Subaction subaction in subactionCategories.GetIfKeyExists(SubactionGroup.SETUP))
             CheckCondAndExecute(subaction);

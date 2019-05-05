@@ -8,15 +8,12 @@ public class AttributeCreatorLine : MonoBehaviour {
     
     void NewAttribute()
     {
-        if (variable_name.text != "")
+        if (variable_name.value != "")
         {
-            VarData item = new VarData();
-            item.name = variable_name.text;
-            item.type = VarType.FLOAT;
-            item.value = "0";
+            VarData item = new VarData(variable_name.value,"0",VarType.FLOAT);
             LegacyEditor.editor.current_fighter.variables.Add(item);
             LegacyEditor.FireChangeFighter(LegacyEditor.editor.current_fighter);
-            variable_name.text = "";
+            variable_name.value = "";
         }
     }
 }

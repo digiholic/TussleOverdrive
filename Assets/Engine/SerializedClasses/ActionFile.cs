@@ -146,6 +146,7 @@ public class ActionFile
 
     public void WriteJSON(string path)
     {
+        Debug.Log("Writing JSON for Action File to: "+path);
         string thisjson = JsonUtility.ToJson(this, true);
         File.WriteAllText(path, thisjson);
     }
