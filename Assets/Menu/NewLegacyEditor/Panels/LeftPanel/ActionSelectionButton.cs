@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ActionSelectionButton : MonoBehaviour {
-    private UILabel label;
+    public UILabel label;
 
     public DynamicAction action;
 	// Use this for initialization

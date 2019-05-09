@@ -8,6 +8,11 @@ public class ActionSelectionButtonRig : LegacyEditorWidget {
     private List<GameObject> children = new List<GameObject>();
     private UIGrid grid;
 
+    [SerializeField]
+    private Transform anchorObject;
+    [SerializeField]
+    private int leftAnchorOffset, rightAnchorOffset;
+
 	// Use this for initialization
 	void Awake () {
         grid = GetComponent<UIGrid>();
@@ -56,6 +61,14 @@ public class ActionSelectionButtonRig : LegacyEditorWidget {
         GameObject go = NGUITools.AddChild(gameObject, actionSelectionButtonPrefab);
         ActionSelectionButton button = go.GetComponent<ActionSelectionButton>();
         button.SetAction(action);
+        button.label.leftAnchor.target = anchorObject;
+        button.label.leftAnchor.relative = 0;
+        button.label.leftAnchor.absolute = leftAnchorOffset;
+        button.label.rightAnchor.target = anchorObject;
+        button.label.rightAnchor.relative = 1;
+        button.label.rightAnchor.absolute = rightAnchorOffset;
+
+
         children.Add(go);
     }
 
