@@ -3,20 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SubactionCard : LegacyEditorWidget {
-    [SerializeField]
-    private UISprite selectedBg;
-    [SerializeField]
-    private UISprite unselectedBg;
-    [SerializeField]
-    private UILabel label;
+    [SerializeField] private UISprite selectedBg;
+    [SerializeField] private UISprite unselectedBg;
+    [SerializeField] private UILabel label;
 
     public SubactionData subaction = null;
 
-	// Use this for initialization
-	void Start () {
-
-	}
-	
     void OnSubactionChanged(SubactionData data)
     {
         if (subaction != null) //If the subaction is null it should always remain off
@@ -34,9 +26,27 @@ public class SubactionCard : LegacyEditorWidget {
         }
     }
 
+    public void SetAnchors(Transform anchorObject,int leftAnchorOffset, int rightAnchorOffset)
+    {
+        selectedBg.leftAnchor.target = anchorObject;
+        selectedBg.leftAnchor.relative = 0;
+        selectedBg.leftAnchor.absolute = leftAnchorOffset;
+
+        selectedBg.rightAnchor.target = anchorObject;
+        selectedBg.rightAnchor.relative = 1;
+        selectedBg.rightAnchor.absolute = rightAnchorOffset;
+
+        unselectedBg.leftAnchor.target = anchorObject;
+        unselectedBg.leftAnchor.relative = 0;
+        unselectedBg.leftAnchor.absolute = leftAnchorOffset;
+
+        unselectedBg.rightAnchor.target = anchorObject;
+        unselectedBg.rightAnchor.relative = 1;
+        unselectedBg.rightAnchor.absolute = rightAnchorOffset;
+    }
+
     public void SetSubaction(SubactionData subactionToSet)
     {
-        Debug.Log("Setting button for subaction: " + subactionToSet.SubactionName,this);
         subaction = subactionToSet;
         label.text = subaction.SubactionName;
         ChangeCurrentSubaction legacyAction = ScriptableObject.CreateInstance<ChangeCurrentSubaction>();

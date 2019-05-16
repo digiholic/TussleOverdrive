@@ -32,7 +32,7 @@ public class Subaction : ScriptableObject
             return arg_dict[arg_name].GetData(owner,action);
         } else
         {
-            Debug.LogWarning("Argument not found in subaction: " + arg_name);
+            Debug.LogWarning("Argument "+arg_name+" not found in subaction: " + SubactionName);
         }
         return defaultValue;
     }

@@ -7,9 +7,10 @@ public class SubactionCardRig : LegacyEditorWidget {
 
     private List<GameObject> children = new List<GameObject>();
     private UIGrid grid;
-    [SerializeField]
-    private UIScrollView dragPanel;
-
+    [SerializeField] private UIScrollView dragPanel;
+    [SerializeField] private Transform anchorObject;
+    [SerializeField] private int leftAnchorOffset;
+    [SerializeField] private int rightAnchorOffset;
 
     private DynamicAction lastKnownAction = null;
     private string lastKnownGroup = "";
@@ -80,6 +81,9 @@ public class SubactionCardRig : LegacyEditorWidget {
     {
         GameObject go = NGUITools.AddChild(gameObject, SubactionCardPrefab);
         SubactionCard card = go.GetComponent<SubactionCard>();
+
+        card.SetAnchors(anchorObject, leftAnchorOffset, rightAnchorOffset);
+
         card.SetSubaction(subDataToSet);
         card.SetEditor(editor);
         card.RegisterListeners();

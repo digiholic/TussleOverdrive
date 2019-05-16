@@ -1,12 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Diagnostics;
 using System;
 
 public class GameAction {
-    private StackTrace stackTrace = new StackTrace();
-
     public string name;
     public string sprite_name;
     public int sprite_rate = 1;
@@ -68,7 +65,9 @@ public class GameAction {
         actor.BroadcastMessage("ChangeSprite",sprite_name,SendMessageOptions.DontRequireReceiver);
         game_controller = BattleController.current_battle;
         foreach (Subaction subaction in subactionCategories.GetIfKeyExists(SubactionGroup.SETUP))
+        {
             CheckCondAndExecute(subaction);
+        }
     }
 
     // Update is called once per frame

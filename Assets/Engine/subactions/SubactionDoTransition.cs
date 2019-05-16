@@ -12,7 +12,7 @@ using UnityEngine;
 public class SubactionDoTransition : Subaction {
     public override void Execute(BattleObject obj, GameAction action)
     {
-        string name = (string) GetArgument("name", obj, action);
+        string name = (string) GetArgument("transitionState", obj, action);
         StateTransitions.LoadTransitionState(name, obj.GetAbstractFighter());
     }
 

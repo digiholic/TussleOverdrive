@@ -40,7 +40,6 @@ public class ActionHandler : BattleComponent {
 
     public void DoAction(string _actionName)
     {
-        Debug.Log("GameAction: "+_actionName);
         GameAction old_action = _current_action;
         _current_action = LoadAction(_actionName);
         _current_action.SetDynamicAction(actions_file.Get(_actionName));

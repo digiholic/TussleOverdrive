@@ -68,7 +68,6 @@ public class ActionSelectionButtonRig : LegacyEditorWidget {
         button.label.rightAnchor.relative = 1;
         button.label.rightAnchor.absolute = rightAnchorOffset;
 
-
         children.Add(go);
     }
 

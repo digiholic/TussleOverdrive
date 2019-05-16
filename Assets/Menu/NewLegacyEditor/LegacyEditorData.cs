@@ -205,6 +205,11 @@ public class LegacyEditorData : MonoBehaviour
         loadedActionFile = ActionFile.LoadActionsFromFile(FighterDirName, loadedFighter.action_file_path);
         currentAction = loadedActionFile.GetFirst();
         FireModelChange();
+
+        foreach (UIPanel panel in GameObject.FindObjectsOfType<UIPanel>())
+        {
+            Debug.Log(panel.gameObject.name + " - " + panel.depth,panel.gameObject);
+        }
     }
 
     private void Update()

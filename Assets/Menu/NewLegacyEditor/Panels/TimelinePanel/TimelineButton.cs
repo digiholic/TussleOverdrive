@@ -9,7 +9,7 @@ public class TimelineButton : MonoBehaviour {
     }
     public TimelineButtonType buttonType;
 
-    void OnAction()
+    public void OnAction()
     {
         ChangeCurrentFrame legacyAction = ScriptableObject.CreateInstance<ChangeCurrentFrame>();
 
