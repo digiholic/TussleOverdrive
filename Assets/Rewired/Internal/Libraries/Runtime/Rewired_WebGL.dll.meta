@@ -9,9 +9,10 @@ PluginImporter:
   isPreloaded: 0
   isOverridable: 0
   isExplicitlyReferenced: 0
+  validateReferences: 1
   platformData:
   - first:
-      '': Any
+      : Any
     second:
       enabled: 0
       settings:
@@ -30,7 +31,7 @@ PluginImporter:
         Exclude iOS: 1
         Exclude tvOS: 1
   - first:
-      '': WP8
+      : WP8
     second:
       enabled: 0
       settings:
@@ -84,7 +85,7 @@ PluginImporter:
     second:
       enabled: 0
       settings:
-        CPU: x86_64
+        CPU: AnyCPU
   - first:
       Standalone: OSXIntel
     second:

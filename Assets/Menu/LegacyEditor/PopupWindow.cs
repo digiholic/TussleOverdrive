@@ -53,9 +53,9 @@ public class PopupWindow : MonoBehaviour {
     public void OpenImageBrowser()
     {
         DirectoryInfo startDir = FileLoader.FighterDir;
-        if (LegacyEditor.editor.current_fighter != null)
+        if (LegacyEditorData.instance.loadedFighter != null)
         {
-            startDir = FileLoader.GetFighterDir(LegacyEditor.editor.current_fighter.directory_name);
+            startDir = FileLoader.GetFighterDir(LegacyEditorData.instance.loadedFighter.directory_name);
         }
         OpenFileBrowser(startDir, FileBrowser.ValidateImage, null);
     }

@@ -214,9 +214,8 @@ public class FileBrowser : MonoBehaviour {
         FighterInfo fighter_info = JsonUtility.FromJson<FighterInfo>(File.ReadAllText(file_info.FullName));
         if (fighter_info.display_name != null)
         {
-            LegacyEditor.editor.fighter_file = file_info;
             fighter_info.LoadDirectory(file_info.DirectoryName);
-            LegacyEditor.FireChangeFighter(fighter_info);
+            LegacyEditorData.instance.LoadNewFighter(fighter_info);
             return true;
         }
         else
