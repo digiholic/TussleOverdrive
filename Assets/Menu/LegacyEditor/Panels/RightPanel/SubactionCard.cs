@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class SubactionCard : LegacyEditorWidget {
     [SerializeField] private UISprite selectedBg;
-    [SerializeField] private UISprite unselectedBg;
     [SerializeField] private UILabel label;
 
     public SubactionData subaction = null;
+
+    private void Awake()
+    {
+        selectedBg = GetComponent<UISprite>();    
+    }
 
     void OnSubactionChanged(SubactionData data)
     {
@@ -15,19 +19,18 @@ public class SubactionCard : LegacyEditorWidget {
         {
             if (data == subaction)
             {
-                NGUITools.SetActive(selectedBg.gameObject, true);
-                NGUITools.SetActive(unselectedBg.gameObject, false);
+                selectedBg.spriteName = "selected-action-bg";
             }
             else
             {
-                NGUITools.SetActive(selectedBg.gameObject, false);
-                NGUITools.SetActive(unselectedBg.gameObject, true);
+                selectedBg.spriteName = "unselected-action-bg";
             }
         }
     }
 
     public void SetAnchors(Transform anchorObject,int leftAnchorOffset, int rightAnchorOffset)
     {
+        /*
         selectedBg.leftAnchor.target = anchorObject;
         selectedBg.leftAnchor.relative = 0;
         selectedBg.leftAnchor.absolute = leftAnchorOffset;
@@ -35,14 +38,7 @@ public class SubactionCard : LegacyEditorWidget {
         selectedBg.rightAnchor.target = anchorObject;
         selectedBg.rightAnchor.relative = 1;
         selectedBg.rightAnchor.absolute = rightAnchorOffset;
-
-        unselectedBg.leftAnchor.target = anchorObject;
-        unselectedBg.leftAnchor.relative = 0;
-        unselectedBg.leftAnchor.absolute = leftAnchorOffset;
-
-        unselectedBg.rightAnchor.target = anchorObject;
-        unselectedBg.rightAnchor.relative = 1;
-        unselectedBg.rightAnchor.absolute = rightAnchorOffset;
+        */
     }
 
     public void SetSubaction(SubactionData subactionToSet)
