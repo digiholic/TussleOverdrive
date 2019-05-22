@@ -24,21 +24,21 @@ public class SubactionCardRig : LegacyEditorWidget {
     void OnActionChanged(DynamicAction action)
     {
         //We only want to fire the update if the action actually changed, in case we fired an event earlier for the group or frame
-        if (action != lastKnownAction)
+        //if (action != lastKnownAction)
             UpdateCard();
     }
 
     void OnGroupChanged(string s)
     {
         //We only want to fire the update if the action actually changed, in case we fired an event earlier for the action or frame
-        if (s != lastKnownGroup)
+        //if (s != lastKnownGroup)
             UpdateCard();
     }
 
     void OnFrameChanged(int frame)
     {
         //We only want to fire the update if the action actually changed, in case we fired an event earlier for the group or action
-        if (frame != lastKnownFrame)
+        //if (frame != lastKnownFrame)
             UpdateCard();
     }
 
@@ -48,10 +48,12 @@ public class SubactionCardRig : LegacyEditorWidget {
         lastKnownAction = editor.currentAction;
         lastKnownFrame = editor.currentFrame;
         lastKnownGroup = editor.subactionGroup;
+        
 
         //Get rid of our old list
         foreach (GameObject child in children)
         {
+            child.SendMessage("UnregisterListeners");
             NGUITools.Destroy(child);
         }
         children.Clear(); //Empty the list for future use

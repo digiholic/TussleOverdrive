@@ -45,7 +45,7 @@ public class SubactionCreateButtonRig : MonoBehaviour {
 
                 //Realign the grid
                 grid.Reposition();
-                dragPanel.ResetPosition();
+                //dragPanel.ResetPosition();
             }
         }
     }

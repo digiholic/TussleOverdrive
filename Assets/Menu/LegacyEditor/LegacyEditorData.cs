@@ -390,8 +390,7 @@ public class LegacyEditorData : MonoBehaviour
     /// </summary>
     public static void ChangedFighterData()
     {
-        if (instance.FighterInfoChangedEvent != null)
-            instance.FighterInfoChangedEvent(instance.loadedFighter);
+        instance.FighterInfoChangedEvent?.Invoke(instance.loadedFighter);
     }
 
     /// <summary>
@@ -400,10 +399,8 @@ public class LegacyEditorData : MonoBehaviour
     /// </summary>
     public static void ChangedActionData()
     {
-        if (instance.CurrentActionChangedEvent != null)
-            instance.CurrentActionChangedEvent(instance.currentAction);
-        if (instance.ActionFileChangedEvent != null)
-            instance.ActionFileChangedEvent(instance.loadedActionFile);
+        instance.CurrentActionChangedEvent?.Invoke(instance.currentAction);
+        instance.ActionFileChangedEvent?.Invoke(instance.loadedActionFile);
     }
 
     /// <summary>
@@ -412,8 +409,7 @@ public class LegacyEditorData : MonoBehaviour
     /// </summary>
     public static void ChangedActionFile()
     {
-        if (instance.ActionFileChangedEvent != null)
-            instance.ActionFileChangedEvent(instance.loadedActionFile);
+        instance.ActionFileChangedEvent?.Invoke(instance.loadedActionFile);
     }
 
     /// <summary>
@@ -422,10 +418,8 @@ public class LegacyEditorData : MonoBehaviour
     /// </summary>
     public static void ChangedSubaction()
     {
-        if (instance.CurrentSubactionChangedEvent != null)
-            instance.CurrentSubactionChangedEvent(instance.currentSubaction);
-        if (instance.GroupDropdownChangedEvent != null)
-            instance.GroupDropdownChangedEvent(instance.subactionGroup);
+        instance.CurrentSubactionChangedEvent?.Invoke(instance.currentSubaction);
+        instance.GroupDropdownChangedEvent?.Invoke(instance.subactionGroup);
     }
 
     /// <summary>
