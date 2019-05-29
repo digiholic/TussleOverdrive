@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class LeftDropdown : LegacyEditorWidget {
     private UIPopupList list;
+    private UILabel label;
 
 	// Use this for initialization
 	void Awake () {
         list = GetComponent<UIPopupList>();
+        label = GetComponentInChildren<UILabel>();
     }
 
     void Start()
@@ -16,25 +18,13 @@ public class LeftDropdown : LegacyEditorWidget {
         {
             list.items.Add(opt);
         }
-        UpdateOptionWithoutEvent();
-        //EventDelegate.Add(list.onChange, OnChangeDropdown); ^^
     }
 
     void OnLeftDropdownChanged(string s)
     {
-        UpdateOptionWithoutEvent();
-    }
-    
-    //This is hacky as fuck, isn't it? I'm unsetting the event receiver so I can change this data without firing another change, preventing a double-fire and blowing up the redoList
-    public void UpdateOptionWithoutEvent()
-    {
-        /* ^^
-        EventDelegate.Remove(list.onChange, OnChangeDropdown);
-        //list.eventReceiver = null; ^^
-        list.value = LegacyEditorData.instance.leftDropdown;
-        //list.eventReceiver = gameObject; ^^
-        EventDelegate.Set(list.onChange, OnChangeDropdown);
-        */
+        Debug.Log("Left Changed: "+s);
+        label.text = s;
+        list.Set(s, false);
     }
     
     public void OnChangeDropdown()

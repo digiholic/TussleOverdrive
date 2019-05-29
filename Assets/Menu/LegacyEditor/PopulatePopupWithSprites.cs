@@ -9,7 +9,7 @@ public class PopulatePopupWithSprites : PopulatePopup
     
     void OnFighterChanged(FighterInfo info)
     {
-        List<SpriteData> sprites = new List<SpriteData>(LegacyEditorData.instance.loadedFighter.getSpriteData().sprites);
+        List<ImageDefinition> sprites = new List<ImageDefinition>(LegacyEditorData.instance.loadedFighter.getSpriteData().sprites);
         sprite_names = sprites.Select(spriteData => spriteData.sprite_name).ToList();
         sprite_names.Sort();
         PopulateList(sprite_names);

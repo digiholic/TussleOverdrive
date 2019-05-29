@@ -8,8 +8,7 @@ public class SubactionVarDataRig : LegacyEditorWidget {
 
     private List<GameObject> children = new List<GameObject>();
     private UIGrid grid;
-    [SerializeField]
-    private UIScrollView dragPanel;
+
 	// Use this for initialization
 	void Awake () {
         grid = GetComponent<UIGrid>();
@@ -37,7 +36,6 @@ public class SubactionVarDataRig : LegacyEditorWidget {
         InstantiateDeleteButton();
 
         grid.Reposition();
-        dragPanel.ResetPosition();
     }
     
     void InstantiateSubactionVarDataCard(SubactionVarData varData)

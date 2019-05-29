@@ -46,6 +46,14 @@ public class SubactionDataDocumentationCreator : MonoBehaviour {
         }
         htmlString += "</html>";
 
-        File.WriteAllText(Application.dataPath + "/Subaction-README.html", htmlString);
+        //Sometimes the game tries to load while this is being written to, so it errors out. Some kinda permission thing. Skipping an auto save isn't really a problem, but it'd still be nice to know about it in case it's happening too often
+        try
+        {
+            File.WriteAllText(Application.dataPath + "/Subaction-README.html", htmlString);
+        }
+        catch
+        {
+            Debug.LogWarning("Autosave of Subaction README failed");
+        }
     }
 }

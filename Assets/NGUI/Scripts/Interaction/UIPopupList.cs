@@ -427,8 +427,8 @@ public class UIPopupList : UIWidgetContainer
 		if (mSelectedItem != value)
 		{
 			mSelectedItem = value;
-
-			if (mSelectedItem == null) return;
+            
+            if (mSelectedItem == null) return;
 #if UNITY_EDITOR
 			if (!Application.isPlaying) return;
 #endif

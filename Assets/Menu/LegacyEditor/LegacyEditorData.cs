@@ -206,10 +206,10 @@ public class LegacyEditorData : MonoBehaviour
         currentAction = loadedActionFile.GetFirst();
         FireModelChange();
 
-        foreach (UIPanel panel in GameObject.FindObjectsOfType<UIPanel>())
-        {
-            //Debug.Log(panel.gameObject.name + " - " + panel.depth,panel.gameObject);
-        }
+        //foreach (UIPanel panel in GameObject.FindObjectsOfType<UIPanel>())
+        //{
+        //    Debug.Log(panel.gameObject.name + " - " + panel.depth,panel.gameObject);
+        //}
     }
 
     private void Update()

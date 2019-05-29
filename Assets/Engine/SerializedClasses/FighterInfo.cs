@@ -5,7 +5,7 @@ using System.IO;
 using UnityEngine.U2D;
 
 [System.Serializable]
-public class FighterInfo {
+public class FighterInfo : IJsonInfoObject{
 
     public string display_name;
     public string franchise_icon_path;
@@ -37,15 +37,7 @@ public class FighterInfo {
 
     [SerializeField]
     private TextAsset JSONFile;
-    
-    public FileInfo WriteJSON(string path)
-    {
-        FileInfo fileSavedTo = new FileInfo(path);
-        string json = JsonUtility.ToJson(this, true);
-        File.WriteAllText(path, json);
-        return fileSavedTo;
-    }
-
+    #region IJsonInfoObject Implementation
     public FileInfo Save(string path)
     {
         return WriteJSON(path);
@@ -54,6 +46,23 @@ public class FighterInfo {
     public FileInfo Save()
     {
         return WriteJSON(FileLoader.PathCombine(directory_name, "fighter_info.json"));
+    }
+
+    public void LoadFromTextAsset()
+    {
+        if (JSONFile != null)
+        {
+            JsonUtility.FromJsonOverwrite(JSONFile.text, this);
+        }
+    }
+    #endregion
+
+    private FileInfo WriteJSON(string path)
+    {
+        FileInfo fileSavedTo = new FileInfo(path);
+        string json = JsonUtility.ToJson(this, true);
+        File.WriteAllText(path, json);
+        return fileSavedTo;
     }
 
     public void LoadDirectory(string directoryName)
@@ -84,14 +93,6 @@ public class FighterInfo {
         {
             Debug.LogWarning("No fighter file found at " + directory + "/" + filename);
             return null;
-        }
-    }
-
-    public void LoadFromTextAsset()
-    {
-        if (JSONFile != null)
-        {
-            JsonUtility.FromJsonOverwrite(JSONFile.text,this);
         }
     }
 
@@ -186,15 +187,4 @@ public class ColorMap
 {
     public string from_color;
     public string to_color;
-}
-
-[System.Serializable]
-public class SpriteInfo
-{
-    public string sprite_directory;
-    public string sprite_prefix;
-    public string sprite_default;
-    public float  sprite_pixelsPerUnit;
-    public string sprite_atlas_path;
-    public SpriteAtlas sprite_atlas;
 }

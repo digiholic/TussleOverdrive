@@ -6,11 +6,11 @@ using UnityEngine.U2D;
 
 [System.Serializable]
 public class SpriteHandler : BattleComponent {
-    public enum SpriteOrientation { LEFT, RIGHT }
+    public static string LEFT = "left";
+    public static string RIGHT = "right";
 
-    public SpriteOrientation orientation;
-    //public SpriteAtlas sprite_atlas;
-
+    public string orientation;
+    
     private FighterInfo fighter_info;
     private SpriteInfo sprite_info;
     private Dictionary<string,List<Sprite>> sprites = new Dictionary<string,List<Sprite>>();
@@ -55,9 +55,9 @@ public class SpriteHandler : BattleComponent {
     {
         sprites = new Dictionary<string, List<Sprite>>();
 
-        Dictionary<string, SpriteData> sprite_data_dict = new Dictionary<string, SpriteData>();
+        Dictionary<string, ImageDefinition> sprite_data_dict = new Dictionary<string, ImageDefinition>();
 
-        foreach (SpriteData data in sprite_list.sprites)
+        foreach (ImageDefinition data in sprite_list.sprites)
         {
             sprite_data_dict[data.sprite_name] = data;
             string filename = sprite_info.sprite_prefix + data.sprite_name + ".png";
@@ -169,10 +169,10 @@ public class SpriteHandler : BattleComponent {
         transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
 
         Debug.Log("Flipping");
-        if (orientation == SpriteOrientation.LEFT)
-            orientation = SpriteOrientation.RIGHT;
+        if (orientation == LEFT)
+            orientation = RIGHT;
         else
-            orientation = SpriteOrientation.LEFT;
+            orientation = LEFT;
         Vector3 transfVec = sprite_renderer.transform.localScale;
         transfVec.x *= -1;
         //sprite_renderer.transform.localScale = transfVec;
@@ -183,64 +183,9 @@ public class SpriteHandler : BattleComponent {
         if (HasVar(TussleConstants.FighterVariableNames.FACING_DIRECTION))
         {
             int facing = GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION);
-            if ((facing == 1 && orientation == SpriteOrientation.LEFT) ||
-                    (facing == -1 && orientation == SpriteOrientation.RIGHT))
+            if ((facing == 1 && orientation == LEFT) ||
+                    (facing == -1 && orientation == RIGHT))
                 flip();
         }
     }
-
-    /*
-    public static Texture2D CropTexture(Texture2D pSource, int left, int top, int width, int height)
-    {
-        if (left < 0)
-        {
-            width += left;
-            left = 0;
-        }
-        if (top < 0)
-        {
-            height += top;
-            top = 0;
-        }
-        if (left + width > pSource.width)
-        {
-            width = pSource.width - left;
-        }
-        if (top + height > pSource.height)
-        {
-            height = pSource.height - top;
-        }
-
-        if (width <= 0 || height <= 0)
-        {
-            return null;
-        }
-
-        Color[] aSourceColor = pSource.GetPixels(0);
-
-        //*** Make New
-        Texture2D oNewTex = new Texture2D(width, height, TextureFormat.RGBA32, false);
-
-        //*** Make destination array
-        int xLength = width * height;
-        Color[] aColor = new Color[xLength];
-
-        int i = 0;
-        for (int y = 0; y < height; y++)
-        {
-            int sourceIndex = (y + top) * pSource.width + left;
-            for (int x = 0; x < width; x++)
-            {
-                aColor[i++] = aSourceColor[sourceIndex++];
-            }
-        }
-
-        //*** Set Pixels
-        oNewTex.SetPixels(aColor);
-        oNewTex.Apply();
-
-        //*** Return
-        return oNewTex;
-    }
-    */
 }

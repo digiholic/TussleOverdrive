@@ -14,7 +14,7 @@ public class FighterInfoLoader : MonoBehaviour {
     public void SaveFighter()
     {
         string dir = FileLoader.GetFighterPath(directory);
-        fighter_info.WriteJSON(FileLoader.PathCombine(dir, filename));
+        fighter_info.Save(FileLoader.PathCombine(dir, filename));
     }
 
     public void LoadFighter()
