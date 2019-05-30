@@ -40,12 +40,19 @@ public class FighterInfo : IJsonInfoObject{
     #region IJsonInfoObject Implementation
     public FileInfo Save(string path)
     {
-        return WriteJSON(path);
+        FileInfo fileSavedTo = new FileInfo(path);
+        string json = JsonUtility.ToJson(this, true);
+        File.WriteAllText(path, json);
+        return fileSavedTo;
     }
 
+    /// <summary>
+    /// Shortcut save method that will use the Fighter's Directory name and use the file name "fighter_info.json"
+    /// </summary>
+    /// <returns></returns>
     public FileInfo Save()
     {
-        return WriteJSON(FileLoader.PathCombine(directory_name, "fighter_info.json"));
+        return Save(FileLoader.PathCombine(directory_name, "fighter_info.json"));
     }
 
     public void LoadFromTextAsset()
@@ -56,14 +63,6 @@ public class FighterInfo : IJsonInfoObject{
         }
     }
     #endregion
-
-    private FileInfo WriteJSON(string path)
-    {
-        FileInfo fileSavedTo = new FileInfo(path);
-        string json = JsonUtility.ToJson(this, true);
-        File.WriteAllText(path, json);
-        return fileSavedTo;
-    }
 
     public void LoadDirectory(string directoryName)
     {
