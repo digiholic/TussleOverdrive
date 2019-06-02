@@ -9,39 +9,13 @@ using UnityEngine;
 [System.Serializable]
 public class SpriteInfo : IJsonInfoObject
 {
-    #region old data
-    public string sprite_directory;
-    public string sprite_prefix;
-    public string sprite_default;
-    public float sprite_pixelsPerUnit;
-    #endregion
-
     [SerializeField]
-    private TextAsset JSONFile;
-
+    
     private string directory_name;
     private string spriteDirectory;
     private string costumeName;
     private List<AnimationDefinition> animations;
     private List<ImageDefinition> sprites;
-
-    #region IJsonInfoObject Implementation
-    public void LoadFromTextAsset()
-    {
-        if (JSONFile != null)
-        {
-            JsonUtility.FromJsonOverwrite(JSONFile.text, this);
-        }
-    }
-
-    public FileInfo Save(string path)
-    {
-        FileInfo fileSavedTo = new FileInfo(path);
-        string json = JsonUtility.ToJson(this, true);
-        File.WriteAllText(path, json);
-        return fileSavedTo;
-    }
-    #endregion
 
     /// <summary>
     /// Load a directory of sprites, caching their images for future use
@@ -64,4 +38,30 @@ public class SpriteInfo : IJsonInfoObject
             }
         }
     }
+
+    #region old data
+    public string sprite_directory;
+    public string sprite_prefix;
+    public string sprite_default;
+    public float sprite_pixelsPerUnit;
+    #endregion
+    #region IJsonInfoObject Implementation
+    private TextAsset JSONFile;
+
+    public void LoadFromTextAsset()
+    {
+        if (JSONFile != null)
+        {
+            JsonUtility.FromJsonOverwrite(JSONFile.text, this);
+        }
+    }
+
+    public FileInfo Save(string path)
+    {
+        FileInfo fileSavedTo = new FileInfo(path);
+        string json = JsonUtility.ToJson(this, true);
+        File.WriteAllText(path, json);
+        return fileSavedTo;
+    }
+    #endregion
 }
