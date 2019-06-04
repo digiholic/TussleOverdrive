@@ -12,9 +12,9 @@ public class FighterInfo : IJsonInfoObject{
     public string css_icon_path;
     public string css_portrait_path;
     public string action_file_path;
+    public string sprite_info_path;
     public string sound_path;
 
-    public SpriteInfo sprite_info;
     public List<FighterPalette> colorPalettes;
     public List<VarData> variables;
 
@@ -33,11 +33,13 @@ public class FighterInfo : IJsonInfoObject{
     [System.NonSerialized]
     public ActionFile action_file;
     [System.NonSerialized]
+    public SpriteInfo sprite_info;
+    [System.NonSerialized]
     public bool initialized = false;
 
+    #region IJsonInfoObject Implementation
     [SerializeField]
     private TextAsset JSONFile;
-    #region IJsonInfoObject Implementation
     public FileInfo Save(string path)
     {
         FileInfo fileSavedTo = new FileInfo(path);
@@ -67,12 +69,20 @@ public class FighterInfo : IJsonInfoObject{
     public void LoadDirectory(string directoryName)
     {
         directory_name = FileLoader.GetFighterPath(directoryName);
+
+        //Initialize the meta-level sprites like icons and whatnot
         franchise_icon_sprite = FileLoader.LoadSprite(FileLoader.PathCombine(directory_name,franchise_icon_path));
         css_icon_sprite = FileLoader.LoadSprite(FileLoader.PathCombine(directory_name, css_icon_path));
         css_portrait_sprite = FileLoader.LoadSprite(FileLoader.PathCombine(directory_name, css_portrait_path));
-        //sprite_info.sprite_atlas = FileLoader.LoadSprite(FileLoader.PathCombine(directory_name, sprite_info.sprite_atlas_path);
+
+        //Load the external data json
         string action_file_json = FileLoader.LoadTextFile(FileLoader.PathCombine(directory_name, action_file_path));
         action_file = JsonUtility.FromJson<ActionFile>(action_file_json);
+        string sprite_info_json = FileLoader.LoadTextFile(FileLoader.PathCombine(directory_name, sprite_info_path));
+        sprite_info = JsonUtility.FromJson<SpriteInfo>(sprite_info_json);
+        sprite_info.LoadDirectory(directoryName);
+
+        //Mark the fighter info as initialized and ready
         initialized = true;
     }
 
@@ -102,24 +112,6 @@ public class FighterInfo : IJsonInfoObject{
             if (data.name == name) return data;
         }
         return null;
-    }
-
-    public SpriteDataCollection getSpriteData()
-    {
-        DirectoryInfo info = new DirectoryInfo(FileLoader.PathCombine(directory_name, sprite_info.sprite_directory));
-        string sprite_json_path = Path.Combine(info.FullName, "sprites.json");
-
-        if (File.Exists(sprite_json_path))
-        {
-            string sprite_json = File.ReadAllText(sprite_json_path);
-            SpriteDataCollection sprite_list = JsonUtility.FromJson<SpriteDataCollection>(sprite_json);
-            return sprite_list;
-        }
-        else
-        {
-            Debug.LogError("No sprites JSON found: " + sprite_json_path);
-            return null;
-        }
     }
 
     public void CreateOrUpdateVarData(VarData newData)

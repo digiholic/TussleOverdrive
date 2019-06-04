@@ -12,22 +12,18 @@ public class DynamicAction : IVarDataContainer
 {
     public string name;
     public int length;
-    public string sprite;
-    public int sprite_rate;
-    public bool loop;
+    public string animationName;
     public string exit_action;
 
     //Dictionary keys are the SubactionCategories defined in the SubactionGroup enum, or "Frame_XX" for each frame.
     public SubGroupDict subactionCategories = new SubGroupDict();
     public Dictionary<string, BattleObjectVarData> variables = new Dictionary<string, BattleObjectVarData>();
 
-    public DynamicAction(string _name, int _length = 1, string _sprite = "idle", int _sprite_rate = 1, bool _loop = false, string _exit_action = "NeutralAction")
+    public DynamicAction(string _name, int _length = 1, string _animation = "idle", string _exit_action = "NeutralAction")
     {
         name = _name;
         length = _length;
-        sprite = _sprite;
-        sprite_rate = _sprite_rate;
-        loop = _loop;
+        animationName = _animation;
         exit_action = _exit_action;
     }
 
@@ -41,9 +37,7 @@ public class DynamicAction : IVarDataContainer
     {
         name = sourceAction.name;
         length = sourceAction.length;
-        sprite = sourceAction.sprite;
-        sprite_rate = sourceAction.sprite_rate;
-        loop = sourceAction.loop;
+        animationName = sourceAction.animationName;
         exit_action = sourceAction.exit_action;
 
         //TODO clones currently have no subactions. I'll figure this out later.

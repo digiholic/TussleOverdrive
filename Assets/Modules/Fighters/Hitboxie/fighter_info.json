@@ -4,6 +4,7 @@
     "css_icon_path": "sprites\\icon_hitboxie.png",
     "css_portrait_path": "sprites/icon_hitboxie.png",
     "action_file_path": "hitboxie_actions.json",
+    "sprite_info_path": "sprite_info.json",
     "sound_path": "sfx",
     "sprite_info": {
         "sprite_directory": "sprites",

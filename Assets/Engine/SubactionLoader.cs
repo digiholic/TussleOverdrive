@@ -140,7 +140,6 @@ public class SubactionLoader : BattleComponent {
                  *      SPRITE MODE ONLY
                  *      Changes to the sprite subimage of the current animation with the given index
                  */
-                action.sprite_rate = 0; //We've broken the integrity of the sprite_rate calculator, so we have to turn it off
                 actor.BroadcastMessage("ChangeSubimage",int.Parse(args[1]));
                 break;
             case "Flip":

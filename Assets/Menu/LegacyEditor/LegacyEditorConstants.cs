@@ -16,7 +16,7 @@ public class LegacyEditorConstants {
         { "Fighter",    new string[] { "Attributes", "Variables", "Palettes"} },
         { "Actions",    new string[] { "Properties", "Subactions", "Hitboxes", "Hurtboxes" } },
         { "Methods",    new string[] { "" } },
-        { "Sprites",    new string[] { "Cropping", "Anchors" } },
+        { "Sprites",    new string[] { "Properties"} },
         { "Animations", new string[] { "Frame" } }
     };
 }

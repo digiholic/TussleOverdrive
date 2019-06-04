@@ -1,0 +1,12 @@
+{
+  "spriteDirectory": "sprites",
+  "default_sprite": "idle",
+  "costumeName": "default",
+  "animations": [
+    {
+      "animationName": "idle",
+      "spriteRate": "0",
+      "loop": "true"
+    }
+  ]
+}

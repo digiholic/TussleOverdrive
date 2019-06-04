@@ -26,18 +26,20 @@ public class LegacyEditorData : MonoBehaviour
     public delegate void FighterInfoChangeResults(FighterInfo info);
     public delegate void ActionFileChangeResults(ActionFile actions);
     public delegate void DynamicActionChangeResults(DynamicAction action);
+    public delegate void AnimationDefinitionChangeResults(AnimationDefinition anim);
     public delegate void StringChangeResults(string s);
     public delegate void IntChangeResults(int i);
     public delegate void SubactionDataChangeResults(SubactionData data);
 
-    public event FighterInfoChangeResults        FighterInfoChangedEvent;
-    public event ActionFileChangeResults         ActionFileChangedEvent;
-    public event DynamicActionChangeResults      CurrentActionChangedEvent;
-    public event StringChangeResults             LeftDropdownChangedEvent;
-    public event StringChangeResults             RightDropdownChangedEvent;
-    public event StringChangeResults             GroupDropdownChangedEvent;
-    public event IntChangeResults                CurrentFrameChangedEvent;
-    public event SubactionDataChangeResults      CurrentSubactionChangedEvent;
+    public event FighterInfoChangeResults         FighterInfoChangedEvent;
+    public event ActionFileChangeResults          ActionFileChangedEvent;
+    public event DynamicActionChangeResults       CurrentActionChangedEvent;
+    public event AnimationDefinitionChangeResults CurrentAnimationChangedEvent;
+    public event StringChangeResults              LeftDropdownChangedEvent;
+    public event StringChangeResults              RightDropdownChangedEvent;
+    public event StringChangeResults              GroupDropdownChangedEvent;
+    public event IntChangeResults                 CurrentFrameChangedEvent;
+    public event SubactionDataChangeResults       CurrentSubactionChangedEvent;
 
     #region Loaded Fighter - the currently loaded fighter info
     [SerializeField]
@@ -79,8 +81,21 @@ public class LegacyEditorData : MonoBehaviour
         set
         {
             _currentAction = value;
-            if (CurrentActionChangedEvent != null)
-                CurrentActionChangedEvent(value);
+            CurrentActionChangedEvent?.Invoke(value);
+        }
+    }
+    #endregion
+    #region Current Animation - the Animation currently selected from the left panel
+    [SerializeField]
+    private AnimationDefinition _currentAnimation;
+
+    public AnimationDefinition currentAnimation
+    {
+        get { return _currentAnimation; }
+        set
+        {
+            _currentAnimation = value;
+            CurrentAnimationChangedEvent?.Invoke(value);
         }
     }
     #endregion
@@ -285,7 +300,7 @@ public class LegacyEditorData : MonoBehaviour
         act.execute();
         //This is a special tool that will help us later
         undoList.Push(act);
-        FireModelChange();
+        //FireModelChange();
     }
 
     private void CheckKeyboardShortcuts()

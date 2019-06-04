@@ -107,15 +107,27 @@ public class ImageDefinition {
 
     #endregion
 
+
     /// <summary>
-    /// Get the cached sprite of this ImageDefinition, if it exists. This will return null if the cache isn't set,
-    /// or if the data has changed and this cache is invalid. Make sure to null check this!
+    /// Get the sprite this image definition represents. If it's not cached, it'll cache it, which
+    /// needs the directoryName and costumeName from the SpriteInfo. If the directoryName is empty, 
+    /// it'll return the cached sprite just fine, but will give a null if it's not set.
     /// </summary>
+    /// <param name="directoryName"></param>
+    /// <param name="costumeName"></param>
     /// <returns></returns>
-    public Sprite getCachedSprite()
+    public Sprite getSprite(string directoryName="",string costumeName="")
     {
-        //Invalidate the cachedd sprite if this data has changed
-        if (dirty) cachedSprite = null;
+        if (cachedSprite == null || dirty)
+        {
+            if (directoryName.Length > 0)
+            {
+                cacheSprite(directoryName, costumeName);
+            } else
+            {
+                cachedSprite = null;
+            }
+        }
         return cachedSprite;
     }
 
@@ -129,12 +141,21 @@ public class ImageDefinition {
         cachedSprite = sprite;
         dirty = false;
     }
+    
+    public void cacheSprite(string directoryName, string costumeName)
+    {
+        string filename = ImageName + ".png";
+        string path = FileLoader.PathCombine(directoryName, filename);
+        //If the costume name exists and isn't an empty string, make sure it's part of the path
+        if (costumeName != null && costumeName.Length > 0)
+        {
+            path = FileLoader.PathCombine(directoryName, costumeName, filename);
+        }
 
-    public string sprite_name;
-    public Vector2 sprite_size;
-    public Vector2 pivot_point = new Vector2(0.5f, 0.0f); //Defaults to bottom
-    public Vector2[] subimage;
-    public Dictionary<string, Vector2> anchor_points;
+        Texture2D cachedTextureFile = FileLoader.LoadTexture(path);
+        Sprite newSprite = Sprite.Create(cachedTextureFile, new Rect(OffsetX, OffsetY, Width, Height), Pivot.getAsRelative(this), PixelsPerUnit);
+        cacheSprite(newSprite);
+    }
 }
 
 /// <summary>
@@ -145,9 +166,11 @@ public class ImageDefinition {
 [System.Serializable]
 public class AnimationDefinition
 {
-    private List<ImageDefinition> subimages;
-    private int spriteRate;
-    private bool loop;
+    public string animationName;
+
+    public List<ImageDefinition> subimages;
+    public int spriteRate;
+    public bool loop;
 
     private int currentFrame;
     private int currentSubimageIndex;
@@ -197,13 +220,20 @@ public class AnimationDefinition
     /// <returns>The subimage index that would be shown on that frame</returns>
     public int getIndexForFrame(int frame)
     {
-        //this integer division should throw away any decimal, which is what we want at the moment
-        int resultSubimageIndex = frame / spriteRate;
+        //A zero sprite rate means no animation, so we need to make sure that it's not dividing by zero
+        if (spriteRate != 0)
+        {
+            //this integer division should throw away any decimal, which is what we want at the moment
+            int resultSubimageIndex = frame / spriteRate;
 
-        //handle looping if it's set, otherwise clamp it to between 0 and the last frame
-        if (loop) resultSubimageIndex = resultSubimageIndex % subimages.Count;
-        else resultSubimageIndex = Mathf.Clamp(resultSubimageIndex, 0, subimages.Count - 1);
-        return resultSubimageIndex;
+            //handle looping if it's set, otherwise clamp it to between 0 and the last frame
+            if (loop) resultSubimageIndex = resultSubimageIndex % subimages.Count;
+            else resultSubimageIndex = Mathf.Clamp(resultSubimageIndex, 0, subimages.Count - 1);
+            return resultSubimageIndex;
+        } else
+        {
+            return 0;
+        }
     }
 
     /// <summary>
@@ -215,6 +245,11 @@ public class AnimationDefinition
     public ImageDefinition getImageForFrame(int frame)
     {
         return subimages[getIndexForFrame(frame)];
+    }
+
+    public override string ToString()
+    {
+        return "Animation Definition: " + animationName;
     }
 }
 
@@ -265,10 +300,4 @@ public class AnchorPointData
             return new Vector2(xAbs, yAbs);
         }
     }
-}
-
-[System.Serializable]
-public class SpriteDataCollection
-{
-    public List<ImageDefinition> sprites = new List<ImageDefinition>();
 }

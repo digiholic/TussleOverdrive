@@ -7,13 +7,12 @@ public class BuilderFighter : LegacyEditorWidget{
 
     void OnFighterChanged(FighterInfo info)
     {
-        if (info.action_file != null && !info.action_file.Equals("") && info.getSpriteData() != null)
+        if (info.action_file != null && info.sprite_info != null)
         {
             fighterObject.SetActive(true);
             fighterObject.SendMessage("OnFighterInfoReady", info);
             SpriteHandler spriteHandler = fighterObject.GetComponent<SpriteHandler>();
-            spriteHandler.ChangeSprite("idle");
-            spriteHandler.ChangeSubimage(0);
+            spriteHandler.ChangeAnimation("idle", 0);
         } else
         {
             Debug.Log("Fighter does not have enough data to be enabled");

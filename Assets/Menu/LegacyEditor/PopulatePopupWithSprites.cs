@@ -9,10 +9,11 @@ public class PopulatePopupWithSprites : PopulatePopup
     
     void OnFighterChanged(FighterInfo info)
     {
-        List<ImageDefinition> sprites = new List<ImageDefinition>(LegacyEditorData.instance.loadedFighter.getSpriteData().sprites);
-        sprite_names = sprites.Select(spriteData => spriteData.sprite_name).ToList();
-        sprite_names.Sort();
-        PopulateList(sprite_names);
+        Debug.Log("Attempting to populate with sprites but sprites are broken. This needs to be fixed soon", this);
+        //List<ImageDefinition> sprites = new List<ImageDefinition>(LegacyEditorData.instance.loadedFighter.sprite_info.animations);
+        //sprite_names = sprites.Select(spriteData => spriteData.ImageName).ToList();
+        //sprite_names.Sort();
+        //PopulateList(sprite_names);
     }
 
     public override void RegisterListeners()

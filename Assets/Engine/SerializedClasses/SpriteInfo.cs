@@ -9,43 +9,66 @@ using UnityEngine;
 [System.Serializable]
 public class SpriteInfo : IJsonInfoObject
 {
-    [SerializeField]
-    
-    private string directory_name;
-    private string spriteDirectory;
-    private string costumeName;
-    private List<AnimationDefinition> animations;
-    private List<ImageDefinition> sprites;
+    private string fighter_directory; //The fighter's directory
+    private string fullSpriteDirectoryName; //The fighter's directory plus the sprite directory
 
+    public string default_sprite = "idle";
+    public string spriteDirectory = "sprites";
+    public string costumeName;
+    public List<AnimationDefinition> animations;
+    
+    [System.NonSerialized]
+    private Dictionary<string, AnimationDefinition> animationsByName = new Dictionary<string, AnimationDefinition>();
+    
     /// <summary>
     /// Load a directory of sprites, caching their images for future use
-    /// Needs to be passed a ready-to-use path to the directory to load.
+    /// Needs to be passed a fighter path to the directory to load relative from.
     /// </summary>
     /// <param name="directoryName"></param>
-    public void LoadDirectory(string directoryName)
+    public void LoadDirectory(string fighterDirName)
     {
-        directory_name = FileLoader.GetFighterPath(directoryName);
-        foreach (ImageDefinition sData in sprites)
+        fighter_directory = FileLoader.GetFighterPath(fighterDirName);
+        fullSpriteDirectoryName = FileLoader.PathCombine(fighter_directory, spriteDirectory);
+        
+        //Iterate over each animation and cache each subimage
+        foreach (AnimationDefinition aData in animations)
         {
-            string filename = costumeName + "_" + sData.ImageName + ".png";
-            string path = FileLoader.PathCombine(directoryName, filename);
-
-            if (sData.getCachedSprite() == null)
+            animationsByName.Add(aData.animationName, aData);
+            foreach (ImageDefinition sData in aData.subimages)
             {
-                Texture2D cachedTextureFile = FileLoader.LoadTexture(path);
-                Sprite newSprite = Sprite.Create(cachedTextureFile, new Rect(sData.OffsetX, sData.OffsetY, sData.Width, sData.Height), sData.Pivot.getAsRelative(sData), sData.PixelsPerUnit);
-                sData.cacheSprite(newSprite);
+                sData.cacheSprite(fullSpriteDirectoryName, costumeName);
             }
         }
     }
 
-    #region old data
-    public string sprite_directory;
-    public string sprite_prefix;
-    public string sprite_default;
-    public float sprite_pixelsPerUnit;
-    #endregion
+    public Sprite getSpriteFromAnimation(string name, int frame=-1)
+    {
+        AnimationDefinition anim = getAnimationByName(name);
+        ImageDefinition imageDef = anim.getCurrentSubimage();
+        //By default, frame is -1, which is interpreted as "current". If it's above zero, we'll get that image
+        //Note that this won't set the current frame
+        if (frame >= 0)
+        {
+            imageDef = anim.getImageForFrame(frame);
+        }
+        return imageDef.getSprite(fullSpriteDirectoryName, costumeName);
+    }
+
+    public AnimationDefinition getAnimationByName(string name)
+    {
+        if (animationsByName.ContainsKey(name))
+        {
+            return animationsByName[name];
+        }
+        else
+        {
+            Debug.LogError("No animation inside SpriteInfo named " + name);
+            return null;
+        }
+    }
+
     #region IJsonInfoObject Implementation
+    [SerializeField]
     private TextAsset JSONFile;
 
     public void LoadFromTextAsset()

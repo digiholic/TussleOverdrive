@@ -53,10 +53,10 @@ public class NewFighterPopup : MonoBehaviour
                         {
                             DirectoryInfo spriteDir = Directory.CreateDirectory(Path.Combine(createdDir.FullName, "sprites"));
                             SpriteInfo spriteInfo = new SpriteInfo();
-                            spriteInfo.sprite_directory = "sprites";
-                            spriteInfo.sprite_default = "idle";
-                            spriteInfo.sprite_pixelsPerUnit = 100;
-                            spriteInfo.sprite_prefix = "";
+                            
+                            spriteInfo.spriteDirectory = "sprites";
+                            spriteInfo.default_sprite = "idle";
+                            spriteInfo.costumeName = "default";
                             newInfo.sprite_info = spriteInfo;
                         }
 

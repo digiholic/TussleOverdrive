@@ -5,9 +5,7 @@ using System;
 
 public class GameAction {
     public string name;
-    public string sprite_name;
-    public int sprite_rate = 1;
-    public bool loop = false;
+    public string animationName;
     public int length = 1;
     public string exit_action = "NeutralAction";
 
@@ -38,9 +36,7 @@ public class GameAction {
         }
         name = dynAction.name;
         length = dynAction.length;
-        sprite_name = dynAction.sprite;
-        sprite_rate = dynAction.sprite_rate;
-        loop = dynAction.loop;
+        animationName = dynAction.animationName;
         exit_action = dynAction.exit_action;
         
         if (dynAction.subactionCategories == null)
@@ -62,7 +58,8 @@ public class GameAction {
     public virtual void SetUp (BattleObject obj) {
         last_frame = length;
         actor = obj;
-        actor.BroadcastMessage("ChangeSprite",sprite_name,SendMessageOptions.DontRequireReceiver);
+        //FIXME
+        //actor.BroadcastMessage("ChangeAnimation", animationName,SendMessageOptions.DontRequireReceiver);
         game_controller = BattleController.current_battle;
         foreach (Subaction subaction in subactionCategories.GetIfKeyExists(SubactionGroup.SETUP))
         {
@@ -72,6 +69,7 @@ public class GameAction {
 
     // Update is called once per frame
     public virtual void Update() {
+        /*
         if (sprite_rate != 0) // if it's zero, no need to animate
         {
             int sprite_number = Mathf.FloorToInt(current_frame / sprite_rate);
@@ -82,6 +80,7 @@ public class GameAction {
             else
                 actor.SendMessage("ChangeSubimage", sprite_number,SendMessageOptions.RequireReceiver);
         }
+        */
 
         foreach (Subaction subaction in subactionCategories.GetIfKeyExists(SubactionGroup.ONFRAME(current_frame)))
             CheckCondAndExecute(subaction);
@@ -131,6 +130,7 @@ public class GameAction {
         last_frame = new_length;
     }
 
+    #region Variable Section
     //Initialize the variable if it's not set yet, then return it
     public BattleObjectVarData GetVar(string var_name)
     {
@@ -191,6 +191,7 @@ public class GameAction {
     {
         return GetVar(var_name).GetStringData();
     }
+    #endregion
 
     public void PassVariable(string var_name, object var_value)
     {

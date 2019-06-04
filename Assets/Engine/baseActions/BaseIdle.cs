@@ -13,7 +13,7 @@ public class BaseIdle : DynamicAction
         SubactionDataDefault.GetByName("DoTransition")
     };
 
-    public BaseIdle(): base("NeutralAction", 1, "idle", 1, false, "NeutralAction")
+    public BaseIdle(): base("NeutralAction", 1, "idle", "NeutralAction")
     {
         SubactionData transitionData = SubactionDataDefault.GetByName("DoTransition");
         transitionData.SetArgument("transitionState", "NeutralState");

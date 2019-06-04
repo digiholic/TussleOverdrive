@@ -13,9 +13,12 @@ public class SpriteHandler : BattleComponent {
     
     private FighterInfo fighter_info;
     private SpriteInfo sprite_info;
-    private Dictionary<string,List<Sprite>> sprites = new Dictionary<string,List<Sprite>>();
+
+    private AnimationDefinition currentAnimation;
     
+    //The sprite render is the Unity component that actually draws stuff on the screen
     private SpriteRenderer sprite_renderer;
+    //The sprite component is the GameObject that the sprite is being drawn by, a child object of the Fighter
     private GameObject spriteComponent;
 
     private float rot_degrees;
@@ -35,113 +38,45 @@ public class SpriteHandler : BattleComponent {
         componentRect.anchoredPosition = Vector3.zero;
 
         sprite_renderer = spriteComponent.AddComponent<SpriteRenderer>();
-        
     }
 
     public void OnFighterInfoReady(FighterInfo fInfo)
     {
         fighter_info = fInfo;
         sprite_info = fighter_info.sprite_info;
-        SetVar(TussleConstants.SpriteVariableNames.PIXELS_PER_UNIT, sprite_info.sprite_pixelsPerUnit);
-        LoadSpritesFromData(fInfo.getSpriteData());
+        //Might not need this var anymore
+        //SetVar(TussleConstants.SpriteVariableNames.PIXELS_PER_UNIT, sprite_info.pixelsPerUnit);
     }
 
     public override void ManualUpdate()
     {
-        
+        RenderSprite();
+    }
+    
+    public void ChangeAnimation(string animationName)
+    {
+        ChangeAnimation(animationName, 0);
     }
 
-    public void LoadSpritesFromData(SpriteDataCollection sprite_list)
+    public void ChangeAnimation(string animationName,int startingFrame)
     {
-        sprites = new Dictionary<string, List<Sprite>>();
-
-        Dictionary<string, ImageDefinition> sprite_data_dict = new Dictionary<string, ImageDefinition>();
-
-        foreach (ImageDefinition data in sprite_list.sprites)
-        {
-            sprite_data_dict[data.sprite_name] = data;
-            string filename = sprite_info.sprite_prefix + data.sprite_name + ".png";
-
-            string path = FileLoader.PathCombine(fighter_info.directory_name, sprite_info.sprite_directory, filename);
-            Texture2D SpriteTexture = FileLoader.LoadTexture(path);
-
-            List<Sprite> spriteFrames = new List<Sprite>();
-            foreach (Vector2 startPos in data.subimage)
-            {
-                Sprite newSprite = Sprite.Create(SpriteTexture, new Rect(startPos.x, startPos.y, data.sprite_size.x, data.sprite_size.y), data.pivot_point, GetFloatVar(TussleConstants.SpriteVariableNames.PIXELS_PER_UNIT));
-                spriteFrames.Add(newSprite);
-            }
-            sprites.Add(data.sprite_name, spriteFrames);
+        AnimationDefinition anim = sprite_info.getAnimationByName(animationName);
+        currentAnimation = anim; //Animation can be null, but if it is, we don't set the sprite
+        if (anim != null)
+        { 
+            anim.setFrame(startingFrame);
         }
     }
     
-    private void ChangeRenderer()
+    public AnimationDefinition getAnimation()
     {
-        string current_sprite = GetStringVar(TussleConstants.SpriteVariableNames.SPRITE_CURRENT);
-        int current_frame = GetIntVar(TussleConstants.SpriteVariableNames.FRAME_CURRENT);
-
-        if (sprites.ContainsKey(current_sprite))
-            sprite_renderer.sprite = sprites[current_sprite][current_frame];
-        //else
-            //Debug.LogWarning("No sprite in dictionary! Current Sprite: " + current_sprite);
-        
-        /*
-        Sprite spr = sprite_atlas.GetSprite(current_sprite + current_frame.ToString());
-        if (spr != null)
-        {
-            sprite_renderer.sprite = spr;
-        }
-        else
-        {
-            Debug.LogWarning("Attempted to load illegal sprite: " + current_sprite+current_frame.ToString());
-        }
-        */
+        return currentAnimation;
     }
 
-    public void ChangeSprite(string _sprite_name)
+    private void RenderSprite()
     {
-        if (_sprite_name == null)
-        {
-            Debug.LogWarning("ChangeSprite given null name");
-            _sprite_name = "idle";
-        }
-        SetVar(TussleConstants.SpriteVariableNames.SPRITE_CURRENT, _sprite_name);
-        SetVar(TussleConstants.SpriteVariableNames.FRAME_CURRENT, 0);
-        ChangeRenderer();
+        sprite_renderer.sprite = sprite_info.getSpriteFromAnimation(currentAnimation.animationName);
     }
-
-    public void ChangeSubimage(int _frame)
-    {
-        ChangeSubimage(_frame, false);
-    }
-
-    public void ChangeSubimageWithLoop(int _frame)
-    {
-        ChangeSubimage(_frame, true);
-    }
-
-    public void ChangeSubimage(int _frame, bool _loop)
-    {
-        string current_sprite = GetStringVar(TussleConstants.SpriteVariableNames.SPRITE_CURRENT);
-        int current_frame = GetIntVar(TussleConstants.SpriteVariableNames.FRAME_CURRENT);
-
-        if (_frame < 0)
-        {
-            _frame += sprites[current_sprite].Count;
-        }
-        if (_loop)
-        {
-            current_frame = _frame % sprites[current_sprite].Count;
-        }
-        else
-        {
-            current_frame = Mathf.Clamp(_frame, 0, sprites[current_sprite].Count - 1);
-        }
-
-        SetVar(TussleConstants.SpriteVariableNames.FRAME_CURRENT, current_frame);
-        ChangeRenderer();
-    }
-
 
     public void RotateSprite(float degrees)
     {
@@ -175,7 +110,6 @@ public class SpriteHandler : BattleComponent {
             orientation = LEFT;
         Vector3 transfVec = sprite_renderer.transform.localScale;
         transfVec.x *= -1;
-        //sprite_renderer.transform.localScale = transfVec;
     }
 
     public void ReconcileDirection()
