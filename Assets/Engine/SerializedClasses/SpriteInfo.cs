@@ -16,7 +16,9 @@ public class SpriteInfo : IJsonInfoObject
     public string spriteDirectory = "sprites";
     public string costumeName;
     public List<AnimationDefinition> animations;
-    
+
+    public List<FileInfo> spriteFiles { get; private set; }
+
     [System.NonSerialized]
     private Dictionary<string, AnimationDefinition> animationsByName = new Dictionary<string, AnimationDefinition>();
     
@@ -37,6 +39,18 @@ public class SpriteInfo : IJsonInfoObject
             foreach (ImageDefinition sData in aData.subimages)
             {
                 sData.cacheSprite(fullSpriteDirectoryName, costumeName);
+            }
+        }
+
+        spriteFiles = new List<FileInfo>();
+        //Go through the directory and load the image files
+        DirectoryInfo spriteDir = new DirectoryInfo(Path.Combine(fullSpriteDirectoryName,costumeName));
+        foreach (FileInfo file in spriteDir.EnumerateFiles())
+        {
+            //For transparency sake, we only bother with PNG files
+            if (file.Extension.EndsWith("png"))
+            {
+                spriteFiles.Add(file);
             }
         }
     }

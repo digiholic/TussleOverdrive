@@ -49,6 +49,7 @@ public class ShowPanelIfDropdown : LegacyEditorWidget {
         //If both conditionals are true
         if (leftVal && rightVal)
         {
+            if (debug) Debug.Log("Displaying Panel");
             LegacyEditorData.Unbanish(gameObject);
         } else
         {

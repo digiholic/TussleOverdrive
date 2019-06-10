@@ -156,6 +156,15 @@ public class ImageDefinition {
         Sprite newSprite = Sprite.Create(cachedTextureFile, new Rect(OffsetX, OffsetY, Width, Height), Pivot.getAsRelative(this), PixelsPerUnit);
         cacheSprite(newSprite);
     }
+
+    public override string ToString()
+    {
+        string ret = "Image Definition: " + imageName;
+        ret       += " - file: " + spriteFileName;
+        ret       += " - size: (" + width + "," + height + ")";
+        ret       += " - offset: (" + offsetX + "," + offsetY + ")";
+        return ret;
+    }
 }
 
 /// <summary>

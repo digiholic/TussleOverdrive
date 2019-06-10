@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
-public class AnimationSelectionButtonRig : LegacyEditorWidget
+public class SpriteFileButtonRig : LegacyEditorWidget
 {
-    public GameObject actionSelectionButtonPrefab;
+    public GameObject spriteFileButtonPrefab;
 
     private List<GameObject> children = new List<GameObject>();
     private UIGrid grid;
@@ -29,10 +30,10 @@ public class AnimationSelectionButtonRig : LegacyEditorWidget
         }
         children.Clear(); //Empty the list for future use
 
-        //Create all the new buttons
-        foreach (AnimationDefinition anim in fighter.sprite_info.animations)
+        //Create all the new 
+        foreach (FileInfo imageFile in fighter.sprite_info.spriteFiles)
         {
-            instantiateButton(anim);
+            instantiateButton(imageFile);
         }
 
         //Realign the grid
@@ -41,9 +42,9 @@ public class AnimationSelectionButtonRig : LegacyEditorWidget
 
     void OnLeftDropdownChanged(string s)
     {
-        //If the option is "Actions", sets all the children to enabled. Otherwise, disables them.
+        //If the option is "Sprites", sets all the children to enabled. Otherwise, disables them.
         //Yes I know this doesn't need to be if/else but readability > efficiency
-        if (s == "Animations")
+        if (s == "Sprites")
         {
             NGUITools.SetActiveChildren(gameObject, true);
         }
@@ -53,11 +54,11 @@ public class AnimationSelectionButtonRig : LegacyEditorWidget
         }
     }
 
-    private void instantiateButton(AnimationDefinition anim)
+    private void instantiateButton(FileInfo file)
     {
-        GameObject go = NGUITools.AddChild(gameObject, actionSelectionButtonPrefab);
-        AnimationSelectionButton button = go.GetComponent<AnimationSelectionButton>();
-        button.SetAnimation(anim);
+        GameObject go = NGUITools.AddChild(gameObject, spriteFileButtonPrefab);
+        SpriteFileButton button = go.GetComponent<SpriteFileButton>();
+        button.SetImageFile(file);
         button.label.leftAnchor.target = anchorObject;
         button.label.leftAnchor.relative = 0;
         button.label.leftAnchor.absolute = leftAnchorOffset;

@@ -22,7 +22,6 @@ public class LeftDropdown : LegacyEditorWidget {
 
     void OnLeftDropdownChanged(string s)
     {
-        Debug.Log("Left Changed: "+s);
         label.text = s;
         list.Set(s, false);
     }

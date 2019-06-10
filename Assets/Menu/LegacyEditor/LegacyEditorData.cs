@@ -27,6 +27,7 @@ public class LegacyEditorData : MonoBehaviour
     public delegate void ActionFileChangeResults(ActionFile actions);
     public delegate void DynamicActionChangeResults(DynamicAction action);
     public delegate void AnimationDefinitionChangeResults(AnimationDefinition anim);
+    public delegate void SelectedFileChangeResults(FileInfo file);
     public delegate void StringChangeResults(string s);
     public delegate void IntChangeResults(int i);
     public delegate void SubactionDataChangeResults(SubactionData data);
@@ -35,6 +36,7 @@ public class LegacyEditorData : MonoBehaviour
     public event ActionFileChangeResults          ActionFileChangedEvent;
     public event DynamicActionChangeResults       CurrentActionChangedEvent;
     public event AnimationDefinitionChangeResults CurrentAnimationChangedEvent;
+    public event SelectedFileChangeResults        CurrentImageFileChangedEvent;
     public event StringChangeResults              LeftDropdownChangedEvent;
     public event StringChangeResults              RightDropdownChangedEvent;
     public event StringChangeResults              GroupDropdownChangedEvent;
@@ -96,6 +98,20 @@ public class LegacyEditorData : MonoBehaviour
         {
             _currentAnimation = value;
             CurrentAnimationChangedEvent?.Invoke(value);
+        }
+    }
+    #endregion
+    #region Current Image File - the image file currently selected from the left panel
+    [SerializeField]
+    private FileInfo _currentImageFile;
+
+    public FileInfo currentImageFile
+    {
+        get { return _currentImageFile; }
+        set
+        {
+            _currentImageFile = value;
+            CurrentImageFileChangedEvent?.Invoke(value);
         }
     }
     #endregion

@@ -17,8 +17,6 @@ public class AnimationSelectionButton : MonoBehaviour
 
     void ChangedAnimation(AnimationDefinition anim)
     {
-        //AnimationDefinition anim = LegacyEditorData.instance.currentAnimation;
-        
         if (anim != null && anim == animationDefinition)
         {
             button.defaultColor = new Color(1, 1, 1, 1);
