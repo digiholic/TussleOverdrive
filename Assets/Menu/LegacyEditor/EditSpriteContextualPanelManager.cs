@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class EditSpriteContextualPanelManager : LegacyEditorWidget
 {
-    public AutosliceAllContextPanel autosliceAllContextPanel;
+    public AutosliceContextPanel autosliceContextPanel;
 
     private void DeactivateAll()
     {
-        autosliceAllContextPanel.DeactivatePanel();
+        autosliceContextPanel.DeactivatePanel();
     }
 
     private void ActivateSlicers()
@@ -17,16 +17,7 @@ public class EditSpriteContextualPanelManager : LegacyEditorWidget
         DeactivateAll();
         if (editor.leftDropdown == "Sprites")
         {
-            //If none of the images are selected, we show the autoslice all panel
-            if (editor.currentImageFile == null)
-            {
-                autosliceAllContextPanel.ActivatePanel();
-            }
-            else
-            {
-                autosliceAllContextPanel.DeactivatePanel();
-                //Activate individual slicer
-            }
+            autosliceContextPanel.ActivatePanel();
         }
     }
 
