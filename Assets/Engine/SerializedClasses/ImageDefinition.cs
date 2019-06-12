@@ -5,8 +5,8 @@ using UnityEngine;
 /// <summary>
 /// Sprite Data contains all of the information needed to read a sprite from a file with all of its positioning, cropping, and sizing
 /// The sprite data contains the following fields:
-///     SpriteFileName - The name of the image on disk, without any costume prefixes or file extensions
 ///     ImageName - The name of this specific image, defaults to {AnimationName}_{Frame}
+///     SpriteFileName - The name of the image on disk, without any costume prefixes or file extensions
 ///     offsetX - The X offset from the topleft of the image file that this frame starts on, in image pixels
 ///     offsetY - The Y offset from the topleft of the image file that this frame starts on, in image pixels
 ///     Width - The width in image pixels of this frame
@@ -21,78 +21,79 @@ public class ImageDefinition {
     private bool dirty = true;
     private Sprite cachedSprite;
 
-    private string spriteFileName; //The name of the image on disk, without any costume prefixes or file extensions
-    private string imageName; //the name of this specific image, defaults to {AnimationName}_{Frame}
-    private int offsetX; //The X offset from the topleft of the image file that this frame starts on, in image pixels
-    private int offsetY; //The Y offset from the topleft of the image file that this frame starts on, in image pixels
-    private int width; //The width in image pixels of this frame
-    private int height; //The height in image pixels of this frame
-    private float pixelsPerUnit; //How many image pixels fit in one game unit
 
-    private AnchorPointData pivot; //An AnchorPoint defining where the sprites should overlap. When changing subimages, the sprites will align on their pivot points
-    private List<AnchorPointData> anchors; //A list of AnchorPoints defining anchors to be referenced in the action file
+    public string _imageName; //the name of this specific image, defaults to {AnimationName}_{Frame}
+    public string _spriteFileName; //The name of the image on disk, without any costume prefixes or file extensions
+    public int _offsetX; //The X offset from the topleft of the image file that this frame starts on, in image pixels
+    public int _offsetY; //The Y offset from the topleft of the image file that this frame starts on, in image pixels
+    public int _width; //The width in image pixels of this frame
+    public int _height; //The height in image pixels of this frame
+    public float _pixelsPerUnit; //How many image pixels fit in one game unit
+
+    public AnchorPointData pivot; //An AnchorPoint defining where the sprites should overlap. When changing subimages, the sprites will align on their pivot points
+    public List<AnchorPointData> anchors; //A list of AnchorPoints defining anchors to be referenced in the action file
 
     #region Properties
     public string SpriteFileName
     {
-        get { return spriteFileName; }
+        get { return _spriteFileName; }
         set
         {
-            spriteFileName = value;
+            _spriteFileName = value;
             dirty = true;
         }
     }
     public string ImageName
     {
-        get { return imageName; }
+        get { return _imageName; }
         set
         {
-            imageName = value;
+            _imageName = value;
             dirty = true;
         }
     }
     public int OffsetX
     {
-        get { return offsetX; }
+        get { return _offsetX; }
         set
         {
-            offsetX = value;
+            _offsetX = value;
             dirty = true;
         }
     }
     public int OffsetY
     {
-        get { return offsetY; }
+        get { return _offsetY; }
         set
         {
-            offsetY = value;
+            _offsetY = value;
             dirty = true;
         }
     }
     public int Width
     {
-        get { return width; }
+        get { return _width; }
         set
         {
-            width = value;
+            _width = value;
             dirty = true;
         }
     }
     public int Height
     {
-        get { return height; }
+        get { return _height; }
         set
         {
-            height = value;
+            _height = value;
             dirty = true;
         }
     }
     public float PixelsPerUnit
     {
-        get { return pixelsPerUnit; }
+        get { return _pixelsPerUnit; }
         set
         {
-            pixelsPerUnit = value;
+            _pixelsPerUnit = value;
             dirty = true;
         }
     }
@@ -159,10 +160,10 @@ public class ImageDefinition {
 
     public override string ToString()
     {
-        string ret = "Image Definition: " + imageName;
-        ret       += " - file: " + spriteFileName;
-        ret       += " - size: (" + width + "," + height + ")";
-        ret       += " - offset: (" + offsetX + "," + offsetY + ")";
+        string ret = "Image Definition: " + _imageName;
+        ret       += " - file: " + _spriteFileName;
+        ret       += " - size: (" + _width + "," + _height + ")";
+        ret       += " - offset: (" + _offsetX + "," + _offsetY + ")";
         return ret;
     }
 }

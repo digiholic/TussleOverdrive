@@ -20,29 +20,30 @@ public class LegacyEditorData : MonoBehaviour
     [SerializeField]
     private NewFighterPopup newFighterPopup;
 
-    [Header("Fighter Data")]
-    public string FighterDirName;
-
     public delegate void FighterInfoChangeResults(FighterInfo info);
     public delegate void ActionFileChangeResults(ActionFile actions);
     public delegate void DynamicActionChangeResults(DynamicAction action);
     public delegate void AnimationDefinitionChangeResults(AnimationDefinition anim);
+    public delegate void ImageDefinitionChangeResults(ImageDefinition def);
     public delegate void SelectedFileChangeResults(FileInfo file);
     public delegate void StringChangeResults(string s);
     public delegate void IntChangeResults(int i);
     public delegate void SubactionDataChangeResults(SubactionData data);
 
-    public event FighterInfoChangeResults         FighterInfoChangedEvent;
-    public event ActionFileChangeResults          ActionFileChangedEvent;
-    public event DynamicActionChangeResults       CurrentActionChangedEvent;
+    public event FighterInfoChangeResults FighterInfoChangedEvent;
+    public event ActionFileChangeResults ActionFileChangedEvent;
+    public event DynamicActionChangeResults CurrentActionChangedEvent;
     public event AnimationDefinitionChangeResults CurrentAnimationChangedEvent;
-    public event SelectedFileChangeResults        CurrentImageFileChangedEvent;
-    public event StringChangeResults              LeftDropdownChangedEvent;
-    public event StringChangeResults              RightDropdownChangedEvent;
-    public event StringChangeResults              GroupDropdownChangedEvent;
-    public event IntChangeResults                 CurrentFrameChangedEvent;
-    public event SubactionDataChangeResults       CurrentSubactionChangedEvent;
+    public event ImageDefinitionChangeResults CurrentImageDefinitionChangedEvent;
+    public event SelectedFileChangeResults CurrentImageFileChangedEvent;
+    public event StringChangeResults LeftDropdownChangedEvent;
+    public event StringChangeResults RightDropdownChangedEvent;
+    public event StringChangeResults GroupDropdownChangedEvent;
+    public event IntChangeResults CurrentFrameChangedEvent;
+    public event SubactionDataChangeResults CurrentSubactionChangedEvent;
 
+    [Header("Fighter Data")]
+    public string FighterDirName;
     #region Loaded Fighter - the currently loaded fighter info
     [SerializeField]
     private FighterInfo _loadedFighter;
@@ -115,6 +116,21 @@ public class LegacyEditorData : MonoBehaviour
         }
     }
     #endregion
+    #region Current Image Definition - the Image Definition currently selected from the right panel
+    [SerializeField]
+    private ImageDefinition _currentImageDef;
+
+    public ImageDefinition currentImageDef
+    {
+        get { return _currentImageDef; }
+        set
+        {
+            _currentImageDef = value;
+            CurrentImageDefinitionChangedEvent?.Invoke(value);
+        }
+    }
+    #endregion
+
     [Header("Navigation")]
     #region Left Dropdown - what is selected on the left dropdown menu
     [SerializeField]
@@ -451,6 +467,15 @@ public class LegacyEditorData : MonoBehaviour
     {
         instance.CurrentSubactionChangedEvent?.Invoke(instance.currentSubaction);
         instance.GroupDropdownChangedEvent?.Invoke(instance.subactionGroup);
+    }
+
+    /// <summary>
+    /// This is a quick helper method that notifies the model that the ImageDef has changed. It fires the reload method that will cause the view to update.
+    /// Since the actions that modify the data directly access the ImageDef's fields, it bypasses the setter that would normally do this. MAKE SURE TO CALL THIS WHENEVER THE IMAGEDEF CHANGES
+    /// </summary>
+    public static void ChangedImageDef()
+    {
+        instance.CurrentImageDefinitionChangedEvent?.Invoke(instance.currentImageDef);
     }
 
     /// <summary>

@@ -75,7 +75,7 @@ public class AutosliceContextPanel : ContextualPanelData
                 imageDef.Height = height;
                 imageDef.PixelsPerUnit = pixelsPerUnit;
                 //TODO store this
-                Debug.Log(imageDef);
+                editor.loadedFighter.sprite_info.imageDefinitions.Add(imageDef);
 
                 //Advance the horizontal counter
                 currentXOffset += width + xSpacing;
@@ -86,6 +86,7 @@ public class AutosliceContextPanel : ContextualPanelData
             currentYOffset += height + ySpacing;
             yIndex++;
         }
+        LegacyEditorData.ChangedFighterData();
     }
 
     private void AutoSliceAll()

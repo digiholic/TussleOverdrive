@@ -16,6 +16,7 @@ public class SpriteInfo : IJsonInfoObject
     public string spriteDirectory = "sprites";
     public string costumeName;
     public List<AnimationDefinition> animations;
+    public List<ImageDefinition> imageDefinitions;
 
     public List<FileInfo> spriteFiles { get; private set; }
 
@@ -29,6 +30,9 @@ public class SpriteInfo : IJsonInfoObject
     /// <param name="directoryName"></param>
     public void LoadDirectory(string fighterDirName)
     {
+        if (animations == null) animations = new List<AnimationDefinition>();
+        if (imageDefinitions == null) imageDefinitions = new List<ImageDefinition>();
+
         fighter_directory = FileLoader.GetFighterPath(fighterDirName);
         fullSpriteDirectoryName = FileLoader.PathCombine(fighter_directory, spriteDirectory);
         

@@ -14,6 +14,7 @@ public class FighterInfo : IJsonInfoObject{
     public string action_file_path;
     public string sprite_info_path;
     public string sound_path;
+    public SpriteInfo sprite_info;
 
     public List<FighterPalette> colorPalettes;
     public List<VarData> variables;
@@ -32,8 +33,6 @@ public class FighterInfo : IJsonInfoObject{
     public Sprite css_portrait_sprite;
     [System.NonSerialized]
     public ActionFile action_file;
-    [System.NonSerialized]
-    public SpriteInfo sprite_info;
     [System.NonSerialized]
     public bool initialized = false;
 
