@@ -20,8 +20,10 @@ public class ImageDefinitionButton : MonoBehaviour
     {
         imageDef = def;
         label.text = def._imageName;
-        ChangeCurrentImageDefAction legacyAction = ScriptableObject.CreateInstance<ChangeCurrentImageDefAction>();
-        legacyAction.init(def);
+        ModifyLegacyEditorDataAction legacyAction = ScriptableObject.CreateInstance<ModifyLegacyEditorDataAction>();
+        legacyAction.init("currentImageDef", def);
+        legacyAction.enableDeselect();
+
         GetComponent<OnClickSendAction>().action = legacyAction;
     }
 

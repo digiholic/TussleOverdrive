@@ -57,6 +57,9 @@ public class FileLoader {
                 return Tex2D;                 // If data = readable -> return texture
             }
 
+        } else
+        {
+            Debug.LogError("File Does Not Exist: " + FullPath);
         }
         Debug.LogError("Error Loading Texture2D from File " + FilePath);
         return null;                     // Return null if load failed

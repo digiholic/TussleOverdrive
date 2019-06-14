@@ -8,6 +8,7 @@ public class AutosliceContextPanel : ContextualPanelData
     //These are used as property binding for UI elements
     public string frameWidthString, frameHeightString;
     public string offsetXString, offsetYString;
+    public string pivotXString, pivotYString;
     public string ppuString;
     public bool generateAnimations;
 
@@ -51,9 +52,11 @@ public class AutosliceContextPanel : ContextualPanelData
         int ySpacing = int.Parse(offsetYString);
         int width = int.Parse(frameWidthString);
         int height = int.Parse(frameHeightString);
+        float pivotX = float.Parse(pivotXString);
+        float pivotY = float.Parse(pivotYString);
 
         //Pixels per unit must be at least 1.
-        int pixelsPerUnit = Mathf.Min(1, int.Parse(ppuString));
+        int pixelsPerUnit = Mathf.Max(1, int.Parse(ppuString));
 
         //If height or width is zero, use the full image size instead
         if (width == 0) width = cachedTextureFile.width;
@@ -74,7 +77,8 @@ public class AutosliceContextPanel : ContextualPanelData
                 imageDef.Width = width;
                 imageDef.Height = height;
                 imageDef.PixelsPerUnit = pixelsPerUnit;
-                //TODO store this
+                imageDef.Pivot = new AnchorPointData("Pivot", pivotX, pivotY, AnchorPointData.RELATIVE);
+
                 editor.loadedFighter.sprite_info.imageDefinitions.Add(imageDef);
 
                 //Advance the horizontal counter

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BuilderFighter : LegacyEditorWidget{
     public GameObject fighterObject;
+    private SpriteRenderer displaySprite;
 
     void OnFighterChanged(FighterInfo info)
     {
@@ -13,6 +14,7 @@ public class BuilderFighter : LegacyEditorWidget{
             fighterObject.SendMessage("OnFighterInfoReady", info);
             SpriteHandler spriteHandler = fighterObject.GetComponent<SpriteHandler>();
             spriteHandler.ChangeAnimation("idle", 0);
+            displaySprite = fighterObject.GetComponentInChildren<SpriteRenderer>();
         } else
         {
             Debug.Log("Fighter does not have enough data to be enabled");
@@ -32,11 +34,26 @@ public class BuilderFighter : LegacyEditorWidget{
 
     void UpdateFighterAction()
     {
+        /*
         ActionHandler actionHandler = fighterObject.GetComponent<ActionHandler>();
         actionHandler.DoAction(editor.currentAction);
         while (actionHandler.CurrentAction.current_frame < editor.currentFrame)
         {
             actionHandler.ManualUpdate();
+        }
+        */
+    }
+
+    void UpdateImageDef(ImageDefinition def)
+    {
+        Sprite spr = def?.getSprite(editor.loadedFighter.sprite_info.fullSpriteDirectoryName, editor.loadedFighter.sprite_info.costumeName);
+        Debug.Log(spr);
+        if (spr != null)
+        {
+            displaySprite.sprite = spr;
+        } else
+        {
+            Debug.Log("No cached sprite for " + def);
         }
     }
 
@@ -44,11 +61,13 @@ public class BuilderFighter : LegacyEditorWidget{
     {
         editor.FighterInfoChangedEvent += OnFighterChanged;
         editor.CurrentActionChangedEvent += OnActionChange;
+        editor.CurrentImageDefinitionChangedEvent += UpdateImageDef;
     }
 
     public override void UnregisterListeners()
     {
         editor.FighterInfoChangedEvent -= OnFighterChanged;
         editor.CurrentActionChangedEvent -= OnActionChange;
+        editor.CurrentImageDefinitionChangedEvent -= UpdateImageDef;
     }
 }

@@ -30,14 +30,19 @@ public class SpriteHandler : BattleComponent {
 
         SetVar(TussleConstants.SpriteVariableNames.SPRITE_CURRENT, "idle");
         SetVar(TussleConstants.SpriteVariableNames.FRAME_CURRENT, 0);
-        spriteComponent = new GameObject("Sprite");
-        RectTransform componentRect = spriteComponent.AddComponent<RectTransform>();
-        spriteComponent.transform.SetParent(transform);
-        componentRect.anchorMin = new Vector2(0.5f, 0);
-        componentRect.anchorMax = new Vector2(0.5f, 0);
-        componentRect.anchoredPosition = Vector3.zero;
-
-        sprite_renderer = spriteComponent.AddComponent<SpriteRenderer>();
+        if (spriteComponent == null)
+        {
+            spriteComponent = new GameObject("Sprite");
+            RectTransform componentRect = spriteComponent.AddComponent<RectTransform>();
+            spriteComponent.transform.SetParent(transform);
+            componentRect.anchorMin = new Vector2(0.5f, 0);
+            componentRect.anchorMax = new Vector2(0.5f, 0);
+            componentRect.anchoredPosition = Vector3.zero;
+            sprite_renderer = spriteComponent.AddComponent<SpriteRenderer>();
+        } else
+        {
+            sprite_renderer = spriteComponent.GetComponent<SpriteRenderer>();
+        }
     }
 
     public void OnFighterInfoReady(FighterInfo fInfo)

@@ -68,8 +68,9 @@ public class RightDropdown : LegacyEditorWidget {
         string selected = UIPopupList.current.value;
 
         //Create a message object to have the model execute
-        ChangeRightDropdownAction act = ScriptableObject.CreateInstance<ChangeRightDropdownAction>();
-        act.init(selected);
+        ModifyLegacyEditorDataAction act = ScriptableObject.CreateInstance<ModifyLegacyEditorDataAction>();
+        act.init("rightDropdown", selected);
+
         LegacyEditorData.instance.DoAction(act);
     }
 

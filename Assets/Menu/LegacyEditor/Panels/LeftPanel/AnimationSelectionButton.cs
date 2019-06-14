@@ -31,8 +31,10 @@ public class AnimationSelectionButton : MonoBehaviour
     {
         animationDefinition = anim;
         label.text = anim.animationName;
-        ChangeCurrentAnimationAction legacyAction = ScriptableObject.CreateInstance<ChangeCurrentAnimationAction>();
-        legacyAction.init(anim);
+        ModifyLegacyEditorDataAction legacyAction = ScriptableObject.CreateInstance<ModifyLegacyEditorDataAction>();
+        legacyAction.init("currentAnimation", anim);
+        legacyAction.enableDeselect();
+
         GetComponent<OnClickSendAction>().action = legacyAction;
     }
 

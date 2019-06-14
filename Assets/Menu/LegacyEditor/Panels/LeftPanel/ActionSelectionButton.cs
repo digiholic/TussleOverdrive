@@ -28,8 +28,12 @@ public class ActionSelectionButton : MonoBehaviour {
     {
         action = actionToSet;
         label.text = actionToSet.name;
-        ChangeCurrentAction legacyAction = ScriptableObject.CreateInstance<ChangeCurrentAction>();
-        legacyAction.init(actionToSet);
+        ModifyLegacyEditorDataAction legacyAction = ScriptableObject.CreateInstance<ModifyLegacyEditorDataAction>();
+        legacyAction.init("currentAction", actionToSet);
+        legacyAction.enableDeselect(DynamicAction.NullAction);
+        legacyAction.addAdjacentProperty("currentFrame", 0);
+        legacyAction.addAdjacentProperty("currentSubaction", null);
+
         GetComponent<OnClickSendAction>().action = legacyAction;
     }
 

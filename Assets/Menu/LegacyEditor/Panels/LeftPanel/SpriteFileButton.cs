@@ -33,8 +33,10 @@ public class SpriteFileButton : MonoBehaviour
     {
         spriteFile = file;
         label.text = file.Name;
-        ChangeCurrentImageFileAction legacyAction = ScriptableObject.CreateInstance<ChangeCurrentImageFileAction>();
-        legacyAction.init(file);
+        ModifyLegacyEditorDataAction legacyAction = ScriptableObject.CreateInstance<ModifyLegacyEditorDataAction>();
+        legacyAction.init("currentImageFile", file);
+        legacyAction.enableDeselect();
+
         GetComponent<OnClickSendAction>().action = legacyAction;
     }
 

@@ -63,8 +63,10 @@ public class GroupDropdown : LegacyEditorWidget
     {
         string selected = UIPopupList.current.value;
         //Create a message object to have the model execute
-        ChangeSubactionGroupDropdownAction act = ScriptableObject.CreateInstance<ChangeSubactionGroupDropdownAction>();
-        act.init(selected);
+        ModifyLegacyEditorDataAction act = ScriptableObject.CreateInstance<ModifyLegacyEditorDataAction>();
+        act.init("subactionGroup", selected);
+        act.addAdjacentProperty("currentSubaction", null);
+
         LegacyEditorData.instance.DoAction(act);
     }
 

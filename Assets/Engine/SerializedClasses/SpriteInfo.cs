@@ -9,8 +9,10 @@ using UnityEngine;
 [System.Serializable]
 public class SpriteInfo : IJsonInfoObject
 {
-    private string fighter_directory; //The fighter's directory
-    private string fullSpriteDirectoryName; //The fighter's directory plus the sprite directory
+    [System.NonSerialized]
+    public string fighter_directory; //The fighter's directory
+    [System.NonSerialized]
+    public string fullSpriteDirectoryName; //The fighter's directory plus the sprite directory
 
     public string default_sprite = "idle";
     public string spriteDirectory = "sprites";
