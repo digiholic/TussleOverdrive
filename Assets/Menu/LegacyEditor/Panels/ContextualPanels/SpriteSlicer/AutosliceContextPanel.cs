@@ -28,6 +28,21 @@ public class AutosliceContextPanel : ContextualPanelData
         //After the broadcast, clear all the "dirty" bits
     }
 
+
+    void ChangedImageDef(ImageDefinition def)
+    {
+        if (def != null)
+        {
+            frameWidthString = def.Width.ToString();
+            frameHeightString = def.Height.ToString();
+            offsetXString = def.OffsetX.ToString();
+            offsetYString = def.OffsetY.ToString();
+            pivotXString = def.Pivot.xPos.ToString();
+            pivotYString = def.Pivot.yPos.ToString();
+            ppuString = def.PixelsPerUnit.ToString();
+        }
+    }
+
     public void executeSlice()
     {
         if (editor.currentImageFile == null)
@@ -101,7 +116,11 @@ public class AutosliceContextPanel : ContextualPanelData
         }
     }
 
-    public override void RegisterListeners() { }
+    public override void RegisterListeners() {
+        editor.CurrentImageDefinitionChangedEvent += ChangedImageDef;
+    }
 
-    public override void UnregisterListeners() { }
+    public override void UnregisterListeners() {
+        editor.CurrentImageDefinitionChangedEvent -= ChangedImageDef;
+    }
 }
