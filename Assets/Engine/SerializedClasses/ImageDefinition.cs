@@ -19,17 +19,17 @@ using UnityEngine;
 public class ImageDefinition {
     //Whether or not any data has changed since we last cached the image. If this is true, we'll load the image from disk whenever getImage is called.
     private bool dirty = true;
-    private Sprite cachedSprite;
+    private Sprite cachedSprite = null;
 
-    public string _imageName; //the name of this specific image, defaults to {AnimationName}_{Frame}
-    public string _spriteFileName; //The name of the image on disk, without any costume prefixes or file extensions
-    public int _offsetX; //The X offset from the topleft of the image file that this frame starts on, in image pixels
-    public int _offsetY; //The Y offset from the topleft of the image file that this frame starts on, in image pixels
-    public int _width; //The width in image pixels of this frame
-    public int _height; //The height in image pixels of this frame
-    public float _pixelsPerUnit; //How many image pixels fit in one game unit
+    public string _imageName = ""; //the name of this specific image, defaults to {AnimationName}_{Frame}
+    public string _spriteFileName = ""; //The name of the image on disk, without any costume prefixes or file extensions
+    public int _offsetX = 0; //The X offset from the topleft of the image file that this frame starts on, in image pixels
+    public int _offsetY = 0; //The Y offset from the topleft of the image file that this frame starts on, in image pixels
+    public int _width = 0; //The width in image pixels of this frame
+    public int _height = 0; //The height in image pixels of this frame
+    public float _pixelsPerUnit = 0; //How many image pixels fit in one game unit
 
-    public AnchorPointData _pivot; //An AnchorPoint defining where the sprites should overlap. When changing subimages, the sprites will align on their pivot points
+    public AnchorPointData _pivot = null; //An AnchorPoint defining where the sprites should overlap. When changing subimages, the sprites will align on their pivot points
     public List<AnchorPointData> _anchors; //A list of AnchorPoints defining anchors to be referenced in the action file
 
     #region Properties
@@ -165,6 +165,8 @@ public class ImageDefinition {
         ret       += " - offset: (" + _offsetX + "," + _offsetY + ")";
         return ret;
     }
+
+    public static ImageDefinition NullDef = new ImageDefinition();
 }
 
 /// <summary>

@@ -22,7 +22,7 @@ public class ModifyImageDefEditorAction : LegacyEditorAction
         //Get the previous value of the property, then change it
         PropertyInfo prop = def.GetType().GetProperty(propertyToModify);
         propertyToModifyPreviousValue = prop.GetValue(def);
-
+        
         object valueToSet = propertyToModifyNextValue;
         prop.SetValue(def, valueToSet);
     }
