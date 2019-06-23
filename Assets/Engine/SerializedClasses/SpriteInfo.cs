@@ -41,7 +41,7 @@ public class SpriteInfo : IJsonInfoObject
         //Iterate over each animation and cache each subimage
         foreach (AnimationDefinition aData in animations)
         {
-            animationsByName.Add(aData.animationName, aData);
+            animationsByName.Add(aData.AnimationName, aData);
             foreach (ImageDefinition sData in aData.subimages)
             {
                 sData.cacheSprite(fullSpriteDirectoryName, costumeName);
@@ -85,6 +85,40 @@ public class SpriteInfo : IJsonInfoObject
             Debug.LogError("No animation inside SpriteInfo named " + name);
             return null;
         }
+    }
+
+    public void AddAnimation(AnimationDefinition newDef, bool overwrite = false)
+    {
+        //Get all of the animations whose names match this one
+        List<AnimationDefinition> existingAnimations = animations.FindAll(s => s.AnimationName == newDef.AnimationName);
+        if (existingAnimations.Count > 1)
+        {
+            throw new System.Exception("Multiple Animations with the same name! I told you this would happen!");
+        }
+        //If there is already an animation, we need to figure out what to do with the old one based on the overwrite flag
+        if (existingAnimations.Count > 0)
+        {
+            if (overwrite)
+            {
+                animations.RemoveAll(s => s.AnimationName == newDef.AnimationName);
+                animations.Add(newDef);
+            } else
+            {
+                AnimationDefinition cloneAnim = new AnimationDefinition(newDef);
+                cloneAnim.AnimationName += "_new";
+                animations.Add(cloneAnim);
+            }
+        }
+        //If there aren't any existing animations, it's fine to just add it in
+        else
+        {
+            animations.Add(newDef);
+        }
+    }
+
+    public void DeleteAnimation(AnimationDefinition def)
+    {
+        animations.Remove(def);
     }
 
     #region IJsonInfoObject Implementation

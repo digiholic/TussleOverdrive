@@ -4,9 +4,9 @@
   "costumeName": "default",
   "animations": [
     {
-      "animationName": "idle",
-      "spriteRate": "0",
-      "loop": "true"
+      "_animationName": "idle",
+      "_spriteRate": "0",
+      "_loop": "true"
     }
   ]
 }

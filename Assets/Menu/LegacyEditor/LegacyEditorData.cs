@@ -479,6 +479,15 @@ public class LegacyEditorData : MonoBehaviour
     }
 
     /// <summary>
+    /// This is a quick helper method that notifies the model that the Animation has changed. It fires the reload method that will cause the view to update.
+    /// Since the actions that modify the data directly access the AnimationDefinition's fields, it bypasses the setter that would normally do this. MAKE SURE TO CALL THIS WHENEVER THE ANIMATION CHANGES
+    /// </summary>
+    public static void ChangedAnimation()
+    {
+        instance.CurrentAnimationChangedEvent?.Invoke(instance.currentAnimation);
+    }
+
+    /// <summary>
     /// Returns true if the current action is a new action that is not currently in the ActionFile.
     /// If the action is in the ActionFile, it will return false.
     /// </summary>
@@ -488,6 +497,13 @@ public class LegacyEditorData : MonoBehaviour
         DynamicAction action = instance.currentAction;
         ActionFile actionFile = instance.loadedActionFile;
         return !actionFile.actions.Contains(action);
+    }
+
+    public static bool CurrentAnimationIsNew()
+    {
+        AnimationDefinition def = instance.currentAnimation;
+        SpriteInfo info = instance.loadedFighter.sprite_info;
+        return !info.animations.Contains(def);
     }
     #endregion
 }

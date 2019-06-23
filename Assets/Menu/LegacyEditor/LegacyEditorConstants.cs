@@ -17,6 +17,6 @@ public class LegacyEditorConstants {
         { "Actions",    new string[] { "Properties", "Subactions", "Hitboxes", "Hurtboxes" } },
         { "Methods",    new string[] { "" } },
         { "Sprites",    new string[] { "Subimages"} },
-        { "Animations", new string[] { "Properties" } }
+        { "Animations", new string[] { "Properties", "Subimages" } }
     };
 }

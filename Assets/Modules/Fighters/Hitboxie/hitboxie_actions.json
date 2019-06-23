@@ -3,9 +3,7 @@
         {
             "name": "NeutralAction",
             "length": 1,
-            "sprite": "idle",
-            "sprite_rate": 0,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [
@@ -232,6 +230,26 @@
                                 "description": "Change the current action. The current action will continue executing the rest of its current frame."
                             },
                             {
+                                "order": 3,
+                                "SubactionName": "Else",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [],
+                                    "m_values": []
+                                },
+                                "description": "Inverts the current action condition"
+                            },
+                            {
+                                "order": 4,
+                                "SubactionName": "EndIf",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [],
+                                    "m_values": []
+                                },
+                                "description": "Unsets the current action condition, ending the innermost if block."
+                            },
+                            {
                                 "order": 5,
                                 "SubactionName": "DoTransition",
                                 "subType": 0,
@@ -251,26 +269,6 @@
                                     ]
                                 },
                                 "description": "Check one of the pre-defined Transition States. A list of transition states can be found in the documentation."
-                            },
-                            {
-                                "order": 3,
-                                "SubactionName": "Else",
-                                "subType": 0,
-                                "arguments": {
-                                    "m_keys": [],
-                                    "m_values": []
-                                },
-                                "description": "Inverts the current action condition"
-                            },
-                            {
-                                "order": 4,
-                                "SubactionName": "EndIf",
-                                "subType": 0,
-                                "arguments": {
-                                    "m_keys": [],
-                                    "m_values": []
-                                },
-                                "description": "Unsets the current action condition, ending the innermost if block."
                             }
                         ]
                     },
@@ -283,9 +281,7 @@
         {
             "name": "Stop",
             "length": 9,
-            "sprite": "pivot",
-            "sprite_rate": 3,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [
@@ -301,9 +297,7 @@
         {
             "name": "RunStop",
             "length": 18,
-            "sprite": "pivot",
-            "sprite_rate": 6,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -313,9 +307,7 @@
         {
             "name": "Crouch",
             "length": 3,
-            "sprite": "land",
-            "sprite_rate": 1,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -325,9 +317,7 @@
         {
             "name": "CrouchGetup",
             "length": 9,
-            "sprite": "land",
-            "sprite_rate": -3,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -337,9 +327,7 @@
         {
             "name": "Fall",
             "length": 1,
-            "sprite": "jump",
-            "sprite_rate": 0,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -349,9 +337,7 @@
         {
             "name": "Jump",
             "length": 6,
-            "sprite": "land",
-            "sprite_rate": 1,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [
@@ -375,9 +361,7 @@
         {
             "name": "AirJump",
             "length": 8,
-            "sprite": "airjump",
-            "sprite_rate": 2,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [
@@ -393,9 +377,7 @@
         {
             "name": "Helpless",
             "length": 2,
-            "sprite": "jump",
-            "sprite_rate": 0,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [
@@ -411,9 +393,7 @@
         {
             "name": "Land",
             "length": 6,
-            "sprite": "land",
-            "sprite_rate": 3,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [
@@ -455,9 +435,7 @@
         {
             "name": "HelplessLand",
             "length": 6,
-            "sprite": "land",
-            "sprite_rate": 3,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [
@@ -473,9 +451,7 @@
         {
             "name": "PlatformDrop",
             "length": 12,
-            "sprite": "airjump",
-            "sprite_rate": -2,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -485,9 +461,7 @@
         {
             "name": "Move",
             "length": 15,
-            "sprite": "run",
-            "sprite_rate": 3,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -497,9 +471,7 @@
         {
             "name": "Dash",
             "length": 10,
-            "sprite": "run",
-            "sprite_rate": 2,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -509,9 +481,7 @@
         {
             "name": "Pivot",
             "length": 10,
-            "sprite": "pivot",
-            "sprite_rate": -2,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -521,9 +491,7 @@
         {
             "name": "RunPivot",
             "length": 20,
-            "sprite": "pivot",
-            "sprite_rate": -4,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -533,9 +501,7 @@
         {
             "name": "Grabbing",
             "length": 1,
-            "sprite": "pivot",
-            "sprite_rate": 0,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -545,9 +511,7 @@
         {
             "name": "Getup",
             "length": 16,
-            "sprite": "land",
-            "sprite_rate": -4,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -557,9 +521,7 @@
         {
             "name": "Shield",
             "length": 12,
-            "sprite": "jump",
-            "sprite_rate": 0,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -569,9 +531,7 @@
         {
             "name": "Parry",
             "length": 16,
-            "sprite": "jump",
-            "sprite_rate": 0,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -581,9 +541,7 @@
         {
             "name": "ForwardRoll",
             "length": 32,
-            "sprite": "land",
-            "sprite_rate": 0,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -593,9 +551,7 @@
         {
             "name": "BackwardRoll",
             "length": 32,
-            "sprite": "land",
-            "sprite_rate": 0,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -605,9 +561,7 @@
         {
             "name": "SpotDodge",
             "length": 24,
-            "sprite": "land",
-            "sprite_rate": 1,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -617,9 +571,7 @@
         {
             "name": "ForwardTech",
             "length": 32,
-            "sprite": "land",
-            "sprite_rate": 0,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -629,9 +581,7 @@
         {
             "name": "BackwardTech",
             "length": 32,
-            "sprite": "land",
-            "sprite_rate": 0,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -641,9 +591,7 @@
         {
             "name": "DodgeTech",
             "length": 24,
-            "sprite": "land",
-            "sprite_rate": 1,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -653,9 +601,7 @@
         {
             "name": "AirDodge",
             "length": 30,
-            "sprite": "nair",
-            "sprite_rate": 0,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -665,9 +611,7 @@
         {
             "name": "LedgeGrab",
             "length": 1,
-            "sprite": "jump",
-            "sprite_rate": 0,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -677,9 +621,7 @@
         {
             "name": "HitStun",
             "length": 1,
-            "sprite": "jump",
-            "sprite_rate": 1,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -689,9 +631,7 @@
         {
             "name": "Tumble",
             "length": 1,
-            "sprite": "jump",
-            "sprite_rate": 1,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -701,9 +641,7 @@
         {
             "name": "Prone",
             "length": 25,
-            "sprite": "land",
-            "sprite_rate": 2,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -713,9 +651,7 @@
         {
             "name": "SlowGetup",
             "length": 50,
-            "sprite": "land",
-            "sprite_rate": 2,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -725,9 +661,7 @@
         {
             "name": "Respawn",
             "length": 360,
-            "sprite": "idle",
-            "sprite_rate": 0,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -737,9 +671,7 @@
         {
             "name": "Stunned",
             "length": 1,
-            "sprite": "jump",
-            "sprite_rate": 0,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -749,9 +681,7 @@
         {
             "name": "ShieldStun",
             "length": 1,
-            "sprite": "jump",
-            "sprite_rate": 0,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -761,9 +691,7 @@
         {
             "name": "Trapped",
             "length": 1,
-            "sprite": "idle",
-            "sprite_rate": 0,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -773,9 +701,7 @@
         {
             "name": "Grabbed",
             "length": 1,
-            "sprite": "idle",
-            "sprite_rate": 0,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -785,9 +711,7 @@
         {
             "name": "Release",
             "length": 14,
-            "sprite": "pivot",
-            "sprite_rate": -2,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -797,9 +721,7 @@
         {
             "name": "Released",
             "length": 1,
-            "sprite": "jump",
-            "sprite_rate": 0,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -809,9 +731,7 @@
         {
             "name": "LedgeGetup",
             "length": 27,
-            "sprite": "getup",
-            "sprite_rate": 1,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -821,9 +741,7 @@
         {
             "name": "LedgeRoll",
             "length": 37,
-            "sprite": "getup",
-            "sprite_rate": 1,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -833,9 +751,7 @@
         {
             "name": "LedgeAttack",
             "length": 37,
-            "sprite": "getup",
-            "sprite_rate": 1,
-            "loop": true,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -845,9 +761,7 @@
         {
             "name": "NeutralAttack",
             "length": 22,
-            "sprite": "neutral",
-            "sprite_rate": 1,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [
@@ -885,9 +799,7 @@
         {
             "name": "ForwardAttack",
             "length": 24,
-            "sprite": "fsmash",
-            "sprite_rate": 2,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -897,9 +809,7 @@
         {
             "name": "ForwardSmash",
             "length": 46,
-            "sprite": "fsmash",
-            "sprite_rate": 2,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -909,9 +819,7 @@
         {
             "name": "UpAttack",
             "length": 28,
-            "sprite": "utilt",
-            "sprite_rate": 4,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -921,9 +829,7 @@
         {
             "name": "UpSmash",
             "length": 45,
-            "sprite": "usmash",
-            "sprite_rate": 2,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -933,9 +839,7 @@
         {
             "name": "DownAttack",
             "length": 32,
-            "sprite": "dtilt",
-            "sprite_rate": 2,
-            "loop": true,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -945,9 +849,7 @@
         {
             "name": "DownSmash",
             "length": 48,
-            "sprite": "dsmash",
-            "sprite_rate": 2,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -957,9 +859,7 @@
         {
             "name": "NeutralAir",
             "length": 40,
-            "sprite": "nair",
-            "sprite_rate": 1,
-            "loop": true,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -969,9 +869,7 @@
         {
             "name": "BackAir",
             "length": 35,
-            "sprite": "bair",
-            "sprite_rate": 1,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -981,9 +879,7 @@
         {
             "name": "ForwardAir",
             "length": 44,
-            "sprite": "fair",
-            "sprite_rate": 2,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -993,9 +889,7 @@
         {
             "name": "UpAir",
             "length": 34,
-            "sprite": "uair",
-            "sprite_rate": 3,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -1005,9 +899,7 @@
         {
             "name": "DownAir",
             "length": 39,
-            "sprite": "dair",
-            "sprite_rate": 3,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -1017,9 +909,7 @@
         {
             "name": "DashAttack",
             "length": 32,
-            "sprite": "nair",
-            "sprite_rate": 2,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -1029,9 +919,7 @@
         {
             "name": "NeutralGroundSpecial",
             "length": 36,
-            "sprite": "nspecial",
-            "sprite_rate": 2,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -1041,9 +929,7 @@
         {
             "name": "NeutralAirSpecial",
             "length": 36,
-            "sprite": "nspecial",
-            "sprite_rate": 2,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -1053,9 +939,7 @@
         {
             "name": "DownSpecial",
             "length": 13,
-            "sprite": "getup",
-            "sprite_rate": 0,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -1065,9 +949,7 @@
         {
             "name": "GetupAttack",
             "length": 36,
-            "sprite": "nair",
-            "sprite_rate": 2,
-            "loop": true,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -1077,9 +959,7 @@
         {
             "name": "ForwardThrow",
             "length": 20,
-            "sprite": "fsmash",
-            "sprite_rate": 2,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -1089,9 +969,7 @@
         {
             "name": "DownThrow",
             "length": 32,
-            "sprite": "nair",
-            "sprite_rate": 1,
-            "loop": true,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -1101,9 +979,7 @@
         {
             "name": "UpThrow",
             "length": 12,
-            "sprite": "land",
-            "sprite_rate": -2,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -1113,9 +989,7 @@
         {
             "name": "BackThrow",
             "length": 22,
-            "sprite": "bthrow",
-            "sprite_rate": 2,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -1125,9 +999,7 @@
         {
             "name": "UpSpecial",
             "length": 32,
-            "sprite": "dsmash",
-            "sprite_rate": 0,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -1137,9 +1009,7 @@
         {
             "name": "UpSpecialFlight",
             "length": 50,
-            "sprite": "airjump",
-            "sprite_rate": 2,
-            "loop": true,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -1149,9 +1019,7 @@
         {
             "name": "GroundGrab",
             "length": 30,
-            "sprite": "pivot",
-            "sprite_rate": 2,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -1161,9 +1029,7 @@
         {
             "name": "ForwardSpecial",
             "length": 1,
-            "sprite": "idle",
-            "sprite_rate": 1,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -1173,9 +1039,7 @@
         {
             "name": "DashGrab",
             "length": 35,
-            "sprite": "pivot",
-            "sprite_rate": 3,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -1185,9 +1049,7 @@
         {
             "name": "Pummel",
             "length": 22,
-            "sprite": "neutral",
-            "sprite_rate": 1,
-            "loop": false,
+            "animationName": "",
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],

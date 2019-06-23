@@ -7,12 +7,19 @@
     "sprite_info_path": "sprite_info.json",
     "sound_path": "sfx",
     "sprite_info": {
-        "sprite_directory": "sprites",
-        "sprite_prefix": "hitboxie_",
-        "sprite_default": "idle",
-        "sprite_pixelsPerUnit": 50.0,
-        "sprite_atlas_path": "HitboxieAtlas",
-        "sprite_atlas": {
+        "default_sprite": "idle",
+        "spriteDirectory": "sprites",
+        "costumeName": "default",
+        "animations": [
+            {
+                "_animationName": "idle",
+                "_spriteRate": 1,
+                "_loop": true,
+                "subimages": []
+            }
+        ],
+        "imageDefinitions": [],
+        "JSONFile": {
             "instanceID": 0
         }
     },
@@ -135,6 +142,6 @@
         }
     ],
     "JSONFile": {
-        "instanceID": 12424
+        "instanceID": 12438
     }
 }

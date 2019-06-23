@@ -80,7 +80,7 @@ public class SpriteHandler : BattleComponent {
 
     private void RenderSprite()
     {
-        sprite_renderer.sprite = sprite_info.getSpriteFromAnimation(currentAnimation.animationName);
+        sprite_renderer.sprite = sprite_info.getSpriteFromAnimation(currentAnimation.AnimationName);
     }
 
     public void RotateSprite(float degrees)

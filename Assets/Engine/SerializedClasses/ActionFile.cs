@@ -51,7 +51,7 @@ public class ActionFile
         List<DynamicAction> existingActions = actions.FindAll(s => s.name == newAction.name);
         if (existingActions.Count > 1)
         {
-            throw new System.Exception("Multiple Actions with the same name! I told you this would happen! Fix it!");
+            throw new System.Exception("Multiple Actions with the same name! I told you this would happen!");
         }
 
         //If we have existing actions, we need to figure out what to do with the old one based on the overwrite flag
