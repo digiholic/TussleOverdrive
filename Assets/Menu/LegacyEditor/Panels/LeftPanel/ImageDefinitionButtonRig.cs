@@ -21,7 +21,7 @@ public class ImageDefinitionButtonRig : LegacyEditorWidget
         grid = GetComponent<UIGrid>();
     }
 
-    void OnFighterChanged(FighterInfo fighter)
+    void OnSpriteInfoChanged(SpriteInfo info)
     {
         UpdateList();
     }
@@ -84,14 +84,14 @@ public class ImageDefinitionButtonRig : LegacyEditorWidget
 
     public override void RegisterListeners()
     {
-        editor.FighterInfoChangedEvent += OnFighterChanged;
+        editor.SpriteInfoChangedEvent += OnSpriteInfoChanged;
         editor.LeftDropdownChangedEvent += OnLeftDropdownChanged;
         editor.CurrentImageFileChangedEvent += OnImageFileChanged;
     }
 
     public override void UnregisterListeners()
     {
-        editor.FighterInfoChangedEvent -= OnFighterChanged;
+        editor.SpriteInfoChangedEvent -= OnSpriteInfoChanged;
         editor.LeftDropdownChangedEvent -= OnLeftDropdownChanged;
         editor.CurrentImageFileChangedEvent -= OnImageFileChanged;
     }

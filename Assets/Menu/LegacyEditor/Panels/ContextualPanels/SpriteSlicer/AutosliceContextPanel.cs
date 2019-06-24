@@ -77,6 +77,9 @@ public class AutosliceContextPanel : ContextualPanelData
         if (width == 0) width = cachedTextureFile.width;
         if (height == 0) height = cachedTextureFile.height;
 
+        //For the sake of cleanliness, we define this animation up here, but only add it to the animation list if the flag is set
+        AnimationDefinition animation = new AnimationDefinition(Path.GetFileNameWithoutExtension(spriteImage.Name), 1, false);
+        
         //Go through the image vertically
         while (currentYOffset <= cachedTextureFile.height - height)
         {
@@ -93,7 +96,8 @@ public class AutosliceContextPanel : ContextualPanelData
                 imageDef.Height = height;
                 imageDef.PixelsPerUnit = pixelsPerUnit;
                 imageDef.Pivot = new AnchorPointData("Pivot", pivotX, pivotY, AnchorPointData.RELATIVE);
-
+                animation.subimages.Add(imageDef.ImageName);
+                
                 editor.loadedSpriteInfo.imageDefinitions.Add(imageDef);
 
                 //Advance the horizontal counter
@@ -105,7 +109,13 @@ public class AutosliceContextPanel : ContextualPanelData
             currentYOffset += height + ySpacing;
             yIndex++;
         }
-        LegacyEditorData.ChangedFighterData();
+        //If generate animations is checked, add an animation for this image. It won't overwrite so it'll append _new if it exists already
+        if (generateAnimations)
+        {
+            editor.loadedSpriteInfo.AddAnimation(animation, false);
+        }
+
+        LegacyEditorData.ChangedSpriteInfo();
     }
 
     private void AutoSliceAll()

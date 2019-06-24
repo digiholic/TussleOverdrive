@@ -41,6 +41,9 @@ public class AnimationDefinition
         _animationName = name;
         _spriteRate = spriteRate;
         _loop = loop;
+        subimages = new List<string>();
+        currentFrame = 0;
+        currentSubimageIndex = 0;
     }
 
     public AnimationDefinition(AnimationDefinition old)
@@ -48,6 +51,9 @@ public class AnimationDefinition
         _animationName = old.AnimationName;
         _spriteRate = old.SpriteRate;
         _loop = old.Loop;
+        subimages = new List<string>(old.subimages);
+        currentFrame = 0;
+        currentSubimageIndex = 0;
     }
 
     /// <summary>

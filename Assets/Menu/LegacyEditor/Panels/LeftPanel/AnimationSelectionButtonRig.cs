@@ -20,7 +20,7 @@ public class AnimationSelectionButtonRig : LegacyEditorWidget
         grid = GetComponent<UIGrid>();
     }
 
-    void OnFighterChanged(FighterInfo fighter)
+    void OnSpriteInfoChanged(SpriteInfo sprite_info)
     {
         //Get rid of our old list
         foreach (GameObject child in children)
@@ -30,7 +30,7 @@ public class AnimationSelectionButtonRig : LegacyEditorWidget
         children.Clear(); //Empty the list for future use
 
         //Create all the new buttons
-        foreach (AnimationDefinition anim in fighter.sprite_info.animations)
+        foreach (AnimationDefinition anim in sprite_info.animations)
         {
             instantiateButton(anim);
         }
@@ -70,13 +70,13 @@ public class AnimationSelectionButtonRig : LegacyEditorWidget
 
     public override void RegisterListeners()
     {
-        editor.FighterInfoChangedEvent += OnFighterChanged;
+        editor.SpriteInfoChangedEvent += OnSpriteInfoChanged;
         editor.LeftDropdownChangedEvent += OnLeftDropdownChanged;
     }
 
     public override void UnregisterListeners()
     {
-        editor.FighterInfoChangedEvent -= OnFighterChanged;
+        editor.SpriteInfoChangedEvent -= OnSpriteInfoChanged;
         editor.LeftDropdownChangedEvent -= OnLeftDropdownChanged;
     }
 }

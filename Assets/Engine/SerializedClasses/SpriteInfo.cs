@@ -84,8 +84,8 @@ public class SpriteInfo : IJsonInfoObject
         }
         else
         {
-            Debug.LogError("No animation inside SpriteInfo named " + name);
-            return null;
+            Debug.LogWarning("No animation inside SpriteInfo named " + name);
+            return AnimationDefinition.NullAnimation;
         }
     }
 

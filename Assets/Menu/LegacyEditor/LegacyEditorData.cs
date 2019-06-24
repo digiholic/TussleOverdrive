@@ -466,6 +466,15 @@ public class LegacyEditorData : MonoBehaviour
     }
 
     /// <summary>
+    /// This is a quick helper method that notifies the model that the SpriteInfo has changed. It fires the reload method that will cause the view to update.
+    /// Since the actions that modify the data directly access the SpriteInfo field, it bypasses the setter that would normally do this. MAKE SURE TO CALL THIS WHENEVER THE SPRITEINFO CHANGES
+    /// </summary>
+    public static void ChangedSpriteInfo()
+    {
+        instance.SpriteInfoChangedEvent?.Invoke(instance.loadedSpriteInfo);
+    }
+
+    /// <summary>
     /// This is a quick helper method that notifies the model that the Current Action has changed. It fires the reload method that will cause the view to update.
     /// Since the actions that modify the data directly access the DynamicAction field, it bypasses the setter that would normally do this. MAKE SURE TO CALL THIS WHENEVER THE CURRENTACTION CHANGES
     /// </summary>
