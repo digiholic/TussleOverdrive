@@ -21,6 +21,7 @@ public class LegacyEditorData : MonoBehaviour
     private NewFighterPopup newFighterPopup;
 
     public delegate void FighterInfoChangeResults(FighterInfo info);
+    public delegate void SpriteInfoChangeResults(SpriteInfo info);
     public delegate void ActionFileChangeResults(ActionFile actions);
     public delegate void DynamicActionChangeResults(DynamicAction action);
     public delegate void AnimationDefinitionChangeResults(AnimationDefinition anim);
@@ -31,6 +32,7 @@ public class LegacyEditorData : MonoBehaviour
     public delegate void SubactionDataChangeResults(SubactionData data);
 
     public event FighterInfoChangeResults FighterInfoChangedEvent;
+    public event SpriteInfoChangeResults SpriteInfoChangedEvent;
     public event ActionFileChangeResults ActionFileChangedEvent;
     public event DynamicActionChangeResults CurrentActionChangedEvent;
     public event AnimationDefinitionChangeResults CurrentAnimationChangedEvent;
@@ -56,6 +58,21 @@ public class LegacyEditorData : MonoBehaviour
             _loadedFighter = value;
             if (FighterInfoChangedEvent != null)
                 FighterInfoChangedEvent(value);
+        }
+    }
+    #endregion
+    #region Loaded Sprite Info - the currently loaded sprite info
+    [SerializeField]
+    private SpriteInfo _loadedSpriteInfo;
+
+    public SpriteInfo loadedSpriteInfo
+    {
+        get { return _loadedSpriteInfo; }
+        private set
+        {
+            _loadedSpriteInfo = value;
+            if (SpriteInfoChangedEvent != null)
+                SpriteInfoChangedEvent(value);
         }
     }
     #endregion
@@ -251,6 +268,8 @@ public class LegacyEditorData : MonoBehaviour
         loadedFighter.LoadDirectory(FighterDirName);
         loadedActionFile = ActionFile.LoadActionsFromFile(FighterDirName, loadedFighter.action_file_path);
         currentAction = loadedActionFile.GetFirst();
+        loadedSpriteInfo = SpriteInfo.LoadSpritesFromFile(FighterDirName, loadedFighter.sprite_info_path);
+        loadedSpriteInfo.LoadDirectory(FighterDirName);
         FireModelChange();
 
         //foreach (UIPanel panel in GameObject.FindObjectsOfType<UIPanel>())
@@ -273,8 +292,12 @@ public class LegacyEditorData : MonoBehaviour
         loadedFighter = fInfo;
         loadedActionFile = ActionFile.LoadActionsFromFile(FighterDirName, fInfo.action_file_path);
         currentAction = loadedActionFile.GetFirst();
+        loadedSpriteInfo = SpriteInfo.LoadSpritesFromFile(FighterDirName, fInfo.sprite_info_path);
+        loadedSpriteInfo.LoadDirectory(FighterDirName);
+
         FireModelChange();
     }
+
     /// <summary>
     /// Calls every event listener
     /// </summary>
@@ -363,6 +386,8 @@ public class LegacyEditorData : MonoBehaviour
         loadedFighter.Save();
         string path = FileLoader.PathCombine(FileLoader.GetFighterPath(FighterDirName), loadedFighter.action_file_path);
         loadedActionFile.Save(path);
+        path = FileLoader.PathCombine(FileLoader.GetFighterPath(FighterDirName), loadedFighter.sprite_info_path);
+        loadedSpriteInfo.Save(path);
         Debug.Log("Saved Fighter: " + path);
     }
 
@@ -502,7 +527,7 @@ public class LegacyEditorData : MonoBehaviour
     public static bool CurrentAnimationIsNew()
     {
         AnimationDefinition def = instance.currentAnimation;
-        SpriteInfo info = instance.loadedFighter.sprite_info;
+        SpriteInfo info = instance.loadedSpriteInfo;
         return !info.animations.Contains(def);
     }
     #endregion

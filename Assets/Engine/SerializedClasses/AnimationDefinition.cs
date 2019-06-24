@@ -14,7 +14,7 @@ public class AnimationDefinition
     public int _spriteRate = 1;
     public bool _loop = false;
 
-    public List<ImageDefinition> subimages;
+    public List<string> subimages;
     private int currentFrame;
     private int currentSubimageIndex;
 
@@ -51,13 +51,13 @@ public class AnimationDefinition
     }
 
     /// <summary>
-    /// Gets the subimage of the current frame. Optionally also advances to the next frame
+    /// Gets the name of the subimage of the current frame. Optionally also advances to the next frame
     /// </summary>
     /// <param name="advance">If true, advance to the next frame after getting the image so it's ready for the next call. Defaults to false</param>
-    /// <returns>The ImageDefinition at the current index</returns>
-    public ImageDefinition getCurrentSubimage(bool advance = false)
+    /// <returns>The name of the ImageDefinition at the current index</returns>
+    public string getCurrentSubimage(bool advance = false)
     {
-        ImageDefinition currentSubimage = subimages[currentSubimageIndex];
+        string currentSubimage = subimages[currentSubimageIndex];
         if (advance) //If we're advancing the current frame afterwards, do that here
         {
             //Increment the current frame, and if we've hit the spriteRate amount, move on to the next subimage index
@@ -71,7 +71,7 @@ public class AnimationDefinition
     /// A shortcut method for calling getCurrentSubimage and advancing to the next frame.
     /// </summary>
     /// <returns>The ImageDefinition at the current index</returns>
-    public ImageDefinition getAndAdvanceSubimage()
+    public string getAndAdvanceSubimage()
     {
         return getCurrentSubimage(true);
     }
@@ -116,8 +116,8 @@ public class AnimationDefinition
     /// call this to peek ahead at an animation without screwing up the auto-animator
     /// </summary>
     /// <param name="frame">The frame to check for the image at</param>
-    /// <returns>The ImageDefinition that would be loaded on that frame</returns>
-    public ImageDefinition getImageForFrame(int frame)
+    /// <returns>The name of the ImageDefinition that would be loaded on that frame</returns>
+    public string getImageForFrame(int frame)
     {
         return subimages[getIndexForFrame(frame)];
     }

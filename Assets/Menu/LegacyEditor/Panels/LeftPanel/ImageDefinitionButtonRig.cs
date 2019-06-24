@@ -41,7 +41,7 @@ public class ImageDefinitionButtonRig : LegacyEditorWidget
         children.Clear(); //Empty the list for future use
 
         //Create all the new 
-        foreach (ImageDefinition imageDef in editor.loadedFighter.sprite_info.imageDefinitions)
+        foreach (ImageDefinition imageDef in editor.loadedSpriteInfo.imageDefinitions)
         {
             if (editor.currentImageFile == null || editor.currentImageFile.Name == imageDef.SpriteFileName)
             {

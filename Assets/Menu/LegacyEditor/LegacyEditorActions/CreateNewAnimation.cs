@@ -12,13 +12,13 @@ public class CreateNewAnimation : LegacyEditorAction
     }
     public override void execute()
     {
-        LegacyEditorData.instance.loadedFighter.sprite_info.AddAnimation(animationToAdd, false);
+        LegacyEditorData.instance.loadedSpriteInfo.AddAnimation(animationToAdd, false);
         LegacyEditorData.ChangedAnimation();
     }
 
     public override void undo()
     {
-        LegacyEditorData.instance.loadedFighter.sprite_info.DeleteAnimation(animationToAdd);
+        LegacyEditorData.instance.loadedSpriteInfo.DeleteAnimation(animationToAdd);
         LegacyEditorData.ChangedActionFile();
     }
 }

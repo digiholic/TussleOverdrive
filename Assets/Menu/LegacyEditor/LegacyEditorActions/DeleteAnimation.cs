@@ -19,13 +19,13 @@ public class DeleteAnimation : LegacyEditorAction
         previousAnimation = animationToDelete;
         LegacyEditorData.instance.currentAnimation = AnimationDefinition.NullAnimation; //Set to a null action
         
-        previousIndex = LegacyEditorData.instance.loadedFighter.sprite_info.animations.IndexOf(animationToDelete);
-        LegacyEditorData.instance.loadedFighter.sprite_info.DeleteAnimation(animationToDelete);
+        previousIndex = LegacyEditorData.instance.loadedSpriteInfo.animations.IndexOf(animationToDelete);
+        LegacyEditorData.instance.loadedSpriteInfo.DeleteAnimation(animationToDelete);
     }
 
     public override void undo()
     {
         LegacyEditorData.instance.currentAnimation = previousAnimation;
-        LegacyEditorData.instance.loadedFighter.sprite_info.animations.Insert(previousIndex, previousAnimation); //Add it back where it was
+        LegacyEditorData.instance.loadedSpriteInfo.animations.Insert(previousIndex, previousAnimation); //Add it back where it was
     }
 }

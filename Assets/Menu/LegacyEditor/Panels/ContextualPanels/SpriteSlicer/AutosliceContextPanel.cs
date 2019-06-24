@@ -94,7 +94,7 @@ public class AutosliceContextPanel : ContextualPanelData
                 imageDef.PixelsPerUnit = pixelsPerUnit;
                 imageDef.Pivot = new AnchorPointData("Pivot", pivotX, pivotY, AnchorPointData.RELATIVE);
 
-                editor.loadedFighter.sprite_info.imageDefinitions.Add(imageDef);
+                editor.loadedSpriteInfo.imageDefinitions.Add(imageDef);
 
                 //Advance the horizontal counter
                 currentXOffset += width + xSpacing;
@@ -110,7 +110,9 @@ public class AutosliceContextPanel : ContextualPanelData
 
     private void AutoSliceAll()
     {
-        foreach (FileInfo spriteImage in editor.loadedFighter.sprite_info.spriteFiles)
+        Debug.Log(editor.loadedSpriteInfo);
+        Debug.Log(editor.loadedSpriteInfo.spriteFiles);
+        foreach (FileInfo spriteImage in editor.loadedSpriteInfo.spriteFiles)
         {
             SliceOne(spriteImage);
         }

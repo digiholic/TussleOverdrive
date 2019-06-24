@@ -6,23 +6,6 @@
     "action_file_path": "hitboxie_actions.json",
     "sprite_info_path": "sprite_info.json",
     "sound_path": "sfx",
-    "sprite_info": {
-        "default_sprite": "idle",
-        "spriteDirectory": "sprites",
-        "costumeName": "default",
-        "animations": [
-            {
-                "_animationName": "idle",
-                "_spriteRate": 1,
-                "_loop": true,
-                "subimages": []
-            }
-        ],
-        "imageDefinitions": [],
-        "JSONFile": {
-            "instanceID": 0
-        }
-    },
     "colorPalettes": [],
     "variables": [
         {

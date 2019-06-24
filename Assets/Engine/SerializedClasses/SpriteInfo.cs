@@ -21,6 +21,7 @@ public class SpriteInfo : IJsonInfoObject
     public List<ImageDefinition> imageDefinitions;
 
     public List<FileInfo> spriteFiles { get; private set; }
+    
 
     [System.NonSerialized]
     private Dictionary<string, AnimationDefinition> animationsByName = new Dictionary<string, AnimationDefinition>();
@@ -42,8 +43,9 @@ public class SpriteInfo : IJsonInfoObject
         foreach (AnimationDefinition aData in animations)
         {
             animationsByName.Add(aData.AnimationName, aData);
-            foreach (ImageDefinition sData in aData.subimages)
+            foreach (string imageName in aData.subimages)
             {
+                ImageDefinition sData = GetImageByName(imageName);
                 sData.cacheSprite(fullSpriteDirectoryName, costumeName);
             }
         }
@@ -64,12 +66,12 @@ public class SpriteInfo : IJsonInfoObject
     public Sprite getSpriteFromAnimation(string name, int frame=-1)
     {
         AnimationDefinition anim = getAnimationByName(name);
-        ImageDefinition imageDef = anim.getCurrentSubimage();
+        ImageDefinition imageDef = GetImageByName(anim.getCurrentSubimage());
         //By default, frame is -1, which is interpreted as "current". If it's above zero, we'll get that image
         //Note that this won't set the current frame
         if (frame >= 0)
         {
-            imageDef = anim.getImageForFrame(frame);
+            imageDef = GetImageByName(anim.getImageForFrame(frame));
         }
         return imageDef.getSprite(fullSpriteDirectoryName, costumeName);
     }
@@ -121,6 +123,33 @@ public class SpriteInfo : IJsonInfoObject
         animations.Remove(def);
     }
 
+    public ImageDefinition GetImageByName(string name)
+    {
+        foreach(ImageDefinition def in imageDefinitions)
+        {
+            if (def.ImageName == name) return def;
+        }
+
+        Debug.LogWarning("Could not find image definition: " + name + " in SpriteInfo");
+        return null;
+    }
+
+    public static SpriteInfo LoadSpritesFromFile(string directory, string filename = "sprite_info.json")
+    {
+        string dir = FileLoader.GetFighterPath(directory);
+        string combinedPath = Path.Combine(dir, filename);
+        if (File.Exists(combinedPath))
+        {
+            string json = File.ReadAllText(combinedPath);
+            SpriteInfo info = JsonUtility.FromJson<SpriteInfo>(json);
+            return info;
+        }
+        else
+        {
+            Debug.LogWarning("No sprites file found at " + directory + "/" + filename);
+            return null;
+        }
+    }
     #region IJsonInfoObject Implementation
     [SerializeField]
     private TextAsset JSONFile;
@@ -138,6 +167,8 @@ public class SpriteInfo : IJsonInfoObject
         FileInfo fileSavedTo = new FileInfo(path);
         string json = JsonUtility.ToJson(this, true);
         File.WriteAllText(path, json);
+        Debug.Log("Saving Sprite Info to: "+path);
+        Debug.Log(json);
         return fileSavedTo;
     }
     #endregion

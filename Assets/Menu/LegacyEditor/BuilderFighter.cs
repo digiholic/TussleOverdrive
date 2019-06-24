@@ -46,7 +46,7 @@ public class BuilderFighter : LegacyEditorWidget{
 
     void UpdateImageDef(ImageDefinition def)
     {
-        Sprite spr = def?.getSprite(editor.loadedFighter.sprite_info.fullSpriteDirectoryName, editor.loadedFighter.sprite_info.costumeName);
+        Sprite spr = def?.getSprite(editor.loadedSpriteInfo.fullSpriteDirectoryName, editor.loadedSpriteInfo.costumeName);
         Debug.Log(spr);
         if (spr != null)
         {

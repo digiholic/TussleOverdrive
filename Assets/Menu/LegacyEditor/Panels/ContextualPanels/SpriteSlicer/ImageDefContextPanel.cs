@@ -15,7 +15,7 @@ public class ImageDefContextPanel : ContextualPanelData
 
     public void DeleteImageDef()
     {
-        editor.loadedFighter.sprite_info.imageDefinitions.Remove(editor.currentImageDef);
+        editor.loadedSpriteInfo.imageDefinitions.Remove(editor.currentImageDef);
         editor.currentImageDef = null;
         LegacyEditorData.ChangedFighterData();
     }
