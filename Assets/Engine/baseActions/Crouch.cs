@@ -29,7 +29,7 @@ public class Crouch : GameAction {
         base.TearDown(new_action);
         //These classes will be phased out as time goes on. Until then, we need to just exit early if we're in the builder since these don't actually use Subactions
         if (isInBuilder) return;
-        actor.BroadcastMessage("ChangeXPreferred", 0.0f);
+        actor.BroadcastMessage("ChangeXPreferred", 0.0f, SendMessageOptions.RequireReceiver);
         //Remove crouch armor
     }
 

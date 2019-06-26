@@ -13,7 +13,7 @@ public class AirJump : GameAction {
         if (isInBuilder) return;
         if (current_frame < jump_frame)
         {
-            actor.BroadcastMessage("ChangeYSpeed", 0.0f);
+            actor.BroadcastMessage("ChangeYSpeed", 0.0f, SendMessageOptions.RequireReceiver);
         }
         if (current_frame == jump_frame)
         {

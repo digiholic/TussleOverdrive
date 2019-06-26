@@ -84,7 +84,7 @@ public class StateTransitions : ScriptableObject {
         actor.SendMessage("CheckForGround");
         if (actor.GetBoolVar(TussleConstants.FighterVariableNames.IS_GROUNDED) && actor.ground_elasticity == 0 && actor.GetIntVar("tech_window") == 0)
         {
-            actor.BroadcastMessage("ChangeXPreferred", 0.0f);
+            actor.BroadcastMessage("ChangeXPreferred", 0.0f, SendMessageOptions.RequireReceiver);
             actor.BroadcastMessage("ChangeYPreferred", actor.GetFloatVar(TussleConstants.FighterAttributes.MAX_FALL_SPEED));
             actor.doAction("Land");
         }

@@ -1,0 +1,228 @@
+{
+    "default_sprite": "idle",
+    "spriteDirectory": "sprites",
+    "costumeName": "default",
+    "animations": [
+        {
+            "_animationName": "crouch",
+            "_spriteRate": 1,
+            "_loop": false,
+            "subimages": [
+                "crouch_0"
+            ]
+        },
+        {
+            "_animationName": "dtilt",
+            "_spriteRate": 1,
+            "_loop": false,
+            "subimages": [
+                "dtilt_0"
+            ]
+        },
+        {
+            "_animationName": "ftilt",
+            "_spriteRate": 1,
+            "_loop": false,
+            "subimages": [
+                "ftilt_0"
+            ]
+        },
+        {
+            "_animationName": "idle",
+            "_spriteRate": 1,
+            "_loop": false,
+            "subimages": [
+                "idle_0"
+            ]
+        },
+        {
+            "_animationName": "jab1",
+            "_spriteRate": 1,
+            "_loop": false,
+            "subimages": [
+                "jab1_0"
+            ]
+        },
+        {
+            "_animationName": "jab2",
+            "_spriteRate": 1,
+            "_loop": false,
+            "subimages": [
+                "jab2_0"
+            ]
+        },
+        {
+            "_animationName": "jump",
+            "_spriteRate": 1,
+            "_loop": false,
+            "subimages": [
+                "jump_0"
+            ]
+        },
+        {
+            "_animationName": "run",
+            "_spriteRate": 1,
+            "_loop": false,
+            "subimages": [
+                "run_0"
+            ]
+        },
+        {
+            "_animationName": "utilt",
+            "_spriteRate": 1,
+            "_loop": false,
+            "subimages": [
+                "utilt_0"
+            ]
+        }
+    ],
+    "imageDefinitions": [
+        {
+            "_imageName": "crouch_0",
+            "_spriteFileName": "crouch.png",
+            "_offsetX": 0,
+            "_offsetY": 0,
+            "_width": 986,
+            "_height": 1080,
+            "_pixelsPerUnit": 400.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "dtilt_0",
+            "_spriteFileName": "dtilt.png",
+            "_offsetX": 0,
+            "_offsetY": 0,
+            "_width": 986,
+            "_height": 1080,
+            "_pixelsPerUnit": 400.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "ftilt_0",
+            "_spriteFileName": "ftilt.png",
+            "_offsetX": 0,
+            "_offsetY": 0,
+            "_width": 986,
+            "_height": 1080,
+            "_pixelsPerUnit": 400.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "idle_0",
+            "_spriteFileName": "idle.png",
+            "_offsetX": 0,
+            "_offsetY": 0,
+            "_width": 986,
+            "_height": 1080,
+            "_pixelsPerUnit": 400.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "jab1_0",
+            "_spriteFileName": "jab1.png",
+            "_offsetX": 0,
+            "_offsetY": 0,
+            "_width": 986,
+            "_height": 1080,
+            "_pixelsPerUnit": 400.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "jab2_0",
+            "_spriteFileName": "jab2.png",
+            "_offsetX": 0,
+            "_offsetY": 0,
+            "_width": 986,
+            "_height": 1080,
+            "_pixelsPerUnit": 400.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "jump_0",
+            "_spriteFileName": "jump.png",
+            "_offsetX": 0,
+            "_offsetY": 0,
+            "_width": 986,
+            "_height": 1080,
+            "_pixelsPerUnit": 400.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "run_0",
+            "_spriteFileName": "run.png",
+            "_offsetX": 0,
+            "_offsetY": 0,
+            "_width": 986,
+            "_height": 1080,
+            "_pixelsPerUnit": 400.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "utilt_0",
+            "_spriteFileName": "utilt.png",
+            "_offsetX": 0,
+            "_offsetY": 0,
+            "_width": 986,
+            "_height": 1080,
+            "_pixelsPerUnit": 400.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        }
+    ],
+    "JSONFile": {
+        "instanceID": 0
+    }
+}

@@ -27,7 +27,7 @@ public class Dash : GameAction {
         
         if (actor.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION) != GetIntVar("direction"))
             actor.SendMessage("flip");
-        actor.BroadcastMessage("ChangeXPreferred", 0.0f);
+        actor.BroadcastMessage("ChangeXPreferred", 0.0f, SendMessageOptions.RequireReceiver);
     }
 
     public override void Update()

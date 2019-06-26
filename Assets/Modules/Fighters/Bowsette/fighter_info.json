@@ -1,5 +1,5 @@
 {
-    "display_name": "Hitboxie",
+    "display_name": "Bowsette",
     "franchise_icon_path": "franchise_icon.png",
     "css_icon_path": "sprites\\icon_hitboxie.png",
     "css_portrait_path": "sprites/icon_hitboxie.png",
@@ -125,6 +125,6 @@
         }
     ],
     "JSONFile": {
-        "instanceID": 12450
+        "instanceID": 0
     }
 }

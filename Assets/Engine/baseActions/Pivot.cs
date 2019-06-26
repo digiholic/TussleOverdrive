@@ -82,7 +82,7 @@ public class Pivot : GameAction {
         //_actor.preferred_xspeed = _actor.stats['max_ground_speed'] * _actor.facing
         //_actor.accel(_actor.stats['static_grip'])
         //else:
-        actor.SendMessage("ChangeXPreferred", 0.0f);
+        actor.SendMessage("ChangeXPreferred", 0.0f, SendMessageOptions.RequireReceiver);
         actor.SendMessage("accel", actor.GetFloatVar(TussleConstants.FighterAttributes.PIVOT_GRIP));
     }
 }

@@ -59,7 +59,7 @@ public class GameAction {
         last_frame = length;
         actor = obj;
         //FIXME
-        //actor.BroadcastMessage("ChangeAnimation", animationName,SendMessageOptions.DontRequireReceiver);
+        actor.BroadcastMessage("ChangeAnimation", animationName,SendMessageOptions.DontRequireReceiver);
         game_controller = BattleController.current_battle;
         foreach (Subaction subaction in subactionCategories.GetIfKeyExists(SubactionGroup.SETUP))
         {
@@ -81,7 +81,7 @@ public class GameAction {
                 actor.SendMessage("ChangeSubimage", sprite_number,SendMessageOptions.RequireReceiver);
         }
         */
-
+        actor.SendMessage("ChangeSubimage", current_frame);
         foreach (Subaction subaction in subactionCategories.GetIfKeyExists(SubactionGroup.ONFRAME(current_frame)))
             CheckCondAndExecute(subaction);
         if (current_frame >= last_frame)

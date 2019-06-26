@@ -2,8 +2,3006 @@
     "default_sprite": "idle",
     "spriteDirectory": "sprites",
     "costumeName": "default",
-    "animations": [],
-  "imageDefinitions": [],
+    "animations": [
+        {
+            "_animationName": "airjump",
+            "_spriteRate": 1,
+            "_loop": false,
+            "subimages": [
+                "hitboxie_airjump_0",
+                "hitboxie_airjump_1",
+                "hitboxie_airjump_2",
+                "hitboxie_airjump_3",
+                "hitboxie_airjump_4"
+            ]
+        },
+        {
+            "_animationName": "bair",
+            "_spriteRate": 1,
+            "_loop": false,
+            "subimages": [
+                "hitboxie_bair_0",
+                "hitboxie_bair_1",
+                "hitboxie_bair_2",
+                "hitboxie_bair_3",
+                "hitboxie_bair_4",
+                "hitboxie_bair_5",
+                "hitboxie_bair_6",
+                "hitboxie_bair_7"
+            ]
+        },
+        {
+            "_animationName": "bthrow",
+            "_spriteRate": 1,
+            "_loop": false,
+            "subimages": [
+                "hitboxie_bthrow_0",
+                "hitboxie_bthrow_1",
+                "hitboxie_bthrow_2",
+                "hitboxie_bthrow_3",
+                "hitboxie_bthrow_4",
+                "hitboxie_bthrow_5",
+                "hitboxie_bthrow_6",
+                "hitboxie_bthrow_7",
+                "hitboxie_bthrow_8"
+            ]
+        },
+        {
+            "_animationName": "dair",
+            "_spriteRate": 1,
+            "_loop": false,
+            "subimages": [
+                "hitboxie_dair_0",
+                "hitboxie_dair_1",
+                "hitboxie_dair_2",
+                "hitboxie_dair_3",
+                "hitboxie_dair_4"
+            ]
+        },
+        {
+            "_animationName": "dsmash",
+            "_spriteRate": 1,
+            "_loop": false,
+            "subimages": [
+                "hitboxie_dsmash_0",
+                "hitboxie_dsmash_1",
+                "hitboxie_dsmash_2",
+                "hitboxie_dsmash_3",
+                "hitboxie_dsmash_4",
+                "hitboxie_dsmash_5",
+                "hitboxie_dsmash_6",
+                "hitboxie_dsmash_7",
+                "hitboxie_dsmash_8",
+                "hitboxie_dsmash_9",
+                "hitboxie_dsmash_10",
+                "hitboxie_dsmash_11",
+                "hitboxie_dsmash_12",
+                "hitboxie_dsmash_13",
+                "hitboxie_dsmash_14",
+                "hitboxie_dsmash_15"
+            ]
+        },
+        {
+            "_animationName": "dtilt",
+            "_spriteRate": 1,
+            "_loop": false,
+            "subimages": [
+                "hitboxie_dtilt_0",
+                "hitboxie_dtilt_1",
+                "hitboxie_dtilt_2",
+                "hitboxie_dtilt_3",
+                "hitboxie_dtilt_4",
+                "hitboxie_dtilt_5",
+                "hitboxie_dtilt_6"
+            ]
+        },
+        {
+            "_animationName": "fair",
+            "_spriteRate": 1,
+            "_loop": false,
+            "subimages": [
+                "hitboxie_fair_0",
+                "hitboxie_fair_1",
+                "hitboxie_fair_2",
+                "hitboxie_fair_3",
+                "hitboxie_fair_4",
+                "hitboxie_fair_5",
+                "hitboxie_fair_6",
+                "hitboxie_fair_7",
+                "hitboxie_fair_8",
+                "hitboxie_fair_9",
+                "hitboxie_fair_10",
+                "hitboxie_fair_11",
+                "hitboxie_fair_12"
+            ]
+        },
+        {
+            "_animationName": "fsmash",
+            "_spriteRate": 1,
+            "_loop": false,
+            "subimages": [
+                "hitboxie_fsmash_0",
+                "hitboxie_fsmash_1",
+                "hitboxie_fsmash_2",
+                "hitboxie_fsmash_3",
+                "hitboxie_fsmash_4",
+                "hitboxie_fsmash_5",
+                "hitboxie_fsmash_6",
+                "hitboxie_fsmash_7",
+                "hitboxie_fsmash_8",
+                "hitboxie_fsmash_9"
+            ]
+        },
+        {
+            "_animationName": "getup",
+            "_spriteRate": 1,
+            "_loop": false,
+            "subimages": [
+                "hitboxie_getup_0",
+                "hitboxie_getup_1",
+                "hitboxie_getup_2",
+                "hitboxie_getup_3",
+                "hitboxie_getup_4",
+                "hitboxie_getup_5",
+                "hitboxie_getup_6",
+                "hitboxie_getup_7",
+                "hitboxie_getup_8",
+                "hitboxie_getup_9",
+                "hitboxie_getup_10",
+                "hitboxie_getup_11",
+                "hitboxie_getup_12",
+                "hitboxie_getup_13",
+                "hitboxie_getup_14"
+            ]
+        },
+        {
+            "_animationName": "idle",
+            "_spriteRate": 1,
+            "_loop": false,
+            "subimages": [
+                "hitboxie_idle_0"
+            ]
+        },
+        {
+            "_animationName": "jump",
+            "_spriteRate": 1,
+            "_loop": false,
+            "subimages": [
+                "hitboxie_jump_0"
+            ]
+        },
+        {
+            "_animationName": "land",
+            "_spriteRate": 1,
+            "_loop": false,
+            "subimages": [
+                "hitboxie_land_0",
+                "hitboxie_land_1",
+                "hitboxie_land_2",
+                "hitboxie_land_3"
+            ]
+        },
+        {
+            "_animationName": "nair",
+            "_spriteRate": 1,
+            "_loop": false,
+            "subimages": [
+                "hitboxie_nair_0",
+                "hitboxie_nair_1",
+                "hitboxie_nair_2",
+                "hitboxie_nair_3",
+                "hitboxie_nair_4",
+                "hitboxie_nair_5",
+                "hitboxie_nair_6",
+                "hitboxie_nair_7",
+                "hitboxie_nair_8",
+                "hitboxie_nair_9",
+                "hitboxie_nair_10",
+                "hitboxie_nair_11",
+                "hitboxie_nair_12",
+                "hitboxie_nair_13",
+                "hitboxie_nair_14",
+                "hitboxie_nair_15"
+            ]
+        },
+        {
+            "_animationName": "neutral",
+            "_spriteRate": 1,
+            "_loop": false,
+            "subimages": [
+                "hitboxie_neutral_0",
+                "hitboxie_neutral_1",
+                "hitboxie_neutral_2",
+                "hitboxie_neutral_3",
+                "hitboxie_neutral_4",
+                "hitboxie_neutral_5",
+                "hitboxie_neutral_6",
+                "hitboxie_neutral_7",
+                "hitboxie_neutral_8",
+                "hitboxie_neutral_9",
+                "hitboxie_neutral_10",
+                "hitboxie_neutral_11",
+                "hitboxie_neutral_12",
+                "hitboxie_neutral_13",
+                "hitboxie_neutral_14"
+            ]
+        },
+        {
+            "_animationName": "nspecial",
+            "_spriteRate": 1,
+            "_loop": false,
+            "subimages": [
+                "hitboxie_nspecial_0",
+                "hitboxie_nspecial_1",
+                "hitboxie_nspecial_2",
+                "hitboxie_nspecial_3",
+                "hitboxie_nspecial_4",
+                "hitboxie_nspecial_5",
+                "hitboxie_nspecial_6",
+                "hitboxie_nspecial_7",
+                "hitboxie_nspecial_8",
+                "hitboxie_nspecial_9"
+            ]
+        },
+        {
+            "_animationName": "pivot",
+            "_spriteRate": 1,
+            "_loop": false,
+            "subimages": [
+                "hitboxie_pivot_0",
+                "hitboxie_pivot_1",
+                "hitboxie_pivot_2",
+                "hitboxie_pivot_3",
+                "hitboxie_pivot_4"
+            ]
+        },
+        {
+            "_animationName": "run",
+            "_spriteRate": 1,
+            "_loop": false,
+            "subimages": [
+                "hitboxie_run_0",
+                "hitboxie_run_1",
+                "hitboxie_run_2",
+                "hitboxie_run_3",
+                "hitboxie_run_4"
+            ]
+        },
+        {
+            "_animationName": "uair",
+            "_spriteRate": 1,
+            "_loop": false,
+            "subimages": [
+                "hitboxie_uair_0",
+                "hitboxie_uair_1",
+                "hitboxie_uair_2",
+                "hitboxie_uair_3",
+                "hitboxie_uair_4"
+            ]
+        },
+        {
+            "_animationName": "usmash",
+            "_spriteRate": 1,
+            "_loop": false,
+            "subimages": [
+                "hitboxie_usmash_0",
+                "hitboxie_usmash_1",
+                "hitboxie_usmash_2",
+                "hitboxie_usmash_3",
+                "hitboxie_usmash_4",
+                "hitboxie_usmash_5",
+                "hitboxie_usmash_6",
+                "hitboxie_usmash_7",
+                "hitboxie_usmash_8",
+                "hitboxie_usmash_9",
+                "hitboxie_usmash_10"
+            ]
+        },
+        {
+            "_animationName": "utilt",
+            "_spriteRate": 1,
+            "_loop": false,
+            "subimages": [
+                "hitboxie_utilt_0",
+                "hitboxie_utilt_1",
+                "hitboxie_utilt_2",
+                "hitboxie_utilt_3",
+                "hitboxie_utilt_4",
+                "hitboxie_utilt_5",
+                "hitboxie_utilt_6"
+            ]
+        }
+    ],
+    "imageDefinitions": [
+        {
+            "_imageName": "hitboxie_airjump_0",
+            "_spriteFileName": "hitboxie_airjump.png",
+            "_offsetX": 0,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_airjump_1",
+            "_spriteFileName": "hitboxie_airjump.png",
+            "_offsetX": 92,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_airjump_2",
+            "_spriteFileName": "hitboxie_airjump.png",
+            "_offsetX": 184,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_airjump_3",
+            "_spriteFileName": "hitboxie_airjump.png",
+            "_offsetX": 276,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_airjump_4",
+            "_spriteFileName": "hitboxie_airjump.png",
+            "_offsetX": 368,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_bair_0",
+            "_spriteFileName": "hitboxie_bair.png",
+            "_offsetX": 0,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_bair_1",
+            "_spriteFileName": "hitboxie_bair.png",
+            "_offsetX": 92,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_bair_2",
+            "_spriteFileName": "hitboxie_bair.png",
+            "_offsetX": 184,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_bair_3",
+            "_spriteFileName": "hitboxie_bair.png",
+            "_offsetX": 276,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_bair_4",
+            "_spriteFileName": "hitboxie_bair.png",
+            "_offsetX": 368,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_bair_5",
+            "_spriteFileName": "hitboxie_bair.png",
+            "_offsetX": 460,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_bair_6",
+            "_spriteFileName": "hitboxie_bair.png",
+            "_offsetX": 552,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_bair_7",
+            "_spriteFileName": "hitboxie_bair.png",
+            "_offsetX": 644,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_bthrow_0",
+            "_spriteFileName": "hitboxie_bthrow.png",
+            "_offsetX": 0,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_bthrow_1",
+            "_spriteFileName": "hitboxie_bthrow.png",
+            "_offsetX": 92,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_bthrow_2",
+            "_spriteFileName": "hitboxie_bthrow.png",
+            "_offsetX": 184,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_bthrow_3",
+            "_spriteFileName": "hitboxie_bthrow.png",
+            "_offsetX": 276,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_bthrow_4",
+            "_spriteFileName": "hitboxie_bthrow.png",
+            "_offsetX": 368,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_bthrow_5",
+            "_spriteFileName": "hitboxie_bthrow.png",
+            "_offsetX": 460,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_bthrow_6",
+            "_spriteFileName": "hitboxie_bthrow.png",
+            "_offsetX": 552,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_bthrow_7",
+            "_spriteFileName": "hitboxie_bthrow.png",
+            "_offsetX": 644,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_bthrow_8",
+            "_spriteFileName": "hitboxie_bthrow.png",
+            "_offsetX": 736,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_dair_0",
+            "_spriteFileName": "hitboxie_dair.png",
+            "_offsetX": 0,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 138,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_dair_1",
+            "_spriteFileName": "hitboxie_dair.png",
+            "_offsetX": 92,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 138,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_dair_2",
+            "_spriteFileName": "hitboxie_dair.png",
+            "_offsetX": 184,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 138,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_dair_3",
+            "_spriteFileName": "hitboxie_dair.png",
+            "_offsetX": 276,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 138,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_dair_4",
+            "_spriteFileName": "hitboxie_dair.png",
+            "_offsetX": 368,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 138,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_dsmash_0",
+            "_spriteFileName": "hitboxie_dsmash.png",
+            "_offsetX": 0,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_dsmash_1",
+            "_spriteFileName": "hitboxie_dsmash.png",
+            "_offsetX": 92,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_dsmash_2",
+            "_spriteFileName": "hitboxie_dsmash.png",
+            "_offsetX": 184,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_dsmash_3",
+            "_spriteFileName": "hitboxie_dsmash.png",
+            "_offsetX": 276,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_dsmash_4",
+            "_spriteFileName": "hitboxie_dsmash.png",
+            "_offsetX": 368,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_dsmash_5",
+            "_spriteFileName": "hitboxie_dsmash.png",
+            "_offsetX": 460,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_dsmash_6",
+            "_spriteFileName": "hitboxie_dsmash.png",
+            "_offsetX": 552,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_dsmash_7",
+            "_spriteFileName": "hitboxie_dsmash.png",
+            "_offsetX": 644,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_dsmash_8",
+            "_spriteFileName": "hitboxie_dsmash.png",
+            "_offsetX": 736,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_dsmash_9",
+            "_spriteFileName": "hitboxie_dsmash.png",
+            "_offsetX": 828,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_dsmash_10",
+            "_spriteFileName": "hitboxie_dsmash.png",
+            "_offsetX": 920,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_dsmash_11",
+            "_spriteFileName": "hitboxie_dsmash.png",
+            "_offsetX": 1012,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_dsmash_12",
+            "_spriteFileName": "hitboxie_dsmash.png",
+            "_offsetX": 1104,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_dsmash_13",
+            "_spriteFileName": "hitboxie_dsmash.png",
+            "_offsetX": 1196,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_dsmash_14",
+            "_spriteFileName": "hitboxie_dsmash.png",
+            "_offsetX": 1288,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_dsmash_15",
+            "_spriteFileName": "hitboxie_dsmash.png",
+            "_offsetX": 1380,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_dtilt_0",
+            "_spriteFileName": "hitboxie_dtilt.png",
+            "_offsetX": 0,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_dtilt_1",
+            "_spriteFileName": "hitboxie_dtilt.png",
+            "_offsetX": 92,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_dtilt_2",
+            "_spriteFileName": "hitboxie_dtilt.png",
+            "_offsetX": 184,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_dtilt_3",
+            "_spriteFileName": "hitboxie_dtilt.png",
+            "_offsetX": 276,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_dtilt_4",
+            "_spriteFileName": "hitboxie_dtilt.png",
+            "_offsetX": 368,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_dtilt_5",
+            "_spriteFileName": "hitboxie_dtilt.png",
+            "_offsetX": 460,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_dtilt_6",
+            "_spriteFileName": "hitboxie_dtilt.png",
+            "_offsetX": 552,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_fair_0",
+            "_spriteFileName": "hitboxie_fair.png",
+            "_offsetX": 0,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_fair_1",
+            "_spriteFileName": "hitboxie_fair.png",
+            "_offsetX": 92,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_fair_2",
+            "_spriteFileName": "hitboxie_fair.png",
+            "_offsetX": 184,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_fair_3",
+            "_spriteFileName": "hitboxie_fair.png",
+            "_offsetX": 276,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_fair_4",
+            "_spriteFileName": "hitboxie_fair.png",
+            "_offsetX": 368,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_fair_5",
+            "_spriteFileName": "hitboxie_fair.png",
+            "_offsetX": 460,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_fair_6",
+            "_spriteFileName": "hitboxie_fair.png",
+            "_offsetX": 552,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_fair_7",
+            "_spriteFileName": "hitboxie_fair.png",
+            "_offsetX": 644,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_fair_8",
+            "_spriteFileName": "hitboxie_fair.png",
+            "_offsetX": 736,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_fair_9",
+            "_spriteFileName": "hitboxie_fair.png",
+            "_offsetX": 828,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_fair_10",
+            "_spriteFileName": "hitboxie_fair.png",
+            "_offsetX": 920,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_fair_11",
+            "_spriteFileName": "hitboxie_fair.png",
+            "_offsetX": 1012,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_fair_12",
+            "_spriteFileName": "hitboxie_fair.png",
+            "_offsetX": 1104,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_fsmash_0",
+            "_spriteFileName": "hitboxie_fsmash.png",
+            "_offsetX": 0,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_fsmash_1",
+            "_spriteFileName": "hitboxie_fsmash.png",
+            "_offsetX": 92,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_fsmash_2",
+            "_spriteFileName": "hitboxie_fsmash.png",
+            "_offsetX": 184,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_fsmash_3",
+            "_spriteFileName": "hitboxie_fsmash.png",
+            "_offsetX": 276,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_fsmash_4",
+            "_spriteFileName": "hitboxie_fsmash.png",
+            "_offsetX": 368,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_fsmash_5",
+            "_spriteFileName": "hitboxie_fsmash.png",
+            "_offsetX": 460,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_fsmash_6",
+            "_spriteFileName": "hitboxie_fsmash.png",
+            "_offsetX": 552,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_fsmash_7",
+            "_spriteFileName": "hitboxie_fsmash.png",
+            "_offsetX": 644,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_fsmash_8",
+            "_spriteFileName": "hitboxie_fsmash.png",
+            "_offsetX": 736,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_fsmash_9",
+            "_spriteFileName": "hitboxie_fsmash.png",
+            "_offsetX": 828,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_getup_0",
+            "_spriteFileName": "hitboxie_getup.png",
+            "_offsetX": 0,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_getup_1",
+            "_spriteFileName": "hitboxie_getup.png",
+            "_offsetX": 92,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_getup_2",
+            "_spriteFileName": "hitboxie_getup.png",
+            "_offsetX": 184,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_getup_3",
+            "_spriteFileName": "hitboxie_getup.png",
+            "_offsetX": 276,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_getup_4",
+            "_spriteFileName": "hitboxie_getup.png",
+            "_offsetX": 368,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_getup_5",
+            "_spriteFileName": "hitboxie_getup.png",
+            "_offsetX": 460,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_getup_6",
+            "_spriteFileName": "hitboxie_getup.png",
+            "_offsetX": 552,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_getup_7",
+            "_spriteFileName": "hitboxie_getup.png",
+            "_offsetX": 644,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_getup_8",
+            "_spriteFileName": "hitboxie_getup.png",
+            "_offsetX": 736,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_getup_9",
+            "_spriteFileName": "hitboxie_getup.png",
+            "_offsetX": 828,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_getup_10",
+            "_spriteFileName": "hitboxie_getup.png",
+            "_offsetX": 920,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_getup_11",
+            "_spriteFileName": "hitboxie_getup.png",
+            "_offsetX": 1012,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_getup_12",
+            "_spriteFileName": "hitboxie_getup.png",
+            "_offsetX": 1104,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_getup_13",
+            "_spriteFileName": "hitboxie_getup.png",
+            "_offsetX": 1196,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_getup_14",
+            "_spriteFileName": "hitboxie_getup.png",
+            "_offsetX": 1288,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_idle_0",
+            "_spriteFileName": "hitboxie_idle.png",
+            "_offsetX": 0,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_jump_0",
+            "_spriteFileName": "hitboxie_jump.png",
+            "_offsetX": 0,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_land_0",
+            "_spriteFileName": "hitboxie_land.png",
+            "_offsetX": 0,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_land_1",
+            "_spriteFileName": "hitboxie_land.png",
+            "_offsetX": 92,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_land_2",
+            "_spriteFileName": "hitboxie_land.png",
+            "_offsetX": 184,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_land_3",
+            "_spriteFileName": "hitboxie_land.png",
+            "_offsetX": 276,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_nair_0",
+            "_spriteFileName": "hitboxie_nair.png",
+            "_offsetX": 0,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_nair_1",
+            "_spriteFileName": "hitboxie_nair.png",
+            "_offsetX": 92,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_nair_2",
+            "_spriteFileName": "hitboxie_nair.png",
+            "_offsetX": 184,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_nair_3",
+            "_spriteFileName": "hitboxie_nair.png",
+            "_offsetX": 276,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_nair_4",
+            "_spriteFileName": "hitboxie_nair.png",
+            "_offsetX": 368,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_nair_5",
+            "_spriteFileName": "hitboxie_nair.png",
+            "_offsetX": 460,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_nair_6",
+            "_spriteFileName": "hitboxie_nair.png",
+            "_offsetX": 552,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_nair_7",
+            "_spriteFileName": "hitboxie_nair.png",
+            "_offsetX": 644,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_nair_8",
+            "_spriteFileName": "hitboxie_nair.png",
+            "_offsetX": 736,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_nair_9",
+            "_spriteFileName": "hitboxie_nair.png",
+            "_offsetX": 828,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_nair_10",
+            "_spriteFileName": "hitboxie_nair.png",
+            "_offsetX": 920,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_nair_11",
+            "_spriteFileName": "hitboxie_nair.png",
+            "_offsetX": 1012,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_nair_12",
+            "_spriteFileName": "hitboxie_nair.png",
+            "_offsetX": 1104,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_nair_13",
+            "_spriteFileName": "hitboxie_nair.png",
+            "_offsetX": 1196,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_nair_14",
+            "_spriteFileName": "hitboxie_nair.png",
+            "_offsetX": 1288,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_nair_15",
+            "_spriteFileName": "hitboxie_nair.png",
+            "_offsetX": 1380,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_neutral_0",
+            "_spriteFileName": "hitboxie_neutral.png",
+            "_offsetX": 0,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_neutral_1",
+            "_spriteFileName": "hitboxie_neutral.png",
+            "_offsetX": 92,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_neutral_2",
+            "_spriteFileName": "hitboxie_neutral.png",
+            "_offsetX": 184,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_neutral_3",
+            "_spriteFileName": "hitboxie_neutral.png",
+            "_offsetX": 276,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_neutral_4",
+            "_spriteFileName": "hitboxie_neutral.png",
+            "_offsetX": 368,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_neutral_5",
+            "_spriteFileName": "hitboxie_neutral.png",
+            "_offsetX": 460,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_neutral_6",
+            "_spriteFileName": "hitboxie_neutral.png",
+            "_offsetX": 552,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_neutral_7",
+            "_spriteFileName": "hitboxie_neutral.png",
+            "_offsetX": 644,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_neutral_8",
+            "_spriteFileName": "hitboxie_neutral.png",
+            "_offsetX": 736,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_neutral_9",
+            "_spriteFileName": "hitboxie_neutral.png",
+            "_offsetX": 828,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_neutral_10",
+            "_spriteFileName": "hitboxie_neutral.png",
+            "_offsetX": 920,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_neutral_11",
+            "_spriteFileName": "hitboxie_neutral.png",
+            "_offsetX": 1012,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_neutral_12",
+            "_spriteFileName": "hitboxie_neutral.png",
+            "_offsetX": 1104,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_neutral_13",
+            "_spriteFileName": "hitboxie_neutral.png",
+            "_offsetX": 1196,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_neutral_14",
+            "_spriteFileName": "hitboxie_neutral.png",
+            "_offsetX": 1288,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_nspecial_0",
+            "_spriteFileName": "hitboxie_nspecial.png",
+            "_offsetX": 0,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_nspecial_1",
+            "_spriteFileName": "hitboxie_nspecial.png",
+            "_offsetX": 92,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_nspecial_2",
+            "_spriteFileName": "hitboxie_nspecial.png",
+            "_offsetX": 184,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_nspecial_3",
+            "_spriteFileName": "hitboxie_nspecial.png",
+            "_offsetX": 276,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_nspecial_4",
+            "_spriteFileName": "hitboxie_nspecial.png",
+            "_offsetX": 368,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_nspecial_5",
+            "_spriteFileName": "hitboxie_nspecial.png",
+            "_offsetX": 460,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_nspecial_6",
+            "_spriteFileName": "hitboxie_nspecial.png",
+            "_offsetX": 552,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_nspecial_7",
+            "_spriteFileName": "hitboxie_nspecial.png",
+            "_offsetX": 644,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_nspecial_8",
+            "_spriteFileName": "hitboxie_nspecial.png",
+            "_offsetX": 736,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_nspecial_9",
+            "_spriteFileName": "hitboxie_nspecial.png",
+            "_offsetX": 828,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_pivot_0",
+            "_spriteFileName": "hitboxie_pivot.png",
+            "_offsetX": 0,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_pivot_1",
+            "_spriteFileName": "hitboxie_pivot.png",
+            "_offsetX": 92,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_pivot_2",
+            "_spriteFileName": "hitboxie_pivot.png",
+            "_offsetX": 184,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_pivot_3",
+            "_spriteFileName": "hitboxie_pivot.png",
+            "_offsetX": 276,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_pivot_4",
+            "_spriteFileName": "hitboxie_pivot.png",
+            "_offsetX": 368,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_run_0",
+            "_spriteFileName": "hitboxie_run.png",
+            "_offsetX": 0,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_run_1",
+            "_spriteFileName": "hitboxie_run.png",
+            "_offsetX": 92,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_run_2",
+            "_spriteFileName": "hitboxie_run.png",
+            "_offsetX": 184,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_run_3",
+            "_spriteFileName": "hitboxie_run.png",
+            "_offsetX": 276,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_run_4",
+            "_spriteFileName": "hitboxie_run.png",
+            "_offsetX": 368,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_uair_0",
+            "_spriteFileName": "hitboxie_uair.png",
+            "_offsetX": 0,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_uair_1",
+            "_spriteFileName": "hitboxie_uair.png",
+            "_offsetX": 92,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_uair_2",
+            "_spriteFileName": "hitboxie_uair.png",
+            "_offsetX": 184,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_uair_3",
+            "_spriteFileName": "hitboxie_uair.png",
+            "_offsetX": 276,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_uair_4",
+            "_spriteFileName": "hitboxie_uair.png",
+            "_offsetX": 368,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_usmash_0",
+            "_spriteFileName": "hitboxie_usmash.png",
+            "_offsetX": 0,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_usmash_1",
+            "_spriteFileName": "hitboxie_usmash.png",
+            "_offsetX": 92,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_usmash_2",
+            "_spriteFileName": "hitboxie_usmash.png",
+            "_offsetX": 184,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_usmash_3",
+            "_spriteFileName": "hitboxie_usmash.png",
+            "_offsetX": 276,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_usmash_4",
+            "_spriteFileName": "hitboxie_usmash.png",
+            "_offsetX": 368,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_usmash_5",
+            "_spriteFileName": "hitboxie_usmash.png",
+            "_offsetX": 460,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_usmash_6",
+            "_spriteFileName": "hitboxie_usmash.png",
+            "_offsetX": 552,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_usmash_7",
+            "_spriteFileName": "hitboxie_usmash.png",
+            "_offsetX": 644,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_usmash_8",
+            "_spriteFileName": "hitboxie_usmash.png",
+            "_offsetX": 736,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_usmash_9",
+            "_spriteFileName": "hitboxie_usmash.png",
+            "_offsetX": 828,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_usmash_10",
+            "_spriteFileName": "hitboxie_usmash.png",
+            "_offsetX": 920,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_utilt_0",
+            "_spriteFileName": "hitboxie_utilt.png",
+            "_offsetX": 0,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_utilt_1",
+            "_spriteFileName": "hitboxie_utilt.png",
+            "_offsetX": 92,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_utilt_2",
+            "_spriteFileName": "hitboxie_utilt.png",
+            "_offsetX": 184,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_utilt_3",
+            "_spriteFileName": "hitboxie_utilt.png",
+            "_offsetX": 276,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_utilt_4",
+            "_spriteFileName": "hitboxie_utilt.png",
+            "_offsetX": 368,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_utilt_5",
+            "_spriteFileName": "hitboxie_utilt.png",
+            "_offsetX": 460,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "hitboxie_utilt_6",
+            "_spriteFileName": "hitboxie_utilt.png",
+            "_offsetX": 552,
+            "_offsetY": 0,
+            "_width": 92,
+            "_height": 92,
+            "_pixelsPerUnit": 100.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        }
+    ],
     "JSONFile": {
         "instanceID": 0
     }

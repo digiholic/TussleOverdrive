@@ -136,7 +136,7 @@ public class AbstractFighter : BattleComponent {
     void Start() {
         SetVar(TussleConstants.FighterVariableNames.FACING_DIRECTION, 1);
         
-        SendMessage("ChangeYSpeed", 0f);
+        SendMessage("ChangeYSpeed", 0.0f, SendMessageOptions.RequireReceiver);
         Rest();
 
         //Load SFX
@@ -208,8 +208,8 @@ public class AbstractFighter : BattleComponent {
         transform.position = new Vector3(0, 10);
         //TODO send death signal, handle respawning in-object
         damage_percent = 0;
-        SendMessage("ChangeXSpeed", 0.0f);
-        SendMessage("ChangeYSpeed", 0.0f);
+        SendMessage("ChangeXSpeed", 0.0f, SendMessageOptions.RequireReceiver);
+        SendMessage("ChangeYSpeed", 0.0f, SendMessageOptions.RequireReceiver);
     }
 
     public void doAction(string _actionName)

@@ -13,7 +13,7 @@ public class Land : GameAction {
             actor.SetVar("landing_lag", 0);
             actor.BroadcastMessage("DoAction", "NeutralAction");
             //platform phase reset
-            actor.BroadcastMessage("ChangeXPreferred", 0.0f);
+            actor.BroadcastMessage("ChangeXPreferred", 0.0f, SendMessageOptions.RequireReceiver);
         }
         StateTransitions.CheckGround(actor.GetAbstractFighter());
     }

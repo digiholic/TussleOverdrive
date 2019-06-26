@@ -34,14 +34,12 @@ public class BuilderFighter : LegacyEditorWidget{
 
     void UpdateFighterAction()
     {
-        /*
         ActionHandler actionHandler = fighterObject.GetComponent<ActionHandler>();
         actionHandler.DoAction(editor.currentAction);
         while (actionHandler.CurrentAction.current_frame < editor.currentFrame)
         {
             actionHandler.ManualUpdate();
         }
-        */
     }
 
     void UpdateImageDef(ImageDefinition def)
@@ -50,7 +48,7 @@ public class BuilderFighter : LegacyEditorWidget{
         Debug.Log(spr);
         if (spr != null)
         {
-            displaySprite.sprite = spr;
+            //displaySprite.sprite = spr;
         } else
         {
             Debug.Log("No cached sprite for " + def);

@@ -265,7 +265,10 @@ public class LegacyEditorData : MonoBehaviour
     /// </summary>
     private void Start()
     {
+        //Load the fighter, then initialize it. We need to call the changed event here once the directory loads before we do the rest
         loadedFighter.LoadDirectory(FighterDirName);
+        FighterInfoChangedEvent(loadedFighter);
+
         loadedActionFile = ActionFile.LoadActionsFromFile(FighterDirName, loadedFighter.action_file_path);
         currentAction = loadedActionFile.GetFirst();
         loadedSpriteInfo = SpriteInfo.LoadSpritesFromFile(FighterDirName, loadedFighter.sprite_info_path);

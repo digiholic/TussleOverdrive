@@ -49,8 +49,8 @@ public class SpriteHandler : BattleComponent {
     {
         fighter_info = fInfo;
         sprite_info = fighter_info.sprite_info;
-        //Might not need this var anymore
-        //SetVar(TussleConstants.SpriteVariableNames.PIXELS_PER_UNIT, sprite_info.pixelsPerUnit);
+        Debug.Log(sprite_info.imageDefinitions[0]);
+        battleObject.SetVar(TussleConstants.SpriteVariableNames.PIXELS_PER_UNIT,sprite_info.imageDefinitions[0].PixelsPerUnit);
     }
 
     public override void ManualUpdate()
@@ -67,12 +67,22 @@ public class SpriteHandler : BattleComponent {
     {
         AnimationDefinition anim = sprite_info.getAnimationByName(animationName);
         currentAnimation = anim; //Animation can be null, but if it is, we don't set the sprite
-        if (anim != null)
+        if (anim != AnimationDefinition.NullAnimation)
         { 
             anim.setFrame(startingFrame);
+            ChangeSubimage(startingFrame);
         }
     }
     
+    public void ChangeSubimage(int frame)
+    {
+        if (currentAnimation != null && currentAnimation != AnimationDefinition.NullAnimation)
+        {
+            currentAnimation.setFrame(frame);
+            sprite_renderer.sprite = sprite_info.getSpriteFromAnimation(currentAnimation.AnimationName, frame);
+        }
+    }
+
     public AnimationDefinition getAnimation()
     {
         return currentAnimation;

@@ -148,7 +148,6 @@ public class ImageDefinition {
         //If the costume name exists and isn't an empty string, make sure it's part of the path
         if (costumeName != null && costumeName.Length > 0)
         {
-            Debug.Log(directoryName);
             path = FileLoader.PathCombine(directoryName, costumeName, filename);
         }
 

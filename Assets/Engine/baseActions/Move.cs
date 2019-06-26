@@ -29,7 +29,7 @@ public class Move : GameAction {
         else if (actor.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION) != GetIntVar("direction"))
                 actor.BroadcastMessage("flip");
             
-        actor.BroadcastMessage("ChangeXPreferred", 0.0f);
+        actor.BroadcastMessage("ChangeXPreferred", 0.0f, SendMessageOptions.RequireReceiver);
     }
 
     public override void Update()
