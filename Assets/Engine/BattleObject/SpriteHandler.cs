@@ -49,7 +49,6 @@ public class SpriteHandler : BattleComponent {
     {
         fighter_info = fInfo;
         sprite_info = fighter_info.sprite_info;
-        Debug.Log(sprite_info.imageDefinitions[0]);
         battleObject.SetVar(TussleConstants.SpriteVariableNames.PIXELS_PER_UNIT,sprite_info.imageDefinitions[0].PixelsPerUnit);
     }
 

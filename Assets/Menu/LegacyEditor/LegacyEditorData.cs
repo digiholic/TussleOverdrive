@@ -332,7 +332,6 @@ public class LegacyEditorData : MonoBehaviour
         {
             LegacyEditorAction act = undoList.Pop();
             act.undo();
-            Debug.Log("Undoing Action: " + act);
             redoList.Push(act);
             FireModelChange();
         }

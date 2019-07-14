@@ -31,6 +31,10 @@ public class SubimageOrderPanel : MonoBehaviour
         ChangeSubimageOrderAction downAction = ScriptableObject.CreateInstance<ChangeSubimageOrderAction>();
         downAction.init(index, 1);
         downButton.SetAction(downAction);
+
+        DeleteSubimageAction deleteAction = ScriptableObject.CreateInstance<DeleteSubimageAction>();
+        deleteAction.init(index);
+        deleteButton.SetAction(deleteAction);
     }
 
     public void SetSubimage(string sub)

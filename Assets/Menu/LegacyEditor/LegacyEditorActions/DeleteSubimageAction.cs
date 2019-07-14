@@ -2,28 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChangeSubimageOrderAction : LegacyEditorAction
+public class DeleteSubimageAction : LegacyEditorAction
 {
     private AnimationDefinition animationToModify;
-    private int index;
-    private int moveAmount;
+    private int indexToRemove;
+    private string removedSubimage;
 
-    public void init(int index, int moveAmount)
+    public void init(int index)
     {
-        this.index = index;
-        this.moveAmount = moveAmount;
+        indexToRemove = index;
     }
 
     public override void execute()
     {
         animationToModify = LegacyEditorData.instance.currentAnimation;
-        animationToModify.moveSubimageIndex(index, moveAmount);
+        removedSubimage = animationToModify.subimages[indexToRemove];
+        animationToModify.subimages.RemoveAt(indexToRemove);
         LegacyEditorData.ChangedAnimation();
     }
 
     public override void undo()
     {
-        animationToModify.moveSubimageIndex(index+moveAmount, -1*moveAmount);
+        animationToModify.subimages.Insert(indexToRemove, removedSubimage);
         LegacyEditorData.ChangedAnimation();
     }
 }
