@@ -7,7 +7,6 @@ public class OnClickSendAction : MonoBehaviour {
 
     public void SetAction(LegacyEditorAction legacyAction)
     {
-        Debug.Log(legacyAction);
         action = legacyAction;
     }
 

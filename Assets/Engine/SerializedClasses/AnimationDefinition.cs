@@ -128,6 +128,20 @@ public class AnimationDefinition
         return subimages[getIndexForFrame(frame)];
     }
 
+    /// <summary>
+    /// Move the subimage at an index by the given amount. If the new index is less than zero or above max, it is ignored
+    /// </summary>
+    /// <param name="index">The index of the subimage to move</param>
+    /// <param name="amount">The amount to move it, negative being towards the front, postive being towards the end</param>
+    public void moveSubimageIndex(int index, int amount)
+    {
+        if (index + amount < 0) return;
+        if (index + amount > subimages.Count-1) return;
+        string subimage = subimages[index];
+        subimages.RemoveAt(index);
+        subimages.Insert(index + amount, subimage);
+    }
+
     public override string ToString()
     {
         return "Animation Definition: " + _animationName;
