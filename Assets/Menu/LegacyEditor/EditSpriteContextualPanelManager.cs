@@ -7,7 +7,7 @@ public class EditSpriteContextualPanelManager : LegacyEditorWidget
 {
     public AutosliceContextPanel autosliceContextPanel;
     public ImageDefContextPanel imageDefPanel;
-
+    public AnimationEditorContextPanel animationOrderContextPanel;
     private void DeactivateAll()
     {
         autosliceContextPanel.DeactivatePanel();
@@ -26,6 +26,13 @@ public class EditSpriteContextualPanelManager : LegacyEditorWidget
             else
             {
                 imageDefPanel.ActivatePanel();
+            }
+        }
+        if (editor.leftDropdown == "Animations")
+        {
+            if (editor.rightDropdown == "Subimages")
+            {
+                animationOrderContextPanel.ActivatePanel();
             }
         }
     }
