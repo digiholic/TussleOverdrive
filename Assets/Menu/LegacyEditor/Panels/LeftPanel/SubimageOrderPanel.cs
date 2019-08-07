@@ -9,9 +9,8 @@ public class SubimageOrderPanel : MonoBehaviour
     public UISprite sprite;
     public int index;
 
-    [SerializeField] private OnClickSendAction upButton;
-    [SerializeField] private OnClickSendAction downButton;
-    [SerializeField] private OnClickSendAction deleteButton;
+    //The rig is kept to notify on drag to re-order the subimages
+    public SubimageOrderPanelRig rig;
 
     // Use this for initialization
     void Awake()
@@ -22,19 +21,8 @@ public class SubimageOrderPanel : MonoBehaviour
 
     public void setIndex(int index)
     {
+        int oldIndex = this.index;
         this.index = index;
-
-        ChangeSubimageOrderAction upAction = ScriptableObject.CreateInstance<ChangeSubimageOrderAction>();
-        upAction.init(index, -1);
-        upButton.SetAction(upAction);
-
-        ChangeSubimageOrderAction downAction = ScriptableObject.CreateInstance<ChangeSubimageOrderAction>();
-        downAction.init(index, 1);
-        downButton.SetAction(downAction);
-
-        DeleteSubimageAction deleteAction = ScriptableObject.CreateInstance<DeleteSubimageAction>();
-        deleteAction.init(index);
-        deleteButton.SetAction(deleteAction);
     }
 
     public void SetSubimage(string sub)
@@ -43,6 +31,25 @@ public class SubimageOrderPanel : MonoBehaviour
         label.text = sub;
     }
     
+    public void OnDragDropStart()
+    {
+        Debug.Log("Dragging");
+        sprite.depth = 3;
+        sprite.alpha = 0.5f;
+        label.depth = 4;
+        label.alpha = 0.5f;
+    }
+
+    public void OnDragDropRelease()
+    {
+        Debug.Log("Done Dragging");
+        sprite.depth = 0;
+        sprite.alpha = 1f;
+        label.depth = 1;
+        label.alpha = 1f;
+
+        rig.UpdateOrder();
+    }
 
     private void OnEnable() { }
     private void OnDisable() { }

@@ -14,9 +14,11 @@ public class FileMenu : MonoBehaviour
     public void OnSelectionChange()
     {
         string selected = list.value;
-        Debug.Log(selected);
         switch (selected)
         {
+            case "New":
+                LegacyEditorData.instance.NewFighterClicked();
+                break;
             case "Load":
                 LegacyEditorData.instance.LoadFighterClicked();
                 break;
@@ -24,6 +26,7 @@ public class FileMenu : MonoBehaviour
                 LegacyEditorData.instance.SaveFighterClicked();
                 break;
             default:
+                Debug.Log(selected);
                 break;
         }
     }

@@ -28,14 +28,6 @@
             ]
         },
         {
-            "_animationName": "idle",
-            "_spriteRate": 1,
-            "_loop": false,
-            "subimages": [
-                "idle_0"
-            ]
-        },
-        {
             "_animationName": "jab1",
             "_spriteRate": 1,
             "_loop": false,
@@ -73,6 +65,25 @@
             "_loop": false,
             "subimages": [
                 "utilt_0"
+            ]
+        },
+        {
+            "_animationName": "idle",
+            "_spriteRate": 2,
+            "_loop": false,
+            "subimages": [
+                "idle_0",
+                "idle_1",
+                "idle_2",
+                "idle_3",
+                "idle_4",
+                "idle_5",
+                "idle_6",
+                "idle_7",
+                "idle_8",
+                "idle_9",
+                "idle_10",
+                "idle_11"
             ]
         }
     ],
@@ -112,22 +123,6 @@
         {
             "_imageName": "ftilt_0",
             "_spriteFileName": "ftilt.png",
-            "_offsetX": 0,
-            "_offsetY": 0,
-            "_width": 986,
-            "_height": 1080,
-            "_pixelsPerUnit": 400.0,
-            "_pivot": {
-                "anchorName": "Pivot",
-                "xPos": 0.5,
-                "yPos": 1.0,
-                "anchorType": "relative"
-            },
-            "_anchors": []
-        },
-        {
-            "_imageName": "idle_0",
-            "_spriteFileName": "idle.png",
             "_offsetX": 0,
             "_offsetY": 0,
             "_width": 986,
@@ -209,6 +204,198 @@
             "_imageName": "utilt_0",
             "_spriteFileName": "utilt.png",
             "_offsetX": 0,
+            "_offsetY": 0,
+            "_width": 986,
+            "_height": 1080,
+            "_pixelsPerUnit": 400.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "idle_0",
+            "_spriteFileName": "idle.png",
+            "_offsetX": 0,
+            "_offsetY": 0,
+            "_width": 986,
+            "_height": 1080,
+            "_pixelsPerUnit": 400.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "idle_1",
+            "_spriteFileName": "idle.png",
+            "_offsetX": 986,
+            "_offsetY": 0,
+            "_width": 986,
+            "_height": 1080,
+            "_pixelsPerUnit": 400.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "idle_2",
+            "_spriteFileName": "idle.png",
+            "_offsetX": 1972,
+            "_offsetY": 0,
+            "_width": 986,
+            "_height": 1080,
+            "_pixelsPerUnit": 400.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "idle_3",
+            "_spriteFileName": "idle.png",
+            "_offsetX": 2958,
+            "_offsetY": 0,
+            "_width": 986,
+            "_height": 1080,
+            "_pixelsPerUnit": 400.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "idle_4",
+            "_spriteFileName": "idle.png",
+            "_offsetX": 3944,
+            "_offsetY": 0,
+            "_width": 986,
+            "_height": 1080,
+            "_pixelsPerUnit": 400.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "idle_5",
+            "_spriteFileName": "idle.png",
+            "_offsetX": 4930,
+            "_offsetY": 0,
+            "_width": 986,
+            "_height": 1080,
+            "_pixelsPerUnit": 400.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "idle_6",
+            "_spriteFileName": "idle.png",
+            "_offsetX": 5916,
+            "_offsetY": 0,
+            "_width": 986,
+            "_height": 1080,
+            "_pixelsPerUnit": 400.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "idle_7",
+            "_spriteFileName": "idle.png",
+            "_offsetX": 6902,
+            "_offsetY": 0,
+            "_width": 986,
+            "_height": 1080,
+            "_pixelsPerUnit": 400.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "idle_8",
+            "_spriteFileName": "idle.png",
+            "_offsetX": 7888,
+            "_offsetY": 0,
+            "_width": 986,
+            "_height": 1080,
+            "_pixelsPerUnit": 400.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "idle_9",
+            "_spriteFileName": "idle.png",
+            "_offsetX": 8874,
+            "_offsetY": 0,
+            "_width": 986,
+            "_height": 1080,
+            "_pixelsPerUnit": 400.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "idle_10",
+            "_spriteFileName": "idle.png",
+            "_offsetX": 9860,
+            "_offsetY": 0,
+            "_width": 986,
+            "_height": 1080,
+            "_pixelsPerUnit": 400.0,
+            "_pivot": {
+                "anchorName": "Pivot",
+                "xPos": 0.5,
+                "yPos": 1.0,
+                "anchorType": "relative"
+            },
+            "_anchors": []
+        },
+        {
+            "_imageName": "idle_11",
+            "_spriteFileName": "idle.png",
+            "_offsetX": 10846,
             "_offsetY": 0,
             "_width": 986,
             "_height": 1080,

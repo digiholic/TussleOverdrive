@@ -323,7 +323,7 @@ public class UIDragDropItem : MonoBehaviour
 
 	protected virtual void OnDragDropStart ()
 	{
-		if (!draggedItems.Contains(this))
+        if (!draggedItems.Contains(this))
 			draggedItems.Add(this);
 
 		// Automatically disable the scroll view
@@ -358,24 +358,30 @@ public class UIDragDropItem : MonoBehaviour
 
 		if (mTable != null) mTable.repositionNow = true;
 		if (mGrid != null) mGrid.repositionNow = true;
-	}
 
-	/// <summary>
-	/// Adjust the dragged object's position.
-	/// </summary>
+        //Added this to hook into these better ~digi
+        gameObject.SendMessage("OnDragDropStartEvent", SendMessageOptions.DontRequireReceiver);
+    }
 
-	protected virtual void OnDragDropMove (Vector2 delta)
+    /// <summary>
+    /// Adjust the dragged object's position.
+    /// </summary>
+
+    protected virtual void OnDragDropMove (Vector2 delta)
 	{
-		if (mParent != null) mTrans.localPosition += mTrans.InverseTransformDirection((Vector3)delta);
-	}
+        if (mParent != null) mTrans.localPosition += mTrans.InverseTransformDirection((Vector3)delta);
 
-	/// <summary>
-	/// Drop the item onto the specified object.
-	/// </summary>
+        //Added this to hook into these better ~digi
+        gameObject.SendMessage("OnDragDropMoveEvent", SendMessageOptions.DontRequireReceiver);
+    }
 
-	protected virtual void OnDragDropRelease (GameObject surface)
+    /// <summary>
+    /// Drop the item onto the specified object.
+    /// </summary>
+
+    protected virtual void OnDragDropRelease (GameObject surface)
 	{
-		if (!cloneOnDrag)
+        if (!cloneOnDrag)
 		{
 			// Clear the reference to the scroll view since it might be in another scroll view now
 			var drags = GetComponentsInChildren<UIDragScrollView>();
@@ -423,26 +429,34 @@ public class UIDragDropItem : MonoBehaviour
 		OnDragDropEnd(surface);
 
 		if (cloneOnDrag) DestroySelf();
-	}
 
-	/// <summary>
-	/// Called at the end of OnDragDropRelease, indicating that the cloned object should now be destroyed.
-	/// </summary>
+        //Added this to hook into these better ~digi
+        gameObject.SendMessage("OnDragDropReleaseEvent", SendMessageOptions.DontRequireReceiver);
+    }
 
-	protected virtual void DestroySelf () { NGUITools.Destroy(gameObject); }
+    /// <summary>
+    /// Called at the end of OnDragDropRelease, indicating that the cloned object should now be destroyed.
+    /// </summary>
+
+    protected virtual void DestroySelf () { NGUITools.Destroy(gameObject); }
 
 	/// <summary>
 	/// Function called when the object gets reparented after the drop operation finishes.
 	/// </summary>
 
-	protected virtual void OnDragDropEnd (GameObject surface) { draggedItems.Remove(this); mParent = null; }
+	protected virtual void OnDragDropEnd (GameObject surface) {
+        draggedItems.Remove(this); mParent = null;
 
-	/// <summary>
-	/// Re-enable the drag scroll view script at the end of the frame.
-	/// Reason: http://www.tasharen.com/forum/index.php?topic=10203.0
-	/// </summary>
+        //Added this to hook into these better ~digi
+        gameObject.SendMessage("OnDragDropEndEvent", SendMessageOptions.DontRequireReceiver);
+    }
 
-	protected void EnableDragScrollView ()
+    /// <summary>
+    /// Re-enable the drag scroll view script at the end of the frame.
+    /// Reason: http://www.tasharen.com/forum/index.php?topic=10203.0
+    /// </summary>
+
+    protected void EnableDragScrollView ()
 	{
 		if (mDragScrollView != null)
 			mDragScrollView.enabled = true;

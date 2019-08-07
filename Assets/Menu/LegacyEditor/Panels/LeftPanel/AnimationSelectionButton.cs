@@ -6,6 +6,8 @@ public class AnimationSelectionButton : MonoBehaviour
 {
     public UILabel label;
     private UIButton button;
+    public UIWidget widget;
+
     public AnimationDefinition animationDefinition;
 
     // Use this for initialization
@@ -13,6 +15,7 @@ public class AnimationSelectionButton : MonoBehaviour
     {
         label = GetComponentInChildren<UILabel>();
         button = GetComponent<UIButton>();
+        widget = GetComponent<UIWidget>();
     }
 
     void ChangedAnimation(AnimationDefinition anim)

@@ -48,6 +48,7 @@ public class SubimageOrderPanelRig : LegacyEditorWidget
     {
         GameObject go = NGUITools.AddChild(gameObject, spriteFileButtonPrefab);
         SubimageOrderPanel button = go.GetComponent<SubimageOrderPanel>();
+        button.rig = this;
         button.SetSubimage(imageDef);
         button.setIndex(index);
 
@@ -59,6 +60,25 @@ public class SubimageOrderPanelRig : LegacyEditorWidget
         button.sprite.rightAnchor.absolute = rightAnchorOffset;
 
         children.Add(go);
+    }
+
+    public void UpdateOrder()
+    {
+        int index = 0;
+        List<string> subimages = new List<string>();
+
+        foreach (Transform child in grid.GetChildList())
+        {
+            SubimageOrderPanel orderPanel = child.GetComponent<SubimageOrderPanel>();
+            orderPanel.setIndex(index);
+            subimages.Add(orderPanel.subimageName);
+            index++;
+        }
+        Debug.Log("Update Order Subimages:");
+        Debug.Log(subimages);
+        ChangeSubimageOrderAction legacyAction = ScriptableObject.CreateInstance<ChangeSubimageOrderAction>();
+        legacyAction.init(subimages);
+        editor.DoAction(legacyAction);
     }
 
     public override void RegisterListeners()

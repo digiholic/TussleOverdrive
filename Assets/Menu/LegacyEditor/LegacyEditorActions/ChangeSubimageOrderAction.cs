@@ -5,25 +5,25 @@ using UnityEngine;
 public class ChangeSubimageOrderAction : LegacyEditorAction
 {
     private AnimationDefinition animationToModify;
-    private int index;
-    private int moveAmount;
+    private List<string> nextList;
+    private List<string> previousList;
 
-    public void init(int index, int moveAmount)
+    public void init(List<string> nextList)
     {
-        this.index = index;
-        this.moveAmount = moveAmount;
+        this.nextList = nextList;
     }
 
     public override void execute()
     {
         animationToModify = LegacyEditorData.instance.currentAnimation;
-        animationToModify.moveSubimageIndex(index, moveAmount);
+        previousList = animationToModify.subimages;
+        animationToModify.subimages = nextList;
         LegacyEditorData.ChangedAnimation();
     }
 
     public override void undo()
     {
-        animationToModify.moveSubimageIndex(index+moveAmount, -1*moveAmount);
+        animationToModify.subimages = previousList;
         LegacyEditorData.ChangedAnimation();
     }
 }

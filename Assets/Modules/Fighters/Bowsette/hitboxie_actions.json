@@ -1,21 +1,21 @@
 {
     "actions": [
-        {
-            "name": "NeutralAction",
-            "length": 1,
-            "animationName": "idle",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [
-                    "Set Up"
-                ],
-                "m_values": [
-                    {
-                        "data": []
-                    }
-                ]
+      {
+        "name": "NeutralAction",
+        "length": 230,
+        "animationName": "idle",
+        "exit_action": "NeutralAction",
+        "subactionCategories": {
+          "m_keys": [
+            "Set Up"
+          ],
+          "m_values": [
+            {
+              "data": []
             }
-        },
+          ]
+        }
+      },
         {
             "name": "Stop",
             "length": 9,
@@ -48,8 +48,14 @@
             "animationName": "crouch",
             "exit_action": "",
             "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
+                "m_keys": [
+                    "Set Up"
+                ],
+                "m_values": [
+                    {
+                        "data": []
+                    }
+                ]
             }
         },
         {
@@ -58,8 +64,14 @@
             "animationName": "crouch",
             "exit_action": "",
             "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
+                "m_keys": [
+                    "Set Up"
+                ],
+                "m_values": [
+                    {
+                        "data": []
+                    }
+                ]
             }
         },
         {
@@ -68,8 +80,14 @@
             "animationName": "jump",
             "exit_action": "",
             "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
+                "m_keys": [
+                    "Set Up"
+                ],
+                "m_values": [
+                    {
+                        "data": []
+                    }
+                ]
             }
         },
         {

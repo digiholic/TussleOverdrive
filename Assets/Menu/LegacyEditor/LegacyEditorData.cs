@@ -274,11 +274,6 @@ public class LegacyEditorData : MonoBehaviour
         loadedSpriteInfo = SpriteInfo.LoadSpritesFromFile(FighterDirName, loadedFighter.sprite_info_path);
         loadedSpriteInfo.LoadDirectory(FighterDirName);
         FireModelChange();
-
-        //foreach (UIPanel panel in GameObject.FindObjectsOfType<UIPanel>())
-        //{
-        //    Debug.Log(panel.gameObject.name + " - " + panel.depth,panel.gameObject);
-        //}
     }
 
     private void Update()
@@ -306,20 +301,13 @@ public class LegacyEditorData : MonoBehaviour
     /// </summary>
     public void FireModelChange()
     {
-        if (FighterInfoChangedEvent != null)
-            FighterInfoChangedEvent(loadedFighter);
-        if (ActionFileChangedEvent != null)
-            ActionFileChangedEvent(loadedActionFile);
-        if (CurrentActionChangedEvent != null)
-            CurrentActionChangedEvent(currentAction);
-        if (LeftDropdownChangedEvent != null)
-            LeftDropdownChangedEvent(leftDropdown);
-        if (RightDropdownChangedEvent != null)
-            RightDropdownChangedEvent(rightDropdown);
-        if (CurrentFrameChangedEvent != null)
-            CurrentFrameChangedEvent(currentFrame);
-        if (CurrentSubactionChangedEvent != null)
-            CurrentSubactionChangedEvent(currentSubaction);
+        FighterInfoChangedEvent?.Invoke(loadedFighter);
+        ActionFileChangedEvent?.Invoke(loadedActionFile);
+        CurrentActionChangedEvent?.Invoke(currentAction);
+        LeftDropdownChangedEvent?.Invoke(leftDropdown);
+        RightDropdownChangedEvent?.Invoke(rightDropdown);
+        CurrentFrameChangedEvent?.Invoke(currentFrame);
+        CurrentSubactionChangedEvent?.Invoke(currentSubaction);
     }
 
     private Stack<LegacyEditorAction> undoList = new Stack<LegacyEditorAction>();
@@ -357,7 +345,6 @@ public class LegacyEditorData : MonoBehaviour
         act.execute();
         //This is a special tool that will help us later
         undoList.Push(act);
-        //FireModelChange();
     }
 
     private void CheckKeyboardShortcuts()

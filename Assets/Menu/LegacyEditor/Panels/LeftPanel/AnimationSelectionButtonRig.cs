@@ -58,12 +58,12 @@ public class AnimationSelectionButtonRig : LegacyEditorWidget
         GameObject go = NGUITools.AddChild(gameObject, actionSelectionButtonPrefab);
         AnimationSelectionButton button = go.GetComponent<AnimationSelectionButton>();
         button.SetAnimation(anim);
-        button.label.leftAnchor.target = anchorObject;
-        button.label.leftAnchor.relative = 0;
-        button.label.leftAnchor.absolute = leftAnchorOffset;
-        button.label.rightAnchor.target = anchorObject;
-        button.label.rightAnchor.relative = 1;
-        button.label.rightAnchor.absolute = rightAnchorOffset;
+        button.widget.leftAnchor.target = anchorObject;
+        button.widget.leftAnchor.relative = 0;
+        button.widget.leftAnchor.absolute = leftAnchorOffset;
+        button.widget.rightAnchor.target = anchorObject;
+        button.widget.rightAnchor.relative = 1;
+        button.widget.rightAnchor.absolute = rightAnchorOffset;
 
         children.Add(go);
     }
