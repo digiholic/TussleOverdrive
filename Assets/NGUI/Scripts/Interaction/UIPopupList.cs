@@ -1143,6 +1143,7 @@ public class UIPopupList : UIWidgetContainer
 				lbl.overflowMethod = UILabel.Overflow.ResizeFreely;
 				lbl.alignment = alignment;
 				lbl.symbolStyle = NGUIText.SymbolStyle.Colored;
+				lbl.keepCrispWhenShrunk = UILabel.Crispness.Never; //I still don't get why this option exists if it always looks like butts if it's turned on ~digi
 				labels.Add(lbl);
 
 				contentHeight += lineHeight;
