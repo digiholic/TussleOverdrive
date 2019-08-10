@@ -25,16 +25,17 @@ public class SpriteHandler : BattleComponent {
 
     void Awake()
     {
-        if (battleObject != null)
-            battleObject.spriteObject = spriteComponent;
-
+        //If the battle object has a sprite object, that's what we'll use instead of making a new one.
+        spriteComponent = battleObject?.spriteObject;
+        
         SetVar(TussleConstants.SpriteVariableNames.SPRITE_CURRENT, "idle");
         SetVar(TussleConstants.SpriteVariableNames.FRAME_CURRENT, 0);
         if (spriteComponent == null)
         {
             spriteComponent = new GameObject("Sprite");
             RectTransform componentRect = spriteComponent.AddComponent<RectTransform>();
-            spriteComponent.transform.SetParent(transform);
+            componentRect.SetParent(transform);
+            
             componentRect.anchorMin = new Vector2(0.5f, 0);
             componentRect.anchorMax = new Vector2(0.5f, 0);
             componentRect.anchoredPosition = Vector3.zero;

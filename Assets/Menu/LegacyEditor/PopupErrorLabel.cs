@@ -28,6 +28,10 @@ public class PopupErrorLabel : MonoBehaviour
         errorMessage = text;
     }
 
+    public void DisplayError(string errorText){
+        SetErrorText(errorText);
+        DisplayError();
+    }
     public void DisplayError()
     {
         label.text = errorMessage;

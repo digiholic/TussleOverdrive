@@ -56,7 +56,8 @@ public class FileBrowser : MonoBehaviour {
 
     public void SetErrorText(string errorText)
     {
-        errorLabel.SetErrorText(errorText);
+        Debug.Log("Setting Error Text: "+errorText);
+        errorLabel.DisplayError(errorText);
     }
 
     public void Initialize(DirectoryInfo starting_directory, ValidateFile validation_method, FileCallback fileCallback, DirectoryCallback directoryCallback)

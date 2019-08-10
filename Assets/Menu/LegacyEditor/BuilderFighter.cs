@@ -48,7 +48,7 @@ public class BuilderFighter : LegacyEditorWidget{
         Debug.Log(spr);
         if (spr != null)
         {
-            //displaySprite.sprite = spr;
+            displaySprite.sprite = spr;
         } else
         {
             Debug.Log("No cached sprite for " + def);
