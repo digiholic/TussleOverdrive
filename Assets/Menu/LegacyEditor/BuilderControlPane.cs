@@ -26,9 +26,10 @@ public class BuilderControlPane : MonoBehaviour {
     public float minZoomDist = 2;
     public float maxZoomDist = 25;
 
+    private Collider coll;
 	// Use this for initialization
 	void Start () {
-		
+		coll = GetComponent<BoxCollider>();
 	}
 	
 	// Update is called once per frame

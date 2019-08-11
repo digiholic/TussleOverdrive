@@ -16,6 +16,13 @@ public class AnimationSelectionButton : MonoBehaviour
         label = GetComponentInChildren<UILabel>();
         button = GetComponent<UIButton>();
         widget = GetComponent<UIWidget>();
+
+        
+    }
+
+    void Start()
+    {
+        ChangedAnimation(LegacyEditorData.instance.currentAnimation);
     }
 
     void ChangedAnimation(AnimationDefinition anim)

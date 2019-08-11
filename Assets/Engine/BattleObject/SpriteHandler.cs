@@ -137,4 +137,8 @@ public class SpriteHandler : BattleComponent {
                 flip();
         }
     }
+
+    public Vector3 getCenterPoint(){
+        return spriteComponent.transform.position;
+    }
 }
