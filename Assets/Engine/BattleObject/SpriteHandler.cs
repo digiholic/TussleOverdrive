@@ -23,6 +23,8 @@ public class SpriteHandler : BattleComponent {
 
     private float rot_degrees;
 
+    private ImageDefinition currentSubimage;
+
     void Awake()
     {
         //If the battle object has a sprite object, that's what we'll use instead of making a new one.
@@ -46,6 +48,10 @@ public class SpriteHandler : BattleComponent {
         }
     }
 
+    /// <summary>
+    /// Sets parameters from the FighterInfo once it's ready loading all its files
+    /// </summary>
+    /// <param name="fInfo">The Fighter Info that has finished loading</param>
     public void OnFighterInfoReady(FighterInfo fInfo)
     {
         fighter_info = fInfo;
@@ -53,16 +59,36 @@ public class SpriteHandler : BattleComponent {
         battleObject.SetVar(TussleConstants.SpriteVariableNames.PIXELS_PER_UNIT,sprite_info.imageDefinitions[0].PixelsPerUnit);
     }
 
+    /// <summary>
+    /// this BattleComponent's manual update method, called once per frame in gameplay, or when rolling forward a replay
+    /// </summary>
     public override void ManualUpdate()
     {
         RenderSprite();
     }
     
+    /// <summary>
+    /// Gets the center point of the Sprite Component
+    /// </summary>
+    /// <returns>The Vector3 of the Sprite Component's Transform</returns>
+    public Vector3 getCenterPoint(){
+        return spriteComponent.transform.position;
+    }
+
+    /// <summary>
+    /// Change the current Animation of the Sprite Handler, starting at frame 0
+    /// </summary>
+    /// <param name="animationName">The name of the Animation to get from the Sprite Info</param>
     public void ChangeAnimation(string animationName)
     {
         ChangeAnimation(animationName, 0);
     }
 
+    /// <summary>
+    /// Change the current Animation of the Sprite Handler, starting 
+    /// </summary>
+    /// <param name="animationName">The name of the Animation to get from the Sprite Info</param>
+    /// <param name="startingFrame">The frame to start the animation on</param>
     public void ChangeAnimation(string animationName,int startingFrame)
     {
         AnimationDefinition anim = sprite_info.getAnimationByName(animationName);
@@ -74,6 +100,10 @@ public class SpriteHandler : BattleComponent {
         }
     }
     
+    /// <summary>
+    /// Change the subimage of the current animation
+    /// </summary>
+    /// <param name="frame">The frame to change to</param>
     public void ChangeSubimage(int frame)
     {
         if (currentAnimation != null && currentAnimation != AnimationDefinition.NullAnimation)
@@ -83,11 +113,42 @@ public class SpriteHandler : BattleComponent {
         }
     }
 
+    /// <summary>
+    /// Get the sprite's current animation definition
+    /// </summary>
+    /// <returns></returns>
     public AnimationDefinition getAnimation()
     {
         return currentAnimation;
     }
 
+    /// <summary>
+    /// Get the current subimage of the current animation
+    /// </summary>
+    /// <returns></returns>
+    public ImageDefinition getCurrentSubimage(){
+        return sprite_info.GetImageByName(currentAnimation.getCurrentSubimage(false));
+    }
+
+    /// <summary>
+    /// Get a list of all Subimages currently loaded into the sprite info
+    /// </summary>
+    /// <returns></returns>
+    public List<ImageDefinition> getImages(){
+        return sprite_info.imageDefinitions;
+    }
+
+    /// <summary>
+    /// Get a list of all Animations currently loaded into the sprite info
+    /// </summary>
+    /// <returns></returns>
+    public List<AnimationDefinition> getAnimations(){
+        return sprite_info.animations;
+    }
+
+    /// <summary>
+    /// Update the sprite render to use the current Sprite from the current Animation
+    /// </summary>
     private void RenderSprite()
     {
         sprite_renderer.sprite = sprite_info.getSpriteFromAnimation(currentAnimation.AnimationName);
@@ -136,9 +197,5 @@ public class SpriteHandler : BattleComponent {
                     (facing == -1 && orientation == RIGHT))
                 flip();
         }
-    }
-
-    public Vector3 getCenterPoint(){
-        return spriteComponent.transform.position;
     }
 }
