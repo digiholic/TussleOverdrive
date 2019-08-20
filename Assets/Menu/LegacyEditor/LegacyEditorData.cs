@@ -13,13 +13,11 @@ public class LegacyEditorData : MonoBehaviour
     public static AnchorPositions anchors;
 
     [Header("Component Accessors")]
-    [SerializeField]
-    private PanelHider ShadowRealm;
-    [SerializeField]
-    private FileBrowser fileBrowser;
-    [SerializeField]
-    private NewFighterPopup newFighterPopup;
-
+    [SerializeField] private PanelHider ShadowRealm;
+    [SerializeField] private FileBrowser fileBrowser;
+    [SerializeField] private NewFighterPopup newFighterPopup;
+    public MouseToPixelHandler MouseToPixelHandler;
+    
     public delegate void FighterInfoChangeResults(FighterInfo info);
     public delegate void SpriteInfoChangeResults(SpriteInfo info);
     public delegate void ActionFileChangeResults(ActionFile actions);
