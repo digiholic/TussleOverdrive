@@ -7,6 +7,9 @@ public class BuilderControlPane : MonoBehaviour {
     public UICamera viewerCamera;
     public BattleObject targetObject;
 
+    private bool leftClickHeld;
+    private Vector2 leftClickLastPos;
+
     private bool middleClickHeld;
     private Vector2 middleClickLastPos;
 
@@ -36,10 +39,31 @@ public class BuilderControlPane : MonoBehaviour {
 	void Update () {
         isHovered = (UICamera.hoveredObject == gameObject);
 
+        processLeftClick();
         processRightClick();
         processMiddleClick();
 	}
 
+    void processLeftClick(){
+        if (isHovered && Input.GetMouseButtonDown(0))
+        {
+            leftClickLastPos = LegacyEditorData.instance.MouseToPixelHandler.CurrentPixelDistance;
+            leftClickHeld = true;
+        }
+
+        if (leftClickHeld && Input.GetMouseButtonUp(0))
+        {
+            leftClickHeld = false;
+            Vector2 endPixelPos = LegacyEditorData.instance.MouseToPixelHandler.CurrentPixelDistance;
+            Debug.Log(leftClickLastPos);
+            Debug.Log(endPixelPos);
+        }
+
+        if (leftClickHeld)
+        {
+            
+        }
+    }
     void processMiddleClick()
     {
         if (isHovered && Input.GetMouseButtonDown(2))
