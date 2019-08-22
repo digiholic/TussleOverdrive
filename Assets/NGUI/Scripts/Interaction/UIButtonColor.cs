@@ -207,7 +207,7 @@ public class UIButtonColor : UIWidgetContainer
 	/// Set the hover state.
 	/// </summary>
 
-	protected virtual void OnHover (bool isOver)
+	public virtual void OnHover (bool isOver)
 	{
 		if (isEnabled)
 		{
@@ -220,7 +220,7 @@ public class UIButtonColor : UIWidgetContainer
 	/// Set the pressed state.
 	/// </summary>
 
-	protected virtual void OnPress (bool isPressed)
+	public virtual void OnPress (bool isPressed)
 	{
 		if (isEnabled)
 		{
@@ -253,7 +253,7 @@ public class UIButtonColor : UIWidgetContainer
 	/// Set the pressed state on drag over.
 	/// </summary>
 
-	protected virtual void OnDragOver ()
+	public virtual void OnDragOver ()
 	{
 		if (isEnabled)
 		{
@@ -266,7 +266,7 @@ public class UIButtonColor : UIWidgetContainer
 	/// Set the normal state on drag out.
 	/// </summary>
 
-	protected virtual void OnDragOut ()
+	public virtual void OnDragOut ()
 	{
 		if (isEnabled)
 		{

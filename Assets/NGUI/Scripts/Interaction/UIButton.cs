@@ -220,7 +220,7 @@ public class UIButton : UIButtonColor
 	/// Drag over state logic is a bit different for the button.
 	/// </summary>
 
-	protected override void OnDragOver ()
+	public override void OnDragOver ()
 	{
 		if (isEnabled && (dragHighlight || UICamera.currentTouch.pressed == gameObject))
 			base.OnDragOver();
@@ -230,7 +230,7 @@ public class UIButton : UIButtonColor
 	/// Drag out state logic is a bit different for the button.
 	/// </summary>
 
-	protected override void OnDragOut ()
+	public override void OnDragOut ()
 	{
 		if (isEnabled && (dragHighlight || UICamera.currentTouch.pressed == gameObject))
 			base.OnDragOut();
@@ -240,7 +240,7 @@ public class UIButton : UIButtonColor
 	/// Call the listener function.
 	/// </summary>
 
-	protected virtual void OnClick ()
+	public virtual void OnClick ()
 	{
 		if (current == null && isEnabled && UICamera.currentTouchID != -2 && UICamera.currentTouchID != -3)
 		{

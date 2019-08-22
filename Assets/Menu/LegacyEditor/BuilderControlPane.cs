@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuilderControlPane : MonoBehaviour {
+public class BuilderControlPane : MonoBehaviour
+{
     private bool isHovered = false;
     public UICamera viewerCamera;
     public BattleObject targetObject;
@@ -30,21 +31,24 @@ public class BuilderControlPane : MonoBehaviour {
     public float maxZoomDist = 25;
 
     private Collider coll;
-	// Use this for initialization
-	void Start () {
-		coll = GetComponent<BoxCollider>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    // Use this for initialization
+    void Start()
+    {
+        coll = GetComponent<BoxCollider>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         isHovered = (UICamera.hoveredObject == gameObject);
 
         processLeftClick();
         processRightClick();
         processMiddleClick();
-	}
+    }
 
-    void processLeftClick(){
+    void processLeftClick()
+    {
         if (isHovered && Input.GetMouseButtonDown(0))
         {
             leftClickLastPos = LegacyEditorData.instance.MouseToPixelHandler.CurrentPixelDistance;
@@ -55,13 +59,11 @@ public class BuilderControlPane : MonoBehaviour {
         {
             leftClickHeld = false;
             Vector2 endPixelPos = LegacyEditorData.instance.MouseToPixelHandler.CurrentPixelDistance;
-            Debug.Log(leftClickLastPos);
-            Debug.Log(endPixelPos);
         }
 
         if (leftClickHeld)
         {
-            
+
         }
     }
     void processMiddleClick()
@@ -105,36 +107,57 @@ public class BuilderControlPane : MonoBehaviour {
 
         if (rightClickHeld)
         {
-            Vector2 rightClickCurrentPos = UICamera.lastEventPosition;
-            Vector2 diff = rightClickCurrentPos - rightClickLastPos;
-            //We want to avoid jittering so we'll only move if the difference is above a threshold.
-            if (diff.magnitude >= orbitThreshold)
+            //No rotating in orthographic mode
+            if (viewerCamera.cachedCamera.orthographic)
             {
-                //viewerCamera.transform.Translate(new Vector3(diff.x * xDragMul, diff.y * yDragMul, 0));
-                viewerCamera.transform.RotateAround(targetObject.transform.position, Vector3.up, xOrbitMul * diff.x);
-                viewerCamera.transform.RotateAround(targetObject.transform.position, Vector3.left, yOrbitMul * diff.y);
-                //viewerCamera.transform.LookAt(targetObject.transform);
-                rightClickLastPos = rightClickCurrentPos;
+
+            }
+            else
+            {
+                Vector2 rightClickCurrentPos = UICamera.lastEventPosition;
+                Vector2 diff = rightClickCurrentPos - rightClickLastPos;
+                //We want to avoid jittering so we'll only move if the difference is above a threshold.
+                if (diff.magnitude >= orbitThreshold)
+                {
+                    //viewerCamera.transform.Translate(new Vector3(diff.x * xDragMul, diff.y * yDragMul, 0));
+                    viewerCamera.transform.RotateAround(targetObject.transform.position, Vector3.up, xOrbitMul * diff.x);
+                    viewerCamera.transform.RotateAround(targetObject.transform.position, Vector3.left, yOrbitMul * diff.y);
+                    //viewerCamera.transform.LookAt(targetObject.transform);
+                    rightClickLastPos = rightClickCurrentPos;
+                }
             }
         }
     }
 
     void OnScroll(float delta)
     {
-        Vector3 oldZoom = viewerCamera.transform.localPosition;
-        viewerCamera.transform.Translate(new Vector3(0, 0, delta * scrollFactor));
-
-        //If we make the zoom and it's too far or too close, undo the zoom
-        Vector3 distanceToFighter = viewerCamera.transform.localPosition - targetObject.transform.localPosition;
-        if (distanceToFighter.magnitude < minZoomDist  || distanceToFighter.magnitude > maxZoomDist)
+        if (viewerCamera.cachedCamera.orthographic)
         {
-            viewerCamera.transform.localPosition = oldZoom;
+            float oldSize = viewerCamera.cachedCamera.orthographicSize;
+            //The scroll delta is inverted from what we want for ortho projection, subtract it here
+            float newSize = oldSize - (delta * scrollFactor);
+            newSize = Mathf.Clamp(newSize, minZoomDist, maxZoomDist);
+            viewerCamera.cachedCamera.orthographicSize = newSize;
         }
+        else
+        {
+            Vector3 oldZoom = viewerCamera.transform.localPosition;
+            viewerCamera.transform.Translate(new Vector3(0, 0, delta * scrollFactor));
+
+            //If we make the zoom and it's too far or too close, undo the zoom
+            Vector3 distanceToFighter = viewerCamera.transform.localPosition - targetObject.transform.localPosition;
+            if (distanceToFighter.magnitude < minZoomDist || distanceToFighter.magnitude > maxZoomDist)
+            {
+                viewerCamera.transform.localPosition = oldZoom;
+            }
+        }
+
     }
 
     public void recenterCamera()
     {
         viewerCamera.transform.localPosition = new Vector3(0, 0, -10);
+        viewerCamera.cachedCamera.orthographicSize = 4;
         viewerCamera.transform.localRotation = Quaternion.identity;
     }
 }

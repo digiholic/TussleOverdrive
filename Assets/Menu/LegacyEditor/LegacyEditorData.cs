@@ -12,12 +12,13 @@ public class LegacyEditorData : MonoBehaviour
     public static ContextualPanelData contextualPanel;
     public static AnchorPositions anchors;
 
+    public GameObject hoveredObject;
     [Header("Component Accessors")]
     [SerializeField] private PanelHider ShadowRealm;
     [SerializeField] private FileBrowser fileBrowser;
     [SerializeField] private NewFighterPopup newFighterPopup;
     public MouseToPixelHandler MouseToPixelHandler;
-    
+
     public delegate void FighterInfoChangeResults(FighterInfo info);
     public delegate void SpriteInfoChangeResults(SpriteInfo info);
     public delegate void ActionFileChangeResults(ActionFile actions);

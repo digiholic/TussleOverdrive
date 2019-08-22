@@ -46,7 +46,7 @@ public class UIButtonScale : MonoBehaviour
 		}
 	}
 
-	void OnPress (bool isPressed)
+	public void OnPress (bool isPressed)
 	{
 		if (enabled)
 		{
@@ -56,7 +56,7 @@ public class UIButtonScale : MonoBehaviour
 		}
 	}
 
-	void OnHover (bool isOver)
+	public void OnHover (bool isOver)
 	{
 		if (enabled)
 		{
