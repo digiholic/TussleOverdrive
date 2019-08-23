@@ -41,7 +41,7 @@ public class SpriteHandler : BattleComponent {
             
             componentRect.anchorMin = new Vector2(0, 0);
             componentRect.anchorMax = new Vector2(1, 1);
-            componentRect.pivot = new Vector2(0.5f,1.0f);
+            componentRect.pivot = new Vector2(0.5f,0.0f);
             
             componentRect.anchoredPosition = Vector3.zero;
             sprite_renderer = spriteComponent.AddComponent<SpriteRenderer>();

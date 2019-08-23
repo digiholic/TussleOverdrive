@@ -22,7 +22,10 @@ public class BoxResizerHandle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isBeingDragged){
+        if (isBeingDragged){
+            snapToCursor();
+        }
+        else {
             snapToPosition();
         }
     }
@@ -40,7 +43,16 @@ public class BoxResizerHandle : MonoBehaviour
 
     public void OnClicked()
     {
-        Debug.Log("I've been clicked!");
+        isBeingDragged = true;
+    }
+
+    public void OnClickReleased(){
+        isBeingDragged = false;
+    }
+
+    private void snapToCursor(){
+        Vector2 mousePos = LegacyEditorData.instance.MouseToPixelHandler.CurrentPixelDistance;
+        transform.localPosition = new Vector3(mousePos.x,mousePos.y,transform.localPosition.z);
     }
 
     private void snapToPosition(){
