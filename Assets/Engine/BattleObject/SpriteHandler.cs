@@ -35,15 +35,9 @@ public class SpriteHandler : BattleComponent {
         if (spriteComponent == null)
         {
             spriteComponent = new GameObject("Sprite");
-            RectTransform componentRect = spriteComponent.AddComponent<RectTransform>();
+            spriteComponent.transform.SetParent(transform);
+            spriteComponent.transform.localPosition = Vector3.zero;
             
-            componentRect.SetParent(transform);
-            
-            componentRect.anchorMin = new Vector2(0, 0);
-            componentRect.anchorMax = new Vector2(1, 1);
-            componentRect.pivot = new Vector2(0.5f,0.0f);
-            
-            componentRect.anchoredPosition = Vector3.zero;
             sprite_renderer = spriteComponent.AddComponent<SpriteRenderer>();
         } else
         {
