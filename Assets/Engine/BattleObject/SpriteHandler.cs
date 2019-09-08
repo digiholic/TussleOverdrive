@@ -69,6 +69,28 @@ public class SpriteHandler : BattleComponent {
     /// </summary>
     /// <returns>The Vector3 of the Sprite Component's Transform</returns>
     public Vector3 getCenterPoint(){
+        ImageDefinition currentSubimage = getCurrentSubimage();
+        if (currentSubimage != null){
+            float xPivotRatio = currentSubimage.Pivot.xPos; //0.5
+            float yPivotRatio = currentSubimage.Pivot.yPos; //0.0
+
+            float xPos = spriteComponent.transform.position.x; //0
+            float yPos = spriteComponent.transform.position.y; //0
+            
+            float width = currentSubimage.Width / currentSubimage.PixelsPerUnit; //100
+            float height = currentSubimage.Height / currentSubimage.PixelsPerUnit; //100
+
+            float xPivotAbs = xPivotRatio * width; //50
+            float yPivotAbs = yPivotRatio * height; //0
+
+            float leftPos = xPos - xPivotAbs; //-50
+            float bottomPos = yPos - yPivotAbs; //0
+            
+            float spriteCenterPosX = leftPos + (width / 2);    //0
+            float spriteCenterPosY = bottomPos + (height / 2); //50
+            return new Vector3(spriteCenterPosX,spriteCenterPosY,spriteComponent.transform.position.z);
+        }
+
         return spriteComponent.transform.position;
     }
 
