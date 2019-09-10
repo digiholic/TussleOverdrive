@@ -24,6 +24,21 @@ public class BoxResizerHandle : MonoBehaviour
     {
         if (isBeingDragged){
             snapToCursor();
+            if (position == HandlePosition.TOPLEFT || position == HandlePosition.LEFT || position == HandlePosition.BOTTOMLEFT){
+                boxDisplayer.boxRect.xMin = transform.localPosition.x;
+            }
+            if (position == HandlePosition.TOPRIGHT || position == HandlePosition.RIGHT || position == HandlePosition.BOTTOMRIGHT){
+                boxDisplayer.boxRect.xMax = transform.localPosition.x;
+            }
+            if (position == HandlePosition.TOPLEFT || position == HandlePosition.TOP || position == HandlePosition.TOPRIGHT){
+                boxDisplayer.boxRect.yMax = transform.localPosition.y;
+            }
+            if (position == HandlePosition.BOTTOMLEFT || position == HandlePosition.BOTTOM || position == HandlePosition.BOTTOMRIGHT){
+                boxDisplayer.boxRect.yMin = transform.localPosition.y;
+            }
+            if (position == HandlePosition.CENTER){
+                boxDisplayer.boxRect.center = transform.localPosition;
+            }
         }
         else {
             snapToPosition();
@@ -38,7 +53,7 @@ public class BoxResizerHandle : MonoBehaviour
     }
 
     public void OnHoverEnd(){
-
+        
     }
 
     public void OnClicked()
@@ -48,6 +63,7 @@ public class BoxResizerHandle : MonoBehaviour
 
     public void OnClickReleased(){
         isBeingDragged = false;
+        
     }
 
     private void snapToCursor(){

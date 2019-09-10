@@ -43,7 +43,10 @@ public class ViewerClickable : MonoBehaviour
                 if (!oldHoverState) onHoverStart?.Invoke();
                 whileHovered?.Invoke();
                 if (Input.GetMouseButtonDown(mouseButtonToListenFor)) onClicked?.Invoke();
-                if (Input.GetMouseButtonUp(mouseButtonToListenFor)) onReleased?.Invoke();
+                if (Input.GetMouseButtonUp(mouseButtonToListenFor)) {
+                    Debug.Log("Releasing");
+                    onReleased?.Invoke();
+                }
             }
         }
 
