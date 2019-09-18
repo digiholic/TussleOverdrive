@@ -16,6 +16,10 @@ public class VarData
         this.value = value;
         this.type = type;
     }
+
+    public VarData Clone(){
+        return new VarData(name,value,type);
+    }
 }
 
 public enum VarType

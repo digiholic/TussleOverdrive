@@ -212,7 +212,7 @@ public class FileBrowser : MonoBehaviour {
     public static bool LoadFighterCallback(FileInfo file_info)
     {
         FighterInfo fighter_info = JsonUtility.FromJson<FighterInfo>(File.ReadAllText(file_info.FullName));
-        if (fighter_info.display_name != null)
+        if (fighter_info.displayName != null)
         {
             fighter_info.LoadDirectory(file_info.DirectoryName);
             LegacyEditorData.instance.LoadNewFighter(fighter_info);

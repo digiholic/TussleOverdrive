@@ -14,6 +14,51 @@ public class NewFighterPopup : MonoBehaviour
     [SerializeField]
     private PopupErrorLabel errorLabel;
 
+    public void CreateFighter(DirectoryInfo createdDir, FighterInfo templateFighter)
+    {
+        FighterInfo newInfo;
+        if (templateFighter != null)
+        {
+            newInfo = templateFighter.Clone();
+            //Copy over relevant files
+  
+            FileInfo action_file_info = new FileInfo(FileLoader.PathCombine(FileLoader.ProgramDirectoryInfo.FullName,templateFighter.actionFilePath));
+            action_file_info.CopyTo(FileLoader.PathCombine(createdDir.FullName,newInfo.actionFilePath));
+        }
+        else
+        {
+            newInfo = new FighterInfo();
+            ActionFile newActions = new ActionFile();
+            newInfo.displayName = directoryName;
+            newInfo.directory_name = directoryName;
+            newInfo.actionFilePath = "fighter_actions.json";
+            newInfo.GenerateDefaultAttributes();
+            if (generateActions)
+            {
+                //TODO Clone default actions here
+            }
+            newActions.Save(Path.Combine(createdDir.FullName, "fighter_actions.json"));
+        }
+
+        if (useSprite)
+        {
+            DirectoryInfo spriteDir = Directory.CreateDirectory(Path.Combine(createdDir.FullName, "sprites"));
+            SpriteInfo spriteInfo = new SpriteInfo();
+
+            spriteInfo.spriteDirectory = "sprites";
+            spriteInfo.default_sprite = "idle";
+            spriteInfo.costumeName = "default";
+            newInfo.sprite_info = spriteInfo;
+        }
+
+        if (useModel)
+        {
+            //TODO create model directory and stuff
+        }
+        newInfo.Save(Path.Combine(FileLoader.GetFighterDir(directoryName).FullName, "fighter_info.json"));
+        LegacyEditorData.instance.LoadNewFighter(newInfo);
+    }
+
     public void OnConfirm()
     {
         if (!directoryName.Equals(""))
@@ -31,41 +76,14 @@ public class NewFighterPopup : MonoBehaviour
                         FighterInfo templateInfo = FighterInfo.LoadFighterInfoFile(templateFighter);
                         if (templateInfo != null)
                         {
+                            CreateFighter(createdDir, templateInfo);
                             //TODO Copy fighter template
                         }
                         else DisplayError("Could not find an existing Fighter named " + templateFighter + ", are you sure you used the Directory name?");
                     }
                     else
                     {
-                        FighterInfo newInfo = new FighterInfo();
-                        ActionFile newActions = new ActionFile();
-                        newInfo.display_name = directoryName;
-                        newInfo.directory_name = directoryName;
-                        newInfo.action_file_path = "fighter_actions.json";
-                        newInfo.GenerateDefaultAttributes();
-                        if (generateActions)
-                        {
-                            //TODO Clone default actions here
-                        }
-                        newActions.Save(Path.Combine(createdDir.FullName, "fighter_actions.json"));
-
-                        if (useSprite)
-                        {
-                            DirectoryInfo spriteDir = Directory.CreateDirectory(Path.Combine(createdDir.FullName, "sprites"));
-                            SpriteInfo spriteInfo = new SpriteInfo();
-                            
-                            spriteInfo.spriteDirectory = "sprites";
-                            spriteInfo.default_sprite = "idle";
-                            spriteInfo.costumeName = "default";
-                            newInfo.sprite_info = spriteInfo;
-                        }
-
-                        if (useModel)
-                        {
-                            //TODO create model directory and stuff
-                        }
-                        newInfo.Save(Path.Combine(FileLoader.GetFighterDir(directoryName).FullName, "fighter_info.json"));
-                        LegacyEditorData.instance.LoadNewFighter(newInfo);
+                        CreateFighter(createdDir, null);
                         Dispose();
                     }
                     FighterInfo newFighter = new FighterInfo();

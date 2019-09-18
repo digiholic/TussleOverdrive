@@ -140,7 +140,7 @@ public class AbstractFighter : BattleComponent {
         Rest();
 
         //Load SFX
-        string directory = FileLoader.PathCombine(FileLoader.GetFighterPath(fighter_info.directory_name),fighter_info.sound_path);
+        string directory = FileLoader.PathCombine(FileLoader.GetFighterPath(fighter_info.directory_name),fighter_info.soundPath);
         DirectoryInfo directory_info = new DirectoryInfo(directory);
         if (directory_info.Exists)
         {
@@ -150,7 +150,7 @@ public class AbstractFighter : BattleComponent {
                 if (filename.Extension != ".meta")
                 {
                     string name_no_ext = filename.Name.Split('.')[0];
-                    AudioClip audio = Resources.Load<AudioClip>("Fighters/" + fighter_info.directory_name + "/" + fighter_info.sound_path + "/" + name_no_ext);
+                    AudioClip audio = Resources.Load<AudioClip>("Fighters/" + fighter_info.directory_name + "/" + fighter_info.soundPath + "/" + name_no_ext);
                     sounds.Add(name_no_ext, audio);
                 }
             }

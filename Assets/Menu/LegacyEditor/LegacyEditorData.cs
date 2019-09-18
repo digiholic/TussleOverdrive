@@ -268,9 +268,9 @@ public class LegacyEditorData : MonoBehaviour
         loadedFighter.LoadDirectory(FighterDirName);
         FighterInfoChangedEvent(loadedFighter);
 
-        loadedActionFile = ActionFile.LoadActionsFromFile(FighterDirName, loadedFighter.action_file_path);
+        loadedActionFile = ActionFile.LoadActionsFromFile(FighterDirName, loadedFighter.actionFilePath);
         currentAction = loadedActionFile.GetFirst();
-        loadedSpriteInfo = SpriteInfo.LoadSpritesFromFile(FighterDirName, loadedFighter.sprite_info_path);
+        loadedSpriteInfo = SpriteInfo.LoadSpritesFromFile(FighterDirName, loadedFighter.spriteInfoPath);
         loadedSpriteInfo.LoadDirectory(FighterDirName);
         FireModelChange();
     }
@@ -287,9 +287,9 @@ public class LegacyEditorData : MonoBehaviour
         FighterDirName = fInfo.directory_name;
 
         loadedFighter = fInfo;
-        loadedActionFile = ActionFile.LoadActionsFromFile(FighterDirName, fInfo.action_file_path);
+        loadedActionFile = ActionFile.LoadActionsFromFile(FighterDirName, fInfo.actionFilePath);
         currentAction = loadedActionFile.GetFirst();
-        loadedSpriteInfo = SpriteInfo.LoadSpritesFromFile(FighterDirName, fInfo.sprite_info_path);
+        loadedSpriteInfo = SpriteInfo.LoadSpritesFromFile(FighterDirName, fInfo.spriteInfoPath);
         loadedSpriteInfo.LoadDirectory(FighterDirName);
 
         FireModelChange();
@@ -372,9 +372,9 @@ public class LegacyEditorData : MonoBehaviour
     public void SaveFighterClicked()
     {
         loadedFighter.Save();
-        string path = FileLoader.PathCombine(FileLoader.GetFighterPath(FighterDirName), loadedFighter.action_file_path);
+        string path = FileLoader.PathCombine(FileLoader.GetFighterPath(FighterDirName), loadedFighter.actionFilePath);
         loadedActionFile.Save(path);
-        path = FileLoader.PathCombine(FileLoader.GetFighterPath(FighterDirName), loadedFighter.sprite_info_path);
+        path = FileLoader.PathCombine(FileLoader.GetFighterPath(FighterDirName), loadedFighter.spriteInfoPath);
         loadedSpriteInfo.Save(path);
         Debug.Log("Saved Fighter: " + path);
     }

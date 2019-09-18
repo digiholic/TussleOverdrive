@@ -11,6 +11,7 @@ public class ModifyDataInputBox : LegacyEditorWidget {
     public enum DataInputVarSource
     {
         FIELD,
+        PROPERTY,
         VARIABLE
     }
     public DataInputSource source;
@@ -83,6 +84,8 @@ public class ModifyDataInputBox : LegacyEditorWidget {
         if (varSource == DataInputVarSource.FIELD)
         {
             return (string)info.GetType().GetField(varName).GetValue(info);
+        } else if (varSource == DataInputVarSource.PROPERTY){
+            return (string)info.GetType().GetProperty(varName).GetValue(info);
         }
         else
         {

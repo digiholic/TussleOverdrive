@@ -26,6 +26,13 @@ public class SpriteInfo : IJsonInfoObject
     [System.NonSerialized]
     private Dictionary<string, AnimationDefinition> animationsByName = new Dictionary<string, AnimationDefinition>();
     
+
+    public SpriteInfo(){
+        animations = new List<AnimationDefinition>();
+        imageDefinitions = new List<ImageDefinition>();
+        spriteFiles = new List<FileInfo>();
+    }
+
     /// <summary>
     /// Load a directory of sprites, caching their images for future use
     /// Needs to be passed a fighter path to the directory to load relative from.

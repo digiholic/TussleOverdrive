@@ -32,7 +32,7 @@ public class SelectorPanel : MonoBehaviour {
     public void SetPortrait(FighterInfo info)
     {
         fighter_info = info;
-        selectedSprite = info.css_icon_path;
+        selectedSprite = info.cssIconPath;
         bgSprite.enabled = true;
         portraitSprite.sprite = info.css_icon_sprite;
         active = true;
