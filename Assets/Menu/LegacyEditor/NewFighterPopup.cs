@@ -29,6 +29,7 @@ public class NewFighterPopup : MonoBehaviour
         {
             newInfo = new FighterInfo();
             ActionFile newActions = new ActionFile();
+            newActions.Save(Path.Combine(createdDir.FullName, "fighter_actions.json"));
             newInfo.displayName = directoryName;
             newInfo.directory_name = directoryName;
             newInfo.actionFilePath = "fighter_actions.json";
@@ -37,13 +38,13 @@ public class NewFighterPopup : MonoBehaviour
             {
                 //TODO Clone default actions here
             }
-            newActions.Save(Path.Combine(createdDir.FullName, "fighter_actions.json"));
         }
 
         if (useSprite)
         {
             DirectoryInfo spriteDir = Directory.CreateDirectory(Path.Combine(createdDir.FullName, "sprites"));
             SpriteInfo spriteInfo = new SpriteInfo();
+            spriteInfo.Save(Path.Combine(createdDir.FullName,"sprite_info.json"));
 
             spriteInfo.spriteDirectory = "sprites";
             spriteInfo.default_sprite = "idle";

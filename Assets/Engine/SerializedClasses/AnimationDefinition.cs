@@ -63,14 +63,18 @@ public class AnimationDefinition
     /// <returns>The name of the ImageDefinition at the current index</returns>
     public string getCurrentSubimage(bool advance = false)
     {
-        string currentSubimage = subimages[currentSubimageIndex];
-        if (advance) //If we're advancing the current frame afterwards, do that here
-        {
-            //Increment the current frame, and if we've hit the spriteRate amount, move on to the next subimage index
-            currentFrame++;
-            currentSubimageIndex = getIndexForFrame(currentFrame);
+        if (currentSubimageIndex < subimages.Count){
+            string currentSubimage = subimages[currentSubimageIndex];
+                if (advance) //If we're advancing the current frame afterwards, do that here
+                {
+                    //Increment the current frame, and if we've hit the spriteRate amount, move on to the next subimage index
+                    currentFrame++;
+                    currentSubimageIndex = getIndexForFrame(currentFrame);
+                }
+            return currentSubimage;
         }
-        return currentSubimage;
+        Debug.LogWarning("Sprite does not contain a subimage for the current frame: "+currentSubimageIndex+" It may be uninitialized, or something should be looping but isn't.");
+        return "";
     }
 
     /// <summary>

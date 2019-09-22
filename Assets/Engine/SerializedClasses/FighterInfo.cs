@@ -30,7 +30,7 @@ public class FighterInfo : IJsonInfoObject{
         set{
             franchise_icon_path = value;
             if (directory_name != null){
-                franchise_icon_sprite = FileLoader.LoadSprite(FileLoader.PathCombine(directory_name,franchiseIconPath));
+                franchise_icon_sprite = FileLoader.LoadSprite(FileLoader.PathCombine(FileLoader.GetFighterPath(directory_name),franchiseIconPath));
             }
         }
     }
@@ -41,7 +41,7 @@ public class FighterInfo : IJsonInfoObject{
         set {
             css_icon_path = value;
             if (directory_name != null){
-                css_icon_sprite = FileLoader.LoadSprite(FileLoader.PathCombine(directory_name,css_icon_path));
+                css_icon_sprite = FileLoader.LoadSprite(FileLoader.PathCombine(FileLoader.GetFighterPath(directory_name),css_icon_path));
             }
         }
     }
@@ -52,7 +52,7 @@ public class FighterInfo : IJsonInfoObject{
         set{
             css_portrait_path = value;
             if (directory_name != null){
-                css_portrait_sprite = FileLoader.LoadSprite(FileLoader.PathCombine(directory_name,css_portrait_path));
+                css_portrait_sprite = FileLoader.LoadSprite(FileLoader.PathCombine(FileLoader.GetFighterPath(directory_name),css_portrait_path));
             }
         }
     }
@@ -63,7 +63,7 @@ public class FighterInfo : IJsonInfoObject{
         set {
             action_file_path = value;
             if (directory_name != null){
-                string action_file_json = FileLoader.LoadTextFile(FileLoader.PathCombine(directory_name, action_file_path));
+                string action_file_json = FileLoader.LoadTextFile(FileLoader.PathCombine(FileLoader.GetFighterPath(directory_name), action_file_path));
                 action_file = JsonUtility.FromJson<ActionFile>(action_file_json);
             }
         }
@@ -75,7 +75,7 @@ public class FighterInfo : IJsonInfoObject{
         set {
             sprite_info_path = value;
             if (directory_name != null){
-                string sprite_info_json = FileLoader.LoadTextFile(FileLoader.PathCombine(directory_name, sprite_info_path));
+                string sprite_info_json = FileLoader.LoadTextFile(FileLoader.PathCombine(FileLoader.GetFighterPath(directory_name), sprite_info_path));
                 sprite_info = JsonUtility.FromJson<SpriteInfo>(sprite_info_json);
                 sprite_info.LoadDirectory(directory_name);
             }

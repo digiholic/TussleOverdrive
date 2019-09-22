@@ -115,6 +115,7 @@ public class ActionFile
 
     public void Save(string path)
     {
+        Debug.Log("Saving actions");
         AssignOrdersToSubactions();    
         WriteJSON(path);
     }

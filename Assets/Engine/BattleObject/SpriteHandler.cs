@@ -53,7 +53,7 @@ public class SpriteHandler : BattleComponent {
     {
         fighter_info = fInfo;
         sprite_info = fighter_info.sprite_info;
-        battleObject.SetVar(TussleConstants.SpriteVariableNames.PIXELS_PER_UNIT,sprite_info.imageDefinitions[0].PixelsPerUnit);
+        battleObject.SetVar(TussleConstants.SpriteVariableNames.PIXELS_PER_UNIT,getPixelsPerUnit());
     }
 
     /// <summary>
@@ -129,6 +129,15 @@ public class SpriteHandler : BattleComponent {
         {
             currentAnimation.setFrame(frame);
             sprite_renderer.sprite = sprite_info.getSpriteFromAnimation(currentAnimation.AnimationName, frame);
+        }
+    }
+
+    public float getPixelsPerUnit(){
+        if (currentSubimage != null){
+            return currentSubimage.PixelsPerUnit;
+        } else {
+            Debug.LogWarning("No current image loaded when attempting to load Pixels Per Unit. Using system default of 100 instead");
+            return 100;
         }
     }
 

@@ -17,6 +17,7 @@ public class SpriteInfo : IJsonInfoObject
     public string default_sprite = "idle";
     public string spriteDirectory = "sprites";
     public string costumeName;
+    public int pixelsPerUnit = 100;
     public List<AnimationDefinition> animations;
     public List<ImageDefinition> imageDefinitions;
 
@@ -143,6 +144,8 @@ public class SpriteInfo : IJsonInfoObject
 
     public static SpriteInfo LoadSpritesFromFile(string directory, string filename = "sprite_info.json")
     {
+        if (filename == null) filename = "sprite_info.json";
+
         string dir = FileLoader.GetFighterPath(directory);
         string combinedPath = Path.Combine(dir, filename);
         if (File.Exists(combinedPath))

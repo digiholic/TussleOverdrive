@@ -68,6 +68,9 @@ public class FileLoader {
     public static Sprite LoadSprite(string FilePath)
     {
         Texture2D texture = LoadTexture(FilePath);
+        if (texture == null){
+            return null;
+        }
         Sprite newSprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f,0.5f));
         return newSprite;
     }
@@ -81,6 +84,8 @@ public class FileLoader {
         {
             data = File.ReadAllText(FullPath);
             return data;
+        } else {
+            Debug.Log("File does not exist at: "+FullPath);
         }
         Debug.LogError("Error Loading Text from File " + FullPath);
         return "";
