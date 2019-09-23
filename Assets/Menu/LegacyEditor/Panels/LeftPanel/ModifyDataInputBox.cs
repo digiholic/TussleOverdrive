@@ -140,10 +140,12 @@ public class ModifyDataInputBox : LegacyEditorWidget {
     public override void RegisterListeners()
     {
         editor.FighterInfoChangedEvent += OnFighterInfoChanged;
+        editor.CurrentActionChangedEvent += OnActionChanged;
     }
 
     public override void UnregisterListeners()
     {
         editor.FighterInfoChangedEvent -= OnFighterInfoChanged;
+        editor.CurrentActionChangedEvent -= OnActionChanged;
     }
 }

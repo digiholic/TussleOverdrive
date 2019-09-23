@@ -7,9 +7,14 @@ using System.Linq;
 public class SubactionFactory {
     public static Subaction GenerateSubactionFromData(SubactionData data)
     {
-        Subaction subaction = ScriptableObject.CreateInstance("Subaction"+data.SubactionName) as Subaction;
-        subaction.arg_dict = data.arguments;
-        return subaction;
+        try{
+            Subaction subaction = ScriptableObject.CreateInstance("Subaction"+data.SubactionName) as Subaction;
+            subaction.arg_dict = data.arguments;
+            return subaction;
+        } catch{
+            Debug.Log("Could not find subaction named "+data.SubactionName);
+            return null;
+        }
     }
 
     public static Subaction GetSubaction(string subactionName)

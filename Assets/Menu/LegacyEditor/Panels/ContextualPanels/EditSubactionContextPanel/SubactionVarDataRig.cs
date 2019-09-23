@@ -8,10 +8,12 @@ public class SubactionVarDataRig : LegacyEditorWidget {
 
     private List<GameObject> children = new List<GameObject>();
     private UIGrid grid;
+    private UIScrollView scrollPanel;
 
 	// Use this for initialization
 	void Awake () {
         grid = GetComponent<UIGrid>();
+        scrollPanel = GetComponentInParent<UIScrollView>();
     }
 
     void OnSubactionChanged(SubactionData subaction)
@@ -29,20 +31,22 @@ public class SubactionVarDataRig : LegacyEditorWidget {
         {
             foreach (SubactionVarData varData in sub.arguments.GetItems())
             {
-                InstantiateSubactionVarDataCard(varData);
+                InstantiateSubactionVarDataCard(varData,subaction);
             }
         }
 
         InstantiateDeleteButton();
 
+        scrollPanel.ResetPosition();
         grid.Reposition();
     }
     
-    void InstantiateSubactionVarDataCard(SubactionVarData varData)
+    void InstantiateSubactionVarDataCard(SubactionVarData varData,SubactionData subaction)
     {
         GameObject go = NGUITools.AddChild(gameObject, varDataCardPrefab);
         SubactionVarDataPanel panel = go.GetComponent<SubactionVarDataPanel>();
         panel.varData = varData;
+        panel.BroadcastMessage("OnSubactionChanged",subaction,SendMessageOptions.DontRequireReceiver);
         children.Add(go);
     }
 

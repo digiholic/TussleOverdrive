@@ -226,6 +226,12 @@ public class BattleObject : MonoBehaviour, IVarDataContainer
         return inputBuffer;
     }
 
+    public MotionHandler GetMotionHandler(){
+        if (motionHandler == null)
+            motionHandler = GetComponent<MotionHandler>();
+        return motionHandler;
+    }
+
     public int GetIntVar(string var_name)
     {
         return GetVar(var_name).GetIntData();

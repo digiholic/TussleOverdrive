@@ -8,8 +8,9 @@ public class SubactionVarDataInput : LegacyEditorWidget {
     private UIInput input;
     private InputBoxFilter filter;
 
+    private bool ready = false;
 	// Use this for initialization
-	void OnEnable () {
+	void Awake () {
         input = GetComponent<UIInput>();
         filter = GetComponent<InputBoxFilter>();
 
@@ -18,16 +19,26 @@ public class SubactionVarDataInput : LegacyEditorWidget {
         else if (panel.varData.type == SubactionVarType.INT) filter.filterType = InputBoxFilter.FilterType.INT;
         else filter.filterType = InputBoxFilter.FilterType.NONE;
 
+        //We need to change the text without firing another update, so unready then re-ready after setting
+        ready = false;
         input.value = panel.varData.data;
+        ready = true;
     }
 
     void OnSubactionChanged(SubactionData subaction)
     {
+        Debug.Log("Changing Subaction Data: "+panel.varData.data,this);
+        //We need to change the text without firing another update, so unready then re-ready after setting
+        ready = false;
         input.value = panel.varData.data;
+        ready = true;
     }
 
     public void OnAction(string inputData)
     {
+        //If we aren't accepting inputs yet, don't.
+        if (!ready) return;
+
         //If we have a filter object, make sure to filter the incoming text before we do anything with it.
         if (filter != null) inputData = filter.filterText(inputData);
 

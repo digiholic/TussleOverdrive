@@ -4,209 +4,73 @@
             "name": "NeutralAction",
             "length": 1,
             "animationName": "idle",
-            "exit_action": "",
+            "exit_action": "NeutralAction",
             "subactionCategories": {
                 "m_keys": [
-                    "Set Up",
-                    "Current Frame"
+                    "Set Up"
                 ],
                 "m_values": [
                     {
                         "data": [
                             {
                                 "order": 0,
-                                "SubactionName": "CreateHitbox",
-                                "subType": 3,
-                                "arguments": {
-                                    "m_keys": [
-                                        "hitboxName",
-                                        "lockGroup",
-                                        "centerX",
-                                        "centerY",
-                                        "width",
-                                        "height",
-                                        "damage",
-                                        "angle",
-                                        "baseKnockback",
-                                        "knockbackGrowth",
-                                        "chargeDamage",
-                                        "chargeBaseKnockback",
-                                        "chargeKnockbackGrowth",
-                                        "shieldDamage",
-                                        "hitstunScaling",
-                                        "shieldstunScaling",
-                                        "sakuraiThreshold"
-                                    ],
-                                    "m_values": [
-                                        {
-                                            "editable": false,
-                                            "name": "hitboxName",
-                                            "source": 0,
-                                            "type": 0,
-                                            "data": "",
-                                            "description": ""
-                                        },
-                                        {
-                                            "editable": false,
-                                            "name": "lockGroup",
-                                            "source": 0,
-                                            "type": 0,
-                                            "data": "",
-                                            "description": ""
-                                        },
-                                        {
-                                            "editable": false,
-                                            "name": "centerX",
-                                            "source": 0,
-                                            "type": 3,
-                                            "data": "0",
-                                            "description": ""
-                                        },
-                                        {
-                                            "editable": false,
-                                            "name": "centerY",
-                                            "source": 0,
-                                            "type": 3,
-                                            "data": "0",
-                                            "description": ""
-                                        },
-                                        {
-                                            "editable": false,
-                                            "name": "width",
-                                            "source": 0,
-                                            "type": 3,
-                                            "data": "100",
-                                            "description": ""
-                                        },
-                                        {
-                                            "editable": false,
-                                            "name": "height",
-                                            "source": 0,
-                                            "type": 3,
-                                            "data": "100",
-                                            "description": ""
-                                        },
-                                        {
-                                            "editable": false,
-                                            "name": "damage",
-                                            "source": 0,
-                                            "type": 3,
-                                            "data": "0",
-                                            "description": ""
-                                        },
-                                        {
-                                            "editable": false,
-                                            "name": "angle",
-                                            "source": 0,
-                                            "type": 2,
-                                            "data": "0",
-                                            "description": ""
-                                        },
-                                        {
-                                            "editable": false,
-                                            "name": "baseKnockback",
-                                            "source": 0,
-                                            "type": 3,
-                                            "data": "0",
-                                            "description": ""
-                                        },
-                                        {
-                                            "editable": false,
-                                            "name": "knockbackGrowth",
-                                            "source": 0,
-                                            "type": 3,
-                                            "data": "0",
-                                            "description": ""
-                                        },
-                                        {
-                                            "editable": false,
-                                            "name": "chargeDamage",
-                                            "source": 0,
-                                            "type": 3,
-                                            "data": "0",
-                                            "description": ""
-                                        },
-                                        {
-                                            "editable": false,
-                                            "name": "chargeBaseKnockback",
-                                            "source": 0,
-                                            "type": 3,
-                                            "data": "0",
-                                            "description": ""
-                                        },
-                                        {
-                                            "editable": false,
-                                            "name": "chargeKnockbackGrowth",
-                                            "source": 0,
-                                            "type": 3,
-                                            "data": "0",
-                                            "description": ""
-                                        },
-                                        {
-                                            "editable": false,
-                                            "name": "shieldDamage",
-                                            "source": 0,
-                                            "type": 3,
-                                            "data": "0",
-                                            "description": ""
-                                        },
-                                        {
-                                            "editable": false,
-                                            "name": "hitstunScaling",
-                                            "source": 0,
-                                            "type": 3,
-                                            "data": "1",
-                                            "description": ""
-                                        },
-                                        {
-                                            "editable": false,
-                                            "name": "shieldstunScaling",
-                                            "source": 0,
-                                            "type": 3,
-                                            "data": "1",
-                                            "description": ""
-                                        },
-                                        {
-                                            "editable": false,
-                                            "name": "sakuraiThreshold",
-                                            "source": 0,
-                                            "type": 3,
-                                            "data": "0",
-                                            "description": ""
-                                        }
-                                    ]
-                                },
-                                "description": "Creates a Hitbox of the given name. This Hitbox will have all the properties defined in the Hitbox Editor."
-                            },
-                            {
-                                "order": 1,
-                                "SubactionName": "ChangeFrame",
+                                "SubactionName": "DoTransition",
                                 "subType": 0,
                                 "arguments": {
                                     "m_keys": [
-                                        "frameNumber",
-                                        "relative"
+                                        "transitionState"
                                     ],
                                     "m_values": [
                                         {
                                             "editable": false,
-                                            "name": "frameNumber",
+                                            "name": "transitionState",
                                             "source": 0,
-                                            "type": 2,
-                                            "data": "1",
-                                            "description": "The Frame number to change to, or the amount to modify the current frame by.\t"
-                                        },
-                                        {
-                                            "editable": false,
-                                            "name": "relative",
-                                            "source": 0,
-                                            "type": 1,
-                                            "data": "false",
-                                            "description": "If true, will modify the current frame instead of setting directly."
+                                            "type": 0,
+                                            "data": "neutralState",
+                                            "description": "The name of the pre-defined Transition State to check."
                                         }
                                     ]
                                 },
-                                "description": "Changes the next execution frame of the action. Note that the current frame finishes execution, and will switch to the given one for the next execution. Can be given a number, or if relative is true, will add the given number to the current frame instead."
+                                "description": "Check one of the pre-defined Transition States. A list of transition states can be found in the documentation."
+                            },
+                            {
+                                "order": 1,
+                                "SubactionName": "IfVar",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [
+                                        "var1",
+                                        "var2",
+                                        "conditional"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "var1",
+                                            "source": 1,
+                                            "type": 0,
+                                            "data": "grounded",
+                                            "description": "The value of the first variable/value to compare"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "var2",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "false",
+                                            "description": "The value of the second variable/value to compare"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "conditional",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "==",
+                                            "description": "The conditional operator used to compare the two variables/values.\n\n Accepted conditional parameters:\n\nFor all kinds of objects:\n== - var1 is equal to var2\n!=  - var1 is not equal to var2\n\nIf both var1 and var2 are ints or floats, the following conditionals are allowed as well:\n< - var1 is less than var2\n> - var1 is greater than var2\n<= - var1 is less than or equal to var2\n>= - var1 is greater than or equal to var2\n\nIf both var1 and var2 are booleans, the following conditionals are accepted:\n&& - both are true (AND)\n|| - either are true (OR)\n^ - exactly one value is true (XOR)\n!& - either variable is false (NAND)\n!| - both variables are false (NOR)\n!^ - both variables are the same value (XNOR)"
+                                        }
+                                    ]
+                                },
+                                "description": "Starts an If Block based on the result of comparing the value of var1 to var2 using the given conditional operator"
                             },
                             {
                                 "order": 2,
@@ -222,7 +86,7 @@
                                             "name": "actionName",
                                             "source": 0,
                                             "type": 0,
-                                            "data": "",
+                                            "data": "Fall",
                                             "description": "The name of the action to change to"
                                         }
                                     ]
@@ -231,16 +95,6 @@
                             },
                             {
                                 "order": 3,
-                                "SubactionName": "Else",
-                                "subType": 0,
-                                "arguments": {
-                                    "m_keys": [],
-                                    "m_values": []
-                                },
-                                "description": "Inverts the current action condition"
-                            },
-                            {
-                                "order": 4,
                                 "SubactionName": "EndIf",
                                 "subType": 0,
                                 "arguments": {
@@ -248,9 +102,106 @@
                                     "m_values": []
                                 },
                                 "description": "Unsets the current action condition, ending the innermost if block."
-                            },
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Move",
+            "length": 1,
+            "animationName": "idle",
+            "exit_action": "NeutralAction",
+            "subactionCategories": {
+                "m_keys": [
+                    "Set Up",
+                    "Tear Down",
+                    "Transitions",
+                    "frame_0"
+                ],
+                "m_values": [
+                    {
+                        "data": [
                             {
-                                "order": 5,
+                                "order": 0,
+                                "SubactionName": "SetVar",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [
+                                        "source",
+                                        "value",
+                                        "relative"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "source",
+                                            "source": 2,
+                                            "type": 0,
+                                            "data": "direction",
+                                            "description": "The variable to set. Follows the same logic as if you were trying to retrieve this variable for another argument, so if you set the source to \"Owner\", and the type to \"String\", it will set the string variable with the given name in the owner object. A better description can be found in the documentation."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "value",
+                                            "source": 1,
+                                            "type": 0,
+                                            "data": "facing",
+                                            "description": "The value to set the variable to. This one will be fully parsed and resolved, and used to set (or modify) the variable given in the source parameter."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "relative",
+                                            "source": 0,
+                                            "type": 1,
+                                            "data": "false",
+                                            "description": "If true, and the variable to set is a compatible type like int or float, modifies the value of that variable instead of setting it directly."
+                                        }
+                                    ]
+                                },
+                                "description": "Sets a variable."
+                            }
+                        ]
+                    },
+                    {
+                        "data": [
+                            {
+                                "order": 0,
+                                "SubactionName": "ChangeXPreferredSpeed",
+                                "subType": 1,
+                                "arguments": {
+                                    "m_keys": [
+                                        "x",
+                                        "relative"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "x",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "What to change X Speed to/the amount to change X Speed By"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "relative",
+                                            "source": 0,
+                                            "type": 1,
+                                            "data": "false",
+                                            "description": "If true, modifies the current X Speed instead of changing it"
+                                        }
+                                    ]
+                                },
+                                "description": "Change the X Preferred Speed of the fighter. If relative, will modify the value instead."
+                            }
+                        ]
+                    },
+                    {
+                        "data": [
+                            {
+                                "order": 0,
                                 "SubactionName": "DoTransition",
                                 "subType": 0,
                                 "arguments": {
@@ -263,797 +214,409 @@
                                             "name": "transitionState",
                                             "source": 0,
                                             "type": 0,
-                                            "data": "",
+                                            "data": "moveState",
                                             "description": "The name of the pre-defined Transition State to check."
                                         }
                                     ]
                                 },
                                 "description": "Check one of the pre-defined Transition States. A list of transition states can be found in the documentation."
-                            }
-                        ]
-                    },
-                    {
-                        "data": []
-                    }
-                ]
-            }
-        },
-        {
-            "name": "Stop",
-            "length": 9,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [
-                    "Set Up"
-                ],
-                "m_values": [
-                    {
-                        "data": []
-                    }
-                ]
-            }
-        },
-        {
-            "name": "RunStop",
-            "length": 18,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "Crouch",
-            "length": 3,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "CrouchGetup",
-            "length": 9,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "Fall",
-            "length": 1,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "Jump",
-            "length": 6,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [
-                    "Current Frame",
-                    "Set Up",
-                    "frame_6"
-                ],
-                "m_values": [
-                    {
-                        "data": []
-                    },
-                    {
-                        "data": []
-                    },
-                    {
-                        "data": []
-                    }
-                ]
-            }
-        },
-        {
-            "name": "AirJump",
-            "length": 8,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [
-                    "Current Frame"
-                ],
-                "m_values": [
-                    {
-                        "data": []
-                    }
-                ]
-            }
-        },
-        {
-            "name": "Helpless",
-            "length": 2,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [
-                    "Current Frame"
-                ],
-                "m_values": [
-                    {
-                        "data": []
-                    }
-                ]
-            }
-        },
-        {
-            "name": "Land",
-            "length": 6,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [
-                    "Current Frame",
-                    "Set Up"
-                ],
-                "m_values": [
-                    {
-                        "data": [
+                            },
                             {
-                                "order": 0,
-                                "SubactionName": "PrintDebug",
+                                "order": 1,
+                                "SubactionName": "IfVar",
                                 "subType": 0,
                                 "arguments": {
                                     "m_keys": [
-                                        "statement"
+                                        "var1",
+                                        "var2",
+                                        "conditional"
                                     ],
                                     "m_values": [
                                         {
                                             "editable": false,
-                                            "name": "statement",
+                                            "name": "var1",
+                                            "source": 1,
+                                            "type": 0,
+                                            "data": "grounded",
+                                            "description": "The value of the first variable/value to compare"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "var2",
                                             "source": 0,
                                             "type": 0,
-                                            "data": "Test Data",
-                                            "description": "The data to print"
+                                            "data": "false",
+                                            "description": "The value of the second variable/value to compare"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "conditional",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "==",
+                                            "description": "The conditional operator used to compare the two variables/values.\n\n Accepted conditional parameters:\n\nFor all kinds of objects:\n== - var1 is equal to var2\n!=  - var1 is not equal to var2\n\nIf both var1 and var2 are ints or floats, the following conditionals are allowed as well:\n< - var1 is less than var2\n> - var1 is greater than var2\n<= - var1 is less than or equal to var2\n>= - var1 is greater than or equal to var2\n\nIf both var1 and var2 are booleans, the following conditionals are accepted:\n&& - both are true (AND)\n|| - either are true (OR)\n^ - exactly one value is true (XOR)\n!& - either variable is false (NAND)\n!| - both variables are false (NOR)\n!^ - both variables are the same value (XNOR)"
                                         }
                                     ]
                                 },
-                                "description": ""
+                                "description": "Starts an If Block based on the result of comparing the value of var1 to var2 using the given conditional operator"
+                            },
+                            {
+                                "order": 2,
+                                "SubactionName": "DoAction",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [
+                                        "actionName"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "actionName",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "Fall",
+                                            "description": "The name of the action to change to"
+                                        }
+                                    ]
+                                },
+                                "description": "Change the current action. The current action will continue executing the rest of its current frame."
+                            },
+                            {
+                                "order": 3,
+                                "SubactionName": "EndIf",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [],
+                                    "m_values": []
+                                },
+                                "description": "Unsets the current action condition, ending the innermost if block."
+                            },
+                            {
+                                "order": 4,
+                                "SubactionName": "IfVar",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [
+                                        "var1",
+                                        "var2",
+                                        "conditional"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "var1",
+                                            "source": 2,
+                                            "type": 0,
+                                            "data": "frame",
+                                            "description": "The value of the first variable/value to compare"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "var2",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "0",
+                                            "description": "The value of the second variable/value to compare"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "conditional",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": ">",
+                                            "description": "The conditional operator used to compare the two variables/values.\n\n Accepted conditional parameters:\n\nFor all kinds of objects:\n== - var1 is equal to var2\n!=  - var1 is not equal to var2\n\nIf both var1 and var2 are ints or floats, the following conditionals are allowed as well:\n< - var1 is less than var2\n> - var1 is greater than var2\n<= - var1 is less than or equal to var2\n>= - var1 is greater than or equal to var2\n\nIf both var1 and var2 are booleans, the following conditionals are accepted:\n&& - both are true (AND)\n|| - either are true (OR)\n^ - exactly one value is true (XOR)\n!& - either variable is false (NAND)\n!| - both variables are false (NOR)\n!^ - both variables are the same value (XNOR)"
+                                        }
+                                    ]
+                                },
+                                "description": "Starts an If Block based on the result of comparing the value of var1 to var2 using the given conditional operator"
+                            },
+                            {
+                                "order": 5,
+                                "SubactionName": "IfButtonBuffered",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [
+                                        "button",
+                                        "bufferWindow",
+                                        "pressed"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "button",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "forward",
+                                            "description": "The button to check for"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "bufferWindow",
+                                            "source": 0,
+                                            "type": 2,
+                                            "data": "0",
+                                            "description": "How many frames back to check"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "pressed",
+                                            "source": 0,
+                                            "type": 1,
+                                            "data": "true",
+                                            "description": "If true, checks if the button was pressed. If false, checks for released instead."
+                                        }
+                                    ]
+                                },
+                                "description": "Checks if a specific button has been pressed or released recently"
+                            },
+                            {
+                                "order": 6,
+                                "SubactionName": "DoAction",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [
+                                        "actionName"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "actionName",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "Dash",
+                                            "description": "The name of the action to change to"
+                                        }
+                                    ]
+                                },
+                                "description": "Change the current action. The current action will continue executing the rest of its current frame."
+                            },
+                            {
+                                "order": 7,
+                                "SubactionName": "EndIf",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [],
+                                    "m_values": []
+                                },
+                                "description": "Unsets the current action condition, ending the innermost if block."
+                            },
+                            {
+                                "order": 8,
+                                "SubactionName": "EndIf",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [],
+                                    "m_values": []
+                                },
+                                "description": "Unsets the current action condition, ending the innermost if block."
                             }
                         ]
                     },
                     {
-                        "data": []
-                    }
-                ]
-            }
-        },
-        {
-            "name": "HelplessLand",
-            "length": 6,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [
-                    "Current Frame"
-                ],
-                "m_values": [
-                    {
-                        "data": []
-                    }
-                ]
-            }
-        },
-        {
-            "name": "PlatformDrop",
-            "length": 12,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "Move",
-            "length": 15,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "Dash",
-            "length": 10,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "Pivot",
-            "length": 10,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "RunPivot",
-            "length": 20,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "Grabbing",
-            "length": 1,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "Getup",
-            "length": 16,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "Shield",
-            "length": 12,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "Parry",
-            "length": 16,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "ForwardRoll",
-            "length": 32,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "BackwardRoll",
-            "length": 32,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "SpotDodge",
-            "length": 24,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "ForwardTech",
-            "length": 32,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "BackwardTech",
-            "length": 32,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "DodgeTech",
-            "length": 24,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "AirDodge",
-            "length": 30,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "LedgeGrab",
-            "length": 1,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "HitStun",
-            "length": 1,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "Tumble",
-            "length": 1,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "Prone",
-            "length": 25,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "SlowGetup",
-            "length": 50,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "Respawn",
-            "length": 360,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "Stunned",
-            "length": 1,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "ShieldStun",
-            "length": 1,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "Trapped",
-            "length": 1,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "Grabbed",
-            "length": 1,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "Release",
-            "length": 14,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "Released",
-            "length": 1,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "LedgeGetup",
-            "length": 27,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "LedgeRoll",
-            "length": 37,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "LedgeAttack",
-            "length": 37,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "NeutralAttack",
-            "length": 22,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [
-                    "Set Up"
-                ],
-                "m_values": [
-                    {
                         "data": [
                             {
                                 "order": 0,
-                                "SubactionName": "CreateHitbox",
-                                "subType": 3,
+                                "SubactionName": "ChangeXPreferredSpeed",
+                                "subType": 1,
                                 "arguments": {
                                     "m_keys": [
-                                        "hitboxName"
+                                        "x",
+                                        "relative"
                                     ],
                                     "m_values": [
                                         {
                                             "editable": false,
-                                            "name": "hitboxName",
+                                            "name": "x",
+                                            "source": 1,
+                                            "type": 3,
+                                            "data": "maxGroundSpeed",
+                                            "description": "What to change X Speed to/the amount to change X Speed By"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "relative",
                                             "source": 0,
-                                            "type": 0,
-                                            "data": "jabbox",
-                                            "description": "The name of the hitbox to create. If the hitbox already exists for this Action, it will be overwritten with an empty one, so be careful! Each Hitbox should have a unique name."
+                                            "type": 1,
+                                            "data": "false",
+                                            "description": "If true, modifies the current X Speed instead of changing it"
                                         }
                                     ]
                                 },
-                                "description": ""
+                                "description": "Change the X Preferred Speed of the fighter. If relative, will modify the value instead."
+                            },
+                            {
+                                "order": 1,
+                                "SubactionName": "Accelerate",
+                                "subType": 1,
+                                "arguments": {
+                                    "m_keys": [
+                                        "xFactor"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "xFactor",
+                                            "source": 1,
+                                            "type": 3,
+                                            "data": "staticGrip",
+                                            "description": "The factor by which to change xSpeed, such as friction or air control"
+                                        }
+                                    ]
+                                },
+                                "description": "Change speed to get closer to the preferred speed without going over"
+                            },
+                            {
+                                "order": 2,
+                                "SubactionName": "IfVar",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [
+                                        "var1",
+                                        "var2",
+                                        "conditional"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "var1",
+                                            "source": 2,
+                                            "type": 0,
+                                            "data": "direction",
+                                            "description": "The value of the first variable/value to compare"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "var2",
+                                            "source": 1,
+                                            "type": 0,
+                                            "data": "facing",
+                                            "description": "The value of the second variable/value to compare"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "conditional",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "==",
+                                            "description": "The conditional operator used to compare the two variables/values.\n\n Accepted conditional parameters:\n\nFor all kinds of objects:\n== - var1 is equal to var2\n!=  - var1 is not equal to var2\n\nIf both var1 and var2 are ints or floats, the following conditionals are allowed as well:\n< - var1 is less than var2\n> - var1 is greater than var2\n<= - var1 is less than or equal to var2\n>= - var1 is greater than or equal to var2\n\nIf both var1 and var2 are booleans, the following conditionals are accepted:\n&& - both are true (AND)\n|| - either are true (OR)\n^ - exactly one value is true (XOR)\n!& - either variable is false (NAND)\n!| - both variables are false (NOR)\n!^ - both variables are the same value (XNOR)"
+                                        }
+                                    ]
+                                },
+                                "description": "Starts an If Block based on the result of comparing the value of var1 to var2 using the given conditional operator"
+                            },
+                            {
+                                "order": 3,
+                                "SubactionName": "IfButtonHeld",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [
+                                        "button",
+                                        "pressed"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "button",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "backward",
+                                            "description": "The button to check if is being held"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "pressed",
+                                            "source": 0,
+                                            "type": 1,
+                                            "data": "true",
+                                            "description": "If true, checks for the button held. If false, checks if the button is not currently held."
+                                        }
+                                    ]
+                                },
+                                "description": "Check if a given button is currently being held"
+                            },
+                            {
+                                "order": 4,
+                                "SubactionName": "Flip",
+                                "subType": 2,
+                                "arguments": {
+                                    "m_keys": [],
+                                    "m_values": []
+                                },
+                                "description": "Flips the fighter so it is facing the other direction. This will mirror the sprite or rotate the model to match. No arguments necessary."
+                            },
+                            {
+                                "order": 5,
+                                "SubactionName": "EndIf",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [],
+                                    "m_values": []
+                                },
+                                "description": "Unsets the current action condition, ending the innermost if block."
+                            },
+                            {
+                                "order": 6,
+                                "SubactionName": "Else",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [],
+                                    "m_values": []
+                                },
+                                "description": "Inverts the current action condition"
+                            },
+                            {
+                                "order": 7,
+                                "SubactionName": "IfButtonHeld",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [
+                                        "button",
+                                        "pressed"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "button",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "forward",
+                                            "description": "The button to check if is being held"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "pressed",
+                                            "source": 0,
+                                            "type": 1,
+                                            "data": "false",
+                                            "description": "If true, checks for the button held. If false, checks if the button is not currently held."
+                                        }
+                                    ]
+                                },
+                                "description": "Check if a given button is currently being held"
+                            },
+                            {
+                                "order": 8,
+                                "SubactionName": "Flip",
+                                "subType": 2,
+                                "arguments": {
+                                    "m_keys": [],
+                                    "m_values": []
+                                },
+                                "description": "Flips the fighter so it is facing the other direction. This will mirror the sprite or rotate the model to match. No arguments necessary."
+                            },
+                            {
+                                "order": 9,
+                                "SubactionName": "EndIf",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [],
+                                    "m_values": []
+                                },
+                                "description": "Unsets the current action condition, ending the innermost if block."
                             }
                         ]
                     }
                 ]
-            }
-        },
-        {
-            "name": "ForwardAttack",
-            "length": 24,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "ForwardSmash",
-            "length": 46,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "UpAttack",
-            "length": 28,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "UpSmash",
-            "length": 45,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "DownAttack",
-            "length": 32,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "DownSmash",
-            "length": 48,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "NeutralAir",
-            "length": 40,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "BackAir",
-            "length": 35,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "ForwardAir",
-            "length": 44,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "UpAir",
-            "length": 34,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "DownAir",
-            "length": 39,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "DashAttack",
-            "length": 32,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "NeutralGroundSpecial",
-            "length": 36,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "NeutralAirSpecial",
-            "length": 36,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "DownSpecial",
-            "length": 13,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "GetupAttack",
-            "length": 36,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "ForwardThrow",
-            "length": 20,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "DownThrow",
-            "length": 32,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "UpThrow",
-            "length": 12,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "BackThrow",
-            "length": 22,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "UpSpecial",
-            "length": 32,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "UpSpecialFlight",
-            "length": 50,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "GroundGrab",
-            "length": 30,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "ForwardSpecial",
-            "length": 1,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "DashGrab",
-            "length": 35,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
-            }
-        },
-        {
-            "name": "Pummel",
-            "length": 22,
-            "animationName": "",
-            "exit_action": "",
-            "subactionCategories": {
-                "m_keys": [],
-                "m_values": []
             }
         }
     ],

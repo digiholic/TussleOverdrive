@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class ActionSelectionButton : MonoBehaviour {
     public UILabel label;
+    public UIButton button;
 
     public DynamicAction action;
 	// Use this for initialization
 	void Awake () {
         label = GetComponentInChildren<UILabel>();
+        button = GetComponent<UIButton>();
         SetColor(null);
     }
 	
@@ -17,10 +19,12 @@ public class ActionSelectionButton : MonoBehaviour {
         if (act != null && act == action)
         {
             label.color = new Color(1, 1, 1, 1);
+            button.defaultColor = new Color(1, 1, 1, 1);
         }
         else
         {
             label.color = new Color(1, 1, 1, 0.5f);
+            button.defaultColor = new Color(1, 1, 1, 0.5f);
         }
     }
 

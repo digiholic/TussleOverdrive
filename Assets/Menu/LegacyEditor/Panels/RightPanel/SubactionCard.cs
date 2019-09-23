@@ -30,15 +30,13 @@ public class SubactionCard : LegacyEditorWidget {
 
     public void SetAnchors(Transform anchorObject,int leftAnchorOffset, int rightAnchorOffset)
     {
-        /*
         selectedBg.leftAnchor.target = anchorObject;
         selectedBg.leftAnchor.relative = 0;
         selectedBg.leftAnchor.absolute = leftAnchorOffset;
-
+        
         selectedBg.rightAnchor.target = anchorObject;
         selectedBg.rightAnchor.relative = 1;
         selectedBg.rightAnchor.absolute = rightAnchorOffset;
-        */
     }
 
     public void SetSubaction(SubactionData subactionToSet)
