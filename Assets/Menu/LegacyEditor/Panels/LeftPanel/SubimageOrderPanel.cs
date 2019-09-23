@@ -48,7 +48,7 @@ public class SubimageOrderPanel : MonoBehaviour
         label.depth = 1;
         label.alpha = 1f;
 
-        rig.UpdateOrder();
+        //rig.UpdateOrder();
     }
 
     private void OnEnable() { }

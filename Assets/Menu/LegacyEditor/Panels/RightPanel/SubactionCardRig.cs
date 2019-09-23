@@ -67,10 +67,13 @@ public class SubactionCardRig : LegacyEditorWidget {
         }
         if (action != null)
         {
+            int index = 0;
             //Create all the new buttons
             foreach (SubactionData subData in action.subactionCategories.GetIfKeyExists(subGroup))
             {
-                instantiateButton(subData);
+                
+                instantiateButton(subData,index);
+                index++;
             }
 
             //Realign the grid
@@ -79,7 +82,7 @@ public class SubactionCardRig : LegacyEditorWidget {
         }
     }
 
-    private void instantiateButton(SubactionData subDataToSet)
+    private void instantiateButton(SubactionData subDataToSet, int index)
     {
         GameObject go = NGUITools.AddChild(gameObject, SubactionCardPrefab);
         SubactionCard card = go.GetComponent<SubactionCard>();
@@ -89,7 +92,28 @@ public class SubactionCardRig : LegacyEditorWidget {
         card.SetSubaction(subDataToSet);
         card.SetEditor(editor);
         card.RegisterListeners();
+        card.setIndex(index);
         children.Add(go);
+    }
+
+    public void UpdateOrder()
+    {
+        int index = 0;
+        
+        List<SubactionData> subDataList = new List<SubactionData>();
+        foreach (Transform child in grid.GetChildList())
+        {
+            SubactionCard orderPanel = child.GetComponent<SubactionCard>();
+            orderPanel.setIndex(index);
+            subDataList.Add(orderPanel.subaction);
+            index++;
+        }
+        Debug.Log("Update Order Subactions:");
+        Debug.Log(subDataList);
+        
+        ChangeSubactionOrderAction legacyAction = ScriptableObject.CreateInstance<ChangeSubactionOrderAction>();
+        legacyAction.init(subDataList);
+        editor.DoAction(legacyAction);
     }
 
     public override void RegisterListeners()

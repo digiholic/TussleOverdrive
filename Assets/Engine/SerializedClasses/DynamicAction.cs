@@ -145,6 +145,10 @@ public class SubGroupDict : SerializableDictionary<string, List<SubactionData>, 
             return this[key];
         }
     }
+
+    public void Set(string key, List<SubactionData> subactions){
+        this[key] = subactions;
+    }
 }
 
 /// <summary>

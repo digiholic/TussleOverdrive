@@ -7,10 +7,14 @@ public class SubactionCard : LegacyEditorWidget {
     [SerializeField] private UILabel label;
 
     public SubactionData subaction = null;
+    public int index = 0;
+
+    private SubactionCardRig rig;
 
     private void Awake()
     {
-        selectedBg = GetComponent<UISprite>();    
+        selectedBg = GetComponent<UISprite>();
+        rig = GetComponentInParent<SubactionCardRig>();
     }
 
     void OnSubactionChanged(SubactionData data)
@@ -48,6 +52,32 @@ public class SubactionCard : LegacyEditorWidget {
         legacyAction.enableDeselect();
 
         GetComponent<OnClickSendAction>().action = legacyAction;
+    }
+    public void setIndex(int index)
+    {
+        int oldIndex = this.index;
+        this.index = index;
+    }
+
+
+    public void OnDragDropStart()
+    {
+        Debug.Log("Dragging");
+        selectedBg.depth = 303;
+        selectedBg.alpha = 0.5f;
+        label.depth = 304;
+        label.alpha = 0.5f;
+    }
+
+    public void OnDragDropRelease()
+    {
+        Debug.Log("Done Dragging");
+        selectedBg.depth = 301;
+        selectedBg.alpha = 1f;
+        label.depth = 302;
+        label.alpha = 1f;
+
+        //rig.UpdateOrder();
     }
 
     public override void RegisterListeners()

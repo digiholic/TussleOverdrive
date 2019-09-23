@@ -62,7 +62,7 @@ public class BattleObjectVarData
     {
         if (varData == null)
         {
-            Debug.LogWarning("Attempting to get StrubgData from null VarData");
+            Debug.LogWarning("Attempting to get StringData from null VarData");
             return "";
         }
         else
