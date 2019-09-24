@@ -61,10 +61,7 @@ public class GameAction {
         //FIXME
         actor.BroadcastMessage("ChangeAnimation", animationName,SendMessageOptions.DontRequireReceiver);
         game_controller = BattleController.current_battle;
-        foreach (Subaction subaction in subactionCategories.GetIfKeyExists(SubactionGroup.SETUP))
-        {
-            CheckCondAndExecute(subaction);
-        }
+        executeSubGroup(SubactionGroup.SETUP);
     }
 
     // Update is called once per frame
@@ -81,12 +78,17 @@ public class GameAction {
                 actor.SendMessage("ChangeSubimage", sprite_number,SendMessageOptions.RequireReceiver);
         }
         */
+        executeSubGroup(SubactionGroup.BEFORE);
         actor.SendMessage("ChangeSubimage", current_frame);
-        foreach (Subaction subaction in subactionCategories.GetIfKeyExists(SubactionGroup.ONFRAME(current_frame)))
-            CheckCondAndExecute(subaction);
-        if (current_frame >= last_frame)
+        executeSubGroup(SubactionGroup.ONFRAME(current_frame));
+        executeSubGroup(SubactionGroup.AFTER);
+
+        //Sometimes, we might end up AFTER the last frame. For all intents and purposes, every frame after the last frame is also the last frame
+        if (current_frame >= last_frame){
+            executeSubGroup(SubactionGroup.LAST);
             if (exit_action != null && exit_action != "")
                 actor.SendMessage("DoAction", exit_action);
+        }
     }
 
     public virtual void TearDown(GameAction new_action)
@@ -109,16 +111,18 @@ public class GameAction {
             hbox.Deactivate();
             GameObject.Destroy(hbox.gameObject);
         }
-        foreach (Subaction subaction in subactionCategories.GetIfKeyExists(SubactionGroup.TEARDOWN))
-            CheckCondAndExecute(subaction);
+        executeSubGroup(SubactionGroup.TEARDOWN);
     }
 
     public virtual void stateTransitions()
     {
-        foreach (Subaction subaction in subactionCategories.GetIfKeyExists(SubactionGroup.STATETRANSITION))
-            CheckCondAndExecute(subaction);
+        executeSubGroup(SubactionGroup.STATETRANSITION);
     }
     
+    private void executeSubGroup(String group){
+        foreach (Subaction subaction in subactionCategories.GetIfKeyExists(group))
+            CheckCondAndExecute(subaction);
+    }
     public void ChangeFrame(int frame, bool relative)
     {
         if (relative) current_frame += frame;
