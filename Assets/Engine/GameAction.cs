@@ -21,7 +21,7 @@ public class GameAction {
 
     public Dictionary<string, BattleObjectVarData> variables = new Dictionary<string, BattleObjectVarData>();
     public Dictionary<string, object> variables_to_pass = new Dictionary<string, object>();
-
+    
     protected int last_frame;
     protected BattleObject actor;
     protected BattleController game_controller;
@@ -29,7 +29,7 @@ public class GameAction {
 
     public void SetDynamicAction(DynamicAction dynAction)
     {
-        if (dynAction == null)
+        if (dynAction == null || dynAction == DynamicAction.NullAction)
         {
             UnityEngine.Debug.LogWarning("Dynamic Action Null. Skipping SetDynamicAction");
             return;
