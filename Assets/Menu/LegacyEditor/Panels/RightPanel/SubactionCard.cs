@@ -46,7 +46,8 @@ public class SubactionCard : LegacyEditorWidget {
     public void SetSubaction(SubactionData subactionToSet)
     {
         subaction = subactionToSet;
-        label.text = subaction.SubactionName;
+        //label.text = subaction.SubactionName;
+        label.text = subaction.ToString();
         ModifyLegacyEditorDataAction legacyAction = ScriptableObject.CreateInstance<ModifyLegacyEditorDataAction>();
         legacyAction.init("currentSubaction", subactionToSet);
         legacyAction.enableDeselect();

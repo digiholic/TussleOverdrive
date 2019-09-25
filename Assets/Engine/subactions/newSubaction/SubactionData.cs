@@ -27,6 +27,13 @@ public class SubactionData {
     }
 
     public override string ToString() {
-        return "SubactionData[" + SubactionName + "]";
+        string subString = SubactionName;
+        foreach (SubactionVarData varData in arguments.GetItems()){
+            string varVal = varData.data;
+            if (varData.source == SubactionSource.OWNER) varVal = "owner."+varVal;
+            if (varData.source == SubactionSource.ACTION) varVal = "action."+varVal;
+            subString += string.Format(" {0}={1}",varData.name,varVal);
+        }
+        return subString;
     }
 }
