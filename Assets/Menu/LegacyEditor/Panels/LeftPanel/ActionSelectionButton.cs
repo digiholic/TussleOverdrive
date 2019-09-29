@@ -15,7 +15,8 @@ public class ActionSelectionButton : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void SetColor(DynamicAction act) {
+	public void SetColor(DynamicAction act) {
+        Debug.Log("Setting color - "+act+" for "+gameObject.name,this);
         if (act != null && act == action)
         {
             label.color = new Color(1, 1, 1, 1);

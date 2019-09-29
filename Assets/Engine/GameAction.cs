@@ -58,8 +58,9 @@ public class GameAction {
     public virtual void SetUp (BattleObject obj) {
         last_frame = length;
         actor = obj;
-        //FIXME
-        actor.BroadcastMessage("ChangeAnimation", animationName,SendMessageOptions.DontRequireReceiver);
+        if (animationName != null && animationName.Length > 0){
+            actor.BroadcastMessage("ChangeAnimation", animationName,SendMessageOptions.DontRequireReceiver);
+        }
         game_controller = BattleController.current_battle;
         executeSubGroup(SubactionGroup.SETUP);
     }

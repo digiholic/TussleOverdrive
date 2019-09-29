@@ -68,6 +68,9 @@ public class ActionSelectionButtonRig : LegacyEditorWidget {
         button.label.rightAnchor.relative = 1;
         button.label.rightAnchor.absolute = rightAnchorOffset;
 
+        //Set the selection color of the action in case it missed the refresh trigger and hasn't gotten the notify
+        button.SetColor(LegacyEditorData.instance.currentAction);
+        
         children.Add(go);
     }
 

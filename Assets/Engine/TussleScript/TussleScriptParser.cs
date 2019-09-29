@@ -1,0 +1,195 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System.Text.RegularExpressions;
+using System.IO;
+
+public class TussleScriptParser : MonoBehaviour
+{
+    [SerializeField] private TextAsset tussleScriptDocument;
+
+    [SerializeField] private List<DynamicAction> actions = new List<DynamicAction>();
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        if (tussleScriptDocument != null)
+        {
+            ParseActionScript(tussleScriptDocument.text);
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    private DynamicAction workingAction = null;
+    private string workingSubGroupName = null;
+
+    /// <summary>
+    /// Parse a string representation of an Action Script
+    /// </summary>
+    /// <param name="actionScript">the action script to parse</param>
+    /// <returns>-1 on error, 1 on success</returns>
+    public int ParseActionScript(string actionScript)
+    {
+        StringReader reader = new StringReader(actionScript);
+
+        string line;
+        int lineNumber = 0;
+        
+        while ((line = reader.ReadLine()) != null)
+        {
+            line = line.Trim(); //Remove the tabs. We ain't python.
+
+            string tokenValue;
+            //Process Start Token
+            if ((tokenValue = GetTokenVal(line, ActionTokens.Start)) != null)
+            {
+                if (workingAction == null)
+                {
+                    workingAction = new DynamicAction(tokenValue);
+                    Debug.Log(string.Format("Creating new action with name {0}", tokenValue));
+                }
+                else
+                {
+                    return throwException("Attempting to create a new action before finishing the old one", lineNumber);
+                }
+            }
+            
+            //Process End Token
+            else if ((tokenValue = GetTokenVal(line, ActionTokens.End, 0)) != null)
+            {
+                //TODO Finish the action here
+                Debug.Log("Ending Action Definition");
+                actions.Add(workingAction);
+                workingAction = null;
+            }
+            
+            if (workingAction != null){
+                ProcessActionSection(line,workingAction,lineNumber);
+            }
+
+            lineNumber++;
+        }
+
+        return SUCCESS;
+    }
+
+    /// <summary>
+    /// In this parsing section, we can assume the action is set and we are adding properties or subactions to it. This means we don't need to null check everything
+    /// </summary>
+    /// <param name="line">The full text line to parse</param>
+    /// <param name="workingAction">The DynamicAction currently being processed. Guaranteed not null.</param>
+    private void ProcessActionSection(string line, DynamicAction workingAction, int lineNumber)
+    {
+        string token;
+        //Process Properties Tokens
+        if ((token = GetTokenVal(line, ActionTokens.Properties.Length)) != null)
+        {
+            int lengthNo = 1;
+            if (int.TryParse(token, out lengthNo))
+                workingAction.length = lengthNo;
+            else throwException(string.Format("Could not parse int for property {0} - {1}", ActionTokens.Properties.Length, token), lineNumber);
+        }
+        else if ((token = GetTokenVal(line, ActionTokens.Properties.Animation)) != null)
+        {
+            workingAction.animationName = token;
+        }
+        else if ((token = GetTokenVal(line, ActionTokens.Properties.ExitAction)) != null)
+        {
+            workingAction.exit_action = token;
+        }
+        
+        //Process Group
+        else if ((token = GetTokenVal(line, ActionTokens.GroupStart)) != null)
+        {
+            Debug.Log("Starting SubGroup "+token);
+            workingSubGroupName = token;
+        }
+        else if ((token = GetTokenVal(line, ActionTokens.GroupEnd,0)) != null)
+        {
+            Debug.Log("Ending SubGroup");
+            workingSubGroupName = null;
+        }
+
+        //If we haven't closed this subGroup by now, all that's left is a Subaction Definition
+        else if (workingSubGroupName != null){
+            SubactionData subData = processSubactionLine(line,lineNumber);
+            if (subData != null){
+                workingAction.AddSubaction(workingSubGroupName,subData);
+            }
+        }
+    }
+    /// <summary>
+    /// Given a line containing the definition of a SubactionData, return that SubactionData as an object.
+    /// This uses reflection to get the Subactions, so the spelling of the SubName is key.
+    /// </summary>
+    /// <param name="line">The line being parsed</param>
+    /// <returns>A proper SubactionData object, ready for injecting into a Dynamic Action</returns>
+    private SubactionData processSubactionLine(string line, int lineNumber){
+        string[] startParenSplit = line.Split('(');
+
+        //This string should contain EXACTLY one parenthesis pair. Any more or less and you fucked up your script, dawg
+        if (startParenSplit.Length != 2 || !line.EndsWith(")")){
+            Debug.Log(startParenSplit.Length);
+            Debug.Log(line.EndsWith(")"));
+            throwException("Incorrect parenthesis in subDataLine: "+line,lineNumber);
+            return null;
+        }
+        string subDataName = startParenSplit[0];
+        string argList = startParenSplit[1].Substring(0,startParenSplit[1].Length-1);
+        Debug.Log(string.Format("PARSING SUBACTION {0}\n\tArguments: {1}",subDataName,argList));
+        return null;
+    }
+
+
+    /// <summary>
+    /// Checks the given line for the presence of a token, strips the token out and returns only the value.
+    /// If the token is not present in the line, it will return null
+    /// </summary>
+    /// <param name="line">The string to parse</param>
+    /// <param name="token">The token to look for</param>
+    /// <param name="lengthAdjust">How many more or less characters to get from the line before getting the value. For example, if there is a space between the token and the value, you would keep the default value of 1</param>
+    /// <returns></returns>
+    private string GetTokenVal(string line, string token, int lengthAdjust = 1)
+    {
+        if (line.StartsWith(token))
+        {
+            return line.Substring(token.Length + lengthAdjust);
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    private int throwException(string error, int line)
+    {
+        Debug.LogError(string.Format("Error parsing line {0}\n\t{1}", line, error));
+        return PARSEERROR;
+    }
+
+
+    #region static definitions
+    private class ActionTokens
+    {
+        public static string Start = "Action";
+        public static string End = "EndAction";
+        public static string GroupStart = "StartGroup";
+        public static string GroupEnd = "EndGroup";
+
+        public class Properties
+        {
+            public static string Length = "Length";
+            public static string Animation = "Animation";
+            public static string ExitAction = "ExitAction";
+        }
+    }
+
+    private static int PARSEERROR = -1;
+    private static int SUCCESS = 1;
+    #endregion
+}

@@ -7,7 +7,10 @@
             "exit_action": "NeutralAction",
             "subactionCategories": {
                 "m_keys": [
-                    "Set Up"
+                    "Set Up",
+                    "Before Frame",
+                    "Tear Down",
+                    "Transitions"
                 ],
                 "m_values": [
                     {
@@ -35,75 +38,35 @@
                             },
                             {
                                 "order": 1,
-                                "SubactionName": "IfVar",
+                                "SubactionName": "DoTransition",
                                 "subType": 0,
                                 "arguments": {
                                     "m_keys": [
-                                        "var1",
-                                        "var2",
-                                        "conditional"
+                                        "transitionState"
                                     ],
                                     "m_values": [
                                         {
                                             "editable": false,
-                                            "name": "var1",
-                                            "source": 1,
-                                            "type": 0,
-                                            "data": "grounded",
-                                            "description": "The value of the first variable/value to compare"
-                                        },
-                                        {
-                                            "editable": false,
-                                            "name": "var2",
+                                            "name": "transitionState",
                                             "source": 0,
                                             "type": 0,
-                                            "data": "false",
-                                            "description": "The value of the second variable/value to compare"
-                                        },
-                                        {
-                                            "editable": false,
-                                            "name": "conditional",
-                                            "source": 0,
-                                            "type": 0,
-                                            "data": "==",
-                                            "description": "The conditional operator used to compare the two variables/values.\n\n Accepted conditional parameters:\n\nFor all kinds of objects:\n== - var1 is equal to var2\n!=  - var1 is not equal to var2\n\nIf both var1 and var2 are ints or floats, the following conditionals are allowed as well:\n< - var1 is less than var2\n> - var1 is greater than var2\n<= - var1 is less than or equal to var2\n>= - var1 is greater than or equal to var2\n\nIf both var1 and var2 are booleans, the following conditionals are accepted:\n&& - both are true (AND)\n|| - either are true (OR)\n^ - exactly one value is true (XOR)\n!& - either variable is false (NAND)\n!| - both variables are false (NOR)\n!^ - both variables are the same value (XNOR)"
+                                            "data": "checkFall",
+                                            "description": "The name of the pre-defined Transition State to check."
                                         }
                                     ]
                                 },
-                                "description": "Starts an If Block based on the result of comparing the value of var1 to var2 using the given conditional operator"
-                            },
-                            {
-                                "order": 2,
-                                "SubactionName": "DoAction",
-                                "subType": 0,
-                                "arguments": {
-                                    "m_keys": [
-                                        "actionName"
-                                    ],
-                                    "m_values": [
-                                        {
-                                            "editable": false,
-                                            "name": "actionName",
-                                            "source": 0,
-                                            "type": 0,
-                                            "data": "Fall",
-                                            "description": "The name of the action to change to"
-                                        }
-                                    ]
-                                },
-                                "description": "Change the current action. The current action will continue executing the rest of its current frame."
-                            },
-                            {
-                                "order": 3,
-                                "SubactionName": "EndIf",
-                                "subType": 0,
-                                "arguments": {
-                                    "m_keys": [],
-                                    "m_values": []
-                                },
-                                "description": "Unsets the current action condition, ending the innermost if block."
+                                "description": "Check one of the pre-defined Transition States. A list of transition states can be found in the documentation."
                             }
                         ]
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
                     }
                 ]
             }
@@ -458,7 +421,7 @@
                                             "name": "xFactor",
                                             "source": 1,
                                             "type": 3,
-                                            "data": "staticGrip",
+                                            "data": "static_grip",
                                             "description": "The factor by which to change xSpeed, such as friction or air control"
                                         }
                                     ]
@@ -606,6 +569,1262 @@
                             },
                             {
                                 "order": 9,
+                                "SubactionName": "EndIf",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [],
+                                    "m_values": []
+                                },
+                                "description": "Unsets the current action condition, ending the innermost if block."
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Dash",
+            "length": 1,
+            "animationName": "idle",
+            "exit_action": "Stop",
+            "subactionCategories": {
+                "m_keys": [
+                    "Set Up",
+                    "Transitions",
+                    "frame_0",
+                    "Before Frame",
+                    "Last Frame",
+                    "Tear Down"
+                ],
+                "m_values": [
+                    {
+                        "data": [
+                            {
+                                "order": 0,
+                                "SubactionName": "InitVar",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [
+                                        "source",
+                                        "value"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "source",
+                                            "source": 2,
+                                            "type": 0,
+                                            "data": "pivoted",
+                                            "description": "The variable to set. Follows the same logic as if you were trying to retrieve this variable for another argument, so if you set the source to \"Owner\", and the type to \"String\", it will set the string variable with the given name in the owner object. A better description can be found in the documentation."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "value",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "false",
+                                            "description": "The value to set the variable to. This one will be fully parsed and resolved, and used to set (or modify) the variable given in the source parameter."
+                                        }
+                                    ]
+                                },
+                                "description": "Similar to SetVar, except this will only set a value if there isn't already a variable set. Use this when a variable might be passed to this action, but still needs to be initialized"
+                            },
+                            {
+                                "order": 1,
+                                "SubactionName": "InitVar",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [
+                                        "source",
+                                        "value"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "source",
+                                            "source": 2,
+                                            "type": 0,
+                                            "data": "direction",
+                                            "description": "The variable to set. Follows the same logic as if you were trying to retrieve this variable for another argument, so if you set the source to \"Owner\", and the type to \"String\", it will set the string variable with the given name in the owner object. A better description can be found in the documentation."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "value",
+                                            "source": 1,
+                                            "type": 0,
+                                            "data": "facing",
+                                            "description": "The value to set the variable to. This one will be fully parsed and resolved, and used to set (or modify) the variable given in the source parameter."
+                                        }
+                                    ]
+                                },
+                                "description": "Similar to SetVar, except this will only set a value if there isn't already a variable set. Use this when a variable might be passed to this action, but still needs to be initialized"
+                            }
+                        ]
+                    },
+                    {
+                        "data": [
+                            {
+                                "order": 0,
+                                "SubactionName": "DoTransition",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [
+                                        "transitionState"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "transitionState",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "DashState",
+                                            "description": "The name of the pre-defined Transition State to check."
+                                        }
+                                    ]
+                                },
+                                "description": "Check one of the pre-defined Transition States. A list of transition states can be found in the documentation."
+                            },
+                            {
+                                "order": 1,
+                                "SubactionName": "IfVar",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [
+                                        "var1",
+                                        "var2",
+                                        "conditional"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "var1",
+                                            "source": 1,
+                                            "type": 0,
+                                            "data": "grounded",
+                                            "description": "The value of the first variable/value to compare"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "var2",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "false",
+                                            "description": "The value of the second variable/value to compare"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "conditional",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "==",
+                                            "description": "The conditional operator used to compare the two variables/values.\n\n Accepted conditional parameters:\n\nFor all kinds of objects:\n== - var1 is equal to var2\n!=  - var1 is not equal to var2\n\nIf both var1 and var2 are ints or floats, the following conditionals are allowed as well:\n< - var1 is less than var2\n> - var1 is greater than var2\n<= - var1 is less than or equal to var2\n>= - var1 is greater than or equal to var2\n\nIf both var1 and var2 are booleans, the following conditionals are accepted:\n&& - both are true (AND)\n|| - either are true (OR)\n^ - exactly one value is true (XOR)\n!& - either variable is false (NAND)\n!| - both variables are false (NOR)\n!^ - both variables are the same value (XNOR)"
+                                        }
+                                    ]
+                                },
+                                "description": "Starts an If Block based on the result of comparing the value of var1 to var2 using the given conditional operator"
+                            },
+                            {
+                                "order": 2,
+                                "SubactionName": "DoAction",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [
+                                        "actionName"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "actionName",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "Fall",
+                                            "description": "The name of the action to change to"
+                                        }
+                                    ]
+                                },
+                                "description": "Change the current action. The current action will continue executing the rest of its current frame."
+                            },
+                            {
+                                "order": 3,
+                                "SubactionName": "EndIf",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [],
+                                    "m_values": []
+                                },
+                                "description": "Unsets the current action condition, ending the innermost if block."
+                            }
+                        ]
+                    },
+                    {
+                        "data": [
+                            {
+                                "order": 0,
+                                "SubactionName": "ChangeXPreferredSpeed",
+                                "subType": 1,
+                                "arguments": {
+                                    "m_keys": [
+                                        "x",
+                                        "relative"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "x",
+                                            "source": 1,
+                                            "type": 3,
+                                            "data": "maxGroundSpeed",
+                                            "description": "What to change X Speed to/the amount to change X Speed By"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "relative",
+                                            "source": 0,
+                                            "type": 1,
+                                            "data": "false",
+                                            "description": "If true, modifies the current X Speed instead of changing it"
+                                        }
+                                    ]
+                                },
+                                "description": "Change the X Preferred Speed of the fighter. If relative, will modify the value instead."
+                            }
+                        ]
+                    },
+                    {
+                        "data": [
+                            {
+                                "order": 0,
+                                "SubactionName": "IfVar",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [
+                                        "var1",
+                                        "var2",
+                                        "conditional"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "var1",
+                                            "source": 2,
+                                            "type": 0,
+                                            "data": "pivoted",
+                                            "description": "The value of the first variable/value to compare"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "var2",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "false",
+                                            "description": "The value of the second variable/value to compare"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "conditional",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "==",
+                                            "description": "The conditional operator used to compare the two variables/values.\n\n Accepted conditional parameters:\n\nFor all kinds of objects:\n== - var1 is equal to var2\n!=  - var1 is not equal to var2\n\nIf both var1 and var2 are ints or floats, the following conditionals are allowed as well:\n< - var1 is less than var2\n> - var1 is greater than var2\n<= - var1 is less than or equal to var2\n>= - var1 is greater than or equal to var2\n\nIf both var1 and var2 are booleans, the following conditionals are accepted:\n&& - both are true (AND)\n|| - either are true (OR)\n^ - exactly one value is true (XOR)\n!& - either variable is false (NAND)\n!| - both variables are false (NOR)\n!^ - both variables are the same value (XNOR)"
+                                        }
+                                    ]
+                                },
+                                "description": "Starts an If Block based on the result of comparing the value of var1 to var2 using the given conditional operator"
+                            },
+                            {
+                                "order": 1,
+                                "SubactionName": "IfButtonHeld",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [
+                                        "button",
+                                        "pressed"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "button",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "backward",
+                                            "description": "The button to check if is being held"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "pressed",
+                                            "source": 0,
+                                            "type": 1,
+                                            "data": "true",
+                                            "description": "If true, checks for the button held. If false, checks if the button is not currently held."
+                                        }
+                                    ]
+                                },
+                                "description": "Check if a given button is currently being held"
+                            },
+                            {
+                                "order": 2,
+                                "SubactionName": "Flip",
+                                "subType": 2,
+                                "arguments": {
+                                    "m_keys": [],
+                                    "m_values": []
+                                },
+                                "description": "Flips the fighter so it is facing the other direction. This will mirror the sprite or rotate the model to match. No arguments necessary."
+                            },
+                            {
+                                "order": 3,
+                                "SubactionName": "SetVar",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [
+                                        "source",
+                                        "value",
+                                        "relative"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "source",
+                                            "source": 2,
+                                            "type": 0,
+                                            "data": "pivoted",
+                                            "description": "The variable to set. Follows the same logic as if you were trying to retrieve this variable for another argument, so if you set the source to \"Owner\", and the type to \"String\", it will set the string variable with the given name in the owner object. A better description can be found in the documentation."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "value",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "true",
+                                            "description": "The value to set the variable to. This one will be fully parsed and resolved, and used to set (or modify) the variable given in the source parameter."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "relative",
+                                            "source": 0,
+                                            "type": 1,
+                                            "data": "false",
+                                            "description": "If true, and the variable to set is a compatible type like int or float, modifies the value of that variable instead of setting it directly."
+                                        }
+                                    ]
+                                },
+                                "description": "Sets a variable."
+                            },
+                            {
+                                "order": 4,
+                                "SubactionName": "EndIf",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [],
+                                    "m_values": []
+                                },
+                                "description": "Unsets the current action condition, ending the innermost if block."
+                            },
+                            {
+                                "order": 5,
+                                "SubactionName": "EndIf",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [],
+                                    "m_values": []
+                                },
+                                "description": "Unsets the current action condition, ending the innermost if block."
+                            },
+                            {
+                                "order": 6,
+                                "SubactionName": "Accelerate",
+                                "subType": 1,
+                                "arguments": {
+                                    "m_keys": [
+                                        "xFactor"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "xFactor",
+                                            "source": 1,
+                                            "type": 3,
+                                            "data": "static_grip",
+                                            "description": "The factor by which to change xSpeed, such as friction or air control"
+                                        }
+                                    ]
+                                },
+                                "description": "Change speed to get closer to the preferred speed without going over"
+                            }
+                        ]
+                    },
+                    {
+                        "data": [
+                            {
+                                "order": 0,
+                                "SubactionName": "PassVar",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [
+                                        "varName",
+                                        "value"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "varName",
+                                            "source": 2,
+                                            "type": 0,
+                                            "data": "direction",
+                                            "description": "The name of the variable to pass to the next action."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "value",
+                                            "source": 1,
+                                            "type": 0,
+                                            "data": "facing",
+                                            "description": "The value to pass to the next action."
+                                        }
+                                    ]
+                                },
+                                "description": "Pass a variable to the next action after this one. CAUTION: Call this right before switching to the intended action to avoid unexpected consequences. Behaves as if you had called SetVar on the next action."
+                            },
+                            {
+                                "order": 1,
+                                "SubactionName": "PassVar",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [
+                                        "varName",
+                                        "value"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "varName",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "lastPrefSpeed",
+                                            "description": "The name of the variable to pass to the next action."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "value",
+                                            "source": 1,
+                                            "type": 0,
+                                            "data": "XPref",
+                                            "description": "The value to pass to the next action."
+                                        }
+                                    ]
+                                },
+                                "description": "Pass a variable to the next action after this one. CAUTION: Call this right before switching to the intended action to avoid unexpected consequences. Behaves as if you had called SetVar on the next action."
+                            },
+                            {
+                                "order": 2,
+                                "SubactionName": "DoAction",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [
+                                        "actionName"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "actionName",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "Run",
+                                            "description": "The name of the action to change to"
+                                        }
+                                    ]
+                                },
+                                "description": "Change the current action. The current action will continue executing the rest of its current frame."
+                            }
+                        ]
+                    },
+                    {
+                        "data": [
+                            {
+                                "order": 0,
+                                "SubactionName": "ChangeXPreferredSpeed",
+                                "subType": 1,
+                                "arguments": {
+                                    "m_keys": [
+                                        "x",
+                                        "relative"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "x",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "What to change X Speed to/the amount to change X Speed By"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "relative",
+                                            "source": 0,
+                                            "type": 1,
+                                            "data": "false",
+                                            "description": "If true, modifies the current X Speed instead of changing it"
+                                        }
+                                    ]
+                                },
+                                "description": "Change the X Preferred Speed of the fighter. If relative, will modify the value instead."
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Run",
+            "length": 1,
+            "animationName": "idle",
+            "exit_action": "Stop",
+            "subactionCategories": {
+                "m_keys": [
+                    "Set Up",
+                    "Last Frame",
+                    "Tear Down",
+                    "frame_0",
+                    "Transitions",
+                    "Before Frame",
+                    "frame_1"
+                ],
+                "m_values": [
+                    {
+                        "data": [
+                            {
+                                "order": 0,
+                                "SubactionName": "InitVar",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [
+                                        "source",
+                                        "value"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "source",
+                                            "source": 2,
+                                            "type": 0,
+                                            "data": "direction",
+                                            "description": "The variable to set. Follows the same logic as if you were trying to retrieve this variable for another argument, so if you set the source to \"Owner\", and the type to \"String\", it will set the string variable with the given name in the owner object. A better description can be found in the documentation."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "value",
+                                            "source": 1,
+                                            "type": 0,
+                                            "data": "facing",
+                                            "description": "The value to set the variable to. This one will be fully parsed and resolved, and used to set (or modify) the variable given in the source parameter."
+                                        }
+                                    ]
+                                },
+                                "description": "Similar to SetVar, except this will only set a value if there isn't already a variable set. Use this when a variable might be passed to this action, but still needs to be initialized"
+                            }
+                        ]
+                    },
+                    {
+                        "data": [
+                            {
+                                "order": 0,
+                                "SubactionName": "ChangeFrame",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [
+                                        "frameNumber",
+                                        "relative"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "frameNumber",
+                                            "source": 0,
+                                            "type": 2,
+                                            "data": "0",
+                                            "description": "The Frame number to change to, or the amount to modify the current frame by.\t"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "relative",
+                                            "source": 0,
+                                            "type": 1,
+                                            "data": "false",
+                                            "description": "If true, will modify the current frame instead of setting directly."
+                                        }
+                                    ]
+                                },
+                                "description": "Changes the next execution frame of the action. Note that the current frame finishes execution, and will switch to the given one for the next execution. Can be given a number, or if relative is true, will add the given number to the current frame instead."
+                            }
+                        ]
+                    },
+                    {
+                        "data": [
+                            {
+                                "order": 0,
+                                "SubactionName": "ChangeXPreferredSpeed",
+                                "subType": 1,
+                                "arguments": {
+                                    "m_keys": [
+                                        "x",
+                                        "relative"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "x",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "What to change X Speed to/the amount to change X Speed By"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "relative",
+                                            "source": 0,
+                                            "type": 1,
+                                            "data": "false",
+                                            "description": "If true, modifies the current X Speed instead of changing it"
+                                        }
+                                    ]
+                                },
+                                "description": "Change the X Preferred Speed of the fighter. If relative, will modify the value instead."
+                            }
+                        ]
+                    },
+                    {
+                        "data": [
+                            {
+                                "order": 0,
+                                "SubactionName": "ChangeXPreferredSpeed",
+                                "subType": 1,
+                                "arguments": {
+                                    "m_keys": [
+                                        "x",
+                                        "relative"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "x",
+                                            "source": 1,
+                                            "type": 3,
+                                            "data": "run_speed",
+                                            "description": "What to change X Speed to/the amount to change X Speed By"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "relative",
+                                            "source": 0,
+                                            "type": 1,
+                                            "data": "false",
+                                            "description": "If true, modifies the current X Speed instead of changing it"
+                                        }
+                                    ]
+                                },
+                                "description": "Change the X Preferred Speed of the fighter. If relative, will modify the value instead."
+                            }
+                        ]
+                    },
+                    {
+                        "data": [
+                            {
+                                "order": 0,
+                                "SubactionName": "DoTransition",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [
+                                        "transitionState"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "transitionState",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "CheckFall",
+                                            "description": "The name of the pre-defined Transition State to check."
+                                        }
+                                    ]
+                                },
+                                "description": "Check one of the pre-defined Transition States. A list of transition states can be found in the documentation."
+                            },
+                            {
+                                "order": 1,
+                                "SubactionName": "DoTransition",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [
+                                        "transitionState"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "transitionState",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "runState",
+                                            "description": "The name of the pre-defined Transition State to check."
+                                        }
+                                    ]
+                                },
+                                "description": "Check one of the pre-defined Transition States. A list of transition states can be found in the documentation."
+                            }
+                        ]
+                    },
+                    {
+                        "data": [
+                            {
+                                "order": 0,
+                                "SubactionName": "Accelerate",
+                                "subType": 1,
+                                "arguments": {
+                                    "m_keys": [
+                                        "xFactor"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "xFactor",
+                                            "source": 1,
+                                            "type": 3,
+                                            "data": "static_grip",
+                                            "description": "The factor by which to change xSpeed, such as friction or air control"
+                                        }
+                                    ]
+                                },
+                                "description": "Change speed to get closer to the preferred speed without going over"
+                            }
+                        ]
+                    },
+                    {
+                        "data": []
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Pivot",
+            "length": 1,
+            "animationName": "idle",
+            "exit_action": "NeutralAction",
+            "subactionCategories": {
+                "m_keys": [
+                    "frame_0",
+                    "Set Up",
+                    "Tear Down",
+                    "Before Frame",
+                    "Transitions",
+                    "Last Frame"
+                ],
+                "m_values": [
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": [
+                            {
+                                "order": 0,
+                                "SubactionName": "Flip",
+                                "subType": 2,
+                                "arguments": {
+                                    "m_keys": [],
+                                    "m_values": []
+                                },
+                                "description": "Flips the fighter so it is facing the other direction. This will mirror the sprite or rotate the model to match. No arguments necessary."
+                            }
+                        ]
+                    },
+                    {
+                        "data": [
+                            {
+                                "order": 0,
+                                "SubactionName": "Accelerate",
+                                "subType": 1,
+                                "arguments": {
+                                    "m_keys": [
+                                        "xFactor"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "xFactor",
+                                            "source": 1,
+                                            "type": 3,
+                                            "data": "static_grip",
+                                            "description": "The factor by which to change xSpeed, such as friction or air control"
+                                        }
+                                    ]
+                                },
+                                "description": "Change speed to get closer to the preferred speed without going over"
+                            },
+                            {
+                                "order": 1,
+                                "SubactionName": "ChangeXPreferredSpeed",
+                                "subType": 1,
+                                "arguments": {
+                                    "m_keys": [
+                                        "x",
+                                        "relative"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "x",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "What to change X Speed to/the amount to change X Speed By"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "relative",
+                                            "source": 0,
+                                            "type": 1,
+                                            "data": "false",
+                                            "description": "If true, modifies the current X Speed instead of changing it"
+                                        }
+                                    ]
+                                },
+                                "description": "Change the X Preferred Speed of the fighter. If relative, will modify the value instead."
+                            }
+                        ]
+                    },
+                    {
+                        "data": [
+                            {
+                                "order": 0,
+                                "SubactionName": "IfButtonHeld",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [
+                                        "button",
+                                        "pressed"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "button",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "jump",
+                                            "description": "The button to check if is being held"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "pressed",
+                                            "source": 0,
+                                            "type": 1,
+                                            "data": "true",
+                                            "description": "If true, checks for the button held. If false, checks if the button is not currently held."
+                                        }
+                                    ]
+                                },
+                                "description": "Check if a given button is currently being held"
+                            },
+                            {
+                                "order": 1,
+                                "SubactionName": "DoAction",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [
+                                        "actionName"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "actionName",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "Jump",
+                                            "description": "The name of the action to change to"
+                                        }
+                                    ]
+                                },
+                                "description": "Change the current action. The current action will continue executing the rest of its current frame."
+                            },
+                            {
+                                "order": 2,
+                                "SubactionName": "DoTransition",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [
+                                        "transitionState"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "transitionState",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "checkFall",
+                                            "description": "The name of the pre-defined Transition State to check."
+                                        }
+                                    ]
+                                },
+                                "description": "Check one of the pre-defined Transition States. A list of transition states can be found in the documentation."
+                            }
+                        ]
+                    },
+                    {
+                        "data": [
+                            {
+                                "order": 0,
+                                "SubactionName": "IfButtonBuffered",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [
+                                        "button",
+                                        "bufferWindow",
+                                        "pressed"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "button",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "BackwardSmash",
+                                            "description": "The button to check for"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "bufferWindow",
+                                            "source": 0,
+                                            "type": 2,
+                                            "data": "8",
+                                            "description": "How many frames back to check"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "pressed",
+                                            "source": 0,
+                                            "type": 1,
+                                            "data": "true",
+                                            "description": "If true, checks if the button was pressed. If false, checks for released instead."
+                                        }
+                                    ]
+                                },
+                                "description": "Checks if a specific button has been pressed or released recently"
+                            },
+                            {
+                                "order": 1,
+                                "SubactionName": "PassVar",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [
+                                        "varName",
+                                        "value"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "varName",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "direction",
+                                            "description": "The name of the variable to pass to the next action."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "value",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "-1",
+                                            "description": "The value to pass to the next action."
+                                        }
+                                    ]
+                                },
+                                "description": "Pass a variable to the next action after this one. CAUTION: Call this right before switching to the intended action to avoid unexpected consequences. Behaves as if you had called SetVar on the next action."
+                            },
+                            {
+                                "order": 2,
+                                "SubactionName": "DoAction",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [
+                                        "actionName"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "actionName",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "Dash",
+                                            "description": "The name of the action to change to"
+                                        }
+                                    ]
+                                },
+                                "description": "Change the current action. The current action will continue executing the rest of its current frame."
+                            },
+                            {
+                                "order": 3,
+                                "SubactionName": "EndIf",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [],
+                                    "m_values": []
+                                },
+                                "description": "Unsets the current action condition, ending the innermost if block."
+                            },
+                            {
+                                "order": 4,
+                                "SubactionName": "IfButtonBuffered",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [
+                                        "button",
+                                        "bufferWindow",
+                                        "pressed"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "button",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "ForwardSmash",
+                                            "description": "The button to check for"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "bufferWindow",
+                                            "source": 0,
+                                            "type": 2,
+                                            "data": "8",
+                                            "description": "How many frames back to check"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "pressed",
+                                            "source": 0,
+                                            "type": 1,
+                                            "data": "true",
+                                            "description": "If true, checks if the button was pressed. If false, checks for released instead."
+                                        }
+                                    ]
+                                },
+                                "description": "Checks if a specific button has been pressed or released recently"
+                            },
+                            {
+                                "order": 5,
+                                "SubactionName": "PassVar",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [
+                                        "varName",
+                                        "value"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "varName",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "direction",
+                                            "description": "The name of the variable to pass to the next action."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "value",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "1",
+                                            "description": "The value to pass to the next action."
+                                        }
+                                    ]
+                                },
+                                "description": "Pass a variable to the next action after this one. CAUTION: Call this right before switching to the intended action to avoid unexpected consequences. Behaves as if you had called SetVar on the next action."
+                            },
+                            {
+                                "order": 6,
+                                "SubactionName": "EndIf",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [],
+                                    "m_values": []
+                                },
+                                "description": "Unsets the current action condition, ending the innermost if block."
+                            },
+                            {
+                                "order": 7,
+                                "SubactionName": "IfButtonHeld",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [
+                                        "button",
+                                        "pressed"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "button",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "Backward",
+                                            "description": "The button to check if is being held"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "pressed",
+                                            "source": 0,
+                                            "type": 1,
+                                            "data": "true",
+                                            "description": "If true, checks for the button held. If false, checks if the button is not currently held."
+                                        }
+                                    ]
+                                },
+                                "description": "Check if a given button is currently being held"
+                            },
+                            {
+                                "order": 8,
+                                "SubactionName": "PassVar",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [
+                                        "varName",
+                                        "value"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "varName",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "direction",
+                                            "description": "The name of the variable to pass to the next action."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "value",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "-1",
+                                            "description": "The value to pass to the next action."
+                                        }
+                                    ]
+                                },
+                                "description": "Pass a variable to the next action after this one. CAUTION: Call this right before switching to the intended action to avoid unexpected consequences. Behaves as if you had called SetVar on the next action."
+                            },
+                            {
+                                "order": 9,
+                                "SubactionName": "DoAction",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [
+                                        "actionName"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "actionName",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "Move",
+                                            "description": "The name of the action to change to"
+                                        }
+                                    ]
+                                },
+                                "description": "Change the current action. The current action will continue executing the rest of its current frame."
+                            },
+                            {
+                                "order": 10,
+                                "SubactionName": "EndIf",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [],
+                                    "m_values": []
+                                },
+                                "description": "Unsets the current action condition, ending the innermost if block."
+                            },
+                            {
+                                "order": 11,
+                                "SubactionName": "IfButtonHeld",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [
+                                        "button",
+                                        "pressed"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "button",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "Forward",
+                                            "description": "The button to check if is being held"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "pressed",
+                                            "source": 0,
+                                            "type": 1,
+                                            "data": "true",
+                                            "description": "If true, checks for the button held. If false, checks if the button is not currently held."
+                                        }
+                                    ]
+                                },
+                                "description": "Check if a given button is currently being held"
+                            },
+                            {
+                                "order": 12,
+                                "SubactionName": "PassVar",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [
+                                        "varName",
+                                        "value"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "varName",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "direction",
+                                            "description": "The name of the variable to pass to the next action."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "value",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "1",
+                                            "description": "The value to pass to the next action."
+                                        }
+                                    ]
+                                },
+                                "description": "Pass a variable to the next action after this one. CAUTION: Call this right before switching to the intended action to avoid unexpected consequences. Behaves as if you had called SetVar on the next action."
+                            },
+                            {
+                                "order": 13,
+                                "SubactionName": "DoAction",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [
+                                        "actionName"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "actionName",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "Move",
+                                            "description": "The name of the action to change to"
+                                        }
+                                    ]
+                                },
+                                "description": "Change the current action. The current action will continue executing the rest of its current frame."
+                            },
+                            {
+                                "order": 14,
                                 "SubactionName": "EndIf",
                                 "subType": 0,
                                 "arguments": {

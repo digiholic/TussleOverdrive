@@ -27,7 +27,6 @@ public class SubactionVarDataInput : LegacyEditorWidget {
 
     void OnSubactionChanged(SubactionData subaction)
     {
-        Debug.Log("Changing Subaction Data: "+panel.varData.data,this);
         //We need to change the text without firing another update, so unready then re-ready after setting
         ready = false;
         input.value = panel.varData.data;

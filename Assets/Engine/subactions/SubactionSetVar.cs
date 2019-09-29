@@ -15,7 +15,7 @@ public class SubactionSetVar : Subaction {
     public override void Execute(BattleObject actor, GameAction action)
     {
         base.Execute(actor, action);
-        arg_dict["variable"].SetVariable(actor, action, arg_dict["value"].GetData(actor, action));
+        arg_dict["variable"].SetVariableInTarget(actor, action, arg_dict["value"].GetData(actor, action));
     }
 
     public override SubactionType getSubactionType()

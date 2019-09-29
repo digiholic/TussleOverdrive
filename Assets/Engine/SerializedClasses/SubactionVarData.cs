@@ -86,7 +86,7 @@ public class SubactionVarData
     /// <param name="owner">The BattleObject this is operating on</param>
     /// <param name="action">The action calling this subaction</param>
     /// <param name="value">The data to set the variable</param>
-    public void SetVariable(BattleObject owner, GameAction action, object value)
+    public void SetVariableInTarget(BattleObject owner, GameAction action, object value)
     {
         if (source == SubactionSource.CONSTANT)
         {

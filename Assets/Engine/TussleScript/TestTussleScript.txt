@@ -1,0 +1,23 @@
+Action Stop
+	Length 1
+	Animation idle
+	ExitAction Idle
+	StartGroup Before_Frame
+		ChangeXPreferredSpeed(0,false)
+	EndGroup
+	StartGroup State_Transitions
+		DoTransition(checkFall)
+		Accelerate(actor.static_grip)
+		IfButtonHeld(Forward,1)
+			DoAction(Dash)
+		EndIf()
+		IfButtonHeld(Backward,1)
+			DoAction(Pivot)
+		EndIf()
+	EndGroup
+	StartGroup Last_Frame
+		IfButtonBuffered(Jump,8,1)
+			DoAction(Jump)
+		EndIf()
+	EndGroup
+EndAction
