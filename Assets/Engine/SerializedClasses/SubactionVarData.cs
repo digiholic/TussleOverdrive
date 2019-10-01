@@ -16,7 +16,7 @@ public class SubactionVarData
     [TextArea]
     public string description;
 
-    public SubactionVarData(string _name, SubactionSource _source, SubactionVarType _type, string _data, string desc, bool _editable = true)
+    public SubactionVarData(string _name, SubactionSource _source, SubactionVarType _type, string _data, string desc = "", bool _editable = true)
     {
         name = _name;
         source = _source;

@@ -142,6 +142,40 @@ public class TussleScriptParser : MonoBehaviour
         string subDataName = startParenSplit[0];
         string argList = startParenSplit[1].Substring(0,startParenSplit[1].Length-1);
         Debug.Log(string.Format("PARSING SUBACTION {0}\n\tArguments: {1}",subDataName,argList));
+
+
+        SubactionDataDefault subDataDef = Resources.Load<SubactionDataDefault>("SubactionData/"+subDataName);
+        if (subDataDef != null){
+            SubactionData subData = subDataDef.CreateSubactionData();
+            string[] splitArgs = new string[0];
+            if (argList.Length > 0){
+                splitArgs = argList.Split(',');
+            }
+            if (subDataDef.scriptArgNames.Count != splitArgs.Length){
+                throwException(string.Format("Subaction {0} has {1} arguments, expecting {2}",subDataName,splitArgs.Length,subDataDef.scriptArgNames.Count),lineNumber);
+                return null;
+            }
+            for (int i=0;i<splitArgs.Length;i++){
+                string argumentName = subDataDef.scriptArgNames[i];
+                
+                SubactionSource source = SubactionSource.CONSTANT;
+                if (splitArgs[i].StartsWith("owner.")){
+                    source = SubactionSource.OWNER;
+                    splitArgs[i] = splitArgs[i].Substring("owner.".Length);
+                }else if (splitArgs[i].StartsWith("action.")){
+                    source = SubactionSource.ACTION;
+                    splitArgs[i] = splitArgs[i].Substring("action.".Length);
+                }
+
+                SubactionVarType varType = subDataDef.arguments[argumentName].type;
+
+                SubactionVarData argVarData = new SubactionVarData(argumentName,source,varType,splitArgs[i]);
+                subData.arguments[argumentName] = argVarData;
+            }
+            return subData;
+        } else {
+            throwException("No Subaction found with name "+subDataName,lineNumber);
+        }
         return null;
     }
 

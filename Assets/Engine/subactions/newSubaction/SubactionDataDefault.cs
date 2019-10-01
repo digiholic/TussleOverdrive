@@ -9,7 +9,7 @@ public class SubactionDataDefault : ScriptableObject
     public string SubactionName;
     public SubactionType subType;
     public SubVarDict arguments;
-
+    public List<string> scriptArgNames;
     [TextArea]
     public string Description;
 
@@ -24,7 +24,7 @@ public class SubactionDataDefault : ScriptableObject
         foreach (KeyValuePair<string,SubactionVarData> dataPair in arguments){
             copyArguments[dataPair.Key] = dataPair.Value.Copy();
         }
-        return new SubactionData(SubactionName, subType, copyArguments,Description);
+        return new SubactionData(SubactionName, subType, copyArguments);
     }
 
     [ExecuteInEditMode]

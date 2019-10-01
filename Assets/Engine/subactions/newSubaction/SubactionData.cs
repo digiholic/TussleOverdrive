@@ -8,14 +8,12 @@ public class SubactionData {
     public string SubactionName;
     public SubactionType subType;
     public SubVarDict arguments;
-    public string description;
 
-    public SubactionData(string name, SubactionType subT, SubVarDict args, string desc)
+    public SubactionData(string name, SubactionType subT, SubVarDict args)
     {
         SubactionName = name;
         subType = subT;
         arguments = args;
-        description = desc;
     }
 
     public void SetArgument(string key, object value)
