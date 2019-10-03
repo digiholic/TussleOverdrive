@@ -8,14 +8,15 @@ public class TussleScriptParser : MonoBehaviour
 {
     [SerializeField] private TextAsset tussleScriptDocument;
 
-    [SerializeField] private List<DynamicAction> actions = new List<DynamicAction>();
+    [SerializeField] private ActionFile testActionFile;
 
     // Start is called before the first frame update
     void Start()
     {
         if (tussleScriptDocument != null)
         {
-            ParseActionScript(tussleScriptDocument.text);
+            testActionFile = new ActionFile();
+            ParseActionScript(tussleScriptDocument.text, testActionFile);
         }
     }
 
@@ -25,16 +26,20 @@ public class TussleScriptParser : MonoBehaviour
 
     }
 
-    private DynamicAction workingAction = null;
-    private string workingSubGroupName = null;
+    private static DynamicAction workingAction = null;
+    private static string workingSubGroupName = null;
 
     /// <summary>
     /// Parse a string representation of an Action Script
     /// </summary>
     /// <param name="actionScript">the action script to parse</param>
     /// <returns>-1 on error, 1 on success</returns>
-    public int ParseActionScript(string actionScript)
+    public static int ParseActionScript(string actionScript, ActionFile outputFile)
     {
+        //Reset the working vars
+        workingAction = null;
+        workingSubGroupName = null;
+
         StringReader reader = new StringReader(actionScript);
 
         string line;
@@ -64,7 +69,8 @@ public class TussleScriptParser : MonoBehaviour
             {
                 //TODO Finish the action here
                 Debug.Log("Ending Action Definition");
-                actions.Add(workingAction);
+                outputFile.Add(workingAction,false);
+                
                 workingAction = null;
             }
             
@@ -83,7 +89,7 @@ public class TussleScriptParser : MonoBehaviour
     /// </summary>
     /// <param name="line">The full text line to parse</param>
     /// <param name="workingAction">The DynamicAction currently being processed. Guaranteed not null.</param>
-    private void ProcessActionSection(string line, DynamicAction workingAction, int lineNumber)
+    private static void ProcessActionSection(string line, DynamicAction workingAction, int lineNumber)
     {
         string token;
         //Process Properties Tokens
@@ -129,7 +135,7 @@ public class TussleScriptParser : MonoBehaviour
     /// </summary>
     /// <param name="line">The line being parsed</param>
     /// <returns>A proper SubactionData object, ready for injecting into a Dynamic Action</returns>
-    private SubactionData processSubactionLine(string line, int lineNumber){
+    private static SubactionData processSubactionLine(string line, int lineNumber){
         string[] startParenSplit = line.Split('(');
 
         //This string should contain EXACTLY one parenthesis pair. Any more or less and you fucked up your script, dawg
@@ -188,7 +194,7 @@ public class TussleScriptParser : MonoBehaviour
     /// <param name="token">The token to look for</param>
     /// <param name="lengthAdjust">How many more or less characters to get from the line before getting the value. For example, if there is a space between the token and the value, you would keep the default value of 1</param>
     /// <returns></returns>
-    private string GetTokenVal(string line, string token, int lengthAdjust = 1)
+    private static string GetTokenVal(string line, string token, int lengthAdjust = 1)
     {
         if (line.StartsWith(token))
         {
@@ -200,7 +206,7 @@ public class TussleScriptParser : MonoBehaviour
         }
     }
 
-    private int throwException(string error, int line)
+    private static int throwException(string error, int line)
     {
         Debug.LogError(string.Format("Error parsing line {0}\n\t{1}", line, error));
         return PARSEERROR;
