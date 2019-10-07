@@ -395,6 +395,43 @@ public class LegacyEditorData : MonoBehaviour
         return false;
     }
 
+    public void ImportTussleScript(bool overwrite){
+        if (overwrite){
+            fileBrowser.BrowseForFile(FileLoader.FighterDir, OverwriteFromTussleScript);
+        } else {
+            fileBrowser.BrowseForFile(FileLoader.FighterDir, AddFromTussleScript);
+        }
+        fileBrowser.SetErrorText("Error parsing TussleScript");
+    }
+
+    private bool AddFromTussleScript(FileInfo info){
+        string tussleScriptString = File.ReadAllText(info.FullName);
+        //Keep a backup of the action file in case there's an error
+        ActionFile oldActionFile = loadedActionFile;
+        int result = TussleScriptParser.ParseActionScript(tussleScriptString,loadedActionFile,false);
+        if (result < 0){
+            loadedActionFile = oldActionFile;
+            Debug.LogWarning("Error parsing TussleScript: "+info.Name);
+            return false;
+        }
+        ChangedActionFile();
+        return true;
+    }
+
+    private bool OverwriteFromTussleScript(FileInfo info){
+        string tussleScriptString = File.ReadAllText(info.FullName);
+        //Keep a backup of the action file in case there's an error
+        ActionFile oldActionFile = loadedActionFile;
+        int result = TussleScriptParser.ParseActionScript(tussleScriptString,loadedActionFile,true);
+        if (result < 0){
+            loadedActionFile = oldActionFile;
+            Debug.LogWarning("Error parsing TussleScript: "+info.Name);
+            return false;
+        }
+        ChangedActionFile();
+        return true;
+    }
+
     #region static helper methods
     /// <summary>
     /// Banish a panel to the shadow realm, a place where panels no longer in use go.

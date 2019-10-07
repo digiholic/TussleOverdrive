@@ -1,33 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class FileMenu : MonoBehaviour
 {
-    private UIPopupList list;
-
+    private UIPopupList popupList;
+    
+    //A list of all the menu options and the function to call when they're clicked. Set in the Unity editor.
+    public List<TopMenuOption> options;
     private void Start()
     {
-        list = GetComponent<UIPopupList>();
+        popupList = GetComponent<UIPopupList>();
+        foreach(TopMenuOption opt in options){
+            popupList.items.Add(opt.menuOptionText);
+        }
     }
 
     public void OnSelectionChange()
     {
-        string selected = list.value;
-        switch (selected)
-        {
-            case "New":
-                LegacyEditorData.instance.NewFighterClicked();
-                break;
-            case "Load":
-                LegacyEditorData.instance.LoadFighterClicked();
-                break;
-            case "Save":
-                LegacyEditorData.instance.SaveFighterClicked();
-                break;
-            default:
-                Debug.Log(selected);
-                break;
+        string selected = popupList.value;
+        foreach(TopMenuOption opt in options){
+            if (opt.menuOptionText == selected){
+                opt.functionToCall.Invoke();
+            }
         }
     }
+}
+
+[System.Serializable]
+public class TopMenuOption{
+    public string menuOptionText;
+    public UnityEvent functionToCall;
 }

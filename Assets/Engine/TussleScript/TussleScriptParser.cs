@@ -16,7 +16,7 @@ public class TussleScriptParser : MonoBehaviour
         if (tussleScriptDocument != null)
         {
             testActionFile = new ActionFile();
-            ParseActionScript(tussleScriptDocument.text, testActionFile);
+            ParseActionScript(tussleScriptDocument.text, testActionFile, false);
         }
     }
 
@@ -28,13 +28,13 @@ public class TussleScriptParser : MonoBehaviour
 
     private static DynamicAction workingAction = null;
     private static string workingSubGroupName = null;
-
+    
     /// <summary>
     /// Parse a string representation of an Action Script
     /// </summary>
     /// <param name="actionScript">the action script to parse</param>
     /// <returns>-1 on error, 1 on success</returns>
-    public static int ParseActionScript(string actionScript, ActionFile outputFile)
+    public static int ParseActionScript(string actionScript, ActionFile outputFile,bool overwrite)
     {
         //Reset the working vars
         workingAction = null;
@@ -48,6 +48,10 @@ public class TussleScriptParser : MonoBehaviour
         while ((line = reader.ReadLine()) != null)
         {
             line = line.Trim(); //Remove the tabs. We ain't python.
+            if (line.Length == 0){
+                lineNumber++;
+                continue; //Skip empty lines
+            }
 
             string tokenValue;
             //Process Start Token
@@ -56,7 +60,7 @@ public class TussleScriptParser : MonoBehaviour
                 if (workingAction == null)
                 {
                     workingAction = new DynamicAction(tokenValue);
-                    Debug.Log(string.Format("Creating new action with name {0}", tokenValue));
+                    //Debug.Log(string.Format("Creating new action with name {0}", tokenValue));
                 }
                 else
                 {
@@ -68,8 +72,8 @@ public class TussleScriptParser : MonoBehaviour
             else if ((tokenValue = GetTokenVal(line, ActionTokens.End, 0)) != null)
             {
                 //TODO Finish the action here
-                Debug.Log("Ending Action Definition");
-                outputFile.Add(workingAction,false);
+                //Debug.Log("Ending Action Definition");
+                outputFile.Add(workingAction,overwrite);
                 
                 workingAction = null;
             }
@@ -112,12 +116,12 @@ public class TussleScriptParser : MonoBehaviour
         //Process Group
         else if ((token = GetTokenVal(line, ActionTokens.GroupStart)) != null)
         {
-            Debug.Log("Starting SubGroup "+token);
+            //Debug.Log("Starting SubGroup "+token);
             workingSubGroupName = token;
         }
         else if ((token = GetTokenVal(line, ActionTokens.GroupEnd,0)) != null)
         {
-            Debug.Log("Ending SubGroup");
+            //Debug.Log("Ending SubGroup");
             workingSubGroupName = null;
         }
 
@@ -140,14 +144,14 @@ public class TussleScriptParser : MonoBehaviour
 
         //This string should contain EXACTLY one parenthesis pair. Any more or less and you fucked up your script, dawg
         if (startParenSplit.Length != 2 || !line.EndsWith(")")){
-            Debug.Log(startParenSplit.Length);
-            Debug.Log(line.EndsWith(")"));
+            //Debug.Log(startParenSplit.Length);
+            //Debug.Log(line.EndsWith(")"));
             throwException("Incorrect parenthesis in subDataLine: "+line,lineNumber);
             return null;
         }
         string subDataName = startParenSplit[0];
         string argList = startParenSplit[1].Substring(0,startParenSplit[1].Length-1);
-        Debug.Log(string.Format("PARSING SUBACTION {0}\n\tArguments: {1}",subDataName,argList));
+        //Debug.Log(string.Format("PARSING SUBACTION {0}\n\tArguments: {1}",subDataName,argList));
 
 
         SubactionDataDefault subDataDef = Resources.Load<SubactionDataDefault>("SubactionData/"+subDataName);

@@ -51,7 +51,7 @@ public class FileBrowser : MonoBehaviour {
 
     void Start()
     {
-        Initialize(FileLoader.FighterDir, ValidateJSONFile, LoadFighter, null);
+        //Initialize(FileLoader.FighterDir, ValidateJSONFile, LoadFighter, null);
     }
 
     public void SetErrorText(string errorText)
@@ -201,7 +201,7 @@ public class FileBrowser : MonoBehaviour {
 
     public static bool ValidateEverything(FileInfo info)
     {
-        return true;
+        return (info.Extension != ".meta");
     }
 
     public static bool ValidateNothing(FileInfo info)

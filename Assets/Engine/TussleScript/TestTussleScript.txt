@@ -1,11 +1,141 @@
+Action Move
+	Length 1
+	Animation walk
+	ExitAction Stop
+	StartGroup Set Up
+		InitVar(action.direction,owner.facing)
+	EndGroup
+	StartGroup Tear Down
+		ChangeXPreferredSpeed(0,false)
+	EndGroup
+	StartGroup State Transitions
+		DoTransition(moveState)
+		DoTransition(checkFall)
+		IfVar(action.frame,0,>)
+			IfButtonBuffered(forward,0,true)
+				DoAction(Dash)
+			EndIf()
+		EndIf()
+	EndGroup
+	StartGroup Before Frame
+		ChangeXPreferredSpeed(actor.max_ground_speed,false)
+		Accelerate(actor.static_grip)
+		IfVar(action.direction,owner.facing,==)
+			IfButtonHeld(backward,true)
+				Flip()
+			EndIf()
+		Else()
+			IfButtonHeld(forward,false)
+				Flip()
+			EndIf()
+		EndIf()
+	EndGroup
+EndAction
+
+Action Dash
+	Length 1
+	Animation dash
+	ExitAction RunStop
+	StartGroup Set Up
+		InitVar(action.pivoted,false)
+		InitVar(action.direction,owner.facing)
+	EndGroup
+	StartGroup Tear Down
+		ChangeXPreferredSpeed(0,false)
+	EndGroup
+	StartGroup State Transitions
+		DoTransition(dashState)
+		DoTransition(checkFall)
+	EndGroup
+	StartGroup Before Frame
+		IfVar(action.pivoted,false,==)
+			IfButtonHeld(backward,true)
+				Flip()
+				SetVar(action.pivoted,true,false)
+			EndIf()
+		EndIf()
+		Accelerate(owner.static_grip)
+	EndGroup
+	StartGroup frame_0
+		ChangeXPreferredSpeed(owner.max_ground_speed,false)
+	EndGroup
+	StartGroup Last Frame
+		PassVar(direction,owner.facing)
+		PassVar(lastPrefSpeed,owner.XPref)
+		DoAction(Run)
+	EndGroup
+EndAction
+
+Action Run
+	Length 1
+	Animation run
+	ExitAction RunStop
+	StartGroup Set Up
+		InitVar(action.direction,owner.facing)
+	EndGroup
+	StartGroup Tear Down
+		ChangeXPreferredSpeed(0,false)
+	EndGroup
+	StartGroup State Transitions
+		DoTransition(checkFall)
+		DoTransition(runState)
+	EndGroup
+	StartGroup Before Frame
+		Accelerate(owner.static_grip)
+	EndGroup
+	StartGroup frame_0
+		ChangeXPreferredSpeed(owner.run_speed,false)
+	EndGroup
+	StartGroup Last Frame
+		ChangeFrame(0,false)
+	EndGroup
+EndAction
+
+Action Pivot
+	Length 1
+	Animation Pivot
+	ExitAction NeutralAction
+	StartGroup Tear Down
+		Flip()
+	EndGroup
+	StartGroup State Transitions
+		DoTransition(checkFall)
+		IfButtonHeld(jump,true)
+			DoAction(Jump)
+		EndIf()
+	EndGroup
+	StartGroup Before Frame
+		Accelerate(owner.static_grip)
+		ChangeXPreferredSpeed(0,false)
+	EndGroup
+	StartGroup Last Frame
+		IfButtonBuffered(backwardSmash,8,true)
+			PassVar(direction,-1)
+			DoAction(Dash)
+		EndIf()
+		IfButtonBuffered(ForwardSmash,8,true)
+			PassVar(direction,1)
+			DoAction(Dash)
+		EndIf()
+		IfButtonHeld(Backward,true)
+			PassVar(direction,-1)
+			DoAction(Move)
+		EndIf()
+		IfButtonHeld(Forward,true)
+			PassVar(direction,1)
+			DoAction(Move)
+		EndIf()	
+	EndGroup
+EndAction
+
 Action Stop
 	Length 1
 	Animation idle
 	ExitAction Idle
-	StartGroup Before_Frame
+	StartGroup Before Frame
 		ChangeXPreferredSpeed(0,false)
 	EndGroup
-	StartGroup State_Transitions
+	StartGroup State Transitions
 		DoTransition(checkFall)
 		Accelerate(actor.static_grip)
 		IfButtonHeld(Forward,1)
@@ -15,7 +145,7 @@ Action Stop
 			DoAction(Pivot)
 		EndIf()
 	EndGroup
-	StartGroup Last_Frame
+	StartGroup Last Frame
 		IfButtonBuffered(Jump,8,1)
 			DoAction(Jump)
 		EndIf()
