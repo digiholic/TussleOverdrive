@@ -48,9 +48,9 @@ public class TussleScriptParser : MonoBehaviour
         while ((line = reader.ReadLine()) != null)
         {
             line = line.Trim(); //Remove the tabs. We ain't python.
-            if (line.Length == 0){
+            if (line.Length == 0 || line.StartsWith("#")){
                 lineNumber++;
-                continue; //Skip empty lines
+                continue; //Skip empty lines and comments
             }
 
             string tokenValue;

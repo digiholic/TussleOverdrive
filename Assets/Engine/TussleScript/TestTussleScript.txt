@@ -1,3 +1,13 @@
+Action Idle
+	Length 1
+	Animation idle
+	ExitAction Idle
+	StartGroup State Transitions
+		DoTransition(checkFall)
+		DoTransition(neutralState)
+	EndGroup
+EndAction
+
 Action Move
 	Length 1
 	Animation walk
@@ -94,7 +104,7 @@ EndAction
 Action Pivot
 	Length 1
 	Animation Pivot
-	ExitAction NeutralAction
+	ExitAction Idle
 	StartGroup Tear Down
 		Flip()
 	EndGroup
@@ -130,7 +140,7 @@ EndAction
 
 Action Stop
 	Length 1
-	Animation idle
+	Animation stop
 	ExitAction Idle
 	StartGroup Before Frame
 		ChangeXPreferredSpeed(0,false)
@@ -138,16 +148,253 @@ Action Stop
 	StartGroup State Transitions
 		DoTransition(checkFall)
 		Accelerate(actor.static_grip)
-		IfButtonHeld(Forward,1)
+		IfButtonHeld(Forward,true)
 			DoAction(Dash)
 		EndIf()
-		IfButtonHeld(Backward,1)
+		IfButtonHeld(Backward,true)
 			DoAction(Pivot)
 		EndIf()
 	EndGroup
 	StartGroup Last Frame
-		IfButtonBuffered(Jump,8,1)
+		IfButtonBuffered(Jump,8,true)
 			DoAction(Jump)
 		EndIf()
+	EndGroup
+EndAction
+
+Action RunPivot
+	Length 1
+	Animation pivot
+	ExitAction Idle
+	StartGroup Tear Down
+		Flip()
+	EndGroup
+	StartGroup State Transitions
+		IfButtonHeld(jump,true)
+			DoAction(Jump)
+		EndIf()
+		DoTransition(checkFall)
+	EndGroup
+	StartGroup Before Frame
+		ChangeXPreferredSpeed(0,false)
+	EndGroup
+	StartGroup Last Frame
+		IfButtonHeld(forward,true)
+			DoAction(Dash)
+		Else()
+			DoAction(idle)
+		EndIf()
+	EndGroup
+EndAction
+
+Action RunStop
+	Length 1
+	Animation stop
+	ExitAction Idle
+	StartGroup State Transitions
+		DoTransition(checkFall)
+		IfButtonHeld(forward,true)
+			DoAction(Run)
+		EndIf()
+		IfButtonHeld(backward,true)
+			DoAction(RunPivot)
+		EndIf()
+	EndGroup
+	StartGroup Last Frame
+		IfButtonBuffered(Jump,8,true)
+			DoAction(Jump)
+		Else()
+			DoAction(Idle)
+		EndIf()
+	EndGroup
+EndAction
+
+Action Crouch
+	Length 1
+	Animation Crouch
+	ExitAction Crouch
+	StartGroup Set Up
+		InitVar(direction, actor.forward)
+	EndGroup
+	StartGroup State Transitions
+		DoTransition(crouchState)
+		DoTransition(checkFall)
+		#Uh.... I dunno how to do this one. Gonna have to figure this out later. Check the python
+		#IfButtonBuffered(down,1,true)
+		#	DoAction(PlatformDrop)
+		#EndIf()
+	EndGroup
+	StartGroup Before Frame
+		Accelerate(actor.static_grip)
+		IfVar(actor.canCrawl,true,==)
+			IfButtonHeld(forward,true)
+				DoAction(Crawl)
+			EndIf()
+			IfButtonHeld(backward,true)
+				Flip()
+				DoAction(Crawl)
+			EndIf()
+		EndIf()
+	EndGroup
+EndAction
+
+Action CrouchGetup
+	Length 1
+	Animation CrouchGetup
+	ExitAction Idle
+	StartGroup State Transitions
+		DoTransition(checkFall)
+		#This thing again. Figure it out pls
+		#IfButtonBuffered(down,1,true)
+		#	DoAction(PlatformDrop)
+		#EndIf()
+	EndGroup
+	StartGroup Before Frame
+		ChangeXPreferredSpeed(0,false)
+	EndGroup
+EndAction
+
+Action Grabbing
+	Length 1
+	Animation Grabbing
+	ExitAction GrabRelease
+	#TODO grabbing
+EndAction
+
+Action HitStun
+	Length 1
+	Animation hitstun
+	ExitAction Tumble
+	#TODO hitstun
+EndAction
+
+Action TryTech
+	Length 1
+	Animation tech
+	ExitAction Tumble
+	#TODO trytech
+EndAction
+
+Action Trip
+	Length 180
+	Animation prone
+	ExitAction GetUp
+	StartGroup Set Up
+		InitVar(duration,60)
+	EndGroup
+	StartGroup State Transitions
+		DoTransition(checkFall)
+		IfVar(action.frame,action.duration,>=)
+			DoTransition(tripState)
+		EndIf()
+	EndGroup
+EndAction
+
+Action GetUp
+	Length 1
+	Animation getup
+	ExitAction Idle
+EndAction
+
+Action Jump
+	Length 4
+	Animation jump
+	ExitAction Fall
+	StartGroup Set Up
+		InitVar(action.jumpFrame,3)
+	EndGroup
+	StartGroup State Transitions
+		IfVar(action.frame,action.jumpFrame,<)
+			IfButtonBuffered(UpSmash,3,true)
+				IfButtonBuffered(attack,3,true)
+					DoAction(UpSmash)
+				EndIf()
+				IfButtonBuffered(special,3,true)
+					DoAction(UpSpecial)
+				EndIf()
+			EndIf()
+		Else()
+			DoTransition(JumpState)
+		EndIf()
+	EndGroup
+	StartGroup Before Frame
+		IfVar(action.frame,action.jumpFrame,==)
+			SetVar(actor.grounded,false)
+			IfButtonHeld(Jump,true)
+				ChangeYSpeed(actor.jump_height,false)
+			Else()
+				ChangeYSpeed(actor.short_hop_height,false)
+			EndIf()
+		EndIf()
+	EndGroup()
+EndAction
+
+Action AirJump
+	Length 4
+	Animation jump
+	ExitAction Fall
+	StartGroup Set Up
+		InitVar(action.jumpFrame,3)
+	EndGroup
+	StartGroup State Transitions
+		IfVar(action.frame,action.jumpFrame,<)
+			IfButtonBuffered(Up,3,true)
+				IfButtonBuffered(attack,3,true)
+					DoAction(UpAir)
+				EndIf()
+				IfButtonBuffered(special,3,true)
+					DoAction(UpSpecial)
+				EndIf()
+			EndIf()
+		Else()
+			DoTransition(JumpState)
+		EndIf()
+	EndGroup
+	StartGroup Tear Down
+		ChangeYPreferredSpeed(actor.max_fall_speed)
+	EndGroup
+	StartGroup Before Frame
+		IfVar(action.frame,action.jumpFrame,<)
+			ChangeYSpeed(0,false)
+			ChangeYPreferredSpeed(0,false)
+		EndIf()
+		IfVar(action.frame,action.jumpFrame,==)
+			SetVar(actor.grounded,false)
+			ChangeYSpeed(actor.air_jump_height)
+			SetVar(actor.jumps,-1,true)
+			IfButtonHeld(backward,true)
+				Flip()
+				#There's not actually a way to do multiplication, so find a way to do this
+				ChangeXSpeed(-1*actor.max_air_speed)
+			EndIf()
+		EndIf()
+	EndGroup()
+EndAction
+
+Action Fall
+	Length 1
+	Animation fall
+	ExitAction Fall
+	StartGroup Set Up
+		ChangeXSpeed(0,false)
+		ChangeYPreferredSpeed(actor.max_fall_speed,false)
+	EndGroup
+	StartGroup State Transitions
+		DoTransition(airState)
+		DoTransition(grabLedges)
+	EndGroup
+EndAction
+
+Action Helpless
+	Length 1
+	Animation specialfall
+	ExitAction Helpless
+	StartGroup Set Up
+		ChangeXSpeed(0,false)
+		ChangeYPreferredSpeed(actor.max_fall_speed,false)
+	EndGroup
+	StartGroup State Transitions
+		DoTransition(airState)
+		DoTransition(grabLedges)
 	EndGroup
 EndAction
