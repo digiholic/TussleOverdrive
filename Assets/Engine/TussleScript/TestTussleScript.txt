@@ -398,3 +398,127 @@ Action Helpless
 		DoTransition(grabLedges)
 	EndGroup
 EndAction
+
+Action Land
+	Length 6
+	Animation land
+	ExitAction Idle
+	StartGroup Tear Down
+		ChangeXPreferredSpeed(0,false)
+	EndGroup
+	#TODO L cancelling?
+EndAction
+
+#TODO HelplessLand -- how is this different from landing?
+#TODO PlatformDrop -- this should probably be a method in the fighter
+#TODO Shield -- articles
+#TODO ShieldStun -- ^
+
+Action Stunned
+	Length 1
+	Animation stun
+	ExitAction Idle
+EndAction
+
+#TODO Trapped -- has to do with grabbing
+#TODO Grabbed
+#TODO Release
+#TODO Released
+
+Action ForwardRoll
+	Length 46
+	Animation forwardRoll
+	ExitAction Idle
+	StartGroup Tear Down
+		ChangeXPreferredSpeed(0,false)
+		#SetInvulnerability(false) TODO new subaction
+		#RemoveColorMask() TODO new subaction
+	EndGroup
+	StartGroup State Transitions
+		DoTransition(checkFall)
+	EndGroup
+	StartGroup Frame_1
+		ChangeXSpeed(actor.dodge_speed,false)
+	EndGroup
+	#Change this frame for different fighters to sync up to your animation
+	StartGroup Frame_6
+		#CreateColorMask(FFFFFF,22,true,24)
+		#SetInvulnerability(true)
+	EndGroup
+	#EndInvulnFrame
+	StartGroup frame_34
+		Flip()
+		ChangeXSpeed(0,false)
+		#SetInvulnerability(false) TODO new subaction
+		#RemoveColorMask() TODO new subaction
+	EndGroup
+	StartGroup Last Frame
+		IfButtonHeld(shield,true)
+			DoAction(Shield)
+		EndIf()
+		#The exit action will take care of putting us in Idle if we're not shielding again
+	EndGroup
+EndAction
+
+Action BackwardRoll
+	Length 50
+	Animation backwardRoll
+	ExitAction Idle
+	StartGroup Tear Down
+		ChangeXPreferredSpeed(0,false)
+		#SetInvulnerability(false) TODO new subaction
+		#RemoveColorMask() TODO new subaction
+	EndGroup
+	StartGroup State Transitions
+		DoTransition(checkFall)
+	EndGroup
+	StartGroup Frame_1
+		ChangeXSpeed(-actor.dodge_speed,false) #TODO negatives
+	EndGroup
+	#Change this frame for different fighters to sync up to your animation
+	StartGroup Frame_6
+		#CreateColorMask(FFFFFF,22,true,24)
+		#SetInvulnerability(true)
+	EndGroup
+	#EndInvulnFrame
+	StartGroup frame_34
+		ChangeXSpeed(0,false)
+		#SetInvulnerability(false) TODO new subaction
+		#RemoveColorMask() TODO new subaction
+	EndGroup
+	StartGroup Last Frame
+		IfButtonHeld(shield,true)
+			DoAction(Shield)
+		EndIf()
+		#The exit action will take care of putting us in Idle if we're not shielding again
+	EndGroup
+EndAction
+
+Action SpotDodge
+
+EndAction
+
+#TODO air dodge -- Decide if we want one action that listens to the settings or have multiple that the settings choose
+#TODO tech dodge -- See if this is still necessary
+
+Action LedgeGrab
+	Length 1
+	Animation ledgeGrab
+	ExitAction LedgeGrab
+	StartGroup Set Up
+		#CreateColorMask(FFFFFF,settings.ledgeInvulnerability,true,12)
+		#SetInvulnerability(true)
+	EndGroup
+	StartGroup Tear Down
+		#TODO notify the ledge the fighter is gone
+	EndGroup
+	StartGroup State Transitions
+		DoTransition(ledgeState)
+	EndGroup
+	StartGroup Frame_0
+		SetVar(actor.jumps,actor.max_jumps
+		ChangeXSpeed(0,false)
+	EndGroup
+EndAction
+
+#TODO LedgeGetup -- This one uses rect coordinates, see if those can be abstracted out
