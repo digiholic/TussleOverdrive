@@ -15,6 +15,10 @@ public class BuilderFighter : LegacyEditorWidget{
             SpriteHandler spriteHandler = fighterObject.GetComponent<SpriteHandler>();
             spriteHandler.ChangeAnimation("idle", 0);
             displaySprite = fighterObject.GetComponentInChildren<SpriteRenderer>();
+            BattleObject battleObject = fighterObject.GetComponent<BattleObject>();
+            foreach(VarData var in info.variables){
+                battleObject.SetVar(var.name,var.value);
+            }
         } else
         {
             Debug.Log("Fighter does not have enough data to be enabled");
@@ -40,6 +44,7 @@ public class BuilderFighter : LegacyEditorWidget{
         {
             actionHandler.ManualUpdate();
         }
+        Debug.Log(actionHandler.CurrentAction.hitboxes.Count);
     }
 
     void UpdateImageDef(ImageDefinition def)
@@ -60,6 +65,7 @@ public class BuilderFighter : LegacyEditorWidget{
         editor.FighterInfoChangedEvent += OnFighterChanged;
         editor.CurrentActionChangedEvent += OnActionChange;
         editor.CurrentImageDefinitionChangedEvent += UpdateImageDef;
+        editor.CurrentFrameChangedEvent += OnFrameChange;
     }
 
     public override void UnregisterListeners()
@@ -67,5 +73,6 @@ public class BuilderFighter : LegacyEditorWidget{
         editor.FighterInfoChangedEvent -= OnFighterChanged;
         editor.CurrentActionChangedEvent -= OnActionChange;
         editor.CurrentImageDefinitionChangedEvent -= UpdateImageDef;
+        editor.CurrentFrameChangedEvent -= OnFrameChange;
     }
 }

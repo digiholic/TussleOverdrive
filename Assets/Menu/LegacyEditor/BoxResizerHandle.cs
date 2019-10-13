@@ -14,7 +14,7 @@ public class BoxResizerHandle : MonoBehaviour
 
     private bool isBeingDragged = false;
     [SerializeField] private ViewerBoxDisplayer boxDisplayer;
-    void Awake()
+    void OnEnable()
     {
         if (boxDisplayer == null) boxDisplayer = GetComponentInParent<ViewerBoxDisplayer>();
     }

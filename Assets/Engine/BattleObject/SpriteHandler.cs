@@ -23,7 +23,7 @@ public class SpriteHandler : BattleComponent {
 
     private float rot_degrees;
 
-    private ImageDefinition currentSubimage;
+    [SerializeField] private ImageDefinition currentSubimage;
 
     void Awake()
     {
@@ -53,7 +53,6 @@ public class SpriteHandler : BattleComponent {
     {
         fighter_info = fInfo;
         sprite_info = fighter_info.sprite_info;
-        battleObject.SetVar(TussleConstants.SpriteVariableNames.PIXELS_PER_UNIT,getPixelsPerUnit());
     }
 
     /// <summary>
@@ -132,15 +131,6 @@ public class SpriteHandler : BattleComponent {
         }
     }
 
-    public float getPixelsPerUnit(){
-        if (currentSubimage != null){
-            return currentSubimage.PixelsPerUnit;
-        } else {
-            Debug.LogWarning("No current image loaded when attempting to load Pixels Per Unit. Using system default of 100 instead");
-            return 100;
-        }
-    }
-
     /// <summary>
     /// Get the sprite's current animation definition
     /// </summary>
@@ -155,7 +145,7 @@ public class SpriteHandler : BattleComponent {
     /// </summary>
     /// <returns></returns>
     public ImageDefinition getCurrentSubimage(){
-        return sprite_info.GetImageByName(currentAnimation.getCurrentSubimage(false));
+        return sprite_info?.GetImageByName(currentAnimation.getCurrentSubimage(false));
     }
 
     /// <summary>

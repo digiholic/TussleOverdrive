@@ -1,0 +1,942 @@
+{
+    "actions": [
+        {
+            "name": "NeutralAction",
+            "length": 1,
+            "animationName": "idle",
+            "sprite_rate": 0,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [
+                    "Set Up",
+                    "Current Frame"
+                ],
+                "m_values": [
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Stop",
+            "length": 9,
+            "animationName": "pivot",
+            "sprite_rate": 3,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [
+                    "Set Up"
+                ],
+                "m_values": [
+                    {
+                        "data": []
+                    }
+                ]
+            }
+        },
+        {
+            "name": "RunStop",
+            "length": 18,
+            "animationName": "pivot",
+            "sprite_rate": 6,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "Crouch",
+            "length": 3,
+            "animationName": "land",
+            "sprite_rate": 1,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "CrouchGetup",
+            "length": 9,
+            "animationName": "land",
+            "sprite_rate": -3,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "Fall",
+            "length": 1,
+            "animationName": "jump",
+            "sprite_rate": 0,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "Jump",
+            "length": 6,
+            "animationName": "land",
+            "sprite_rate": 1,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [
+                    "Current Frame",
+                    "Set Up",
+                    "frame_6"
+                ],
+                "m_values": [
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    }
+                ]
+            }
+        },
+        {
+            "name": "AirJump",
+            "length": 8,
+            "animationName": "airjump",
+            "sprite_rate": 2,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [
+                    "Current Frame"
+                ],
+                "m_values": [
+                    {
+                        "data": []
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Helpless",
+            "length": 2,
+            "animationName": "jump",
+            "sprite_rate": 0,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [
+                    "Current Frame"
+                ],
+                "m_values": [
+                    {
+                        "data": []
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Land",
+            "length": 6,
+            "animationName": "land",
+            "sprite_rate": 3,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [
+                    "Current Frame",
+                    "Set Up"
+                ],
+                "m_values": [
+                    {
+                        "data": [
+                            {
+                                "order": 0,
+                                "SubactionName": "PrintDebug",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [
+                                        "statement"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "statement",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "Test Data",
+                                            "description": "The data to print"
+                                        }
+                                    ]
+                                },
+                                "description": ""
+                            }
+                        ]
+                    },
+                    {
+                        "data": []
+                    }
+                ]
+            }
+        },
+        {
+            "name": "HelplessLand",
+            "length": 6,
+            "animationName": "land",
+            "sprite_rate": 3,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [
+                    "Current Frame"
+                ],
+                "m_values": [
+                    {
+                        "data": []
+                    }
+                ]
+            }
+        },
+        {
+            "name": "PlatformDrop",
+            "length": 12,
+            "animationName": "airjump",
+            "sprite_rate": -2,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "Move",
+            "length": 15,
+            "animationName": "run",
+            "sprite_rate": 3,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "Dash",
+            "length": 10,
+            "animationName": "run",
+            "sprite_rate": 2,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "Pivot",
+            "length": 10,
+            "animationName": "pivot",
+            "sprite_rate": -2,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "RunPivot",
+            "length": 20,
+            "animationName": "pivot",
+            "sprite_rate": -4,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "Grabbing",
+            "length": 1,
+            "animationName": "pivot",
+            "sprite_rate": 0,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "Getup",
+            "length": 16,
+            "animationName": "land",
+            "sprite_rate": -4,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "Shield",
+            "length": 12,
+            "animationName": "jump",
+            "sprite_rate": 0,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "Parry",
+            "length": 16,
+            "animationName": "jump",
+            "sprite_rate": 0,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "ForwardRoll",
+            "length": 32,
+            "animationName": "land",
+            "sprite_rate": 0,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "BackwardRoll",
+            "length": 32,
+            "animationName": "land",
+            "sprite_rate": 0,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "SpotDodge",
+            "length": 24,
+            "animationName": "land",
+            "sprite_rate": 1,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "ForwardTech",
+            "length": 32,
+            "animationName": "land",
+            "sprite_rate": 0,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "BackwardTech",
+            "length": 32,
+            "animationName": "land",
+            "sprite_rate": 0,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "DodgeTech",
+            "length": 24,
+            "animationName": "land",
+            "sprite_rate": 1,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "AirDodge",
+            "length": 30,
+            "animationName": "nair",
+            "sprite_rate": 0,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "LedgeGrab",
+            "length": 1,
+            "animationName": "jump",
+            "sprite_rate": 0,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "HitStun",
+            "length": 1,
+            "animationName": "jump",
+            "sprite_rate": 1,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "Tumble",
+            "length": 1,
+            "animationName": "jump",
+            "sprite_rate": 1,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "Prone",
+            "length": 25,
+            "animationName": "land",
+            "sprite_rate": 2,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "SlowGetup",
+            "length": 50,
+            "animationName": "land",
+            "sprite_rate": 2,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "Respawn",
+            "length": 360,
+            "animationName": "idle",
+            "sprite_rate": 0,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "Stunned",
+            "length": 1,
+            "animationName": "jump",
+            "sprite_rate": 0,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "ShieldStun",
+            "length": 1,
+            "animationName": "jump",
+            "sprite_rate": 0,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "Trapped",
+            "length": 1,
+            "animationName": "idle",
+            "sprite_rate": 0,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "Grabbed",
+            "length": 1,
+            "animationName": "idle",
+            "sprite_rate": 0,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "Release",
+            "length": 14,
+            "animationName": "pivot",
+            "sprite_rate": -2,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "Released",
+            "length": 1,
+            "animationName": "jump",
+            "sprite_rate": 0,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "LedgeGetup",
+            "length": 27,
+            "animationName": "getup",
+            "sprite_rate": 1,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "LedgeRoll",
+            "length": 37,
+            "animationName": "getup",
+            "sprite_rate": 1,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "LedgeAttack",
+            "length": 37,
+            "animationName": "getup",
+            "sprite_rate": 1,
+            "loop": true,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "NeutralAttack",
+            "length": 22,
+            "animationName": "neutral",
+            "sprite_rate": 1,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [
+                    "Set Up"
+                ],
+                "m_values": [
+                    {
+                        "data": [
+                            {
+                                "order": 0,
+                                "SubactionName": "CreateHitbox",
+                                "subType": 3,
+                                "arguments": {
+                                    "m_keys": [
+                                        "hitboxName"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "hitboxName",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "jabbox",
+                                            "description": "The name of the hitbox to create. If the hitbox already exists for this Action, it will be overwritten with an empty one, so be careful! Each Hitbox should have a unique name."
+                                        }
+                                    ]
+                                },
+                                "description": ""
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "name": "ForwardAttack",
+            "length": 24,
+            "animationName": "fsmash",
+            "sprite_rate": 2,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "ForwardSmash",
+            "length": 46,
+            "animationName": "fsmash",
+            "sprite_rate": 2,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "UpAttack",
+            "length": 28,
+            "animationName": "utilt",
+            "sprite_rate": 4,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "UpSmash",
+            "length": 45,
+            "animationName": "usmash",
+            "sprite_rate": 2,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "DownAttack",
+            "length": 32,
+            "animationName": "dtilt",
+            "sprite_rate": 2,
+            "loop": true,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "DownSmash",
+            "length": 48,
+            "animationName": "dsmash",
+            "sprite_rate": 2,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "NeutralAir",
+            "length": 40,
+            "animationName": "nair",
+            "sprite_rate": 1,
+            "loop": true,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "BackAir",
+            "length": 35,
+            "animationName": "bair",
+            "sprite_rate": 1,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "ForwardAir",
+            "length": 44,
+            "animationName": "fair",
+            "sprite_rate": 2,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "UpAir",
+            "length": 34,
+            "animationName": "uair",
+            "sprite_rate": 3,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "DownAir",
+            "length": 39,
+            "animationName": "dair",
+            "sprite_rate": 3,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "DashAttack",
+            "length": 32,
+            "animationName": "nair",
+            "sprite_rate": 2,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "NeutralGroundSpecial",
+            "length": 36,
+            "animationName": "nspecial",
+            "sprite_rate": 2,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "NeutralAirSpecial",
+            "length": 36,
+            "animationName": "nspecial",
+            "sprite_rate": 2,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "DownSpecial",
+            "length": 13,
+            "animationName": "getup",
+            "sprite_rate": 0,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "GetupAttack",
+            "length": 36,
+            "animationName": "nair",
+            "sprite_rate": 2,
+            "loop": true,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "ForwardThrow",
+            "length": 20,
+            "animationName": "fsmash",
+            "sprite_rate": 2,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "DownThrow",
+            "length": 32,
+            "animationName": "nair",
+            "sprite_rate": 1,
+            "loop": true,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "UpThrow",
+            "length": 12,
+            "animationName": "land",
+            "sprite_rate": -2,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "BackThrow",
+            "length": 22,
+            "animationName": "bthrow",
+            "sprite_rate": 2,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "UpSpecial",
+            "length": 32,
+            "animationName": "dsmash",
+            "sprite_rate": 0,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "UpSpecialFlight",
+            "length": 50,
+            "animationName": "airjump",
+            "sprite_rate": 2,
+            "loop": true,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "GroundGrab",
+            "length": 30,
+            "animationName": "pivot",
+            "sprite_rate": 2,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "ForwardSpecial",
+            "length": 1,
+            "animationName": "idle",
+            "sprite_rate": 1,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "DashGrab",
+            "length": 35,
+            "animationName": "pivot",
+            "sprite_rate": 3,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        },
+        {
+            "name": "Pummel",
+            "length": 22,
+            "animationName": "neutral",
+            "sprite_rate": 1,
+            "loop": false,
+            "exit_action": "",
+            "subactionCategories": {
+                "m_keys": [],
+                "m_values": []
+            }
+        }
+    ],
+    "fighterDirectory": "",
+    "actionFileName": ""
+}

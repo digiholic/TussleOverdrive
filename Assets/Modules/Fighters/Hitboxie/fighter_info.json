@@ -122,6 +122,11 @@
             "name": "air_control",
             "value": "1",
             "type": 0
+        },
+        {
+            "name": "PixelsPerUnit",
+            "value": 100,
+            "type": 0
         }
     ],
     "JSONFile": {

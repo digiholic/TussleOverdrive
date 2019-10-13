@@ -189,7 +189,6 @@ public class BattleObject : MonoBehaviour, IVarDataContainer
             variables[var_name].SetData(obj);
         } else
         {
-            Debug.Log("Variable " + var_name + " does not exist. Creating.", this);
             variables[var_name] = new BattleObjectVarData(var_name,obj);
         }
     }

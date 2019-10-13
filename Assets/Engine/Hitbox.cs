@@ -12,11 +12,8 @@ public class Hitbox : MonoBehaviour {
     public float weight_influence = 1.0f;
     public string lock_name = "";
 
-    public int centerx = 0;
-    public int centery = 0;
-    public int width = 0;
-    public int height = 0;
-
+    public Rect hitboxRect;
+    
     public HitboxLock hitbox_lock;
     private Collider col;
     private bool active = false;
@@ -62,11 +59,8 @@ public class Hitbox : MonoBehaviour {
 
     public void LoadValuesFromDict(Dictionary<string,string> dict)
     {
-        centerx = int.Parse(dict["CenterX"]);
-        centery = int.Parse(dict["CenterY"]);
-        
-        width = int.Parse(dict["Width"]);
-        height = int.Parse(dict["Height"]);
+        hitboxRect.center = new Vector2(int.Parse(dict["CenterX"]),int.Parse(dict["CenterY"]));
+        hitboxRect.size = new Vector2(int.Parse(dict["Width"]),int.Parse(dict["Height"]));
         
         //The all-important lock name
         if (dict.ContainsKey("lock_name"))
@@ -90,8 +84,8 @@ public class Hitbox : MonoBehaviour {
     {
         float scale = obj.GetFloatVar(TussleConstants.SpriteVariableNames.PIXELS_PER_UNIT);
         //float scale = 50;
-        transform.localPosition = new Vector3(centerx / scale, centery / scale, -0.1f);
-        transform.localScale = new Vector3(width / scale, height / scale, 1.0f);
+        transform.localPosition = new Vector3(hitboxRect.center.x / scale, hitboxRect.center.y / scale, -0.1f);
+        transform.localScale = new Vector3(hitboxRect.width / scale, hitboxRect.height / scale, 1.0f);
     }
 
     public void Activate(int life = -1)
@@ -128,8 +122,8 @@ public class Hitbox : MonoBehaviour {
     public override string ToString()
     {
         string retString = "Hitbox object" + "\n";
-        retString += "Center: " + centerx + "," + centery + "\n";
-        retString += "Size: " + width + "," + height + "\n";
+        retString += "Center: " + hitboxRect.center.x + "," + hitboxRect.center.y + "\n";
+        retString += "Size: " + hitboxRect.width + "," + hitboxRect.height + "\n";
         retString += "Damage: " + damage + "\n";
         retString += "Base KB: " + base_knockback + "\n";
         retString += "Knockback_growth: " + knockback_growth + "\n";
