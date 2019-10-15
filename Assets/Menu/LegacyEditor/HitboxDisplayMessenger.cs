@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class HitboxDisplayMessenger : MonoBehaviour
 {
-    public Hitbox hitbox;
-    public ViewerBoxDisplayer displayer;
+    
+    [SerializeField] private GameObject viewerBoxPrefab;
 
-    public void displayHitbox(Hitbox hbox){
-        hitbox = hbox;
-        displayer.boxRect = hbox.hitboxRect;
+    private void displayHitbox(){
+        //Instantiate the prefab
+        //Parent it to the right spot
+        //Set it's camera
+        //Link it to the proper createHitbox action        
     }
 }

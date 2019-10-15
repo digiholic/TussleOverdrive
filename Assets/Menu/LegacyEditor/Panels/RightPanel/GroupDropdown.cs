@@ -70,13 +70,21 @@ public class GroupDropdown : LegacyEditorWidget
         LegacyEditorData.instance.DoAction(act);
     }
 
+    private void OnRightDropdown(string dropdownName){
+        if (dropdownName == "Subactions"){
+            list.value = list.items[0];
+        }
+    }
+
     public override void RegisterListeners()
     {
         editor.GroupDropdownChangedEvent += OnGroupChanged;
+        editor.RightDropdownChangedEvent += OnRightDropdown;
     }
 
     public override void UnregisterListeners()
     {
         editor.GroupDropdownChangedEvent -= OnGroupChanged;
+        editor.RightDropdownChangedEvent -= OnRightDropdown;
     }
 }

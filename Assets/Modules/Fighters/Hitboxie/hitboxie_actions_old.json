@@ -4,8 +4,6 @@
             "name": "NeutralAction",
             "length": 1,
             "animationName": "idle",
-            "sprite_rate": 0,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [
@@ -26,8 +24,6 @@
             "name": "Stop",
             "length": 9,
             "animationName": "pivot",
-            "sprite_rate": 3,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [
@@ -44,8 +40,6 @@
             "name": "RunStop",
             "length": 18,
             "animationName": "pivot",
-            "sprite_rate": 6,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -56,8 +50,6 @@
             "name": "Crouch",
             "length": 3,
             "animationName": "land",
-            "sprite_rate": 1,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -68,8 +60,6 @@
             "name": "CrouchGetup",
             "length": 9,
             "animationName": "land",
-            "sprite_rate": -3,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -80,8 +70,6 @@
             "name": "Fall",
             "length": 1,
             "animationName": "jump",
-            "sprite_rate": 0,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -92,8 +80,6 @@
             "name": "Jump",
             "length": 6,
             "animationName": "land",
-            "sprite_rate": 1,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [
@@ -118,8 +104,6 @@
             "name": "AirJump",
             "length": 8,
             "animationName": "airjump",
-            "sprite_rate": 2,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [
@@ -136,8 +120,6 @@
             "name": "Helpless",
             "length": 2,
             "animationName": "jump",
-            "sprite_rate": 0,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [
@@ -154,8 +136,6 @@
             "name": "Land",
             "length": 6,
             "animationName": "land",
-            "sprite_rate": 3,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [
@@ -183,8 +163,7 @@
                                             "description": "The data to print"
                                         }
                                     ]
-                                },
-                                "description": ""
+                                }
                             }
                         ]
                     },
@@ -198,8 +177,6 @@
             "name": "HelplessLand",
             "length": 6,
             "animationName": "land",
-            "sprite_rate": 3,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [
@@ -216,8 +193,6 @@
             "name": "PlatformDrop",
             "length": 12,
             "animationName": "airjump",
-            "sprite_rate": -2,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -228,8 +203,6 @@
             "name": "Move",
             "length": 15,
             "animationName": "run",
-            "sprite_rate": 3,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -240,8 +213,6 @@
             "name": "Dash",
             "length": 10,
             "animationName": "run",
-            "sprite_rate": 2,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -252,8 +223,6 @@
             "name": "Pivot",
             "length": 10,
             "animationName": "pivot",
-            "sprite_rate": -2,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -264,8 +233,6 @@
             "name": "RunPivot",
             "length": 20,
             "animationName": "pivot",
-            "sprite_rate": -4,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -276,8 +243,6 @@
             "name": "Grabbing",
             "length": 1,
             "animationName": "pivot",
-            "sprite_rate": 0,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -288,8 +253,6 @@
             "name": "Getup",
             "length": 16,
             "animationName": "land",
-            "sprite_rate": -4,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -300,8 +263,6 @@
             "name": "Shield",
             "length": 12,
             "animationName": "jump",
-            "sprite_rate": 0,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -312,8 +273,6 @@
             "name": "Parry",
             "length": 16,
             "animationName": "jump",
-            "sprite_rate": 0,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -324,8 +283,6 @@
             "name": "ForwardRoll",
             "length": 32,
             "animationName": "land",
-            "sprite_rate": 0,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -336,8 +293,6 @@
             "name": "BackwardRoll",
             "length": 32,
             "animationName": "land",
-            "sprite_rate": 0,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -348,8 +303,6 @@
             "name": "SpotDodge",
             "length": 24,
             "animationName": "land",
-            "sprite_rate": 1,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -360,8 +313,6 @@
             "name": "ForwardTech",
             "length": 32,
             "animationName": "land",
-            "sprite_rate": 0,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -372,8 +323,6 @@
             "name": "BackwardTech",
             "length": 32,
             "animationName": "land",
-            "sprite_rate": 0,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -384,8 +333,6 @@
             "name": "DodgeTech",
             "length": 24,
             "animationName": "land",
-            "sprite_rate": 1,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -396,8 +343,6 @@
             "name": "AirDodge",
             "length": 30,
             "animationName": "nair",
-            "sprite_rate": 0,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -408,8 +353,6 @@
             "name": "LedgeGrab",
             "length": 1,
             "animationName": "jump",
-            "sprite_rate": 0,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -420,8 +363,6 @@
             "name": "HitStun",
             "length": 1,
             "animationName": "jump",
-            "sprite_rate": 1,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -432,8 +373,6 @@
             "name": "Tumble",
             "length": 1,
             "animationName": "jump",
-            "sprite_rate": 1,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -444,8 +383,6 @@
             "name": "Prone",
             "length": 25,
             "animationName": "land",
-            "sprite_rate": 2,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -456,8 +393,6 @@
             "name": "SlowGetup",
             "length": 50,
             "animationName": "land",
-            "sprite_rate": 2,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -468,8 +403,6 @@
             "name": "Respawn",
             "length": 360,
             "animationName": "idle",
-            "sprite_rate": 0,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -480,8 +413,6 @@
             "name": "Stunned",
             "length": 1,
             "animationName": "jump",
-            "sprite_rate": 0,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -492,8 +423,6 @@
             "name": "ShieldStun",
             "length": 1,
             "animationName": "jump",
-            "sprite_rate": 0,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -504,8 +433,6 @@
             "name": "Trapped",
             "length": 1,
             "animationName": "idle",
-            "sprite_rate": 0,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -516,8 +443,6 @@
             "name": "Grabbed",
             "length": 1,
             "animationName": "idle",
-            "sprite_rate": 0,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -528,8 +453,6 @@
             "name": "Release",
             "length": 14,
             "animationName": "pivot",
-            "sprite_rate": -2,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -540,8 +463,6 @@
             "name": "Released",
             "length": 1,
             "animationName": "jump",
-            "sprite_rate": 0,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -552,8 +473,6 @@
             "name": "LedgeGetup",
             "length": 27,
             "animationName": "getup",
-            "sprite_rate": 1,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -564,8 +483,6 @@
             "name": "LedgeRoll",
             "length": 37,
             "animationName": "getup",
-            "sprite_rate": 1,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -576,8 +493,6 @@
             "name": "LedgeAttack",
             "length": 37,
             "animationName": "getup",
-            "sprite_rate": 1,
-            "loop": true,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -588,8 +503,6 @@
             "name": "NeutralAttack",
             "length": 22,
             "animationName": "neutral",
-            "sprite_rate": 1,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [
@@ -604,7 +517,23 @@
                                 "subType": 3,
                                 "arguments": {
                                     "m_keys": [
-                                        "hitboxName"
+                                        "hitboxName",
+                                        "lockGroup",
+                                        "centerX",
+                                        "centerY",
+                                        "width",
+                                        "height",
+                                        "damage",
+                                        "angle",
+                                        "baseKnockback",
+                                        "knockbackGrowth",
+                                        "chargeDamage",
+                                        "chargeBaseKnockback",
+                                        "chargeKnockbackGrowth",
+                                        "shieldDamage",
+                                        "hitstunScaling",
+                                        "shieldstunScaling",
+                                        "sakuraiThreshold"
                                     ],
                                     "m_values": [
                                         {
@@ -612,12 +541,139 @@
                                             "name": "hitboxName",
                                             "source": 0,
                                             "type": 0,
-                                            "data": "jabbox",
+                                            "data": "",
                                             "description": "The name of the hitbox to create. If the hitbox already exists for this Action, it will be overwritten with an empty one, so be careful! Each Hitbox should have a unique name."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "lockGroup",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "",
+                                            "description": "Hitboxes do not count as a collision if another hitbox in the same Lock Group has already hit the opponent. Use these locks to define sweetspots and sourspots to avoid having multiple hitboxes all hit on the same frame. Leave blank if this hitbox doesn't group up with any others and will always connect if it hits."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "centerX",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "The X-coordinate of the center of the Hitbox. This is relative to the center of the fighter, so a Hitbox with 0 here will be horizontally centerred on the fighter. Negative values are opposite the character's facing direction"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "centerY",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "The Y-coordinate of the center of the Hitbox. This is relative to the center of the fighter, so a Hitbox with 0 here will be vertically centerred on the fighter. Negative values are upward."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "width",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "100",
+                                            "description": "The end-to-end distance of the Hitbox horizontally."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "height",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "100",
+                                            "description": "The end-to-end distance of the Hitbox vertically."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "damage",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "The damage in percent that the hitbox does to an opponent"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "angle",
+                                            "source": 0,
+                                            "type": 2,
+                                            "data": "0",
+                                            "description": "The angle the move launches the target at. This is in degrees, with 0 being straight forward, 90 being straight up, and 180 being backwards. Negative values and values over 360 will be projected into the 360 degree space, so -90 will become 270, and 361 will become 1 (for \"Sakurai Angle\" hitboxes, see the \"Sakurai Threshold\" in the advanced section)"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "baseKnockback",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "The base amount of knockback the move has, before applying other modifiers like percentage, weight, etc."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "knockbackGrowth",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "The rate at which the knockback strength increases based on the opponent's percentage."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "chargeDamage",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "The amount of damage to add to the Hitbox every time the \"Charge\" subaction is called on it"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "chargeBaseKnockback",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "The amount of baseKnockback to add to the Hitbox every time the \"Charge\" subaction is called on it"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "chargeKnockbackGrowth",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "The amount of knockbackGrowth to add to the Hitbox every time the \"Charge\" subaction is called on it"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "shieldDamage",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "The amount of \"extra\" damage done to the shield of the opponent if blocked. Can also be negative to make a Hitbox less effective on shields than fighters."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "hitstunScaling",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "1",
+                                            "description": "A multiplier applied to the final knockback value for the purposes of calculating hitstun. A value of 1.0 will have a normal amount of hitstun for its knockback, while a value of 2.0 will keep the opponent in hitstun for twice as long. If hitstunScaling is 0 or less, the move will have no hitstun, dealing damage without knocking the fighter back or interrupting their action."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "shieldstunScaling",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "1",
+                                            "description": "A multiplier applied to the final knockback value for the purposes of determining how long the defending player should be in shield stun, unable to lower their shield. 1.0 for normal shieldstun, while 2.0 would double the amount of shieldstun."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "sakuraiThreshold",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "The amount of knockback a move has to deal before the opponent will be lifted off the ground. If the total knockback value is lower than this, the opponent will be put in hitstun and slid along the ground, ignoring the given angle of the Hitbox."
                                         }
                                     ]
-                                },
-                                "description": ""
+                                }
                             }
                         ]
                     }
@@ -628,8 +684,6 @@
             "name": "ForwardAttack",
             "length": 24,
             "animationName": "fsmash",
-            "sprite_rate": 2,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -640,8 +694,6 @@
             "name": "ForwardSmash",
             "length": 46,
             "animationName": "fsmash",
-            "sprite_rate": 2,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -652,8 +704,6 @@
             "name": "UpAttack",
             "length": 28,
             "animationName": "utilt",
-            "sprite_rate": 4,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -664,8 +714,6 @@
             "name": "UpSmash",
             "length": 45,
             "animationName": "usmash",
-            "sprite_rate": 2,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -676,8 +724,6 @@
             "name": "DownAttack",
             "length": 32,
             "animationName": "dtilt",
-            "sprite_rate": 2,
-            "loop": true,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -688,8 +734,6 @@
             "name": "DownSmash",
             "length": 48,
             "animationName": "dsmash",
-            "sprite_rate": 2,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -700,8 +744,6 @@
             "name": "NeutralAir",
             "length": 40,
             "animationName": "nair",
-            "sprite_rate": 1,
-            "loop": true,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -712,8 +754,6 @@
             "name": "BackAir",
             "length": 35,
             "animationName": "bair",
-            "sprite_rate": 1,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -724,8 +764,6 @@
             "name": "ForwardAir",
             "length": 44,
             "animationName": "fair",
-            "sprite_rate": 2,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -736,8 +774,6 @@
             "name": "UpAir",
             "length": 34,
             "animationName": "uair",
-            "sprite_rate": 3,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -748,8 +784,6 @@
             "name": "DownAir",
             "length": 39,
             "animationName": "dair",
-            "sprite_rate": 3,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -760,8 +794,6 @@
             "name": "DashAttack",
             "length": 32,
             "animationName": "nair",
-            "sprite_rate": 2,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -772,8 +804,6 @@
             "name": "NeutralGroundSpecial",
             "length": 36,
             "animationName": "nspecial",
-            "sprite_rate": 2,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -784,8 +814,6 @@
             "name": "NeutralAirSpecial",
             "length": 36,
             "animationName": "nspecial",
-            "sprite_rate": 2,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -796,8 +824,6 @@
             "name": "DownSpecial",
             "length": 13,
             "animationName": "getup",
-            "sprite_rate": 0,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -808,8 +834,6 @@
             "name": "GetupAttack",
             "length": 36,
             "animationName": "nair",
-            "sprite_rate": 2,
-            "loop": true,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -820,8 +844,6 @@
             "name": "ForwardThrow",
             "length": 20,
             "animationName": "fsmash",
-            "sprite_rate": 2,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -832,8 +854,6 @@
             "name": "DownThrow",
             "length": 32,
             "animationName": "nair",
-            "sprite_rate": 1,
-            "loop": true,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -844,8 +864,6 @@
             "name": "UpThrow",
             "length": 12,
             "animationName": "land",
-            "sprite_rate": -2,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -856,8 +874,6 @@
             "name": "BackThrow",
             "length": 22,
             "animationName": "bthrow",
-            "sprite_rate": 2,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -868,8 +884,6 @@
             "name": "UpSpecial",
             "length": 32,
             "animationName": "dsmash",
-            "sprite_rate": 0,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -880,8 +894,6 @@
             "name": "UpSpecialFlight",
             "length": 50,
             "animationName": "airjump",
-            "sprite_rate": 2,
-            "loop": true,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -892,8 +904,6 @@
             "name": "GroundGrab",
             "length": 30,
             "animationName": "pivot",
-            "sprite_rate": 2,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -904,8 +914,6 @@
             "name": "ForwardSpecial",
             "length": 1,
             "animationName": "idle",
-            "sprite_rate": 1,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -916,8 +924,6 @@
             "name": "DashGrab",
             "length": 35,
             "animationName": "pivot",
-            "sprite_rate": 3,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],
@@ -928,8 +934,6 @@
             "name": "Pummel",
             "length": 22,
             "animationName": "neutral",
-            "sprite_rate": 1,
-            "loop": false,
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [],

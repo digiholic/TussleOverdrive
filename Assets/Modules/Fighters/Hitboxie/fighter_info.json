@@ -3,7 +3,7 @@
     "franchise_icon_path": "franchise_icon.png",
     "css_icon_path": "sprites\\icon_hitboxie.png",
     "css_portrait_path": "sprites/icon_hitboxie.png",
-    "action_file_path": "hitboxie_actions.json",
+    "action_file_path": "hitboxie_actions_old.json",
     "sprite_info_path": "sprite_info.json",
     "sound_path": "sfx",
     "colorPalettes": [],
@@ -125,11 +125,11 @@
         },
         {
             "name": "PixelsPerUnit",
-            "value": 100,
+            "value": "100",
             "type": 0
         }
     ],
     "JSONFile": {
-        "instanceID": 18030
+        "instanceID": 18014
     }
 }

@@ -28,31 +28,36 @@ public class ViewerClickable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bool oldHoverState = hovered;
-        hovered = false;
+        if (viewerCamera != null) {
+            bool oldHoverState = hovered;
+            hovered = false;
 
-        RaycastHit hit;
-        Ray ray = viewerCamera.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            Ray ray = viewerCamera.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out hit))
-        {
-            if (hit.transform == transform)
+            if (Physics.Raycast(ray, out hit))
             {
-                hovered = true;
-                //Call the events based on the previous state and whether the button has been clicked or released
-                if (!oldHoverState) onHoverStart?.Invoke();
-                whileHovered?.Invoke();
-                if (Input.GetMouseButtonDown(mouseButtonToListenFor)) onClicked?.Invoke();
-                if (Input.GetMouseButtonUp(mouseButtonToListenFor)) {
-                    Debug.Log("Releasing");
-                    onReleased?.Invoke();
+                if (hit.transform == transform)
+                {
+                    hovered = true;
+                    //Call the events based on the previous state and whether the button has been clicked or released
+                    if (!oldHoverState) onHoverStart?.Invoke();
+                    whileHovered?.Invoke();
+                    if (Input.GetMouseButtonDown(mouseButtonToListenFor)) onClicked?.Invoke();
+                    if (Input.GetMouseButtonUp(mouseButtonToListenFor)) {
+                        Debug.Log("Releasing");
+                        onReleased?.Invoke();
+                    }
                 }
             }
+            //If we were hovering this before but aren't any more, call the onhoverend event
+            if (oldHoverState && !hovered){
+                onHoverEnd?.Invoke();
+            }
         }
+    }
 
-        //If we were hovering this before but aren't any more, call the onhoverend event
-        if (oldHoverState && !hovered){
-            onHoverEnd?.Invoke();
-        }
+    public void SetCamera(Camera camera){
+        viewerCamera = camera;
     }
 }

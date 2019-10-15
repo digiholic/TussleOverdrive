@@ -14,6 +14,8 @@ public class ViewerBoxDisplayer : MonoBehaviour
     private BoxResizerHandle[] handles;
     private bool selected;
 
+    public Camera viewerCamera;
+
     public bool SelectedForEditing{
         get{
             return selected;
@@ -27,6 +29,8 @@ public class ViewerBoxDisplayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        BroadcastMessage("SetCamera",viewerCamera);
+        
         depth = transform.localPosition.z;
         fighterSprite = fighter.GetComponent<SpriteHandler>();
         handles = GetComponentsInChildren<BoxResizerHandle>();
