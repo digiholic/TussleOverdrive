@@ -5,16 +5,17 @@ using UnityEngine;
 public class ViewerBoxDisplayer : MonoBehaviour
 {
     public Rect boxRect;
-    
     public BattleObject fighter;
+    public Camera viewerCamera;
+    public SubactionData createHitboxSubData;
+    
     private SpriteHandler fighterSprite;
     [SerializeField] private Transform displayBox;
     private float depth;
 
     private BoxResizerHandle[] handles;
     private bool selected;
-
-    public Camera viewerCamera;
+    public bool isResizing = false;
 
     public bool SelectedForEditing{
         get{
@@ -30,7 +31,7 @@ public class ViewerBoxDisplayer : MonoBehaviour
     void Start()
     {
         BroadcastMessage("SetCamera",viewerCamera);
-        
+
         depth = transform.localPosition.z;
         fighterSprite = fighter.GetComponent<SpriteHandler>();
         handles = GetComponentsInChildren<BoxResizerHandle>();
@@ -45,6 +46,10 @@ public class ViewerBoxDisplayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!isResizing){
+            getDataFromSubaction();
+        }
+
         SizeToOwner();
     }
 
@@ -53,6 +58,31 @@ public class ViewerBoxDisplayer : MonoBehaviour
             handle.gameObject.SetActive(visible);
         }
     }
+
+    private void getDataFromSubaction(){
+        SubactionData subaction = LegacyEditorData.instance.currentSubaction;
+        if (subaction.SubactionName == "CreateHitbox"){
+            float centerX = float.Parse(subaction.arguments["centerX"].data);
+            float centerY = float.Parse(subaction.arguments["centerY"].data);
+            float width   = float.Parse(subaction.arguments["width"].data);
+            float height  = float.Parse(subaction.arguments["height"].data);
+
+            boxRect.center = new Vector2(centerX,centerY);
+            boxRect.size = new Vector2(width,height);
+        }
+    }
+
+    public void setSubactionFromData(){
+        SubactionData subaction = LegacyEditorData.instance.currentSubaction;
+        if (subaction.SubactionName == "CreateHitbox"){
+            subaction.arguments["centerX"].data = boxRect.center.x.ToString();
+            subaction.arguments["centerY"].data = boxRect.center.y.ToString();
+            subaction.arguments["width"].data = boxRect.width.ToString();
+            subaction.arguments["height"].data = boxRect.height.ToString();
+            LegacyEditorData.ChangedSubaction();
+        }
+    }
+
     public void SizeToOwner()
     {
         float scale = fighter.GetFloatVar(TussleConstants.SpriteVariableNames.PIXELS_PER_UNIT);

@@ -59,11 +59,13 @@ public class BoxResizerHandle : MonoBehaviour
     public void OnClicked()
     {
         isBeingDragged = true;
+        boxDisplayer.isResizing = true;
     }
 
     public void OnClickReleased(){
         isBeingDragged = false;
-        
+        boxDisplayer.isResizing = false;
+        boxDisplayer.setSubactionFromData();
     }
 
     private void snapToCursor(){
