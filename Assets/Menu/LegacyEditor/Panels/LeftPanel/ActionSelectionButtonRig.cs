@@ -13,6 +13,8 @@ public class ActionSelectionButtonRig : LegacyEditorWidget {
     [SerializeField]
     private int leftAnchorOffset, rightAnchorOffset;
 
+    [SerializeField] private string filter;
+
 	// Use this for initialization
 	void Awake () {
         grid = GetComponent<UIGrid>();
@@ -25,12 +27,7 @@ public class ActionSelectionButtonRig : LegacyEditorWidget {
 
     void OnActionFileChanged(ActionFile actionFile)
     {
-        //Get rid of our old list
-        foreach (GameObject child in children)
-        {
-            NGUITools.Destroy(child);
-        }
-        children.Clear(); //Empty the list for future use
+        clearAll();
 
         //Create all the new buttons
         foreach (DynamicAction action in actionFile.actions)
@@ -40,6 +37,15 @@ public class ActionSelectionButtonRig : LegacyEditorWidget {
 
         //Realign the grid
         grid.Reposition();
+    }
+
+    private void clearAll(){
+        //Get rid of our old list
+        foreach (GameObject child in children)
+        {
+            NGUITools.Destroy(child);
+        }
+        children.Clear(); //Empty the list for future use
     }
 
     void OnLeftDropdownChanged(string s)
@@ -72,6 +78,27 @@ public class ActionSelectionButtonRig : LegacyEditorWidget {
         button.SetColor(LegacyEditorData.instance.currentAction);
         
         children.Add(go);
+    }
+
+    public void setFilter(string s){
+        filter = s;
+        
+        clearAll();
+
+        //Create all the new buttons
+        foreach (DynamicAction action in editor.loadedActionFile.actions)
+        {
+            if (s.Length > 0){ //If the filter is empty, everything comes through
+                if (action.name.ToLower().Contains(filter.ToLower())){
+                    instantiateButton(action);
+                }
+            } else {
+                instantiateButton(action);
+            }
+        }
+
+        //Realign the grid
+        grid.Reposition();
     }
 
     public override void RegisterListeners()
