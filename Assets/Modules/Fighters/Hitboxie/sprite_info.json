@@ -98,7 +98,7 @@
         },
         {
             "_animationName": "fair",
-            "_spriteRate": 1,
+            "_spriteRate": 3,
             "_loop": false,
             "subimages": [
                 "hitboxie_fair_0",

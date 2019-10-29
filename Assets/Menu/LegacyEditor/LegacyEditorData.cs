@@ -12,6 +12,8 @@ public class LegacyEditorData : MonoBehaviour
     public static ContextualPanelData contextualPanel;
     public static AnchorPositions anchors;
 
+    public bool isPlaying;
+
     public GameObject hoveredObject;
     [Header("Component Accessors")]
     [SerializeField] private PanelHider ShadowRealm;
@@ -278,8 +280,19 @@ public class LegacyEditorData : MonoBehaviour
     private void Update()
     {
         CheckKeyboardShortcuts();
-        //TODO screen with hook here maybe? Or maybe it should be in the individual components...
-        //Debug.Log(Screen.width);
+        
+        //if(Application.targetFrameRate != 60){
+        //    Application.targetFrameRate = 60;
+        //}
+
+        if (isPlaying){
+            if (currentAction != null && currentAction != DynamicAction.NullAction){
+                currentFrame += 1;
+                if (currentFrame > currentAction.length){
+                    currentFrame = 0;
+                }
+            }
+        }
     }
 
     public void LoadNewFighter(FighterInfo fInfo)
