@@ -359,6 +359,10 @@ public class LegacyEditorData : MonoBehaviour
         undoList.Push(act);
     }
 
+    public void PlayPauseFighter(){
+        isPlaying = !isPlaying;
+    }
+    
     private void CheckKeyboardShortcuts()
     {
         //Check for CTRL shortcuts. Since the editor keyboard shortcuts can't be disabled, if you're in editor, it'll activate without ctrl
