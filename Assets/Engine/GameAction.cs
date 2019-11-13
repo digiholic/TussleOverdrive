@@ -87,8 +87,10 @@ public class GameAction {
         //Sometimes, we might end up AFTER the last frame. For all intents and purposes, every frame after the last frame is also the last frame
         if (current_frame >= last_frame){
             executeSubGroup(SubactionGroup.LAST);
-            if (exit_action != null && exit_action != "")
-                actor.SendMessage("DoAction", exit_action);
+            if (!isInBuilder){
+                if (exit_action != null && exit_action != "")
+                    actor.SendMessage("DoAction", exit_action);
+            }
         }
     }
 

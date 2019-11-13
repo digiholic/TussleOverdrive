@@ -127,11 +127,11 @@ public class ModifyDataInputBox : LegacyEditorWidget {
         switch (varType)
         {
             case VarType.BOOL:
-                return bool.Parse(val);
+                return TussleUtils.ParseBool(val);
             case VarType.INT:
-                return int.Parse(val);
+                return TussleUtils.ParseInt(val);
             case VarType.FLOAT:
-                return float.Parse(val);
+                return TussleUtils.ParseFloat(val);
             default:
                 return val;
         }

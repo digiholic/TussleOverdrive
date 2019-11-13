@@ -9,11 +9,11 @@ public class PlayPauseButton : MonoBehaviour
     void Update()
     {
         if (LegacyEditorData.instance.isPlaying){
-            if (isPlayButton){
-                setInvisible();
-            } else {
-                setVisible();
-            }
+            //if (isPlayButton){
+            //    setInvisible();
+            //} else {
+            //    setVisible();
+            //}
         }    
     }
 

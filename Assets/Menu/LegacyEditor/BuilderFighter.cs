@@ -44,7 +44,6 @@ public class BuilderFighter : LegacyEditorWidget{
         {
             actionHandler.ManualUpdate();
         }
-        Debug.Log(actionHandler.CurrentAction.hitboxes.Count);
     }
 
     void UpdateImageDef(ImageDefinition def)

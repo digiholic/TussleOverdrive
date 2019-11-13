@@ -65,12 +65,13 @@ public class AnimationDefinition
     {
         if (currentSubimageIndex < subimages.Count){
             string currentSubimage = subimages[currentSubimageIndex];
-                if (advance) //If we're advancing the current frame afterwards, do that here
-                {
-                    //Increment the current frame, and if we've hit the spriteRate amount, move on to the next subimage index
-                    currentFrame++;
-                    currentSubimageIndex = getIndexForFrame(currentFrame);
-                }
+            if (advance) //If we're advancing the current frame afterwards, do that here
+            {
+                //Increment the current frame, and if we've hit the spriteRate amount, move on to the next subimage index
+                currentFrame++;
+                Debug.Log("Current frame: "+currentFrame);
+                currentSubimageIndex = getIndexForFrame(currentFrame);
+            }
             return currentSubimage;
         }
         Debug.LogWarning("Sprite does not contain a subimage for the current frame: "+currentSubimageIndex+" It may be uninitialized, or something should be looping but isn't.");
@@ -110,7 +111,6 @@ public class AnimationDefinition
         {
             //this integer division should throw away any decimal, which is what we want at the moment
             int resultSubimageIndex = frame / _spriteRate;
-
             //handle looping if it's set, otherwise clamp it to between 0 and the last frame
             if (_loop) resultSubimageIndex = resultSubimageIndex % subimages.Count;
             else resultSubimageIndex = Mathf.Clamp(resultSubimageIndex, 0, subimages.Count - 1);

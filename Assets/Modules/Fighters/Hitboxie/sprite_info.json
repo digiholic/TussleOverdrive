@@ -6,7 +6,7 @@
     "animations": [
         {
             "_animationName": "airjump",
-            "_spriteRate": 1,
+            "_spriteRate": 2,
             "_loop": false,
             "subimages": [
                 "hitboxie_airjump_0",
@@ -33,7 +33,7 @@
         },
         {
             "_animationName": "bthrow",
-            "_spriteRate": 1,
+            "_spriteRate": 2,
             "_loop": false,
             "subimages": [
                 "hitboxie_bthrow_0",
@@ -49,7 +49,7 @@
         },
         {
             "_animationName": "dair",
-            "_spriteRate": 1,
+            "_spriteRate": 3,
             "_loop": false,
             "subimages": [
                 "hitboxie_dair_0",
@@ -61,7 +61,7 @@
         },
         {
             "_animationName": "dsmash",
-            "_spriteRate": 1,
+            "_spriteRate": 2,
             "_loop": false,
             "subimages": [
                 "hitboxie_dsmash_0",
@@ -84,7 +84,7 @@
         },
         {
             "_animationName": "dtilt",
-            "_spriteRate": 1,
+            "_spriteRate": 2,
             "_loop": false,
             "subimages": [
                 "hitboxie_dtilt_0",
@@ -98,7 +98,7 @@
         },
         {
             "_animationName": "fair",
-            "_spriteRate": 3,
+            "_spriteRate": 2,
             "_loop": false,
             "subimages": [
                 "hitboxie_fair_0",
@@ -118,7 +118,7 @@
         },
         {
             "_animationName": "fsmash",
-            "_spriteRate": 1,
+            "_spriteRate": 2,
             "_loop": false,
             "subimages": [
                 "hitboxie_fsmash_0",
@@ -172,7 +172,7 @@
             ]
         },
         {
-            "_animationName": "land",
+            "_animationName": "land1",
             "_spriteRate": 1,
             "_loop": false,
             "subimages": [
@@ -183,8 +183,97 @@
             ]
         },
         {
-            "_animationName": "nair",
+            "_animationName": "land2",
+            "_spriteRate": 2,
+            "_loop": false,
+            "subimages": [
+                "hitboxie_land_0",
+                "hitboxie_land_1",
+                "hitboxie_land_2",
+                "hitboxie_land_3"
+            ]
+        },
+        {
+            "_animationName": "land3",
+            "_spriteRate": 3,
+            "_loop": false,
+            "subimages": [
+                "hitboxie_land_0",
+                "hitboxie_land_1",
+                "hitboxie_land_2",
+                "hitboxie_land_3"
+            ]
+        },
+        {
+            "_animationName": "stand1",
             "_spriteRate": 1,
+            "_loop": false,
+            "subimages": [
+                "hitboxie_land_3",
+                "hitboxie_land_2",
+                "hitboxie_land_1",
+                "hitboxie_land_0"
+            ]
+        },
+        {
+            "_animationName": "stand2",
+            "_spriteRate": 2,
+            "_loop": false,
+            "subimages": [
+                "hitboxie_land_3",
+                "hitboxie_land_2",
+                "hitboxie_land_1",
+                "hitboxie_land_0"
+            ]
+        },
+        {
+            "_animationName": "stand3",
+            "_spriteRate": 3,
+            "_loop": false,
+            "subimages": [
+                "hitboxie_land_3",
+                "hitboxie_land_2",
+                "hitboxie_land_1",
+                "hitboxie_land_0"
+            ]
+        },
+        {
+            "_animationName": "stand4",
+            "_spriteRate": 4,
+            "_loop": false,
+            "subimages": [
+                "hitboxie_land_3",
+                "hitboxie_land_2",
+                "hitboxie_land_1",
+                "hitboxie_land_0"
+            ]
+        },
+        {
+            "_animationName": "nair1",
+            "_spriteRate": 1,
+            "_loop": false,
+            "subimages": [
+                "hitboxie_nair_0",
+                "hitboxie_nair_1",
+                "hitboxie_nair_2",
+                "hitboxie_nair_3",
+                "hitboxie_nair_4",
+                "hitboxie_nair_5",
+                "hitboxie_nair_6",
+                "hitboxie_nair_7",
+                "hitboxie_nair_8",
+                "hitboxie_nair_9",
+                "hitboxie_nair_10",
+                "hitboxie_nair_11",
+                "hitboxie_nair_12",
+                "hitboxie_nair_13",
+                "hitboxie_nair_14",
+                "hitboxie_nair_15"
+            ]
+        },
+        {
+            "_animationName": "nair2",
+            "_spriteRate": 2,
             "_loop": false,
             "subimages": [
                 "hitboxie_nair_0",
@@ -229,7 +318,7 @@
         },
         {
             "_animationName": "nspecial",
-            "_spriteRate": 1,
+            "_spriteRate": 2,
             "_loop": false,
             "subimages": [
                 "hitboxie_nspecial_0",
@@ -245,8 +334,8 @@
             ]
         },
         {
-            "_animationName": "pivot",
-            "_spriteRate": 1,
+            "_animationName": "pivot1",
+            "_spriteRate": 2,
             "_loop": false,
             "subimages": [
                 "hitboxie_pivot_0",
@@ -257,8 +346,68 @@
             ]
         },
         {
+            "_animationName": "pivot2",
+            "_spriteRate": 2,
+            "_loop": false,
+            "subimages": [
+                "hitboxie_pivot_0",
+                "hitboxie_pivot_1",
+                "hitboxie_pivot_2",
+                "hitboxie_pivot_3",
+                "hitboxie_pivot_4"
+            ]
+        },
+        {
+            "_animationName": "pivot3",
+            "_spriteRate": 3,
+            "_loop": false,
+            "subimages": [
+                "hitboxie_pivot_0",
+                "hitboxie_pivot_1",
+                "hitboxie_pivot_2",
+                "hitboxie_pivot_3",
+                "hitboxie_pivot_4"
+            ]
+        },
+        {
+            "_animationName": "pivot6",
+            "_spriteRate": 2,
+            "_loop": false,
+            "subimages": [
+                "hitboxie_pivot_0",
+                "hitboxie_pivot_1",
+                "hitboxie_pivot_2",
+                "hitboxie_pivot_3",
+                "hitboxie_pivot_4"
+            ]
+        },
+        {
+            "_animationName": "reversePivot2",
+            "_spriteRate": 2,
+            "_loop": false,
+            "subimages": [
+                "hitboxie_pivot_4",
+                "hitboxie_pivot_3",
+                "hitboxie_pivot_2",
+                "hitboxie_pivot_1",
+                "hitboxie_pivot_0"
+            ]
+        },
+        {
+            "_animationName": "reversePivot4",
+            "_spriteRate": 4,
+            "_loop": false,
+            "subimages": [
+                "hitboxie_pivot_4",
+                "hitboxie_pivot_3",
+                "hitboxie_pivot_2",
+                "hitboxie_pivot_1",
+                "hitboxie_pivot_0"
+            ]
+        },
+        {
             "_animationName": "run",
-            "_spriteRate": 1,
+            "_spriteRate": 2,
             "_loop": false,
             "subimages": [
                 "hitboxie_run_0",
@@ -270,7 +419,7 @@
         },
         {
             "_animationName": "uair",
-            "_spriteRate": 1,
+            "_spriteRate": 3,
             "_loop": false,
             "subimages": [
                 "hitboxie_uair_0",
@@ -282,7 +431,7 @@
         },
         {
             "_animationName": "usmash",
-            "_spriteRate": 1,
+            "_spriteRate": 2,
             "_loop": false,
             "subimages": [
                 "hitboxie_usmash_0",
@@ -300,7 +449,7 @@
         },
         {
             "_animationName": "utilt",
-            "_spriteRate": 1,
+            "_spriteRate": 4,
             "_loop": false,
             "subimages": [
                 "hitboxie_utilt_0",
@@ -310,6 +459,18 @@
                 "hitboxie_utilt_4",
                 "hitboxie_utilt_5",
                 "hitboxie_utilt_6"
+            ]
+        },
+        {
+            "_animationName": "platformDrop",
+            "_spriteRate": 2,
+            "_loop": false,
+            "subimages": [
+                "hitboxie_airjump_4",
+                "hitboxie_airjump_3",
+                "hitboxie_airjump_2",
+                "hitboxie_airjump_1",
+                "hitboxie_airjump_0"
             ]
         }
     ],
