@@ -91,7 +91,7 @@ public class MenuButtonNavigator : MonoBehaviour {
     {
         if (selectedButton == this)
         {
-            SendMessage("SetColor", MenuColorChanger.menu_color.getColor(), SendMessageOptions.DontRequireReceiver);
+            SendMessage("SetColor", MenuColorChanger.getColor(), SendMessageOptions.DontRequireReceiver);
             if (accept_inputs)
             {
                 foreach (Player player in ReInput.players.AllPlayers)

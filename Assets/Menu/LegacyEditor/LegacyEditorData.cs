@@ -266,6 +266,8 @@ public class LegacyEditorData : MonoBehaviour
     /// </summary>
     private void Start()
     {
+        Application.targetFrameRate = 60;
+
         //Load the fighter, then initialize it. We need to call the changed event here once the directory loads before we do the rest
         loadedFighter.LoadDirectory(FighterDirName);
         FighterInfoChangedEvent(loadedFighter);

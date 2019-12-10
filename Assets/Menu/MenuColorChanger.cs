@@ -2,13 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This class handles the color changing of the backgrounds in the menu. It is a singleton with DontDestroyOnLoad, so it's always
+/// pulsing colors. Any other object can poll this object for it's color to set itself to a matching color.
+/// </summary>
 public class MenuColorChanger : MonoBehaviour {
     public static MenuColorChanger menu_color;
 
     public float hue = 0.0f; //hue hue hue
     public Color hsvColor = Color.black;
 
-
+    /// <summary>
+    /// At the start of the scene, create an instance of this class if there isn't one already. If there is, get rid of this one and keep using that one.
+    /// </summary>
     void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -30,8 +36,13 @@ public class MenuColorChanger : MonoBehaviour {
         hsvColor = Color.HSVToRGB(hue, 0.8f, 1.0f);
     }
 
-    public Color getColor()
+    /// <summary>
+    /// Get the current color of the menu
+    /// </summary>
+    /// <returns></returns>
+    public static Color getColor()
     {
-        return hsvColor;
+        if (menu_color != null) return menu_color.hsvColor;
+        else return Color.black;
     }
 }

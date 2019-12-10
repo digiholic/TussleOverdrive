@@ -25,18 +25,18 @@ public class MenuColorSetter : MonoBehaviour {
 	void Update () {
         foreach (UISprite ui_sprite in ui_sprites) //Sprites that have this component get their color set
         {
-            ui_sprite.color = MenuColorChanger.menu_color.getColor();
+            ui_sprite.color = MenuColorChanger.getColor();
         }
         foreach(UIButton ui_button in ui_buttons) //Buttons that have this component have their hover color set
         {   
-            ui_button.hover = MenuColorChanger.menu_color.getColor();
+            ui_button.hover = MenuColorChanger.getColor();
             if (ChangePressed)
-                ui_button.pressed = MenuColorChanger.menu_color.getColor();
+                ui_button.pressed = MenuColorChanger.getColor();
         }
         if (particles != null)
         {
             var main = particles.main;
-            main.startColor = MenuColorChanger.menu_color.getColor();
+            main.startColor = MenuColorChanger.getColor();
         }
 	}
 }

@@ -20,7 +20,7 @@ public class MenuSpriteColorSetter : MonoBehaviour {
 
     void Update()
     {
-        if (always_set) SetColor(MenuColorChanger.menu_color.getColor());
+        if (always_set) SetColor(MenuColorChanger.getColor());
     }
 
     void SetColor(Color color)

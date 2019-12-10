@@ -3,20 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneLoader : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+public static class SceneLoader {
+	public enum TussleScene{
+		SplashScreen,
+		TopMenu
 	}
 
-    void LoadBattle()
-    {
-        SceneManager.LoadScene("Test", LoadSceneMode.Single);
-    }
+	public static void Load(TussleScene scene){
+		SceneManager.LoadScene(scene.ToString());
+	}
 }
