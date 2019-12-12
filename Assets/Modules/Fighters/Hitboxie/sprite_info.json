@@ -418,6 +418,18 @@
             ]
         },
         {
+            "_animationName": "run3",
+            "_spriteRate": 3,
+            "_loop": false,
+            "subimages": [
+                "hitboxie_run_0",
+                "hitboxie_run_1",
+                "hitboxie_run_2",
+                "hitboxie_run_3",
+                "hitboxie_run_4"
+            ]
+        },
+        {
             "_animationName": "uair",
             "_spriteRate": 3,
             "_loop": false,

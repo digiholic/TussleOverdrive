@@ -12,6 +12,7 @@ public class SpriteHandler : BattleComponent {
     public string orientation;
     
     private FighterInfo fighter_info;
+    [SerializeField]
     private SpriteInfo sprite_info;
 
     private AnimationDefinition currentAnimation;
