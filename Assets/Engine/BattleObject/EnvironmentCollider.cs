@@ -156,7 +156,7 @@ public class EnvironmentCollider : BattleComponent {
         {
             if (GetFloatVar(TussleConstants.FighterVariableNames.ELASTICITY) > 0.0f)
             {
-                battleObject.SendMessage("WallBounce", hit);
+                getBattleObject().SendMessage("WallBounce", hit);
             }
             else if (GetBoolVar(TussleConstants.FighterVariableNames.IS_GROUNDED))
             {

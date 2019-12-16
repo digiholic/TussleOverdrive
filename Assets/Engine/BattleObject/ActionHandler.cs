@@ -29,7 +29,7 @@ public class ActionHandler : BattleComponent {
         _current_action = new NeutralAction();
         _current_action.SetDynamicAction(actions_file.Get("NeutralAction"));
         if (isInBuilder) _current_action.setIsInBuilder(true);
-        _current_action.SetUp(battleObject);
+        _current_action.SetUp(getBattleObject());
     }
 
     public override void ManualUpdate () {
@@ -45,7 +45,7 @@ public class ActionHandler : BattleComponent {
         _current_action.SetDynamicAction(actions_file.Get(_actionName));
         if (isInBuilder) _current_action.setIsInBuilder(true);
         old_action.TearDown(_current_action);
-        _current_action.SetUp(battleObject);
+        _current_action.SetUp(getBattleObject());
     }
 
     public void DoAction(DynamicAction act)
@@ -57,7 +57,7 @@ public class ActionHandler : BattleComponent {
         if (isInBuilder) _current_action.setIsInBuilder(true);
         if (old_action != null)
             old_action.TearDown(_current_action);
-        _current_action.SetUp(battleObject);
+        _current_action.SetUp(getBattleObject());
     }
 
     public bool ActionIsOfType(System.Type actionType) {

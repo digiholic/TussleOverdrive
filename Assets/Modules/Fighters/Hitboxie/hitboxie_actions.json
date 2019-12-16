@@ -811,7 +811,7 @@
                                             "name": "damage",
                                             "source": 0,
                                             "type": 3,
-                                            "data": "0",
+                                            "data": "2",
                                             "description": "The damage in percent that the hitbox does to an opponent"
                                         },
                                         {
@@ -819,7 +819,7 @@
                                             "name": "angle",
                                             "source": 0,
                                             "type": 2,
-                                            "data": "0",
+                                            "data": "90",
                                             "description": "The angle the move launches the target at. This is in degrees, with 0 being straight forward, 90 being straight up, and 180 being backwards. Negative values and values over 360 will be projected into the 360 degree space, so -90 will become 270, and 361 will become 1 (for \"Sakurai Angle\" hitboxes, see the \"Sakurai Threshold\" in the advanced section)"
                                         },
                                         {
@@ -827,7 +827,7 @@
                                             "name": "baseKnockback",
                                             "source": 0,
                                             "type": 3,
-                                            "data": "0",
+                                            "data": "1",
                                             "description": "The base amount of knockback the move has, before applying other modifiers like percentage, weight, etc."
                                         },
                                         {
@@ -835,7 +835,7 @@
                                             "name": "knockbackGrowth",
                                             "source": 0,
                                             "type": 3,
-                                            "data": "0",
+                                            "data": "0.1",
                                             "description": "The rate at which the knockback strength increases based on the opponent's percentage."
                                         },
                                         {

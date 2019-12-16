@@ -107,7 +107,7 @@ public class StateTransitions : ScriptableObject {
             actor.doAction("Crouch");
         else if (actor.GetAxis("Horizontal") == 0.0f)
             actor.doAction("Stop");
-        if (actor.KeyBuffered(InputTypeUtil.GetBackward(actor.battleObject)))
+        if (actor.KeyBuffered(InputTypeUtil.GetBackward(actor.getBattleObject())))
             actor.SendMessage("flip"); //TODO PIVOT
         //Two other kinds of stop? Not sure if these are needed
     }
@@ -161,7 +161,7 @@ public class StateTransitions : ScriptableObject {
             actor.doAction("Jump");
         else if (actor.GetAxis("Horizontal") == 0.0f)
             actor.doAction("Stop");
-        if (actor.KeyBuffered(InputTypeUtil.GetBackward(actor.battleObject)))
+        if (actor.KeyBuffered(InputTypeUtil.GetBackward(actor.getBattleObject())))
             actor.SendMessage("flip"); //TODO PIVOT
     }
 

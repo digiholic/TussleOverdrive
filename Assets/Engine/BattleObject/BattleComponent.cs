@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 [RequireComponent(typeof(BattleObject))]
 public class BattleComponent : MonoBehaviour {
-    public BattleObject battleObject;
+    private BattleObject battleObject;
     public string BattleComponentType;
 
 	// Use this for initialization
@@ -69,7 +69,7 @@ public class BattleComponent : MonoBehaviour {
         return getBattleObject().GetStringVar(var_name);
     }
 
-    protected BattleObject getBattleObject()
+    public BattleObject getBattleObject()
     {
         if (battleObject == null)
         {

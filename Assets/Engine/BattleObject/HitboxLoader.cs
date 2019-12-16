@@ -24,7 +24,7 @@ public class HitboxLoader : MonoBehaviour {
         Material mat = rend.material;
         mat.SetColor("_Color", new Color(1.0f, 0, 0, 0.5f));
         StandardShaderUtils.ChangeRenderMode(mat, StandardShaderUtils.BlendMode.Transparent);
-        rend.enabled = false;
+        rend.enabled = Settings.current_settings.display_hitboxes;
 
         dict.Add("Width", "100");
         dict.Add("Height", "100");
@@ -39,7 +39,7 @@ public class HitboxLoader : MonoBehaviour {
     public Hitbox LoadHitbox(AbstractFighter owner, GameAction action, Dictionary<string, string> dict)
     {
         Hitbox hbox = Instantiate(hitbox_prefab);
-        hbox.owner = owner.battleObject;
+        hbox.owner = owner.getBattleObject();
         hbox.transform.parent = owner.transform;
         hbox.LoadValuesFromDict(dict);
 

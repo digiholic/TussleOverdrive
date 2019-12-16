@@ -26,14 +26,12 @@ public class SubactionCreateHitbox : Subaction {
                 hbox_dict.Add(data.name, data.GetData(actor, action).ToString());
             }
         }
-        if (name != "")
-        {
-            Debug.Log(HitboxLoader.loader);
-            Hitbox hbox = HitboxLoader.CreateHitbox(actor.gameObject, hbox_dict);
-            //Hitbox hbox = HitboxLoader.loader.LoadHitbox(actor.GetAbstractFighter(), action, hbox_dict);
-            action.hitboxes.Add(name, hbox);
-            Debug.Log(hbox);
+        if (action.hitboxes.ContainsKey(name)){
+            Debug.LogWarning(string.Format("Creating a hitbox named {0} while one already exists. This hitbox will be overwritten with the new data.",name));
         }
+        Hitbox hbox = HitboxLoader.CreateHitbox(actor.gameObject, hbox_dict);
+        //Hitbox hbox = HitboxLoader.loader.LoadHitbox(actor.GetAbstractFighter(), action, hbox_dict);
+        action.hitboxes.Add(name, hbox);
     }
 
     public override SubactionType getSubactionType()

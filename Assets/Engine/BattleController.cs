@@ -7,12 +7,14 @@ public class BattleController : MonoBehaviour {
     public int current_game_frame = 0;
 
     public static BattleController current_battle;
+    public CameraControl3D battleCamera;
 
     private List<BattleObject> objects = new List<BattleObject>();
     private Dictionary<int, AbstractFighter> fighterDict = new Dictionary<int, AbstractFighter>();
     private List<AbstractFighter> fighters = new List<AbstractFighter>();
     private List<Hitbox> hitboxes = new List<Hitbox>();
     public bool UpdateOnFrame;
+
 
     // Use this for initialization
     void Start()
@@ -21,6 +23,11 @@ public class BattleController : MonoBehaviour {
         current_battle = this;
         Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Fighters"), LayerMask.NameToLayer("Fighters"), true);
         BattleLoader.current_loader.LoadBattle();
+
+        //Add all the fighters to the battle camera
+        foreach (AbstractFighter fighter in fighters){
+            battleCamera?.follows.Add(fighter.transform);
+        }
     }
 
     // Update is called once per frame
@@ -48,7 +55,7 @@ public class BattleController : MonoBehaviour {
             obj.StepFrame();
         foreach (Hitbox hbox in hitboxes)
             hbox.StepFrame();
-        CameraControl3D.current_camera.TrackObjects();
+        CameraControl3D.current_camera.TrackObjects();            
         current_game_frame++;
     }
     

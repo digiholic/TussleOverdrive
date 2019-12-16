@@ -10,7 +10,7 @@ public class InputBuffer : BattleComponent {
 
     // Use this for initialization
     void Start () {
-        player = ReInput.players.GetPlayer(battleObject.GetIntVar(TussleConstants.FighterVariableNames.PLAYER_NUM));
+        player = ReInput.players.GetPlayer(getBattleObject().GetIntVar(TussleConstants.FighterVariableNames.PLAYER_NUM));
 
         player.AddInputEventDelegate(ButtonPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed);
         player.AddInputEventDelegate(ButtonReleased, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased);

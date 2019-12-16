@@ -195,7 +195,7 @@ public class AbstractFighter : BattleComponent {
         SendMessage("ChangeSpeedVector", refVector * GetFloatVar(TussleConstants.FighterVariableNames.ELASTICITY));
 
         //rotate to the new bounce direction
-        Vector2 directMagn = MotionHandler.GetDirectionMagnitude(battleObject);
+        Vector2 directMagn = MotionHandler.GetDirectionMagnitude(getBattleObject());
         SendMessage("UnRotate");
         SendMessage("RotateSprite", (directMagn.x - 90) * GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION));
 
@@ -219,7 +219,7 @@ public class AbstractFighter : BattleComponent {
     
     public void flip()
     {
-        SetVar(TussleConstants.FighterVariableNames.FACING_DIRECTION, -1 * battleObject.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION));
+        SetVar(TussleConstants.FighterVariableNames.FACING_DIRECTION, -1 * getBattleObject().GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION));
     }
 
     public void doGroundAttack()
@@ -232,7 +232,7 @@ public class AbstractFighter : BattleComponent {
         }
         else if (DirectionHeld("Backward"))
         {
-            battleObject.SendMessage("flip");
+            getBattleObject().SendMessage("flip");
             if (CheckSmash("BackwardSmash"))
                 doAction("BackwardSmash");
             else doAction("ForwardAttack");
@@ -260,7 +260,7 @@ public class AbstractFighter : BattleComponent {
             doAction("ForwardSpecial");
         else if (DirectionHeld("Backward"))
         {
-            battleObject.SendMessage("flip");
+            getBattleObject().SendMessage("flip");
             doAction("ForwardSpecial");
         }
         else if (DirectionHeld("Up"))
@@ -385,8 +385,8 @@ public class AbstractFighter : BattleComponent {
 
         trajectory_vec *= _total_kb;
         //Debug.Log(trajectory_vec);
-        battleObject.BroadcastMessage("ChangeXSpeed",trajectory_vec.x);
-        battleObject.BroadcastMessage("ChangeYSpeed", trajectory_vec.y);
+        getBattleObject().BroadcastMessage("ChangeXSpeed",trajectory_vec.x);
+        getBattleObject().BroadcastMessage("ChangeYSpeed", trajectory_vec.y);
         //self.setSpeed((_total_kb) * di_multiplier, _trajectory)
     }
 
@@ -472,7 +472,7 @@ public class AbstractFighter : BattleComponent {
         if (!other.transform.IsChildOf(this.transform))
         {
             contacted_colliders.Add(other);
-            battleObject.PrintDebug(this, 3, "Entered Collider " + other);
+            getBattleObject().PrintDebug(this, 3, "Entered Collider " + other);
         }
     }
 
@@ -482,7 +482,7 @@ public class AbstractFighter : BattleComponent {
         {
             if (contacted_colliders.Contains(other))
                 contacted_colliders.Remove(other);
-            battleObject.PrintDebug(this, 3, "Left Collider " + other);
+            getBattleObject().PrintDebug(this, 3, "Left Collider " + other);
         }
 
         

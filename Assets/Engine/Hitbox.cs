@@ -59,22 +59,22 @@ public class Hitbox : MonoBehaviour {
 
     public void LoadValuesFromDict(Dictionary<string,string> dict)
     {
-        hitboxRect.center = new Vector2(int.Parse(dict["CenterX"]),int.Parse(dict["CenterY"]));
-        hitboxRect.size = new Vector2(int.Parse(dict["Width"]),int.Parse(dict["Height"]));
+        hitboxRect.center = new Vector2(int.Parse(dict[Hitbox.CENTER_X]),int.Parse(dict[Hitbox.CENTER_Y]));
+        hitboxRect.size = new Vector2(int.Parse(dict[Hitbox.WIDTH]),int.Parse(dict[Hitbox.HEIGHT]));
         
         //The all-important lock name
-        if (dict.ContainsKey("lock_name"))
-            lock_name = dict["lock_name"];
+        if (dict.ContainsKey(Hitbox.LOCK_GROUP))
+            lock_name = dict[Hitbox.LOCK_GROUP];
         
         //Hitbox stats
-        if (dict.ContainsKey("damage"))
-            damage           = float.Parse(dict["damage"]);
-        if (dict.ContainsKey("base_knockback"))
-            base_knockback = float.Parse(dict["base_knockback"]);
-        if (dict.ContainsKey("knockback_growth"))
-            knockback_growth = float.Parse(dict["knockback_growth"]);
-        if (dict.ContainsKey("trajectory"))
-            trajectory = int.Parse(dict["trajectory"]);
+        if (dict.ContainsKey(Hitbox.DAMAGE))
+            damage           = float.Parse(dict[Hitbox.DAMAGE]);
+        if (dict.ContainsKey(Hitbox.BASE_KNOCKBACK))
+            base_knockback = float.Parse(dict[Hitbox.BASE_KNOCKBACK]);
+        if (dict.ContainsKey(Hitbox.KNOCKBACK_GROWTH))
+            knockback_growth = float.Parse(dict[Hitbox.KNOCKBACK_GROWTH]);
+        if (dict.ContainsKey(Hitbox.ANGLE))
+            trajectory = int.Parse(dict[Hitbox.ANGLE]);
 
         if (owner != null)
             SizeToOwner(owner);
@@ -136,6 +136,24 @@ public class Hitbox : MonoBehaviour {
         if (BattleController.current_battle != null)
             BattleController.current_battle.UnregisterHitbox(this);
     }
+
+    public static string HITBOX_NAME = "hitboxName";
+    public static string LOCK_GROUP = "lockGroup";
+    public static string CENTER_X = "centerX";
+    public static string CENTER_Y = "centerY";
+    public static string WIDTH = "width";
+    public static string HEIGHT = "height";
+    public static string DAMAGE = "damage";
+    public static string ANGLE = "angle";
+    public static string BASE_KNOCKBACK = "baseKnockback";
+    public static string KNOCKBACK_GROWTH = "knockbackGrowth";
+    public static string CHARGE_DAMAGE = "chargeDamage";
+    public static string CHARGE_BASE_KNOCKBACK = "chargeBaseKnockback";
+    public static string CHARGE_KNOCKBACK_GROWTH = "chargeKnockbackGrowth";
+    public static string SHIELD_DAMAGE = "shieldDamage";
+    public static string HITSTUN_SCALING = "hitstunScaling";
+    public static string SHIELDSTUN_SCALING = "shieldstunScaling";
+    public static string SAKURAI_THRESHOLD = "sakuraiThreshold";
 }
 
 public class HitboxLock
@@ -150,7 +168,7 @@ public class HitboxLock
     }
 
     /// <summary>
-    /// On Destroy, remove itself from everything that it's locked into and unset its lock.
+    /// On Destroy; remove itself from everything that it's locked into and unset its lock.
     /// </summary>
     public void Destroy()
     {

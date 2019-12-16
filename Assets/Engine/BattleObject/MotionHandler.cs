@@ -39,7 +39,6 @@ public class MotionHandler : BattleComponent {
         
         movement *= Time.deltaTime;
         _charController.Move(movement);
-        
         //transform.Translate(movement);
         //rigid.velocity = transform.TransformDirection(movement);
 

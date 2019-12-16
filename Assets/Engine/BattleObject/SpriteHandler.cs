@@ -29,7 +29,7 @@ public class SpriteHandler : BattleComponent {
     void Awake()
     {
         //If the battle object has a sprite object, that's what we'll use instead of making a new one.
-        spriteComponent = battleObject?.spriteObject;
+        spriteComponent = getBattleObject()?.spriteObject;
         
         SetVar(TussleConstants.SpriteVariableNames.SPRITE_CURRENT, "idle");
         SetVar(TussleConstants.SpriteVariableNames.FRAME_CURRENT, 0);
@@ -198,7 +198,6 @@ public class SpriteHandler : BattleComponent {
     {
         transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
 
-        Debug.Log("Flipping");
         if (orientation == LEFT)
             orientation = RIGHT;
         else

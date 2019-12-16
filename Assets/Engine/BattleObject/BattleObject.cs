@@ -135,7 +135,6 @@ public class BattleObject : MonoBehaviour, IVarDataContainer
             SetVar("StopFrames", StopFrames - 1);
             return;
         }
-
         SendMessage("ManualUpdate");
 
         //Motion must be done after all of the components resolve.
