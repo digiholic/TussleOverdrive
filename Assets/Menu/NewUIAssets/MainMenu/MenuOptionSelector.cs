@@ -25,11 +25,11 @@ public class MenuOptionSelector : MonoBehaviour {
         {
             transform.localScale = Vector3.Lerp(transform.localScale, selectedSize, Time.deltaTime*5);
             highlightSprite.transform.localPosition = Vector3.Lerp(highlightSprite.transform.localPosition, highlightLocation, Time.deltaTime * 10);
-            text.font = selectedFont;
+            text.bitmapFont = selectedFont;
         } else
         {
             transform.localScale = Vector3.Lerp(transform.localScale, deselectedSize, Time.deltaTime*5);
-            text.font = deselectedFont;
+            text.bitmapFont = deselectedFont;
         }
 	}
 }
