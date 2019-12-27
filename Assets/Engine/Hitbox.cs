@@ -59,8 +59,10 @@ public class Hitbox : MonoBehaviour {
 
     public void LoadValuesFromDict(Dictionary<string,string> dict)
     {
-        hitboxRect.center = new Vector2(int.Parse(dict[Hitbox.CENTER_X]),int.Parse(dict[Hitbox.CENTER_Y]));
-        hitboxRect.size = new Vector2(int.Parse(dict[Hitbox.WIDTH]),int.Parse(dict[Hitbox.HEIGHT]));
+        Vector2 size = new Vector2(int.Parse(dict[Hitbox.WIDTH]),int.Parse(dict[Hitbox.HEIGHT]));
+        hitboxRect.size = size;
+        Vector2 center = new Vector2(int.Parse(dict[Hitbox.CENTER_X]),int.Parse(dict[Hitbox.CENTER_Y]));
+        hitboxRect.center = center;
         
         //The all-important lock name
         if (dict.ContainsKey(Hitbox.LOCK_GROUP))
@@ -84,7 +86,9 @@ public class Hitbox : MonoBehaviour {
     {
         float scale = obj.GetFloatVar(TussleConstants.SpriteVariableNames.PIXELS_PER_UNIT);
         //float scale = 50;
-        transform.localPosition = new Vector3(hitboxRect.center.x / scale, hitboxRect.center.y / scale, -0.1f);
+        Vector3 positionFromCenter = new Vector3(hitboxRect.center.x / scale, hitboxRect.center.y / scale, -0.1f);
+        Debug.Log(positionFromCenter);
+        transform.localPosition = positionFromCenter;
         transform.localScale = new Vector3(hitboxRect.width / scale, hitboxRect.height / scale, 1.0f);
     }
 

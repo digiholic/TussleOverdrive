@@ -22,6 +22,8 @@ public class BattleObject : MonoBehaviour, IVarDataContainer
     /// </summary>
     public int DebugLevel = 2;
 
+    public Transform PivotTransform;
+
     /* Each component has a public accessor that will route commands to the right objects for the purposes of reading data,
      * but most methods should be called via the BroadcastMessage function, so that it could potentially hit multiple Components.
      */
@@ -51,6 +53,9 @@ public class BattleObject : MonoBehaviour, IVarDataContainer
     void Awake()
     {
         components = new List<BattleComponent>(gameObject.GetComponents<BattleComponent>());
+        if (PivotTransform == null){
+            PivotTransform = transform.Find("Pivot");
+        }
     }
     
     public void LoadComponents()
