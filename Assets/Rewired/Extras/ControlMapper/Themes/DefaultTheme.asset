@@ -53,17 +53,20 @@ MonoBehaviour:
       m_HighlightedColor: {r: 0, g: .419929147, b: .669117689, a: 1}
       m_NormalColor: {r: .300484419, g: .399280936, b: .458823532, a: 1}
       m_PressedColor: {r: 0, g: .627586365, b: 1, a: 1}
+      m_SelectedColor: {r: 0, g: .419929147, b: .669117689, a: 1}
       m_DisabledHighlightedColor: {r: 0, g: .419929147, b: .669117689, a: .494117647}
     _spriteState:
       m_DisabledSprite: {fileID: 0}
       m_HighlightedSprite: {fileID: 0}
       m_PressedSprite: {fileID: 0}
+      m_SelectedSprite: {fileID: 0}
       m_DisabledHighlightedSprite: {fileID: 0}
     _animationTriggers:
       m_DisabledTrigger: 
       m_HighlightedTrigger: 
       m_NormalTrigger: 
       m_PressedTrigger: 
+      m_SelectedTrigger: 
       m_DisabledHighlightedTrigger: 
     _imageSettings:
       _color: {r: 1, g: 1, b: 1, a: 1}
@@ -85,17 +88,20 @@ MonoBehaviour:
       m_HighlightedColor: {r: 0, g: .419929147, b: .669117689, a: 1}
       m_NormalColor: {r: .300484419, g: .399280936, b: .458823532, a: 1}
       m_PressedColor: {r: 0, g: .627586365, b: 1, a: 1}
+      m_SelectedColor: {r: 0, g: .419929147, b: .669117689, a: 1}
       m_DisabledHighlightedColor: {r: 0, g: .419929147, b: .669117689, a: .494117647}
     _spriteState:
       m_DisabledSprite: {fileID: 0}
       m_HighlightedSprite: {fileID: 0}
       m_PressedSprite: {fileID: 0}
+      m_SelectedSprite: {fileID: 0}
       m_DisabledHighlightedSprite: {fileID: 0}
     _animationTriggers:
       m_DisabledTrigger: 
       m_HighlightedTrigger: 
       m_NormalTrigger: 
       m_PressedTrigger: 
+      m_SelectedTrigger: 
       m_DisabledHighlightedTrigger: 
     _imageSettings:
       _color: {r: 1, g: 1, b: 1, a: 1}
@@ -117,17 +123,20 @@ MonoBehaviour:
       m_HighlightedColor: {r: 0, g: .419929147, b: .669117689, a: 1}
       m_NormalColor: {r: .300484419, g: .399280936, b: .458823532, a: 1}
       m_PressedColor: {r: 0, g: .627586365, b: 1, a: 1}
+      m_SelectedColor: {r: 0, g: .419929147, b: .669117689, a: 1}
       m_DisabledHighlightedColor: {r: 0, g: .419929147, b: .669117689, a: .494117647}
     _spriteState:
       m_DisabledSprite: {fileID: 0}
       m_HighlightedSprite: {fileID: 0}
       m_PressedSprite: {fileID: 0}
+      m_SelectedSprite: {fileID: 0}
       m_DisabledHighlightedSprite: {fileID: 0}
     _animationTriggers:
       m_DisabledTrigger: 
       m_HighlightedTrigger: 
       m_NormalTrigger: 
       m_PressedTrigger: 
+      m_SelectedTrigger: 
       m_DisabledHighlightedTrigger: 
     _imageSettings:
       _color: {r: 1, g: 1, b: 1, a: 1}
@@ -149,17 +158,20 @@ MonoBehaviour:
       m_HighlightedColor: {r: 0, g: .419929147, b: .669117689, a: 1}
       m_NormalColor: {r: .300484419, g: .399280936, b: .458823532, a: 1}
       m_PressedColor: {r: 0, g: .627586365, b: 1, a: 1}
+      m_SelectedColor: {r: 0, g: .419929147, b: .669117689, a: 1}
       m_DisabledHighlightedColor: {r: 0, g: .419929147, b: .669117689, a: .494117647}
     _spriteState:
       m_DisabledSprite: {fileID: 0}
       m_HighlightedSprite: {fileID: 0}
       m_PressedSprite: {fileID: 0}
+      m_SelectedSprite: {fileID: 0}
       m_DisabledHighlightedSprite: {fileID: 0}
     _animationTriggers:
       m_DisabledTrigger: 
       m_HighlightedTrigger: 
       m_NormalTrigger: 
       m_PressedTrigger: 
+      m_SelectedTrigger: 
       m_DisabledHighlightedTrigger: 
     _handleImageSettings:
       _color: {r: 1, g: 1, b: 1, a: 1}
@@ -192,17 +204,20 @@ MonoBehaviour:
       m_HighlightedColor: {r: 0, g: .419929147, b: .669117689, a: 1}
       m_NormalColor: {r: .300484419, g: .399280936, b: .458823532, a: 1}
       m_PressedColor: {r: 0, g: .627586365, b: 1, a: 1}
+      m_SelectedColor: {r: 0, g: .419929147, b: .669117689, a: 1}
       m_DisabledHighlightedColor: {r: 0, g: .419929147, b: .669117689, a: .494117647}
     _spriteState:
       m_DisabledSprite: {fileID: 0}
       m_HighlightedSprite: {fileID: 0}
       m_PressedSprite: {fileID: 0}
+      m_SelectedSprite: {fileID: 0}
       m_DisabledHighlightedSprite: {fileID: 0}
     _animationTriggers:
       m_DisabledTrigger: 
       m_HighlightedTrigger: 
       m_NormalTrigger: 
       m_PressedTrigger: 
+      m_SelectedTrigger: 
       m_DisabledHighlightedTrigger: 
     _handleImageSettings:
       _color: {r: 1, g: 1, b: 1, a: 1}

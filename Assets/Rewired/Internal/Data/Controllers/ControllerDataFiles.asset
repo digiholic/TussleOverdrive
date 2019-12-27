@@ -87,6 +87,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 737eae044d53fc94b9c28b110fbb6019, type: 2}
   - {fileID: 11400000, guid: c2c9ba16ad481a743b4a1857caf45c8c, type: 2}
   - {fileID: 11400000, guid: bab987e4a193e39429f4d1826e07fad8, type: 2}
+  - {fileID: 11400000, guid: 4454cb89c8ca0994493486094e90e9f1, type: 2}
   - {fileID: 11400000, guid: 210ce8f0c7c11b144bbed6b1b2ee612f, type: 2}
   - {fileID: 11400000, guid: 87c5910af6e23be42a447b364d70df44, type: 2}
   - {fileID: 11400000, guid: 1fa459b73e5712a4a95e3e71655b8767, type: 2}
@@ -148,6 +149,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bd7d5c0c34396c348ac8c50237ce7919, type: 2}
   - {fileID: 11400000, guid: 5172655583bc9c94f8f5eca9f44266aa, type: 2}
   - {fileID: 11400000, guid: 8fbde7dec15699945a8797cfc0cf37f2, type: 2}
+  - {fileID: 11400000, guid: d3c894e51fd28d84e8aa97fa8afbd715, type: 2}
   - {fileID: 11400000, guid: 532dcc58022f3de45973784c5878ddde, type: 2}
   - {fileID: 11400000, guid: bd5c168ccfd771047b3b046934982159, type: 2}
   - {fileID: 11400000, guid: 724de1f3a2213094f88f5ad4cd10cc89, type: 2}
@@ -174,6 +176,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 973630cd12acc694a9d661dd9c3c53e2, type: 2}
   - {fileID: 11400000, guid: acecd302c0ec46a4f97170a61dce15d4, type: 2}
   - {fileID: 11400000, guid: 85dd666458e007548970f68ea256f9ee, type: 2}
+  - {fileID: 11400000, guid: b647750ae970617478e5d358cf1b0dbf, type: 2}
   - {fileID: 11400000, guid: 770a22fe483520746b98d10d6bfa723b, type: 2}
   joystickTemplates:
   - {fileID: 11400000, guid: 91b946f6f6823f4469dbe63db04db904, type: 2}

@@ -1091,6 +1091,95 @@ MonoBehaviour:
       joystickId: 3
       joystickId2: 0
       splitAxis: 0
+  - id: 7
+    name: 3Dconnexion SpaceMouse Pro
+    joystickGuid: c346ee03-55e4-4c61-bf3c-7d55b25ae034
+    fileGuid: ce2be3f343d4db94ca65986d73d65058
+    elementIdentifierMappings:
+    - templateId: 0
+      joystickId: 0
+      joystickId2: 0
+      splitAxis: 0
+    - templateId: 1
+      joystickId: 1
+      joystickId2: 0
+      splitAxis: 0
+    - templateId: 2
+      joystickId: 2
+      joystickId2: 0
+      splitAxis: 0
+    - templateId: 3
+      joystickId: 3
+      joystickId2: 0
+      splitAxis: 0
+    - templateId: 4
+      joystickId: 4
+      joystickId2: 0
+      splitAxis: 0
+    - templateId: 5
+      joystickId: 5
+      joystickId2: 0
+      splitAxis: 0
+    - templateId: 12
+      joystickId: 6
+      joystickId2: 0
+      splitAxis: 0
+    - templateId: 13
+      joystickId: 7
+      joystickId2: 0
+      splitAxis: 0
+    - templateId: 14
+      joystickId: 8
+      joystickId2: 0
+      splitAxis: 0
+    - templateId: 15
+      joystickId: 9
+      joystickId2: 0
+      splitAxis: 0
+    - templateId: 16
+      joystickId: 10
+      joystickId2: 0
+      splitAxis: 0
+    - templateId: 17
+      joystickId: 11
+      joystickId2: 0
+      splitAxis: 0
+    - templateId: 18
+      joystickId: 12
+      joystickId2: 0
+      splitAxis: 0
+    - templateId: 19
+      joystickId: 13
+      joystickId2: 0
+      splitAxis: 0
+    - templateId: 20
+      joystickId: 14
+      joystickId2: 0
+      splitAxis: 0
+    - templateId: 21
+      joystickId: 15
+      joystickId2: 0
+      splitAxis: 0
+    - templateId: 22
+      joystickId: 16
+      joystickId2: 0
+      splitAxis: 0
+    - templateId: 23
+      joystickId: 17
+      joystickId2: 0
+      splitAxis: 0
+    - templateId: 24
+      joystickId: 18
+      joystickId2: 0
+      splitAxis: 0
+    - templateId: 25
+      joystickId: 19
+      joystickId2: 0
+      splitAxis: 0
+    - templateId: 26
+      joystickId: 20
+      joystickId2: 0
+      splitAxis: 0
   specialElements:
   - elementIdentifierId: 48
     data: '{"eid_up":32,"eid_upRight":33,"eid_right":34,"eid_downRight":35,"eid_down":36,"eid_downLeft":37,"eid_left":38,"eid_upLeft":39}'
@@ -1103,4 +1192,4 @@ MonoBehaviour:
   - elementIdentifierId: 54
     data: '{"eid_positionX":1,"eid_positionY":2,"eid_positionZ":0,"eid_rotationX":3,"eid_rotationY":5,"eid_rotationZ":4}'
   elementIdentifierIdCounter: 67
-  joystickIdCounter: 7
+  joystickIdCounter: 8

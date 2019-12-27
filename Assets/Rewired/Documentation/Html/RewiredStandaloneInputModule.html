@@ -80,9 +80,11 @@
               <li><a href="InputBehaviors.html">Input Behaviors</a></li>
               <li><a href="Controllers.html">Controllers</a></li>
               <li><a href="ControllerMaps.html">Controller Maps</a></li>
+              <li><a href="ControllerTemplates.html">Controller Templates</a></li>
               <li><a href="MapCategories.html">Map Categories</a></li>
               <li><a href="Layouts.html">Layouts</a></li>
-              <li><a href="ControllerTemplates.html">Controller Templates</a></li>
+              <li><a href="LayoutManager.html">Layout Manager</a></li>
+              <li><a href="MapEnabler.html">Map Enabler</a></li>
               <li><a href="CustomControllers.html">Custom Controllers</a></li>
             </ul>
             <strong>Extras:</strong>
@@ -285,6 +287,10 @@
         <td>Allows touch input to be used to select elements.</td>
       </tr>
       <tr>
+        <td>Deselect If Background Clicked</td>
+        <td>Deselects the current selection on mouse/touch click when the pointer is not over a selectable object.</td>
+      </tr>
+      <tr>
         <td>Force Module Active</td>
         <td>Forces the module to always be active.</td>
       </tr>
@@ -315,6 +321,7 @@
   <li>Create a pointer GameObject and drive it from the Player Mouse's screen position.</li>
   <li>Add the Player Mouse in the Rewired Standalone Input Module inspector (or add it through scripting at runtime).</li>
   <li>Make sure the Player that owns the Player Mouse is allowed to control the UI. (<a href="#inspector-options">See inspector options</a> for setting the Players that can control the UI.)</li>
+  <li><em><a href="HowTos.html#enabling-disabling-controller-maps">Make sure you disable UI navigation Actions</a> in all Players that control a software pointer. If you have both UI navigation Actions controlling the UI and are moving a mouse pointer around with the same controls, the UI will be completely uncontrollable as the two control systems fight each other.</em></li>
 </ul>
 <p><strong>Using multiple Player Mouse pointers:</strong></p>
 <p>You can use multiple Player Mice to drive multiple mouse pointers that can all interact with the UI.* (<a href="#player-mouse-mutli-player-ui-limitations">See important limitations.</a>) Simply create multiple Player Mice, set them up for each Player, and assign them to Player Mice field in the inspector.</p>
@@ -323,7 +330,7 @@
   <li><a href="Examples.html#player-mouse-unity-ui">Player Mouse Unity UI</a></li>
 </ul>
 <p><strong>Player Pointer Event Data</strong>:</p>
-<p>The Rewired Standalone Input Module will send a PlayerPointerEventData object to all mouse pointer event handlers (Buttons, your scripts that implement the pointer event handler interfaces, etc.) If the handler script is written to support it, you can get Player, button index, and even source Player Mouseinformation from each event. See the <a href="Examples.html#player-mouse-unity-ui">Player Mouse Unity UI</a> example for a demonstration.</p>
+<p>The Rewired Standalone Input Module will send a PlayerPointerEventData object to all mouse pointer event handlers (Buttons, your scripts that implement the pointer event handler interfaces, etc.) If the handler script is written to support it, you can get Player, button index, and even source Player Mouse information from each event. See the <a href="Examples.html#player-mouse-unity-ui">Player Mouse Unity UI</a> example for a demonstration.</p>
 <p>
   <a name="player-mouse-mutli-player-ui-limitations" id="player-mouse-mutli-player-ui-limitations"></a><strong>*Important Limitations / Issues:</strong></p>
 <p>Unity's UI controls were not written to support interaction from multiple sources at the same time. Generally, UI controls work when being interacted with by multiple pointers, but there are some issues/artifacts:</p>
@@ -361,6 +368,11 @@ void SetSelected(GameObject selectableObject) {
     <p>Please refer to the <a href="http://docs.unity3d.com/Manual/UISystem.html" target="_blank">Unity documentation</a> for information on how to use Unity UI.</p>
     <p>&nbsp;</p>
     <hr />
+    <p><strong><a name="troubleshooting-exceptions-in-callbacks-changing-settings" id="troubleshooting-exceptions-in-callbacks-changing-settings"></a>Problem: Exceptions thrown when making changes to various properties in the Rewired Standalone Input Module from a UI button press</strong></p>
+    <p>You should not change certain properties in the Rewired Standalone Input Module from the callback of a UI button press or other UI event (the Action list, the Players list, Player Mouse list, etc.). The module executes its code sequentially, firing UI events synchronously, then continuing execution. If you change certain Rewired properties in the callback of one of these events, lists or objects may be change mid-execution causing it to throw an exception, for example, changing the list of Players that can control the UI in response to a UI button click. This list of Players will be changed, possible during iteration of the same list resulting in null reference exceptions or index out of range exceptions. This is akin to modifying a List in the middle of a foreach loop, which will throw an exception because they have included measures to watch for such illegal operations.</p>
+    <p>If you must change a Rewired property from a UI event, use a Coroutine to defer execution of the change until the end of the frame.</p>
+    <p>&nbsp;</p>
+    <hr />
     <h3><a name="faq" id="faq"></a>FAQ:</h3>
     <p class="question">Does it support multi-player UIs?</p>
     <p>Only partially through the use of <a href="#player-mouse">Player Mouse pointers</a>.</p>
@@ -377,7 +389,7 @@ void SetSelected(GameObject selectableObject) {
         
     </div>
   <div class="footer clearfix">
-   	<p class="left">Copyright &copy;2014-2016 <a href="http://guavaman.com" title="Guavaman Enterprises">Guavaman Enterprises</a>. All rights reserved. No materials may be reproduced without permission.</p>
+   	<p class="left">Copyright &copy;2014-2019 <a href="http://guavaman.com" title="Guavaman Enterprises">Guavaman Enterprises</a>. All rights reserved. No materials may be reproduced without permission.</p>
   	<p class="right"><a href="http://guavaman.com/projects/rewired" title="Return to Rewired Website">Return to Rewired Website</a></p>
   </div>
   <!-- end .content --></div>

@@ -1,4 +1,15 @@
-﻿// Copyright (c) 2015 Augie R. Maddox, Guavaman Enterprises. All rights reserved.
+// Copyright (c) 2015 Augie R. Maddox, Guavaman Enterprises. All rights reserved.
+
+//#define REWIRED_CONTROL_MAPPER_USE_TMPRO
+
+#if UNITY_2020 || UNITY_2021 || UNITY_2022 || UNITY_2023 || UNITY_2024 || UNITY_2025
+#define UNITY_2020_PLUS
+#endif
+
+#if UNITY_2019 || UNITY_2020_PLUS
+#define UNITY_2019_PLUS
+#endif
+
 #pragma warning disable 0219
 #pragma warning disable 0618
 #pragma warning disable 0649
@@ -9,6 +20,13 @@ namespace Rewired.UI.ControlMapper {
     using UnityEngine.UI;
     using System.Collections.Generic;
     using Rewired;
+#if REWIRED_CONTROL_MAPPER_USE_TMPRO
+    using Text = TMPro.TMP_Text;
+    using Font = TMPro.TMP_FontAsset;
+#else
+    using Text = UnityEngine.UI.Text;
+    using Font = UnityEngine.Font;
+#endif
 
     [System.Serializable]
     public class ThemeSettings : ScriptableObject {
@@ -178,11 +196,16 @@ namespace Rewired.UI.ControlMapper {
             item.lineSpacing = settings.lineSpacing;
             if(settings.sizeMultiplier != 1.0f) {
                 item.fontSize = (int)(item.fontSize * settings.sizeMultiplier);
+#if REWIRED_CONTROL_MAPPER_USE_TMPRO
+                item.fontSizeMax = (int)(item.fontSizeMax * settings.sizeMultiplier);
+                item.fontSizeMin = (int)(item.fontSizeMin * settings.sizeMultiplier);
+#else
                 item.resizeTextMaxSize = (int)(item.resizeTextMaxSize * settings.sizeMultiplier);
                 item.resizeTextMinSize = (int)(item.resizeTextMinSize * settings.sizeMultiplier);
+#endif
             }
             if(settings.style != FontStyleOverride.Default) {
-                item.fontStyle = (FontStyle)((int)settings.style - 1);
+                item.fontStyle = GetFontStyle(settings.style);
             }
         }
 
@@ -193,6 +216,28 @@ namespace Rewired.UI.ControlMapper {
             item.SetDisabledStateColor(_invertToggleDisabledColor);
             item.Refresh();
         }
+
+#if REWIRED_CONTROL_MAPPER_USE_TMPRO
+        private static TMPro.FontStyles GetFontStyle(FontStyleOverride style) {
+            switch(style) {
+                case FontStyleOverride.Bold:
+                    return TMPro.FontStyles.Bold;
+                case FontStyleOverride.BoldAndItalic:
+                    return TMPro.FontStyles.Bold | TMPro.FontStyles.Italic;
+                case FontStyleOverride.Italic:
+                    return TMPro.FontStyles.Italic;
+                case FontStyleOverride.Default:
+                case FontStyleOverride.Normal:
+                    return TMPro.FontStyles.Normal;
+                default:
+                    throw new System.NotImplementedException();
+            }
+        }
+#else
+        private static FontStyle GetFontStyle(FontStyleOverride style) {
+                return (FontStyle)((int)style - 1);
+        }
+#endif
 
         [System.Serializable]
         private abstract class SelectableSettings_Base {
@@ -383,6 +428,8 @@ namespace Rewired.UI.ControlMapper {
             [SerializeField]
             private Color m_PressedColor;
             [SerializeField]
+            private Color m_SelectedColor;
+            [SerializeField]
             private Color m_DisabledHighlightedColor;
 
             public float colorMultiplier { get { return m_ColorMultiplier; } set { m_ColorMultiplier = value; } }
@@ -391,10 +438,14 @@ namespace Rewired.UI.ControlMapper {
             public Color highlightedColor { get { return m_HighlightedColor; } set { m_HighlightedColor = value; } }
             public Color normalColor { get { return m_NormalColor; } set { m_NormalColor = value; } }
             public Color pressedColor { get { return m_PressedColor; } set { m_PressedColor = value; } }
+            public Color selectedColor { get { return m_SelectedColor; } set { m_SelectedColor = value; } }
             public Color disabledHighlightedColor { get { return m_DisabledHighlightedColor; } set { m_DisabledHighlightedColor = value; } }
 
             public static implicit operator ColorBlock(CustomColorBlock item) {
                 return new ColorBlock() {
+#if UNITY_2019_PLUS
+                    selectedColor = item.m_SelectedColor,
+#endif
                     colorMultiplier = item.m_ColorMultiplier,
                     disabledColor = item.m_DisabledColor,
                     fadeDuration = item.m_FadeDuration,
@@ -411,6 +462,7 @@ namespace Rewired.UI.ControlMapper {
             public Sprite disabledSprite { get { return m_DisabledSprite; } set { m_DisabledSprite = value; } }
             public Sprite highlightedSprite { get { return m_HighlightedSprite; } set { m_HighlightedSprite = value; } }
             public Sprite pressedSprite { get { return m_PressedSprite; } set { m_PressedSprite = value; } }
+            public Sprite selectedSprite { get { return m_SelectedSprite; } set { m_SelectedSprite = value; } }
             public Sprite disabledHighlightedSprite { get { return m_DisabledHighlightedSprite; } set { m_DisabledHighlightedSprite = value; } }
 
             [SerializeField]
@@ -420,13 +472,18 @@ namespace Rewired.UI.ControlMapper {
             [SerializeField]
             private Sprite m_PressedSprite;
             [SerializeField]
+            private Sprite m_SelectedSprite;
+            [SerializeField]
             private Sprite m_DisabledHighlightedSprite;
 
             public static implicit operator SpriteState(CustomSpriteState item) {
                 return new SpriteState() {
+#if UNITY_2019_PLUS
+                    selectedSprite = item.m_SelectedSprite,
+#endif
                     disabledSprite = item.m_DisabledSprite,
                     highlightedSprite = item.m_HighlightedSprite,
-                    pressedSprite = item.m_PressedSprite
+                    pressedSprite = item.m_PressedSprite,
                 };
             }
         }
@@ -439,6 +496,7 @@ namespace Rewired.UI.ControlMapper {
                 m_HighlightedTrigger = string.Empty;
                 m_NormalTrigger = string.Empty;
                 m_PressedTrigger = string.Empty;
+                m_SelectedTrigger = string.Empty;
                 m_DisabledHighlightedTrigger = string.Empty;
             }
 
@@ -446,6 +504,7 @@ namespace Rewired.UI.ControlMapper {
             public string highlightedTrigger { get { return m_HighlightedTrigger; } set { m_HighlightedTrigger = value; } }
             public string normalTrigger { get { return m_NormalTrigger; } set { m_NormalTrigger = value; } }
             public string pressedTrigger { get { return m_PressedTrigger; } set { m_PressedTrigger = value; } }
+            public string selectedTrigger { get { return m_SelectedTrigger; } set { m_SelectedTrigger = value; } }
             public string disabledHighlightedTrigger { get { return m_DisabledHighlightedTrigger; } set { m_DisabledHighlightedTrigger = value; } }
 
             [SerializeField]
@@ -457,10 +516,15 @@ namespace Rewired.UI.ControlMapper {
             [SerializeField]
             private string m_PressedTrigger;
             [SerializeField]
+            private string m_SelectedTrigger;
+            [SerializeField]
             private string m_DisabledHighlightedTrigger;
 
             public static implicit operator AnimationTriggers(CustomAnimationTriggers item) {
                 return new AnimationTriggers() {
+#if UNITY_2019_PLUS
+                    selectedTrigger = item.m_SelectedTrigger,
+#endif
                     disabledTrigger = item.m_DisabledTrigger,
                     highlightedTrigger = item.m_HighlightedTrigger,
                     normalTrigger = item.m_NormalTrigger,

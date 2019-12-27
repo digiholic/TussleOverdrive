@@ -1,4 +1,12 @@
-﻿// Copyright (c) 2015 Augie R. Maddox, Guavaman Enterprises. All rights reserved.
+// Copyright (c) 2015 Augie R. Maddox, Guavaman Enterprises. All rights reserved.
+
+#if UNITY_2020 || UNITY_2021 || UNITY_2022 || UNITY_2023 || UNITY_2024 || UNITY_2025
+#define UNITY_2020_PLUS
+#endif
+#if UNITY_2019 || UNITY_2020_PLUS
+#define UNITY_2019_PLUS
+#endif
+
 #pragma warning disable 0219
 #pragma warning disable 0618
 #pragma warning disable 0649
@@ -7,18 +15,41 @@ namespace Rewired.UI.ControlMapper {
 
     using UnityEngine;
     using UnityEngine.UI;
-    using UnityEngine.EventSystems;
-    using UnityEngine.Events;
     using System.Collections.Generic;
-    using System.Collections;
-    using Rewired;
 
     public static class UISelectionUtility {
 
+#if UNITY_2019_PLUS
+        private static Selectable[] s_reusableAllSelectables = new Selectable[0];
+#endif
+
         // Find the next selectable object in the specified world-space direction.
-        public static Selectable FindNextSelectable(Selectable selectable, Transform transform, List<Selectable> allSelectables, Vector3 direction) {
+        public static Selectable FindNextSelectable(Selectable selectable, Transform transform, Vector3 direction) {
             RectTransform rectTransform = transform as RectTransform;
             if(rectTransform == null) return null;
+
+            IList<Selectable> allSelectables;
+            int selectableCount;
+
+#if UNITY_2019_PLUS
+            
+            // Resize array as needed to fit all Selectables
+            if (Selectable.allSelectableCount > s_reusableAllSelectables.Length) {
+                s_reusableAllSelectables = new Selectable[Selectable.allSelectableCount];
+            }
+
+            // Unity made a breaking API change in 2019.1.5 that removed the ref keyword. There is no clean way to catch it.
+#if UNITY_2019_1_0 || UNITY_2019_1_1 || UNITY_2019_1_2 || UNITY_2019_1_3 || UNITY_2019_1_4 // 2019.1 up to 2019.1.4
+            selectableCount = Selectable.AllSelectablesNoAlloc(ref s_reusableAllSelectables);
+            allSelectables = s_reusableAllSelectables;
+#else // all future versions
+            selectableCount = Selectable.AllSelectablesNoAlloc(ref s_reusableAllSelectables);
+            allSelectables = s_reusableAllSelectables;
+#endif
+#else // pre-2019 versions
+            allSelectables = Selectable.allSelectables;
+            selectableCount = allSelectables.Count;
+#endif
 
             direction.Normalize();
 
@@ -34,7 +65,7 @@ namespace Rewired.UI.ControlMapper {
             const float length = 999999f; // Mathf.Infinity fails
             Vector2 directLineCastEndPos = searchStartPos + localDir * length;
 
-            for(int i = 0; i < allSelectables.Count; ++i) {
+            for(int i = 0; i < selectableCount; ++i) {
                 Selectable targetSelectable = allSelectables[i];
 
                 if(targetSelectable == selectable || targetSelectable == null) continue; // skip if self or null
@@ -94,6 +125,10 @@ namespace Rewired.UI.ControlMapper {
                 }
                 return bestDirectLinePick;
             }
+
+#if UNITY_2019_PLUS
+            System.Array.Clear(s_reusableAllSelectables, 0, s_reusableAllSelectables.Length);
+#endif
 
             return bestDirectLinePick ?? bestCenterDistPick;
         }

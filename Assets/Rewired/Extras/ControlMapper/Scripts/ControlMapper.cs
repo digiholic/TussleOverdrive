@@ -1,4 +1,7 @@
-﻿// Copyright (c) 2015 Augie R. Maddox, Guavaman Enterprises. All rights reserved.
+// Copyright (c) 2015 Augie R. Maddox, Guavaman Enterprises. All rights reserved.
+
+//#define REWIRED_CONTROL_MAPPER_USE_TMPRO
+
 #if UNITY_2020 || UNITY_2021 || UNITY_2022 || UNITY_2023 || UNITY_2024 || UNITY_2025
 #define UNITY_2020_PLUS
 #endif
@@ -74,11 +77,24 @@ namespace Rewired.UI.ControlMapper {
     using UnityEngine.EventSystems;
     using Rewired;
     using Rewired.Utils;
+#if REWIRED_CONTROL_MAPPER_USE_TMPRO
+    using Text = TMPro.TMP_Text;
+#else
+    using Text = UnityEngine.UI.Text;
+#endif
 
     [AddComponentMenu("")]
     public partial class ControlMapper : MonoBehaviour {
 
         #region Consts
+
+        public const int versionMajor = 1;
+        public const int versionMinor = 1;
+#if REWIRED_CONTROL_MAPPER_USE_TMPRO
+        public const bool usesTMPro = true;
+#else
+        public const bool usesTMPro = false;
+#endif
 
         private const float blockInputOnFocusTimeout = 0.1f; // a small delay after main screen receives focus to filter out button down events during new assignments
 
@@ -198,6 +214,12 @@ namespace Rewired.UI.ControlMapper {
         [SerializeField]
         [Tooltip("The height in relative pixels of the input grid button rows.")]
         private int _inputRowHeight = 40;
+        [SerializeField]
+        [Tooltip("The padding of the input grid button rows.")]
+        private RectOffset _inputRowPadding = new RectOffset();
+        [SerializeField]
+        [Tooltip("The width in relative pixels of spacing between input fields in a single column.")]
+        private int _inputRowFieldSpacing = 0;
         [SerializeField]
         [Tooltip("The width in relative pixels of spacing between columns.")]
         private int _inputColumnSpacing = 40;
@@ -1173,8 +1195,7 @@ namespace Rewired.UI.ControlMapper {
                             aem.axisRange,
                             aem.axisContribution
                         )
-                    )
-                    {
+                    ) {
                         usedFieldCount++;
                     }
                 }
@@ -1923,27 +1944,39 @@ namespace Rewired.UI.ControlMapper {
 
             // Actions column header
             references.inputGridHeader1 = CreateNewColumnGroup("ActionsHeader", references.inputGridHeadersGroup, _actionLabelWidth).transform;
-            CreateLabel(prefabs.inputGridHeaderLabel, _language.actionColumnLabel, references.inputGridHeader1, Vector2.zero);
+            label = CreateLabel(prefabs.inputGridHeaderLabel, _language.actionColumnLabel, references.inputGridHeader1, Vector2.zero);
 
             // Keyboard column header
             if(_showKeyboard) {
                 references.inputGridHeader2 = CreateNewColumnGroup("KeybordHeader", references.inputGridHeadersGroup, _keyboardColMaxWidth).transform;
                 label = CreateLabel(prefabs.inputGridHeaderLabel, _language.keyboardColumnLabel, references.inputGridHeader2, Vector2.zero);
+#if REWIRED_CONTROL_MAPPER_USE_TMPRO
+                label.SetTextAlignment(TMPro.TextAlignmentOptions.Center);
+#else
                 label.SetTextAlignment(TextAnchor.MiddleCenter);
+#endif
             }
 
             // Mouse column header
             if(_showMouse) {
                 references.inputGridHeader3 = CreateNewColumnGroup("MouseHeader", references.inputGridHeadersGroup, _mouseColMaxWidth).transform;
                 label = CreateLabel(prefabs.inputGridHeaderLabel, _language.mouseColumnLabel, references.inputGridHeader3, Vector2.zero);
+#if REWIRED_CONTROL_MAPPER_USE_TMPRO
+                label.SetTextAlignment(TMPro.TextAlignmentOptions.Center);
+#else
                 label.SetTextAlignment(TextAnchor.MiddleCenter);
+#endif
             }
 
             // Controller column header
             if(_showControllers) {
                 references.inputGridHeader4 = CreateNewColumnGroup("ControllerHeader", references.inputGridHeadersGroup, _controllerColMaxWidth).transform;
                 label = CreateLabel(prefabs.inputGridHeaderLabel, _language.controllerColumnLabel, references.inputGridHeader4, Vector2.zero);
+#if REWIRED_CONTROL_MAPPER_USE_TMPRO
+                label.SetTextAlignment(TMPro.TextAlignmentOptions.Center);
+#else
                 label.SetTextAlignment(TextAnchor.MiddleCenter);
+#endif
             }
         }
 
@@ -2014,7 +2047,11 @@ namespace Rewired.UI.ControlMapper {
                         if(_showActionCategoryLabels) {
                             if(categoryCount > 0) yPos -= _inputRowCategorySpacing; // extra space above category
                             GUILabel label = CreateLabel(category.descriptiveName, columnXform, new Vector2(0, yPos));
+#if REWIRED_CONTROL_MAPPER_USE_TMPRO
+                            label.SetFontStyle(TMPro.FontStyles.Bold);
+#else
                             label.SetFontStyle(FontStyle.Bold);
+#endif
                             label.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, _inputRowHeight);
                             inputGrid.AddActionCategoryLabel(set.mapCategoryId, category.id, label);
                             yPos -= _inputRowHeight;
@@ -2188,6 +2225,8 @@ namespace Rewired.UI.ControlMapper {
             // Create horizontal layout group to hold fields
             GameObject layoutGroup = CreateNewGUIObject("FieldLayoutGroup", parent, new Vector2(0, yPos));
             HorizontalLayoutGroup hLayoutGroup = layoutGroup.AddComponent<HorizontalLayoutGroup>();
+            hLayoutGroup.padding = _inputRowPadding;
+            hLayoutGroup.spacing = _inputRowFieldSpacing;
             RectTransform rt = layoutGroup.GetComponent<RectTransform>();
             rt.anchorMin = new Vector2(0, 1);
             rt.anchorMax = new Vector2(1, 1);

@@ -80,9 +80,11 @@
               <li><a href="InputBehaviors.html">Input Behaviors</a></li>
               <li><a href="Controllers.html">Controllers</a></li>
               <li><a href="ControllerMaps.html">Controller Maps</a></li>
+              <li><a href="ControllerTemplates.html">Controller Templates</a></li>
               <li><a href="MapCategories.html">Map Categories</a></li>
               <li><a href="Layouts.html">Layouts</a></li>
-              <li><a href="ControllerTemplates.html">Controller Templates</a></li>
+              <li><a href="LayoutManager.html">Layout Manager</a></li>
+              <li><a href="MapEnabler.html">Map Enabler</a></li>
               <li><a href="CustomControllers.html">Custom Controllers</a></li>
             </ul>
             <strong>Extras:</strong>
@@ -142,14 +144,15 @@
             
 			<!-- InstanceBeginEditable name="MainBody" -->
 
-    <p>Map Categories provide a way to categorize controller maps. Unlike <a href="Layouts.html">layouts</a>, all types of controller maps share the same set of categories. Map Categories can also be used in user control mapping screens.</p>
+    <p>Map Categories are the first level of categorization of <a href="ControllerMaps.html">Controller Maps</a>. Each Controller Map belongs to one <a href="MapCategories.html">Map Category</a> and one <a href="Layouts.html">Layout</a>. The combination of the two serves to identify the Controller Map when selecting a Controller Map in the Rewired Editor or from the API.</p>
+    <p>Unlike <a href="https://guavaman.com/projects/rewired/docs/Layouts.html">Layouts</a>, all types of controller maps share the same set of Map Categories.</p>
     <p>Depending on your game's design, you may choose to use Map Categories for a variety of purposes. One example use would be for a game that has multiple different game modes. In such a game, Map Categories can help you organize controls for your different game modes easier. For example, if you have the following categories each of which correspond to a different game mode: System, Menu, Gameplay Shared, Infantry, Vehicle, Airplane. This allows you to have different control mappings for each game mode. You can use the category to determine which maps should be enabled/disabled when you change your game mode, for example going to the menu screen or getting on/out of a vehicle.</p>
     <p>When creating user control assignment screens, you can use the &quot;User Assignable&quot; flag to help determine which categories to display to the user. For example, if your System category contains controls reserved for the system (Save, Load, Exit, etc), you may not want the user to be able to re-assign these. If that's the case, uncheck &quot;User Assignable&quot; and then check for this flag in your mapping screen code. (Some example mapping screen code is included in the Rewired/Examples directory.) Controls in non-user-assignable categories can also be locked from change during assignment conflict checking.</p>
     <p>Category selective conflict checking - choose to conflict check some categories with other categories, but not necessarily in both directions. (Useful for complex stacked map setups). To choose which categories the current category should conflict check against, uncheck &quot;Check Conflicts With All&quot; and add categories to &quot;Check Conflicts With Specific Categories.&quot;</p>
     <p><strong>Creating and Editing Map Categories:</strong></p>
     <p><a href="RewiredEditor.html#MapCategories">Rewired Editor - Map Categories</a></p>
     <div class="bottom-pager clearfix">
-	    <a class="back-button" href="ControllerMaps.html" title="Controller Maps"><span class="button-img"></span>Controller Maps</a>
+	    <a class="back-button" href="ControllerMaps.html" title="Controller Maps"><span class="button-img"></span>Controller Templates</a>
     	<a class="forward-button" href="Layouts.html" title="Layouts"><span class="button-img"></span>Layouts</a>
 	</div>
 <!-- InstanceEndEditable -->
@@ -157,7 +160,7 @@
         
     </div>
   <div class="footer clearfix">
-   	<p class="left">Copyright &copy;2014-2016 <a href="http://guavaman.com" title="Guavaman Enterprises">Guavaman Enterprises</a>. All rights reserved. No materials may be reproduced without permission.</p>
+   	<p class="left">Copyright &copy;2014-2019 <a href="http://guavaman.com" title="Guavaman Enterprises">Guavaman Enterprises</a>. All rights reserved. No materials may be reproduced without permission.</p>
   	<p class="right"><a href="http://guavaman.com/projects/rewired" title="Return to Rewired Website">Return to Rewired Website</a></p>
   </div>
   <!-- end .content --></div>

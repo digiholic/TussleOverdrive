@@ -80,9 +80,11 @@
               <li><a href="InputBehaviors.html">Input Behaviors</a></li>
               <li><a href="Controllers.html">Controllers</a></li>
               <li><a href="ControllerMaps.html">Controller Maps</a></li>
+              <li><a href="ControllerTemplates.html">Controller Templates</a></li>
               <li><a href="MapCategories.html">Map Categories</a></li>
               <li><a href="Layouts.html">Layouts</a></li>
-              <li><a href="ControllerTemplates.html">Controller Templates</a></li>
+              <li><a href="LayoutManager.html">Layout Manager</a></li>
+              <li><a href="MapEnabler.html">Map Enabler</a></li>
               <li><a href="CustomControllers.html">Custom Controllers</a></li>
             </ul>
             <strong>Extras:</strong>
@@ -160,18 +162,31 @@ void Update() {
     <p>Additionally, you have the option of using input events instead of polling for input as shown in the above example. See <a href="HowTos.html#get-input">How To's - Getting Input</a> for more information.</p>
     <p><strong>Creating/Editing Actions</strong></p>
     <p>You must create and edit Actions in the <a href="RewiredEditor.html">Rewired Editor</a>. See <a href="RewiredEditor.html#Actions">Rewired Editor - Actions</a> for more information.</p>
-
+    <p><strong>Action Categories</strong></p>
+    <p>Actions can be categorized into different lists through the use of Action Categories.</p>
+    <p>Action Categories are only for organizational purposes in the Rewired Editor or in lists of Actions for displaying in a UI (a control remapping screen, for example). They have no impact whatsoever on what controls are mapped in a Player and do not affect input in any way.</p>
+    <p><strong>Rewired&rsquo;s Purpose and Responsibilities</strong></p>
+    <p>It is common for Rewired's Action system to be used in an unintended manner as an integral part of or in place of a separate game state management system. This is not what Rewired was designed for and not how it is intended to be used.
+    </p>
+    <ul>
+      <li>Rewired&rsquo;s sole purpose is to read user input.</li>
+      <li>All &ldquo;Actions&rdquo; in Rewired are actually &ldquo;Input Actions&rdquo; and should not be   used for any other purpose than to get information about the user&rsquo;s intent. They should   not be confused with or used as game states or actions.</li>
+      <li>The Action &ldquo;Jump&rdquo; does not designate &ldquo;Player is jumping,&rdquo; but rather &ldquo;The   user wants to jump.&rdquo;</li>
+      <li>The game should implement permission and state management systems that   evaluate user input and then change states. After that point, what happens is outside the   responsibility of the input system.</li>
+</ul>
+    <h3></h3>
+    <p>&nbsp;</p>
     <div class="bottom-pager clearfix">
-	    <a class="back-button" href="Players.html" title="Players"><span class="button-img"></span>Players</a>
-    	<a class="forward-button" href="InputBehaviors.html" title="Input Behaviors"><span class="button-img"></span>Input Behaviors</a>
-	</div>
+      <a class="back-button" href="Players.html" title="Players"><span class="button-img"></span>Players</a>
+      <a class="forward-button" href="InputBehaviors.html" title="Input Behaviors"><span class="button-img"></span>Input Behaviors</a>
+    </div>
 
 <!-- InstanceEndEditable -->
         </div>
         
     </div>
   <div class="footer clearfix">
-   	<p class="left">Copyright &copy;2014-2016 <a href="http://guavaman.com" title="Guavaman Enterprises">Guavaman Enterprises</a>. All rights reserved. No materials may be reproduced without permission.</p>
+   	<p class="left">Copyright &copy;2014-2019 <a href="http://guavaman.com" title="Guavaman Enterprises">Guavaman Enterprises</a>. All rights reserved. No materials may be reproduced without permission.</p>
   	<p class="right"><a href="http://guavaman.com/projects/rewired" title="Return to Rewired Website">Return to Rewired Website</a></p>
   </div>
   <!-- end .content --></div>

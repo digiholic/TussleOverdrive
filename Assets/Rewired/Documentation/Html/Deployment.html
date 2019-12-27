@@ -80,9 +80,11 @@
               <li><a href="InputBehaviors.html">Input Behaviors</a></li>
               <li><a href="Controllers.html">Controllers</a></li>
               <li><a href="ControllerMaps.html">Controller Maps</a></li>
+              <li><a href="ControllerTemplates.html">Controller Templates</a></li>
               <li><a href="MapCategories.html">Map Categories</a></li>
               <li><a href="Layouts.html">Layouts</a></li>
-              <li><a href="ControllerTemplates.html">Controller Templates</a></li>
+              <li><a href="LayoutManager.html">Layout Manager</a></li>
+              <li><a href="MapEnabler.html">Map Enabler</a></li>
               <li><a href="CustomControllers.html">Custom Controllers</a></li>
             </ul>
             <strong>Extras:</strong>
@@ -154,7 +156,10 @@
     <p><strong>SDL2</strong></p>
     <p>If you are using SDL2 as the input source (optional) on any platforms, you must include the appropriate SDL2 libraries in your build package, unless you know the target operating system already provides this library (eg: SteamOS). The library you include and the location in your package in which to place it depends on the target platform and architecture. Failure to include the SDL2 libraries will result in an error being logged and input falling back to Unity input as the source.</p>
     <p>The latest libraries for Windows and OSX can be obtained at the <a href="https://www.libsdl.org/download-2.0.php" target="_blank">SDL2 website</a>.</p>
-    <p><strong>Windows:</strong> No special steps are required.</p>
+    <p><strong>Windows:</strong> </p>
+    <p>No special steps are required for Unity 5.x+.</p>
+    <p>Direct Input on Unity 4.x:<br />
+    The free version of Unity 4.x does not support native plugins. A native plugin is required to use Direct Input (optional) as the primary input source on the Windows Standalone platform. If you want to use Direct Input, you will need to manually copy the DLL from Assets/Plugins/x86/Rewired_DirectInput.dll file into the root folder of your project (above the Assets folder). After you make a build, you will need to copy the appropriate Rewired_DirectInput.dll file for your chosen architecture (x86 or x64) into a folder called Plugins inside the build folder. This is a hack to get around the Unity 4.x native plugin limitation. Unity 5.x+ does not require this hack.    </p>
     <p><strong>OSX:</strong> The SDL2 website does not include an SDL2 bundle, which is the format that Unity requires if you are to include a native OSX library in the Unity project's Plugins folder. You will either have to build the bundle manually, or use the bundle included with Rewired.</p>
     <p><strong>Linux:</strong> To include SDL in the game build, you must place the libSDL2-2.0.so.0 file in same location as the executable game file. Placing the library in the data folder in Plugins, Plugins/x86, Plugins/x86_64 or Mono or its sub-directories will not work. For 32-bit builds, you must copy the library in the Plugins/x86 folder and for 64-bit builds, copy the library in the Plugins/x86_64 folder.</p>
 <p>Rewired includes pre-built SDL2 libraries for each platform, but they must be installed manually through the menu option:</p>
@@ -173,7 +178,7 @@
         
     </div>
   <div class="footer clearfix">
-   	<p class="left">Copyright &copy;2014-2016 <a href="http://guavaman.com" title="Guavaman Enterprises">Guavaman Enterprises</a>. All rights reserved. No materials may be reproduced without permission.</p>
+   	<p class="left">Copyright &copy;2014-2019 <a href="http://guavaman.com" title="Guavaman Enterprises">Guavaman Enterprises</a>. All rights reserved. No materials may be reproduced without permission.</p>
   	<p class="right"><a href="http://guavaman.com/projects/rewired" title="Return to Rewired Website">Return to Rewired Website</a></p>
   </div>
   <!-- end .content --></div>

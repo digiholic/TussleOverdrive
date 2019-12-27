@@ -82,9 +82,11 @@
               <li><a href="InputBehaviors.html">Input Behaviors</a></li>
               <li><a href="Controllers.html">Controllers</a></li>
               <li><a href="ControllerMaps.html">Controller Maps</a></li>
+              <li><a href="ControllerTemplates.html">Controller Templates</a></li>
               <li><a href="MapCategories.html">Map Categories</a></li>
               <li><a href="Layouts.html">Layouts</a></li>
-              <li><a href="ControllerTemplates.html">Controller Templates</a></li>
+              <li><a href="LayoutManager.html">Layout Manager</a></li>
+              <li><a href="MapEnabler.html">Map Enabler</a></li>
               <li><a href="CustomControllers.html">Custom Controllers</a></li>
             </ul>
             <strong>Extras:</strong>
@@ -146,7 +148,7 @@
 			<p>Rewired supports most USB and Bluetooth controllers available, many with extended support. <span style="vertical-align: super; font-size: 65%;">[<a href="#clarifications">1</a>]</span></p>
 			<h3>Controllers with Extended Support</h3>
 			<p>Controllers with hardware definitions are recognized on each platform and are fully mappable by element name, have standardized axis directions, and may be compatible with a <a href="ControllerTemplates.html">Controller Template</a> for easy mapping. For all other controllers that do not appear in the following tables, <a href="#controllers-without-definitions">please see this important note</a>.</p>
-			<p><strong>Rewired currently includes extended support for the following game controllers as of version 1.1.20.0:</strong></p>
+			<p><strong>Rewired currently includes extended support for the following game controllers as of version 1.1.29.0:</strong></p>
 			<table width="100%" border="0" class="supported-controllers-table">
               <tr>
                 <td valign="top">&nbsp;</td>
@@ -1907,7 +1909,7 @@ OSX: <span class="no">No</span></td>
               </tr>
               <tr>
                 <td valign="top"><a href="#template-legend" class="template-icon template-icon-gamepad" title="Compatible with the Gamepad Template"></a></td>
-                <td valign="top">Nintendo Switch Pro Controller <span class="note">(wireless only)</span></td>
+                <td valign="top"><a name="nintendo-switch-pro-controller" id="nintendo-switch-pro-controller"></a>Nintendo Switch Pro Controller <span class="note">(wireless only)</span> <strong><span style="vertical-align: super; font-size: 65%;">[<a href="#clarifications-24">24</a>]</span></strong></td>
                 <td align="center" valign="top"><span class="yes">Yes <strong><span style="vertical-align: super; font-size: 65%;">[<a href="#clarifications-21">21</a>]</span></strong></span></td>
                 <td align="center" valign="top"><span class="yes">Yes <strong><span style="vertical-align: super; font-size: 65%;">[<a href="#clarifications-21">21</a>]</span></strong></span></td>
                 <td align="center" valign="top"><span class="no">No</span></td>
@@ -1922,21 +1924,22 @@ OSX: <span class="no">No</span></td>
                   OSX:<span class="no"> No</span></td>
               </tr>
               <tr>
-                <td><a href="#template-legend" class="template-icon template-icon-gamepad" title="Compatible with the Gamepad Template"></a></td>
-                <td>Nvidia Shield Portable<span class="note"> (Console)</span></td>
-                <td colspan="11">Android: <span class="yes">Yes</span><span class="yes"> <strong><span style="vertical-align: super; font-size: 65%;">[<a href="#clarifications">6</a>]</span></strong></span></td>
-              </tr>
-              <tr>
-                <td><a href="#template-legend" class="template-icon template-icon-gamepad" title="Compatible with the Gamepad Template"></a></td>
-                <td>Sony Playstation Vita</td>
-                <td colspan="11"><p>PSM Target: <span class="yes">Yes<br />
-                </span>PS Vita Target:<span class="yes"> Yes</span></p></td>
-              </tr>
-              <tr>
-                <td><a href="#template-legend" class="template-icon template-icon-gamepad" title="Compatible with the Gamepad Template"></a></td>
-                <td>Apple iOS Mfi Controllers <span class="note">(All Mfi gamepads)</span></td>
-                <td colspan="11"><p>iOS: <span class="yes">Yes</span><br />
-                  tvOS: <span class="yes">Yes</span> <br />
+                <td valign="top"><a href="#template-legend" class="template-icon template-icon-gamepad" title="Compatible with the Gamepad Template"></a></td>
+                <td valign="top">Stadia Gamepad<strong><span style="vertical-align: super; font-size: 65%;"></span></strong></td>
+                <td align="center" valign="top"><span class="yes">Yes</span></td>
+                <td align="center" valign="top"><span class="yes">Yes</span></td>
+                <td align="center" valign="top"><span class="no">No</span></td>
+                <td align="center" valign="top"><span class="maybe">Maybe</span><br />
+                <span class="note">(untested)</span></td>
+                <td align="center" valign="top"><span class="maybe">Maybe</span><br />
+                <span class="note">(untested)</span></td>
+                <td align="center" valign="top"><span class="yes">Yes</span></td>
+                <td align="center" valign="top"><span class="yes">Yes</span></td>
+                <td align="center" valign="top"><span class="yes">Yes</span></td>
+                <td align="center" valign="top"><span class="partial">Android Fallback</span></td>
+                <td align="center" valign="top"><span class="no">No</span></td>
+                <td align="center" valign="top">Windows:<span class="yes"> Yes</span><br />
+                OSX:<span class="yes"> Yes</span></td>
               </tr>
               <tr>
               	<td colspan="13">&nbsp;</td>
@@ -2781,7 +2784,8 @@ OSX:<span class="note"> Not Mapped Yet</span></td>
               </tr>
               <tr>
                 <td valign="top"><a href="#template-legend" class="template-icon template-icon-racing-wheel" title="Compatible with the Racing Wheel Template"></a></td>
-                <td valign="top"><a name="Logitech-G29-platforms" id="Logitech-G29-platforms"></a>Logitech G29 Driving Force Racing Wheel</td>
+                <td valign="top"><a name="Logitech-G29-platforms" id="Logitech-G29-platforms"></a>Logitech G29 Driving Force Racing Wheel<br />
+                <span class="note">(<a href="#Logitech-G29">important notes</a>)</span></td>
                 <td align="center" valign="top"><span class="yes">Yes</span></td>
                 <td align="center" valign="top"><span class="partial">Partial</span><br />
                 <span class="note">(<a href="#Logitech-G29">See notes</a>)</span></td>
@@ -3079,6 +3083,23 @@ OSX: <span class="yes">Yes</span></td>
                   OSX:<span class="note"> Not Mapped Yet</span></td>
               </tr>
               <tr>
+                <td valign="top"><a href="#template-legend" class="template-icon template-icon-racing-wheel" title="Compatible with the Racing Wheel Template"></a></td>
+                <td valign="top">XInput Wheel</td>
+                <td align="center" valign="top"><span class="yes">Yes</span><br />
+                <span class="note">(XInput)</span></td>
+                <td align="center" valign="top"><span class="no">No</span></td>
+                <td align="center" valign="top"><span class="no">No</span></td>
+                <td align="center" valign="top"><span class="yes">Yes</span></td>
+                <td align="center" valign="top"><span class="no">No</span></td>
+                <td align="center" valign="top"><span class="no">No</span></td>
+                <td align="center" valign="top"><span class="no">No</span></td>
+                <td align="center" valign="top"><span class="no">No</span></td>
+                <td align="center" valign="top"><span class="no">No</span></td>
+                <td align="center" valign="top"><span class="no">No</span></td>
+                <td align="center" valign="top">Windows:<span class="no"> No</span><br />
+                  OSX: <span class="no">No</span></td>
+              </tr>
+              <tr>
               	<td colspan="13">&nbsp;</td>
               </tr>
               <tr>
@@ -3118,6 +3139,23 @@ OSX: <span class="yes">Yes</span></td>
                 <td align="center" valign="top"><span class="no">No</span></td>
                 <td align="center" valign="top">Windows: <span class="yes">Yes</span><br />
                 OSX: <span class="yes">Yes</span></td>
+              </tr>
+              <tr>
+                <td valign="top">&nbsp;</td>
+                <td valign="top">Playstation VR Aim Controller</td>
+                <td align="center" valign="top"><span class="yes">Yes</span><br />
+                <span class="note">(Special features not supported)</span></td>
+                <td align="center" valign="top"><span class="note">Not Mapped Yet</span></td>
+                <td align="center" valign="top"><span class="no">No</span></td>
+                <td align="center" valign="top"><span class="yes">Yes</span></td>
+                <td align="center" valign="top"><span class="note">Not Mapped Yet</span><span class="note">)</span></td>
+                <td align="center" valign="top"><span class="note">Not Mapped Yet</span></td>
+                <td align="center" valign="top"><span class="note">Not Mapped Yet</span></td>
+                <td align="center" valign="top"><span class="note">Not Mapped Yet</span></td>
+                <td align="center" valign="top"><span class="partial">Android Fallback</span></td>
+                <td align="center" valign="top"><span class="no">No</span></td>
+                <td align="center" valign="top">Windows:<span class="note"> Not Mapped Yet</span><br />
+                OSX: <span class="note">Not Mapped Yet</span></td>
               </tr>
               <tr>
                 <td valign="top">&nbsp;</td>
@@ -3354,6 +3392,23 @@ OSX: <span class="no">No</span></td>
 OSX: <span class="no">No</span></td>
               </tr>
               <tr>
+                <td valign="top">&nbsp;</td>
+                <td valign="top">XInput Guitar</td>
+                <td align="center" valign="top"><span class="yes">Yes</span><br />
+                  <span class="note">(XInput)</span></td>
+                <td align="center" valign="top"><span class="no">No</span></td>
+                <td align="center" valign="top"><span class="no">No</span></td>
+                <td align="center" valign="top"><span class="yes">Yes</span></td>
+                <td align="center" valign="top"><span class="no">No</span></td>
+                <td align="center" valign="top"><span class="no">No</span></td>
+                <td align="center" valign="top"><span class="no">No</span></td>
+                <td align="center" valign="top"><span class="no">No</span></td>
+                <td align="center" valign="top"><span class="no">No</span></td>
+                <td align="center" valign="top"><span class="no">No</span></td>
+                <td align="center" valign="top">Windows:<span class="no"> No</span><br />
+                  OSX: <span class="no">No</span></td>
+              </tr>
+              <tr>
               	<td colspan="13">&nbsp;</td>
               </tr>
             <tr>
@@ -3520,6 +3575,45 @@ OSX: <span class="no">No</span></td>
           <table width="100%" border="0" class="supported-controllers-table">
             <tr>
               <td width="9%" valign="top">&nbsp;</td>
+              <td width="13%" valign="top"><p class="controller-type"><a name="ios-tvos" id="ios-tvos"></a>iOS/tvOS</p></td>
+              <td width="78%" align="center" valign="top"><strong>Unity</strong></td>
+            </tr>
+            <tr>
+              <td valign="top"><a href="#template-legend" class="template-icon template-icon-gamepad" title="Compatible with the Gamepad Template"></a></td>
+              <td valign="top">Apple iOS Mfi Controllers <span class="note">(All Mfi gamepads)</span></td>
+              <td align="center" valign="top"><span class="yes">Yes</span></td>
+            </tr>
+          </table>
+          <p>&nbsp;</p>
+          <table width="100%" border="0" class="supported-controllers-table">
+            <tr>
+              <td width="9%" valign="top">&nbsp;</td>
+              <td width="13%" valign="top"><p class="controller-type"><a name="nvidia-shield-portable" id="nvidia-shield-portable"></a>Nvidia Shield Portable</p></td>
+              <td width="78%" align="center" valign="top"><strong>Unity</strong></td>
+            </tr>
+            <tr>
+              <td valign="top"><a href="#template-legend" class="template-icon template-icon-gamepad" title="Compatible with the Gamepad Template"></a></td>
+              <td valign="top">Console<span class="note"></span></td>
+              <td align="center" valign="top"><span class="yes">Yes</span></td>
+            </tr>
+          </table>
+          <p>&nbsp;</p>
+          <table width="100%" border="0" class="supported-controllers-table">
+            <tr>
+              <td width="9%" valign="top">&nbsp;</td>
+              <td width="13%" valign="top"><p class="controller-type"><a name="ps-vita" id="ps-vita"></a>PlayStation Vita</p></td>
+              <td width="78%" align="center" valign="top"><strong>Unity</strong></td>
+            </tr>
+            <tr>
+              <td valign="top"><a href="#template-legend" class="template-icon template-icon-gamepad" title="Compatible with the Gamepad Template"></a></td>
+              <td valign="top">Console</td>
+              <td align="center" valign="top"><p>PSM Target<span class="yes"><span class="note"></span>: Yes</span><br/>PS Vita Target<span class="yes"><span class="note"></span>: Yes</span></p></td>
+            </tr>
+          </table>
+          <p>&nbsp;</p>
+          <table width="100%" border="0" class="supported-controllers-table">
+            <tr>
+              <td width="9%" valign="top">&nbsp;</td>
               <td width="13%" valign="top"><p class="controller-type"><a name="xbox-one" id="xbox-one"></a>Xbox One</p></td>
               <td width="78%" align="center" valign="top"><strong>Native</strong></td>
             </tr>
@@ -3544,27 +3638,33 @@ OSX: <span class="no">No</span></td>
             <tr>
               <td valign="top"><a href="#template-legend" class="template-icon template-icon-hotas" title="Compatible with the HOTAS Template"></a><br /><a href="#template-legend" class="template-icon template-icon-flight-pedals" title="Compatible with the Flight Pedals Template"></a></td>
               <td valign="top">Flight Stick<span class="note"></span>s</td>
-              <td align="center" valign="top"><span class="yes">Yes</span></td>
+              <td align="center" valign="top"><span class="yes">Yes</span><br/>
+              <span class="note">(Unity 2018+)</span></td>
             </tr>
             <tr>
               <td valign="top"><a href="#template-legend" class="template-icon template-icon-racing-wheel" title="Compatible with the Racing Wheel Template"></a></td>
               <td valign="top">Steering Wheels</td>
-              <td align="center" valign="top"><span class="yes">Yes</span></td>
+              <td align="center" valign="top"><span class="yes">Yes</span><br/>
+              <span class="note">(Unity 2018+)</span></td>
             </tr>
             <tr>
               <td valign="top">&nbsp;</td>
               <td valign="top">Guitars</td>
-              <td align="center" valign="top"><span class="yes">Yes</span></td>
+              <td align="center" valign="top"><span class="yes">Yes</span><br/>
+              <span class="note">(Unity 2018+)</span></td>
             </tr>
             <tr>
               <td valign="top">&nbsp;</td>
               <td valign="top">Drums</td>
-              <td align="center" valign="top"><span class="yes">Yes</span></td>
+              <td align="center" valign="top"><span class="yes">Yes</span><br/>
+              <span class="note">(Unity 2018+)</span></td>
             </tr>
             <tr>
-              <td valign="top">&nbsp;</td>
+              <td valign="top"><a href="#template-legend" class="template-icon template-icon-gamepad" title="Compatible with the Gamepad Template"></a></td>
               <td valign="top">Playstation VR Aim Controller</td>
-              <td align="center" valign="top"><span class="no">No</span></td>
+              <td align="center" valign="top"><span class="yes">Yes</span><br/>
+                <span class="note">(Unity 2018+)</span>
+              </td>
             </tr>
             <tr>
               <td valign="top">&nbsp;</td>
@@ -3582,6 +3682,34 @@ OSX: <span class="no">No</span></td>
             <tr>
               <td valign="top"><a href="#template-legend" class="template-icon template-icon-gamepad" title="Compatible with the Gamepad Template"></a></td>
               <td valign="top">Gamepad<span class="note"></span>s</td>
+              <td align="center" valign="top"><span class="yes">Yes</span></td>
+            </tr>
+          </table>
+          <p>&nbsp;</p>
+          <table width="100%" border="0" class="supported-controllers-table">
+            <tr>
+              <td width="9%" valign="top">&nbsp;</td>
+              <td width="13%" valign="top"><p class="controller-type"><a name="stadia" id="stadia"></a>Stadia</p></td>
+              <td width="78%" align="center" valign="top"><strong>Native</strong></td>
+            </tr>
+            <tr>
+              <td valign="top"><a href="#template-legend" class="template-icon template-icon-gamepad" title="Compatible with the Gamepad Template"></a></td>
+              <td valign="top">Stadia Controller</td>
+              <td align="center" valign="top"><span class="yes">Yes</span></td>
+            </tr>
+            <tr>
+              <td valign="top"><a href="#template-legend" class="template-icon template-icon-gamepad" title="Compatible with the Gamepad Template"></a></td>
+              <td valign="top">Xbox Controllers</td>
+              <td align="center" valign="top"><span class="yes">Yes</span></td>
+            </tr>
+            <tr>
+              <td valign="top"><a href="#template-legend" class="template-icon template-icon-gamepad" title="Compatible with the Gamepad Template"></a></td>
+              <td valign="top">Sony DualShock 4</td>
+              <td align="center" valign="top"><span class="yes">Yes</span></td>
+            </tr>
+            <tr>
+              <td valign="top"><a href="#template-legend" class="template-icon template-icon-gamepad" title="Compatible with the Gamepad Template"></a></td>
+              <td valign="top">Nintendo Switch Pro Controller</td>
               <td align="center" valign="top"><span class="yes">Yes</span></td>
             </tr>
           </table>
@@ -4891,6 +5019,7 @@ OSX: <span class="no">No</span></td>
 <p style="font-size: 60%"><a name="clarifications-21" id="clarifications-21"></a>21  Gyro, vibration, and other special features not available.</p>
 <p style="font-size: 60%"><a name="clarifications-22" id="clarifications-22"></a>22 On OSX, using X mode with a wired connection on Gamesir G3, G3s, G3v, and G3w can cause the entire OS input system to crash requiring a system reboot to fix. It may be related to the XInput driver version in use. YMMV.</p>
 <p style="font-size: 60%"><a name="clarifications-23" id="clarifications-23"></a>23 This device in OSX mode emulates and appears to the system as a Sony DualShock 4 controller. However, if Enhanced Device Support is enabled, the controller will become unusable because the controller does not correctly emulate the Sony input/output report format, therefore Rewired's low-level Enhanced Device Support mode cannot properly communicate with the device. There is no way to determine that the connected device is an 8Bitdo gamepad and not a true Sony DualShock 4, so when Enhanced Device Support is enabled, the device cannot function in OSX mode.</p>
+<p style="font-size: 60%"><a name="clarifications-24" id="clarifications-24"></a>24 The Nintendo Switch Pro Controller does not produce any input when connected via USB. This is not a limitation of Rewired. It is a limitation of the hardware and/or HID driver.</p>
 <div class="bottom-pager clearfix">
   <a class="back-button" href="Documentation.html" title="Documentation"><span class="button-img"></span>Documentation</a>
 </div>
@@ -4899,7 +5028,7 @@ OSX: <span class="no">No</span></td>
         
     </div>
   <div class="footer clearfix">
-   	<p class="left">Copyright &copy;2014-2016 <a href="http://guavaman.com" title="Guavaman Enterprises">Guavaman Enterprises</a>. All rights reserved. No materials may be reproduced without permission.</p>
+   	<p class="left">Copyright &copy;2014-2019 <a href="http://guavaman.com" title="Guavaman Enterprises">Guavaman Enterprises</a>. All rights reserved. No materials may be reproduced without permission.</p>
   	<p class="right"><a href="http://guavaman.com/projects/rewired" title="Return to Rewired Website">Return to Rewired Website</a></p>
   </div>
   <!-- end .content --></div>

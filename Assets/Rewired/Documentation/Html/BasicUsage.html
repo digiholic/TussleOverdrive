@@ -80,9 +80,11 @@
               <li><a href="InputBehaviors.html">Input Behaviors</a></li>
               <li><a href="Controllers.html">Controllers</a></li>
               <li><a href="ControllerMaps.html">Controller Maps</a></li>
+              <li><a href="ControllerTemplates.html">Controller Templates</a></li>
               <li><a href="MapCategories.html">Map Categories</a></li>
               <li><a href="Layouts.html">Layouts</a></li>
-              <li><a href="ControllerTemplates.html">Controller Templates</a></li>
+              <li><a href="LayoutManager.html">Layout Manager</a></li>
+              <li><a href="MapEnabler.html">Map Enabler</a></li>
               <li><a href="CustomControllers.html">Custom Controllers</a></li>
             </ul>
             <strong>Extras:</strong>
@@ -142,8 +144,8 @@
             
 			<!-- InstanceBeginEditable name="MainBody" -->
 
-    <h3>Accessing Rewired in Scripts</h3>
-    <p>To access Rewired classes from a script, add the following line to the top of the script so you don't have to type the Rewired namespace each time:</p>
+            <h3>Accessing Rewired in Scripts</h3>
+<p>To access Rewired classes from a script, add the following line to the top of the script so you don't have to type the Rewired namespace each time:</p>
     <p><strong>C#:</strong></p>
 <pre class="code">using Rewired;</pre>
 <p><strong>Javascript (add below any #pragma statements):</strong></p>
@@ -154,9 +156,16 @@
 <h3>The Most Important Classes</h3>
     <p><a href="http://guavaman.com/projects/rewired/docs/api-reference/html/T_Rewired_ReInput.htm">Rewired.ReInput</a> - The primary static input class. Access Players, Controllers, and much more.</p>
     <p><a href="http://guavaman.com/projects/rewired/docs/api-reference/html/T_Rewired_Player.htm">Rewired.Player</a> - Access input through Player.</p>
-<p><a href="HowTos.html#important-classes">For more important classes, see How To's - Important Classes</a></p>
+<p><a href="HowTos.html#important-classes">For more important classes, see How To's - Important Classes</a>    </p>
+<p>See the <a href="http://guavaman.com/projects/rewired/docs/api-reference">API Reference</a> for a complete list of classes.</p>
+    <p>&nbsp;</p>
+    <p><strong>&quot;Id&quot; is NOT an &quot;Index&quot;</strong></p>
+<p>Anywhere the term Id is used in the API is a UNIQUE ID, not an Index, and cannot be used to iterate over items or get the first Joystick.</p>
+    <p>&nbsp;</p>
+    <h3>Debugging and Troubleshooting</h3>
+    <p>The single most important tool for debugging and troubleshooting is <a href="Troubleshooting.html#debug-information">Debug Information</a>.</p>
+    <p>&nbsp;</p>
 <p>&nbsp;</p>
-    <p>See the <a href="http://guavaman.com/projects/rewired/docs/api-reference">API Reference</a> for a complete list of classes.</p>
 
 	<div class="bottom-pager clearfix">
 	    <a class="back-button" href="QuickStart.html" title="Quick Start"><span class="button-img"></span>Quick Start</a>
@@ -168,7 +177,7 @@
         
     </div>
   <div class="footer clearfix">
-   	<p class="left">Copyright &copy;2014-2016 <a href="http://guavaman.com" title="Guavaman Enterprises">Guavaman Enterprises</a>. All rights reserved. No materials may be reproduced without permission.</p>
+   	<p class="left">Copyright &copy;2014-2019 <a href="http://guavaman.com" title="Guavaman Enterprises">Guavaman Enterprises</a>. All rights reserved. No materials may be reproduced without permission.</p>
   	<p class="right"><a href="http://guavaman.com/projects/rewired" title="Return to Rewired Website">Return to Rewired Website</a></p>
   </div>
   <!-- end .content --></div>

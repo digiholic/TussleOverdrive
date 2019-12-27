@@ -80,9 +80,11 @@
               <li><a href="InputBehaviors.html">Input Behaviors</a></li>
               <li><a href="Controllers.html">Controllers</a></li>
               <li><a href="ControllerMaps.html">Controller Maps</a></li>
+              <li><a href="ControllerTemplates.html">Controller Templates</a></li>
               <li><a href="MapCategories.html">Map Categories</a></li>
               <li><a href="Layouts.html">Layouts</a></li>
-              <li><a href="ControllerTemplates.html">Controller Templates</a></li>
+              <li><a href="LayoutManager.html">Layout Manager</a></li>
+              <li><a href="MapEnabler.html">Map Enabler</a></li>
               <li><a href="CustomControllers.html">Custom Controllers</a></li>
             </ul>
             <strong>Extras:</strong>
@@ -135,7 +137,7 @@
     	<div class="main-body">
 	        <div class="logo"><a href="http://guavaman.com/projects/rewired" title="Rewired"><img src="files/images/rewired-logo.png" width="173" height="139" alt="Rewired" /></a></div>
                      
-          <h1>
+            <h1>
             <!-- InstanceBeginEditable name="PageHeader" -->Known Issues
       <!-- InstanceEndEditable -->
             </h1>
@@ -145,11 +147,13 @@
     <p><strong>Topics:</strong></p>
     <h3><a href="#general">General</a></h3>
     <ul>
+      <li><a href="#not-compatible-unity-new-input-system">Rewired is not compatible with Unity's &quot;new&quot; input system</a></li>
       <li><a href="#running-in-a-sandbox">Running in a Sandbox</a></li>
     </ul>
     <h3><a href="#windows">Windows:</a></h3>
     <ul>
-      <li><a href="#windows-standalone-il2cpp">Windows, IL2CPP: Rewired falls back to Unity input</a></li>
+      <li><a href="#windows-standalone-il2cpp">Windows Standalone, IL2CPP: Rewired falls back to Unity input</a></li>
+      <li><a href="#windows-directinput-joysticks-not-detected-net46">Windows Standalone, Direct Input: Joysticks not detected when using .Net 4.6 scripting backend</a></li>
       <li><a href="#windows-editor-oculus-touch-crash">Windows Editor: Crash in Unity 5.6+ with Oculus Touch</a></li>
       <li><a href="#xinput-device-name">Windows Platforms: XInput devices on Windows appear as &quot;XInput Gamepad&quot;</a></li>
       <li><a href="#windows-xinput-devices-use-x360-map">Windows Platforms: All XInput devices use the Xbox 360 Controller map when &quot;Use XInput&quot; is enabled</a></li>
@@ -175,7 +179,7 @@
     <h3><a href="#osx">OSX:</a></h3>
     <ul>
       <li><a href="#osx-standalone-il2cpp">OSX, IL2CPP: Rewired falls back to Unity input</a></li>
-      <li><a href="#osx-net46-initialization-exception">OSX, .NET 4.6 experimental backend: Throws exception on initialization</a><a href="#osx-standalone-il2cpp"> in Unity 2017.1 - Unity 2017.3</a></li>
+      <li><a href="#osx-net46-initialization-exception">OSX, .NET 4.6 experimental backend: Throws exception on initialization in Unity 2017.1 - Unity 2017.3</a></li>
       </ul>
     <h3><a href="#linux">Linux:</a></h3>
     <ul>
@@ -187,6 +191,10 @@
 <h3><a href="#unity-editor">Unity Editor (all platforms):</a>    </h3>
 <ul>
   
+  <li><a href="#editor-recompile-after-finished-playing">Rewired stops working when changing scripts in Play mode with &quot;Recompile After Finished Playing&quot; option</a></li>
+  <li><a href="#control-mapper-compiler-error-unity-2019-1-5f1">Compiler error in Unity 2019.1.5f1 when Control Mapper installed</a></li>
+  <li><a href="#assembly-errors-2019-2">Assembly errors in projects upgraded to Unity 2019.2</a></li>
+  <li><a href="#assembly-errors-2019-3-alpha-beta">Assembly and build errors in Unity 2019.3 alpha/beta</a></li>
   <li><a href="#increased-compile-play-time-editor">Rewired increases compile time and load time after pressing Play in the editor</a></li>
       <li><a href="#serialized-data-corruption-after-import">Serialized data corruption after importing Rewired</a></li>
       <li><a href="#serialized-data-corruption-after-upgrading-unity">Serialized data corruption after upgrading Unity</a></li>
@@ -194,19 +202,13 @@
       <li><a href="#il2cpp-p0-marshaled-error">IL2CPP: _p0_marshaled': undeclared identifier error on Unity 5.3.2p1, 5.3.2p2</a></li>
       <li><a href="#compiler-error-512-patch">Compiler error in 5.1.2 patch releases</a></li>
       <li><a href="#editor-is-compiling-gc-alloc">InputManager_Base.Update generates 17 bytes of GC Alloc per frame in the Profiler</a></li>
-      <li><a href="#data-files-missing">&quot;Data Files is missing&quot; error</a></li>
     </ul>
     <h3><a href="#android">Android:</a></h3>
     <ul>
       <li><a href="#android-remotes">Remotes are not detected (Nexus Player, Amazon Fire TV, Razer Forge TV, etc.)</a></li>
       <li><a href="#android-unity-joystick-bugs-v5_5">Joysticks do not sent connect/disconnect events, multiple joysticks appear when the same joystick is unplugged and re-plugged</a></li>
       <li><a href="#android-il2cpp-ndk-compiler-bug">IL2CPP: Editor crashes or takes a very long time to compile or stalls forever</a></li>
-      </ul>
-    <h3><a href="ios-tvos">iOS / tvOS:</a></h3>
-    <ul>
-      <li><a href="#ios-controllers-not-detected">iOS/tvOS: Game controllers not detected</a></li>
-      <li><a href="#apple-tv-gyro">Apple TV Siri Remote gyroscope does not work</a></li>
-      </ul>
+    </ul>
     <h3><a href="xbox-one">Xbox One:</a></h3>
     <ul>
       <li><a href="#xbox-one-controller-connections-error">Controller connections and disconnections do not work</a></li>
@@ -229,7 +231,12 @@
 <hr />
 <p>&nbsp;</p>
 <h2><a name="general" id="general"></a>General:</h2>
+<h3><a name="not-compatible-unity-new-input-system" id="not-compatible-unity-new-input-system"></a>Rewired is not compatible with Unity's &quot;new&quot; input system</h3>
+<p>Unity has introduced a new input system which changes the way Unity handles input. Rewired is not compatible with Unity's new input system. If you enable the new input system by setting this value to &quot;Input System&quot; or &quot;Both&quot;, Rewired and/or Unity's input system may not function at all or parts of each system may not function correctly. While some platforms may work, others may not.</p>
+<p>The only setting supported by Rewired is:<br />
+  Player Settings -&gt; Active Input Handling -&gt; Input Manager</p>
 <p>&nbsp;</p>
+<hr />
 <h3><a name="running-in-a-sandbox" id="running-in-a-sandbox"></a>Running in a Sandbox</h3>
 <p><strong>Windows (tested with Sandboxie):</strong></p>
 <ul>
@@ -241,10 +248,14 @@
 <p>&nbsp;</p>
 <h2><a name="windows" id="windows"></a>Windows</h2>
 <p>&nbsp;</p>
-<h3><a name="windows-standalone-il2cpp" id="windows-standalone-il2cpp"></a>Windows, IL2CPP: Rewired falls back to Unity input</h3>
-<p>IL2CPP building is a brand new feature added in Unity 2018.</p>
-<p>Rewired is not compatible with the IL2CPP scripting backend on desktop Standalone platforms at this time. If you build to IL2CPP on a Standalone platform, Rewired will fall back to non-native Unity input mode and many features such as support for 20+ buttons per-controller, controller vibration, universal XInput device compatibility (Windows), gyro/accelerometer support certain devices, much more robust device detection and support, and more will be unavailable.</p>
-<p>Support for IL2CPP on Standalone platforms is being worked on, but there is currently no ETA due to technical issues. This documentation will be updated when support is added.</p>
+<h3><a name="windows-standalone-il2cpp" id="windows-standalone-il2cpp"></a>Windows Standalone, IL2CPP: Rewired falls back to Unity input</h3>
+<p>Support for IL2CPP on desktop platforms was added in Rewired 1.1.22.0.</p>
+<p><strong>Solution:</strong> <a href="Updating.html">Update Rewired</a>.</p>
+<p>&nbsp;</p>
+<hr />
+<h3><a name="windows-directinput-joysticks-not-detected-net46" id="windows-directinput-joysticks-not-detected-net46"></a>Windows Standalone, Direct Input: Joysticks not detected when using .Net 4.6 scripting backend</h3>
+<p>Direct Input was moved into a native DLL in Rewired 1.1.22.0 and therefore no longer has this issue which was caused by the lack of support of a particular IL instruction in the .Net 4.6 scripting backend.</p>
+<p><strong>Solution:</strong> <a href="Updating.html">Update Rewired</a>.</p>
 <p>&nbsp;</p>
 <hr />
 <h3><a name="windows-editor-oculus-touch-crash" id="windows-editor-oculus-touch-crash"></a>Windows Editor: Crash in Unity 5.6+ with Oculus Touch</h3>
@@ -371,13 +382,43 @@
 <p>&nbsp;</p>
 <hr />
 <h3><a name="uwp-il2cpp-controller-disconnect-crash" id="uwp-il2cpp-controller-disconnect-crash"></a>Windows 10 Universal IL2CPP: Crash when disconnecting controllers</h3>
-<p>There are two different disconnect crash scenarios, each with its own circumstances:</p>
-<p><strong>Scenario 1: Non-XInput controllers</strong></p>
+<p>There are three different disconnect crash scenarios, each with its own circumstances:</p>
+<p><strong>Scenario 1: XInput controllers on Unity 2018.2.0 - 2018.2.18</strong></p>
+<p><strong>Severity: <span  style="color: #ff0000">Critical</span></strong></p>
+<p><strong style="color: #008800">This issue was fixed by Unity in version 2018.2.19. Update to Unity 2018.2.19+.</strong><strong><span  style="color: #ff0000"><br />
+</span></strong></p>
+<p>Starting with Unity 2018.2.0, XInput-compatible controllers will crash the application when unplugged if the application is started with any XInput-compatible controller connected. This is a bug in Unity, not Rewired, and there is no possible workaround.</p>
+<p>This bug occurs when any script or library makes a call to any part of the Windows.Gaming.Input.Gamepad API. Simply making this call will result in Unity crashing internally the next time a controller is unplugged. Use of Windows.Gaming.Input.Gamepad is absolutely required in order to get input natively from gamepads in Windows UWP.</p>
+<p>You can easily reproduce this by creating a new Unity project and adding this script to a GameObject:</p>
+<pre class="code">using UnityEngine;
+
+public class GamepadTest : MonoBehaviour {
+#if ENABLE_WINMD_SUPPORT
+    void OnGUI() {
+        GUILayout.Label("Gamepad Count: " + Windows.Gaming.Input.Gamepad.Gamepads.Count);
+    }
+#endif
+}</pre>
+<p>Build the application and launch it with a gamepad connected. Unplug it and the application will crash with the following stack trace:</p>
+<pre class="code">UnityPlayer.dll!dynamic_array&lt;class GameControllers::Gamepads::XboxGamepad,0&gt;::erase(class GameControllers::Gamepads::XboxGamepad *,class GameControllers::Gamepads::XboxGamepad *)
+UnityPlayer.dll!GameControllers::Gamepads::XboxGamepads::UpdateCurrentGamepadList(void)
+UnityPlayer.dll!GameControllers::Gamepads::XboxGamepads::GetCurrentGamepads(void)
+UnityPlayer.dll!GameControllers::Gamepads::ProcessGamepadInput(class InputManager &,class std::map&lt;unsigned int,int,struct std::less&lt;unsigned int&gt;,class std::allocator&lt;struct std::pair&lt;unsigned int const ,int&gt; &gt; &gt; &,struct dynamic_array&lt;unsigned int,0&gt; &)
+UnityPlayer.dll!Input::PreProcess(class Vector2f const &)
+UnityPlayer.dll!UnityPlayer::AppCallbacks::DoPerformUpdateAndRender(void)
+UnityPlayer.dll!UnityPlayer::AppCallbacks::PerformUpdateAndRender(void)
+UnityPlayer.dll!UnityPlayer::AppCallbacks::_AppThreadImplementation(void *)
+UnityPlayer.dll!UnityPlayer::AppCallbacks::_AppThread(void *)
+kernel32.dll!BaseThreadInitThunk()
+ntdll.dll!RtlUserThreadStart()</pre>
+<p>This affects the .NET scripting backend and the IL2CPP scripting backend.</p>
+<p>Solution: Update to Unity 2018.2.19+.</p>
+<p><strong>Scenario 2: Non-XInput controllers</strong></p>
 <p>As of Unity 5.3.4f1, after enabling support for standard HID joysticks in the Package.appxmanifest, Unity may crash when disconnecting a non-XInput controller (also happens with XInput controllers in Untiy 2017). This is a bug in Unity, not Rewired and there is no possible workaround if you want to support any controllers besides XInput controllers. (To disable support for non-XInput controllers, remove the <a href="SpecialPlatformSupport.html#uwp-enabling-hid-joystick-support">tags added to the Package.appxmanifest mentioned here</a>.) This bug has been reported to Unity, but so far no fix has been announced.</p>
 <p>This issue does not affect Windows 10 Universal builds when using the .NET scripting backend.</p>
 <p><strong>Update:</strong> This bug has been fixed as of Unity 5.3.5p1.<br />
   <strong>Update 2:</strong> This bug has resurfaced in Unity 2017.1.</p>
-<p><strong>Scenario 2: Xbox One S controller</strong></p>
+<p><strong>Scenario 3: Xbox One S controller</strong></p>
 <p>As of Unity 2017.1, after enabling support for standard HID joysticks in the Package.appxmanifest and disabling Use XInput in the <a href="RewiredEditor.html#Settings">Rewired Editor -&gt; Settings for Windows 10 UWP</a>, the application will always crash when disconnecting an Xbox One S controller. This issue comes from the Windows HID API used to get HID device events. When Use XInput is enabled, the Xbox One S controller will be handled through the Windows.Gaming.Input API instead and no longer cause the crash.</p>
 <p>&nbsp;</p>
 <hr />
@@ -421,9 +462,8 @@ Catastrophic failure while running rrw: Mono.Cecil.AssemblyResolutionException: 
 <h2><a name="osx" id="osx"></a>OSX:</h2>
 <p>&nbsp;</p>
 <h3><a name="osx-standalone-il2cpp" id="osx-standalone-il2cpp2"></a>OSX, IL2CPP: Rewired falls back to Unity input</h3>
-<p>IL2CPP building is a brand new feature added in Unity 2018.</p>
-<p>Rewired is not compatible with the IL2CPP scripting backend on desktop Standalone platforms at this time. If you build to IL2CPP on a Standalone platform, Rewired will fall back to non-native Unity input mode and many features such as support for 20+ buttons per-controller, controller vibration, universal XInput device compatibility (Windows), gyro/accelerometer support certain devices, much more robust device detection and support, and more will be unavailable.</p>
-<p>Support for IL2CPP on Standalone platforms is being worked on, but there is currently no ETA due to technical issues. This documentation will be updated when support is added.</p>
+<p>Support for IL2CPP on desktop platforms was added in Rewired 1.1.22.0.</p>
+<p><strong>Solution:</strong> <a href="Updating.html">Update Rewired</a>.</p>
 <p>&nbsp;</p>
 <hr />
 <h3><a name="osx-net46-initialization-exception" id="osx-net46-initialization-exception"></a>OSX, .NET 4.6 experimental backend: Throws exception on initialization  in Unity 2017.1 - 2017.3</h3>
@@ -447,9 +487,7 @@ Catastrophic failure while running rrw: Mono.Cecil.AssemblyResolutionException: 
 <h2><a name="linux" id="linux"></a>Linux:</h2>
 <p>&nbsp;</p>
 <h3><a name="linux-standalone-il2cpp" id="linux-standalone-il2cpp"></a>Linux, IL2CPP: Rewired falls back to Unity input</h3>
-<p>IL2CPP building is a brand new feature added in Unity 2018.</p>
-<p>Rewired is not compatible with the IL2CPP scripting backend on desktop Standalone platforms at this time. If you build to IL2CPP on a Standalone platform, Rewired will fall back to non-native Unity input mode and many features such as support for 20+ buttons per-controller, controller vibration, universal XInput device compatibility (Windows), gyro/accelerometer support certain devices, much more robust device detection and support, and more will be unavailable.</p>
-<p>Support for IL2CPP on Standalone platforms is being worked on, but there is currently no ETA due to technical issues. This documentation will be updated when support is added.</p>
+<p>As of Unity 2018.3.0, Unity does not support IL2CPP on Linux. If/when IL2CPP support is added to Unity, Rewired versions of 1.1.22.0+ should automatically just work. Obviously this cannot be tested until Unity adds support for the platform.</p>
 <p>&nbsp;</p>
 <hr />
 <h3><a name="keyboard-stuck-linux" id="keyboard-stuck-linux"></a>Keyboard keys stuck on Linux in Unity 5.1.1</h3>
@@ -484,6 +522,87 @@ Catastrophic failure while running rrw: Mono.Cecil.AssemblyResolutionException: 
 <p>&nbsp;</p>
 <h2><a name="unity-editor" id="unity-editor"></a>Unity Editor (all platforms):</h2>
 <p>&nbsp;</p>
+<h3><a name="editor-recompile-after-finished-playing" id="editor-recompile-after-finished-playing"></a>Rewired stops working when changing scripts in Play mode with &quot;Recompile After Finished Playing&quot; option</h3>
+<p><strong>Update: A workaround was added in Rewired 1.1.28.0.</strong></p>
+<p>The setting Preferences -&gt; General -&gt; Script Changes While Playing -&gt; Recompile After Finished Playing causes Rewired to stop working when making a change to a script while in Play mode.</p>
+<p>Rewired must be able to tell when recompilation starts and ends in order to safely shut down and re-initialize. Rewired uses various functions in the Unity API to determine this. It relies on UnityEditor.EditorApplication.isCompiling to know when this process has started and ended.</p>
+<p>When you change the option to &quot;Recompile After Finished Playing&quot;, Unity sets the value of UnityEditor.EditorApplication.isCompiling to True immediately when it detects a change to a script even though the application is not actually compiling. It never sets this value back to false because the setting makes it wait until Play mode ends before it can actually recompile. Meanwhile, Rewired has shut itself down when it detected the start of recompilation. It waits until Unity tells it compliation has ended before it reinitializes itself. Since the value from Unity remains False forever, Rewired stays shutdown until Play mode is stopped and restarted. This is a bug in Unity, not Rewired.</p>
+<p>&nbsp;</p>
+<hr />
+<h3><a name="control-mapper-compiler-error-unity-2019-1-5f1" id="control-mapper-compiler-error-unity-2019-1-5f1"></a>Compiler error in Unity 2019.1.5f1 when Control Mapper installed</h3>
+<p><strong>Update: This was patched in Rewired 1.1.26.1.</strong></p>
+<p>Unity made a breaking API change in 2019.1.5f1 even though they are not supposed to make breaking API changes in a minor version update.</p>
+Change the line in Rewired/Extras/ControlMapper/Scripts/UISelectionUtility.cs that reads:
+<pre class="code">selectableCount = Selectable.AllSelectablesNoAlloc(ref s_reusableAllSelectables);</pre>
+to
+<pre class="code">selectableCount = Selectable.AllSelectablesNoAlloc(s_reusableAllSelectables);</pre>
+<p>All you have to do is remove the ref keyword.</p>
+<p>For more information, <a href="https://forum.unity.com/threads/rewired-advanced-input-for-unity.270693/page-107#post-4611661">see this forum post</a>.</p>
+<p>&nbsp;</p>
+<hr />
+<h3><a name="assembly-errors-2019-2" id="assembly-errors-2019-2"></a>Assembly errors in projects upgraded to Unity 2019.2</h3>
+<p><strong>Update:</strong> This bug was fixed in Unity 2020.1.0a13.</p>
+<p>Projects upgraded to Unity 2019.2 from a previous version (including a beta version) may report the following errors:</p>
+<pre class="code">- Error: Could not load signature of
+Rewired.ComponentControls.Effects.TouchInteractableTransitioner:get_transitionColorTint
+due to: Could not load file or assembly 'UnityEngine.UI,
+Version=1.0.0.0, Culture=neutral, PublicKeyToken=null' or one of its
+dependencies. assembly:UnityEngine.UI, Version=1.0.0.0,
+Culture=neutral, PublicKeyToken=null type:<unknown type> member:(null)
+signature:<none>
+
+-Error: Could not load signature of
+Rewired.Editor.ComponentControls.TouchInteractableEditor:GenerateInteractableAnimatorContoller
+due to: Could not load file or assembly 'UnityEngine.UI,
+Version=1.0.0.0, Culture=neutral, PublicKeyToken=null' or one of its
+dependencies. assembly:UnityEngine.UI, Version=1.0.0.0,
+Culture=neutral, PublicKeyToken=null type:<unknown type> member:(null)
+signature:<none>
+</pre>
+<p>This error is not an error in Rewired. It's an error in Unity's upgrade process due to changes they've made moving the UI assembly to the Package Manager. This error does not occur in a new 2019.2.0f1 project that has not been upgraded.</p>
+<p>The resolution to this issue is to simply ignore the errors. They will not be shown again when the editor is closed and restarted. Note, the errors may return if doing a &quot;Reimport All&quot; operation, but again, they're just costmetic.</p>
+<p>&nbsp;</p>
+<hr />
+<h3><a name="assembly-errors-2019-3-alpha-beta" id="assembly-errors-2019-3-alpha-beta"></a>Assembly and build errors in 2019.3 alpha/beta</h3>
+<p>First, <a href="Troubleshooting.html#unity-alpha-beta-preview-experimental">alpha, beta, preview, and experimental, versions and features of Unity are not suppored</a>.</p>
+<p>Rewired may not be compatible with Unity 2019.3 alpha. If you install Rewired you may see the following errors:<br />
+</p>
+<pre class="code">Assembly 'Assets/Rewired/Internal/Libraries/Editor/Rewired_Editor.dll' will not be loaded due to errors:
+Unable to resolve reference 'UnityEngine.UI'. Is the assembly missing or incompatible with the current platform?
+Reference validation can be disabled in the Plugin Inspector.
+ 
+Assembly 'Assets/Rewired/Internal/Libraries/Runtime/Rewired_Core.dll' will not be loaded due to errors:
+Unable to resolve reference 'UnityEngine.UI'. Is the assembly missing or incompatible with the current platform?
+Reference validation can be disabled in the Plugin Inspector.
+ 
+Assembly 'Assets/Rewired/Internal/Libraries/Runtime/Rewired_Windows.dll' will not be loaded due to errors:
+Reference has errors 'Rewired_Core'.</pre>
+<p>Unity has made a major breaking change. The Unity UI library has been moved from UnityEngine.UI.dll as part of the core Unity installation to Unity.ugui.dll as an optional install through the Package Manager. This change to the DLL name which breaks all assembly references in Rewired's DLLs. This issue affects all DLLs that reference Unity UI, not just Rewired, including many of the most popular assets on the Unity Asset Store. There is no possible workaround to this issue.</p>
+<p>Unity has acknowledged these changes as a mistake and has made changes to allow DLLs to work again in a later alpha/beta release. <a href="https://forum.unity.com/threads/ui.673504/">See this forum thread for more details</a>. However, even though they have made changes to make it work again, it does have side effects with possible errors being reported when upgrading a project from an older version of Unity. <a href="#assembly-errors-2019-3-alpha-beta">See this for more information.</a></p>
+<p>You may also get the following error when you try to make a build. This error will go a way the next time you attempt a build, but will come back at the following build. Every other build attempt will result in the following failure. This is a known Unity issue and has a <a href="https://issuetracker.unity3d.com/issues/android-build-and-run-fails-when-rewired-is-present-in-the-project?_ga=2.154422527.616726974.1573495467-1748309352.1525716169">bug tracker page</a> here. <strong>Update:</strong> This bug has reportedly been fixed in the latest 2019.3 beta and 2020.1 alpha.</p>
+<pre class="code">Type '[Rewired_Core]Rewired.ComponentControls.Effects.TouchInteractableTransitioner' has an extra field '_transitionColorTint' of type 'UnityEngine.UI.ColorBlock' in the player and thus can't be serialized (expected '_syncFadeDurationWithTransitionEvent' of type 'System.Boolean')
+
+...
+
+Fields serialized in target platform, class 'Rewired.ComponentControls.TouchInteractable'
+'_interactable' of type 'System.Boolean'
+'_visible' of type 'System.Boolean'
+'_hideWhenIdle' of type 'System.Boolean'
+'_allowedMouseButtons' of type 'Rewired.ComponentControls.TouchInteractable+MouseButtonFlags'
+'_transitionType' of type 'Rewired.ComponentControls.TouchInteractable+TransitionTypeFlags'
+'_transitionColorTint' of type 'UnityEngine.UI.ColorBlock'
+'_transitionSpriteState' of type 'UnityEngine.UI.SpriteState'
+'_transitionAnimationTriggers' of type 'UnityEngine.UI.AnimationTriggers'
+'_targetGraphic' of type 'UnityEngine.UI.Graphic'
+'_onInteractionStateTransition' of type 'Rewired.ComponentControls.TouchInteractable+InteractionStateTransitionEventHandler'
+'_onVisibilityChanged' of type 'Rewired.ComponentControls.TouchInteractable+VisibilityChangedEventHandler'
+'_onInteractionStateChangedToNormal' of type 'UnityEngine.Events.UnityEvent'
+'_onInteractionStateChangedToHighlighted' of type 'UnityEngine.Events.UnityEvent'
+'_onInteractionStateChangedToPressed' of type 'UnityEngine.Events.UnityEvent'
+'_onInteractionStateChangedToDisabled' of type 'UnityEngine.Events.UnityEvent'
+</pre>
+<p>&nbsp;</p>
+<hr />
 <h3><a name="increased-compile-play-time-editor" id="increased-compile-play-time-editor"></a>Rewired increases compile time and load time after pressing Play in the editor</h3>
 <p>The additional load time can be attributed entirely to Unity loading the serialized data from Rewired's <a href="SupportedControllers.html">many controller definitions</a> which are used to recognize, map, and calibrate known controllers. The simple fact that the controller data files are linked from an object field in the Rewired Input Manager GameObject's component causes Unity to load those objects regardless of whether the GameObject is enabled or not. Unfortunately there's nothing that can be done to reduce it except to <a href="HowTos.html#excluding-controller-definitions">remove controller definitions</a> to reduce the number that have to be loaded. <br />
   <br />
@@ -541,16 +660,6 @@ Catastrophic failure while running rrw: Mono.Cecil.AssemblyResolutionException: 
 <p>This is normal and unavoidable  and only happens in the UnityEditor. It is due to a bug/change in Unity 2017.</p>
 <p>The InputManager.cs script included in the project calls UnityEditor.EditorApplication.isCompiling every frame in the Editor. This call generates a 17 byte memory allocation every time. This does not generate garbage in Unity 4 or 5 but does in Unity 2017.</p>
 <div data-redactor="1">This call is required to be able to detect when the Editor is compiling for various needs in the Editor. Again, it happens only in the Unity Editor, not in builds. Rewired generates zero garbage per frame in the normal loop (apart from doing things like control remapping, etc.)</div>
-<p>&nbsp;</p>
-<hr />
-<h3><a name="data-files-missing" id="data-files-missing"></a>&quot;Data Files is missing&quot; error</h3>
-<p>This can happen for two reasons:</p>
-<ol>
-  <li> The Data Files field in the Rewired Input Manager inspector is blank.</li>
-  <li>Serialization errors in some versions of Unity after upgrading Rewired or importing a ControllerDataFiles that replaces the original while the Unity Editor is open.</li>
-  </ol>
-<p>If #1, link the Data Files field to the ControllerDataFiles included with Rewired at Assets/Rewired/Internal/Data/Controllers/ControllerDataFiles.</p>
-<p>If #2, close the Unity Editor and re-launch it.</p>
 <p>&nbsp;</p>
 <p></p>
 <hr />
@@ -674,18 +783,6 @@ public class RewiredCustomController_AndroidRemote : MonoBehaviour {
 <p>&nbsp;</p>
 <hr />
 <h3>&nbsp;</h3>
-<h2><a name="ios-tvos" id="ios-tvos"></a>iOS / tvOS:</h2>
-<h3>&nbsp;</h3>
-<h3><a name="ios-controllers-not-detected" id="ios-controllers-not-detected"></a>iOS/tvOS: Game controllers not detected</h3>
-<p>In Unity versions 5.3.0+, game controllers no longer work in Unity because the XCode project Unity builds does not automatically reference the required GameController framework.</p>
-<p>Solution: Manually add a reference to the GameController or GameKit framework in XCode.</p>
-<p><a href="http://forum.unity3d.com/threads/no-mfi-controller-detected.384892/#post-2502963">More details of this issue and the solution can be found here</a>.</p>
-<p>&nbsp;</p>
-<hr />
-<h3><a name="apple-tv-gyro" id="apple-tv-gyro"></a>Apple TV Siri Remote gyroscope does not work</h3>
-<p>The Apple TV SDK does not expose the raw gyroscope data and thus it is unavailable. The only data that is avalilable is the gravity vector and user acceleration.</p>
-<p>&nbsp;</p>
-<hr />
 <h2><a name="xbox-one" id="xbox-one"></a>Xbox One</h2>
 <p>&nbsp;</p>
 <h3><a name="xbox-one-controller-connections-error" id="xbox-one-controller-connections-error"></a>Controller connections and disconnections do not work</h3>
@@ -739,7 +836,7 @@ public class RewiredCustomController_AndroidRemote : MonoBehaviour {
         
     </div>
   <div class="footer clearfix">
-   	<p class="left">Copyright &copy;2014-2016 <a href="http://guavaman.com" title="Guavaman Enterprises">Guavaman Enterprises</a>. All rights reserved. No materials may be reproduced without permission.</p>
+   	<p class="left">Copyright &copy;2014-2019 <a href="http://guavaman.com" title="Guavaman Enterprises">Guavaman Enterprises</a>. All rights reserved. No materials may be reproduced without permission.</p>
   	<p class="right"><a href="http://guavaman.com/projects/rewired" title="Return to Rewired Website">Return to Rewired Website</a></p>
   </div>
   <!-- end .content --></div>

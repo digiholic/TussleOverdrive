@@ -80,9 +80,11 @@
               <li><a href="InputBehaviors.html">Input Behaviors</a></li>
               <li><a href="Controllers.html">Controllers</a></li>
               <li><a href="ControllerMaps.html">Controller Maps</a></li>
+              <li><a href="ControllerTemplates.html">Controller Templates</a></li>
               <li><a href="MapCategories.html">Map Categories</a></li>
               <li><a href="Layouts.html">Layouts</a></li>
-              <li><a href="ControllerTemplates.html">Controller Templates</a></li>
+              <li><a href="LayoutManager.html">Layout Manager</a></li>
+              <li><a href="MapEnabler.html">Map Enabler</a></li>
               <li><a href="CustomControllers.html">Custom Controllers</a></li>
             </ul>
             <strong>Extras:</strong>
@@ -199,8 +201,9 @@
     <p><img src="files/images/quickstart_editor_players6.png" alt="Add Mouse Map" /></p>
     <hr />
 <p>19. Close the Rewired Editor and save the scene.</p>
-    <p>20. Now you will need to create a script to process input for your character. Since the script could vary significantly based on the type of game you're making, this example will just show the basics of how to get input from Rewired. This example is not meant for use in an actual game.</p>
-    <p>21. Create a new script in your project, for example, MyCharacter.cs, and attach the script to your character game object.</p>
+    <p>20. Now you will need to create a script to process input for your character. Since the script could vary significantly based on the type of game you're making, this example will just show the basics of how to get input from Rewired. </p>
+<p>21. Create a new script in your project, for example, MyCharacter.cs, and attach the script to your character game object.</p>
+<p>NOTE: This example is not meant for use in your project. It serves no purpose other than to teach you how to get input from a Player. You will have to write your own scripts to move your characters/objects around the scene.</p>
     <pre class="code">
 <span class="comment">// MyCharacter.cs - A simple example showing how to get input from Rewired.Player</span>
 
@@ -211,10 +214,17 @@ using Rewired;
 [RequireComponent(typeof(CharacterController))]
 public class MyCharacter : MonoBehaviour {
 
-    public int playerId = 0; <span class="comment">// The Rewired player id of this character</span>
-
+<span class="comment">    // The Rewired player id of this character</span>
+    public int playerId = 0;
+    
+    <span class="comment">// The movement speed of this character</span>
     public float moveSpeed = 3.0f;
+    
+    <span class="comment">// The bullet speed</span>
     public float bulletSpeed = 15.0f;
+    
+    <span class="comment">// Assign a prefab to this in the inspector.
+    // The prefab must have a Rigidbody component on it in order to work.</span>
     public GameObject bulletPrefab;
 
     private Player player; <span class="comment">// The Rewired Player</span>
@@ -253,7 +263,7 @@ public class MyCharacter : MonoBehaviour {
         <span class="comment">// Process fire</span>
         if(fire) {
             GameObject bullet = (GameObject)Instantiate(bulletPrefab, transform.position + transform.right, transform.rotation);
-            bullet.rigidbody.AddForce(transform.right * bulletSpeed, ForceMode.VelocityChange);
+            bullet.GetComponent&lt;Rigidbody&gt;().AddForce(transform.right * bulletSpeed, ForceMode.VelocityChange);
         }
     }
 }</pre>
@@ -270,7 +280,7 @@ public class MyCharacter : MonoBehaviour {
         
     </div>
   <div class="footer clearfix">
-   	<p class="left">Copyright &copy;2014-2016 <a href="http://guavaman.com" title="Guavaman Enterprises">Guavaman Enterprises</a>. All rights reserved. No materials may be reproduced without permission.</p>
+   	<p class="left">Copyright &copy;2014-2019 <a href="http://guavaman.com" title="Guavaman Enterprises">Guavaman Enterprises</a>. All rights reserved. No materials may be reproduced without permission.</p>
   	<p class="right"><a href="http://guavaman.com/projects/rewired" title="Return to Rewired Website">Return to Rewired Website</a></p>
   </div>
   <!-- end .content --></div>

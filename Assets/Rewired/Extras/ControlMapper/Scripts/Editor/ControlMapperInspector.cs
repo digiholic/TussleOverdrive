@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2015 Augie R. Maddox, Guavaman Enterprises. All rights reserved.
+// Copyright (c) 2015 Augie R. Maddox, Guavaman Enterprises. All rights reserved.
 #pragma warning disable 0219
 #pragma warning disable 0618
 #pragma warning disable 0649
@@ -55,6 +55,8 @@ namespace Rewired.UI.ControlMapper {
         private const string c_controllerColMaxWidth = "_controllerColMaxWidth";
 
         private const string c_inputRowHeight = "_inputRowHeight";
+        private const string c_inputRowPadding = "_inputRowPadding";
+        private const string c_inputRowFieldSpacing = "_inputRowFieldSpacing";
         private const string c_inputColumnSpacing = "_inputColumnSpacing";
         private const string c_inputRowCategorySpacing = "_inputRowCategorySpacing";
         private const string c_invertToggleWidth = "_invertToggleWidth";
@@ -164,6 +166,8 @@ namespace Rewired.UI.ControlMapper {
             AddProperty(c_controllerColMaxWidth);
 
             AddProperty(c_inputRowHeight);
+            AddProperty(c_inputRowPadding);
+            AddProperty(c_inputRowFieldSpacing);
             AddProperty(c_inputColumnSpacing);
             AddProperty(c_inputRowCategorySpacing);
             AddProperty(c_invertToggleWidth);
@@ -405,6 +409,8 @@ namespace Rewired.UI.ControlMapper {
                 DrawIntProperty(properties[c_mouseColMaxWidth], 0, 10000);
                 DrawIntProperty(properties[c_controllerColMaxWidth], 0, 10000);
                 DrawIntProperty(properties[c_inputRowHeight], 0, 10000);
+                EditorGUILayout.PropertyField(properties[c_inputRowPadding], true);
+                DrawIntProperty(properties[c_inputRowFieldSpacing], 0, 10000);
                 DrawIntProperty(properties[c_inputColumnSpacing], 0, 10000);
                 DrawIntProperty(properties[c_inputRowCategorySpacing], 0, 10000);
                 DrawIntProperty(properties[c_invertToggleWidth], 0, 10000);

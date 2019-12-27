@@ -80,9 +80,11 @@
               <li><a href="InputBehaviors.html">Input Behaviors</a></li>
               <li><a href="Controllers.html">Controllers</a></li>
               <li><a href="ControllerMaps.html">Controller Maps</a></li>
+              <li><a href="ControllerTemplates.html">Controller Templates</a></li>
               <li><a href="MapCategories.html">Map Categories</a></li>
               <li><a href="Layouts.html">Layouts</a></li>
-              <li><a href="ControllerTemplates.html">Controller Templates</a></li>
+              <li><a href="LayoutManager.html">Layout Manager</a></li>
+              <li><a href="MapEnabler.html">Map Enabler</a></li>
               <li><a href="CustomControllers.html">Custom Controllers</a></li>
             </ul>
             <strong>Extras:</strong>
@@ -162,6 +164,8 @@
       <li><a href="#KeyboardMaps">Keyboard Maps</a></li>
       <li><a href="#MouseMaps">Mouse Maps</a></li>
       <li><a href="#CustomControllerMaps">Custom Controller Maps</a></li>
+      <li><a href="#LayoutManagerRules">Layout Manager Rules</a></li>
+      <li><a href="#MapEnablerRules">Map Enabler Rules</a></li>
     </ul>
     <hr />
     <h3><a name="Settings" id="Settings"></a>Settings</h3>
@@ -387,11 +391,29 @@
   </tr>
   <tr>
     <td valign="top">Default Joystick Dead Zone Type</td>
-    <td valign="top"><p>The default calculation type for joystick dead zones.</p>
-      <p>Radial: X and Y are combined and the dead zone is calculated on the length of the vector.<br />
-        Axial: X and Y axes are calculated independently.<br />
+    <td valign="top"><p>The default calculation type for joystick axis dead zones.</p>
+      <p>Radial: X and Y are combined and the dead zone is calculated on the length of the vector. This allows smooth sweeping in a circular motion. This is the best choice for most games.</p>
+      <p>Axial: X and Y axes are calculated independently. Use this if your game requires more precise 4-directional movement (ie: some platformers, chess games, etc.)</p>
+      <p><br />
+        This setting only applies to joysticks on recognized controllers.</p></td>
+  </tr>
+  <tr>
+    <td valign="top">Default Joystick Sensitivity Type</td>
+    <td valign="top"><p>The default calculation type for joystick axis sensitivity.</p>
+      <p>Radial: X and Y are combined and the sensitivity is calculated on the length of the vector.</p>
+      <p>Axial: X and Y axes are calculated independently.<br />
       </p>
       <p>This setting only applies to joysticks on recognized controllers.</p></td>
+  </tr>
+  <tr>
+    <td valign="top">Default Axis Sensitivity Type</td>
+    <td valign="top"><p>Determines how axis sensitivity will be calculated by default.<br />
+      </p>
+      <p>Multiplier: Value is multiplied by sensitivity.</p>
+      <p>Power: Value is raised to a power.<br />
+        As power nears 0, sensitivity of the axis closer to the zero/center position increases, while sensitivty closer the max position decreases.<br />
+        As power increases past 1, sensitivity of the axis closer to the zero/center position decreases, while sensitivity close to the max position increases.</p>
+      <p>Curve: Value is multiplied by a point on a curve.</p></td>
   </tr>
   <tr>
     <td valign="top"><a name="settings-activate-action-buttons-on-negative-value" id="settings-activate-action-buttons-on-negative-value"></a>Activate Action Buttons on Negative Value</td>
@@ -579,7 +601,7 @@
 <p><strong>To name a Player:</strong><br />
   Edit the &quot;Name&quot; and &quot;Descriptive Name&quot; fields in the second column.</p>
 <p><strong>To create a Custom Controller:</strong><br />
-  Click the &quot;Add Custom Controller&quot; button and choose a controller.</p>
+  Click the &quot;Custom Controllers&quot; button under &quot;Starting Controllers&quot; then click the &quot;Add Custom Controller&quot; button and choose a controller.</p>
 <p>Note: Custom Controllers, unlike Joysticks, are instantiated for each player. When you add a Custom Controller, the controller will be created on game start and assigned to the Player. If you add the same controller to multiple Players, the Custom Controller will be instantiated for each, therefore setting a Tag on each can be helpful to differentiate the controllers.</p>
 <p><img src="files/images/rewirededitor_players_customcontrollers.png" alt="Assign Custom Controller" /></p>
 <p><strong>Custom Controller Options:</strong></p>
@@ -595,7 +617,7 @@
 </table>
 <p>&nbsp;</p>
 <p><strong>To assign a controller map:</strong><br />
-  Under &quot;Assign Default Maps&quot;, choose the map type you wish to assign by clicking the appropriate button &quot;Joystick Maps&quot;, &quot;Keyboard Maps&quot;, &quot;Mouse Maps&quot;, or &quot;Custom Controller Maps.&quot; Then, click &quot;Add Joystick Map&quot; (or whatever map type you chose) and change the settings.</p>
+  Under &quot;Default Controller Maps&quot;, click the button that corresponds to the type of Controller Map you wish to assign. Then, click &quot;Add Joystick Map&quot; (or whatever map type you chose) and change the settings. These represent the Controller Maps that will loaded by default in the Player at start or whenever a new Joystick or Custom Controller is assigned to the Player.</p>
 <p><img src="files/images/rewirededitor_players_joystickmaps.png" alt="Assign Joystick Maps" /></p>
 <p><strong>Controller Map Options:</strong></p>
  <table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -610,6 +632,75 @@
   <tr>
     <td valign="top">Layout</td>
     <td valign="top">The layout of the controller map.</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p><strong>To configure Layout Manager settings:</strong></p>
+<p>Under &quot;Controller Map Helpers&quot;, click the &quot;Layout Manager&quot; button. Layout Manager Settings will be shown in the right column.</p>
+<p><img src="files/images/rewirededitor_players_layoutmanager.png" alt="Assign Layout Manager Rule Sets" /></p>
+<p><strong>Layout Manager Settings:</strong></p>
+<p><img src="files/images/rewirededitor_players_layoutmanagersettings.png" width="297" height="314" alt="Layout Manager Settings" /></p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="14%" valign="top">Enabled</td>
+    <td width="86%" valign="top">If enabled, the Controller Map Layout Manager will be used in this Player to manage what Controller Maps are loaded based on the Rule Sets assigned.</td>
+  </tr>
+  <tr>
+    <td valign="top">Load from User Data Store</td>
+    <td valign="top">If enabled, Controller Maps will be loaded from UserDataStore (if available) instead of from the Rewired Input Manager defaults. If no matching Controller Map is found in UserDataStore, the Rewired Input Manager default will be loaded. Note: The UserDataStore implementation must implement IControllerMapStore to be used.</td>
+  </tr>
+  <tr>
+    <td valign="top">Starting Rule Sets</td>
+    <td valign="top">The list of starting Rule Sets.</td>
+  </tr>
+</table>
+<p></p>
+<p>&nbsp;</p>
+<p><strong>To assign Layout Manager Rule Sets:</strong></p>
+<p>Click &quot;Add Rule Set&quot; to add a Rule Set to the list. Before you can add Rule Sets here, you must first create some <a href="#LayoutManagerRules">Layout Manager Rule Sets</a>. You can add any number of Rule Sets to the list. These Rule Sets will be assigned to the Player's Layout Manager on start and their rules applied.</p>
+<p><strong>Layout Manager Rule Set Options:</strong></p>
+<p><img src="files/images/rewirededitor_players_layoutmanagerrulesetoptions.png" width="297" height="98" alt="Layout Manager Rule Set Options" /></p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="14%" valign="top">Start Enabled</td>
+    <td width="86%" valign="top">If true, the Rule Set will start enabled and be evaluated. Otherwise, it will start disabled and will be ignored.</td>
+  </tr>
+  <tr>
+    <td valign="top">Rule Set</td>
+    <td valign="top">The rule set.</td>
+  </tr>
+</table>
+<p></p>
+<p>&nbsp;</p>
+<p><strong>To configure Map Enabler settings:</strong></p>
+<p>Under &quot;Controller Map Helpers&quot;, click the &quot;Map Enabler&quot; button. Map Enabler Settings will be shown in the right column.</p>
+<p><strong>To assign Map Enabler Rule Sets:</strong></p>
+<p><img src="files/images/rewirededitor_players_mapenabler.png" alt="Assign Map Enabler Rule Sets" /></p>
+<p><strong>Map Enabler Rule Set Options:</strong></p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="14%" valign="top">Enabled</td>
+    <td width="86%" valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top">Starting Rule Sets</td>
+    <td valign="top">The list of starting Rule Sets.</td>
+  </tr>
+</table>
+<p></p>
+<p>&nbsp;</p>
+<p><strong>To assign Map Enabler Rule Sets:</strong></p>
+<p>Click &quot;Add Rule Set&quot; to add a Rule Set to the list. Before you can add Rule Sets here, you must first create some <a href="#MapEnablerRules">Map Enabler Rule Sets</a>. You can add any number of Rule Sets to the list. These Rule Sets will be assigned to the Player's Map Enabler on start and their rules applied.</p>
+<p><strong>Map Enabler Rule Set Options:</strong></p>
+<p><img src="files/images/rewirededitor_players_mapenablerrulesetoptions.png" width="297" height="98" alt="Map Enabler Rule Set Options" /></p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="14%" valign="top">Start Enabled</td>
+    <td width="86%" valign="top">If true, the Rule Set will start enabled and be evaluated. Otherwise, it will start disabled and will be ignored.</td>
+  </tr>
+  <tr>
+    <td valign="top">Rule Set</td>
+    <td valign="top">The rule set.</td>
   </tr>
 </table>
 <p>&nbsp;</p>
@@ -863,6 +954,10 @@
     <td valign="top">Descriptive Name</td>
     <td valign="top">The descriptive name that can be shown to players.</td>
   </tr>
+  <tr>
+    <td valign="top">Type Guid</td>
+    <td valign="top">The controller type guid. This is used to uniquely identify Custom Controller type using Controller.hardwareTypeGuid. Each Custom Controller should have a different Guid.</td>
+  </tr>
 </table>
 <p>&nbsp;</p>
 <p><strong>Axis Properties:</strong></p>
@@ -906,6 +1001,26 @@
   <tr>
     <td valign="top">Invert</td>
     <td valign="top">Inverts the final value of the axis.</td>
+  </tr>
+  <tr>
+    <td valign="top">Sensitivity Type</td>
+    <td valign="top"><p>Determines how axis sensitivity will be calculated.<br />
+    </p>
+      <p>Multiplier: Value is multiplied by sensitivity.</p>
+      <p>Power: Value is raised to a power.<br />
+        As power nears 0, sensitivity of the axis closer to the zero/center position increases, while sensitivty closer the max position decreases.<br />
+        As power increases past 1, sensitivity of the axis closer to the zero/center position decreases, while sensitivity close to the max position increases.</p>
+      <p>Curve: Value is multiplied by a point on a curve.</p></td>
+  </tr>
+  <tr>
+    <td valign="top">Sensitivity</td>
+    <td valign="top"><p>The sensitivity value.</p>
+      <p>(Only available if Sensitivity Type is set to Multiplier or Power.)</p></td>
+  </tr>
+  <tr>
+    <td valign="top">Sensitivity Curve</td>
+    <td valign="top"><p>The sensitivity curve.</p>
+      <p>(Only available if Sensitivity Type is set to Curve.)</p></td>
   </tr>
   <tr>
     <td valign="top">Coordinate Mode</td>
@@ -1016,7 +1131,7 @@
 <hr />
 <h3><a name="JoystickMaps" id="JoystickMaps"></a>Joystick Maps</h3>
 <p><img src="files/images/rewirededitor_joystickmaps.png" alt="Joystick Maps" /></p>
-<p>The Joystick Maps page allows you to create and edit Joystick Maps.</p>
+<p>The Joystick Maps page allows you to create and edit Joystick Maps.  Controller Maps must be assigned to Players or they will have no effect. See the <a href="#Players">Players</a> page for more information.</p>
 <p>See <a href="ControllerMaps.html">Controller Maps</a> for more information.</p>
 <p><strong>Selecting a Map:</strong></p>
 <p>To select a map, you must select the following: 1) A Joystick or Joystick Template, 2) a Category, and 3) a Layout.</p>
@@ -1081,7 +1196,7 @@
 <hr />
 <h3><a name="KeyboardMaps" id="KeyboardMaps"></a>Keyboard Maps</h3>
 <p><img src="files/images/rewirededitor_keyboardmaps.png" alt="Keyboard Maps" /></p>
-<p>The Keyboard Maps page allows you to create and edit Keyboard Maps.</p>
+<p>The Keyboard Maps page allows you to create and edit Keyboard Maps.  Controller Maps must be assigned to Players or they will have no effect. See the <a href="#Players">Players</a> page for more information.</p>
 <p>See <a href="ControllerMaps.html">Controller Maps</a> for more information.</p>
 <p><strong>Selecting a Map:</strong></p>
 <p>To select a map, you must select the following: 1)  a Category, and 2) a Layout.</p>
@@ -1131,7 +1246,7 @@
 <hr />
 <h3><a name="MouseMaps" id="MouseMaps"></a>Mouse Maps</h3>
 <p><img src="files/images/rewirededitor_mousemaps.png" alt="Mouse Maps" /></p>
-<p>The Mouse Maps page allows you to create and edit Mouse Maps.</p>
+<p>The Mouse Maps page allows you to create and edit Mouse Maps.  Controller Maps must be assigned to Players or they will have no effect. See the <a href="#Players">Players</a> page for more information.</p>
 <p>See <a href="ControllerMaps.html">Controller Maps</a> for more information.</p>
 <p><strong>Selecting a Map:</strong></p>
 <p>To select a map, you must select the following: 1)  a Category, and 2) a Layout.</p>
@@ -1196,7 +1311,7 @@
 <hr />
 <h3><a name="CustomControllerMaps" id="CustomControllerMaps"></a>Custom Controller Maps</h3>
 <p><img src="files/images/rewirededitor_customcontrollermaps.png" alt="Custom Controller Maps" /></p>
-<p>The Custom Controller Maps page allows you to create and edit Custom Controller Maps.</p>
+<p>The Custom Controller Maps page allows you to create and edit Custom Controller Maps. Controller Maps must be assigned to Players or they will have no effect. See the <a href="#Players">Players</a> page for more information.</p>
 <p>See <a href="ControllerMaps.html">Controller Maps</a> for more information.</p>
 <p><strong>Selecting a Map:</strong></p>
 <p>To select a map, you must select the following: 1) A Custom Controller, 2) a Category, and 3) a Layout.</p>
@@ -1257,7 +1372,177 @@
     <td valign="top">The action assigned to this element.</td>
   </tr>
 </table>
-<p></p>
+ <p>&nbsp;</p>
+ <hr />
+ <h3><a name="LayoutManagerRules" id="LayoutManagerRules"></a>Layout Manager Rules</h3>
+ <p><img src="files/images/rewirededitor_layoutmanagerrules.png" alt="Layout Manager Rules" /></p>
+ <p>The Layout Manager Rules page allows you to create and edit Layout Manager Rule Sets and Rules.  Rule Sets must be assigned to Players or they will have no effect. See the <a href="#Players">Players</a> page for more information.</p>
+ <p>See <a href="LayoutManager.html">Layout Manager</a> for more information.</p>
+ <p>Note: </p>
+ <p><strong>Layout Manager Rule Sets Box:</strong><br />
+Select a Rule Set to modify its properties.</p>
+ <p><strong>Rule Set Properties:</strong></p>
+ <p><img src="files/images/rewirededitor_layoutmanagerrules_properties.png" alt="Layout Manager Rule Set Properties" /></p>
+ <table width="100%" border="0" cellpadding="0" cellspacing="0">
+   <tr>
+     <td width="17%" valign="top">Id</td>
+     <td width="83%" valign="top">The id of the Rule Set. This can be used in scripting.</td>
+   </tr>
+   <tr>
+     <td valign="top">Name</td>
+     <td valign="top">The name of the set. Must be unique.</td>
+   </tr>
+   <tr>
+     <td valign="top">Tag</td>
+     <td valign="top">Allows you to search for sets by tag in scripting.</td>
+   </tr>
+ </table>
+ <p>&nbsp;</p>
+ <p><strong>Rules:</strong></p>
+ <p>This is the list of Rules in the Rule Set. Add new rules by clicking the &quot;Add Rule&quot; button.</p>
+ <p><strong>Rule Options:</strong></p>
+ <p>Set the properties on the Rule to determine what effect it has.</p>
+ <p><img src="files/images/rewirededitor_layoutmanagerrules_ruleoptions.png" width="338" height="223" alt="Layout Manager Rule Options" /></p>
+ <table width="100%" border="0" cellpadding="0" cellspacing="0">
+   <tr>
+     <td width="17%" valign="top">Tag</td>
+     <td width="83%" valign="top">A tag which can be used to find an rule in the list. This is optional.</td>
+   </tr>
+   <tr>
+     <td valign="top">&nbsp;</td>
+     <td valign="top">&nbsp;</td>
+   </tr>
+   <tr>
+     <td valign="top">Controller Selector</td>
+     <td valign="top"><p>Determines selection method used to find the devices the entry applies to.</p>
+       <p>Available options:</p>
+       <ul>
+         <li>Controller Type - Selects all Controllers that match a specific ControllerType.</li>
+         <li>Controller Template Type - Selects all Controllers that match a specific Controller Template type.<br />
+         </li>
+         <li>Hardware Type - Selects all Controllers that match a specific hardware type guid and/or hardware identifier.</li>
+       </ul></td>
+   </tr>
+   <tr>
+     <td valign="top">Controller Type</td>
+     <td valign="top"><p>The Controller Type the entry applies to.</p></td>
+   </tr>
+   <tr>
+     <td valign="top">Controller Template</td>
+     <td valign="top"><p>The Controller Template type this entry applies to.</p>
+       This is only displayed if Controller Selector is set to Controller Template Type.</td>
+   </tr>
+   <tr>
+     <td valign="top">Controller</td>
+     <td valign="top"><p>The hardware type  of the Controller this entry applies to. This targets all Controllers that match a specific recognized hardware type such as all Xbox 360 controllers.</p>
+       <p>This is only displayed if Controller Selector is set to Hardware Type.</p></td>
+   </tr>
+   <tr>
+     <td valign="top">Hardware Identifier</td>
+     <td valign="top"><p>The hardware identifier of the Controller this entry applies to.This targets all Controllers that match a specific unrecognized hardware type such as for a Joystick that has no controller definition built into Rewired. This value can be obtained from Controller.hardwareIdentifier at runtime. If Controller is set to Unknown Controller and this value is blank, it will match all Unknown Controllers.</p>
+       <p>This is only displayed if Controller Selector is set to Hardware Type.</p></td>
+   </tr>
+   <tr>
+     <td valign="top">&nbsp;</td>
+     <td valign="top">&nbsp;</td>
+   </tr>
+   <tr>
+     <td valign="top">Categories</td>
+     <td valign="top">The Map Categories of the Controller Maps the rule applies to.</td>
+   </tr>
+   <tr>
+     <td valign="top">Layout</td>
+     <td valign="top">The Layout of the Controller Maps the rule applies to.</td>
+   </tr>
+ </table>
+ <p></p>
+ <p>&nbsp;</p>
+ <p>&nbsp;</p>
+ <hr />
+ <h3><a name="MapEnablerRules" id="MapEnablerRules"></a>Map Enabler Rules</h3>
+ <p><img src="files/images/rewirededitor_mapenablerrules.png" alt="Map Enabler Rules" /></p>
+ <p>The Map Enabler Rules page allows you to create and edit Map Enabler  Rule Sets and Rules.  Rule Sets must be assigned to Players or they will have no effect. See the <a href="#Players">Players</a> page for more information.</p>
+ <p>See <a href="MapEnabler.html">Map Enabler</a> for more information. </p>
+ <p><strong>Map Enabler Rule Sets Box:</strong><br />
+   Select a Rule Set to modify its properties.</p>
+ <p><strong>Rule Set Properties:</strong></p>
+ <p><img src="files/images/rewirededitor_mapenablerrules_properties.png" alt="Map Enabler Rule Set Properties" /></p>
+ <table width="100%" border="0" cellpadding="0" cellspacing="0">
+   <tr>
+     <td width="17%" valign="top">Id</td>
+     <td width="83%" valign="top">The id of the Rule Set. This can be used in scripting.</td>
+   </tr>
+   <tr>
+     <td valign="top">Name</td>
+     <td valign="top">The name of the set. Must be unique.</td>
+   </tr>
+   <tr>
+     <td valign="top">Tag</td>
+     <td valign="top">Allows you to search for sets by tag in scripting.</td>
+   </tr>
+ </table>
+ <p>&nbsp;</p>
+ <p><strong>Rules:</strong></p>
+ <p>This is the list of Rules in the Rule Set. Add new rules by clicking the &quot;Add Rule&quot; button.</p>
+ <p><strong>Rule Options:</strong></p>
+ <p>Set the properties on the Rule to determine what effect it has.</p>
+ <p><img src="files/images/rewirededitor_mapenablerrules_ruleoptions.png" alt="Map Enabler Rule Options" /></p>
+ <table width="100%" border="0" cellpadding="0" cellspacing="0">
+   <tr>
+     <td width="17%" valign="top">Tag</td>
+     <td width="83%" valign="top">A tag which can be used to find an rule in the list. This is optional.</td>
+   </tr>
+   <tr>
+     <td valign="top">&nbsp;</td>
+     <td valign="top">&nbsp;</td>
+   </tr>
+   <tr>
+     <td valign="top">Controller Selector</td>
+     <td valign="top"><p>Determines selection method used to find the devices the entry applies to.</p>
+       <p>Available options:</p>
+       <ul>
+         <li>All - Selects all Controllers.</li>
+         <li>Controller Type - Selects all Controllers that match a specific ControllerType.</li>
+         <li>Controller Template Type - Selects all Controllers that match a specific Controller Template type.<br />
+         </li>
+         <li>Hardware Type - Selects all Controllers that match a specific hardware type guid and/or hardware identifier.</li>
+       </ul></td>
+   </tr>
+   <tr>
+     <td valign="top">Controller Type</td>
+     <td valign="top"><p>The Controller Type the entry applies to.</p></td>
+   </tr>
+   <tr>
+     <td valign="top">Controller Template</td>
+     <td valign="top"><p>The Controller Template type this entry applies to.</p>
+       This is only displayed if Controller Selector is set to Controller Template Type.</td>
+   </tr>
+   <tr>
+     <td valign="top">Controller</td>
+     <td valign="top"><p>The hardware type  of the Controller this entry applies to. This targets all Controllers that match a specific recognized hardware type such as all Xbox 360 controllers.</p>
+       <p>This is only displayed if Controller Selector is set to Hardware Type.</p></td>
+   </tr>
+   <tr>
+     <td valign="top">Hardware Identifier</td>
+     <td valign="top"><p>The hardware identifier of the Controller this entry applies to.This targets all Controllers that match a specific unrecognized hardware type such as for a Joystick that has no controller definition built into Rewired. This value can be obtained from Controller.hardwareIdentifier at runtime. If Controller is set to Unknown Controller and this value is blank, it will match all Unknown Controllers.</p>
+       <p>This is only displayed if Controller Selector is set to Hardware Type.</p></td>
+   </tr>
+   <tr>
+     <td valign="top">&nbsp;</td>
+     <td valign="top">&nbsp;</td>
+   </tr>
+   <tr>
+     <td valign="top">Categories</td>
+     <td valign="top">The Map Categories of the Controller Maps the rule applies to. If this is empty, this will apply to all Controller Maps regardless of the Map Category.</td>
+   </tr>
+   <tr>
+     <td valign="top">Layouts</td>
+     <td valign="top">The Layouts  of the Controller Maps the rule applies to. If this is empty, this will apply to all Controller Maps regardless of the Layout.</td>
+   </tr>
+ </table>
+ <p></p>
+ <p></p>
+ <p></p>
     <div class="bottom-pager clearfix">
 	    <a class="back-button" href="BestPractices.html" title="Best Practices"><span class="button-img"></span>Best Practices</a>
     	<a class="forward-button" href="http://guavaman.com/projects/rewired/docs/api-reference" title="API Reference" target="_blank"><span class="button-img"></span>API Reference</a>
@@ -1268,7 +1553,7 @@
         
     </div>
   <div class="footer clearfix">
-   	<p class="left">Copyright &copy;2014-2016 <a href="http://guavaman.com" title="Guavaman Enterprises">Guavaman Enterprises</a>. All rights reserved. No materials may be reproduced without permission.</p>
+   	<p class="left">Copyright &copy;2014-2019 <a href="http://guavaman.com" title="Guavaman Enterprises">Guavaman Enterprises</a>. All rights reserved. No materials may be reproduced without permission.</p>
   	<p class="right"><a href="http://guavaman.com/projects/rewired" title="Return to Rewired Website">Return to Rewired Website</a></p>
   </div>
   <!-- end .content --></div>

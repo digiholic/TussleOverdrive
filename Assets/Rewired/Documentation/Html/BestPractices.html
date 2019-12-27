@@ -80,9 +80,11 @@
               <li><a href="InputBehaviors.html">Input Behaviors</a></li>
               <li><a href="Controllers.html">Controllers</a></li>
               <li><a href="ControllerMaps.html">Controller Maps</a></li>
+              <li><a href="ControllerTemplates.html">Controller Templates</a></li>
               <li><a href="MapCategories.html">Map Categories</a></li>
               <li><a href="Layouts.html">Layouts</a></li>
-              <li><a href="ControllerTemplates.html">Controller Templates</a></li>
+              <li><a href="LayoutManager.html">Layout Manager</a></li>
+              <li><a href="MapEnabler.html">Map Enabler</a></li>
               <li><a href="CustomControllers.html">Custom Controllers</a></li>
             </ul>
             <strong>Extras:</strong>
@@ -147,11 +149,12 @@
       <li><strong>Always make a mapping for the <a href="ControllerMaps.html#gamepad-template">Gamepad Template</a></strong>. The vast majority of players using controllers will be using a gamepad. To save time, map for the Gamepad Template and <a href="SupportedControllers.html">all gamepads recognized by Rewired</a> will just work.</li>
       <li><strong>Always make a mapping for the <a href="ControllerMaps.html#unknown-controllers">Unknown Controller</a></strong>. If a player uses a controller that isn't recognized, they can at least have some kind of input without manual mapping. <a href="ControllerMaps.html#unknown-controllers">Please see this for more information and recommended mapping guidelines</a>.</li>
       <li><strong>Always provide some means for your users to remap their controls.</strong> Many controllers <a href="FAQ.html#addding-controller-definitions">cannot ever be recognized by Rewired due to bad practices by manufacturers</a>. To support these controllers properly and give your users the best experience, you must provide them a way to remap their controls. You can either include <a href="ControlMapper.html">Control Mapper</a> directly in your game or <a href="HowTos.html#controller-mapping-screen">create your own control remapping system</a>.</li>
+      </ul>
+    <h3><a name="controller-assignment" id="controller-assignment"></a>Controller Assignment:</h3>
+    <ul>
+      <li><strong>Always provide some means for your users to change controller assignments.</strong> It is especially important if you are making a multi-player game. You cannot know what devices, physical or virtual, will be present on a user's system, appear as Joysticks to Rewired, and be assigned to a Player. Device emulation software (VJoy, DS4Win, SCPToolkit, etc.) and certain device drivers can and frequently do cause problems by creating extra, non-functional virtual devices. Allowing the user to make their own controller assignments solves this issue as well as making it possible for users to swap controllers, etc. You can either include <a href="ControlMapper.html">Control Mapper</a> directly in your game or <a href="HowTos.html#assigning-controllers">create your own system</a>.</li>
+      <li><a name="one-player-games" id="one-player-games"></a><strong>If your game is 1-Player:    </strong>        Set <a href="RewiredEditor.html#Settings">Max Joysticks Per Player</a> to 100 so all controllers attached to the system may be used by the player.</li>
     </ul>
-<h3><a name="one-player-games" id="one-player-games"></a>If your game is 1-Player:</h3>
-<ul>
-  <li>Set <a href="RewiredEditor.html#Settings">Max Joysticks Per Player</a> to 100 so all controllers attached to the system may be used by the player.</li>
-  </ul>
 <h3><a name="windows" id="windows"></a>Windows Standalone Platform:</h3>
 <ul>
   <li><strong>Always enable Use XInput (enabled by default).</strong> XInput provides automatic controller comaptibility with all XInput-compatible  controllers such as Xbox controllers and clones. It also provides support for vibration and independent triggers on these controllers. There are many problems your players will encounter if you disable XInput. Most problematic is Steam which relies on creating emulated XInput devices for the Steam Controller, Steam Streaming, Steam Link, and controller remapping through Steam Big Picture mode. With XInput disabled, the Steam Controller, Steam Streaming, and Steam Link cannot be supported.</li>
@@ -176,7 +179,7 @@
         
     </div>
   <div class="footer clearfix">
-   	<p class="left">Copyright &copy;2014-2016 <a href="http://guavaman.com" title="Guavaman Enterprises">Guavaman Enterprises</a>. All rights reserved. No materials may be reproduced without permission.</p>
+   	<p class="left">Copyright &copy;2014-2019 <a href="http://guavaman.com" title="Guavaman Enterprises">Guavaman Enterprises</a>. All rights reserved. No materials may be reproduced without permission.</p>
   	<p class="right"><a href="http://guavaman.com/projects/rewired" title="Return to Rewired Website">Return to Rewired Website</a></p>
   </div>
   <!-- end .content --></div>

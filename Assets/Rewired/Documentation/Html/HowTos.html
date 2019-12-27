@@ -80,9 +80,11 @@
               <li><a href="InputBehaviors.html">Input Behaviors</a></li>
               <li><a href="Controllers.html">Controllers</a></li>
               <li><a href="ControllerMaps.html">Controller Maps</a></li>
+              <li><a href="ControllerTemplates.html">Controller Templates</a></li>
               <li><a href="MapCategories.html">Map Categories</a></li>
               <li><a href="Layouts.html">Layouts</a></li>
-              <li><a href="ControllerTemplates.html">Controller Templates</a></li>
+              <li><a href="LayoutManager.html">Layout Manager</a></li>
+              <li><a href="MapEnabler.html">Map Enabler</a></li>
               <li><a href="CustomControllers.html">Custom Controllers</a></li>
             </ul>
             <strong>Extras:</strong>
@@ -155,8 +157,9 @@
       <li><a href="#managing-controller-maps-runtime">Managing Controller Maps at runtime</a></li>
       <li><a href="#loading-controller-maps-runtime">Loading Controller Maps at runtime</a></li>
       <li><a href="#get-element-name-for-action">Displaying a button/axis/key name to the user for an Action</a></li>
-      <li><a href="#display-glyph-for-action">Displaying a glyph for a Joystick element mapped to an Action</a></li>
-      <li><a href="#display-glyph-for-active-elements">Displaying a glyph for the currently active Joystick elements</a></li>
+      <li><a href="#display-glyph-for-action">Displaying a glyph for a Controller element mapped to an Action</a></li>
+      <li><a href="#display-glyph-for-active-elements">Displaying a glyph for the currently active Controller elements</a></li>
+      <li><a href="#get-mappings-for-joystick-not-attached">Getting Controller Maps for a Joystick not currently attached</a></li>
       <li><a href="#get-contributing-input-sources">Getting contributing input sources for an Action</a></li>
       <li><a href="#last-used-controller">Determining which Controller was last used</a></li>
       <li><a href="#is-controller-gamepad">Determining if a Controller is a Gamepad</a></li>
@@ -192,6 +195,7 @@
       <li><a href="#raildriver-special-features">Using P.I. Engineering Rail Driver special features</a></li>
       <li><a href="#xbox-one-controller-special-features">Using XBox One controller special features on XBox One platform</a></li>
       <li><a href="#ps4-gamepad-special-features">Using PS4 gamepad special features on PS4 platform</a></li>
+      <li><a href="#ps4-aim-special-features">Using PS4 Aim Controller special features on PS4 platform</a></li>
       <li><a href="#asmdef-files">Using asmdef files with Rewired</a></li>
     </ul>
     <p>&nbsp;</p>
@@ -251,7 +255,7 @@ public class MyClass : MonoBehaviour {
     <h3><a name="get-input" id="get-player2"></a>Getting input</h3>
     <p>There are four ways to get input in Rewired:</p>
     <ol>
-      <li><a href="#get-input-polling-player">Polling the Player for input</a> - This is the most common method and is very similar to how you normally get input in Unity. This method uses the Player-Action system and has all the advantages that provides.</li>
+      <li><a href="#get-input-player-polling">Polling the Player for input</a> - This is the most common method and is very similar to how you normally get input in Unity. This method uses the Player-Action system and has all the advantages that provides.</li>
       <li><a href="#get-input-player-events">Using Player input events</a> - This method allows you to get input by registering for an event and receving a callback when that event takes place. This method uses the Player-Action system and has all the advantages that provides.</li>
       <li><a href="#get-input-controller-polling">Polling Controllers</a> - This method ignores the Player-Action system and reads input directly from Controller Elements. This method is difficult to use and not recommended because you have to read input from axes and buttons by index.</li>
       <li><a href="#get-input-controller-template-polling">Polling Controller Templates</a> - This method ignores the Player-Action system and reads input directly from Controller Template Elements. If you don't want to use the Player-Action system and you prefer programming to the Controller directly, it is recommended you use this method.</li>
@@ -314,6 +318,9 @@ public class MyClass : MonoBehaviour {
         <span class="comment">// This event will be called when the &quot;Fire&quot; button is first released</span>
         player.AddInputEventDelegate(OnFireButtonUp, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased, &quot;Fire&quot;);
 
+<span class="comment">        // This event will be called every frame the &quot;Move Horizontal&quot; axis is non-zero and once more when it returns to zero.</span>
+        player.AddInputEventDelegate(OnMoveHorizontal, UpdateLoopType.Update, InputActionEventType.AxisActiveOrJustInactive, &quot;Move Horizontal&quot;);
+
         <span class="comment">// This event will be called when the &quot;Jump&quot; button is held for at least 2 seconds and then released</span>
         player.AddInputEventDelegate(OnJumpButtonUp, UpdateLoopType.Update, InputActionEventType.ButtonPressedForTimeJustReleased, &quot;Jump&quot;, new object[] { 2.0f });
 
@@ -348,13 +355,18 @@ public class MyClass : MonoBehaviour {
         Debug.Log("Jump!");
     }
 
+    void OnMoveHorizontal(InputActionEventData data) {
+        Debug.Log(&quot;Move Horizontal: &quot; + data.GetAxis());
+    }
+
     void OnDestroy() {
         <span class="comment">// Unsubscribe from events when object is destroyed</span>
-        p.RemoveInputEventDelegate(OnInputUpdate);
-        p.RemoveInputEventDelegate(OnFireUpdate);
-        p.RemoveInputEventDelegate(OnFireButtonDown);
-        p.RemoveInputEventDelegate(OnFireButtonUp);
-        p.RemoveInputEventDelegate(OnJumpButtonUp);
+        player.RemoveInputEventDelegate(OnInputUpdate);
+        player.RemoveInputEventDelegate(OnFireUpdate);
+        player.RemoveInputEventDelegate(OnFireButtonDown);
+        player.RemoveInputEventDelegate(OnFireButtonUp);
+        player.RemoveInputEventDelegate(OnMoveHorizontal);
+        player.RemoveInputEventDelegate(OnJumpButtonUp);
     }
 }</pre>
 <p><strong><a name="get-input-controller-polling" id="get-input-controller-polling"></a>Method 3: Controller Polling</strong></p>
@@ -465,7 +477,7 @@ public MyClass : MonoBehaviour {
     <hr />
     <h3><a name="assigning-controllers" id="assigning-controllers"></a><a name="assigning-joysticks" id="assigning-controllers2"></a>Assigning Controllers to Players</h3>
     <p><strong>Joysticks</strong></p>
-    <p><a href="Controllers.html#joysticks">Joysticks</a> will be assigned to <a href="Players.html">Players</a> automatically if you have enabled and configured <a href="Controllers.html#joysticks">Joystick</a> auto-assignment in the <a href="RewiredEditor.html#Settings">Rewired Editor under Settings</a>. However, if you wish to manually assign or unassign <a href="Controllers.html#joysticks">Joysticks</a>, you can do so with the following methods:</p>
+    <p><a href="Controllers.html#joysticks">Joysticks</a> will be assigned to <a href="Players.html">Players</a> automatically if you have enabled and configured <a href="Controllers.html#joysticks">Joystick</a> auto-assignment in the <a href="RewiredEditor.html#Settings">Rewired Editor under Settings</a>. However, if you wish to manually assign or unassign <a href="Controllers.html#joysticks">Joysticks</a> or want to receive notifications when a controller is added/removed from a Player, you can do so with the following methods:</p>
 <p><strong>Player class:</strong></p>
     <ul>
       <li><a href="http://guavaman.com/projects/rewired/docs/api-reference/html/Overload_Rewired_Player_ControllerHelper_AddController.htm">player.controllers.AddController</a></li>
@@ -473,6 +485,8 @@ public MyClass : MonoBehaviour {
       <li><a href="http://guavaman.com/projects/rewired/docs/api-reference/html/Overload_Rewired_Player_ControllerHelper_ContainsController.htm">player.controllers.ContainsController</a></li>
       <li><a href="http://guavaman.com/projects/rewired/docs/api-reference/html/Overload_Rewired_Player_ControllerHelper_ClearControllersOfType.htm">player.controllers.ClearControllersOfType</a></li>
       <li><a href="http://guavaman.com/projects/rewired/docs/api-reference/html/M_Rewired_Player_ControllerHelper_ClearAllControllers.htm">player.controllers.ClearAllControllers</a></li>
+      <li><a href="http://guavaman.com/projects/rewired/docs/api-reference/html/E_Rewired_Player_ControllerHelper_ControllerAddedEvent.htm">player.controllers.ControllerAddedEvent</a></li>
+      <li><a href="http://guavaman.com/projects/rewired/docs/api-reference/html/E_Rewired_Player_ControllerHelper_ControllerRemovedEvent.htm">player.controllers.ControllerRemovedEvent</a></li>
     </ul>
     <p><strong>ReInput class:</strong></p>
     <ul>
@@ -480,11 +494,10 @@ public MyClass : MonoBehaviour {
       <li><a href="http://guavaman.com/projects/rewired/docs/api-reference/html/M_Rewired_ReInput_ControllerHelper_IsCustomControllerAssignedToPlayer.htm">ReInput.controllers.IsControllerAssignedToPlayer</a></li>
       <li><a href="http://guavaman.com/projects/rewired/docs/api-reference/html/Overload_Rewired_ReInput_ControllerHelper_RemoveControllerFromAllPlayers.htm">ReInput.controllers.RemoveControllerFromAllPlayers</a></li>
       <li><a href="http://guavaman.com/projects/rewired/docs/api-reference/html/M_Rewired_ReInput_ControllerHelper_AutoAssignJoystick.htm">ReInput.controllers.AutoAssignJoystick</a></li>
-      <li><a href="http://guavaman.com/projects/rewired/docs/api-reference/html/M_Rewired_ReInput_ControllerHelper_AutoAssignJoysticks.htm">ReInput.controllers.AutoAssignJoysticks</a></li>
+      <li><a href="http://guavaman.com/projects/rewired/docs/api-reference/html/M_Rewired_ReInput_ControllerHelper_AutoAssignJoysticks.htm">ReInput.controllers.AutoAssignJoysticks</a>    </li>
     </ul>
-    <p>&nbsp;</p>
     <p>Also, see <a href="#connect-disconnect-events">Receiving joystick connect and disconnect events</a> to get a notification when a <a href="Controllers.html#joysticks">Joystick</a><a href="Controllers.html"></a> is connected or disconnected.</p>
-<pre class="code">
+    <pre class="code">
 <span class="comment">// Example: Shows how to assign Joysticks manually to the next Player that doesn't have one assigned.</span>
 
 void Awake() {
@@ -552,7 +565,13 @@ void AssignJoystickToNextOpenPlayer(Joystick j) {
 <hr />
     <h3><a name="enabling-disabling-controller-maps" id="enabling-disabling-controller-maps"></a>Enabling and disabling Controller Maps</h3>
     <p><a href="ControllerMaps.html">Controller Maps</a> can be enabled or disabled at will via scripting. This can be useful if you want to change game modes and have a different set of controls become active. For example, opening a menu screen. Disabled <a href="ControllerMaps.html">Controller Maps</a> will not return any value when the <a href="Players.html">Player</a> is queried for an <a href="Actions.html">Action's</a> input value. <a href="ControllerMaps.html">Controller Maps</a> are stored in the <a href="http://guavaman.com/projects/rewired/docs/api-reference/?topic=html/T_Rewired_Player.htm">Player</a> class.</p>
-    <p>The easiest way to enable and disable maps in a <a href="Players.html">Player</a> is to use the following methods:</p>
+    <p>There are two approaches of working with Controller Map enabled states:</p>
+    <ol>
+      <li><strong>Direct</strong> - Individual Controller Map objects are enabled or disabled by setting the ControllerMap.enabled property or through one of the convenience methods in the Player such as <a href="http://guavaman.com/projects/rewired/docs/api-reference/html/Overload_Rewired_Player_ControllerHelper_MapHelper_SetAllMapsEnabled.htm">player.controllers.maps.SetAllMapsEnabled</a>. The enabled state changes are only applied to the specific Controller Map instances at the time the state is changed. If, for example, a new Joystick is assigned to the Player, the new Joystick's Controller Maps will not automatically inherit enabled state settings from other Controller Maps. You are in complete control of how and when Controller Maps are enabled and/or disabled and must manage this depending on the specific needs of your game.</li>
+      <li><strong>Managed</strong> - A system is responsible for maintaining persistent Controller Map enabled states by Map Category and Layout based on user-defined settings. Controller Map enabled states can be synchronized under a variety of circumstances that could otherwise cause issues such as when assigning a new Joystick to a Player. The manager is responsible for keeping  Controller Map enabled states in sync with the current settings when Controller Maps change. If you are using Controller Maps in multiple Map Categories to handle different gameplay modes such as &quot;Gameplay&quot;, &quot;UI&quot;, etc., a managed system would be beneficial. You can build your own state management system or you can use the built-in <a href="MapEnabler.html">Map Enabler</a> system.</li>
+    </ol>
+    <p><strong>Direct Method:</strong></p>
+    <p>The easiest way to directly enable and disable maps in a <a href="Players.html">Player</a> is to use the following methods:</p>
     <ul>
       <li><a href="http://guavaman.com/projects/rewired/docs/api-reference/html/Overload_Rewired_Player_ControllerHelper_MapHelper_SetAllMapsEnabled.htm">player.controllers.maps.SetAllMapsEnabled</a> - Set enabled state on all maps owned by the <a href="Players.html">Player</a> or all maps for a specific <a href="Controllers.html">Controller</a> type.</li>
       <li><a href="http://guavaman.com/projects/rewired/docs/api-reference/html/Overload_Rewired_Player_ControllerHelper_MapHelper_SetMapsEnabled.htm">player.controllers.maps.SetMapsEnabled</a> - Set enabled state on a group of maps owned by the <a href="Players.html">Player</a> by <a href="Controllers.html">Controller</a> type, <a href="MapCategories.html">Map Category</a>, and <a href="Layouts.html">Layout</a>.</li>
@@ -561,7 +580,7 @@ void AssignJoystickToNextOpenPlayer(Joystick j) {
     <pre class="code">
 <span class="comment">// The quick way - one line of code</span>
 player.controllers.maps.SetMapsEnabled(state, categoryName);</pre>
-<p><strong>NOTE:</strong> The above SetMapsEnabled and SetAllMapsEnabled methods are not persistent flags in Player that will set a certain category of map enabled/disabled upon loading. They are simply shortcuts for the below methods that iterate the maps currently loaded in the Player and set them enabled/disabled at the time the method is called. When new Controller Maps are loaded in the Player, either manually or when a Joystick is assigned, the newly loaded maps will be enabled/disabled based on the default enabled state settings for these maps on the Player page in the Rewired Input Manager, not based on previous calls to SetMapsEnabled.</p>
+<p><strong>IMPORTANT:</strong> The above SetMapsEnabled and SetAllMapsEnabled methods are not persistent flags in Player that will set a certain category of map enabled/disabled upon loading. They are simply shortcuts for the below methods that iterate the maps currently loaded in the Player and set them enabled/disabled at the time the method is called. When new Controller Maps are loaded in the Player, either manually or when a Joystick is assigned, the newly loaded maps will be enabled/disabled based on the default enabled state settings for these maps on the Player page in the Rewired Input Manager, not based on previous calls to SetMapsEnabled. <a href="#persistent-current-controller-map-category">See this if you need to persistently set certain Map Categories enabled and others disabled</a>.</p>
 <p>You can also enable and disable maps one by one by getting the maps one by one:</p>
     <ul>
       <li><a href="http://guavaman.com/projects/rewired/docs/api-reference/html/Overload_Rewired_Player_ControllerHelper_MapHelper_GetMap.htm">player.controllers.maps.GetMap</a></li>
@@ -600,10 +619,68 @@ foreach(ControllerMap map in player.controllers.maps.GetAllMaps()) {
         }
     }
 }  </pre>
+<p><strong><a name="persistent-current-controller-map-category" id="persistent-current-controller-map-category"></a>Persistent currently enabled Controller Map Category</strong></p>
+<p><strong><em>Note:</em></strong><em> As of Rewired 1.1.25.0, the  <a href="MapEnabler.html">Map Enabler</a> system is available in the Player to assist in persistent Controller Map enabled state management. Map Enabler is an easier solution to Controller Map enabled state managment, but may not be suitable for all use-cases. You can use the following information to build your own state managment system.</em></p>
+<p>All functions to enable and disable Controller Maps act only on the Controller Maps currently existing in the Player and will not affect Controller Maps loaded after these functions are called. The Rewired Player does not contain or track a &quot;current Map Category&quot; for Controller Maps that will force certain maps to be enabled and others disabled persistently (an isssue when assigning new Controllers to a Player). Management of Controller Maps and what is and isn't loaded, enabled, or disabled at any particular time is completely up to the developer to determine. However, such functionality may be useful to maintain different control sets for different mutually-exclusive modes -- Gameplay and Menu, for example.</p>
+<p>When a Joystick is assigned to a Player, Controller Maps for that Joystick will be loaded from the pre-defined defaults set up in the Rewired Input Manager if any can be found for that particular Player based on your settings on the Player page of the Rewired Editor. If you are using different Controller Maps for different game modes, the newly-loaded Controller Maps may be loaded with the wrong Controller Maps enabled for the current game mode. (For example, you change to Menu mode, then connect a Joystick.) To handle this, you must manage what Controller Maps are enabled on a Joystick not only when changing game modes, but also when a new Joystick is connected and assigned to a Player.</p>
+<p>For example, when changing from Gameplay mode to Menu mode, you will need to set the state based on some variable in your script that tracks the current game mode. Controller Maps must be enabled/disabled to match the current state both at the moment you change game modes and when a new Joystick is connected (or more specifically, when a Joystick is assigned to a Player if you are manually assigning Joysticks). </p>
+<p>The following is just one example of how you could handle this:</p>
+<pre class="code">
+public enum GameMode {
+    Gameplay,
+    Menu
+}
+
+public class PlayerControllerMapGameModeSync : MonoBehaviour {
+
+    public int playerId;
+
+    private GameMode currentGameMode; <span class="comment">// this tracks the current game mode</span>
+
+    private Player player {
+        get { return ReInput.isReady ? ReInput.players.GetPlayer(playerId) : null; }
+    }
+
+    <span class="comment">// A dictionary to look up the Map Category from the GameMode</span>
+    static Dictionary&lt;GameMode, string&gt; gameModeToMapCategory = new Dictionary&lt;GameMode, string&gt;() {
+         { GameMode.Gameplay, "Gameplay" },
+         { GameMode.Menu, "Menu" },
+    };
+
+    void Awake() {
+        <span class="comment">// Subscribe to the controller added event in Player so we can update
+        // Controller Maps when a new Joystick is assigned</span>
+        player.controllers.ControllerAddedEvent += OnControllerAdded;
+    }
+
+    void OnDestroy() {
+        player.controllers.ControllerAddedEvent -= OnControllerAdded;
+    }
+
+    <span class="comment">// Call this when you change game modes</span>
+    public void ChangeGameMode(GameMode mode) {
+        currentGameMode = mode; <span class="comment">// store the new game mode</span>
+        SetControllerMapsForCurrentGameMode(); <span class="comment">// enable the correct Controller Maps for the game mode</span>
+    }
+
+    <span class="comment">// This is called when a Controller is assigned to the Player</span>
+    void OnControllerAdded(ControllerAssignmentChangedEventArgs args) {
+        SetControllerMapsForCurrentGameMode();
+    }
+
+    <span class="comment">// Enable only the maps for the current game mode</span>
+    void SetControllerMapsForCurrentGameMode() {
+        <span class="comment">// Disable all controller maps first for all controllers of all types</span>
+        player.controllers.maps.SetAllMapsEnabled(false);
+
+        <span class="comment">// Enable maps for the current game mode for all controlllers of all types</span>
+        player.controllers.maps.SetMapsEnabled(true, gameModeToMapCategory[currentGameMode]);
+    }
+}</pre>
 <p>&nbsp;</p>
     <hr />
     <h3><a name="managing-controller-maps-runtime" id="enabling-disabling-controller-maps2"></a>Managing Controller Maps at runtime</h3>
-    <p><a href="ControllerMaps.html">Controller Maps</a> can be added, removed, cleared, and reloaded during gameplay via scripting. This can be useful if you want to load the default <a href="ControllerMaps.html">Controller Maps</a> as defined in the Rewired Editor after having made changes, or to load a <a href="ControllerMaps.html">Controller Map</a> in a different <a href="Layouts.html">Layout</a>. <a href="ControllerMaps.html">Controller Maps</a> are stored in the <a href="http://guavaman.com/projects/rewired/docs/api-reference/?topic=html/T_Rewired_Player.htm">Player</a> class.</p>
+    <p><a href="ControllerMaps.html">Controller Maps</a> can be added, removed, cleared, and reloaded during gameplay via scripting. This can be useful if you want to load the default <a href="ControllerMaps.html">Controller Maps</a> as defined in the Rewired Editor after having made changes, or to load a <a href="ControllerMaps.html">Controller Map</a> in a different <a href="Layouts.html">Layout</a>. (Also see <a href="LayoutManager.html">Layout Manager</a> for managing Controller Maps by Layout.) <a href="ControllerMaps.html">Controller Maps</a> are stored in the <a href="http://guavaman.com/projects/rewired/docs/api-reference/?topic=html/T_Rewired_Player.htm">Player</a> class.</p>
     <p>Methods:</p>
     <ul>
       <li><a href="http://guavaman.com/projects/rewired/docs/api-reference/html/Overload_Rewired_Player_ControllerHelper_MapHelper_AddMap.htm">player.controllers.maps.AddMap</a></li>
@@ -753,7 +830,13 @@ for(int i = 0; i &lt; targetCount; i++) {
 }</pre>
     <p>&nbsp;</p>
     <hr />
-    <h3><a name="display-glyph-for-action" id="display-glyph-for-action"></a>Displaying a glyph for a Joystick element mapped to an Action</h3>
+    <h3><a name="display-glyph-for-action" id="display-glyph-for-action"></a>Displaying a glyph for a Controller element mapped to an Action    </h3>
+    <ul>
+      <li><a href="#display-glyph-for-action-joystick">Joysticks</a></li>
+      <li><a href="#display-glyph-for-action-keyboard">Keyboard</a></li>
+      <li><a href="#display-glyph-for-action-mouse">Mouse</a></li>
+    </ul>
+    <p><strong><a name="display-glyph-for-action-joystick" id="display-glyph-for-action-joystick"></a>Joysticks:</strong></p>
     <p>There are two different types of glyphs you can display for a Joystick:</p>
     <ol>
       <li><a href="#display-glyph-for-action-controller-specific">Glyphs based on the Controller elements specific to that Controller (recommended).</a></li>
@@ -1180,9 +1263,22 @@ namespace Rewired.Demos {
         }
     }
 }</pre>
+<p><strong><a name="display-glyph-for-action-keyboard" id="display-glyph-for-action-keyboard"></a>Keyboard:</strong></p>
+<p>The process is very similar to Joysticks, but complicated by the fact that a keyboard mapping may have up to 3 modifier keys as well as the primary key. Use the following properties on the ActionElementMap to determine to total binding:</p>
+<ul>
+  <li><a href="http://guavaman.com/projects/rewired/docs/api-reference/html/P_Rewired_ActionElementMap_keyboardKeyCode.htm">ActionElementMap.keyboardKeyCode</a></li>
+  <li><a href="http://guavaman.com/projects/rewired/docs/api-reference/html/P_Rewired_ActionElementMap_modifierKey1.htm">ActionElementMap.modifierKey1</a></li>
+  <li><a href="http://guavaman.com/projects/rewired/docs/api-reference/html/P_Rewired_ActionElementMap_modifierKey2.htm">ActionElementMap.modifierKey2</a></li>
+  <li><a href="http://guavaman.com/projects/rewired/docs/api-reference/html/P_Rewired_ActionElementMap_modifierKey3.htm">ActionElementMap.modifierKey3</a></li>
+  <li><a href="http://guavaman.com/projects/rewired/docs/api-reference/html/P_Rewired_ActionElementMap_modifierKeyFlags.htm">ActionElementMap.modifierKeyFlags</a></li>
+</ul>
+<p><a href="http://guavaman.com/rewired/files/docs/RewiredKeyboardElementIdentifiersCSV.zip">Download a CSV file of the current Keyboard element identifiers here</a>.</p>
+<p><strong><a name="display-glyph-for-action-mouse" id="display-glyph-for-action-mouse"></a>Mouse:</strong></p>
+<p>The process is essentially identical to Joysticks.</p>
+<p><a href="http://guavaman.com/rewired/files/docs/RewiredMouseElementIdentifiersCSV.zip">Download a CSV file of the current Mouse element identifiers here</a>.</p>
 <p>&nbsp;</p>
 <hr />
-    <h3><a name="display-glyph-for-active-elements" id="display-glyph-for-active-elements"></a>Displaying a glyph for the currently active Joystick elements</h3>
+    <h3><a name="display-glyph-for-active-elements" id="display-glyph-for-active-elements"></a>Displaying a glyph for the currently active Controller elements</h3>
 <p>Very similar to <a href="#display-glyph-for-action">the previous example</a>, this is a slightly modified process:</p>
 <pre class="code">using UnityEngine;
 using System.Collections;
@@ -1260,6 +1356,15 @@ namespace Rewired.Demos {
     }
 }</pre>
     <p>&nbsp;</p>
+<hr />
+    <h3><a name="get-mappings-for-joystick-not-attached" id="get-mappings-for-joystick-not-attached"></a>Getting Controller Maps for a Joystick not currently attached</h3>
+    <p>The previous methods for displaying glyphs and other mapping information require that the Joystick be attached to the system in order to look up the information. Sometimes you may want to display glyphs or other information about mappings for Joysticks that are not currently connected. The only way to do this is by loading Controller Map instances using the following methods to determine what the default mappings are for the controller in question when it is not present:</p>
+    <p>Joystick Maps:<br />
+      <a href="http://guavaman.com/projects/rewired/docs/api-reference/html/Overload_Rewired_ReInput_MappingHelper_GetJoystickMapInstance.htm">ReInput.mapping.GetJoystickMapInstance</a></p>
+    <p>Controller Template Maps:<br />
+      <a href="http://guavaman.com/projects/rewired/docs/api-reference/html/Overload_Rewired_ReInput_MappingHelper_GetControllerTemplateMapInstance.htm">ReInput.mapping.GetControllerTemplateMapInstance</a></p>
+    <p>Use the information from the returned maps to determine the mappings and display the information.</p>
+    <p>&nbsp;</p>
     <hr />
     <h3><a name="get-contributing-input-sources" id="get-contributing-input-sources"></a>Getting contributing input sources for an Action</h3>
 <p>You can get information about all the input sources currently contributing to the value of an <a href="Actions.html">Action</a> in a <a href="Players.html">Player</a>. There are several methods available to get this information:</p>
@@ -1322,9 +1427,9 @@ if(controller != null) {
 <hr />
 <h3><a name="relative-absolute-axes" id="relative-absolute-axes"></a>Handling Mouse and Joystick axes</h3>
 <ul>
-  <li>Mouse axes always return relative values (change in value since the last frame) unless the Input Behavior Mouse X/Y Axis Mode or Mouse Other Axis Mode has been set to &quot;Digital Axis&quot;. Relative axes should never be multiplied by Time.deltaTime.</li>
-  <li>Joystick and Keyboard axes always return absolute values (an absolute value from -1 to +1). Absolute axes must be multiplied by Time.deltaTime.</li>
-  <li>Custom Controller axes can return relative or absolute values depending on how you configured the axis.</li>
+  <li>Mouse axes always return Relative values (change in value since the last frame) unless the Input Behavior Mouse X/Y Axis Mode or Mouse Other Axis Mode has been set to &quot;Digital Axis&quot;. Relative axes should never be multiplied by Time.deltaTime.</li>
+  <li>Joystick and Keyboard axes always return Absolute values (an absolute value from -1 to +1). Absolute axis values must be multiplied by Time.deltaTime.</li>
+  <li>Custom Controller axes can return Relative or Absolute values depending on how you configured the axis.</li>
   </ul>
 <p><strong>Determining which type of axis is being used for an Action</strong></p>
 <p>You have your choice of how to handle this. Do one of the following:</p>
@@ -1332,7 +1437,14 @@ if(controller != null) {
   <li>Check the <a href="http://guavaman.com/projects/rewired/docs/api-reference/html/Overload_Rewired_Player_GetAxisCoordinateMode.htm">player.GetAxisCoordinateMode</a> method for the Action to determine if it's a relative or absolute axis.</li>
   <li>Check the <a href="#last-used-controller">last used controller type</a> to determine whether it's a mouse or other device type being used.</li>
   <li>Create separate Actions for Mouse axes and Joystick axes.</li>
-</ol>
+  </ol>
+<p><strong>Using the same code for Mouse and Joystick axes</strong></p>
+<p>It's possible to use the exact same code to process both Absolute and Relative axes by first processing Absolute values into Relative values. This can be done by simply multiplying the value by Time.deltaTime and a base speed constant. For example, getting all axis values through this method will result in axis values that are processed to be Relative. Then your code can just be written to expect only Relative values:</p>
+<pre class="code">public static float GetAxisRelative(this Rewired.Player player, int actionId, float absoluteToRelMult) {
+    float value = player.GetAxis(actionId);
+    if(player.GetAxisCoordinateMode(actionId) == Rewired.AxisCoordinateMode.Absolute) value *= Time.unscaledDeltaTime * absoluteToRelMult;
+    return value;
+}</pre>
 <p>&nbsp;</p>
 <hr />
     <h3><a name="calibrating-controller-axes" id="calibrating-controller-axes"></a>Calibrating Joystick axes</h3>
@@ -1474,7 +1586,7 @@ if(player.GetButtonTimedPressUp("Action", 0f, 0.7f)) { <span class="comment">// 
   <li><a href="http://guavaman.com/projects/rewired/docs/api-reference/html/Overload_Rewired_Player_GetButtonTimePressed.htm">Player.GetButtonTimePressed</a>: Gets the length of time in seconds that a button has been continuously held down. Returns 0 if the button is not currently pressed.</li>
   <li><a href="http://guavaman.com/projects/rewired/docs/api-reference/html/Overload_Rewired_Player_GetButtonTimeUnpressed.htm">Player.GetButtonTimeUnpressed</a>: Gets the length of time in seconds that a button has not been pressed. Returns 0 if the button is currently pressed.</li>
   </ul>
-<p><strong>Negative Buttons:</strong></p>
+<p><strong><a name="button-press-types-negative-buttons" id="button-press-types-negative-buttons"></a>Negative Buttons:</strong></p>
 <p>Each of the methods above also has a corresponding Negative Button method which is named the same except with NegativeButton in place of Button. These serve to allow you to use axes as buttons and will trigger when the negative side of the axis is activated while the standard Button version will trigger only when the positive side of the axis is activated. However, it is usually easier to just map each pole of the axis to a seperate Action (split axis) so that each Action can just be queried with GetButton.</p>
 <p>If you want all GetButton calls to return True when either the positive or negative side of the axis is activated, enable the option <a href="RewiredEditor.html#settings-activate-action-buttons-on-negative-value">&quot;Activate Action Buttons on Negative Values&quot; in the Rewired Editor</a>.</p>
 <p>&nbsp;</p>
@@ -1561,6 +1673,8 @@ public class MyClass : MonoBehaviour {
         }
     }
 }</pre>
+<p><strong>IMPORTANT:</strong></p>
+<p>ActionIdProperty attribute is not compatible with the constant export setting &quot;Create Action Category Classes.&quot; This option creates additional sub classes for each Action Category. The property drawer does not have the capability of drilling down multiple class levels to find constants to generate the list.</p>
 <p>&nbsp;</p>
 <hr />
 <h3><a name="press-start-to-join" id="press-start-to-join"></a>Implementing a &quot;Press Start to Join&quot; Joystick assignment system</h3>
@@ -1707,25 +1821,25 @@ namespace Rewired.Demos {
             AssignAllJoysticksToSystemPlayer(true);
         }
 
-        void OnControllerConnected(ControllerStatusChangedEventArgs args) {
+         void OnControllerConnected(ControllerStatusChangedEventArgs args) {
             if(args.controllerType != ControllerType.Joystick) return;
 
             <span class="comment">// Check if this Joystick has already been assigned. If so, just let Auto-Assign do its job.</span>
             if(assignedJoysticks.Contains(args.controllerId)) return;
 
             <span class="comment">// Joystick hasn't ever been assigned before. Make sure it's assigned to the System Player until it's been explicitly assigned</span>
-            ReInput.players.GetSystemPlayer().controllers.AddController&lt;Joystick&gt;(
-                ReInput.controllers.GetJoystick(args.controllerId),
+            ReInput.players.GetSystemPlayer().controllers.AddController(
+                args.controllerType,
+                args.controllerId,
                 true <span class="comment">// remove any auto-assignments that might have happened</span>
             );
         }
 
         void AssignAllJoysticksToSystemPlayer(bool removeFromOtherPlayers) {
             foreach(var j in ReInput.controllers.Joysticks) {
-                ReInput.players.GetSystemPlayer().controllers.AddController<Joystick>(j.id, removeFromOtherPlayers);
+                ReInput.players.GetSystemPlayer().controllers.AddController(j, removeFromOtherPlayers);
             }
         }
-
         void Update() {
 
             <span class="comment">// Watch for JoinGame action in System Player</span>
@@ -2386,10 +2500,10 @@ class DS4Test {
   }
 }</pre>
 <p><strong>Common Interface<br />
-</strong><a name="dualshock-4-special-features-common-interface" id="dualshock-4-special-features-common-interface"></a>You can use the ControllerExtensions.IDualShock4CommonExtension interface instead if you want to run the same code on the PS4 platform and a desktop platform. The controller does not support all the same features on both the desktop and PS4 platforms, but the common features between the two platforms are supported through the interface. Cast to the concrete extension class if you need access to features that are only supported on that version.</p>
+</strong><a name="dualshock-4-special-features-common-interface" id="dualshock-4-special-features-common-interface"></a>You can use the <a href="http://guavaman.com/projects/rewired/docs/api-reference/html/T_Rewired_ControllerExtensions_IDualShock4Extension.htm">ControllerExtensions.IDualShock4Extension</a> interface instead if you want to run the same code on the PS4 platform and a desktop platform. The controller does not support all the same features on both the desktop and PS4 platforms, but the common features between the two platforms are supported through the interface. Cast to the concrete extension class if you need access to features that are only supported on that version.</p>
 <pre class="code">
-<span class="comment">// Get the Dual Shock 4 Common Extension interface from the Joystick</span>
-var ds4 = joystick.GetExtension&lt;IDualShock4CommonExtension&gt;();
+<span class="comment">// Get the Dual Shock 4 Extension interface from the Joystick</span>
+var ds4 = joystick.GetExtension&lt;IDualShock4Extension&gt;();
 if(ds4 == null) return;
 
 <span class="comment">// Features that are available on all platforms are accessible through the interface</span>
@@ -2474,7 +2588,7 @@ class XBoxOneTest {
     }
 }</pre>&nbsp;
 <hr />
-<h3><a name="ps4-gamepad-special-features" id="raildriver-special-features3"></a>Using PS4 gamepad special features on PS4 platform</h3>
+<h3><a name="ps4-gamepad-special-features" id="ps4-gamepad-special-features"></a>Using PS4 gamepad special features on PS4 platform</h3>
 <p>Special controller features of the PS4 gamepad such as vibration, gyro, accelerometer, touchpad, and light color can be accessed via the <a href="http://guavaman.com/projects/rewired/docs/api-reference/html/T_Rewired_Platforms_PS4_PS4GamepadExtension.htm">PS4GamepadExtension</a> class available in the <a href="http://guavaman.com/projects/rewired/docs/api-reference/html/T_Rewired_Joystick.htm">Joystick</a> class as seen in the example below.  Note that the platform input source must be set to Native and Disable Native Input must be set to false or no special features will be available.</p>
 <p>If you want to use the same code on desktop platforms and the PS4, you can <a href="#dualshock-4-special-features-common-interface">use the common interface instead</a> to access many of the controller's features.</p>
 <p><a href="Examples.html#dualshock-4-special-features">Also see the Dual Shock 4 Special Features example.</a></p>
@@ -2512,6 +2626,49 @@ class PS4Test {
       // Note: Vibration can also be set in a generic way through Joystick.SetVibration</span>
       float vibration = ext.GetVibration(PS4GamepadMotorType.WeakMotor);
       ext.SetVibration(PS4GamepadMotorType.StrongMotor, 1.0f); <span class="comment">// set vibration on a single motor by type</span>
+      ext.SetVibration(1.0f, 1.0f); <span class="comment">// set vibration on both motors simultaneously</span>
+      ext.StopVibration(); <span class="comment">// stop all vibration</span>
+
+      <span class="comment">// Set the light color</span>
+      ext.SetLightColor(new Color(1.0f, 1.0f, 0.0f, 0.5f)); <span class="comment">// alpha is multiplied by rgb to get final value</span>
+
+      <span class="comment">// Reset the light color</span>
+      ext.ResetLight();
+    }
+  }
+}</pre>
+<p>&nbsp;</p>
+<hr />
+<h3><a name="ps4-aim-special-features" id="ps4-aim-special-features"></a>Using PS4 Aim Controller special features on PS4 platform</h3>
+<p>Special controller features of the PS4 Aim Controller such as vibration, gyro, accelerometer, and light color can be accessed via the <a href="http://guavaman.com/projects/rewired/docs/api-reference/html/T_Rewired_Platforms_PS4_PS4AimExtension.htm">PS4AimExtension</a> class available in the <a href="http://guavaman.com/projects/rewired/docs/api-reference/html/T_Rewired_Joystick.htm">Joystick</a> class as seen in the example below.  Note that the platform input source must be set to Native and Disable Native Input must be set to false or no special features will be available.</p>
+<pre class="code">using Rewired;
+using Rewired.Platforms.PS4;
+
+class PS4Test {
+
+  <span class="comment">// Getting and setting various values on all PS4 Aim Controllers assigned to this Player</span>
+  public void TestPS4(Player player) {
+
+<span class="comment">    // Loop through all Joysticks assigned to this Player</span>
+    foreach(Joystick joystick in player.controllers.Joysticks) {
+
+      <span class="comment">// Get the PS4 Aim Extension from the Joystick</span>
+      var ext = joystick.GetExtension&lt;PS4AimExtension&gt;();
+      if(ext == null) continue; <span class="comment">// this is not a PS4 Aim Controller, skip it</span>
+
+      <span class="comment">// Get the accelerometer value</span>
+      Vector3 accelerometer = ext.GetAccelerometerValue();
+
+      <span class="comment">// Get the gyroscope value</span>
+      Vector3 gyro = ext.GetLastGyroscopeValue();
+
+      <span class="comment">// Get the controller orientation</span>
+      Quaternion orientation = ext.GetOrientation();
+
+      <span class="comment">// Get/Set vibration
+      // Note: Vibration can also be set in a generic way through Joystick.SetVibration</span>
+      float vibration = ext.GetVibration(PS4AimMotorType.WeakMotor);
+      ext.SetVibration(PS4AimMotorType.StrongMotor, 1.0f); <span class="comment">// set vibration on a single motor by type</span>
       ext.SetVibration(1.0f, 1.0f); <span class="comment">// set vibration on both motors simultaneously</span>
       ext.StopVibration(); <span class="comment">// stop all vibration</span>
 
@@ -2590,7 +2747,7 @@ class PS4Test {
         
     </div>
   <div class="footer clearfix">
-   	<p class="left">Copyright &copy;2014-2016 <a href="http://guavaman.com" title="Guavaman Enterprises">Guavaman Enterprises</a>. All rights reserved. No materials may be reproduced without permission.</p>
+   	<p class="left">Copyright &copy;2014-2019 <a href="http://guavaman.com" title="Guavaman Enterprises">Guavaman Enterprises</a>. All rights reserved. No materials may be reproduced without permission.</p>
   	<p class="right"><a href="http://guavaman.com/projects/rewired" title="Return to Rewired Website">Return to Rewired Website</a></p>
   </div>
   <!-- end .content --></div>

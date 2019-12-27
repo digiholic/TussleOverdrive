@@ -80,9 +80,11 @@
               <li><a href="InputBehaviors.html">Input Behaviors</a></li>
               <li><a href="Controllers.html">Controllers</a></li>
               <li><a href="ControllerMaps.html">Controller Maps</a></li>
+              <li><a href="ControllerTemplates.html">Controller Templates</a></li>
               <li><a href="MapCategories.html">Map Categories</a></li>
               <li><a href="Layouts.html">Layouts</a></li>
-              <li><a href="ControllerTemplates.html">Controller Templates</a></li>
+              <li><a href="LayoutManager.html">Layout Manager</a></li>
+              <li><a href="MapEnabler.html">Map Enabler</a></li>
               <li><a href="CustomControllers.html">Custom Controllers</a></li>
             </ul>
             <strong>Extras:</strong>
@@ -281,7 +283,8 @@
         <td>Windows Standalone 32-bit/64-bit</td>
         <td align="center"><span class="native">Native</span><br />
           <span class="note">(keyboard, mouse, controllers)</span></td>
-        <td align="center"><span class="unity-input">Unity <span style="vertical-align: super; font-size: 65%">[<a href="#clarifications">4</a>]</span></span></td>
+        <td align="center"><span class="native">Native</span><br />
+          <span class="note">(keyboard, mouse, controllers)</span></td>
       </tr>
       <tr>
         <td>Windows 8 Store</td>
@@ -311,7 +314,8 @@
         <td>OSX Standalone 32-bit/64-bit/Universal</td>
         <td align="center"><span class="native">Native<br />
           <span class="note">(controllers)</span>        </span></td>
-        <td align="center"><span class="unity-input">Unity <span style="vertical-align: super; font-size: 65%">[<a href="#clarifications">4</a>]</span></span></td>
+        <td align="center"><span class="native">Native<br />
+            <span class="note">(controllers)</span></span></td>
       </tr>
       <tr>
         <td>OSX Webplayer</td>
@@ -322,7 +326,7 @@
         <td>Linux <span style="vertical-align: super; font-size: 65%">[<a href="#clarifications">3</a>]</span></td>
         <td align="center"><span class="native">Native<br />
           <span class="note">(controllers)</span>        </span></td>
-        <td align="center"><span class="unity-input">Unity <span style="vertical-align: super; font-size: 65%">[<a href="#clarifications">4</a>]</span></span></td>
+        <td align="center">--</td>
       </tr>
       <tr>
         <td>WebGL</td>
@@ -366,6 +370,12 @@
         </span></td>
       </tr>
       <tr>
+        <td>Google Stadia</td>
+        <td align="center">--</td>
+        <td align="center"><span class="native">Native<br />
+            <span class="note">(controllers)</span></span></td>
+      </tr>
+      <tr>
         <td>Ouya</td>
         <td align="center"><span class="native">Native<br />
             <span class="note">(controllers)</span></span></td>
@@ -401,8 +411,7 @@
     <p><a name="clarifications" id="clarifications"></a>    </p>
     <p style="font-size: 65%"><span style="vertical-align: super">1</span> Controller must be compatible with underlying system. On Windows the controller must be compatible with Raw Input, Direct Input, or XInput. On OSX, it must be compatible with I/O Kit. On Linux, it must be compatible with UDev. Support for exotic controller types not guaranteed.</p>
     <p style="font-size: 65%"><span class="superscript">2</span> These platforms make use of Unity's special platform-specific input classes which allow for much greater control over input than with just UnityEngine.Input and are functionally equivalent to native input libraries.</p>
-    <p style="font-size: 65%">3 Linux native support has been tested under Ubuntu 12.04 amd64, Ubuntu 14.04 x86/amd64, Ubuntu 15.04 amd64, Ubuntu 17.04 amd64, Mint 17.2 amd64, and SteamOS. Compatibility with other distros is not guranteed or implied.</p>
-    <p style="font-size: 65%">4 <a href="KnownIssues.html#windows-standalone-il2cpp">Please see this for more information about the IL2CPP scripting backend on desktop Standalone builds</a>.</p>
+    <p style="font-size: 65%">3 Linux native support has been tested under Ubuntu 12.04 amd64, Ubuntu 14.04 x86/amd64, Ubuntu 15.04 amd64, Ubuntu 17.04 amd64, Mint 17.2 amd64, and SteamOS. Compatibility with other distros is not guranteed or implied.    </p>
     <p>&nbsp;</p>
 <div class="bottom-pager clearfix">
 	    <a class="back-button" href="Documentation.html" title="Documentation"><span class="button-img"></span>Documentation</a>
@@ -414,7 +423,7 @@
         
     </div>
   <div class="footer clearfix">
-   	<p class="left">Copyright &copy;2014-2016 <a href="http://guavaman.com" title="Guavaman Enterprises">Guavaman Enterprises</a>. All rights reserved. No materials may be reproduced without permission.</p>
+   	<p class="left">Copyright &copy;2014-2019 <a href="http://guavaman.com" title="Guavaman Enterprises">Guavaman Enterprises</a>. All rights reserved. No materials may be reproduced without permission.</p>
   	<p class="right"><a href="http://guavaman.com/projects/rewired" title="Return to Rewired Website">Return to Rewired Website</a></p>
   </div>
   <!-- end .content --></div>

@@ -80,9 +80,11 @@
               <li><a href="InputBehaviors.html">Input Behaviors</a></li>
               <li><a href="Controllers.html">Controllers</a></li>
               <li><a href="ControllerMaps.html">Controller Maps</a></li>
+              <li><a href="ControllerTemplates.html">Controller Templates</a></li>
               <li><a href="MapCategories.html">Map Categories</a></li>
               <li><a href="Layouts.html">Layouts</a></li>
-              <li><a href="ControllerTemplates.html">Controller Templates</a></li>
+              <li><a href="LayoutManager.html">Layout Manager</a></li>
+              <li><a href="MapEnabler.html">Map Enabler</a></li>
               <li><a href="CustomControllers.html">Custom Controllers</a></li>
             </ul>
             <strong>Extras:</strong>
@@ -153,6 +155,7 @@
       <li><a href="#touch-gyro-accelerometer">Does Rewired support touch and gyro/accelerometer input?</a></li>
       <li><a href="#force-feedback">Does Rewired support force feedback?</a></li>
       <li><a href="#framerate-independent-input">Does Rewired support framerate-independent input?</a></li>
+      <li><a href="#fixed-update-framerate-independent-input">Can't Fixed Update be used for low-latency input at low frame rates?</a></li>
       <li><a href="#multiple-mice-and-keyboards">Does Rewired support multiple independent mice and keyboards?</a></li>
       <li><a href="#where-is-data-saved">Where is Rewired's input configuration data saved?</a></li>
       <li><a href="#copy-input-config">How can I copy my input configuration to another project?</a></li>
@@ -241,6 +244,7 @@
     <td align="center"><strong>XBox One</strong></td>
     <td align="center"><strong>PlayStation 4</strong></td>
     <td align="center"><strong>Nintendo Switch</strong></td>
+    <td align="center"><strong>Stadia</strong></td>
   </tr>
   <tr>
     <td valign="top">Xbox 360 Controller</td>
@@ -259,6 +263,7 @@
     <td align="center" valign="top">&mdash;</td>
     <td align="center" valign="top">&mdash;</td>
     <td align="center" valign="top">&mdash;</td>
+    <td align="center" valign="top">Native</td>
   </tr>
   <tr>
     <td valign="top">Xbox One Controller</td>
@@ -279,6 +284,7 @@
       <span class="note">(All 4 motors supported)</span></td>
     <td align="center" valign="top">&mdash;</td>
     <td align="center" valign="top">&mdash;</td>
+    <td align="center" valign="top">Native</td>
   </tr>
   <tr>
     <td valign="top">Xbox One S Controller</td>
@@ -296,6 +302,7 @@
       <span class="note">(All 4 motors supported)</span></td>
     <td align="center" valign="top">&mdash;</td>
     <td align="center" valign="top">&mdash;</td>
+    <td align="center" valign="top">Native</td>
   </tr>
   <tr>
     <td valign="top">Sony DualShock 4</td>
@@ -309,9 +316,10 @@
     <td align="center" valign="top">&mdash;</td>
     <td align="center" valign="top">Native</td>
     <td align="center" valign="top">&mdash;</td>
+    <td align="center" valign="top">Native</td>
   </tr>
   <tr>
-    <td valign="top">Nintendo Joy-Cons</td>
+    <td valign="top">Nintendo Joy-Cons and Pro Controller</td>
     <td align="center" valign="top">&mdash;</td>
     <td align="center" valign="top">&mdash;</td>
     <td align="center" valign="top">&mdash;</td>
@@ -321,6 +329,20 @@
     <td align="center" valign="top">&mdash;</td>
     <td align="center" valign="top">Native<br />
       <span class="note">(All motors and features supported)</span></td>
+    <td align="center" valign="top">Native<br />
+      <span class="note">(Pro Controller)</span></td>
+  </tr>
+  <tr>
+    <td valign="top">Stadia Controller</td>
+    <td align="center" valign="top">&mdash;</td>
+    <td align="center" valign="top">&mdash;</td>
+    <td align="center" valign="top">&mdash;</td>
+    <td align="center" valign="top">&mdash;</td>
+    <td align="center" valign="top">&mdash;</td>
+    <td align="center" valign="top">&mdash;</td>
+    <td align="center" valign="top">&mdash;</td>
+    <td align="center" valign="top">&mdash;</td>
+    <td align="center" valign="top">Native</td>
   </tr>
 </table>
 <p>&nbsp;</p>
@@ -329,6 +351,17 @@
 <hr />
 <h3><a name="framerate-independent-input" id="framerate-independent-input"></a>Does Rewired support framerate-independent input?</h3>
 <p>Not at the present time. If framerate-independent input were to be supported in the future, it would only allow you to access a queue of Action events that took place over the last frame for analysis and not the ability to instantly respond to input events that occur in the middle of the current frame. This is because if you were to use any of the Unity API in response to an event that was triggered from another thread, Unity would throw an exception or crash because the entire Unity API is not thread-safe and can only be accessed via the main thread. This means you could not, for example, move the camera instantaneously based on a mouse input event that occured in the middle of the current frame in order to reduce input latency. Unity would just throw an exception when you tried to modify anything on the Camera, Transform, or any other component from another thread.</p>
+<p>&nbsp;</p>
+<hr />
+<h3><a name="fixed-update-framerate-independent-input" id="fixed-update-framerate-independent-input"></a>Can't Fixed Update be used for low-latency input at low frame rates?</h3>
+<p>It is sometimes suggested to me that if you were able to get and process fresh input values in Fixed Update, games running at low frame rates could maintain responsive input because Fixed Update runs at 60 fps even when the game is only running at 20 fps. This sounds reasonable on the surface, but it's not true. In order to understand why, you need to understand how Fixed Update works.</p>
+<p><em><strong>Fixed Update is not a fixed-time-step update. It is a simulation of one.</strong></em></p>
+<p>It is true that over 1 second, Fixed Update will attempt to run at the specified rate -- 60 fps, for example.<br />
+  Depending on the current main thread update rate, Unity will execute 0, 1, or multiple Fixed Update frames for every Update frame it executes. These Fixed Update frames are executed on the same thread as Update immediately before Update is executed. It varies the number of Fixed Update frames it executes per frame to try to maintain the desired rate over 1 second of time (60 fps).</p>
+<p>The most important thing to understand is that these <em><strong>Fixed Update frames are not actually spaced out over time in increments of 1/60th of a second</strong></em>. When multiple Fixed Update frames are executed sequentially in a frame (when the render frame rate is lower than physics time step), several Fixed Update frames are rendered back-to-back <em><strong>as fast as the CPU will possibly allow</strong></em>. This can easily be illustrated by timing frame time delta of Fixed Update frames using Time.realtimeSinceStartup. You will see the value is an extremely tiny number, not the expected 0.1667 seconds you should see at 60 fps. Physics and other code that uses the time or delta time value work corretly because the Time class reports the <em><strong>simulated delta time</strong></em> of 0.1667 seconds, not the <strong><em>actual delta time</em></strong> of a CPU speed and workload dependent value. </p>
+<p>So over the course of a single render frame, the time window for recording input changes using Fixed Update is equal to the <em><strong>actual time</strong></em> it takes for those Fixed Update frames to execute, not the simulated time. In most cases, the actual time elapsed across successive Fixed Update frames is so short as to be completely useless to get any useful input data. For the entire remainder of the render frame (Update, Vsync, etc.), no new input values can be sampled. This is the reason Fixed Update is totally unsuitable for solving the input latency problem.</p>
+<p>&nbsp;</p>
+<p><img src="files/images/faq-fixed-update-explanation.png" alt="Fixed Update Explanation" /></p>
 <p>&nbsp;</p>
 <hr />
 <h3><a name="multiple-mice-and-keyboards" id="multiple-mice-and-keyboards"></a>Does Rewired support multiple independent mice and keyboards?</h3>
@@ -435,7 +468,7 @@
 <p>&nbsp;</p>
 <hr />
 <h3><a name="seat-license" id="seat-license"></a>What does &quot;this extension requires one licence per seat&quot; mean?</h3>
-<p>The EULA terms are defined by the <a href="https://unity3d.com/legal/as_terms">Unity Asset Store EULA</a>. See Appendix I for information on assets purchased through the Unity Asset Store. Specifically Appendix I, section 2.4 outlines terms for all editor extension assets.</p>
+<p>The EULA terms are defined by the <a href="https://unity3d.com/legal/as_terms">Unity Asset Store EULA</a>. See Appendix I for information on assets purchased through the Unity Asset Store. Specifically Appendix I, section 2.3 outlines terms for all editor extension assets.</p>
 <p>Rewired is only sold on the Unity Asset Store and the license is bound by these terms as created and defined by Unity. I do not have legal authority to interpret these terms in any other way except as written and defined by the <a href="https://unity3d.com/legal/as_terms">Unity Asset Store EULA</a>. I cannot provide further clarification of or exceptions to these terms.</p>
 <p>Please <a href="https://support.unity3d.com/hc/en-us/requests/new" target="_blank">contact Unity</a> for clarification of or questions about the EULA terms.</p>
 <p>&nbsp;</p>
@@ -452,7 +485,7 @@
         
     </div>
   <div class="footer clearfix">
-   	<p class="left">Copyright &copy;2014-2016 <a href="http://guavaman.com" title="Guavaman Enterprises">Guavaman Enterprises</a>. All rights reserved. No materials may be reproduced without permission.</p>
+   	<p class="left">Copyright &copy;2014-2019 <a href="http://guavaman.com" title="Guavaman Enterprises">Guavaman Enterprises</a>. All rights reserved. No materials may be reproduced without permission.</p>
   	<p class="right"><a href="http://guavaman.com/projects/rewired" title="Return to Rewired Website">Return to Rewired Website</a></p>
   </div>
   <!-- end .content --></div>

@@ -758,7 +758,7 @@ MonoBehaviour:
       alwaysMatch: 0
       productName_useRegex: 1
       productName:
-      - Flight Stick [0-9]+
+      - ^Flight Stick [0-9]+
     elements:
       axes:
       - elementIdentifier: 0
@@ -1267,6 +1267,21 @@ MonoBehaviour:
     elements:
       axes: []
       buttons: []
+    variants: []
+  stadia:
+    description: 
+    matchingCriteria:
+      axisCount: 0
+      buttonCount: 0
+      disabled: 0
+      tag: 
+      alwaysMatch: 0
+      productName_useRegex: 0
+      productName: []
+    elements:
+      axes: []
+      buttons: []
+    controllerName: 
     variants: []
   internalDriver:
     description: 

@@ -80,9 +80,11 @@
               <li><a href="InputBehaviors.html">Input Behaviors</a></li>
               <li><a href="Controllers.html">Controllers</a></li>
               <li><a href="ControllerMaps.html">Controller Maps</a></li>
+              <li><a href="ControllerTemplates.html">Controller Templates</a></li>
               <li><a href="MapCategories.html">Map Categories</a></li>
               <li><a href="Layouts.html">Layouts</a></li>
-              <li><a href="ControllerTemplates.html">Controller Templates</a></li>
+              <li><a href="LayoutManager.html">Layout Manager</a></li>
+              <li><a href="MapEnabler.html">Map Enabler</a></li>
               <li><a href="CustomControllers.html">Custom Controllers</a></li>
             </ul>
             <strong>Extras:</strong>
@@ -170,12 +172,12 @@ public class MyUserDataStore : Rewired.Data.UserDataStore {
     <p>If &quot;Load Data on Start&quot; is checked in the inspector, all controller data will be loaded at the beginning of the session. This is useful if you want the player's last settings to be loaded automatically for any controllers already attached to the system at runtime.</p>
     <p><strong>Data that is saved and loaded</strong></p>
     <div>
-      <p>UserDataStore_PlayerPrefs does not take a snapshot of the entire current Player state.  It   saves and loads the modified controller map bindings as a replacement set of   default mappings, but it does not save or load a list of which maps the Player currently   has loaded/assigned.</p>
+      <p>UserDataStore_PlayerPrefs does not take a snapshot of the entire current Player state.</p>
     </div>
     
     <p>Saved data does not include:</p>
     <ol>
-    <li>The current list of what Controller Maps are assigned to the Player.</li>
+    <li>The current list of what Controller Maps are loaded in the Player.</li>
     <li>The enabled state of these Controller Maps.</li>
     </ol>
 
@@ -195,7 +197,7 @@ public class MyUserDataStore : Rewired.Data.UserDataStore {
       </ol>
       <p>If you need to save which Controller Maps are currently assigned to a Player, for example if you've manually loaded an alternate layout at some point and you want that new layout to be loaded the next time you call UserDataStore.Load instead of the default defined in the Rewired Input Manager, you will have to make a new UserDataStore class extension that can handle these special needs. Copy the UserDataStore_PlayerPrefs, change the class name, and make any modifications necessary to what data is saved and loaded.</p>
       <p><strong><a name="saved-xml-not-synced" id="saved-xml-not-synced"></a>IMPORTANT: Saved XML data is not updated when you make changes to the Rewired Input Manager</strong></p>
-<p>Control Mapper does not manage changes between the Rewired Input Manager and data that is already saved to XML. If you make changes to the Rewired Input Manager settings such as adding new controls to a Joystick Map, these new changes will not be preserved when loading saved XML data. The only automated solutions would be to either clear the save data by clearing Player Prefs so that the Rewired Input Manager defaults are used instead or load the default maps in the Player for the any controllers that changed and save those to XML overwriting the existing saved mappings.</p>
+<p>UserDataStore does not manage changes between the Rewired Input Manager and data that is already saved to XML. If you make changes to the Rewired Input Manager settings such as adding new controls to a Joystick Map, these new changes will not be preserved when loading saved XML data. The only automated solutions would be to either clear the save data by clearing Player Prefs so that the Rewired Input Manager defaults are used instead or load the default maps in the Player for the any controllers that changed and save those to XML overwriting the existing saved mappings.</p>
       <p>Management of saved user data is up to the developer. If you have special needs beyond the basic use cases, you should extend and replace the UserDataStore_PlayerPrefs component with a new UserDataStore component that meets your specific needs.</p>
       <p><strong><a name="clearing-playerprefs" id="clearing-playerprefs"></a>IMPORTANT:</strong></p>
 <p>During development, you may run into a situation where your controls don't seem to make sense. This may happen when you make some runtime control changes, save them, and then proceed to change your mappings in the Rewired Input Manager. Because UserDataStore_PlayerPrefs is configured to save controller data on disconnect and load controller data on start and controller connect, the loaded settings will override new changes you make to the default mappings in the Rewired Input Manager.</p>
@@ -208,7 +210,7 @@ public class MyUserDataStore : Rewired.Data.UserDataStore {
         
     </div>
   <div class="footer clearfix">
-   	<p class="left">Copyright &copy;2014-2016 <a href="http://guavaman.com" title="Guavaman Enterprises">Guavaman Enterprises</a>. All rights reserved. No materials may be reproduced without permission.</p>
+   	<p class="left">Copyright &copy;2014-2019 <a href="http://guavaman.com" title="Guavaman Enterprises">Guavaman Enterprises</a>. All rights reserved. No materials may be reproduced without permission.</p>
   	<p class="right"><a href="http://guavaman.com/projects/rewired" title="Return to Rewired Website">Return to Rewired Website</a></p>
   </div>
   <!-- end .content --></div>
