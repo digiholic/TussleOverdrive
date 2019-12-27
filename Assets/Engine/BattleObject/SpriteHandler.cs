@@ -36,8 +36,6 @@ public class SpriteHandler : BattleComponent {
         if (spriteComponent == null)
         {
             spriteComponent = new GameObject("Sprite");
-            Debug.Log(getBattleObject());
-            Debug.Log(getBattleObject().PivotTransform);
             spriteComponent.transform.SetParent(getBattleObject()?.PivotTransform);
             spriteComponent.transform.localPosition = Vector3.zero;
 

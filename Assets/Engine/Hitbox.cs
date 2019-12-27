@@ -87,7 +87,6 @@ public class Hitbox : MonoBehaviour {
         float scale = obj.GetFloatVar(TussleConstants.SpriteVariableNames.PIXELS_PER_UNIT);
         //float scale = 50;
         Vector3 positionFromCenter = new Vector3(hitboxRect.center.x / scale, hitboxRect.center.y / scale, -0.1f);
-        Debug.Log(positionFromCenter);
         transform.localPosition = positionFromCenter;
         transform.localScale = new Vector3(hitboxRect.width / scale, hitboxRect.height / scale, 1.0f);
     }
