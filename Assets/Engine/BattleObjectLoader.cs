@@ -37,7 +37,7 @@ public class BattleObjectLoader : MonoBehaviour {
         }
         if (ecb_info != null)
         {
-            EnvironmentCollider ecb = obj.AddComponent<EnvironmentCollider>();
+            //EnvironmentCollider ecb = obj.AddComponent<EnvironmentCollider>();
         }
         foreach(VarData vardata in variables)
         {
