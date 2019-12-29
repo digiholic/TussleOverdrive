@@ -22,6 +22,7 @@ public class VarData
     }
 }
 
+[Serializable]
 public enum VarType
 {
     FLOAT,

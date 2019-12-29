@@ -3,26 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
+[RequireComponent (typeof(BattleObjectCollider2D))]
 public class MotionHandler : BattleComponent {
-    private CharacterController _charController;
+    //private CharacterController _charController;
     //private Rigidbody rigid;
+    private BattleObjectCollider2D controller;
 
-    public float gravity;
     public float max_fall_speed;
     
+    [SerializeField] private Vector3 movement;
+    void Awake()
+    {
+        controller = GetComponent<BattleObjectCollider2D>();
+    }
     // Use this for initialization
     void Start () {
         SetVar(TussleConstants.MotionVariableNames.XSPEED, 0f);
         SetVar(TussleConstants.MotionVariableNames.YSPEED, 0f);
         SetVar(TussleConstants.MotionVariableNames.XPREF, 0f);
         SetVar(TussleConstants.MotionVariableNames.YPREF, 0f);
-
-        _charController = GetComponent<CharacterController>();
-        //rigid = GetComponent<Rigidbody>();
-        if (_charController == null)
-        {
-            _charController = gameObject.AddComponent<CharacterController>();
-        }
     }
 
     // Update is called once per frame
@@ -33,12 +32,11 @@ public class MotionHandler : BattleComponent {
 
     public void ExecuteMovement()
     {
-        Vector3 movement = new Vector3(0, 0, 0);
         movement.x = GetFloatVar(TussleConstants.MotionVariableNames.XSPEED);
         movement.y = GetFloatVar(TussleConstants.MotionVariableNames.YSPEED);
         
         movement *= Time.deltaTime;
-        _charController.Move(movement);
+        controller.Move(movement);
         //transform.Translate(movement);
         //rigid.velocity = transform.TransformDirection(movement);
 
@@ -46,11 +44,7 @@ public class MotionHandler : BattleComponent {
 
     void Update()
     {
-        Vector3 movement = new Vector3(0, 0, 0);
-        movement.x = GetFloatVar(TussleConstants.MotionVariableNames.XSPEED);
-        movement.y = GetFloatVar(TussleConstants.MotionVariableNames.YSPEED);
-        movement *= Time.deltaTime;
-        Debug.DrawRay(transform.position, movement * 10);
+        Debug.DrawRay(transform.position, movement);
 
     }
 
@@ -201,20 +195,12 @@ public class MotionHandler : BattleComponent {
 
     public void CalcGrav(float gravity, float max_fall_speed)
     {
-        ChangeYSpeedBy(gravity * 5 * Time.deltaTime);
+        //FIXME gravity calculations are hella floaty. Need to rework gravity entirely
+        ChangeYSpeedBy(gravity * Settings.current_settings.gravity_ratio * 5 * Time.deltaTime);
         if (GetFloatVar(TussleConstants.MotionVariableNames.YSPEED) < max_fall_speed)
         {
             ChangeYSpeed(max_fall_speed);
         }
-    }
-
-    void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        if (hit.gameObject.layer == LayerMask.NameToLayer("Terrain"))
-        {
-            
-        }
-        
     }
 
     public static Vector2 GetDirectionMagnitude(BattleObject actor)
