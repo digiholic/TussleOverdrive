@@ -29,7 +29,7 @@ public class BattleObject : MonoBehaviour, IVarDataContainer
      */
     private AbstractFighter abstractFighter;
     private ActionHandler actionHandler;
-    private EnvironmentCollider environmentCollider;
+    private BattleObjectCollider2D environmentCollider;
     private HitboxLoader hitboxLoader;
     private HurtboxLoader hurtboxLoader;
     private ModelHandler modelHandler;
