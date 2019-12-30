@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Hurtbox : MonoBehaviour {
 
-    private Transform fighter;
+    public BattleObject owner;
     private MeshRenderer meshrenderer;
 
 	// Use this for initialization
 	void Start () {
-        fighter = transform.root;
+        if (owner == null) owner = transform.root.GetComponent<BattleObject>();
         meshrenderer = GetComponent<MeshRenderer>();
         meshrenderer.enabled = Settings.current_settings.display_hurtboxes;
     }
@@ -22,6 +22,6 @@ public class Hurtbox : MonoBehaviour {
     void onHit(Hitbox hitbox)
     {
         //Debug.Log("Hurtbox has been hit");
-        fighter.SendMessage("GetHit",hitbox);
+        owner.SendMessage("GetHit",hitbox);
     }
 }

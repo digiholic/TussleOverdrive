@@ -58,4 +58,9 @@ public class TussleConstants {
         public static string FRAME_CURRENT = "currentFrame";
         public static string PIXELS_PER_UNIT = "PixelsPerUnit";
     }
+
+    public class ColliderVariableNames
+    {
+        public static string IS_PHASING = "phasing";
+    }
 }

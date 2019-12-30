@@ -197,6 +197,7 @@ public class SpriteHandler : BattleComponent {
 
     public void flip()
     {
+        //FIXME inverting the scale can cause some issues, replace this with a real rotation
         transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
 
         if (orientation == LEFT)

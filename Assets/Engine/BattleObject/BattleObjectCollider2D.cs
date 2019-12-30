@@ -53,6 +53,20 @@ public class BattleObjectCollider2D : BattleComponent
             
             RaycastHit hit;
             if (Physics.Raycast(rayOrigin,Vector2.up * directionY, out hit, rayLength, collisionMask)){
+                Platform otherPlat = hit.transform.GetComponent<Platform>();
+
+                //If it's a platform, we need to check if we're supposed to be "phasing" through it. If we are, skip this check
+                if (otherPlat){
+                    //If we're going up and it's a pass through
+                    bool upPhase = (directionY == 1 && otherPlat.passThrough);
+                    //or if we're going down, it's a fall through, and we're currently phasing
+                    bool downPhase = (directionY == -1 && otherPlat.fallThrough && GetBoolVar(TussleConstants.ColliderVariableNames.IS_PHASING));
+
+                    if ( upPhase || downPhase ){
+                        continue;
+                    }
+                }
+
                 velocity.y = (hit.distance - skinWidth) * directionY;
                 rayLength = hit.distance;
                 

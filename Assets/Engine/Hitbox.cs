@@ -24,6 +24,7 @@ public class Hitbox : MonoBehaviour {
 	void Awake () {
         col = GetComponent<Collider>();
         mesh = GetComponent<MeshRenderer>();
+        mesh.enabled = false; //The mesh is only visible if the hitbox is active. Even
 	}
 	
     void Start()
@@ -39,12 +40,13 @@ public class Hitbox : MonoBehaviour {
     public void StepFrame () {
         if (active)
         {
-            //Debug.Log("Checking for hitbox connections");
             Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents, col.transform.rotation, LayerMask.GetMask("Hurtbox"));
             foreach (Collider c in cols)
             {
+                Hurtbox hurt = c.GetComponent<Hurtbox>();
+                
                 //Ignore hurtboxes and hitboxes from the same source
-                if (!(transform.IsChildOf(c.transform.parent)))
+                if (hurt.owner != owner)
                 {
                     c.SendMessage("onHit", this);
                 }
@@ -95,10 +97,7 @@ public class Hitbox : MonoBehaviour {
     {
         _life = life;
         active = true;
-        //if (FindObjectOfType<Settings>().display_hitboxes)
-        //{
-            mesh.enabled = true;
-        //}
+        mesh.enabled = Settings.current_settings.display_hitboxes;
         
     }
 

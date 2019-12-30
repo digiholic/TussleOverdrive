@@ -60,7 +60,7 @@ public class AbstractFighter : BattleComponent {
 
     void LoadInfo()
     {
-        fighter_info = GetComponent<FighterInfoLoader>().GetFighterInfo();
+        if (fighter_info == null) fighter_info = GetComponent<FighterInfoLoader>().GetFighterInfo();
         foreach(KeyValuePair<string,object> variable in DefaultStats)
         {
             SetVar(variable.Key, variable.Value);
@@ -118,12 +118,19 @@ public class AbstractFighter : BattleComponent {
         SetVar(TussleConstants.FighterVariableNames.IS_GROUNDED, false);
         SetVar(TussleConstants.FighterVariableNames.ELASTICITY, 0.0f);
 
+        SetVar(TussleConstants.ColliderVariableNames.IS_PHASING,false);
+        
         //Change variables according to Settings
         Settings settings = Settings.current_settings;
         SetVar(TussleConstants.FighterAttributes.GRAVITY, GetFloatVar(TussleConstants.FighterAttributes.GRAVITY) * settings.gravity_ratio);
         SetVar(TussleConstants.FighterAttributes.WEIGHT, GetFloatVar(TussleConstants.FighterAttributes.WEIGHT) * settings.weight_ratio);
         SetVar(TussleConstants.FighterAttributes.FRICTION, GetFloatVar(TussleConstants.FighterAttributes.FRICTION) * settings.friction_ratio);
         SetVar(TussleConstants.FighterAttributes.AIR_CONTROL, GetFloatVar(TussleConstants.FighterAttributes.AIR_CONTROL) * settings.aircontrol_ratio);
+    }
+
+    public void SetFighterInfo(FighterInfo info){
+        fighter_info = info;
+        LoadInfo();
     }
 
     private void Awake()

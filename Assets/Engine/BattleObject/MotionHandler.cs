@@ -196,7 +196,7 @@ public class MotionHandler : BattleComponent {
     public void CalcGrav(float gravity, float max_fall_speed)
     {
         //FIXME gravity calculations are hella floaty. Need to rework gravity entirely
-        ChangeYSpeedBy(gravity * Settings.current_settings.gravity_ratio * 5 * Time.deltaTime);
+        ChangeYSpeedBy(gravity * 5 * Time.deltaTime);
         if (GetFloatVar(TussleConstants.MotionVariableNames.YSPEED) < max_fall_speed)
         {
             ChangeYSpeed(max_fall_speed);

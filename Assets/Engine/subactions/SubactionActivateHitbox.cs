@@ -18,7 +18,7 @@ public class SubactionActivateHitbox : Subaction
         base.Execute(obj, action);
         string name = (string)GetArgument("hitboxName", obj, action);
         int life = (int)GetArgument("life", obj, action, -1);
-
+        
         if (action.hitboxes.ContainsKey(name))
             action.hitboxes[name].Activate(life);
         else

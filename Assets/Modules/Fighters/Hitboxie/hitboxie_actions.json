@@ -728,7 +728,12 @@
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [
-                    "Set Up"
+                    "Set Up",
+                    "frame_0",
+                    "frame_1",
+                    "frame_2",
+                    "frame_3",
+                    "frame_4"
                 ],
                 "m_values": [
                     {
@@ -763,7 +768,7 @@
                                             "name": "hitboxName",
                                             "source": 0,
                                             "type": 0,
-                                            "data": "",
+                                            "data": "jabBox",
                                             "description": "The name of the hitbox to create. If the hitbox already exists for this Action, it will be overwritten with an empty one, so be careful! Each Hitbox should have a unique name."
                                         },
                                         {
@@ -893,6 +898,51 @@
                                             "type": 3,
                                             "data": "0",
                                             "description": "The amount of knockback a move has to deal before the opponent will be lifted off the ground. If the total knockback value is lower than this, the opponent will be put in hitstun and slid along the ground, ignoring the given angle of the Hitbox."
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": [
+                            {
+                                "order": 0,
+                                "SubactionName": "ActivateHitbox",
+                                "subType": 3,
+                                "arguments": {
+                                    "m_keys": [
+                                        "hitboxName",
+                                        "life"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "hitboxName",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "jabBox",
+                                            "description": "The Name of the Hitbox to activate"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "life",
+                                            "source": 0,
+                                            "type": 2,
+                                            "data": "6",
+                                            "description": "The number of frames to keep the hitbox active for. If set to -1, the Hitbox will remain open forever until explicitly deactivated."
                                         }
                                     ]
                                 }
