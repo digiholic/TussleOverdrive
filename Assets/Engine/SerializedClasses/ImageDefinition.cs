@@ -27,7 +27,7 @@ public class ImageDefinition {
     public int _offsetY = 0; //The Y offset from the topleft of the image file that this frame starts on, in image pixels
     public int _width = 0; //The width in image pixels of this frame
     public int _height = 0; //The height in image pixels of this frame
-    public float _pixelsPerUnit = 0; //How many image pixels fit in one game unit
+    //public float _pixelsPerUnit = 0; //How many image pixels fit in one game unit
 
     public AnchorPointData _pivot = null; //An AnchorPoint defining where the sprites should overlap. When changing subimages, the sprites will align on their pivot points
     public List<AnchorPointData> _anchors; //A list of AnchorPoints defining anchors to be referenced in the action file
@@ -87,15 +87,15 @@ public class ImageDefinition {
             dirty = true;
         }
     }
-    public float PixelsPerUnit
-    {
-        get { return _pixelsPerUnit; }
-        set
-        {
-            _pixelsPerUnit = value;
-            dirty = true;
-        }
-    }
+    // public float PixelsPerUnit
+    // {
+    //     get { return _pixelsPerUnit; }
+    //     set
+    //     {
+    //         _pixelsPerUnit = value;
+    //         dirty = true;
+    //     }
+    // }
     public AnchorPointData Pivot
     {
         get { return _pivot; }
@@ -115,13 +115,13 @@ public class ImageDefinition {
     /// <param name="directoryName"></param>
     /// <param name="costumeName"></param>
     /// <returns></returns>
-    public Sprite getSprite(string directoryName="",string costumeName="")
+    public Sprite getSprite(string directoryName="",string costumeName="",float pixelsPerUnit=100f)
     {
         if (cachedSprite == null || dirty)
         {
             if (directoryName.Length > 0)
             {
-                cacheSprite(directoryName, costumeName);
+                cacheSprite(directoryName, costumeName, pixelsPerUnit);
             } else
             {
                 cachedSprite = null;
@@ -141,7 +141,7 @@ public class ImageDefinition {
         dirty = false;
     }
     
-    public void cacheSprite(string directoryName, string costumeName)
+    public void cacheSprite(string directoryName, string costumeName, float pixelsPerUnit)
     {
         string filename = _spriteFileName;
         string path = FileLoader.PathCombine(directoryName, filename);
@@ -152,7 +152,8 @@ public class ImageDefinition {
         }
 
         Texture2D cachedTextureFile = FileLoader.LoadTexture(path);
-        Sprite newSprite = Sprite.Create(cachedTextureFile, new Rect(OffsetX, OffsetY, Width, Height), Pivot.getAsRelative(this), PixelsPerUnit);
+        //Debug.Log(pixelsPerUnit);
+        Sprite newSprite = Sprite.Create(cachedTextureFile, new Rect(OffsetX, OffsetY, Width, Height), Pivot.getAsRelative(this), pixelsPerUnit);
         cacheSprite(newSprite);
     }
 

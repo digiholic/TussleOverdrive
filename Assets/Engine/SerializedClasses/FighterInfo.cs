@@ -77,7 +77,7 @@ public class FighterInfo : IJsonInfoObject{
             if (directory_name != null){
                 string sprite_info_json = FileLoader.LoadTextFile(FileLoader.PathCombine(FileLoader.GetFighterPath(directory_name), sprite_info_path));
                 sprite_info = JsonUtility.FromJson<SpriteInfo>(sprite_info_json);
-                sprite_info.LoadDirectory(directory_name);
+                sprite_info.LoadDirectory(directory_name,this);
             }
         }
     }
@@ -179,7 +179,7 @@ public class FighterInfo : IJsonInfoObject{
         action_file = JsonUtility.FromJson<ActionFile>(action_file_json);
         string sprite_info_json = FileLoader.LoadTextFile(FileLoader.PathCombine(directory_name, sprite_info_path));
         sprite_info = JsonUtility.FromJson<SpriteInfo>(sprite_info_json);
-        sprite_info.LoadDirectory(directoryName);
+        sprite_info.LoadDirectory(directoryName,this);
 
         //Mark the fighter info as initialized and ready
         initialized = true;

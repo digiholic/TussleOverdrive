@@ -17,7 +17,7 @@ public class SpriteInfo : IJsonInfoObject
     public string default_sprite = "idle";
     public string spriteDirectory = "sprites";
     public string costumeName;
-    public int pixelsPerUnit = 100;
+
     public List<AnimationDefinition> animations;
     public List<ImageDefinition> imageDefinitions;
 
@@ -39,7 +39,7 @@ public class SpriteInfo : IJsonInfoObject
     /// Needs to be passed a fighter path to the directory to load relative from.
     /// </summary>
     /// <param name="directoryName"></param>
-    public void LoadDirectory(string fighterDirName)
+    public void LoadDirectory(string fighterDirName,FighterInfo fighter_info)
     {
         if (animations == null) animations = new List<AnimationDefinition>();
         if (imageDefinitions == null) imageDefinitions = new List<ImageDefinition>();
@@ -54,7 +54,8 @@ public class SpriteInfo : IJsonInfoObject
             foreach (string imageName in aData.subimages)
             {
                 ImageDefinition sData = GetImageByName(imageName);
-                sData.cacheSprite(fullSpriteDirectoryName, costumeName);
+                float ppu = float.Parse(fighter_info.GetVarByName(TussleConstants.SpriteVariableNames.PIXELS_PER_UNIT).value);
+                sData.cacheSprite(fullSpriteDirectoryName, costumeName, ppu);
             }
         }
 

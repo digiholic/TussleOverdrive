@@ -275,7 +275,7 @@ public class LegacyEditorData : MonoBehaviour
         loadedActionFile = ActionFile.LoadActionsFromFile(FighterDirName, loadedFighter.actionFilePath);
         currentAction = loadedActionFile.GetFirst();
         loadedSpriteInfo = SpriteInfo.LoadSpritesFromFile(FighterDirName, loadedFighter.spriteInfoPath);
-        loadedSpriteInfo.LoadDirectory(FighterDirName);
+        loadedSpriteInfo.LoadDirectory(FighterDirName,loadedFighter);
         FireModelChange();
     }
 
@@ -305,7 +305,7 @@ public class LegacyEditorData : MonoBehaviour
         loadedActionFile = ActionFile.LoadActionsFromFile(FighterDirName, fInfo.actionFilePath);
         currentAction = loadedActionFile.GetFirst();
         loadedSpriteInfo = SpriteInfo.LoadSpritesFromFile(FighterDirName, fInfo.spriteInfoPath);
-        loadedSpriteInfo.LoadDirectory(FighterDirName);
+        loadedSpriteInfo.LoadDirectory(FighterDirName,loadedFighter);
 
         FireModelChange();
     }

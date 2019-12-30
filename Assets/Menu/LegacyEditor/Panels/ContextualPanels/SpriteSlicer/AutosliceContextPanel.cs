@@ -39,7 +39,6 @@ public class AutosliceContextPanel : ContextualPanelData
             offsetYString = def.OffsetY.ToString();
             pivotXString = def.Pivot.xPos.ToString();
             pivotYString = def.Pivot.yPos.ToString();
-            ppuString = def.PixelsPerUnit.ToString();
         }
     }
 
@@ -94,7 +93,6 @@ public class AutosliceContextPanel : ContextualPanelData
                 imageDef.OffsetY = currentYOffset;
                 imageDef.Width = width;
                 imageDef.Height = height;
-                imageDef.PixelsPerUnit = pixelsPerUnit;
                 imageDef.Pivot = new AnchorPointData("Pivot", pivotX, pivotY, AnchorPointData.RELATIVE);
                 animation.subimages.Add(imageDef.ImageName);
                 

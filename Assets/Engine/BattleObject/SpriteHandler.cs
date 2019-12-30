@@ -78,9 +78,12 @@ public class SpriteHandler : BattleComponent {
             float xPos = spriteComponent.transform.position.x; //0
             float yPos = spriteComponent.transform.position.y; //0
             
-            float width = currentSubimage.Width / currentSubimage.PixelsPerUnit; //100
-            float height = currentSubimage.Height / currentSubimage.PixelsPerUnit; //100
-
+            float ppu = float.Parse(fighter_info.GetVarByName(TussleConstants.SpriteVariableNames.PIXELS_PER_UNIT).value);
+            Debug.Log(ppu);
+            if (ppu == 0) ppu = 100;
+            
+            float width = currentSubimage.Width / ppu; //100
+            float height = currentSubimage.Height / ppu; //100
             float xPivotAbs = xPivotRatio * width; //50
             float yPivotAbs = yPivotRatio * height; //0
 

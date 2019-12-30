@@ -11,7 +11,7 @@ public class BattleController : MonoBehaviour {
 
     private List<BattleObject> objects = new List<BattleObject>();
     private Dictionary<int, AbstractFighter> fighterDict = new Dictionary<int, AbstractFighter>();
-    private List<AbstractFighter> fighters = new List<AbstractFighter>();
+    [SerializeField] private List<AbstractFighter> fighters = new List<AbstractFighter>();
     private List<Hitbox> hitboxes = new List<Hitbox>();
     public bool UpdateOnFrame;
 
@@ -80,6 +80,7 @@ public class BattleController : MonoBehaviour {
     /// <param name="obj"></param>
     public void RegisterObject(BattleObject obj)
     {
+        Debug.Log("Registering Object",obj.gameObject);
         objects.Add(obj);
         AbstractFighter fighter = obj.GetAbstractFighter();
         if (fighter != null)

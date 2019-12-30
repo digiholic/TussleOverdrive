@@ -60,6 +60,7 @@ public class AbstractFighter : BattleComponent {
 
     void LoadInfo()
     {
+        Debug.Log("LOADING INFO",gameObject);
         if (fighter_info == null) fighter_info = GetComponent<FighterInfoLoader>().GetFighterInfo();
         foreach(KeyValuePair<string,object> variable in DefaultStats)
         {
@@ -126,11 +127,6 @@ public class AbstractFighter : BattleComponent {
         SetVar(TussleConstants.FighterAttributes.WEIGHT, GetFloatVar(TussleConstants.FighterAttributes.WEIGHT) * settings.weight_ratio);
         SetVar(TussleConstants.FighterAttributes.FRICTION, GetFloatVar(TussleConstants.FighterAttributes.FRICTION) * settings.friction_ratio);
         SetVar(TussleConstants.FighterAttributes.AIR_CONTROL, GetFloatVar(TussleConstants.FighterAttributes.AIR_CONTROL) * settings.aircontrol_ratio);
-    }
-
-    public void SetFighterInfo(FighterInfo info){
-        fighter_info = info;
-        LoadInfo();
     }
 
     private void Awake()

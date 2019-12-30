@@ -125,7 +125,7 @@
         },
         {
             "name": "PixelsPerUnit",
-            "value": "100",
+            "value": "50",
             "type": 0
         }
     ],
