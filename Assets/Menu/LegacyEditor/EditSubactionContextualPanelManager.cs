@@ -14,6 +14,9 @@ public class EditSubactionContextualPanelManager : LegacyEditorWidget
         if (subaction == null)
         {
             //Debug.Log("Deactivating default", defaultSubactionContextPanel);
+            foreach (EditSubactionContextPanel uniquePanel in uniqueContextPanels.Values){
+                uniquePanel.DeactivatePanel();
+            }
             defaultSubactionContextPanel.DeactivatePanel();
         }
         else

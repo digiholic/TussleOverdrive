@@ -238,8 +238,8 @@ public class StateTransitions : ScriptableObject {
         actor.BroadcastMessage("ChangeXPreferred", actor.GetAxis("Horizontal") * actor.GetFloatVar(TussleConstants.FighterAttributes.MAX_AIR_SPEED));
         if (Mathf.Abs(actor.GetFloatVar(TussleConstants.MotionVariableNames.XSPEED)) > actor.GetFloatVar(TussleConstants.FighterAttributes.MAX_AIR_SPEED))
             actor.SendMessage("accel", actor.GetFloatVar(TussleConstants.FighterAttributes.AIR_CONTROL));
-        if (Mathf.Abs(actor.GetFloatVar(TussleConstants.MotionVariableNames.YSPEED)) > Mathf.Abs(actor.GetFloatVar("max_fall_speed")))
-            actor.SetVar("landing_lag", actor.GetFloatVar("heavy_land_lag"));
+        if (Mathf.Abs(actor.GetFloatVar(TussleConstants.MotionVariableNames.YSPEED)) > Mathf.Abs(actor.GetFloatVar(TussleConstants.FighterAttributes.MAX_FALL_SPEED)))
+            actor.SetVar("landing_lag", actor.GetFloatVar(TussleConstants.FighterAttributes.HEAVY_LANDING_LAG));
     }
     
     public static void HelplessControl(AbstractFighter actor)

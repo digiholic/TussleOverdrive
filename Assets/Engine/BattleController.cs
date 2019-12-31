@@ -80,7 +80,6 @@ public class BattleController : MonoBehaviour {
     /// <param name="obj"></param>
     public void RegisterObject(BattleObject obj)
     {
-        Debug.Log("Registering Object",obj.gameObject);
         objects.Add(obj);
         AbstractFighter fighter = obj.GetAbstractFighter();
         if (fighter != null)

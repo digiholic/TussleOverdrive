@@ -800,7 +800,7 @@
                                             "name": "width",
                                             "source": 0,
                                             "type": 3,
-                                            "data": "100",
+                                            "data": "80",
                                             "description": "The end-to-end distance of the Hitbox horizontally."
                                         },
                                         {
@@ -808,7 +808,7 @@
                                             "name": "height",
                                             "source": 0,
                                             "type": 3,
-                                            "data": "100",
+                                            "data": "80",
                                             "description": "The end-to-end distance of the Hitbox vertically."
                                         },
                                         {
@@ -991,9 +991,502 @@
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [
-                    "Set Up"
+                    "Set Up",
+                    "frame_13",
+                    "frame_12",
+                    "frame_11",
+                    "frame_10",
+                    "frame_9",
+                    "frame_8",
+                    "frame_7",
+                    "frame_6",
+                    "frame_5",
+                    "frame_4",
+                    "frame_3",
+                    "frame_14",
+                    "frame_15",
+                    "frame_16",
+                    "frame_17",
+                    "frame_18",
+                    "frame_19",
+                    "frame_20",
+                    "frame_21",
+                    "frame_22",
+                    "frame_23",
+                    "frame_24",
+                    "frame_25",
+                    "frame_26",
+                    "frame_27",
+                    "frame_28"
                 ],
                 "m_values": [
+                    {
+                        "data": [
+                            {
+                                "order": 0,
+                                "SubactionName": "CreateHitbox",
+                                "subType": 3,
+                                "arguments": {
+                                    "m_keys": [
+                                        "hitboxName",
+                                        "lockGroup",
+                                        "centerX",
+                                        "centerY",
+                                        "width",
+                                        "height",
+                                        "damage",
+                                        "angle",
+                                        "baseKnockback",
+                                        "knockbackGrowth",
+                                        "chargeDamage",
+                                        "chargeBaseKnockback",
+                                        "chargeKnockbackGrowth",
+                                        "shieldDamage",
+                                        "hitstunScaling",
+                                        "shieldstunScaling",
+                                        "sakuraiThreshold"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "hitboxName",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "sweetHitbox",
+                                            "description": "The name of the hitbox to create. If the hitbox already exists for this Action, it will be overwritten with an empty one, so be careful! Each Hitbox should have a unique name."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "lockGroup",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "utiltLock",
+                                            "description": "Hitboxes do not count as a collision if another hitbox in the same Lock Group has already hit the opponent. Use these locks to define sweetspots and sourspots to avoid having multiple hitboxes all hit on the same frame. Leave blank if this hitbox doesn't group up with any others and will always connect if it hits."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "centerX",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "25",
+                                            "description": "The X-coordinate of the center of the Hitbox. This is relative to the center of the fighter, so a Hitbox with 0 here will be horizontally centerred on the fighter. Negative values are opposite the character's facing direction"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "centerY",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "60",
+                                            "description": "The Y-coordinate of the center of the Hitbox. This is relative to the center of the fighter, so a Hitbox with 0 here will be vertically centerred on the fighter. Negative values are upward."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "width",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "25",
+                                            "description": "The end-to-end distance of the Hitbox horizontally."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "height",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "30",
+                                            "description": "The end-to-end distance of the Hitbox vertically."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "damage",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "7",
+                                            "description": "The damage in percent that the hitbox does to an opponent"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "angle",
+                                            "source": 0,
+                                            "type": 2,
+                                            "data": "100",
+                                            "description": "The angle the move launches the target at. This is in degrees, with 0 being straight forward, 90 being straight up, and 180 being backwards. Negative values and values over 360 will be projected into the 360 degree space, so -90 will become 270, and 361 will become 1 (for \"Sakurai Angle\" hitboxes, see the \"Sakurai Threshold\" in the advanced section)"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "baseKnockback",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "8",
+                                            "description": "The base amount of knockback the move has, before applying other modifiers like percentage, weight, etc."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "knockbackGrowth",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": ".08",
+                                            "description": "The rate at which the knockback strength increases based on the opponent's percentage."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "chargeDamage",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "The amount of damage to add to the Hitbox every time the \"Charge\" subaction is called on it"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "chargeBaseKnockback",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "The amount of baseKnockback to add to the Hitbox every time the \"Charge\" subaction is called on it"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "chargeKnockbackGrowth",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "The amount of knockbackGrowth to add to the Hitbox every time the \"Charge\" subaction is called on it"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "shieldDamage",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "The amount of \"extra\" damage done to the shield of the opponent if blocked. Can also be negative to make a Hitbox less effective on shields than fighters."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "hitstunScaling",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "1",
+                                            "description": "A multiplier applied to the final knockback value for the purposes of calculating hitstun. A value of 1.0 will have a normal amount of hitstun for its knockback, while a value of 2.0 will keep the opponent in hitstun for twice as long. If hitstunScaling is 0 or less, the move will have no hitstun, dealing damage without knocking the fighter back or interrupting their action."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "shieldstunScaling",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "1",
+                                            "description": "A multiplier applied to the final knockback value for the purposes of determining how long the defending player should be in shield stun, unable to lower their shield. 1.0 for normal shieldstun, while 2.0 would double the amount of shieldstun."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "sakuraiThreshold",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "The amount of knockback a move has to deal before the opponent will be lifted off the ground. If the total knockback value is lower than this, the opponent will be put in hitstun and slid along the ground, ignoring the given angle of the Hitbox."
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "order": 1,
+                                "SubactionName": "CreateHitbox",
+                                "subType": 3,
+                                "arguments": {
+                                    "m_keys": [
+                                        "hitboxName",
+                                        "lockGroup",
+                                        "centerX",
+                                        "centerY",
+                                        "width",
+                                        "height",
+                                        "damage",
+                                        "angle",
+                                        "baseKnockback",
+                                        "knockbackGrowth",
+                                        "chargeDamage",
+                                        "chargeBaseKnockback",
+                                        "chargeKnockbackGrowth",
+                                        "shieldDamage",
+                                        "hitstunScaling",
+                                        "shieldstunScaling",
+                                        "sakuraiThreshold"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "hitboxName",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "sourHitbox",
+                                            "description": "The name of the hitbox to create. If the hitbox already exists for this Action, it will be overwritten with an empty one, so be careful! Each Hitbox should have a unique name."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "lockGroup",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "utiltLock",
+                                            "description": "Hitboxes do not count as a collision if another hitbox in the same Lock Group has already hit the opponent. Use these locks to define sweetspots and sourspots to avoid having multiple hitboxes all hit on the same frame. Leave blank if this hitbox doesn't group up with any others and will always connect if it hits."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "centerX",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "25",
+                                            "description": "The X-coordinate of the center of the Hitbox. This is relative to the center of the fighter, so a Hitbox with 0 here will be horizontally centerred on the fighter. Negative values are opposite the character's facing direction"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "centerY",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "10",
+                                            "description": "The Y-coordinate of the center of the Hitbox. This is relative to the center of the fighter, so a Hitbox with 0 here will be vertically centerred on the fighter. Negative values are upward."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "width",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "25",
+                                            "description": "The end-to-end distance of the Hitbox horizontally."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "height",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "60",
+                                            "description": "The end-to-end distance of the Hitbox vertically."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "damage",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "3",
+                                            "description": "The damage in percent that the hitbox does to an opponent"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "angle",
+                                            "source": 0,
+                                            "type": 2,
+                                            "data": "120",
+                                            "description": "The angle the move launches the target at. This is in degrees, with 0 being straight forward, 90 being straight up, and 180 being backwards. Negative values and values over 360 will be projected into the 360 degree space, so -90 will become 270, and 361 will become 1 (for \"Sakurai Angle\" hitboxes, see the \"Sakurai Threshold\" in the advanced section)"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "baseKnockback",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "6",
+                                            "description": "The base amount of knockback the move has, before applying other modifiers like percentage, weight, etc."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "knockbackGrowth",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0.08",
+                                            "description": "The rate at which the knockback strength increases based on the opponent's percentage."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "chargeDamage",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "The amount of damage to add to the Hitbox every time the \"Charge\" subaction is called on it"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "chargeBaseKnockback",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "The amount of baseKnockback to add to the Hitbox every time the \"Charge\" subaction is called on it"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "chargeKnockbackGrowth",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "The amount of knockbackGrowth to add to the Hitbox every time the \"Charge\" subaction is called on it"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "shieldDamage",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "The amount of \"extra\" damage done to the shield of the opponent if blocked. Can also be negative to make a Hitbox less effective on shields than fighters."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "hitstunScaling",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "1",
+                                            "description": "A multiplier applied to the final knockback value for the purposes of calculating hitstun. A value of 1.0 will have a normal amount of hitstun for its knockback, while a value of 2.0 will keep the opponent in hitstun for twice as long. If hitstunScaling is 0 or less, the move will have no hitstun, dealing damage without knocking the fighter back or interrupting their action."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "shieldstunScaling",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "1",
+                                            "description": "A multiplier applied to the final knockback value for the purposes of determining how long the defending player should be in shield stun, unable to lower their shield. 1.0 for normal shieldstun, while 2.0 would double the amount of shieldstun."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "sakuraiThreshold",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "The amount of knockback a move has to deal before the opponent will be lifted off the ground. If the total knockback value is lower than this, the opponent will be put in hitstun and slid along the ground, ignoring the given angle of the Hitbox."
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": [
+                            {
+                                "order": 0,
+                                "SubactionName": "ActivateHitbox",
+                                "subType": 3,
+                                "arguments": {
+                                    "m_keys": [
+                                        "hitboxName",
+                                        "life"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "hitboxName",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "sweetHitbox",
+                                            "description": "The Name of the Hitbox to activate"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "life",
+                                            "source": 0,
+                                            "type": 2,
+                                            "data": "8",
+                                            "description": "The number of frames to keep the hitbox active for. If set to -1, the Hitbox will remain open forever until explicitly deactivated."
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": [
+                            {
+                                "order": 0,
+                                "SubactionName": "ActivateHitbox",
+                                "subType": 3,
+                                "arguments": {
+                                    "m_keys": [
+                                        "hitboxName",
+                                        "life"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "hitboxName",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "sourHitbox",
+                                            "description": "The Name of the Hitbox to activate"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "life",
+                                            "source": 0,
+                                            "type": 2,
+                                            "data": "12",
+                                            "description": "The number of frames to keep the hitbox active for. If set to -1, the Hitbox will remain open forever until explicitly deactivated."
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
                     {
                         "data": []
                     }
@@ -1007,9 +1500,1059 @@
             "exit_action": "",
             "subactionCategories": {
                 "m_keys": [
-                    "Set Up"
+                    "Set Up",
+                    "frame_0",
+                    "frame_1",
+                    "frame_2",
+                    "frame_3",
+                    "frame_4",
+                    "frame_5",
+                    "frame_6",
+                    "frame_7",
+                    "frame_8",
+                    "frame_9",
+                    "frame_10",
+                    "frame_11",
+                    "frame_12",
+                    "frame_13",
+                    "frame_14",
+                    "frame_15",
+                    "frame_16",
+                    "frame_17",
+                    "frame_18",
+                    "frame_19",
+                    "frame_20",
+                    "frame_21",
+                    "frame_22",
+                    "frame_23",
+                    "frame_24",
+                    "frame_25",
+                    "frame_26",
+                    "frame_27",
+                    "frame_28",
+                    "frame_29",
+                    "frame_30",
+                    "frame_31",
+                    "frame_32",
+                    "frame_33",
+                    "frame_34",
+                    "frame_35",
+                    "frame_36",
+                    "frame_37",
+                    "frame_38",
+                    "frame_39",
+                    "frame_40",
+                    "frame_41",
+                    "frame_42",
+                    "frame_43",
+                    "frame_44",
+                    "frame_45"
                 ],
                 "m_values": [
+                    {
+                        "data": [
+                            {
+                                "order": 0,
+                                "SubactionName": "CreateHitbox",
+                                "subType": 3,
+                                "arguments": {
+                                    "m_keys": [
+                                        "hitboxName",
+                                        "lockGroup",
+                                        "centerX",
+                                        "centerY",
+                                        "width",
+                                        "height",
+                                        "damage",
+                                        "angle",
+                                        "baseKnockback",
+                                        "knockbackGrowth",
+                                        "chargeDamage",
+                                        "chargeBaseKnockback",
+                                        "chargeKnockbackGrowth",
+                                        "shieldDamage",
+                                        "hitstunScaling",
+                                        "shieldstunScaling",
+                                        "sakuraiThreshold"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "hitboxName",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "popupHitbox",
+                                            "description": "The name of the hitbox to create. If the hitbox already exists for this Action, it will be overwritten with an empty one, so be careful! Each Hitbox should have a unique name."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "lockGroup",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "popupLock",
+                                            "description": "Hitboxes do not count as a collision if another hitbox in the same Lock Group has already hit the opponent. Use these locks to define sweetspots and sourspots to avoid having multiple hitboxes all hit on the same frame. Leave blank if this hitbox doesn't group up with any others and will always connect if it hits."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "centerX",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "The X-coordinate of the center of the Hitbox. This is relative to the center of the fighter, so a Hitbox with 0 here will be horizontally centerred on the fighter. Negative values are opposite the character's facing direction"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "centerY",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "The Y-coordinate of the center of the Hitbox. This is relative to the center of the fighter, so a Hitbox with 0 here will be vertically centerred on the fighter. Negative values are upward."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "width",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "100",
+                                            "description": "The end-to-end distance of the Hitbox horizontally."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "height",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "100",
+                                            "description": "The end-to-end distance of the Hitbox vertically."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "damage",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "The damage in percent that the hitbox does to an opponent"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "angle",
+                                            "source": 0,
+                                            "type": 2,
+                                            "data": "90",
+                                            "description": "The angle the move launches the target at. This is in degrees, with 0 being straight forward, 90 being straight up, and 180 being backwards. Negative values and values over 360 will be projected into the 360 degree space, so -90 will become 270, and 361 will become 1 (for \"Sakurai Angle\" hitboxes, see the \"Sakurai Threshold\" in the advanced section)"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "baseKnockback",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "20",
+                                            "description": "The base amount of knockback the move has, before applying other modifiers like percentage, weight, etc."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "knockbackGrowth",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "The rate at which the knockback strength increases based on the opponent's percentage."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "chargeDamage",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "The amount of damage to add to the Hitbox every time the \"Charge\" subaction is called on it"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "chargeBaseKnockback",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "The amount of baseKnockback to add to the Hitbox every time the \"Charge\" subaction is called on it"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "chargeKnockbackGrowth",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "The amount of knockbackGrowth to add to the Hitbox every time the \"Charge\" subaction is called on it"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "shieldDamage",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "The amount of \"extra\" damage done to the shield of the opponent if blocked. Can also be negative to make a Hitbox less effective on shields than fighters."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "hitstunScaling",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "A multiplier applied to the final knockback value for the purposes of calculating hitstun. A value of 1.0 will have a normal amount of hitstun for its knockback, while a value of 2.0 will keep the opponent in hitstun for twice as long. If hitstunScaling is 0 or less, the move will have no hitstun, dealing damage without knocking the fighter back or interrupting their action."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "shieldstunScaling",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "1",
+                                            "description": "A multiplier applied to the final knockback value for the purposes of determining how long the defending player should be in shield stun, unable to lower their shield. 1.0 for normal shieldstun, while 2.0 would double the amount of shieldstun."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "sakuraiThreshold",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "The amount of knockback a move has to deal before the opponent will be lifted off the ground. If the total knockback value is lower than this, the opponent will be put in hitstun and slid along the ground, ignoring the given angle of the Hitbox."
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "order": 1,
+                                "SubactionName": "CreateHitbox",
+                                "subType": 3,
+                                "arguments": {
+                                    "m_keys": [
+                                        "hitboxName",
+                                        "lockGroup",
+                                        "centerX",
+                                        "centerY",
+                                        "width",
+                                        "height",
+                                        "damage",
+                                        "angle",
+                                        "baseKnockback",
+                                        "knockbackGrowth",
+                                        "chargeDamage",
+                                        "chargeBaseKnockback",
+                                        "chargeKnockbackGrowth",
+                                        "shieldDamage",
+                                        "hitstunScaling",
+                                        "shieldstunScaling",
+                                        "sakuraiThreshold"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "hitboxName",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "weakHboxL",
+                                            "description": "The name of the hitbox to create. If the hitbox already exists for this Action, it will be overwritten with an empty one, so be careful! Each Hitbox should have a unique name."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "lockGroup",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "",
+                                            "description": "Hitboxes do not count as a collision if another hitbox in the same Lock Group has already hit the opponent. Use these locks to define sweetspots and sourspots to avoid having multiple hitboxes all hit on the same frame. Leave blank if this hitbox doesn't group up with any others and will always connect if it hits."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "centerX",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "The X-coordinate of the center of the Hitbox. This is relative to the center of the fighter, so a Hitbox with 0 here will be horizontally centerred on the fighter. Negative values are opposite the character's facing direction"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "centerY",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "80",
+                                            "description": "The Y-coordinate of the center of the Hitbox. This is relative to the center of the fighter, so a Hitbox with 0 here will be vertically centerred on the fighter. Negative values are upward."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "width",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "80",
+                                            "description": "The end-to-end distance of the Hitbox horizontally."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "height",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "80",
+                                            "description": "The end-to-end distance of the Hitbox vertically."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "damage",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "2",
+                                            "description": "The damage in percent that the hitbox does to an opponent"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "angle",
+                                            "source": 0,
+                                            "type": 2,
+                                            "data": "150",
+                                            "description": "The angle the move launches the target at. This is in degrees, with 0 being straight forward, 90 being straight up, and 180 being backwards. Negative values and values over 360 will be projected into the 360 degree space, so -90 will become 270, and 361 will become 1 (for \"Sakurai Angle\" hitboxes, see the \"Sakurai Threshold\" in the advanced section)"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "baseKnockback",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "5",
+                                            "description": "The base amount of knockback the move has, before applying other modifiers like percentage, weight, etc."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "knockbackGrowth",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "The rate at which the knockback strength increases based on the opponent's percentage."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "chargeDamage",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "The amount of damage to add to the Hitbox every time the \"Charge\" subaction is called on it"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "chargeBaseKnockback",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "The amount of baseKnockback to add to the Hitbox every time the \"Charge\" subaction is called on it"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "chargeKnockbackGrowth",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "The amount of knockbackGrowth to add to the Hitbox every time the \"Charge\" subaction is called on it"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "shieldDamage",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "The amount of \"extra\" damage done to the shield of the opponent if blocked. Can also be negative to make a Hitbox less effective on shields than fighters."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "hitstunScaling",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "1",
+                                            "description": "A multiplier applied to the final knockback value for the purposes of calculating hitstun. A value of 1.0 will have a normal amount of hitstun for its knockback, while a value of 2.0 will keep the opponent in hitstun for twice as long. If hitstunScaling is 0 or less, the move will have no hitstun, dealing damage without knocking the fighter back or interrupting their action."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "shieldstunScaling",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "1",
+                                            "description": "A multiplier applied to the final knockback value for the purposes of determining how long the defending player should be in shield stun, unable to lower their shield. 1.0 for normal shieldstun, while 2.0 would double the amount of shieldstun."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "sakuraiThreshold",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "The amount of knockback a move has to deal before the opponent will be lifted off the ground. If the total knockback value is lower than this, the opponent will be put in hitstun and slid along the ground, ignoring the given angle of the Hitbox."
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "order": 2,
+                                "SubactionName": "CreateHitbox",
+                                "subType": 3,
+                                "arguments": {
+                                    "m_keys": [
+                                        "hitboxName",
+                                        "lockGroup",
+                                        "centerX",
+                                        "centerY",
+                                        "width",
+                                        "height",
+                                        "damage",
+                                        "angle",
+                                        "baseKnockback",
+                                        "knockbackGrowth",
+                                        "chargeDamage",
+                                        "chargeBaseKnockback",
+                                        "chargeKnockbackGrowth",
+                                        "shieldDamage",
+                                        "hitstunScaling",
+                                        "shieldstunScaling",
+                                        "sakuraiThreshold"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "hitboxName",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "weakHboxR",
+                                            "description": "The name of the hitbox to create. If the hitbox already exists for this Action, it will be overwritten with an empty one, so be careful! Each Hitbox should have a unique name."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "lockGroup",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "",
+                                            "description": "Hitboxes do not count as a collision if another hitbox in the same Lock Group has already hit the opponent. Use these locks to define sweetspots and sourspots to avoid having multiple hitboxes all hit on the same frame. Leave blank if this hitbox doesn't group up with any others and will always connect if it hits."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "centerX",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "The X-coordinate of the center of the Hitbox. This is relative to the center of the fighter, so a Hitbox with 0 here will be horizontally centerred on the fighter. Negative values are opposite the character's facing direction"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "centerY",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "80",
+                                            "description": "The Y-coordinate of the center of the Hitbox. This is relative to the center of the fighter, so a Hitbox with 0 here will be vertically centerred on the fighter. Negative values are upward."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "width",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "80",
+                                            "description": "The end-to-end distance of the Hitbox horizontally."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "height",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "80",
+                                            "description": "The end-to-end distance of the Hitbox vertically."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "damage",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "2",
+                                            "description": "The damage in percent that the hitbox does to an opponent"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "angle",
+                                            "source": 0,
+                                            "type": 2,
+                                            "data": "30",
+                                            "description": "The angle the move launches the target at. This is in degrees, with 0 being straight forward, 90 being straight up, and 180 being backwards. Negative values and values over 360 will be projected into the 360 degree space, so -90 will become 270, and 361 will become 1 (for \"Sakurai Angle\" hitboxes, see the \"Sakurai Threshold\" in the advanced section)"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "baseKnockback",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "5",
+                                            "description": "The base amount of knockback the move has, before applying other modifiers like percentage, weight, etc."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "knockbackGrowth",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "The rate at which the knockback strength increases based on the opponent's percentage."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "chargeDamage",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "The amount of damage to add to the Hitbox every time the \"Charge\" subaction is called on it"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "chargeBaseKnockback",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "The amount of baseKnockback to add to the Hitbox every time the \"Charge\" subaction is called on it"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "chargeKnockbackGrowth",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "The amount of knockbackGrowth to add to the Hitbox every time the \"Charge\" subaction is called on it"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "shieldDamage",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "The amount of \"extra\" damage done to the shield of the opponent if blocked. Can also be negative to make a Hitbox less effective on shields than fighters."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "hitstunScaling",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "1",
+                                            "description": "A multiplier applied to the final knockback value for the purposes of calculating hitstun. A value of 1.0 will have a normal amount of hitstun for its knockback, while a value of 2.0 will keep the opponent in hitstun for twice as long. If hitstunScaling is 0 or less, the move will have no hitstun, dealing damage without knocking the fighter back or interrupting their action."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "shieldstunScaling",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "1",
+                                            "description": "A multiplier applied to the final knockback value for the purposes of determining how long the defending player should be in shield stun, unable to lower their shield. 1.0 for normal shieldstun, while 2.0 would double the amount of shieldstun."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "sakuraiThreshold",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "The amount of knockback a move has to deal before the opponent will be lifted off the ground. If the total knockback value is lower than this, the opponent will be put in hitstun and slid along the ground, ignoring the given angle of the Hitbox."
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "order": 3,
+                                "SubactionName": "CreateHitbox",
+                                "subType": 3,
+                                "arguments": {
+                                    "m_keys": [
+                                        "hitboxName",
+                                        "lockGroup",
+                                        "centerX",
+                                        "centerY",
+                                        "width",
+                                        "height",
+                                        "damage",
+                                        "angle",
+                                        "baseKnockback",
+                                        "knockbackGrowth",
+                                        "chargeDamage",
+                                        "chargeBaseKnockback",
+                                        "chargeKnockbackGrowth",
+                                        "shieldDamage",
+                                        "hitstunScaling",
+                                        "shieldstunScaling",
+                                        "sakuraiThreshold"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "hitboxName",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "uSmashHbox",
+                                            "description": "The name of the hitbox to create. If the hitbox already exists for this Action, it will be overwritten with an empty one, so be careful! Each Hitbox should have a unique name."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "lockGroup",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "",
+                                            "description": "Hitboxes do not count as a collision if another hitbox in the same Lock Group has already hit the opponent. Use these locks to define sweetspots and sourspots to avoid having multiple hitboxes all hit on the same frame. Leave blank if this hitbox doesn't group up with any others and will always connect if it hits."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "centerX",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "The X-coordinate of the center of the Hitbox. This is relative to the center of the fighter, so a Hitbox with 0 here will be horizontally centerred on the fighter. Negative values are opposite the character's facing direction"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "centerY",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "80",
+                                            "description": "The Y-coordinate of the center of the Hitbox. This is relative to the center of the fighter, so a Hitbox with 0 here will be vertically centerred on the fighter. Negative values are upward."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "width",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "120",
+                                            "description": "The end-to-end distance of the Hitbox horizontally."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "height",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "120",
+                                            "description": "The end-to-end distance of the Hitbox vertically."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "damage",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "8",
+                                            "description": "The damage in percent that the hitbox does to an opponent"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "angle",
+                                            "source": 0,
+                                            "type": 2,
+                                            "data": "80",
+                                            "description": "The angle the move launches the target at. This is in degrees, with 0 being straight forward, 90 being straight up, and 180 being backwards. Negative values and values over 360 will be projected into the 360 degree space, so -90 will become 270, and 361 will become 1 (for \"Sakurai Angle\" hitboxes, see the \"Sakurai Threshold\" in the advanced section)"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "baseKnockback",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "2",
+                                            "description": "The base amount of knockback the move has, before applying other modifiers like percentage, weight, etc."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "knockbackGrowth",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": ".25",
+                                            "description": "The rate at which the knockback strength increases based on the opponent's percentage."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "chargeDamage",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0.1",
+                                            "description": "The amount of damage to add to the Hitbox every time the \"Charge\" subaction is called on it"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "chargeBaseKnockback",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0.02",
+                                            "description": "The amount of baseKnockback to add to the Hitbox every time the \"Charge\" subaction is called on it"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "chargeKnockbackGrowth",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "The amount of knockbackGrowth to add to the Hitbox every time the \"Charge\" subaction is called on it"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "shieldDamage",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "The amount of \"extra\" damage done to the shield of the opponent if blocked. Can also be negative to make a Hitbox less effective on shields than fighters."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "hitstunScaling",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "1",
+                                            "description": "A multiplier applied to the final knockback value for the purposes of calculating hitstun. A value of 1.0 will have a normal amount of hitstun for its knockback, while a value of 2.0 will keep the opponent in hitstun for twice as long. If hitstunScaling is 0 or less, the move will have no hitstun, dealing damage without knocking the fighter back or interrupting their action."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "shieldstunScaling",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "1",
+                                            "description": "A multiplier applied to the final knockback value for the purposes of determining how long the defending player should be in shield stun, unable to lower their shield. 1.0 for normal shieldstun, while 2.0 would double the amount of shieldstun."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "sakuraiThreshold",
+                                            "source": 0,
+                                            "type": 3,
+                                            "data": "0",
+                                            "description": "The amount of knockback a move has to deal before the opponent will be lifted off the ground. If the total knockback value is lower than this, the opponent will be put in hitstun and slid along the ground, ignoring the given angle of the Hitbox."
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "order": 4,
+                                "SubactionName": "InitVar",
+                                "subType": 0,
+                                "arguments": {
+                                    "m_keys": [
+                                        "variable",
+                                        "value"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "variable",
+                                            "source": 1,
+                                            "type": 0,
+                                            "data": "chargeLevel",
+                                            "description": "The variable to set. Follows the same logic as if you were trying to retrieve this variable for another argument, so if you set the source to \"Owner\", and the type to \"String\", it will set the string variable with the given name in the owner object. A better description can be found in the documentation."
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "value",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "0",
+                                            "description": "The value to set the variable to. This one will be fully parsed and resolved, and used to set (or modify) the variable given in the source parameter."
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": [
+                            {
+                                "order": 0,
+                                "SubactionName": "ActivateHitbox",
+                                "subType": 3,
+                                "arguments": {
+                                    "m_keys": [
+                                        "hitboxName",
+                                        "life"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "hitboxName",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "popupHitbox",
+                                            "description": "The Name of the Hitbox to activate"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "life",
+                                            "source": 0,
+                                            "type": 2,
+                                            "data": "3",
+                                            "description": "The number of frames to keep the hitbox active for. If set to -1, the Hitbox will remain open forever until explicitly deactivated."
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": [
+                            {
+                                "order": 0,
+                                "SubactionName": "ActivateHitbox",
+                                "subType": 3,
+                                "arguments": {
+                                    "m_keys": [
+                                        "hitboxName",
+                                        "life"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "hitboxName",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "weakHboxL",
+                                            "description": "The Name of the Hitbox to activate"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "life",
+                                            "source": 0,
+                                            "type": 2,
+                                            "data": "3",
+                                            "description": "The number of frames to keep the hitbox active for. If set to -1, the Hitbox will remain open forever until explicitly deactivated."
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": [
+                            {
+                                "order": 0,
+                                "SubactionName": "ActivateHitbox",
+                                "subType": 3,
+                                "arguments": {
+                                    "m_keys": [
+                                        "hitboxName",
+                                        "life"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "hitboxName",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "weakHboxR",
+                                            "description": "The Name of the Hitbox to activate"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "life",
+                                            "source": 0,
+                                            "type": 2,
+                                            "data": "3",
+                                            "description": "The number of frames to keep the hitbox active for. If set to -1, the Hitbox will remain open forever until explicitly deactivated."
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": [
+                            {
+                                "order": 0,
+                                "SubactionName": "ActivateHitbox",
+                                "subType": 3,
+                                "arguments": {
+                                    "m_keys": [
+                                        "hitboxName",
+                                        "life"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "hitboxName",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "weakHboxL",
+                                            "description": "The Name of the Hitbox to activate"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "life",
+                                            "source": 0,
+                                            "type": 2,
+                                            "data": "3",
+                                            "description": "The number of frames to keep the hitbox active for. If set to -1, the Hitbox will remain open forever until explicitly deactivated."
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": [
+                            {
+                                "order": 0,
+                                "SubactionName": "ActivateHitbox",
+                                "subType": 3,
+                                "arguments": {
+                                    "m_keys": [
+                                        "hitboxName",
+                                        "life"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "hitboxName",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "weakHboxR",
+                                            "description": "The Name of the Hitbox to activate"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "life",
+                                            "source": 0,
+                                            "type": 2,
+                                            "data": "3",
+                                            "description": "The number of frames to keep the hitbox active for. If set to -1, the Hitbox will remain open forever until explicitly deactivated."
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": [
+                            {
+                                "order": 0,
+                                "SubactionName": "ActivateHitbox",
+                                "subType": 3,
+                                "arguments": {
+                                    "m_keys": [
+                                        "hitboxName",
+                                        "life"
+                                    ],
+                                    "m_values": [
+                                        {
+                                            "editable": false,
+                                            "name": "hitboxName",
+                                            "source": 0,
+                                            "type": 0,
+                                            "data": "uSmashHbox",
+                                            "description": "The Name of the Hitbox to activate"
+                                        },
+                                        {
+                                            "editable": false,
+                                            "name": "life",
+                                            "source": 0,
+                                            "type": 2,
+                                            "data": "13",
+                                            "description": "The number of frames to keep the hitbox active for. If set to -1, the Hitbox will remain open forever until explicitly deactivated."
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
+                    {
+                        "data": []
+                    },
                     {
                         "data": []
                     }

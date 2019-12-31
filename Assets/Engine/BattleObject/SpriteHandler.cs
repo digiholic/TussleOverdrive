@@ -79,7 +79,6 @@ public class SpriteHandler : BattleComponent {
             float yPos = spriteComponent.transform.position.y; //0
             
             float ppu = float.Parse(fighter_info.GetVarByName(TussleConstants.SpriteVariableNames.PIXELS_PER_UNIT).value);
-            Debug.Log(ppu);
             if (ppu == 0) ppu = 100;
             
             float width = currentSubimage.Width / ppu; //100

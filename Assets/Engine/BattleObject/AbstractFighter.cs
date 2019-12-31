@@ -60,7 +60,6 @@ public class AbstractFighter : BattleComponent {
 
     void LoadInfo()
     {
-        Debug.Log("LOADING INFO",gameObject);
         if (fighter_info == null) fighter_info = GetComponent<FighterInfoLoader>().GetFighterInfo();
         foreach(KeyValuePair<string,object> variable in DefaultStats)
         {

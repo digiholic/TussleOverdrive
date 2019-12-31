@@ -4,6 +4,11 @@ using UnityEngine;
 using Rewired;
 
 public class InputBuffer : BattleComponent {
+    //How much the joystick needs to move in one frame to be called a "smash"
+    private const float SMASH_DELTA_THRESHOLD = 0.65f;
+    //The minimum value of a joystick for a "smash" to be counted, after the delta has been achieved
+    private const float SMASH_VALUE_THRESHOLD = 0.8f; 
+
 
     private List<ButtonBuffer> input_buffer = new List<ButtonBuffer>();
     private Player player;
@@ -22,36 +27,52 @@ public class InputBuffer : BattleComponent {
         {
             //For the keyboard, smashes are double taps
             //Right Smash
-            if (player.GetButtonDoublePressDown("Horizontal"))
+            if (player.GetButtonDoublePressDown("Horizontal")){
                 input_buffer.Insert(0, new ButtonBuffer(BattleController.current_battle.current_game_frame, "RightSmash", true));
+                //Debug.Log("Right Smash");
+            }
             //Left Smash
-            if (player.GetNegativeButtonDoublePressDown("Horizontal"))
+            if (player.GetNegativeButtonDoublePressDown("Horizontal")) {
                 input_buffer.Insert(0, new ButtonBuffer(BattleController.current_battle.current_game_frame, "LeftSmash", true));
+                //Debug.Log("Left Smash");
+            }
             //Up Smash
-            if (player.GetButtonDoublePressDown("Vertical"))
+            if (player.GetButtonDoublePressDown("Vertical")) {
                 input_buffer.Insert(0, new ButtonBuffer(BattleController.current_battle.current_game_frame, "UpSmash", true));
+                //Debug.Log("Up Smash");
+            }
             //Left Smash
-            if (player.GetNegativeButtonDoublePressDown("Vertical"))
+            if (player.GetNegativeButtonDoublePressDown("Vertical")) {
                 input_buffer.Insert(0, new ButtonBuffer(BattleController.current_battle.current_game_frame, "DownSmash", true));
+                //Debug.Log("Down Smash");
+            }
 
         }
         else
         {
             //If the joystick has moved a lot...
-            if (Mathf.Abs(player.GetAxisDelta("Horizontal")) > 0.3f)
+            if (Mathf.Abs(player.GetAxisDelta("Horizontal")) > SMASH_DELTA_THRESHOLD)
             {
                 //...And is out far enough to count as a smash
-                if (player.GetAxis("Horizontal") > 0.6f)
+                if (player.GetAxis("Horizontal") > SMASH_VALUE_THRESHOLD) {
                     input_buffer.Insert(0, new ButtonBuffer(BattleController.current_battle.current_game_frame, "RightSmash", true));
-                if (player.GetAxis("Horizontal") < -0.6f)
+                    //Debug.Log("Right Smash");
+                }
+                if (player.GetAxis("Horizontal") < -SMASH_VALUE_THRESHOLD) {
                     input_buffer.Insert(0, new ButtonBuffer(BattleController.current_battle.current_game_frame, "LeftSmash", true));
+                    //Debug.Log("Left Smash");
+                }
             }
-            if (Mathf.Abs(player.GetAxisDelta("Vertical")) > 0.3f)
+            if (Mathf.Abs(player.GetAxisDelta("Vertical")) > SMASH_DELTA_THRESHOLD)
             {
-                if (player.GetAxis("Vertical") > 0.6f)
+                if (player.GetAxis("Vertical") > SMASH_VALUE_THRESHOLD) {
                     input_buffer.Insert(0, new ButtonBuffer(BattleController.current_battle.current_game_frame, "UpSmash", true));
-                if (player.GetAxis("Vertical") < -0.6f)
+                    //Debug.Log("Up Smash");
+            }
+                if (player.GetAxis("Vertical") < -SMASH_VALUE_THRESHOLD) {
                     input_buffer.Insert(0, new ButtonBuffer(BattleController.current_battle.current_game_frame, "DownSmash", true));
+                    //Debug.Log("Down Smash");
+                }
             }
         }
     }
