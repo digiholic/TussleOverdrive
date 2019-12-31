@@ -3,19 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
 
-public class InputBuffer : BattleComponent {
+public class InputBuffer : MonoBehaviour {
     //How much the joystick needs to move in one frame to be called a "smash"
     private const float SMASH_DELTA_THRESHOLD = 0.65f;
     //The minimum value of a joystick for a "smash" to be counted, after the delta has been achieved
     private const float SMASH_VALUE_THRESHOLD = 0.8f; 
 
+    public int player_num = -1;
 
     private List<ButtonBuffer> input_buffer = new List<ButtonBuffer>();
     private Player player;
 
+    private BattleObject battleObject;
+
+    void Awake()
+    {
+        battleObject = GetComponent<BattleObject>();
+    }
+    
     // Use this for initialization
     void Start () {
-        player = ReInput.players.GetPlayer(getBattleObject().GetIntVar(TussleConstants.FighterVariableNames.PLAYER_NUM));
+        //If the player number isn't set in editor, get it from the battleobject
+        if (player_num == -1) player_num = battleObject.GetIntVar(TussleConstants.FighterVariableNames.PLAYER_NUM);
+        
+        player = ReInput.players.GetPlayer(player_num);
 
         player.AddInputEventDelegate(ButtonPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed);
         player.AddInputEventDelegate(ButtonReleased, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased);
@@ -208,14 +219,14 @@ public class InputBuffer : BattleComponent {
     {
         if (direction == "Forward")
         {
-            if (GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION) == 1) direction = "Right";
-            if (GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION) == -1) direction = "Left";
+            if (battleObject.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION) == 1) direction = "Right";
+            if (battleObject.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION) == -1) direction = "Left";
         }
 
         if (direction == "Backward")
         {
-            if (GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION) == 1) direction = "Left";
-            if (GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION) == -1) direction = "Right";
+            if (battleObject.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION) == 1) direction = "Left";
+            if (battleObject.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION) == -1) direction = "Right";
         }
 
         if (direction == "Left") return player.GetAxis("Horizontal") < -0.2f;

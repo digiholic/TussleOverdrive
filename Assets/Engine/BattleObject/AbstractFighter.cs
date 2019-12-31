@@ -8,34 +8,6 @@ using UnityEngine.Profiling;
 [System.Serializable]
 [RequireComponent(typeof(ActionHandler),typeof(InputBuffer))]
 public class AbstractFighter : BattleComponent {
-    public static Dictionary<string, object> DefaultStats = new Dictionary<string, object>
-    {
-        {TussleConstants.FighterAttributes.WEIGHT, 10.0f },
-        {TussleConstants.FighterAttributes.GRAVITY, -9.8f},
-        {TussleConstants.FighterAttributes.MAX_FALL_SPEED, -20.0f},
-        {TussleConstants.FighterAttributes.MAX_GROUND_SPEED, 7.0f},
-        {TussleConstants.FighterAttributes.RUN_SPEED, 11.0f},
-        {TussleConstants.FighterAttributes.MAX_AIR_SPEED, 5.5f},
-        {TussleConstants.FighterAttributes.CRAWL_SPEED, 2.5f},
-        {TussleConstants.FighterAttributes.DODGE_SPEED, 8.5f},
-        {TussleConstants.FighterAttributes.FRICTION, 0.3f},
-        {TussleConstants.FighterAttributes.STATIC_GRIP, 0.3f},
-        {TussleConstants.FighterAttributes.PIVOT_GRIP, 0.6f},
-        {TussleConstants.FighterAttributes.AIR_RESISTANCE, 0.2f},
-        {TussleConstants.FighterAttributes.AIR_CONTROL, 0.2f},
-        {TussleConstants.FighterAttributes.JUMP_HEIGHT, 15.0f},
-        {TussleConstants.FighterAttributes.SHORT_HOP_HEIGHT, 8.5f},
-        {TussleConstants.FighterAttributes.AIR_JUMP_HEIGHT, 18.0f},
-        {TussleConstants.FighterAttributes.FASTFALL_MULTIPLIER, 2.0f},
-        {TussleConstants.FighterAttributes.HITSTUN_ELASTICITY, 0.8f},
-        {TussleConstants.FighterAttributes.SHIELD_SIZE, 1.0f},
-        {TussleConstants.FighterAttributes.AERIAL_TRANSITION_SPEED, 9.0f},
-        {TussleConstants.FighterAttributes.PIXELS_PER_UNIT, 100},
-        {TussleConstants.FighterAttributes.MAX_JUMPS, 1 },
-        {TussleConstants.FighterAttributes.HEAVY_LANDING_LAG, 4 },
-        {TussleConstants.FighterAttributes.WAVEDASH_LAG, 12 }
-    };
-
     [HideInInspector]
     public float ground_elasticity = 0.0f, damage_percent = 0;
 
@@ -631,4 +603,61 @@ public class AbstractFighter : BattleComponent {
         actionHandler.CurrentAction.AdjustLength(Mathf.RoundToInt(hitstun));
 
     }
+
+
+        public static Dictionary<string, object> DefaultStats = new Dictionary<string, object>
+    {
+        {TussleConstants.FighterAttributes.WEIGHT, 10.0f },
+        {TussleConstants.FighterAttributes.GRAVITY, -9.8f},
+        {TussleConstants.FighterAttributes.MAX_FALL_SPEED, -20.0f},
+        {TussleConstants.FighterAttributes.MAX_GROUND_SPEED, 7.0f},
+        {TussleConstants.FighterAttributes.RUN_SPEED, 11.0f},
+        {TussleConstants.FighterAttributes.MAX_AIR_SPEED, 5.5f},
+        {TussleConstants.FighterAttributes.CRAWL_SPEED, 2.5f},
+        {TussleConstants.FighterAttributes.DODGE_SPEED, 8.5f},
+        {TussleConstants.FighterAttributes.FRICTION, 0.3f},
+        {TussleConstants.FighterAttributes.STATIC_GRIP, 0.3f},
+        {TussleConstants.FighterAttributes.PIVOT_GRIP, 0.6f},
+        {TussleConstants.FighterAttributes.AIR_RESISTANCE, 0.2f},
+        {TussleConstants.FighterAttributes.AIR_CONTROL, 0.2f},
+        {TussleConstants.FighterAttributes.JUMP_HEIGHT, 15.0f},
+        {TussleConstants.FighterAttributes.SHORT_HOP_HEIGHT, 8.5f},
+        {TussleConstants.FighterAttributes.AIR_JUMP_HEIGHT, 18.0f},
+        {TussleConstants.FighterAttributes.FASTFALL_MULTIPLIER, 2.0f},
+        {TussleConstants.FighterAttributes.HITSTUN_ELASTICITY, 0.8f},
+        {TussleConstants.FighterAttributes.SHIELD_SIZE, 1.0f},
+        {TussleConstants.FighterAttributes.AERIAL_TRANSITION_SPEED, 9.0f},
+        {TussleConstants.FighterAttributes.PIXELS_PER_UNIT, 100},
+        {TussleConstants.FighterAttributes.MAX_JUMPS, 1 },
+        {TussleConstants.FighterAttributes.HEAVY_LANDING_LAG, 4 },
+        {TussleConstants.FighterAttributes.WAVEDASH_LAG, 12 }
+    };
+
+    public static Dictionary<string,VarData> DefaultVarDataStats = new Dictionary<string,VarData>
+    {
+        {TussleConstants.FighterAttributes.WEIGHT ,new VarData(TussleConstants.FighterAttributes.WEIGHT, "10", VarType.FLOAT)},
+        {TussleConstants.FighterAttributes.GRAVITY ,new VarData(TussleConstants.FighterAttributes.GRAVITY, "-20", VarType.FLOAT)},
+        {TussleConstants.FighterAttributes.MAX_FALL_SPEED ,new VarData(TussleConstants.FighterAttributes.MAX_FALL_SPEED, "7", VarType.FLOAT)},
+        {TussleConstants.FighterAttributes.MAX_GROUND_SPEED ,new VarData(TussleConstants.FighterAttributes.MAX_GROUND_SPEED, "5.5", VarType.FLOAT)},
+        {TussleConstants.FighterAttributes.RUN_SPEED ,new VarData(TussleConstants.FighterAttributes.RUN_SPEED, "2.5", VarType.FLOAT)},
+        {TussleConstants.FighterAttributes.MAX_AIR_SPEED ,new VarData(TussleConstants.FighterAttributes.MAX_AIR_SPEED, "8.5", VarType.FLOAT)},
+        {TussleConstants.FighterAttributes.CRAWL_SPEED ,new VarData(TussleConstants.FighterAttributes.CRAWL_SPEED, "0", VarType.FLOAT)},
+        {TussleConstants.FighterAttributes.DODGE_SPEED ,new VarData(TussleConstants.FighterAttributes.DODGE_SPEED, "8.5", VarType.FLOAT)},
+        {TussleConstants.FighterAttributes.FRICTION ,new VarData(TussleConstants.FighterAttributes.FRICTION, "0.3", VarType.FLOAT)},
+        {TussleConstants.FighterAttributes.STATIC_GRIP ,new VarData(TussleConstants.FighterAttributes.STATIC_GRIP, "0.3", VarType.FLOAT)},
+        {TussleConstants.FighterAttributes.PIVOT_GRIP ,new VarData(TussleConstants.FighterAttributes.PIVOT_GRIP, "0.6", VarType.FLOAT)},
+        {TussleConstants.FighterAttributes.AIR_RESISTANCE ,new VarData(TussleConstants.FighterAttributes.AIR_RESISTANCE, "0.2", VarType.FLOAT)},
+        {TussleConstants.FighterAttributes.AIR_CONTROL ,new VarData(TussleConstants.FighterAttributes.AIR_CONTROL, "0.2", VarType.FLOAT)},
+        {TussleConstants.FighterAttributes.JUMP_HEIGHT ,new VarData(TussleConstants.FighterAttributes.JUMP_HEIGHT, "15", VarType.FLOAT)},
+        {TussleConstants.FighterAttributes.SHORT_HOP_HEIGHT ,new VarData(TussleConstants.FighterAttributes.SHORT_HOP_HEIGHT, "8.5", VarType.FLOAT)},
+        {TussleConstants.FighterAttributes.AIR_JUMP_HEIGHT ,new VarData(TussleConstants.FighterAttributes.AIR_JUMP_HEIGHT, "0.2", VarType.FLOAT)},
+        {TussleConstants.FighterAttributes.FASTFALL_MULTIPLIER ,new VarData(TussleConstants.FighterAttributes.FASTFALL_MULTIPLIER, "2", VarType.FLOAT)},
+        {TussleConstants.FighterAttributes.HITSTUN_ELASTICITY ,new VarData(TussleConstants.FighterAttributes.HITSTUN_ELASTICITY, "0.8", VarType.FLOAT)},
+        {TussleConstants.FighterAttributes.SHIELD_SIZE ,new VarData(TussleConstants.FighterAttributes.SHIELD_SIZE, "1", VarType.FLOAT)},
+        {TussleConstants.FighterAttributes.AERIAL_TRANSITION_SPEED ,new VarData(TussleConstants.FighterAttributes.AERIAL_TRANSITION_SPEED, "9", VarType.FLOAT)},
+        {TussleConstants.FighterAttributes.PIXELS_PER_UNIT ,new VarData(TussleConstants.FighterAttributes.PIXELS_PER_UNIT, "100", VarType.INT)},
+        {TussleConstants.FighterAttributes.MAX_JUMPS ,new VarData(TussleConstants.FighterAttributes.MAX_JUMPS, "1", VarType.INT)},
+        {TussleConstants.FighterAttributes.HEAVY_LANDING_LAG ,new VarData(TussleConstants.FighterAttributes.HEAVY_LANDING_LAG, "4", VarType.INT)},
+        {TussleConstants.FighterAttributes.WAVEDASH_LAG ,new VarData(TussleConstants.FighterAttributes.WAVEDASH_LAG, "12", VarType.INT)}
+    };
 }

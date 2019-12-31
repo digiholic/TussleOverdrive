@@ -56,7 +56,7 @@ public class TussleConstants {
     {
         public static string SPRITE_CURRENT = "currentSprite";
         public static string FRAME_CURRENT = "currentFrame";
-        public static string PIXELS_PER_UNIT = "PixelsPerUnit";
+        public static string PIXELS_PER_UNIT = "pixels_per_unit";
     }
 
     public class ColliderVariableNames

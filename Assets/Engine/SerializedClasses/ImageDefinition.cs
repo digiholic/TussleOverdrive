@@ -87,15 +87,6 @@ public class ImageDefinition {
             dirty = true;
         }
     }
-    // public float PixelsPerUnit
-    // {
-    //     get { return _pixelsPerUnit; }
-    //     set
-    //     {
-    //         _pixelsPerUnit = value;
-    //         dirty = true;
-    //     }
-    // }
     public AnchorPointData Pivot
     {
         get { return _pivot; }
@@ -152,7 +143,6 @@ public class ImageDefinition {
         }
 
         Texture2D cachedTextureFile = FileLoader.LoadTexture(path);
-        //Debug.Log(pixelsPerUnit);
         Sprite newSprite = Sprite.Create(cachedTextureFile, new Rect(OffsetX, OffsetY, Width, Height), Pivot.getAsRelative(this), pixelsPerUnit);
         cacheSprite(newSprite);
     }

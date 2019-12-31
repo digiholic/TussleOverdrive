@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,12 +13,17 @@ public class Hitbox : MonoBehaviour {
     public float weight_influence = 1.0f;
     public string lock_name = "";
 
+    public float chargeDamage;
+    public float chargeBaseKnockback;
+    public float chargeKnockbackGrowth;
+
     public Rect hitboxRect;
     
     public HitboxLock hitbox_lock;
     private Collider col;
     private bool active = false;
     private int _life = -1; //If Life is -1. last until deactivated manually
+
     private MeshRenderer mesh;
 
 	// Use this for initialization
@@ -79,6 +85,13 @@ public class Hitbox : MonoBehaviour {
             knockback_growth = float.Parse(dict[Hitbox.KNOCKBACK_GROWTH]);
         if (dict.ContainsKey(Hitbox.ANGLE))
             trajectory = int.Parse(dict[Hitbox.ANGLE]);
+        
+        if (dict.ContainsKey(Hitbox.CHARGE_DAMAGE))
+            chargeDamage = float.Parse(dict[Hitbox.CHARGE_DAMAGE]);
+        if (dict.ContainsKey(Hitbox.CHARGE_BASE_KNOCKBACK))
+            chargeBaseKnockback = float.Parse(dict[Hitbox.CHARGE_BASE_KNOCKBACK]);
+        if (dict.ContainsKey(Hitbox.CHARGE_KNOCKBACK_GROWTH))
+            chargeKnockbackGrowth = float.Parse(dict[Hitbox.CHARGE_KNOCKBACK_GROWTH]);
 
         if (owner != null)
             SizeToOwner(owner);
@@ -110,6 +123,13 @@ public class Hitbox : MonoBehaviour {
                 mesh.enabled = false;
             //hitbox_lock.Destroy();
         }
+    }
+
+    public void Charge()
+    {
+        damage += chargeDamage;
+        base_knockback += chargeBaseKnockback;
+        knockback_growth += chargeKnockbackGrowth;
     }
 
     public void UnlockAll() //Allows anything to be hit by this hitbox again, even if it's locked

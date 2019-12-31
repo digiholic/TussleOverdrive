@@ -26,7 +26,6 @@ public class FighterModuleLoader : MonoBehaviour {
         foreach (DirectoryInfo fighterDir in individualFighters)
         {
             FighterInfo info = FighterInfo.LoadFighterInfoFile(fighterDir.Name);
-            info.LoadDirectory(fighterDir.Name);
             portraitRig.AddPanel(info);
         }
     }

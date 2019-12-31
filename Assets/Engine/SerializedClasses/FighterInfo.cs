@@ -193,6 +193,7 @@ public class FighterInfo : IJsonInfoObject{
         {
             string json = File.ReadAllText(combinedPath);
             FighterInfo info = JsonUtility.FromJson<FighterInfo>(json);
+            info.GenerateMissingAttributes(); //In case new variables need to be initialized since the fighter was created
             if (info.displayName == null) return null; //If it doesn't have a display name it's not a fighter
             info.LoadDirectory(directory);
             return info;
@@ -254,6 +255,22 @@ public class FighterInfo : IJsonInfoObject{
         variables.Add(new VarData(TussleConstants.FighterAttributes.MAX_JUMPS, "1", VarType.INT));
         variables.Add(new VarData(TussleConstants.FighterAttributes.HEAVY_LANDING_LAG, "4", VarType.INT));
         variables.Add(new VarData(TussleConstants.FighterAttributes.WAVEDASH_LAG, "12", VarType.INT));
+    }
+
+    /// <summary>
+    /// As attributes change, fighters might need to have defaults set for other code to work. This method is to make older fighters backwards compatible with things that
+    /// are needed later on.
+    /// </summary>
+    public void GenerateMissingAttributes(){
+        Dictionary<string,VarData> varDict = new Dictionary<string, VarData>();
+        foreach (VarData var in variables){
+            varDict.Add(var.name,var);
+        }
+        foreach (KeyValuePair<string,VarData> defaultData in AbstractFighter.DefaultVarDataStats){
+            if (!varDict.ContainsKey(defaultData.Key)){
+                variables.Add(defaultData.Value);
+            }
+        }
     }
 }
 

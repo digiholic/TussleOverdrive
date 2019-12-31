@@ -51,8 +51,9 @@ public class InputManager : MonoBehaviour
     /// <param name="default_key">The default key in case the preference isn't set</param>
     private List<KeyCode> LoadFromPrefs(InputType input, string name, string default_key)
     {
+        Debug.Log(PlayerPrefs.GetString(name));
         string inputString = PlayerPrefs.GetString(name, default_key);
-
+        
         List<KeyCode> inputCodes = new List<KeyCode>();
         foreach (string code in inputString.Split(','))
             inputCodes.Add((KeyCode)System.Enum.Parse(typeof(KeyCode), code));
