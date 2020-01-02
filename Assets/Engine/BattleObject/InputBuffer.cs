@@ -241,6 +241,10 @@ public class InputBuffer : MonoBehaviour {
     {
         return player.GetAxis(axis);
     }
+
+    public float GetAxisDelta(string axis){
+        return player.GetAxisDelta(axis);
+    }
 }
 
 [System.Serializable]

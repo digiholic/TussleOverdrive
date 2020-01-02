@@ -71,10 +71,12 @@ public class BattleLoader : MonoBehaviour {
         fighter_strings = new string[0];
     }
 
-
-    // Update is called once per frame
-    void Update () {
-		
-	}
+    public void addFighter(FighterInfo info, int player_num){
+        //Make sure there's room for this fighter by adding nulls in the between slots if necessary
+        while(fighters.Count < player_num+1){
+            fighters.Add(null);
+        }
+        fighters[player_num] = info;
+    }
 
 }

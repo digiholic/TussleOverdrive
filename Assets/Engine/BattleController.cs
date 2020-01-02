@@ -45,7 +45,7 @@ public class BattleController : MonoBehaviour {
         if (Input.GetKeyUp(KeyCode.Escape))
         {
             BattleLoader.current_loader.ClearBattle();
-            SceneManager.LoadScene("CSS", LoadSceneMode.Single);
+            SceneManager.LoadScene("GhettoCSS", LoadSceneMode.Single);
         }
     }
 

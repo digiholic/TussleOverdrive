@@ -8,9 +8,11 @@ public class FileLoader {
 
     public static DirectoryInfo ProgramDirectoryInfo = new DirectoryInfo(Application.dataPath).Parent;
 
+    public static string ModulePath = PathCombine("Assets","Modules");
     public static string FighterPath = PathCombine("Assets", "Modules", "Fighters");
     public static string StagePath = PathCombine("Assets", "Modules", "Stages");
-
+    public static string SettingsPath = PathCombine("Assets", "Settings");
+    
     public static DirectoryInfo FighterDir = new DirectoryInfo(FighterPath);
     public static DirectoryInfo StageDir = new DirectoryInfo(StagePath);
 
@@ -111,5 +113,43 @@ public class FileLoader {
             return file_string.Remove(0, directory_string.Length + 1); //We add one here to remove the leading slash
         }
         return null;
+    }
+
+    public static void CopyDirectory(string sourceDirName, string destDirName, bool copySubDirs)
+    {
+        // Get the subdirectories for the specified directory.
+        DirectoryInfo dir = new DirectoryInfo(sourceDirName);
+
+        if (!dir.Exists)
+        {
+            throw new DirectoryNotFoundException(
+                "Source directory does not exist or could not be found: "
+                + sourceDirName);
+        }
+
+        DirectoryInfo[] dirs = dir.GetDirectories();
+        // If the destination directory doesn't exist, create it.
+        if (!Directory.Exists(destDirName))
+        {
+            Directory.CreateDirectory(destDirName);
+        }
+        
+        // Get the files in the directory and copy them to the new location.
+        FileInfo[] files = dir.GetFiles();
+        foreach (FileInfo file in files)
+        {
+            string temppath = Path.Combine(destDirName, file.Name);
+            file.CopyTo(temppath, false);
+        }
+
+        // If copying subdirectories, copy them and their contents to new location.
+        if (copySubDirs)
+        {
+            foreach (DirectoryInfo subdir in dirs)
+            {
+                string temppath = Path.Combine(destDirName, subdir.Name);
+                CopyDirectory(subdir.FullName, temppath, copySubDirs);
+            }
+        }
     }
 }
