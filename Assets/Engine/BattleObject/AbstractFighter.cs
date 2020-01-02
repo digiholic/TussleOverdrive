@@ -27,9 +27,11 @@ public class AbstractFighter : BattleComponent {
     private List<Collider> contacted_colliders = new List<Collider>();
     private List<Ledge> contacted_ledges = new List<Ledge>();
     public AbstractFighter hitTagged = null;
+    private IEnumerator hitTagCoroutine = null;
     public bool LedgeLock = false;
 
-
+    private int stocks;
+    private int score;
     void LoadInfo()
     {
         if (fighter_info == null) fighter_info = GetComponent<FighterInfoLoader>().GetFighterInfo();
@@ -179,6 +181,14 @@ public class AbstractFighter : BattleComponent {
 
     public void Die()
     {
+        stocks -= 1;
+        score -= 1;
+        //Lose another point if it was an SD
+        if (hitTagged == null) score -= 1;
+
+        if (stocks <= 0){
+            Debug.Log("Game set!");
+        }
         transform.position = new Vector3(0, 10);
         //TODO send death signal, handle respawning in-object
         damage_percent = 0;
@@ -313,7 +323,9 @@ public class AbstractFighter : BattleComponent {
             if (otherFighter != null)
             {
                 hitTagged = otherFighter;
-                StartCoroutine(RemoveTag());
+                if (hitTagCoroutine != null) StopCoroutine(hitTagCoroutine);
+                hitTagCoroutine = RemoveTag();
+                StartCoroutine(hitTagCoroutine);
             }
 
             float weight_constant = 1.4f;
@@ -503,8 +515,9 @@ public class AbstractFighter : BattleComponent {
 
     private IEnumerator RemoveTag()
     {
-        yield return new WaitForSeconds(300);
+        yield return new WaitForSeconds(5);
         hitTagged = null;
+        Debug.Log("Untagging");
     }
 
     private IEnumerator WaitForFrames(int frames, string command)
@@ -591,6 +604,9 @@ public class AbstractFighter : BattleComponent {
         SetVar(TussleConstants.FighterVariableNames.PLAYER_NUM, playernum);
     }
 
+    public void SetStocks(int stocks){
+        this.stocks = stocks;
+    }
 
     /////////////////////////////////////////////////////////////////////////////////////////
     //                                  ACTION SETTERS                                     //
