@@ -26,13 +26,19 @@ public class BattleController : MonoBehaviour {
     [SerializeField] private Text ScreenDisplayText;
     [SerializeField] private Text clockDisplayText;
     public float currentTime = 0;
+
+    private AudioSource audioSource;
+
     // Use this for initialization
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+
         //Fighters shouldn't collide with fighters
         current_battle = this;
         Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Fighters"), LayerMask.NameToLayer("Fighters"), true);
         BattleLoader.current_loader.LoadBattle();
+        audioSource.Play();
 
         if (!BattleLoader.current_loader.timeInfinity){
             clockDisplayText.enabled = true;
@@ -199,10 +205,24 @@ public class BattleController : MonoBehaviour {
     }
 
     private void EndBattle(){
+        StartCoroutine(FadeAudio(3));
         frameDelay = 2;
         ScreenDisplayText.enabled = true;
         ScreenDisplayText.text = "GAME SET";
         StartCoroutine(EndGameSlowDown());
+    }
+
+    private IEnumerator FadeAudio(int fadeTime){
+        float startVolume = audioSource.volume;
+ 
+        while (audioSource.volume > 0) {
+            audioSource.volume -= startVolume * Time.deltaTime / fadeTime;
+ 
+            yield return null;
+        }
+ 
+        audioSource.Stop ();
+        audioSource.volume = startVolume;
     }
 
     private IEnumerator EndGameSlowDown()
