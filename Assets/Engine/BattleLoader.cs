@@ -59,7 +59,6 @@ public class BattleLoader : MonoBehaviour {
                 fighter.GetComponent<FighterInfoLoader>().SetFighterInfo(fighters[i]);
                 fighter.SendMessage("SetPlayerNum", i);
                 fighter.SendMessage("SetFighterInfo", fighters[i]);
-                fighter.SendMessage("SetStocks",stockCount);
                 fighter.transform.position = spawnPoints[i].position;
                 CameraControl3D.current_camera.follows.Add(fighter.transform);
             }

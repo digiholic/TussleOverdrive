@@ -24,7 +24,16 @@ public class CameraControl3D : MonoBehaviour {
         current_camera = this;
         m_Camera = GetComponentInChildren<Camera>();
     }
-	
+    
+    public void addFollow(Transform tran){
+        follows.Add(tran);
+    }
+
+    public void removeFollow(Transform tran){
+        Debug.Log(follows);
+        follows.Remove(tran);
+    }
+
 	// Update is called once per frame
 	void Update () {
         

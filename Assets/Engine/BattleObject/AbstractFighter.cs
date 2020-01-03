@@ -30,8 +30,6 @@ public class AbstractFighter : BattleComponent {
     private IEnumerator hitTagCoroutine = null;
     public bool LedgeLock = false;
 
-    private int stocks;
-    private int score;
     void LoadInfo()
     {
         if (fighter_info == null) fighter_info = GetComponent<FighterInfoLoader>().GetFighterInfo();
@@ -181,16 +179,12 @@ public class AbstractFighter : BattleComponent {
 
     public void Die()
     {
-        stocks -= 1;
-        score -= 1;
-        //Lose another point if it was an SD
-        if (hitTagged == null) score -= 1;
-
-        if (stocks <= 0){
-            Debug.Log("Game set!");
-        }
-        transform.position = new Vector3(0, 10);
+        BattleController.current_battle.FighterDies(this,hitTagged);
         //TODO send death signal, handle respawning in-object
+    }
+
+    public void Respawn(){
+        transform.position = new Vector3(0, 10);
         damage_percent = 0;
         SendMessage("ChangeXSpeed", 0.0f, SendMessageOptions.RequireReceiver);
         SendMessage("ChangeYSpeed", 0.0f, SendMessageOptions.RequireReceiver);
@@ -602,10 +596,6 @@ public class AbstractFighter : BattleComponent {
     public void SetPlayerNum(int playernum)
     {
         SetVar(TussleConstants.FighterVariableNames.PLAYER_NUM, playernum);
-    }
-
-    public void SetStocks(int stocks){
-        this.stocks = stocks;
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////
