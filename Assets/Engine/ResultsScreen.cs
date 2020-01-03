@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ResultsScreen : MonoBehaviour
 {
@@ -8,6 +9,14 @@ public class ResultsScreen : MonoBehaviour
 
     public void AddFighterResult(FighterResults result){
         results.Add(result);
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape)){
+            Destroy(gameObject,3);
+            SceneManager.LoadScene("GhettoCSS", LoadSceneMode.Single);
+        }
     }
 }
 

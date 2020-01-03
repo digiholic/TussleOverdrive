@@ -15,8 +15,8 @@ public class StateTransitions : ScriptableObject {
             actor.doAction("Jump");
         //if (actor.KeyBuffered("Shield"))
         //    actor.doAction("Shield");
-        if (actor.DirectionHeld("Down"))
-            actor.doAction("Crouch");
+        // if (actor.DirectionHeld("Down"))
+        //     actor.doAction("Crouch");
         if (actor.DirectionHeld("Forward"))
             actor.doAction("Move");
         if (actor.DirectionHeld("Backward"))
@@ -103,8 +103,8 @@ public class StateTransitions : ScriptableObject {
             actor.doGroundSpecial();
         if (actor.KeyBuffered("Jump"))
             actor.doAction("Jump");
-        else if (actor.DirectionHeld("Down"))
-            actor.doAction("Crouch");
+        // else if (actor.DirectionHeld("Down"))
+        //     actor.doAction("Crouch");
         else if (actor.GetAxis("Horizontal") == 0.0f)
             actor.doAction("Stop");
         if (actor.KeyBuffered(InputTypeUtil.GetBackward(actor.getBattleObject())))
