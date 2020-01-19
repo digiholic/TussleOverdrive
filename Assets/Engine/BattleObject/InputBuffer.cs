@@ -39,22 +39,22 @@ public class InputBuffer : MonoBehaviour {
             //For the keyboard, smashes are double taps
             //Right Smash
             if (player.GetButtonDoublePressDown("Horizontal")){
-                input_buffer.Insert(0, new ButtonBuffer(BattleController.current_battle.current_game_frame, "RightSmash", true));
+                input_buffer.Insert(0, new ButtonBuffer(GetCurrentFrame(), "RightSmash", true));
                 //Debug.Log("Right Smash");
             }
             //Left Smash
             if (player.GetNegativeButtonDoublePressDown("Horizontal")) {
-                input_buffer.Insert(0, new ButtonBuffer(BattleController.current_battle.current_game_frame, "LeftSmash", true));
+                input_buffer.Insert(0, new ButtonBuffer(GetCurrentFrame(), "LeftSmash", true));
                 //Debug.Log("Left Smash");
             }
             //Up Smash
             if (player.GetButtonDoublePressDown("Vertical")) {
-                input_buffer.Insert(0, new ButtonBuffer(BattleController.current_battle.current_game_frame, "UpSmash", true));
+                input_buffer.Insert(0, new ButtonBuffer(GetCurrentFrame(), "UpSmash", true));
                 //Debug.Log("Up Smash");
             }
             //Left Smash
             if (player.GetNegativeButtonDoublePressDown("Vertical")) {
-                input_buffer.Insert(0, new ButtonBuffer(BattleController.current_battle.current_game_frame, "DownSmash", true));
+                input_buffer.Insert(0, new ButtonBuffer(GetCurrentFrame(), "DownSmash", true));
                 //Debug.Log("Down Smash");
             }
 
@@ -66,22 +66,22 @@ public class InputBuffer : MonoBehaviour {
             {
                 //...And is out far enough to count as a smash
                 if (player.GetAxis("Horizontal") > SMASH_VALUE_THRESHOLD) {
-                    input_buffer.Insert(0, new ButtonBuffer(BattleController.current_battle.current_game_frame, "RightSmash", true));
+                    input_buffer.Insert(0, new ButtonBuffer(GetCurrentFrame(), "RightSmash", true));
                     //Debug.Log("Right Smash");
                 }
                 if (player.GetAxis("Horizontal") < -SMASH_VALUE_THRESHOLD) {
-                    input_buffer.Insert(0, new ButtonBuffer(BattleController.current_battle.current_game_frame, "LeftSmash", true));
+                    input_buffer.Insert(0, new ButtonBuffer(GetCurrentFrame(), "LeftSmash", true));
                     //Debug.Log("Left Smash");
                 }
             }
             if (Mathf.Abs(player.GetAxisDelta("Vertical")) > SMASH_DELTA_THRESHOLD)
             {
                 if (player.GetAxis("Vertical") > SMASH_VALUE_THRESHOLD) {
-                    input_buffer.Insert(0, new ButtonBuffer(BattleController.current_battle.current_game_frame, "UpSmash", true));
+                    input_buffer.Insert(0, new ButtonBuffer(GetCurrentFrame(), "UpSmash", true));
                     //Debug.Log("Up Smash");
             }
                 if (player.GetAxis("Vertical") < -SMASH_VALUE_THRESHOLD) {
-                    input_buffer.Insert(0, new ButtonBuffer(BattleController.current_battle.current_game_frame, "DownSmash", true));
+                    input_buffer.Insert(0, new ButtonBuffer(GetCurrentFrame(), "DownSmash", true));
                     //Debug.Log("Down Smash");
                 }
             }
@@ -90,14 +90,20 @@ public class InputBuffer : MonoBehaviour {
 
     private void ButtonPressed(InputActionEventData data)
     {
-        input_buffer.Insert(0, new ButtonBuffer(BattleController.current_battle.current_game_frame,data.actionName,true));
+        input_buffer.Insert(0, new ButtonBuffer(GetCurrentFrame(),data.actionName,true));
     }
 
     private void ButtonReleased(InputActionEventData data)
     {
-        input_buffer.Insert(0, new ButtonBuffer(BattleController.current_battle.current_game_frame, data.actionName, false));
+        input_buffer.Insert(0, new ButtonBuffer(GetCurrentFrame(), data.actionName, false));
     }
 
+    private int GetCurrentFrame(){
+        if (BattleController.current_battle != null){
+            return BattleController.current_battle.current_game_frame;
+        }
+        else return 0;
+    }
     public bool CheckBuffer(string input)
     {
         return CheckBuffer(input, PlayerPrefs.GetInt("buffer_window", 12), true);
@@ -114,7 +120,7 @@ public class InputBuffer : MonoBehaviour {
         foreach (ButtonBuffer bufferedInput in input_buffer)
         {
             //If we've fallen off our distance value, quit the for loop.
-            if (bufferedInput.frame < BattleController.current_battle.current_game_frame - buffer_window)
+            if (bufferedInput.frame < GetCurrentFrame() - buffer_window)
                 break;
             else
             {
@@ -136,7 +142,7 @@ public class InputBuffer : MonoBehaviour {
         foreach (ButtonBuffer bufferedInput in input_buffer)
         {
             //If we've fallen off our distance value, quit the for loop.
-            if (bufferedInput.frame < BattleController.current_battle.current_game_frame - buffer_window)
+            if (bufferedInput.frame < GetCurrentFrame() - buffer_window)
                 break;
             else
             {
@@ -158,7 +164,7 @@ public class InputBuffer : MonoBehaviour {
         foreach (ButtonBuffer bufferedInput in input_buffer)
         {
             //If we've fallen off our distance value, quit the for loop.
-            if (bufferedInput.frame < BattleController.current_battle.current_game_frame - buffer_window)
+            if (bufferedInput.frame < GetCurrentFrame() - buffer_window)
                 break;
             else
             {
@@ -184,7 +190,7 @@ public class InputBuffer : MonoBehaviour {
         foreach (ButtonBuffer bufferedInput in input_buffer)
         {
             //If we've fallen off our distance value, quit the for loop.
-            if (bufferedInput.frame < BattleController.current_battle.current_game_frame - buffer_window)
+            if (bufferedInput.frame < GetCurrentFrame() - buffer_window)
                 break;
             //If we've already found everything, we're done with the loop and can end early
             else if (index >= valuesToFind.Length)

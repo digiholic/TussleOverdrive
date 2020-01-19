@@ -20,10 +20,12 @@ public class NewFighterPopup : MonoBehaviour
         if (templateFighter != null)
         {
             newInfo = templateFighter.Clone();
+            DirectoryInfo oldDir = FileLoader.GetFighterDir(templateFighter.directory_name);
+            FileLoader.CopyDirectory(oldDir.FullName,createdDir.FullName,true);
+            
             //Copy over relevant files
-  
-            FileInfo action_file_info = new FileInfo(FileLoader.PathCombine(FileLoader.ProgramDirectoryInfo.FullName,templateFighter.actionFilePath));
-            action_file_info.CopyTo(FileLoader.PathCombine(createdDir.FullName,newInfo.actionFilePath));
+            // FileInfo action_file_info = new FileInfo(FileLoader.PathCombine(FileLoader.ProgramDirectoryInfo.FullName,templateFighter.actionFilePath));
+            // action_file_info.CopyTo(FileLoader.PathCombine(createdDir.FullName,newInfo.actionFilePath));
         }
         else
         {

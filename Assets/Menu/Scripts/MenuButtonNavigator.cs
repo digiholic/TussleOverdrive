@@ -73,6 +73,9 @@ public class MenuButtonNavigator : MonoBehaviour {
 
             }
         }
+        if (Input.GetKeyDown(KeyCode.Escape)){
+            if (CancelFunction.FuncName != "") SendMessage(CancelFunction.FuncName, CancelFunction.FuncArg);
+        }
     }
 
     public void Select()
@@ -138,6 +141,7 @@ public class MenuButtonNavigator : MonoBehaviour {
 
     public void LoadScene(string sceneName)
     {
+        if (sceneName == "SplashScree" || sceneName == "stage_TestStage") MenuMusicPlayer.player.stop(true); 
         SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
     }
 

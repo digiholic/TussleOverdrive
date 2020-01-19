@@ -14,7 +14,7 @@ public class ResultsPanel : MonoBehaviour
         ResultsScreen resultsScreen = GameObject.FindObjectOfType<ResultsScreen>();
         bool valid = false;
         if (resultsScreen != null){
-            if (resultsScreen.results.Count > playerNum+1){
+            if (resultsScreen.results.Count >= (playerNum+1)){
                 results = resultsScreen.results[playerNum];
                 if (results.fighterName != ""){
                     nameLabel.text = results.fighterName;
@@ -23,7 +23,6 @@ public class ResultsPanel : MonoBehaviour
             }
         }
         if (!valid){
-            Debug.Log("Invalid",this);
             gameObject.SetActive(false);
         }
     }

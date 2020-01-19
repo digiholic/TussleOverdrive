@@ -21,6 +21,10 @@ public class GhettoCSSManager : MonoBehaviour
     void Update()
     {
         NGUITools.SetActive(readyBanner,ready);
+
+        if (Input.GetKeyDown(KeyCode.Escape)){
+            SceneManager.LoadScene("TopMenu");
+        }
         
     }
     public void CheckReady(){
@@ -38,7 +42,7 @@ public class GhettoCSSManager : MonoBehaviour
     }
     public void CheckStart(){
         if (ready){
-            Debug.Log("Starting battle!");
+            MenuMusicPlayer.player?.stop(true);
             SceneManager.LoadSceneAsync("stage_TestStage", LoadSceneMode.Single);
         }
     }

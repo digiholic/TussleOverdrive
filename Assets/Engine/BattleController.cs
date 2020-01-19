@@ -38,7 +38,7 @@ public class BattleController : MonoBehaviour {
         current_battle = this;
         Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Fighters"), LayerMask.NameToLayer("Fighters"), true);
         BattleLoader.current_loader.LoadBattle();
-        audioSource.Play();
+        audioSource?.Play();
 
         if (!BattleLoader.current_loader.timeInfinity){
             clockDisplayText.enabled = true;
@@ -205,7 +205,7 @@ public class BattleController : MonoBehaviour {
     }
 
     private void EndBattle(){
-        StartCoroutine(FadeAudio(3));
+        if (audioSource != null) StartCoroutine(FadeAudio(3));
         frameDelay = 2;
         ScreenDisplayText.enabled = true;
         ScreenDisplayText.text = "GAME SET";

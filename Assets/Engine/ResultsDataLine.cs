@@ -23,7 +23,6 @@ public class ResultsDataLine : MonoBehaviour
             return;
         } else {
             object value = parentPanel.results.GetType().GetField(field).GetValue(parentPanel.results);
-            Debug.Log(value);
             label.text = prefix+": "+value.ToString();
         }
     }

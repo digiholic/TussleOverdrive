@@ -6,9 +6,10 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class FighterModuleLoader : MonoBehaviour {
-    public PortraitRig portraitRig;
+    //public PortraitRig portraitRig;
 
     private float lastYPos = -0f;
+    public List<FighterInfo> infos;
 
 	// Use this for initialization
 	void Start () {
@@ -26,7 +27,8 @@ public class FighterModuleLoader : MonoBehaviour {
         foreach (DirectoryInfo fighterDir in individualFighters)
         {
             FighterInfo info = FighterInfo.LoadFighterInfoFile(fighterDir.Name);
-            portraitRig.AddPanel(info);
+            infos.Add(info);
+            //portraitRig.AddPanel(info);
         }
     }
 }
