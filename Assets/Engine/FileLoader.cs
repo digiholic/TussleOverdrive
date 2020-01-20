@@ -118,6 +118,7 @@ public class FileLoader {
     public static void CopyDirectory(string sourceDirName, string destDirName, bool copySubDirs)
     {
         // Get the subdirectories for the specified directory.
+        //This line is repeating the Assets/Modules/Fighters bit and throwing an error
         DirectoryInfo dir = new DirectoryInfo(sourceDirName);
 
         if (!dir.Exists)

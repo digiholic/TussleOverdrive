@@ -21,7 +21,16 @@ public class NewFighterPopup : MonoBehaviour
         {
             newInfo = templateFighter.Clone();
             DirectoryInfo oldDir = FileLoader.GetFighterDir(templateFighter.directory_name);
-            FileLoader.CopyDirectory(oldDir.FullName,createdDir.FullName,true);
+            try {
+                FileLoader.CopyDirectory(oldDir.FullName,createdDir.FullName,true);
+            } catch {
+                DisplayError("Could not find an existing Fighter named " + templateFighter + ", are you sure you used the Directory name?");
+            }
+
+            newInfo.displayName = directoryName;
+            newInfo.directory_name = directoryName;
+            newInfo.actionFilePath = "fighter_actions.json";
+            newInfo.GenerateDefaultAttributes();
             
             //Copy over relevant files
             // FileInfo action_file_info = new FileInfo(FileLoader.PathCombine(FileLoader.ProgramDirectoryInfo.FullName,templateFighter.actionFilePath));

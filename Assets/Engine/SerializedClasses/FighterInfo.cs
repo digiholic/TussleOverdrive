@@ -167,17 +167,18 @@ public class FighterInfo : IJsonInfoObject{
 
     public void LoadDirectory(string directoryName)
     {
-        directory_name = FileLoader.GetFighterPath(directoryName);
+        directory_name = directoryName;
+        string fullDirectory = FileLoader.GetFighterPath(directoryName);
 
         //Initialize the meta-level sprites like icons and whatnot
-        franchise_icon_sprite = FileLoader.LoadSprite(FileLoader.PathCombine(directory_name,franchiseIconPath));
-        css_icon_sprite = FileLoader.LoadSprite(FileLoader.PathCombine(directory_name, css_icon_path));
-        css_portrait_sprite = FileLoader.LoadSprite(FileLoader.PathCombine(directory_name, css_portrait_path));
+        franchise_icon_sprite = FileLoader.LoadSprite(FileLoader.PathCombine(fullDirectory,franchiseIconPath));
+        css_icon_sprite = FileLoader.LoadSprite(FileLoader.PathCombine(fullDirectory, css_icon_path));
+        css_portrait_sprite = FileLoader.LoadSprite(FileLoader.PathCombine(fullDirectory, css_portrait_path));
 
         //Load the external data json
-        string action_file_json = FileLoader.LoadTextFile(FileLoader.PathCombine(directory_name, action_file_path));
+        string action_file_json = FileLoader.LoadTextFile(FileLoader.PathCombine(fullDirectory, action_file_path));
         action_file = JsonUtility.FromJson<ActionFile>(action_file_json);
-        string sprite_info_json = FileLoader.LoadTextFile(FileLoader.PathCombine(directory_name, sprite_info_path));
+        string sprite_info_json = FileLoader.LoadTextFile(FileLoader.PathCombine(fullDirectory, sprite_info_path));
         sprite_info = JsonUtility.FromJson<SpriteInfo>(sprite_info_json);
         sprite_info.LoadDirectory(directoryName,this);
 
