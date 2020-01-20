@@ -8,11 +8,11 @@
             "_spriteRate": 2,
             "_loop": false,
             "subimages": [
-                "hitboxie_airjump_0",
-                "hitboxie_airjump_1",
-                "hitboxie_airjump_2",
-                "hitboxie_airjump_3",
-                "hitboxie_airjump_4"
+                "airjump_0",
+                "airjump_1",
+                "airjump_2",
+                "airjump_3",
+                "airjump_4"
             ]
         },
         {
@@ -20,14 +20,14 @@
             "_spriteRate": 1,
             "_loop": false,
             "subimages": [
-                "hitboxie_bair_0",
-                "hitboxie_bair_1",
-                "hitboxie_bair_2",
-                "hitboxie_bair_3",
-                "hitboxie_bair_4",
-                "hitboxie_bair_5",
-                "hitboxie_bair_6",
-                "hitboxie_bair_7"
+                "bair_0",
+                "bair_1",
+                "bair_2",
+                "bair_3",
+                "bair_4",
+                "bair_5",
+                "bair_6",
+                "bair_7"
             ]
         },
         {
@@ -35,15 +35,15 @@
             "_spriteRate": 2,
             "_loop": false,
             "subimages": [
-                "hitboxie_bthrow_0",
-                "hitboxie_bthrow_1",
-                "hitboxie_bthrow_2",
-                "hitboxie_bthrow_3",
-                "hitboxie_bthrow_4",
-                "hitboxie_bthrow_5",
-                "hitboxie_bthrow_6",
-                "hitboxie_bthrow_7",
-                "hitboxie_bthrow_8"
+                "bthrow_0",
+                "bthrow_1",
+                "bthrow_2",
+                "bthrow_3",
+                "bthrow_4",
+                "bthrow_5",
+                "bthrow_6",
+                "bthrow_7",
+                "bthrow_8"
             ]
         },
         {
@@ -51,11 +51,11 @@
             "_spriteRate": 3,
             "_loop": false,
             "subimages": [
-                "hitboxie_dair_0",
-                "hitboxie_dair_1",
-                "hitboxie_dair_2",
-                "hitboxie_dair_3",
-                "hitboxie_dair_4"
+                "dair_0",
+                "dair_1",
+                "dair_2",
+                "dair_3",
+                "dair_4"
             ]
         },
         {
@@ -63,22 +63,22 @@
             "_spriteRate": 2,
             "_loop": false,
             "subimages": [
-                "hitboxie_dsmash_0",
-                "hitboxie_dsmash_1",
-                "hitboxie_dsmash_2",
-                "hitboxie_dsmash_3",
-                "hitboxie_dsmash_4",
-                "hitboxie_dsmash_5",
-                "hitboxie_dsmash_6",
-                "hitboxie_dsmash_7",
-                "hitboxie_dsmash_8",
-                "hitboxie_dsmash_9",
-                "hitboxie_dsmash_10",
-                "hitboxie_dsmash_11",
-                "hitboxie_dsmash_12",
-                "hitboxie_dsmash_13",
-                "hitboxie_dsmash_14",
-                "hitboxie_dsmash_15"
+                "dsmash_0",
+                "dsmash_1",
+                "dsmash_2",
+                "dsmash_3",
+                "dsmash_4",
+                "dsmash_5",
+                "dsmash_6",
+                "dsmash_7",
+                "dsmash_8",
+                "dsmash_9",
+                "dsmash_10",
+                "dsmash_11",
+                "dsmash_12",
+                "dsmash_13",
+                "dsmash_14",
+                "dsmash_15"
             ]
         },
         {
@@ -86,13 +86,13 @@
             "_spriteRate": 2,
             "_loop": false,
             "subimages": [
-                "hitboxie_dtilt_0",
-                "hitboxie_dtilt_1",
-                "hitboxie_dtilt_2",
-                "hitboxie_dtilt_3",
-                "hitboxie_dtilt_4",
-                "hitboxie_dtilt_5",
-                "hitboxie_dtilt_6"
+                "dtilt_0",
+                "dtilt_1",
+                "dtilt_2",
+                "dtilt_3",
+                "dtilt_4",
+                "dtilt_5",
+                "dtilt_6"
             ]
         },
         {
@@ -100,19 +100,19 @@
             "_spriteRate": 2,
             "_loop": false,
             "subimages": [
-                "hitboxie_fair_0",
-                "hitboxie_fair_1",
-                "hitboxie_fair_2",
-                "hitboxie_fair_3",
-                "hitboxie_fair_4",
-                "hitboxie_fair_5",
-                "hitboxie_fair_6",
-                "hitboxie_fair_7",
-                "hitboxie_fair_8",
-                "hitboxie_fair_9",
-                "hitboxie_fair_10",
-                "hitboxie_fair_11",
-                "hitboxie_fair_12"
+                "fair_0",
+                "fair_1",
+                "fair_2",
+                "fair_3",
+                "fair_4",
+                "fair_5",
+                "fair_6",
+                "fair_7",
+                "fair_8",
+                "fair_9",
+                "fair_10",
+                "fair_11",
+                "fair_12"
             ]
         },
         {
@@ -120,16 +120,16 @@
             "_spriteRate": 2,
             "_loop": false,
             "subimages": [
-                "hitboxie_fsmash_0",
-                "hitboxie_fsmash_1",
-                "hitboxie_fsmash_2",
-                "hitboxie_fsmash_3",
-                "hitboxie_fsmash_4",
-                "hitboxie_fsmash_5",
-                "hitboxie_fsmash_6",
-                "hitboxie_fsmash_7",
-                "hitboxie_fsmash_8",
-                "hitboxie_fsmash_9"
+                "fsmash_0",
+                "fsmash_1",
+                "fsmash_2",
+                "fsmash_3",
+                "fsmash_4",
+                "fsmash_5",
+                "fsmash_6",
+                "fsmash_7",
+                "fsmash_8",
+                "fsmash_9"
             ]
         },
         {
@@ -137,21 +137,21 @@
             "_spriteRate": 1,
             "_loop": false,
             "subimages": [
-                "hitboxie_getup_0",
-                "hitboxie_getup_1",
-                "hitboxie_getup_2",
-                "hitboxie_getup_3",
-                "hitboxie_getup_4",
-                "hitboxie_getup_5",
-                "hitboxie_getup_6",
-                "hitboxie_getup_7",
-                "hitboxie_getup_8",
-                "hitboxie_getup_9",
-                "hitboxie_getup_10",
-                "hitboxie_getup_11",
-                "hitboxie_getup_12",
-                "hitboxie_getup_13",
-                "hitboxie_getup_14"
+                "getup_0",
+                "getup_1",
+                "getup_2",
+                "getup_3",
+                "getup_4",
+                "getup_5",
+                "getup_6",
+                "getup_7",
+                "getup_8",
+                "getup_9",
+                "getup_10",
+                "getup_11",
+                "getup_12",
+                "getup_13",
+                "getup_14"
             ]
         },
         {
@@ -159,7 +159,7 @@
             "_spriteRate": 1,
             "_loop": false,
             "subimages": [
-                "hitboxie_idle_0"
+                "idle_0"
             ]
         },
         {
@@ -167,7 +167,7 @@
             "_spriteRate": 1,
             "_loop": false,
             "subimages": [
-                "hitboxie_jump_0"
+                "jump_0"
             ]
         },
         {
@@ -175,10 +175,10 @@
             "_spriteRate": 1,
             "_loop": false,
             "subimages": [
-                "hitboxie_land_0",
-                "hitboxie_land_1",
-                "hitboxie_land_2",
-                "hitboxie_land_3"
+                "land_0",
+                "land_1",
+                "land_2",
+                "land_3"
             ]
         },
         {
@@ -186,10 +186,10 @@
             "_spriteRate": 2,
             "_loop": false,
             "subimages": [
-                "hitboxie_land_0",
-                "hitboxie_land_1",
-                "hitboxie_land_2",
-                "hitboxie_land_3"
+                "land_0",
+                "land_1",
+                "land_2",
+                "land_3"
             ]
         },
         {
@@ -197,10 +197,10 @@
             "_spriteRate": 3,
             "_loop": false,
             "subimages": [
-                "hitboxie_land_0",
-                "hitboxie_land_1",
-                "hitboxie_land_2",
-                "hitboxie_land_3"
+                "land_0",
+                "land_1",
+                "land_2",
+                "land_3"
             ]
         },
         {
@@ -208,10 +208,10 @@
             "_spriteRate": 1,
             "_loop": false,
             "subimages": [
-                "hitboxie_land_3",
-                "hitboxie_land_2",
-                "hitboxie_land_1",
-                "hitboxie_land_0"
+                "land_3",
+                "land_2",
+                "land_1",
+                "land_0"
             ]
         },
         {
@@ -219,10 +219,10 @@
             "_spriteRate": 2,
             "_loop": false,
             "subimages": [
-                "hitboxie_land_3",
-                "hitboxie_land_2",
-                "hitboxie_land_1",
-                "hitboxie_land_0"
+                "land_3",
+                "land_2",
+                "land_1",
+                "land_0"
             ]
         },
         {
@@ -230,10 +230,10 @@
             "_spriteRate": 3,
             "_loop": false,
             "subimages": [
-                "hitboxie_land_3",
-                "hitboxie_land_2",
-                "hitboxie_land_1",
-                "hitboxie_land_0"
+                "land_3",
+                "land_2",
+                "land_1",
+                "land_0"
             ]
         },
         {
@@ -241,10 +241,10 @@
             "_spriteRate": 4,
             "_loop": false,
             "subimages": [
-                "hitboxie_land_3",
-                "hitboxie_land_2",
-                "hitboxie_land_1",
-                "hitboxie_land_0"
+                "land_3",
+                "land_2",
+                "land_1",
+                "land_0"
             ]
         },
         {
@@ -252,22 +252,22 @@
             "_spriteRate": 1,
             "_loop": false,
             "subimages": [
-                "hitboxie_nair_0",
-                "hitboxie_nair_1",
-                "hitboxie_nair_2",
-                "hitboxie_nair_3",
-                "hitboxie_nair_4",
-                "hitboxie_nair_5",
-                "hitboxie_nair_6",
-                "hitboxie_nair_7",
-                "hitboxie_nair_8",
-                "hitboxie_nair_9",
-                "hitboxie_nair_10",
-                "hitboxie_nair_11",
-                "hitboxie_nair_12",
-                "hitboxie_nair_13",
-                "hitboxie_nair_14",
-                "hitboxie_nair_15"
+                "nair_0",
+                "nair_1",
+                "nair_2",
+                "nair_3",
+                "nair_4",
+                "nair_5",
+                "nair_6",
+                "nair_7",
+                "nair_8",
+                "nair_9",
+                "nair_10",
+                "nair_11",
+                "nair_12",
+                "nair_13",
+                "nair_14",
+                "nair_15"
             ]
         },
         {
@@ -275,22 +275,22 @@
             "_spriteRate": 2,
             "_loop": false,
             "subimages": [
-                "hitboxie_nair_0",
-                "hitboxie_nair_1",
-                "hitboxie_nair_2",
-                "hitboxie_nair_3",
-                "hitboxie_nair_4",
-                "hitboxie_nair_5",
-                "hitboxie_nair_6",
-                "hitboxie_nair_7",
-                "hitboxie_nair_8",
-                "hitboxie_nair_9",
-                "hitboxie_nair_10",
-                "hitboxie_nair_11",
-                "hitboxie_nair_12",
-                "hitboxie_nair_13",
-                "hitboxie_nair_14",
-                "hitboxie_nair_15"
+                "nair_0",
+                "nair_1",
+                "nair_2",
+                "nair_3",
+                "nair_4",
+                "nair_5",
+                "nair_6",
+                "nair_7",
+                "nair_8",
+                "nair_9",
+                "nair_10",
+                "nair_11",
+                "nair_12",
+                "nair_13",
+                "nair_14",
+                "nair_15"
             ]
         },
         {
@@ -298,21 +298,21 @@
             "_spriteRate": 1,
             "_loop": false,
             "subimages": [
-                "hitboxie_neutral_0",
-                "hitboxie_neutral_1",
-                "hitboxie_neutral_2",
-                "hitboxie_neutral_3",
-                "hitboxie_neutral_4",
-                "hitboxie_neutral_5",
-                "hitboxie_neutral_6",
-                "hitboxie_neutral_7",
-                "hitboxie_neutral_8",
-                "hitboxie_neutral_9",
-                "hitboxie_neutral_10",
-                "hitboxie_neutral_11",
-                "hitboxie_neutral_12",
-                "hitboxie_neutral_13",
-                "hitboxie_neutral_14"
+                "neutral_0",
+                "neutral_1",
+                "neutral_2",
+                "neutral_3",
+                "neutral_4",
+                "neutral_5",
+                "neutral_6",
+                "neutral_7",
+                "neutral_8",
+                "neutral_9",
+                "neutral_10",
+                "neutral_11",
+                "neutral_12",
+                "neutral_13",
+                "neutral_14"
             ]
         },
         {
@@ -320,16 +320,16 @@
             "_spriteRate": 2,
             "_loop": false,
             "subimages": [
-                "hitboxie_nspecial_0",
-                "hitboxie_nspecial_1",
-                "hitboxie_nspecial_2",
-                "hitboxie_nspecial_3",
-                "hitboxie_nspecial_4",
-                "hitboxie_nspecial_5",
-                "hitboxie_nspecial_6",
-                "hitboxie_nspecial_7",
-                "hitboxie_nspecial_8",
-                "hitboxie_nspecial_9"
+                "nspecial_0",
+                "nspecial_1",
+                "nspecial_2",
+                "nspecial_3",
+                "nspecial_4",
+                "nspecial_5",
+                "nspecial_6",
+                "nspecial_7",
+                "nspecial_8",
+                "nspecial_9"
             ]
         },
         {
@@ -337,11 +337,11 @@
             "_spriteRate": 2,
             "_loop": false,
             "subimages": [
-                "hitboxie_pivot_0",
-                "hitboxie_pivot_1",
-                "hitboxie_pivot_2",
-                "hitboxie_pivot_3",
-                "hitboxie_pivot_4"
+                "pivot_0",
+                "pivot_1",
+                "pivot_2",
+                "pivot_3",
+                "pivot_4"
             ]
         },
         {
@@ -349,11 +349,11 @@
             "_spriteRate": 2,
             "_loop": false,
             "subimages": [
-                "hitboxie_pivot_0",
-                "hitboxie_pivot_1",
-                "hitboxie_pivot_2",
-                "hitboxie_pivot_3",
-                "hitboxie_pivot_4"
+                "pivot_0",
+                "pivot_1",
+                "pivot_2",
+                "pivot_3",
+                "pivot_4"
             ]
         },
         {
@@ -361,11 +361,11 @@
             "_spriteRate": 3,
             "_loop": false,
             "subimages": [
-                "hitboxie_pivot_0",
-                "hitboxie_pivot_1",
-                "hitboxie_pivot_2",
-                "hitboxie_pivot_3",
-                "hitboxie_pivot_4"
+                "pivot_0",
+                "pivot_1",
+                "pivot_2",
+                "pivot_3",
+                "pivot_4"
             ]
         },
         {
@@ -373,11 +373,11 @@
             "_spriteRate": 2,
             "_loop": false,
             "subimages": [
-                "hitboxie_pivot_0",
-                "hitboxie_pivot_1",
-                "hitboxie_pivot_2",
-                "hitboxie_pivot_3",
-                "hitboxie_pivot_4"
+                "pivot_0",
+                "pivot_1",
+                "pivot_2",
+                "pivot_3",
+                "pivot_4"
             ]
         },
         {
@@ -385,11 +385,11 @@
             "_spriteRate": 2,
             "_loop": false,
             "subimages": [
-                "hitboxie_pivot_4",
-                "hitboxie_pivot_3",
-                "hitboxie_pivot_2",
-                "hitboxie_pivot_1",
-                "hitboxie_pivot_0"
+                "pivot_4",
+                "pivot_3",
+                "pivot_2",
+                "pivot_1",
+                "pivot_0"
             ]
         },
         {
@@ -397,11 +397,11 @@
             "_spriteRate": 4,
             "_loop": false,
             "subimages": [
-                "hitboxie_pivot_4",
-                "hitboxie_pivot_3",
-                "hitboxie_pivot_2",
-                "hitboxie_pivot_1",
-                "hitboxie_pivot_0"
+                "pivot_4",
+                "pivot_3",
+                "pivot_2",
+                "pivot_1",
+                "pivot_0"
             ]
         },
         {
@@ -409,11 +409,11 @@
             "_spriteRate": 2,
             "_loop": false,
             "subimages": [
-                "hitboxie_run_0",
-                "hitboxie_run_1",
-                "hitboxie_run_2",
-                "hitboxie_run_3",
-                "hitboxie_run_4"
+                "run_0",
+                "run_1",
+                "run_2",
+                "run_3",
+                "run_4"
             ]
         },
         {
@@ -421,11 +421,11 @@
             "_spriteRate": 2,
             "_loop": false,
             "subimages": [
-                "hitboxie_run_0",
-                "hitboxie_run_1",
-                "hitboxie_run_2",
-                "hitboxie_run_3",
-                "hitboxie_run_4"
+                "run_0",
+                "run_1",
+                "run_2",
+                "run_3",
+                "run_4"
             ]
         },
         {
@@ -433,11 +433,11 @@
             "_spriteRate": 3,
             "_loop": false,
             "subimages": [
-                "hitboxie_run_0",
-                "hitboxie_run_1",
-                "hitboxie_run_2",
-                "hitboxie_run_3",
-                "hitboxie_run_4"
+                "run_0",
+                "run_1",
+                "run_2",
+                "run_3",
+                "run_4"
             ]
         },
         {
@@ -445,11 +445,11 @@
             "_spriteRate": 3,
             "_loop": false,
             "subimages": [
-                "hitboxie_uair_0",
-                "hitboxie_uair_1",
-                "hitboxie_uair_2",
-                "hitboxie_uair_3",
-                "hitboxie_uair_4"
+                "uair_0",
+                "uair_1",
+                "uair_2",
+                "uair_3",
+                "uair_4"
             ]
         },
         {
@@ -457,17 +457,17 @@
             "_spriteRate": 2,
             "_loop": false,
             "subimages": [
-                "hitboxie_usmash_0",
-                "hitboxie_usmash_1",
-                "hitboxie_usmash_2",
-                "hitboxie_usmash_3",
-                "hitboxie_usmash_4",
-                "hitboxie_usmash_5",
-                "hitboxie_usmash_6",
-                "hitboxie_usmash_7",
-                "hitboxie_usmash_8",
-                "hitboxie_usmash_9",
-                "hitboxie_usmash_10"
+                "usmash_0",
+                "usmash_1",
+                "usmash_2",
+                "usmash_3",
+                "usmash_4",
+                "usmash_5",
+                "usmash_6",
+                "usmash_7",
+                "usmash_8",
+                "usmash_9",
+                "usmash_10"
             ]
         },
         {
@@ -475,13 +475,13 @@
             "_spriteRate": 4,
             "_loop": false,
             "subimages": [
-                "hitboxie_utilt_0",
-                "hitboxie_utilt_1",
-                "hitboxie_utilt_2",
-                "hitboxie_utilt_3",
-                "hitboxie_utilt_4",
-                "hitboxie_utilt_5",
-                "hitboxie_utilt_6"
+                "utilt_0",
+                "utilt_1",
+                "utilt_2",
+                "utilt_3",
+                "utilt_4",
+                "utilt_5",
+                "utilt_6"
             ]
         },
         {
@@ -489,18 +489,18 @@
             "_spriteRate": 2,
             "_loop": false,
             "subimages": [
-                "hitboxie_airjump_4",
-                "hitboxie_airjump_3",
-                "hitboxie_airjump_2",
-                "hitboxie_airjump_1",
-                "hitboxie_airjump_0"
+                "airjump_4",
+                "airjump_3",
+                "airjump_2",
+                "airjump_1",
+                "airjump_0"
             ]
         }
     ],
     "imageDefinitions": [
         {
-            "_imageName": "hitboxie_airjump_0",
-            "_spriteFileName": "hitboxie_airjump.png",
+            "_imageName": "airjump_0",
+            "_spriteFileName": "airjump.png",
             "_offsetX": 0,
             "_offsetY": 0,
             "_width": 92,
@@ -514,8 +514,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_airjump_1",
-            "_spriteFileName": "hitboxie_airjump.png",
+            "_imageName": "airjump_1",
+            "_spriteFileName": "airjump.png",
             "_offsetX": 92,
             "_offsetY": 0,
             "_width": 92,
@@ -529,8 +529,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_airjump_2",
-            "_spriteFileName": "hitboxie_airjump.png",
+            "_imageName": "airjump_2",
+            "_spriteFileName": "airjump.png",
             "_offsetX": 184,
             "_offsetY": 0,
             "_width": 92,
@@ -544,8 +544,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_airjump_3",
-            "_spriteFileName": "hitboxie_airjump.png",
+            "_imageName": "airjump_3",
+            "_spriteFileName": "airjump.png",
             "_offsetX": 276,
             "_offsetY": 0,
             "_width": 92,
@@ -559,8 +559,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_airjump_4",
-            "_spriteFileName": "hitboxie_airjump.png",
+            "_imageName": "airjump_4",
+            "_spriteFileName": "airjump.png",
             "_offsetX": 368,
             "_offsetY": 0,
             "_width": 92,
@@ -574,8 +574,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_bair_0",
-            "_spriteFileName": "hitboxie_bair.png",
+            "_imageName": "bair_0",
+            "_spriteFileName": "bair.png",
             "_offsetX": 0,
             "_offsetY": 0,
             "_width": 92,
@@ -589,8 +589,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_bair_1",
-            "_spriteFileName": "hitboxie_bair.png",
+            "_imageName": "bair_1",
+            "_spriteFileName": "bair.png",
             "_offsetX": 92,
             "_offsetY": 0,
             "_width": 92,
@@ -604,8 +604,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_bair_2",
-            "_spriteFileName": "hitboxie_bair.png",
+            "_imageName": "bair_2",
+            "_spriteFileName": "bair.png",
             "_offsetX": 184,
             "_offsetY": 0,
             "_width": 92,
@@ -619,8 +619,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_bair_3",
-            "_spriteFileName": "hitboxie_bair.png",
+            "_imageName": "bair_3",
+            "_spriteFileName": "bair.png",
             "_offsetX": 276,
             "_offsetY": 0,
             "_width": 92,
@@ -634,8 +634,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_bair_4",
-            "_spriteFileName": "hitboxie_bair.png",
+            "_imageName": "bair_4",
+            "_spriteFileName": "bair.png",
             "_offsetX": 368,
             "_offsetY": 0,
             "_width": 92,
@@ -649,8 +649,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_bair_5",
-            "_spriteFileName": "hitboxie_bair.png",
+            "_imageName": "bair_5",
+            "_spriteFileName": "bair.png",
             "_offsetX": 460,
             "_offsetY": 0,
             "_width": 92,
@@ -664,8 +664,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_bair_6",
-            "_spriteFileName": "hitboxie_bair.png",
+            "_imageName": "bair_6",
+            "_spriteFileName": "bair.png",
             "_offsetX": 552,
             "_offsetY": 0,
             "_width": 92,
@@ -679,8 +679,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_bair_7",
-            "_spriteFileName": "hitboxie_bair.png",
+            "_imageName": "bair_7",
+            "_spriteFileName": "bair.png",
             "_offsetX": 644,
             "_offsetY": 0,
             "_width": 92,
@@ -694,8 +694,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_bthrow_0",
-            "_spriteFileName": "hitboxie_bthrow.png",
+            "_imageName": "bthrow_0",
+            "_spriteFileName": "bthrow.png",
             "_offsetX": 0,
             "_offsetY": 0,
             "_width": 92,
@@ -709,8 +709,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_bthrow_1",
-            "_spriteFileName": "hitboxie_bthrow.png",
+            "_imageName": "bthrow_1",
+            "_spriteFileName": "bthrow.png",
             "_offsetX": 92,
             "_offsetY": 0,
             "_width": 92,
@@ -724,8 +724,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_bthrow_2",
-            "_spriteFileName": "hitboxie_bthrow.png",
+            "_imageName": "bthrow_2",
+            "_spriteFileName": "bthrow.png",
             "_offsetX": 184,
             "_offsetY": 0,
             "_width": 92,
@@ -739,8 +739,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_bthrow_3",
-            "_spriteFileName": "hitboxie_bthrow.png",
+            "_imageName": "bthrow_3",
+            "_spriteFileName": "bthrow.png",
             "_offsetX": 276,
             "_offsetY": 0,
             "_width": 92,
@@ -754,8 +754,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_bthrow_4",
-            "_spriteFileName": "hitboxie_bthrow.png",
+            "_imageName": "bthrow_4",
+            "_spriteFileName": "bthrow.png",
             "_offsetX": 368,
             "_offsetY": 0,
             "_width": 92,
@@ -769,8 +769,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_bthrow_5",
-            "_spriteFileName": "hitboxie_bthrow.png",
+            "_imageName": "bthrow_5",
+            "_spriteFileName": "bthrow.png",
             "_offsetX": 460,
             "_offsetY": 0,
             "_width": 92,
@@ -784,8 +784,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_bthrow_6",
-            "_spriteFileName": "hitboxie_bthrow.png",
+            "_imageName": "bthrow_6",
+            "_spriteFileName": "bthrow.png",
             "_offsetX": 552,
             "_offsetY": 0,
             "_width": 92,
@@ -799,8 +799,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_bthrow_7",
-            "_spriteFileName": "hitboxie_bthrow.png",
+            "_imageName": "bthrow_7",
+            "_spriteFileName": "bthrow.png",
             "_offsetX": 644,
             "_offsetY": 0,
             "_width": 92,
@@ -814,8 +814,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_bthrow_8",
-            "_spriteFileName": "hitboxie_bthrow.png",
+            "_imageName": "bthrow_8",
+            "_spriteFileName": "bthrow.png",
             "_offsetX": 736,
             "_offsetY": 0,
             "_width": 92,
@@ -829,8 +829,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_dair_0",
-            "_spriteFileName": "hitboxie_dair.png",
+            "_imageName": "dair_0",
+            "_spriteFileName": "dair.png",
             "_offsetX": 0,
             "_offsetY": 0,
             "_width": 92,
@@ -844,8 +844,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_dair_1",
-            "_spriteFileName": "hitboxie_dair.png",
+            "_imageName": "dair_1",
+            "_spriteFileName": "dair.png",
             "_offsetX": 92,
             "_offsetY": 0,
             "_width": 92,
@@ -859,8 +859,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_dair_2",
-            "_spriteFileName": "hitboxie_dair.png",
+            "_imageName": "dair_2",
+            "_spriteFileName": "dair.png",
             "_offsetX": 184,
             "_offsetY": 0,
             "_width": 92,
@@ -874,8 +874,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_dair_3",
-            "_spriteFileName": "hitboxie_dair.png",
+            "_imageName": "dair_3",
+            "_spriteFileName": "dair.png",
             "_offsetX": 276,
             "_offsetY": 0,
             "_width": 92,
@@ -889,8 +889,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_dair_4",
-            "_spriteFileName": "hitboxie_dair.png",
+            "_imageName": "dair_4",
+            "_spriteFileName": "dair.png",
             "_offsetX": 368,
             "_offsetY": 0,
             "_width": 92,
@@ -904,8 +904,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_dsmash_0",
-            "_spriteFileName": "hitboxie_dsmash.png",
+            "_imageName": "dsmash_0",
+            "_spriteFileName": "dsmash.png",
             "_offsetX": 0,
             "_offsetY": 0,
             "_width": 92,
@@ -919,8 +919,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_dsmash_1",
-            "_spriteFileName": "hitboxie_dsmash.png",
+            "_imageName": "dsmash_1",
+            "_spriteFileName": "dsmash.png",
             "_offsetX": 92,
             "_offsetY": 0,
             "_width": 92,
@@ -934,8 +934,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_dsmash_2",
-            "_spriteFileName": "hitboxie_dsmash.png",
+            "_imageName": "dsmash_2",
+            "_spriteFileName": "dsmash.png",
             "_offsetX": 184,
             "_offsetY": 0,
             "_width": 92,
@@ -949,8 +949,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_dsmash_3",
-            "_spriteFileName": "hitboxie_dsmash.png",
+            "_imageName": "dsmash_3",
+            "_spriteFileName": "dsmash.png",
             "_offsetX": 276,
             "_offsetY": 0,
             "_width": 92,
@@ -964,8 +964,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_dsmash_4",
-            "_spriteFileName": "hitboxie_dsmash.png",
+            "_imageName": "dsmash_4",
+            "_spriteFileName": "dsmash.png",
             "_offsetX": 368,
             "_offsetY": 0,
             "_width": 92,
@@ -979,8 +979,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_dsmash_5",
-            "_spriteFileName": "hitboxie_dsmash.png",
+            "_imageName": "dsmash_5",
+            "_spriteFileName": "dsmash.png",
             "_offsetX": 460,
             "_offsetY": 0,
             "_width": 92,
@@ -994,8 +994,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_dsmash_6",
-            "_spriteFileName": "hitboxie_dsmash.png",
+            "_imageName": "dsmash_6",
+            "_spriteFileName": "dsmash.png",
             "_offsetX": 552,
             "_offsetY": 0,
             "_width": 92,
@@ -1009,8 +1009,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_dsmash_7",
-            "_spriteFileName": "hitboxie_dsmash.png",
+            "_imageName": "dsmash_7",
+            "_spriteFileName": "dsmash.png",
             "_offsetX": 644,
             "_offsetY": 0,
             "_width": 92,
@@ -1024,8 +1024,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_dsmash_8",
-            "_spriteFileName": "hitboxie_dsmash.png",
+            "_imageName": "dsmash_8",
+            "_spriteFileName": "dsmash.png",
             "_offsetX": 736,
             "_offsetY": 0,
             "_width": 92,
@@ -1039,8 +1039,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_dsmash_9",
-            "_spriteFileName": "hitboxie_dsmash.png",
+            "_imageName": "dsmash_9",
+            "_spriteFileName": "dsmash.png",
             "_offsetX": 828,
             "_offsetY": 0,
             "_width": 92,
@@ -1054,8 +1054,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_dsmash_10",
-            "_spriteFileName": "hitboxie_dsmash.png",
+            "_imageName": "dsmash_10",
+            "_spriteFileName": "dsmash.png",
             "_offsetX": 920,
             "_offsetY": 0,
             "_width": 92,
@@ -1069,8 +1069,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_dsmash_11",
-            "_spriteFileName": "hitboxie_dsmash.png",
+            "_imageName": "dsmash_11",
+            "_spriteFileName": "dsmash.png",
             "_offsetX": 1012,
             "_offsetY": 0,
             "_width": 92,
@@ -1084,8 +1084,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_dsmash_12",
-            "_spriteFileName": "hitboxie_dsmash.png",
+            "_imageName": "dsmash_12",
+            "_spriteFileName": "dsmash.png",
             "_offsetX": 1104,
             "_offsetY": 0,
             "_width": 92,
@@ -1099,8 +1099,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_dsmash_13",
-            "_spriteFileName": "hitboxie_dsmash.png",
+            "_imageName": "dsmash_13",
+            "_spriteFileName": "dsmash.png",
             "_offsetX": 1196,
             "_offsetY": 0,
             "_width": 92,
@@ -1114,8 +1114,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_dsmash_14",
-            "_spriteFileName": "hitboxie_dsmash.png",
+            "_imageName": "dsmash_14",
+            "_spriteFileName": "dsmash.png",
             "_offsetX": 1288,
             "_offsetY": 0,
             "_width": 92,
@@ -1129,8 +1129,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_dsmash_15",
-            "_spriteFileName": "hitboxie_dsmash.png",
+            "_imageName": "dsmash_15",
+            "_spriteFileName": "dsmash.png",
             "_offsetX": 1380,
             "_offsetY": 0,
             "_width": 92,
@@ -1144,8 +1144,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_dtilt_0",
-            "_spriteFileName": "hitboxie_dtilt.png",
+            "_imageName": "dtilt_0",
+            "_spriteFileName": "dtilt.png",
             "_offsetX": 0,
             "_offsetY": 0,
             "_width": 92,
@@ -1159,8 +1159,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_dtilt_1",
-            "_spriteFileName": "hitboxie_dtilt.png",
+            "_imageName": "dtilt_1",
+            "_spriteFileName": "dtilt.png",
             "_offsetX": 92,
             "_offsetY": 0,
             "_width": 92,
@@ -1174,8 +1174,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_dtilt_2",
-            "_spriteFileName": "hitboxie_dtilt.png",
+            "_imageName": "dtilt_2",
+            "_spriteFileName": "dtilt.png",
             "_offsetX": 184,
             "_offsetY": 0,
             "_width": 92,
@@ -1189,8 +1189,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_dtilt_3",
-            "_spriteFileName": "hitboxie_dtilt.png",
+            "_imageName": "dtilt_3",
+            "_spriteFileName": "dtilt.png",
             "_offsetX": 276,
             "_offsetY": 0,
             "_width": 92,
@@ -1204,8 +1204,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_dtilt_4",
-            "_spriteFileName": "hitboxie_dtilt.png",
+            "_imageName": "dtilt_4",
+            "_spriteFileName": "dtilt.png",
             "_offsetX": 368,
             "_offsetY": 0,
             "_width": 92,
@@ -1219,8 +1219,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_dtilt_5",
-            "_spriteFileName": "hitboxie_dtilt.png",
+            "_imageName": "dtilt_5",
+            "_spriteFileName": "dtilt.png",
             "_offsetX": 460,
             "_offsetY": 0,
             "_width": 92,
@@ -1234,8 +1234,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_dtilt_6",
-            "_spriteFileName": "hitboxie_dtilt.png",
+            "_imageName": "dtilt_6",
+            "_spriteFileName": "dtilt.png",
             "_offsetX": 552,
             "_offsetY": 0,
             "_width": 92,
@@ -1249,8 +1249,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_fair_0",
-            "_spriteFileName": "hitboxie_fair.png",
+            "_imageName": "fair_0",
+            "_spriteFileName": "fair.png",
             "_offsetX": 0,
             "_offsetY": 0,
             "_width": 92,
@@ -1264,8 +1264,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_fair_1",
-            "_spriteFileName": "hitboxie_fair.png",
+            "_imageName": "fair_1",
+            "_spriteFileName": "fair.png",
             "_offsetX": 92,
             "_offsetY": 0,
             "_width": 92,
@@ -1279,8 +1279,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_fair_2",
-            "_spriteFileName": "hitboxie_fair.png",
+            "_imageName": "fair_2",
+            "_spriteFileName": "fair.png",
             "_offsetX": 184,
             "_offsetY": 0,
             "_width": 92,
@@ -1294,8 +1294,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_fair_3",
-            "_spriteFileName": "hitboxie_fair.png",
+            "_imageName": "fair_3",
+            "_spriteFileName": "fair.png",
             "_offsetX": 276,
             "_offsetY": 0,
             "_width": 92,
@@ -1309,8 +1309,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_fair_4",
-            "_spriteFileName": "hitboxie_fair.png",
+            "_imageName": "fair_4",
+            "_spriteFileName": "fair.png",
             "_offsetX": 368,
             "_offsetY": 0,
             "_width": 92,
@@ -1324,8 +1324,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_fair_5",
-            "_spriteFileName": "hitboxie_fair.png",
+            "_imageName": "fair_5",
+            "_spriteFileName": "fair.png",
             "_offsetX": 460,
             "_offsetY": 0,
             "_width": 92,
@@ -1339,8 +1339,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_fair_6",
-            "_spriteFileName": "hitboxie_fair.png",
+            "_imageName": "fair_6",
+            "_spriteFileName": "fair.png",
             "_offsetX": 552,
             "_offsetY": 0,
             "_width": 92,
@@ -1354,8 +1354,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_fair_7",
-            "_spriteFileName": "hitboxie_fair.png",
+            "_imageName": "fair_7",
+            "_spriteFileName": "fair.png",
             "_offsetX": 644,
             "_offsetY": 0,
             "_width": 92,
@@ -1369,8 +1369,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_fair_8",
-            "_spriteFileName": "hitboxie_fair.png",
+            "_imageName": "fair_8",
+            "_spriteFileName": "fair.png",
             "_offsetX": 736,
             "_offsetY": 0,
             "_width": 92,
@@ -1384,8 +1384,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_fair_9",
-            "_spriteFileName": "hitboxie_fair.png",
+            "_imageName": "fair_9",
+            "_spriteFileName": "fair.png",
             "_offsetX": 828,
             "_offsetY": 0,
             "_width": 92,
@@ -1399,8 +1399,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_fair_10",
-            "_spriteFileName": "hitboxie_fair.png",
+            "_imageName": "fair_10",
+            "_spriteFileName": "fair.png",
             "_offsetX": 920,
             "_offsetY": 0,
             "_width": 92,
@@ -1414,8 +1414,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_fair_11",
-            "_spriteFileName": "hitboxie_fair.png",
+            "_imageName": "fair_11",
+            "_spriteFileName": "fair.png",
             "_offsetX": 1012,
             "_offsetY": 0,
             "_width": 92,
@@ -1429,8 +1429,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_fair_12",
-            "_spriteFileName": "hitboxie_fair.png",
+            "_imageName": "fair_12",
+            "_spriteFileName": "fair.png",
             "_offsetX": 1104,
             "_offsetY": 0,
             "_width": 92,
@@ -1444,8 +1444,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_fsmash_0",
-            "_spriteFileName": "hitboxie_fsmash.png",
+            "_imageName": "fsmash_0",
+            "_spriteFileName": "fsmash.png",
             "_offsetX": 0,
             "_offsetY": 0,
             "_width": 92,
@@ -1459,8 +1459,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_fsmash_1",
-            "_spriteFileName": "hitboxie_fsmash.png",
+            "_imageName": "fsmash_1",
+            "_spriteFileName": "fsmash.png",
             "_offsetX": 92,
             "_offsetY": 0,
             "_width": 92,
@@ -1474,8 +1474,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_fsmash_2",
-            "_spriteFileName": "hitboxie_fsmash.png",
+            "_imageName": "fsmash_2",
+            "_spriteFileName": "fsmash.png",
             "_offsetX": 184,
             "_offsetY": 0,
             "_width": 92,
@@ -1489,8 +1489,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_fsmash_3",
-            "_spriteFileName": "hitboxie_fsmash.png",
+            "_imageName": "fsmash_3",
+            "_spriteFileName": "fsmash.png",
             "_offsetX": 276,
             "_offsetY": 0,
             "_width": 92,
@@ -1504,8 +1504,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_fsmash_4",
-            "_spriteFileName": "hitboxie_fsmash.png",
+            "_imageName": "fsmash_4",
+            "_spriteFileName": "fsmash.png",
             "_offsetX": 368,
             "_offsetY": 0,
             "_width": 92,
@@ -1519,8 +1519,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_fsmash_5",
-            "_spriteFileName": "hitboxie_fsmash.png",
+            "_imageName": "fsmash_5",
+            "_spriteFileName": "fsmash.png",
             "_offsetX": 460,
             "_offsetY": 0,
             "_width": 92,
@@ -1534,8 +1534,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_fsmash_6",
-            "_spriteFileName": "hitboxie_fsmash.png",
+            "_imageName": "fsmash_6",
+            "_spriteFileName": "fsmash.png",
             "_offsetX": 552,
             "_offsetY": 0,
             "_width": 92,
@@ -1549,8 +1549,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_fsmash_7",
-            "_spriteFileName": "hitboxie_fsmash.png",
+            "_imageName": "fsmash_7",
+            "_spriteFileName": "fsmash.png",
             "_offsetX": 644,
             "_offsetY": 0,
             "_width": 92,
@@ -1564,8 +1564,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_fsmash_8",
-            "_spriteFileName": "hitboxie_fsmash.png",
+            "_imageName": "fsmash_8",
+            "_spriteFileName": "fsmash.png",
             "_offsetX": 736,
             "_offsetY": 0,
             "_width": 92,
@@ -1579,8 +1579,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_fsmash_9",
-            "_spriteFileName": "hitboxie_fsmash.png",
+            "_imageName": "fsmash_9",
+            "_spriteFileName": "fsmash.png",
             "_offsetX": 828,
             "_offsetY": 0,
             "_width": 92,
@@ -1594,8 +1594,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_getup_0",
-            "_spriteFileName": "hitboxie_getup.png",
+            "_imageName": "getup_0",
+            "_spriteFileName": "getup.png",
             "_offsetX": 0,
             "_offsetY": 0,
             "_width": 92,
@@ -1609,8 +1609,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_getup_1",
-            "_spriteFileName": "hitboxie_getup.png",
+            "_imageName": "getup_1",
+            "_spriteFileName": "getup.png",
             "_offsetX": 92,
             "_offsetY": 0,
             "_width": 92,
@@ -1624,8 +1624,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_getup_2",
-            "_spriteFileName": "hitboxie_getup.png",
+            "_imageName": "getup_2",
+            "_spriteFileName": "getup.png",
             "_offsetX": 184,
             "_offsetY": 0,
             "_width": 92,
@@ -1639,8 +1639,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_getup_3",
-            "_spriteFileName": "hitboxie_getup.png",
+            "_imageName": "getup_3",
+            "_spriteFileName": "getup.png",
             "_offsetX": 276,
             "_offsetY": 0,
             "_width": 92,
@@ -1654,8 +1654,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_getup_4",
-            "_spriteFileName": "hitboxie_getup.png",
+            "_imageName": "getup_4",
+            "_spriteFileName": "getup.png",
             "_offsetX": 368,
             "_offsetY": 0,
             "_width": 92,
@@ -1669,8 +1669,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_getup_5",
-            "_spriteFileName": "hitboxie_getup.png",
+            "_imageName": "getup_5",
+            "_spriteFileName": "getup.png",
             "_offsetX": 460,
             "_offsetY": 0,
             "_width": 92,
@@ -1684,8 +1684,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_getup_6",
-            "_spriteFileName": "hitboxie_getup.png",
+            "_imageName": "getup_6",
+            "_spriteFileName": "getup.png",
             "_offsetX": 552,
             "_offsetY": 0,
             "_width": 92,
@@ -1699,8 +1699,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_getup_7",
-            "_spriteFileName": "hitboxie_getup.png",
+            "_imageName": "getup_7",
+            "_spriteFileName": "getup.png",
             "_offsetX": 644,
             "_offsetY": 0,
             "_width": 92,
@@ -1714,8 +1714,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_getup_8",
-            "_spriteFileName": "hitboxie_getup.png",
+            "_imageName": "getup_8",
+            "_spriteFileName": "getup.png",
             "_offsetX": 736,
             "_offsetY": 0,
             "_width": 92,
@@ -1729,8 +1729,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_getup_9",
-            "_spriteFileName": "hitboxie_getup.png",
+            "_imageName": "getup_9",
+            "_spriteFileName": "getup.png",
             "_offsetX": 828,
             "_offsetY": 0,
             "_width": 92,
@@ -1744,8 +1744,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_getup_10",
-            "_spriteFileName": "hitboxie_getup.png",
+            "_imageName": "getup_10",
+            "_spriteFileName": "getup.png",
             "_offsetX": 920,
             "_offsetY": 0,
             "_width": 92,
@@ -1759,8 +1759,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_getup_11",
-            "_spriteFileName": "hitboxie_getup.png",
+            "_imageName": "getup_11",
+            "_spriteFileName": "getup.png",
             "_offsetX": 1012,
             "_offsetY": 0,
             "_width": 92,
@@ -1774,8 +1774,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_getup_12",
-            "_spriteFileName": "hitboxie_getup.png",
+            "_imageName": "getup_12",
+            "_spriteFileName": "getup.png",
             "_offsetX": 1104,
             "_offsetY": 0,
             "_width": 92,
@@ -1789,8 +1789,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_getup_13",
-            "_spriteFileName": "hitboxie_getup.png",
+            "_imageName": "getup_13",
+            "_spriteFileName": "getup.png",
             "_offsetX": 1196,
             "_offsetY": 0,
             "_width": 92,
@@ -1804,8 +1804,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_getup_14",
-            "_spriteFileName": "hitboxie_getup.png",
+            "_imageName": "getup_14",
+            "_spriteFileName": "getup.png",
             "_offsetX": 1288,
             "_offsetY": 0,
             "_width": 92,
@@ -1819,8 +1819,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_idle_0",
-            "_spriteFileName": "hitboxie_idle.png",
+            "_imageName": "idle_0",
+            "_spriteFileName": "idle.png",
             "_offsetX": 0,
             "_offsetY": 0,
             "_width": 92,
@@ -1834,8 +1834,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_jump_0",
-            "_spriteFileName": "hitboxie_jump.png",
+            "_imageName": "jump_0",
+            "_spriteFileName": "jump.png",
             "_offsetX": 0,
             "_offsetY": 0,
             "_width": 92,
@@ -1849,8 +1849,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_land_0",
-            "_spriteFileName": "hitboxie_land.png",
+            "_imageName": "land_0",
+            "_spriteFileName": "land.png",
             "_offsetX": 0,
             "_offsetY": 0,
             "_width": 92,
@@ -1864,8 +1864,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_land_1",
-            "_spriteFileName": "hitboxie_land.png",
+            "_imageName": "land_1",
+            "_spriteFileName": "land.png",
             "_offsetX": 92,
             "_offsetY": 0,
             "_width": 92,
@@ -1879,8 +1879,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_land_2",
-            "_spriteFileName": "hitboxie_land.png",
+            "_imageName": "land_2",
+            "_spriteFileName": "land.png",
             "_offsetX": 184,
             "_offsetY": 0,
             "_width": 92,
@@ -1894,8 +1894,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_land_3",
-            "_spriteFileName": "hitboxie_land.png",
+            "_imageName": "land_3",
+            "_spriteFileName": "land.png",
             "_offsetX": 276,
             "_offsetY": 0,
             "_width": 92,
@@ -1909,8 +1909,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_nair_0",
-            "_spriteFileName": "hitboxie_nair.png",
+            "_imageName": "nair_0",
+            "_spriteFileName": "nair.png",
             "_offsetX": 0,
             "_offsetY": 0,
             "_width": 92,
@@ -1924,8 +1924,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_nair_1",
-            "_spriteFileName": "hitboxie_nair.png",
+            "_imageName": "nair_1",
+            "_spriteFileName": "nair.png",
             "_offsetX": 92,
             "_offsetY": 0,
             "_width": 92,
@@ -1939,8 +1939,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_nair_2",
-            "_spriteFileName": "hitboxie_nair.png",
+            "_imageName": "nair_2",
+            "_spriteFileName": "nair.png",
             "_offsetX": 184,
             "_offsetY": 0,
             "_width": 92,
@@ -1954,8 +1954,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_nair_3",
-            "_spriteFileName": "hitboxie_nair.png",
+            "_imageName": "nair_3",
+            "_spriteFileName": "nair.png",
             "_offsetX": 276,
             "_offsetY": 0,
             "_width": 92,
@@ -1969,8 +1969,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_nair_4",
-            "_spriteFileName": "hitboxie_nair.png",
+            "_imageName": "nair_4",
+            "_spriteFileName": "nair.png",
             "_offsetX": 368,
             "_offsetY": 0,
             "_width": 92,
@@ -1984,8 +1984,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_nair_5",
-            "_spriteFileName": "hitboxie_nair.png",
+            "_imageName": "nair_5",
+            "_spriteFileName": "nair.png",
             "_offsetX": 460,
             "_offsetY": 0,
             "_width": 92,
@@ -1999,8 +1999,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_nair_6",
-            "_spriteFileName": "hitboxie_nair.png",
+            "_imageName": "nair_6",
+            "_spriteFileName": "nair.png",
             "_offsetX": 552,
             "_offsetY": 0,
             "_width": 92,
@@ -2014,8 +2014,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_nair_7",
-            "_spriteFileName": "hitboxie_nair.png",
+            "_imageName": "nair_7",
+            "_spriteFileName": "nair.png",
             "_offsetX": 644,
             "_offsetY": 0,
             "_width": 92,
@@ -2029,8 +2029,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_nair_8",
-            "_spriteFileName": "hitboxie_nair.png",
+            "_imageName": "nair_8",
+            "_spriteFileName": "nair.png",
             "_offsetX": 736,
             "_offsetY": 0,
             "_width": 92,
@@ -2044,8 +2044,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_nair_9",
-            "_spriteFileName": "hitboxie_nair.png",
+            "_imageName": "nair_9",
+            "_spriteFileName": "nair.png",
             "_offsetX": 828,
             "_offsetY": 0,
             "_width": 92,
@@ -2059,8 +2059,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_nair_10",
-            "_spriteFileName": "hitboxie_nair.png",
+            "_imageName": "nair_10",
+            "_spriteFileName": "nair.png",
             "_offsetX": 920,
             "_offsetY": 0,
             "_width": 92,
@@ -2074,8 +2074,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_nair_11",
-            "_spriteFileName": "hitboxie_nair.png",
+            "_imageName": "nair_11",
+            "_spriteFileName": "nair.png",
             "_offsetX": 1012,
             "_offsetY": 0,
             "_width": 92,
@@ -2089,8 +2089,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_nair_12",
-            "_spriteFileName": "hitboxie_nair.png",
+            "_imageName": "nair_12",
+            "_spriteFileName": "nair.png",
             "_offsetX": 1104,
             "_offsetY": 0,
             "_width": 92,
@@ -2104,8 +2104,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_nair_13",
-            "_spriteFileName": "hitboxie_nair.png",
+            "_imageName": "nair_13",
+            "_spriteFileName": "nair.png",
             "_offsetX": 1196,
             "_offsetY": 0,
             "_width": 92,
@@ -2119,8 +2119,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_nair_14",
-            "_spriteFileName": "hitboxie_nair.png",
+            "_imageName": "nair_14",
+            "_spriteFileName": "nair.png",
             "_offsetX": 1288,
             "_offsetY": 0,
             "_width": 92,
@@ -2134,8 +2134,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_nair_15",
-            "_spriteFileName": "hitboxie_nair.png",
+            "_imageName": "nair_15",
+            "_spriteFileName": "nair.png",
             "_offsetX": 1380,
             "_offsetY": 0,
             "_width": 92,
@@ -2149,8 +2149,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_neutral_0",
-            "_spriteFileName": "hitboxie_neutral.png",
+            "_imageName": "neutral_0",
+            "_spriteFileName": "neutral.png",
             "_offsetX": 0,
             "_offsetY": 0,
             "_width": 92,
@@ -2164,8 +2164,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_neutral_1",
-            "_spriteFileName": "hitboxie_neutral.png",
+            "_imageName": "neutral_1",
+            "_spriteFileName": "neutral.png",
             "_offsetX": 92,
             "_offsetY": 0,
             "_width": 92,
@@ -2179,8 +2179,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_neutral_2",
-            "_spriteFileName": "hitboxie_neutral.png",
+            "_imageName": "neutral_2",
+            "_spriteFileName": "neutral.png",
             "_offsetX": 184,
             "_offsetY": 0,
             "_width": 92,
@@ -2194,8 +2194,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_neutral_3",
-            "_spriteFileName": "hitboxie_neutral.png",
+            "_imageName": "neutral_3",
+            "_spriteFileName": "neutral.png",
             "_offsetX": 276,
             "_offsetY": 0,
             "_width": 92,
@@ -2209,8 +2209,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_neutral_4",
-            "_spriteFileName": "hitboxie_neutral.png",
+            "_imageName": "neutral_4",
+            "_spriteFileName": "neutral.png",
             "_offsetX": 368,
             "_offsetY": 0,
             "_width": 92,
@@ -2224,8 +2224,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_neutral_5",
-            "_spriteFileName": "hitboxie_neutral.png",
+            "_imageName": "neutral_5",
+            "_spriteFileName": "neutral.png",
             "_offsetX": 460,
             "_offsetY": 0,
             "_width": 92,
@@ -2239,8 +2239,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_neutral_6",
-            "_spriteFileName": "hitboxie_neutral.png",
+            "_imageName": "neutral_6",
+            "_spriteFileName": "neutral.png",
             "_offsetX": 552,
             "_offsetY": 0,
             "_width": 92,
@@ -2254,8 +2254,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_neutral_7",
-            "_spriteFileName": "hitboxie_neutral.png",
+            "_imageName": "neutral_7",
+            "_spriteFileName": "neutral.png",
             "_offsetX": 644,
             "_offsetY": 0,
             "_width": 92,
@@ -2269,8 +2269,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_neutral_8",
-            "_spriteFileName": "hitboxie_neutral.png",
+            "_imageName": "neutral_8",
+            "_spriteFileName": "neutral.png",
             "_offsetX": 736,
             "_offsetY": 0,
             "_width": 92,
@@ -2284,8 +2284,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_neutral_9",
-            "_spriteFileName": "hitboxie_neutral.png",
+            "_imageName": "neutral_9",
+            "_spriteFileName": "neutral.png",
             "_offsetX": 828,
             "_offsetY": 0,
             "_width": 92,
@@ -2299,8 +2299,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_neutral_10",
-            "_spriteFileName": "hitboxie_neutral.png",
+            "_imageName": "neutral_10",
+            "_spriteFileName": "neutral.png",
             "_offsetX": 920,
             "_offsetY": 0,
             "_width": 92,
@@ -2314,8 +2314,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_neutral_11",
-            "_spriteFileName": "hitboxie_neutral.png",
+            "_imageName": "neutral_11",
+            "_spriteFileName": "neutral.png",
             "_offsetX": 1012,
             "_offsetY": 0,
             "_width": 92,
@@ -2329,8 +2329,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_neutral_12",
-            "_spriteFileName": "hitboxie_neutral.png",
+            "_imageName": "neutral_12",
+            "_spriteFileName": "neutral.png",
             "_offsetX": 1104,
             "_offsetY": 0,
             "_width": 92,
@@ -2344,8 +2344,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_neutral_13",
-            "_spriteFileName": "hitboxie_neutral.png",
+            "_imageName": "neutral_13",
+            "_spriteFileName": "neutral.png",
             "_offsetX": 1196,
             "_offsetY": 0,
             "_width": 92,
@@ -2359,8 +2359,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_neutral_14",
-            "_spriteFileName": "hitboxie_neutral.png",
+            "_imageName": "neutral_14",
+            "_spriteFileName": "neutral.png",
             "_offsetX": 1288,
             "_offsetY": 0,
             "_width": 92,
@@ -2374,8 +2374,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_nspecial_0",
-            "_spriteFileName": "hitboxie_nspecial.png",
+            "_imageName": "nspecial_0",
+            "_spriteFileName": "nspecial.png",
             "_offsetX": 0,
             "_offsetY": 0,
             "_width": 92,
@@ -2389,8 +2389,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_nspecial_1",
-            "_spriteFileName": "hitboxie_nspecial.png",
+            "_imageName": "nspecial_1",
+            "_spriteFileName": "nspecial.png",
             "_offsetX": 92,
             "_offsetY": 0,
             "_width": 92,
@@ -2404,8 +2404,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_nspecial_2",
-            "_spriteFileName": "hitboxie_nspecial.png",
+            "_imageName": "nspecial_2",
+            "_spriteFileName": "nspecial.png",
             "_offsetX": 184,
             "_offsetY": 0,
             "_width": 92,
@@ -2419,8 +2419,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_nspecial_3",
-            "_spriteFileName": "hitboxie_nspecial.png",
+            "_imageName": "nspecial_3",
+            "_spriteFileName": "nspecial.png",
             "_offsetX": 276,
             "_offsetY": 0,
             "_width": 92,
@@ -2434,8 +2434,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_nspecial_4",
-            "_spriteFileName": "hitboxie_nspecial.png",
+            "_imageName": "nspecial_4",
+            "_spriteFileName": "nspecial.png",
             "_offsetX": 368,
             "_offsetY": 0,
             "_width": 92,
@@ -2449,8 +2449,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_nspecial_5",
-            "_spriteFileName": "hitboxie_nspecial.png",
+            "_imageName": "nspecial_5",
+            "_spriteFileName": "nspecial.png",
             "_offsetX": 460,
             "_offsetY": 0,
             "_width": 92,
@@ -2464,8 +2464,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_nspecial_6",
-            "_spriteFileName": "hitboxie_nspecial.png",
+            "_imageName": "nspecial_6",
+            "_spriteFileName": "nspecial.png",
             "_offsetX": 552,
             "_offsetY": 0,
             "_width": 92,
@@ -2479,8 +2479,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_nspecial_7",
-            "_spriteFileName": "hitboxie_nspecial.png",
+            "_imageName": "nspecial_7",
+            "_spriteFileName": "nspecial.png",
             "_offsetX": 644,
             "_offsetY": 0,
             "_width": 92,
@@ -2494,8 +2494,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_nspecial_8",
-            "_spriteFileName": "hitboxie_nspecial.png",
+            "_imageName": "nspecial_8",
+            "_spriteFileName": "nspecial.png",
             "_offsetX": 736,
             "_offsetY": 0,
             "_width": 92,
@@ -2509,8 +2509,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_nspecial_9",
-            "_spriteFileName": "hitboxie_nspecial.png",
+            "_imageName": "nspecial_9",
+            "_spriteFileName": "nspecial.png",
             "_offsetX": 828,
             "_offsetY": 0,
             "_width": 92,
@@ -2524,8 +2524,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_pivot_0",
-            "_spriteFileName": "hitboxie_pivot.png",
+            "_imageName": "pivot_0",
+            "_spriteFileName": "pivot.png",
             "_offsetX": 0,
             "_offsetY": 0,
             "_width": 92,
@@ -2539,8 +2539,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_pivot_1",
-            "_spriteFileName": "hitboxie_pivot.png",
+            "_imageName": "pivot_1",
+            "_spriteFileName": "pivot.png",
             "_offsetX": 92,
             "_offsetY": 0,
             "_width": 92,
@@ -2554,8 +2554,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_pivot_2",
-            "_spriteFileName": "hitboxie_pivot.png",
+            "_imageName": "pivot_2",
+            "_spriteFileName": "pivot.png",
             "_offsetX": 184,
             "_offsetY": 0,
             "_width": 92,
@@ -2569,8 +2569,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_pivot_3",
-            "_spriteFileName": "hitboxie_pivot.png",
+            "_imageName": "pivot_3",
+            "_spriteFileName": "pivot.png",
             "_offsetX": 276,
             "_offsetY": 0,
             "_width": 92,
@@ -2584,8 +2584,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_pivot_4",
-            "_spriteFileName": "hitboxie_pivot.png",
+            "_imageName": "pivot_4",
+            "_spriteFileName": "pivot.png",
             "_offsetX": 368,
             "_offsetY": 0,
             "_width": 92,
@@ -2599,8 +2599,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_run_0",
-            "_spriteFileName": "hitboxie_run.png",
+            "_imageName": "run_0",
+            "_spriteFileName": "run.png",
             "_offsetX": 0,
             "_offsetY": 0,
             "_width": 92,
@@ -2614,8 +2614,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_run_1",
-            "_spriteFileName": "hitboxie_run.png",
+            "_imageName": "run_1",
+            "_spriteFileName": "run.png",
             "_offsetX": 92,
             "_offsetY": 0,
             "_width": 92,
@@ -2629,8 +2629,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_run_2",
-            "_spriteFileName": "hitboxie_run.png",
+            "_imageName": "run_2",
+            "_spriteFileName": "run.png",
             "_offsetX": 184,
             "_offsetY": 0,
             "_width": 92,
@@ -2644,8 +2644,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_run_3",
-            "_spriteFileName": "hitboxie_run.png",
+            "_imageName": "run_3",
+            "_spriteFileName": "run.png",
             "_offsetX": 276,
             "_offsetY": 0,
             "_width": 92,
@@ -2659,8 +2659,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_run_4",
-            "_spriteFileName": "hitboxie_run.png",
+            "_imageName": "run_4",
+            "_spriteFileName": "run.png",
             "_offsetX": 368,
             "_offsetY": 0,
             "_width": 92,
@@ -2674,8 +2674,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_uair_0",
-            "_spriteFileName": "hitboxie_uair.png",
+            "_imageName": "uair_0",
+            "_spriteFileName": "uair.png",
             "_offsetX": 0,
             "_offsetY": 0,
             "_width": 92,
@@ -2689,8 +2689,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_uair_1",
-            "_spriteFileName": "hitboxie_uair.png",
+            "_imageName": "uair_1",
+            "_spriteFileName": "uair.png",
             "_offsetX": 92,
             "_offsetY": 0,
             "_width": 92,
@@ -2704,8 +2704,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_uair_2",
-            "_spriteFileName": "hitboxie_uair.png",
+            "_imageName": "uair_2",
+            "_spriteFileName": "uair.png",
             "_offsetX": 184,
             "_offsetY": 0,
             "_width": 92,
@@ -2719,8 +2719,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_uair_3",
-            "_spriteFileName": "hitboxie_uair.png",
+            "_imageName": "uair_3",
+            "_spriteFileName": "uair.png",
             "_offsetX": 276,
             "_offsetY": 0,
             "_width": 92,
@@ -2734,8 +2734,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_uair_4",
-            "_spriteFileName": "hitboxie_uair.png",
+            "_imageName": "uair_4",
+            "_spriteFileName": "uair.png",
             "_offsetX": 368,
             "_offsetY": 0,
             "_width": 92,
@@ -2749,8 +2749,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_usmash_0",
-            "_spriteFileName": "hitboxie_usmash.png",
+            "_imageName": "usmash_0",
+            "_spriteFileName": "usmash.png",
             "_offsetX": 0,
             "_offsetY": 0,
             "_width": 92,
@@ -2764,8 +2764,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_usmash_1",
-            "_spriteFileName": "hitboxie_usmash.png",
+            "_imageName": "usmash_1",
+            "_spriteFileName": "usmash.png",
             "_offsetX": 92,
             "_offsetY": 0,
             "_width": 92,
@@ -2779,8 +2779,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_usmash_2",
-            "_spriteFileName": "hitboxie_usmash.png",
+            "_imageName": "usmash_2",
+            "_spriteFileName": "usmash.png",
             "_offsetX": 184,
             "_offsetY": 0,
             "_width": 92,
@@ -2794,8 +2794,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_usmash_3",
-            "_spriteFileName": "hitboxie_usmash.png",
+            "_imageName": "usmash_3",
+            "_spriteFileName": "usmash.png",
             "_offsetX": 276,
             "_offsetY": 0,
             "_width": 92,
@@ -2809,8 +2809,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_usmash_4",
-            "_spriteFileName": "hitboxie_usmash.png",
+            "_imageName": "usmash_4",
+            "_spriteFileName": "usmash.png",
             "_offsetX": 368,
             "_offsetY": 0,
             "_width": 92,
@@ -2824,8 +2824,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_usmash_5",
-            "_spriteFileName": "hitboxie_usmash.png",
+            "_imageName": "usmash_5",
+            "_spriteFileName": "usmash.png",
             "_offsetX": 460,
             "_offsetY": 0,
             "_width": 92,
@@ -2839,8 +2839,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_usmash_6",
-            "_spriteFileName": "hitboxie_usmash.png",
+            "_imageName": "usmash_6",
+            "_spriteFileName": "usmash.png",
             "_offsetX": 552,
             "_offsetY": 0,
             "_width": 92,
@@ -2854,8 +2854,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_usmash_7",
-            "_spriteFileName": "hitboxie_usmash.png",
+            "_imageName": "usmash_7",
+            "_spriteFileName": "usmash.png",
             "_offsetX": 644,
             "_offsetY": 0,
             "_width": 92,
@@ -2869,8 +2869,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_usmash_8",
-            "_spriteFileName": "hitboxie_usmash.png",
+            "_imageName": "usmash_8",
+            "_spriteFileName": "usmash.png",
             "_offsetX": 736,
             "_offsetY": 0,
             "_width": 92,
@@ -2884,8 +2884,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_usmash_9",
-            "_spriteFileName": "hitboxie_usmash.png",
+            "_imageName": "usmash_9",
+            "_spriteFileName": "usmash.png",
             "_offsetX": 828,
             "_offsetY": 0,
             "_width": 92,
@@ -2899,8 +2899,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_usmash_10",
-            "_spriteFileName": "hitboxie_usmash.png",
+            "_imageName": "usmash_10",
+            "_spriteFileName": "usmash.png",
             "_offsetX": 920,
             "_offsetY": 0,
             "_width": 92,
@@ -2914,8 +2914,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_utilt_0",
-            "_spriteFileName": "hitboxie_utilt.png",
+            "_imageName": "utilt_0",
+            "_spriteFileName": "utilt.png",
             "_offsetX": 0,
             "_offsetY": 0,
             "_width": 92,
@@ -2929,8 +2929,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_utilt_1",
-            "_spriteFileName": "hitboxie_utilt.png",
+            "_imageName": "utilt_1",
+            "_spriteFileName": "utilt.png",
             "_offsetX": 92,
             "_offsetY": 0,
             "_width": 92,
@@ -2944,8 +2944,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_utilt_2",
-            "_spriteFileName": "hitboxie_utilt.png",
+            "_imageName": "utilt_2",
+            "_spriteFileName": "utilt.png",
             "_offsetX": 184,
             "_offsetY": 0,
             "_width": 92,
@@ -2959,8 +2959,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_utilt_3",
-            "_spriteFileName": "hitboxie_utilt.png",
+            "_imageName": "utilt_3",
+            "_spriteFileName": "utilt.png",
             "_offsetX": 276,
             "_offsetY": 0,
             "_width": 92,
@@ -2974,8 +2974,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_utilt_4",
-            "_spriteFileName": "hitboxie_utilt.png",
+            "_imageName": "utilt_4",
+            "_spriteFileName": "utilt.png",
             "_offsetX": 368,
             "_offsetY": 0,
             "_width": 92,
@@ -2989,8 +2989,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_utilt_5",
-            "_spriteFileName": "hitboxie_utilt.png",
+            "_imageName": "utilt_5",
+            "_spriteFileName": "utilt.png",
             "_offsetX": 460,
             "_offsetY": 0,
             "_width": 92,
@@ -3004,8 +3004,8 @@
             "_anchors": []
         },
         {
-            "_imageName": "hitboxie_utilt_6",
-            "_spriteFileName": "hitboxie_utilt.png",
+            "_imageName": "utilt_6",
+            "_spriteFileName": "utilt.png",
             "_offsetX": 552,
             "_offsetY": 0,
             "_width": 92,

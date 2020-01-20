@@ -1,9 +1,9 @@
 {
     "display_name": "Hitboxie",
     "franchise_icon_path": "franchise_icon.png",
-    "css_icon_path": "sprites\\icon_hitboxie.png",
-    "css_portrait_path": "sprites/icon_hitboxie.png",
-    "action_file_path": "hitboxie_actions.json",
+    "css_icon_path": "css_icon.png",
+    "css_portrait_path": "css_portrait.png",
+    "action_file_path": "fighter_actions.json",
     "sprite_info_path": "sprite_info.json",
     "sound_path": "sfx",
     "colorPalettes": [],
