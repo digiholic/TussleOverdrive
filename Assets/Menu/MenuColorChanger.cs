@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// This class handles the color changing of the backgrounds in the menu. It is a singleton with DontDestroyOnLoad, so it's always
@@ -12,12 +13,14 @@ public class MenuColorChanger : MonoBehaviour {
     public float hue = 0.0f; //hue hue hue
     public Color hsvColor = Color.black;
 
+    public List<string> excludedScenes = new List<string>();
     /// <summary>
     /// At the start of the scene, create an instance of this class if there isn't one already. If there is, get rid of this one and keep using that one.
     /// </summary>
     void Awake()
     {
         DontDestroyOnLoad(gameObject);
+        SceneManager.sceneLoaded += OnSceneLoaded;
         if (menu_color == null) //if we don't have a settings object
             menu_color = this;
         
@@ -44,5 +47,18 @@ public class MenuColorChanger : MonoBehaviour {
     {
         if (menu_color != null) return menu_color.hsvColor;
         else return Color.black;
+    }
+
+    void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode) {
+       if (excludedScenes.Contains(scene.name)){
+           if (gameObject != null){
+               Destroy(this.gameObject,1);
+           }
+       }
+    }
+
+    void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }

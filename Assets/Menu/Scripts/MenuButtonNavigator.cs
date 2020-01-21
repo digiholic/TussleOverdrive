@@ -141,7 +141,7 @@ public class MenuButtonNavigator : MonoBehaviour {
 
     public void LoadScene(string sceneName)
     {
-        if (sceneName == "SplashScree" || sceneName == "stage_TestStage") MenuMusicPlayer.player.stop(true); 
+        if (sceneName == "SplashScreen" || sceneName == "stage_TestStage" || sceneName == "LegacyEditor") MenuMusicPlayer.player.stop(true); 
         SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
     }
 

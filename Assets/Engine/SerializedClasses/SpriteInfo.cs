@@ -139,8 +139,14 @@ public class SpriteInfo : IJsonInfoObject
             if (def.ImageName == name) return def;
         }
 
-        Debug.LogWarning("Could not find image definition: " + name + " in SpriteInfo");
-        return null;
+        //If we try to load the default sprite and fail, that's a problem.
+        if (name == default_sprite){
+            Debug.LogError("Could not find image definition for default sprite: " + name + " in SpriteInfo");
+            return null;
+        }
+        
+        //If we fail to load a non-default sprite, fall back and try to load that one instead.
+        return GetImageByName(default_sprite);
     }
 
     public static SpriteInfo LoadSpritesFromFile(string directory, string filename = "sprite_info.json")

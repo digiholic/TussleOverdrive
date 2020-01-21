@@ -34,8 +34,9 @@ public class BattleController : MonoBehaviour {
     {
         audioSource = GetComponent<AudioSource>();
 
-        //Fighters shouldn't collide with fighters
         current_battle = this;
+        
+        //Fighters shouldn't collide with fighters
         Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Fighters"), LayerMask.NameToLayer("Fighters"), true);
         BattleLoader.current_loader.LoadBattle();
         audioSource?.Play();
