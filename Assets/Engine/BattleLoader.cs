@@ -58,6 +58,7 @@ public class BattleLoader : MonoBehaviour {
                 FighterPrefab.GetComponent<FighterInfoLoader>().SetFighterInfo(fighters[i]);
                 
                 GameObject fighter = Instantiate(FighterPrefab);
+                fighter.name = string.Format("[Player {0}] {1}",i,fighters[i].displayName);
                 fighter.SendMessage("SetPlayerNum", i);
                 fighter.SendMessage("SetFighterInfo", fighters[i]);
                 fighter.transform.position = spawnPoints[i].position;

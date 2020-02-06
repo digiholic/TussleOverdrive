@@ -28,8 +28,15 @@ public class BattleObjectVarData
             Debug.LogWarning("Attempting to get FloatData from null VarData");
             return 0.0f;
         }
-        else
-            return (float)varData;
+        else {
+            try {
+                return (float)varData;
+            } catch (System.InvalidCastException e){
+                Debug.LogError(string.Format("Could not cast {0} to float. Actual Value: {1}",varName,varData));
+                Debug.LogError(e.StackTrace);
+                return 0;
+            }
+        }
     }
 
     public int GetIntData()
@@ -41,8 +48,15 @@ public class BattleObjectVarData
             Debug.LogWarning("Attempting to get IntData from null VarData");
             return 0;
         }
-        else
-            return (int)varData;
+        else {
+            try {
+                return (int)varData;
+            } catch (System.InvalidCastException e){
+                Debug.LogError(string.Format("Could not cast {0} to int. Actual Value: {1}",varName,varData));
+                Debug.LogError(e.StackTrace);
+                return 0;
+            }
+        }
     }
 
     public bool GetBoolData()
@@ -54,8 +68,15 @@ public class BattleObjectVarData
             Debug.LogWarning("Attempting to get BoolData from null VarData");
             return false;
         }
-        else
-            return (bool)varData;
+        else {
+            try {
+                return (bool)varData;
+            } catch (System.InvalidCastException e){
+                Debug.LogError(string.Format("Could not cast {0} to bool. Actual Value: {1}",varName,varData));
+                Debug.LogError(e.StackTrace);
+                return false;
+            }
+        }
     }
 
     public string GetStringData()
