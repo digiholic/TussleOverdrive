@@ -143,6 +143,11 @@ public class ImageDefinition {
         }
 
         Texture2D cachedTextureFile = FileLoader.LoadTexture(path);
+
+        //Clamp the width or height of this image to fit the image if the definition is too large for the file
+        Width = Mathf.Min(Width,cachedTextureFile.width);
+        Height = Mathf.Min(Height,cachedTextureFile.height);
+
         Sprite newSprite = Sprite.Create(cachedTextureFile, new Rect(OffsetX, OffsetY, Width, Height), Pivot.getAsRelative(this), pixelsPerUnit);
         cacheSprite(newSprite);
     }
