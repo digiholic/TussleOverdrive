@@ -232,12 +232,12 @@ public class FighterInfo : IJsonInfoObject{
     public void GenerateDefaultAttributes()
     {
         variables = new List<VarData>();
-        variables.Add(new VarData(TussleConstants.FighterAttributes.WEIGHT, "10", VarType.FLOAT));
-        variables.Add(new VarData(TussleConstants.FighterAttributes.GRAVITY, "-20", VarType.FLOAT));
-        variables.Add(new VarData(TussleConstants.FighterAttributes.MAX_FALL_SPEED, "-7", VarType.FLOAT));
-        variables.Add(new VarData(TussleConstants.FighterAttributes.MAX_GROUND_SPEED, "5.5", VarType.FLOAT));
-        variables.Add(new VarData(TussleConstants.FighterAttributes.RUN_SPEED, "2.5", VarType.FLOAT));
-        variables.Add(new VarData(TussleConstants.FighterAttributes.MAX_AIR_SPEED, "8.5", VarType.FLOAT));
+        variables.Add(new VarData(TussleConstants.FighterAttributes.WEIGHT, "100", VarType.FLOAT));
+        variables.Add(new VarData(TussleConstants.FighterAttributes.GRAVITY, "-5", VarType.FLOAT));
+        variables.Add(new VarData(TussleConstants.FighterAttributes.MAX_FALL_SPEED, "-20", VarType.FLOAT));
+        variables.Add(new VarData(TussleConstants.FighterAttributes.MAX_GROUND_SPEED, "7", VarType.FLOAT));
+        variables.Add(new VarData(TussleConstants.FighterAttributes.RUN_SPEED, "11", VarType.FLOAT));
+        variables.Add(new VarData(TussleConstants.FighterAttributes.MAX_AIR_SPEED, "5.5", VarType.FLOAT));
         variables.Add(new VarData(TussleConstants.FighterAttributes.CRAWL_SPEED, "0", VarType.FLOAT));
         variables.Add(new VarData(TussleConstants.FighterAttributes.DODGE_SPEED, "8.5", VarType.FLOAT));
         variables.Add(new VarData(TussleConstants.FighterAttributes.FRICTION, "0.3", VarType.FLOAT));
@@ -245,9 +245,9 @@ public class FighterInfo : IJsonInfoObject{
         variables.Add(new VarData(TussleConstants.FighterAttributes.PIVOT_GRIP, "0.6", VarType.FLOAT));
         variables.Add(new VarData(TussleConstants.FighterAttributes.AIR_RESISTANCE, "0.2", VarType.FLOAT));
         variables.Add(new VarData(TussleConstants.FighterAttributes.AIR_CONTROL, "0.2", VarType.FLOAT));
-        variables.Add(new VarData(TussleConstants.FighterAttributes.JUMP_HEIGHT, "15", VarType.FLOAT));
+        variables.Add(new VarData(TussleConstants.FighterAttributes.JUMP_HEIGHT, "12.5", VarType.FLOAT));
         variables.Add(new VarData(TussleConstants.FighterAttributes.SHORT_HOP_HEIGHT, "8.5", VarType.FLOAT));
-        variables.Add(new VarData(TussleConstants.FighterAttributes.AIR_JUMP_HEIGHT, "0.2", VarType.FLOAT));
+        variables.Add(new VarData(TussleConstants.FighterAttributes.AIR_JUMP_HEIGHT, "15", VarType.FLOAT));
         variables.Add(new VarData(TussleConstants.FighterAttributes.FASTFALL_MULTIPLIER, "2", VarType.FLOAT));
         variables.Add(new VarData(TussleConstants.FighterAttributes.HITSTUN_ELASTICITY, "0.8", VarType.FLOAT));
         variables.Add(new VarData(TussleConstants.FighterAttributes.SHIELD_SIZE, "1", VarType.FLOAT));
