@@ -3,6 +3,7 @@ using System.IO;
 using UnityEditor.Build;
 using UnityEngine;
 using UnityEditor.Build.Reporting;
+using System;
 
 class PostBuild : IPostprocessBuildWithReport
 {
@@ -10,6 +11,10 @@ class PostBuild : IPostprocessBuildWithReport
     public void OnPostprocessBuild(BuildReport report)
     {
         Debug.Log(report.summary.outputPath);
+        CopyModuleDirectory(report);
+    }
+
+    private void CopyModuleDirectory(BuildReport report){
         FileInfo info = new FileInfo(report.summary.outputPath);
         DirectoryInfo buildTargetDirectory = info.Directory;
         DirectoryInfo buildAssetsDirectory = buildTargetDirectory.CreateSubdirectory("Assets");
@@ -23,4 +28,5 @@ class PostBuild : IPostprocessBuildWithReport
 
         Debug.Log("Copied Modules Directory");
     }
+
 }

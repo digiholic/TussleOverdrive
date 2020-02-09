@@ -234,7 +234,7 @@ public class FighterInfo : IJsonInfoObject{
         variables = new List<VarData>();
         variables.Add(new VarData(TussleConstants.FighterAttributes.WEIGHT, "10", VarType.FLOAT));
         variables.Add(new VarData(TussleConstants.FighterAttributes.GRAVITY, "-20", VarType.FLOAT));
-        variables.Add(new VarData(TussleConstants.FighterAttributes.MAX_FALL_SPEED, "7", VarType.FLOAT));
+        variables.Add(new VarData(TussleConstants.FighterAttributes.MAX_FALL_SPEED, "-7", VarType.FLOAT));
         variables.Add(new VarData(TussleConstants.FighterAttributes.MAX_GROUND_SPEED, "5.5", VarType.FLOAT));
         variables.Add(new VarData(TussleConstants.FighterAttributes.RUN_SPEED, "2.5", VarType.FLOAT));
         variables.Add(new VarData(TussleConstants.FighterAttributes.MAX_AIR_SPEED, "8.5", VarType.FLOAT));

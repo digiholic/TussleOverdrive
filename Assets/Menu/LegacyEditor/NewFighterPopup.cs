@@ -19,22 +19,7 @@ public class NewFighterPopup : MonoBehaviour
         FighterInfo newInfo;
         if (templateFighter != null)
         {
-            newInfo = templateFighter.Clone();
-            DirectoryInfo oldDir = FileLoader.GetFighterDir(templateFighter.directory_name);
-            try {
-                FileLoader.CopyDirectory(oldDir.FullName,createdDir.FullName,true);
-            } catch {
-                DisplayError("Could not find an existing Fighter named " + templateFighter + ", are you sure you used the Directory name?");
-            }
-
-            newInfo.displayName = directoryName;
-            newInfo.directory_name = directoryName;
-            newInfo.actionFilePath = "fighter_actions.json";
-            newInfo.GenerateDefaultAttributes();
-            
-            //Copy over relevant files
-            // FileInfo action_file_info = new FileInfo(FileLoader.PathCombine(FileLoader.ProgramDirectoryInfo.FullName,templateFighter.actionFilePath));
-            // action_file_info.CopyTo(FileLoader.PathCombine(createdDir.FullName,newInfo.actionFilePath));
+            newInfo = CloneTemplateFighter(createdDir, templateFighter);
         }
         else
         {
@@ -49,26 +34,50 @@ public class NewFighterPopup : MonoBehaviour
             {
                 //TODO Clone default actions here
             }
+
+            if (useSprite)
+            {
+                DirectoryInfo spriteDir = Directory.CreateDirectory(Path.Combine(createdDir.FullName, "sprites"));
+                SpriteInfo spriteInfo = new SpriteInfo();
+
+                spriteInfo.spriteDirectory = "sprites";
+                spriteInfo.default_sprite = "idle";
+                spriteInfo.costumeName = "default";
+
+                spriteInfo.Save(Path.Combine(createdDir.FullName,"sprite_info.json"));
+                newInfo.sprite_info = spriteInfo;
+            }
+
+            if (useModel)
+            {
+                //TODO create model directory and stuff
+            }
         }
 
-        if (useSprite)
-        {
-            DirectoryInfo spriteDir = Directory.CreateDirectory(Path.Combine(createdDir.FullName, "sprites"));
-            SpriteInfo spriteInfo = new SpriteInfo();
-            spriteInfo.Save(Path.Combine(createdDir.FullName,"sprite_info.json"));
-
-            spriteInfo.spriteDirectory = "sprites";
-            spriteInfo.default_sprite = "idle";
-            spriteInfo.costumeName = "default";
-            newInfo.sprite_info = spriteInfo;
-        }
-
-        if (useModel)
-        {
-            //TODO create model directory and stuff
-        }
         newInfo.Save(Path.Combine(FileLoader.GetFighterDir(directoryName).FullName, "fighter_info.json"));
+        newInfo.sprite_info.Save(Path.Combine(createdDir.FullName,"sprite_info.json"));
+        
         LegacyEditorData.instance.LoadNewFighter(newInfo);
+        Dispose();
+    }
+
+    private FighterInfo CloneTemplateFighter(DirectoryInfo createdDir, FighterInfo templateFighter){
+        Debug.Log("Cloning Template Fighter");
+        FighterInfo newInfo = templateFighter.Clone();
+        DirectoryInfo oldDir = FileLoader.GetFighterDir(templateFighter.directory_name);
+        try {
+            FileLoader.CopyDirectory(oldDir.FullName,createdDir.FullName,true);
+        } catch {
+            DisplayError("Could not find an existing Fighter named " + templateFighter + ", are you sure you used the Directory name?");
+        }
+
+        newInfo.displayName = directoryName;
+        newInfo.directory_name = directoryName;
+        newInfo.actionFilePath = "fighter_actions.json";
+        
+        newInfo.sprite_info = templateFighter.sprite_info;
+
+        return newInfo;
     }
 
     public void OnConfirm()
