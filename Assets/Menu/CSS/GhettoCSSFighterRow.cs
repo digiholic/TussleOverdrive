@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GhettoCSSFighterRow : MonoBehaviour
 {
@@ -8,11 +9,11 @@ public class GhettoCSSFighterRow : MonoBehaviour
     public bool isChosen;
     public bool isHidden;
 
-    UILabel label;
+    TextMeshProUGUI label;
 
     void Awake()
     {
-        label = GetComponent<UILabel>();
+        label = GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame

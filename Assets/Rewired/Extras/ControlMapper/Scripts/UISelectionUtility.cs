@@ -43,7 +43,7 @@ namespace Rewired.UI.ControlMapper {
             selectableCount = Selectable.AllSelectablesNoAlloc(ref s_reusableAllSelectables);
             allSelectables = s_reusableAllSelectables;
 #else // all future versions
-            selectableCount = Selectable.AllSelectablesNoAlloc(ref s_reusableAllSelectables);
+            selectableCount = Selectable.AllSelectablesNoAlloc(s_reusableAllSelectables);
             allSelectables = s_reusableAllSelectables;
 #endif
 #else // pre-2019 versions

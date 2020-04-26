@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SubPanelNav : MonoBehaviour {
+    /*
     public UIPanel controls_menu;
     public UIPanel graphics_menu;
     public UIPanel sounds_menu;
@@ -39,4 +40,5 @@ public class SubPanelNav : MonoBehaviour {
         NGUITools.SetActive(sounds_menu.gameObject, false);
         NGUITools.SetActive(game_menu.gameObject, true);
     }
+    */
 }

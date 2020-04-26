@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
 using UnityEngine.UI;
+using TMPro;
 
 public class ControlSetter : MonoBehaviour {
     public static ControlSetter current_setter;
@@ -13,7 +14,7 @@ public class ControlSetter : MonoBehaviour {
     public Player player { get { return ReInput.players.GetPlayer(player_num); } }
     public Controller controller;
 
-    public UILabel statusText;
+    public TextMeshProUGUI statusText;
 
     public ControllerMap controllerMap
     {

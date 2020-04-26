@@ -20,8 +20,8 @@ public class GhettoCSSManager : MonoBehaviour
     
     void Update()
     {
-        NGUITools.SetActive(readyBanner,ready);
-
+        //NGUITools.SetActive(readyBanner,ready);
+        readyBanner.SetActive(true);
         if (Input.GetKeyDown(KeyCode.Escape)){
             SceneManager.LoadScene("TopMenu");
         }

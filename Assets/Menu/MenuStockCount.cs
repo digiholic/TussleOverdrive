@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class MenuStockCount : MonoBehaviour {
     public string varName = "Stock";
@@ -11,11 +12,11 @@ public class MenuStockCount : MonoBehaviour {
     public int increment = 1;
     public bool allowInfinity = true;
 
-    private UILabel label;
+    private TextMeshProUGUI label;
     private bool infinity = false;
 	// Use this for initialization
 	void Start () {
-        label = GetComponentInChildren<UILabel>();
+        label = GetComponentInChildren<TextMeshProUGUI>();
         UpdateLoader();
     }
 	

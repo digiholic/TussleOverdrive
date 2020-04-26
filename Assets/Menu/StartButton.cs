@@ -4,11 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Rewired;
+using TMPro;
 
 public class StartButton : MonoBehaviour {
     public string SceneOnPress = "TopMenu";
 
-    private UILabel textComponent;
+    private TextMeshProUGUI textComponent;
 
     private float alpha = 144.0f;
     private float alpha_rad = 0.0f;
@@ -17,7 +18,7 @@ public class StartButton : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        textComponent = GetComponent<UILabel>();
+        textComponent = GetComponent<TextMeshProUGUI>();
         system_player = ReInput.players.GetSystemPlayer();
 	}
 	

@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using TMPro;
 
 public class GhettoCSSRig : MonoBehaviour
 {
     private static List<FighterInfo> fightersAvailable;
 
     [SerializeField] InputBuffer input;
-    [SerializeField] UIGrid grid;
-    [SerializeField] UILabel offlineLabel;
+    //[SerializeField] UIGrid grid;
+    [SerializeField] TextMeshProUGUI offlineLabel;
 
     [SerializeField] GameObject FighterRowPrefab;
 
@@ -81,7 +82,7 @@ public class GhettoCSSRig : MonoBehaviour
             InstantiateRow(info);
         }
         children[currentSelected].isChosen = true;
-        grid.Reposition();
+        //grid.Reposition();
         GhettoCSSManager.manager.CheckReady();
     }
 
@@ -92,10 +93,10 @@ public class GhettoCSSRig : MonoBehaviour
         currentSelected = 0;
         
         foreach (GhettoCSSFighterRow child in children){
-            NGUITools.Destroy(child.gameObject);
+            Destroy(child.gameObject);
         }
         children.Clear();
-        grid.Reposition();
+        //grid.Reposition();
         GhettoCSSManager.manager.CheckReady();
     }
 
@@ -124,8 +125,9 @@ public class GhettoCSSRig : MonoBehaviour
         GhettoCSSManager.manager.CheckReady();
     }
     private void InstantiateRow(FighterInfo info){
-        GameObject go = NGUITools.AddChild(grid.gameObject, FighterRowPrefab);
-        UILabel label = go.GetComponent<UILabel>();
+        //GameObject go = NGUITools.AddChild(grid.gameObject, FighterRowPrefab);
+        GameObject go = Instantiate(FighterRowPrefab);
+        TextMeshProUGUI label = go.GetComponent<TextMeshProUGUI>();
         label.text = info.displayName;
         GhettoCSSFighterRow fighterRow = go.GetComponent<GhettoCSSFighterRow>();
         fighterRow.fighter = info;

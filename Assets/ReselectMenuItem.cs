@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ReselectMenuItem : MonoBehaviour {
     private GameObject last_selected_item;
-
+    /*
 	// Use this for initialization
 	void Start () {
         UICamera.genericEventHandler = this.gameObject;
@@ -28,4 +28,5 @@ public class ReselectMenuItem : MonoBehaviour {
             last_selected_item = UICamera.selectedObject;
         }
     }
+    */
 }

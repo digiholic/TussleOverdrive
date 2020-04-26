@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class SettingsChoiceText : MonoBehaviour {
     public string var_name;
@@ -10,14 +11,14 @@ public class SettingsChoiceText : MonoBehaviour {
     public bool isBool;
     public List<string> text_values;
 
-    private UILabel label;
+    private TextMeshProUGUI label;
     [SerializeField]
-    private UILabel choiceLabel;
+    private TextMeshProUGUI choiceLabel;
 
     void Start()
     {
-        label = transform.Find("VarName").GetComponent<UILabel>();
-        choiceLabel = transform.Find("ChoiceText").GetComponent<UILabel>();
+        label = transform.Find("VarName").GetComponent<TextMeshProUGUI>();
+        choiceLabel = transform.Find("ChoiceText").GetComponent<TextMeshProUGUI>();
         init();
     }
 

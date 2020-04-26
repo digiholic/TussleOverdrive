@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
+using TMPro;
 
 public class PlayerSelectionText : MonoBehaviour {
-    private UILabel label;
+    private TextMeshProUGUI label;
 
 
     // Use this for initialization
     void Awake () {
-        label = GetComponentInChildren<UILabel>();
+        label = GetComponentInChildren<TextMeshProUGUI>();
     }
 
     // Update is called once per frame

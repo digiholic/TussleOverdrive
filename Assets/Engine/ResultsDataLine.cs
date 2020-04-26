@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using TMPro;
 
 public class ResultsDataLine : MonoBehaviour
 {
-    [SerializeField] private UILabel label;
+    [SerializeField] private TextMeshProUGUI label;
     [SerializeField] private ResultsPanel parentPanel;
     [SerializeField] private string prefix;
     [SerializeField] private string fieldName;
     // Start is called before the first frame update
     void Start()
     {
-        if (label == null) label = GetComponent<UILabel>();
+        if (label == null) label = GetComponent<TextMeshProUGUI>();
         if (parentPanel == null) parentPanel = GetComponentInParent<ResultsPanel>();
         SetText(fieldName);
     }

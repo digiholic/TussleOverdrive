@@ -20,8 +20,8 @@ public class UINavButton : MonoBehaviour {
 
     void NavigateTo()
     {
-        NGUITools.SetActive(parentPanel, false);
-        NGUITools.SetActive(targetPanel, true);
+        parentPanel.SetActive(false);
+        targetPanel.SetActive(true);
         targetPanel.SendMessage("GetSelected");
     }
 }

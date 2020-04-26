@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
+using TMPro;
 
 public class ControllerSelectionText : MonoBehaviour {
-    private UILabel label;
+    private TextMeshProUGUI label;
 
     // Use this for initialization
     void Start()
     {
-        label = GetComponentInChildren<UILabel>();
+        label = GetComponentInChildren<TextMeshProUGUI>();
     }
 
     void UpdateText()

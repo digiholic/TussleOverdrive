@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class MenuSpriteColorSetter : MonoBehaviour {
     public ObjectToColor color_object;
@@ -9,13 +11,13 @@ public class MenuSpriteColorSetter : MonoBehaviour {
 
     public bool always_set;
 
-    private UISprite buttonBg;
-    private UILabel text;
+    private Image buttonBg;
+    private TextMeshProUGUI text;
 
     void Start()
     {
-        buttonBg = GetComponentInChildren<UISprite>();
-        text = GetComponentInChildren<UILabel>();
+        buttonBg = GetComponentInChildren<Image>();
+        text = GetComponentInChildren<TextMeshProUGUI>();
     }
 
     void Update()

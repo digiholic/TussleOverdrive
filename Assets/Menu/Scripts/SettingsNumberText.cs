@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class SettingsNumberText : MonoBehaviour {
     public string var_name;
@@ -13,13 +15,13 @@ public class SettingsNumberText : MonoBehaviour {
     public int increment;
 
     public bool percentage = false;
-    private UILabel label;
+    private TextMeshProUGUI label;
 
-    public UISlider slider;
+    public Slider slider;
 
     private void Awake()
     {
-        label = GetComponentInChildren<UILabel>();
+        label = GetComponentInChildren<TextMeshProUGUI>();
     }
 
     void Start()
@@ -38,7 +40,7 @@ public class SettingsNumberText : MonoBehaviour {
         Settings.current_settings.ChangeSetting(var_name, value);
         if (slider != null)
         {
-            slider.sliderValue = Mathf.InverseLerp(min_value, max_value, value);
+            slider.value = Mathf.InverseLerp(min_value, max_value, value);
         }
     }
 

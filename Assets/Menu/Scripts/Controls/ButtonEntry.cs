@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
+using TMPro;
 
 public class ButtonEntry : MonoBehaviour {
-    private UILabel label;
+    private TextMeshProUGUI label;
     public ActionRow row;
     public int actionElementMapToReplaceId;
 
 
     // Use this for initialization
     void Awake() {
-        label = GetComponent<UILabel>();
+        label = GetComponent<TextMeshProUGUI>();
 	}
 
     public void ChangeLabelText(string newtext)

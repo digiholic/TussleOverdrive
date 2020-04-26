@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
+using TMPro;
 
 public class TempControllerSelectionText : MonoBehaviour {
-    private UILabel label;
+    private TextMeshProUGUI label;
 
     // Use this for initialization
     void Awake()
     {
-        label = GetComponent<UILabel>();
+        label = GetComponent<TextMeshProUGUI>();
     }
 
     void UpdateText()

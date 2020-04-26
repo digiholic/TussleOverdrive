@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ResultsPanel : MonoBehaviour
 {
     public int playerNum;
     public FighterResults results;
 
-    [SerializeField] private UILabel nameLabel;
+    [SerializeField] private TextMeshProUGUI nameLabel;
 
     void Start()
     {

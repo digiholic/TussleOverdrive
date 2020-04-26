@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CheckbuttonDefaultSetter : MonoBehaviour {
     public enum CheckValueList
@@ -12,18 +13,18 @@ public class CheckbuttonDefaultSetter : MonoBehaviour {
     }
 
     public CheckValueList value;
-    private UIToggle checkbox;
-
+    private Toggle checkbox;
+    
 	// Use this for initialization
 	void Start () {
-        checkbox = GetComponent<UIToggle>();
+        checkbox = GetComponent<Toggle>();
         if (value == CheckValueList.DisplayHitboxes)
-            checkbox.value = Settings.current_settings.display_hitboxes;
+            checkbox.isOn = Settings.current_settings.display_hitboxes;
         else if (value == CheckValueList.DisplayHurtboxes)
-            checkbox.value = Settings.current_settings.display_hurtboxes;
+            checkbox.isOn = Settings.current_settings.display_hurtboxes;
         else if (value == CheckValueList.DisplayColliders)
-            checkbox.value = Settings.current_settings.display_colliders;
+            checkbox.isOn = Settings.current_settings.display_colliders;
         else if (value == CheckValueList.DisplayPlatforms)
-            checkbox.value = Settings.current_settings.display_platforms;
+            checkbox.isOn = Settings.current_settings.display_platforms;
     }
 }

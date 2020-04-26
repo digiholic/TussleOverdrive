@@ -12,15 +12,15 @@ public class MenuPanel : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (NGUITools.GetActive(gameObject))
+        if (gameObject.activeSelf)
         {
-            SelectedObject = UICamera.selectedObject;
+            //SelectedObject = UICamera.selectedObject;
         }
     }
 
     void GetSelected()
     {
-        UICamera.selectedObject = SelectedObject;
-        UICamera.selectedObject.SendMessage("OnHover", true);
+        //UICamera.selectedObject = SelectedObject;
+        //UICamera.selectedObject.SendMessage("OnHover", true);
     }
 }

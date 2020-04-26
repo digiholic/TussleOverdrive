@@ -42,7 +42,9 @@ public class SettingsRowRig : MonoBehaviour {
 
     void InstantiateNumberRow(Setting set)
     {
-        GameObject go = NGUITools.AddChild(gameObject, slider_setting_prefab);
+        //GameObject go = NGUITools.AddChild(gameObject, slider_setting_prefab);
+        GameObject go = Instantiate(slider_setting_prefab);
+        go.transform.SetParent(transform);
         go.transform.localPosition = new Vector3(0, -40 * settingCount, 0);
         MenuButtonNavigator nav = go.GetComponent<MenuButtonNavigator>();
         SettingsNumberText snt = go.GetComponent<SettingsNumberText>();
@@ -83,7 +85,10 @@ public class SettingsRowRig : MonoBehaviour {
 
     void InstantiateChoiceRow (Setting set)
     {
-        GameObject go = NGUITools.AddChild(gameObject, choice_setting_prefab);
+        //GameObject go = NGUITools.AddChild(gameObject, choice_setting_prefab);
+        GameObject go = Instantiate(slider_setting_prefab);
+        go.transform.SetParent(transform);
+
         go.transform.localPosition = new Vector3(0, -40 * settingCount, 0);
         MenuButtonNavigator nav = go.GetComponent<MenuButtonNavigator>();
         SettingsChoiceText sct = go.GetComponent<SettingsChoiceText>();

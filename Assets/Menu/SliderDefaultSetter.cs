@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SliderDefaultSetter : MonoBehaviour {
     public enum SliderValueList
@@ -10,14 +11,14 @@ public class SliderDefaultSetter : MonoBehaviour {
     }
 
     public SliderValueList value;
-    private UISlider slider;
+    private Slider slider;
 
 	// Use this for initialization
 	void Start () {
-        slider = GetComponent<UISlider>();
+        slider = GetComponent<Slider>();
         if (value == SliderValueList.bgmVolume)
-            slider.sliderValue = Settings.current_settings.music_volume;
+            slider.value = Settings.current_settings.music_volume;
         if (value == SliderValueList.sfxVolume)
-            slider.sliderValue = Settings.current_settings.sfx_volume;
+            slider.value = Settings.current_settings.sfx_volume;
     }
 }
