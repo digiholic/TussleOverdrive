@@ -8,18 +8,26 @@ using UnityEngine;
 /// </summary>
 public class MonoFighter : MonoBehaviour
 {
-    public string display_name;
-    public string franchise_icon_path;
-    public string css_icon_path;
-    public string css_portrait_path;
-    public string action_file_path;
-    public string sprite_info_path;
-    public string sound_path;
+    [SerializeField] private string display_name;
+    [SerializeField] private string franchise_icon_path;
+    [SerializeField] private string css_icon_path;
+    [SerializeField] private string css_portrait_path;
+    [SerializeField] private string action_file_path;
+    [SerializeField] private string sprite_info_path;
+    [SerializeField] private string sound_path;
 
     public List<FighterPalette> colorPalettes;
     public List<VarData> variables;
 
     public TextAsset json_file;
+
+    public string Display_name { get => display_name; set => display_name = value; }
+    public string Franchise_icon_path { get => franchise_icon_path; set => franchise_icon_path = value; }
+    public string Css_icon_path { get => css_icon_path; set => css_icon_path = value; }
+    public string Css_portrait_path { get => css_portrait_path; set => css_portrait_path = value; }
+    public string Action_file_path { get => action_file_path; set => action_file_path = value; }
+    public string Sprite_info_path { get => sprite_info_path; set => sprite_info_path = value; }
+    public string Sound_path { get => sound_path; set => sound_path = value; }
 
     public FighterInfo getFighterInfo()
     {
