@@ -541,6 +541,7 @@ GameObject:
   - component: {fileID: 164449149}
   - component: {fileID: 164449148}
   - component: {fileID: 164449151}
+  - component: {fileID: 164449152}
   m_Layer: 5
   m_Name: Input
   m_TagString: Untagged
@@ -628,8 +629,8 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 61576560}
-        m_MethodName: set_Display_name
+      - m_Target: {fileID: 164449152}
+        m_MethodName: Execute
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -735,6 +736,51 @@ MonoBehaviour:
   target:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 164449148}
+        m_MethodName: SetTextWithoutNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &164449152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164449146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e20220b53df85c5478982c408c171cba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  getValue:
+    _target: {fileID: 61576560}
+    _methodName: get_Display_name
+    _args: []
+    _dynamic: 0
+    _typeName: StringCallback, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+    dirty: 0
+  setValue:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 61576560}
+        m_MethodName: set_Display_name
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 164449148}
         m_MethodName: SetTextWithoutNotify
         m_Mode: 0
@@ -1309,6 +1355,7 @@ GameObject:
   - component: {fileID: 232004711}
   - component: {fileID: 232004710}
   - component: {fileID: 232004709}
+  - component: {fileID: 232004713}
   m_Layer: 5
   m_Name: Input
   m_TagString: Untagged
@@ -1430,8 +1477,8 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 61576560}
-        m_MethodName: set_Action_file_path
+      - m_Target: {fileID: 232004713}
+        m_MethodName: Execute
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1514,6 +1561,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 232004707}
   m_CullTransparentMesh: 0
+--- !u!114 &232004713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 232004707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e20220b53df85c5478982c408c171cba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  getValue:
+    _target: {fileID: 61576560}
+    _methodName: get_Display_name
+    _args: []
+    _dynamic: 0
+    _typeName: StringCallback, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+    dirty: 0
+  setValue:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 61576560}
+        m_MethodName: set_Action_file_path
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 232004710}
+        m_MethodName: SetTextWithoutNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &258061133
 GameObject:
   m_ObjectHideFlags: 0
@@ -1790,6 +1882,7 @@ GameObject:
   - component: {fileID: 407901206}
   - component: {fileID: 407901205}
   - component: {fileID: 407901204}
+  - component: {fileID: 407901208}
   m_Layer: 5
   m_Name: Input
   m_TagString: Untagged
@@ -1911,8 +2004,8 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 61576560}
-        m_MethodName: set_Css_icon_path
+      - m_Target: {fileID: 407901208}
+        m_MethodName: Execute
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1995,6 +2088,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 407901202}
   m_CullTransparentMesh: 0
+--- !u!114 &407901208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 407901202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e20220b53df85c5478982c408c171cba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  getValue:
+    _target: {fileID: 61576560}
+    _methodName: get_Display_name
+    _args: []
+    _dynamic: 0
+    _typeName: StringCallback, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+    dirty: 0
+  setValue:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 61576560}
+        m_MethodName: set_Css_icon_path
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 407901205}
+        m_MethodName: SetTextWithoutNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &448057280
 GameObject:
   m_ObjectHideFlags: 0
@@ -2132,6 +2270,7 @@ GameObject:
   - component: {fileID: 457766773}
   - component: {fileID: 457766772}
   - component: {fileID: 457766771}
+  - component: {fileID: 457766775}
   m_Layer: 5
   m_Name: Input
   m_TagString: Untagged
@@ -2253,8 +2392,8 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 61576560}
-        m_MethodName: set_Franchise_icon_path
+      - m_Target: {fileID: 457766775}
+        m_MethodName: Execute
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2337,6 +2476,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 457766769}
   m_CullTransparentMesh: 0
+--- !u!114 &457766775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 457766769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e20220b53df85c5478982c408c171cba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  getValue:
+    _target: {fileID: 61576560}
+    _methodName: get_Display_name
+    _args: []
+    _dynamic: 0
+    _typeName: StringCallback, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+    dirty: 0
+  setValue:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 61576560}
+        m_MethodName: set_Franchise_icon_path
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 457766772}
+        m_MethodName: SetTextWithoutNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &465779203
 GameObject:
   m_ObjectHideFlags: 0
@@ -5619,6 +5803,7 @@ GameObject:
   - component: {fileID: 1124967949}
   - component: {fileID: 1124967948}
   - component: {fileID: 1124967947}
+  - component: {fileID: 1124967951}
   m_Layer: 5
   m_Name: Input
   m_TagString: Untagged
@@ -5669,8 +5854,8 @@ MonoBehaviour:
   target:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1124967948}
-        m_MethodName: SetTextWithoutNotify
+      - m_Target: {fileID: 1124967951}
+        m_MethodName: Execute
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5740,8 +5925,8 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 61576560}
-        m_MethodName: set_Sprite_info_path
+      - m_Target: {fileID: 1124967951}
+        m_MethodName: Execute
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5824,6 +6009,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1124967945}
   m_CullTransparentMesh: 0
+--- !u!114 &1124967951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1124967945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e20220b53df85c5478982c408c171cba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  getValue:
+    _target: {fileID: 61576560}
+    _methodName: get_Display_name
+    _args: []
+    _dynamic: 0
+    _typeName: StringCallback, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+    dirty: 0
+  setValue:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 61576560}
+        m_MethodName: set_Sprite_info_path
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1124967948}
+        m_MethodName: SetTextWithoutNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1153020865
 GameObject:
   m_ObjectHideFlags: 0
@@ -6415,6 +6645,7 @@ GameObject:
   - component: {fileID: 1369896986}
   - component: {fileID: 1369896985}
   - component: {fileID: 1369896984}
+  - component: {fileID: 1369896988}
   m_Layer: 5
   m_Name: Input
   m_TagString: Untagged
@@ -6536,8 +6767,8 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 61576560}
-        m_MethodName: set_Css_portrait_path
+      - m_Target: {fileID: 1369896988}
+        m_MethodName: Execute
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6620,6 +6851,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1369896982}
   m_CullTransparentMesh: 0
+--- !u!114 &1369896988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369896982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e20220b53df85c5478982c408c171cba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  getValue:
+    _target: {fileID: 61576560}
+    _methodName: get_Display_name
+    _args: []
+    _dynamic: 0
+    _typeName: StringCallback, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+    dirty: 0
+  setValue:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 61576560}
+        m_MethodName: set_Css_portrait_path
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1369896985}
+        m_MethodName: SetTextWithoutNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1422335672
 GameObject:
   m_ObjectHideFlags: 0
@@ -7365,6 +7641,7 @@ GameObject:
   - component: {fileID: 1721894793}
   - component: {fileID: 1721894792}
   - component: {fileID: 1721894791}
+  - component: {fileID: 1721894795}
   m_Layer: 5
   m_Name: Input
   m_TagString: Untagged
@@ -7486,8 +7763,8 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 61576560}
-        m_MethodName: set_Sound_path
+      - m_Target: {fileID: 1721894795}
+        m_MethodName: Execute
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7570,6 +7847,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1721894789}
   m_CullTransparentMesh: 0
+--- !u!114 &1721894795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721894789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e20220b53df85c5478982c408c171cba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  getValue:
+    _target: {fileID: 61576560}
+    _methodName: get_Display_name
+    _args: []
+    _dynamic: 0
+    _typeName: StringCallback, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+    dirty: 0
+  setValue:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 61576560}
+        m_MethodName: set_Sound_path
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1721894792}
+        m_MethodName: SetTextWithoutNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1784375356
 GameObject:
   m_ObjectHideFlags: 0
@@ -7790,6 +8112,7 @@ GameObject:
   - component: {fileID: 1809048354}
   - component: {fileID: 1809048353}
   - component: {fileID: 1809048352}
+  - component: {fileID: 1809048355}
   m_Layer: 5
   m_Name: Info Naviagtion Dropdown
   m_TagString: Untagged
@@ -7876,8 +8199,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 465779205}
-        m_MethodName: changeIndex
+      - m_Target: {fileID: 1809048355}
+        m_MethodName: Execute
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7924,6 +8247,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1809048350}
   m_CullTransparentMesh: 0
+--- !u!114 &1809048355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809048350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce2cfc4448fade04280931492ce14e48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  getValue:
+    _target: {fileID: 465779205}
+    _methodName: getCurrentIndex
+    _args: []
+    _dynamic: 0
+    _typeName: IntCallback, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    dirty: 0
+  setValue:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 465779205}
+        m_MethodName: changeIndex
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1809048352}
+        m_MethodName: SetValueWithoutNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1819528996
 GameObject:
   m_ObjectHideFlags: 0

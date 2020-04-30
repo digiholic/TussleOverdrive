@@ -22,4 +22,6 @@ public class PanelNavigator : MonoBehaviour
         currentIndex = newIndex;
         subPanels[newIndex].SetActive(true);
     }
+
+    public int getCurrentIndex() { return currentIndex; }
 }
