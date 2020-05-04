@@ -37,11 +37,7 @@ public class HitStun : GameAction {
         {
             if (last_frame > 15 && current_frame > 2) //If the hitstun is long enough and we're past the start of it
             {
-                if (actor.GetFloatVar(TussleConstants.MotionVariableNames.YSPEED) >= actor.GetFloatVar("max_fall_speed"))
-                {
-                    actor.SetVar("ground_elasticity", actor.GetVarData(TussleConstants.FighterAttributes.HITSTUN_ELASTICITY));
-                }
-                else if (Mathf.Abs(actor.GetFloatVar(TussleConstants.MotionVariableNames.XSPEED)) > actor.GetFloatVar(TussleConstants.FighterAttributes.RUN_SPEED)) //skid trip
+                if (Mathf.Abs(actor.GetFloatVar(TussleConstants.MotionVariableNames.XSPEED)) > actor.GetFloatVar(TussleConstants.FighterAttributes.RUN_SPEED)) //skid trip
                 {
                     actor.SetVar("ground_elasticity", 0);
                     if (actor.GetBoolVar(TussleConstants.FighterVariableNames.IS_GROUNDED) && !GetBoolVar("feet_planted"))
@@ -57,13 +53,7 @@ public class HitStun : GameAction {
                         actor.SendMessage("DoAction", "Prone");
                     }
                 }
-                else
-                    actor.SetVar("ground_elasticity", actor.GetFloatVar(TussleConstants.FighterAttributes.HITSTUN_ELASTICITY) / 2);
             }
-            else if (last_frame <= 15) //If the hitstun is short, we don
-                actor.SetVar("ground_elasticity", 0);
-            else
-                actor.SetVar("ground_elasticity", actor.GetVarData(TussleConstants.FighterAttributes.HITSTUN_ELASTICITY));
         }
 
         if (current_frame == last_frame)
@@ -117,10 +107,6 @@ public class HitStun : GameAction {
             //anti_grab.activate()
             SetVar("tech_cooldown", 40);
         }
-        if (actor.GetIntVar("tech_window") > 0)
-            actor.SetVar("elasticity", 0.0f);
-        else
-            actor.SetVar("elasticity", actor.GetVarData(TussleConstants.FighterAttributes.HITSTUN_ELASTICITY));
         SetVar("feet_planted",actor.GetBoolVar(TussleConstants.FighterVariableNames.IS_GROUNDED));
         if (GetIntVar("tech_cooldown") > 0) SetVar("tech_cooldown",GetIntVar("tech_cooldown")-1);
         if (current_frame == 0)

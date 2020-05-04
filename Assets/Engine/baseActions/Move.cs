@@ -37,13 +37,8 @@ public class Move : GameAction {
         base.Update();
         //These classes will be phased out as time goes on. Until then, we need to just exit early if we're in the builder since these don't actually use Subactions
         if (isInBuilder) return;
-        actor.SendMessage("ChangeXPreferred", actor.GetFloatVar(TussleConstants.FighterAttributes.MAX_GROUND_SPEED) * actor.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION));
+        actor.SendMessage("ChangeXPreferred", actor.GetFloatVar(TussleConstants.FighterAttributes.WALK_SPEED) * actor.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION));
 
-        if (((actor.GetFloatVar(TussleConstants.MotionVariableNames.XSPEED) >= -actor.GetFloatVar(TussleConstants.FighterAttributes.MAX_GROUND_SPEED)) && actor.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION) == -1) || 
-            ((actor.GetFloatVar(TussleConstants.MotionVariableNames.XSPEED) <=  actor.GetFloatVar(TussleConstants.FighterAttributes.MAX_GROUND_SPEED)) && actor.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION) ==  1))
-        {
-            actor.SendMessage("accel", actor.GetFloatVar(TussleConstants.FighterAttributes.STATIC_GRIP));
-        }
         if (actor.GetInputBuffer().DirectionHeld("Backward"))
         {
             SetVar("direction", -1 * actor.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION));

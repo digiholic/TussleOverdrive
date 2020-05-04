@@ -11,13 +11,6 @@ public class Stop : GameAction {
         base.SetUp(_actor);
         //These classes will be phased out as time goes on. Until then, we need to just exit early if we're in the builder since these don't actually use Subactions
         if (isInBuilder) return;
-        //Debug.Log("StopAction Created");
-        //Overrides given length if the pivot grip won't allow it
-        int num_frames = Mathf.FloorToInt((actor.GetFloatVar(TussleConstants.MotionVariableNames.XSPEED) * actor.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION)) / actor.GetFloatVar(TussleConstants.FighterAttributes.PIVOT_GRIP)/10);
-        if (num_frames < last_frame)
-            current_frame = Mathf.Min(last_frame - num_frames, last_frame - 1);
-        else
-            last_frame = num_frames;
     }
 
     public override void Update()
@@ -33,7 +26,6 @@ public class Stop : GameAction {
         if (isInBuilder) return;
 
         actor.BroadcastMessage("ChangeXPreferred", 0.0f, SendMessageOptions.RequireReceiver);
-        actor.SendMessage("accel",actor.GetFloatVar(TussleConstants.FighterAttributes.PIVOT_GRIP));
     }
 
     public override void stateTransitions()

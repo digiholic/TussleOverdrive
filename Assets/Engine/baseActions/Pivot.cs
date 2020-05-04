@@ -14,14 +14,6 @@ public class Pivot : GameAction {
         //These classes will be phased out as time goes on. Until then, we need to just exit early if we're in the builder since these don't actually use Subactions
         if (isInBuilder) return;
         SetVar("direction", actor.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION));
-        int num_frames = Mathf.FloorToInt((actor.GetFloatVar(TussleConstants.MotionVariableNames.XSPEED) * actor.GetIntVar(TussleConstants.FighterVariableNames.FACING_DIRECTION)) / actor.GetFloatVar(TussleConstants.FighterAttributes.PIVOT_GRIP));
-        SetVar("num_frames", num_frames);
-        //If the pivot grip would have us with a shorter amount than the length shows it should be
-        //then we need to start partway through the pivot
-        if (num_frames < last_frame)
-            current_frame = Mathf.Min(last_frame - num_frames, last_frame - 1);
-        else
-            last_frame = num_frames;
     }
 
     public override void TearDown(GameAction new_action)
@@ -83,6 +75,5 @@ public class Pivot : GameAction {
         //_actor.accel(_actor.stats['static_grip'])
         //else:
         actor.SendMessage("ChangeXPreferred", 0.0f, SendMessageOptions.RequireReceiver);
-        actor.SendMessage("accel", actor.GetFloatVar(TussleConstants.FighterAttributes.PIVOT_GRIP));
     }
 }

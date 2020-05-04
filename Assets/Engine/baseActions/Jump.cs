@@ -21,15 +21,6 @@ public class Jump : GameAction
                 actor.BroadcastMessage("ChangeYSpeed", actor.GetFloatVar(TussleConstants.FighterAttributes.JUMP_HEIGHT));
             else
                 actor.BroadcastMessage("ChangeYSpeed", actor.GetFloatVar(TussleConstants.FighterAttributes.SHORT_HOP_HEIGHT));
-
-            if (Mathf.Abs(actor.GetFloatVar(TussleConstants.MotionVariableNames.XSPEED)) > actor.GetFloatVar(TussleConstants.FighterAttributes.AERIAL_TRANSITION_SPEED))
-            {
-                if (actor.GetFloatVar(TussleConstants.MotionVariableNames.XSPEED) < 0) //negative speed
-                    actor.BroadcastMessage("ChangeXSpeed", -actor.GetFloatVar(TussleConstants.FighterAttributes.AERIAL_TRANSITION_SPEED));
-                else
-                    actor.BroadcastMessage("ChangeXSpeed", actor.GetFloatVar(TussleConstants.FighterAttributes.AERIAL_TRANSITION_SPEED));
-            }
-            //actor.ChangeSprite("jump");
         }
     }
 

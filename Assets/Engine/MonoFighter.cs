@@ -16,7 +16,6 @@ public class MonoFighter : MonoBehaviour
     [SerializeField] private string sprite_info_path;
     [SerializeField] private string sound_path;
 
-    public List<FighterPalette> colorPalettes;
     public List<VarData> variables;
 
     public TextAsset json_file;
@@ -40,7 +39,6 @@ public class MonoFighter : MonoBehaviour
         info.spriteInfoPath = sprite_info_path;
         info.soundPath = sound_path;
 
-        info.colorPalettes = colorPalettes;
         info.variables = variables;
 
         return info;
@@ -56,7 +54,6 @@ public class MonoFighter : MonoBehaviour
         sprite_info_path = info.spriteInfoPath;
         sound_path = info.soundPath;
 
-        colorPalettes = info.colorPalettes;
         variables = info.variables;
     }
 
