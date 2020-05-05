@@ -107,6 +107,7 @@ public class MonoFighter : MonoBehaviour
         JumpHeight = info.JumpHeight.ToString();
         ShortHopHeight = info.ShortHopHeight.ToString();
         MaxFallSpeed = info.MaxFallSpeed.ToString();
+        FastFallFactor = info.FastFallFactor.ToString();
         MaxAirSpeed = info.MaxAirSpeed.ToString();
         AirControl = info.AirControl.ToString();
         AirResistance = info.AirResistance.ToString();
