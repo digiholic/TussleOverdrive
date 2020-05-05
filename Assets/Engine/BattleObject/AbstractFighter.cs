@@ -33,10 +33,6 @@ public class AbstractFighter : BattleComponent {
     void LoadInfo()
     {
         if (fighter_info == null) fighter_info = GetComponent<FighterInfoLoader>().GetFighterInfo();
-        foreach(KeyValuePair<string,object> variable in DefaultStats)
-        {
-            SetVar(variable.Key, variable.Value);
-        }
 
         foreach(VarData variable in fighter_info.variables)
         {
@@ -94,10 +90,10 @@ public class AbstractFighter : BattleComponent {
         
         //Change variables according to Settings
         Settings settings = Settings.current_settings;
-        SetVar(TussleConstants.FighterAttributes.GRAVITY, GetFloatVar(TussleConstants.FighterAttributes.GRAVITY) * settings.gravity_ratio);
-        SetVar(TussleConstants.FighterAttributes.WEIGHT, GetFloatVar(TussleConstants.FighterAttributes.WEIGHT) * settings.weight_ratio);
-        SetVar(TussleConstants.FighterAttributes.FRICTION, GetFloatVar(TussleConstants.FighterAttributes.FRICTION) * settings.friction_ratio);
-        SetVar(TussleConstants.FighterAttributes.AIR_CONTROL, GetFloatVar(TussleConstants.FighterAttributes.AIR_CONTROL) * settings.aircontrol_ratio);
+        //SetVar(TussleConstants.FighterAttributes.GRAVITY, GetFloatVar(TussleConstants.FighterAttributes.GRAVITY) * settings.gravity_ratio);
+        //SetVar(TussleConstants.FighterAttributes.WEIGHT, GetFloatVar(TussleConstants.FighterAttributes.WEIGHT) * settings.weight_ratio);
+        //SetVar(TussleConstants.FighterAttributes.FRICTION, GetFloatVar(TussleConstants.FighterAttributes.FRICTION) * settings.friction_ratio);
+        //SetVar(TussleConstants.FighterAttributes.AIR_CONTROL, GetFloatVar(TussleConstants.FighterAttributes.AIR_CONTROL) * settings.aircontrol_ratio);
     }
 
     private void Awake()
@@ -380,7 +376,7 @@ public class AbstractFighter : BattleComponent {
         if (hitstun_frames > 0.5)
         {
             //if not isinstance(self.current_action, baseActions.HitStun) or (self.current_action.last_frame-self.current_action.frame) / float(settingsManager.getSetting('hitstun')) <= hitstun_frames+15:
-            DoHitStun(hitstun_frames * Settings.current_settings.hitstun_ratio, _trajectory);
+            //DoHitStun(hitstun_frames * Settings.current_settings.hitstun_ratio, _trajectory);
             actionHandler.CurrentAction.SetVar("tech_cooldown", Mathf.RoundToInt(_total_kb * _hitstunMultiplier));
         }
     }
@@ -410,12 +406,6 @@ public class AbstractFighter : BattleComponent {
         return inputBuffer.GetAxis(axis);
     }
 
-    /*public bool SequenceBuffered(List<KeyValuePair<InputType,float>> inputList, int distance = 12)
-    {
-        return inputBuffer.SequenceBuffered(inputList, distance);
-    }*/
-
-
     public bool CheckSmash(string key)
     {
         if (key == "ForwardSmash")
@@ -431,19 +421,6 @@ public class AbstractFighter : BattleComponent {
         return inputBuffer.KeyBuffered(key);
     }
 
-    /*
-    public void TestActionJSON()
-    {
-        string action_json_path = Path.Combine("Assets/Resources/"+resource_path, action_file);
-        if (File.Exists(action_json_path))
-        {
-            string action_json = File.ReadAllText(action_json_path);
-            Debug.Log(action_json);
-            actions_file_json = JsonUtility.FromJson<ActionFile>(action_json);
-        }
-        File.WriteAllText(action_json_path, JsonUtility.ToJson(actions_file_json, true));
-    }
-    */
     /////////////////////////////////////////////////////////////////////////////////////////
     //                                    TRIGGERS                                         //
     /////////////////////////////////////////////////////////////////////////////////////////
@@ -541,9 +518,6 @@ public class AbstractFighter : BattleComponent {
             clockTarget = BattleController.current_battle.current_game_frame + frameCount;
         }
     }
-    /////////////////////////////////////////////////////////////////////////////////////////
-    //                               BROADCAST RECEIVERS                                   //
-    /////////////////////////////////////////////////////////////////////////////////////////
 
     /// <summary>
     /// Recharge everything that happens on a "Rest", restoring jumps, airdodges, etc.
@@ -554,98 +528,8 @@ public class AbstractFighter : BattleComponent {
         SetVar(TussleConstants.FighterVariableNames.AIR_DODGES_REMAINING, 1); //TODO change this based on settings
     }
 
-    private Ledge grabbed_ledge;
-    public Ledge GrabbedLedge { get { return grabbed_ledge; } }
-    
-    public void EnterLedge(Ledge ledge)
-    {
-        contacted_ledges.Add(ledge);
-    }
-
-    public void ExitLedge(Ledge ledge)
-    {
-        if (contacted_ledges.Contains(ledge))
-        {
-            contacted_ledges.Remove(ledge);
-            if (contacted_ledges.Count == 0) LedgeLock = false;
-        }   
-    }
-
-    public List<Ledge> GetLedges()
-    {
-        return contacted_ledges;
-    }
-
-    public void GrabLedge(Ledge ledgeToGrab)
-    {
-        grabbed_ledge = ledgeToGrab;
-        LedgeLock = true;
-        doAction("LedgeGrab");
-    }
-
-    public void ReleaseLedge()
-    {
-        grabbed_ledge = null;
-    }
-
-    public void GetTrumped(Ledge ledgeTrumpedFrom)
-    {
-        Debug.Log("CAN'T STUMP THE LEDGE TRUMP");
-    }
-
     public void SetPlayerNum(int playernum)
     {
         SetVar(TussleConstants.FighterVariableNames.PLAYER_NUM, playernum);
     }
-
-    /////////////////////////////////////////////////////////////////////////////////////////
-    //                                  ACTION SETTERS                                     //
-    /////////////////////////////////////////////////////////////////////////////////////////
-
-    void DoHitStun(float hitstun, float trajectory)
-    {
-        doAction("HitStun");
-        actionHandler.CurrentAction.SetVar("angle", trajectory);
-        actionHandler.CurrentAction.AdjustLength(Mathf.RoundToInt(hitstun));
-
-    }
-
-
-        public static Dictionary<string, object> DefaultStats = new Dictionary<string, object>
-    {
-        {TussleConstants.FighterAttributes.WEIGHT, 10.0f },
-        {TussleConstants.FighterAttributes.GRAVITY, -9.8f},
-        {TussleConstants.FighterAttributes.MAX_FALL_SPEED, -20.0f},
-        {TussleConstants.FighterAttributes.WALK_SPEED, 7.0f},
-        {TussleConstants.FighterAttributes.RUN_SPEED, 11.0f},
-        {TussleConstants.FighterAttributes.MAX_AIR_SPEED, 5.5f},
-        {TussleConstants.FighterAttributes.DODGE_SPEED, 8.5f},
-        {TussleConstants.FighterAttributes.FRICTION, 0.3f},
-        {TussleConstants.FighterAttributes.AIR_RESISTANCE, 0.2f},
-        {TussleConstants.FighterAttributes.AIR_CONTROL, 0.2f},
-        {TussleConstants.FighterAttributes.JUMP_HEIGHT, 15.0f},
-        {TussleConstants.FighterAttributes.SHORT_HOP_HEIGHT, 8.5f},
-        {TussleConstants.FighterAttributes.AIR_JUMP_HEIGHT, 18.0f},
-        {TussleConstants.FighterAttributes.FASTFALL_MULTIPLIER, 2.0f},
-        {TussleConstants.FighterAttributes.MAX_JUMPS, 1 }
-    };
-
-    public static Dictionary<string,VarData> DefaultVarDataStats = new Dictionary<string,VarData>
-    {
-        {TussleConstants.FighterAttributes.WEIGHT ,new VarData(TussleConstants.FighterAttributes.WEIGHT, "10", VarType.FLOAT)},
-        {TussleConstants.FighterAttributes.GRAVITY ,new VarData(TussleConstants.FighterAttributes.GRAVITY, "-20", VarType.FLOAT)},
-        {TussleConstants.FighterAttributes.MAX_FALL_SPEED ,new VarData(TussleConstants.FighterAttributes.MAX_FALL_SPEED, "7", VarType.FLOAT)},
-        {TussleConstants.FighterAttributes.WALK_SPEED ,new VarData(TussleConstants.FighterAttributes.WALK_SPEED, "5.5", VarType.FLOAT)},
-        {TussleConstants.FighterAttributes.RUN_SPEED ,new VarData(TussleConstants.FighterAttributes.RUN_SPEED, "2.5", VarType.FLOAT)},
-        {TussleConstants.FighterAttributes.MAX_AIR_SPEED ,new VarData(TussleConstants.FighterAttributes.MAX_AIR_SPEED, "8.5", VarType.FLOAT)},
-        {TussleConstants.FighterAttributes.DODGE_SPEED ,new VarData(TussleConstants.FighterAttributes.DODGE_SPEED, "8.5", VarType.FLOAT)},
-        {TussleConstants.FighterAttributes.FRICTION ,new VarData(TussleConstants.FighterAttributes.FRICTION, "0.3", VarType.FLOAT)},
-        {TussleConstants.FighterAttributes.AIR_RESISTANCE ,new VarData(TussleConstants.FighterAttributes.AIR_RESISTANCE, "0.2", VarType.FLOAT)},
-        {TussleConstants.FighterAttributes.AIR_CONTROL ,new VarData(TussleConstants.FighterAttributes.AIR_CONTROL, "0.2", VarType.FLOAT)},
-        {TussleConstants.FighterAttributes.JUMP_HEIGHT ,new VarData(TussleConstants.FighterAttributes.JUMP_HEIGHT, "15", VarType.FLOAT)},
-        {TussleConstants.FighterAttributes.SHORT_HOP_HEIGHT ,new VarData(TussleConstants.FighterAttributes.SHORT_HOP_HEIGHT, "8.5", VarType.FLOAT)},
-        {TussleConstants.FighterAttributes.AIR_JUMP_HEIGHT ,new VarData(TussleConstants.FighterAttributes.AIR_JUMP_HEIGHT, "0.2", VarType.FLOAT)},
-        {TussleConstants.FighterAttributes.FASTFALL_MULTIPLIER ,new VarData(TussleConstants.FighterAttributes.FASTFALL_MULTIPLIER, "2", VarType.FLOAT)},
-        {TussleConstants.FighterAttributes.MAX_JUMPS ,new VarData(TussleConstants.FighterAttributes.MAX_JUMPS, "1", VarType.INT)}
-    };
 }

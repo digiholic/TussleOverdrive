@@ -16,6 +16,22 @@ public class MonoFighter : MonoBehaviour
     [SerializeField] private string sprite_info_path;
     [SerializeField] private string sound_path;
 
+    [SerializeField] private string weight;
+    [SerializeField] private string gravity;
+    [SerializeField] private string walkSpeed;
+    [SerializeField] private string runSpeed;
+    [SerializeField] private string friction;
+
+    [SerializeField] private string airJumps;
+    [SerializeField] private string jumpHeight;
+    [SerializeField] private string shortHopHeight;
+    [SerializeField] private string maxFallSpeed;
+    [SerializeField] private string fastFallFactor;
+
+    [SerializeField] private string maxAirSpeed;
+    [SerializeField] private string airControl;
+    [SerializeField] private string airResistance;
+
     public List<VarData> variables;
 
     public TextAsset json_file;
@@ -28,6 +44,20 @@ public class MonoFighter : MonoBehaviour
     public string Sprite_info_path { get => sprite_info_path; set => sprite_info_path = value; }
     public string Sound_path { get => sound_path; set => sound_path = value; }
 
+    public string Weight { get => weight; set => weight = value; }
+    public string Gravity { get => gravity; set => gravity = value; }
+    public string WalkSpeed { get => walkSpeed; set => walkSpeed = value; }
+    public string RunSpeed { get => runSpeed; set => runSpeed = value; }
+    public string Friction { get => friction; set => friction = value; }
+    public string AirJumps { get => airJumps; set => airJumps = value; }
+    public string JumpHeight { get => jumpHeight; set => jumpHeight = value; }
+    public string ShortHopHeight { get => shortHopHeight; set => shortHopHeight = value; }
+    public string MaxFallSpeed { get => maxFallSpeed; set => maxFallSpeed = value; }
+    public string FastFallFactor { get => fastFallFactor; set => fastFallFactor = value; }
+    public string MaxAirSpeed { get => maxAirSpeed; set => maxAirSpeed = value; }
+    public string AirControl { get => airControl; set => airControl = value; }
+    public string AirResistance { get => airResistance; set => airResistance = value; }
+
     public FighterInfo getFighterInfo()
     {
         FighterInfo info = new FighterInfo();
@@ -38,6 +68,20 @@ public class MonoFighter : MonoBehaviour
         info.actionFilePath = action_file_path;
         info.spriteInfoPath = sprite_info_path;
         info.soundPath = sound_path;
+
+        info.Weight = float.Parse(Weight);
+        info.Gravity = float.Parse(Gravity);
+        info.WalkSpeed = float.Parse(WalkSpeed);
+        info.RunSpeed = float.Parse(RunSpeed);
+        info.Friction = float.Parse(Friction);
+        info.AirJumps = int.Parse(AirJumps);
+        info.JumpHeight = float.Parse(JumpHeight);
+        info.ShortHopHeight = float.Parse(ShortHopHeight);
+        info.MaxFallSpeed = float.Parse(MaxFallSpeed);
+        info.FastFallFactor = float.Parse(FastFallFactor);
+        info.MaxAirSpeed = float.Parse(MaxAirSpeed);
+        info.AirControl = float.Parse(AirControl);
+        info.AirResistance = float.Parse(AirResistance);
 
         info.variables = variables;
 
@@ -53,6 +97,19 @@ public class MonoFighter : MonoBehaviour
         action_file_path = info.actionFilePath;
         sprite_info_path = info.spriteInfoPath;
         sound_path = info.soundPath;
+
+        Weight = info.Weight.ToString();
+        Gravity = info.Gravity.ToString();
+        WalkSpeed = info.WalkSpeed.ToString();
+        RunSpeed = info.RunSpeed.ToString();
+        Friction = info.Friction.ToString();
+        AirJumps = info.AirJumps.ToString();
+        JumpHeight = info.JumpHeight.ToString();
+        ShortHopHeight = info.ShortHopHeight.ToString();
+        MaxFallSpeed = info.MaxFallSpeed.ToString();
+        MaxAirSpeed = info.MaxAirSpeed.ToString();
+        AirControl = info.AirControl.ToString();
+        AirResistance = info.AirResistance.ToString();
 
         variables = info.variables;
     }

@@ -16,7 +16,8 @@ public class ActionHandler : BattleComponent {
 
     // Use this for initialization
     void Start () {
-        _current_action = new NeutralAction();
+        //_current_action = new NeutralAction();
+        _current_action = new GameAction();
         _current_action.SetDynamicAction(actions_file.Get("NeutralAction"));
         _current_action.SetUp(getBattleObject());
         if (isInBuilder) _current_action.setIsInBuilder(true);
@@ -26,7 +27,8 @@ public class ActionHandler : BattleComponent {
     {
         fighter_info = fInfo;
         actions_file = fighter_info.action_file;
-        _current_action = new NeutralAction();
+        //_current_action = new NeutralAction();
+        _current_action = new GameAction();
         _current_action.SetDynamicAction(actions_file.Get("NeutralAction"));
         if (isInBuilder) _current_action.setIsInBuilder(true);
         _current_action.SetUp(getBattleObject());
@@ -69,39 +71,6 @@ public class ActionHandler : BattleComponent {
     {
         switch (_name)
         {
-            case "NeutralAction": return new NeutralAction();
-            case "Fall": return new Fall();
-            case "Jump": return new Jump();
-            case "AirJump": return new AirJump();
-            case "Crouch": return new Crouch();
-            case "CrouchGetup": return new CrouchGetup();
-            case "Move": return new Move();
-            case "StandingPivot": return new StandingPivot();
-            case "Stop": return new Stop();
-            case "Pivot": return new Pivot();
-            case "Land": return new Land();
-            case "Dash": return new Dash();
-            case "LedgeGrab": return new LedgeGrab();
-            case "HitStun": return new HitStun();
-
-            //Attacks
-            case "NeutralAttack": return new BaseAttack();
-            case "ForwardAttack": return new BaseAttack();
-            case "ForwardSmash": return new BaseAttack();
-            case "UpAttack": return new BaseAttack();
-            case "UpSmash": return new BaseAttack();
-            case "DownAttack": return new BaseAttack();
-            case "DownSmash": return new BaseAttack();
-            case "NeutralAir": return new AirAttack();
-            case "ForwardAir": return new AirAttack();
-            case "BackAir": return new AirAttack();
-            case "UpAir": return new AirAttack();
-            case "DownAir": return new AirAttack();
-            case "NeutralSpecial": return new BaseAttack();
-            case "ForwardSpecial": return new BaseAttack();
-            case "UpSpecial": return new BaseAttack();
-            case "DownSpecial": return new BaseAttack();
-
             default:
                 //Debug.LogWarning("Null action: " + _name);
                 return new GameAction();

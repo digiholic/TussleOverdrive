@@ -245,24 +245,6 @@ public class StateTransitions : ScriptableObject {
 
     }
 
-    public static void CheckLedges(AbstractFighter actor)
-    {
-        if (!actor.LedgeLock) //If the lock is active, no need to bother calculating anything
-        {
-            foreach (Ledge ledge in actor.GetLedges())
-            {
-                if (!actor.DirectionHeld("Down"))
-                {
-                    if ((ledge.grabSide == Ledge.Side.LEFT) && actor.DirectionHeld("Right"))
-                        ledge.SendMessage("FighterGrabs", actor);
-                    else if ((ledge.grabSide == Ledge.Side.RIGHT) && actor.DirectionHeld("Left"))
-                        ledge.SendMessage("FighterGrabs", actor);
-                }
-            }
-        }
-    }
-
-
     public static void CheckGround(AbstractFighter actor)
     {
         actor.SendMessage("CheckForGround");
@@ -347,9 +329,6 @@ public class StateTransitions : ScriptableObject {
                 break;
             case "HelplessControl":
                 HelplessControl(actor);
-                break;
-            case "CheckLedges":
-                CheckLedges(actor);
                 break;
             case "CheckGround":
                 CheckGround(actor);

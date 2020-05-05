@@ -15,6 +15,22 @@ public class FighterInfo : IJsonInfoObject{
     [SerializeField] private string sprite_info_path;
     [SerializeField] private string sound_path;
 
+    [SerializeField] private float weight = 100;
+    [SerializeField] private float gravity = -5;
+    [SerializeField] private float walkSpeed = 7;
+    [SerializeField] private float runSpeed = 11;
+    [SerializeField] private float friction = 0.3f;
+
+    [SerializeField] private int airJumps = 1;
+    [SerializeField] private float jumpHeight = 12.5f;
+    [SerializeField] private float shortHopHeight = 8.5f;
+    [SerializeField] private float maxFallSpeed = -20;
+    [SerializeField] private float fastFallFactor = 2.0f;
+
+    [SerializeField] private float maxAirSpeed = 5.5f;
+    [SerializeField] private float airControl = 0.2f;
+    [SerializeField] private float airResistance = 0.2f;
+
     public string displayName{
         get {
             return display_name;
@@ -89,7 +105,21 @@ public class FighterInfo : IJsonInfoObject{
             sound_path = value;
         }
     }
-    
+
+    public float Weight { get => weight; set => weight = value; }
+    public float Gravity { get => gravity; set => gravity = value; }
+    public float WalkSpeed { get => walkSpeed; set => walkSpeed = value; }
+    public float RunSpeed { get => runSpeed; set => runSpeed = value; }
+    public float Friction { get => friction; set => friction = value; }
+    public int AirJumps { get => airJumps; set => airJumps = value; }
+    public float JumpHeight { get => jumpHeight; set => jumpHeight = value; }
+    public float ShortHopHeight { get => shortHopHeight; set => shortHopHeight = value; }
+    public float MaxFallSpeed { get => maxFallSpeed; set => maxFallSpeed = value; }
+    public float FastFallFactor { get => fastFallFactor; set => fastFallFactor = value; }
+    public float MaxAirSpeed { get => maxAirSpeed; set => maxAirSpeed = value; }
+    public float AirControl { get => airControl; set => airControl = value; }
+    public float AirResistance { get => airResistance; set => airResistance = value; }
+
     public List<VarData> variables;
 
     /// <summary>
@@ -110,6 +140,7 @@ public class FighterInfo : IJsonInfoObject{
     public SpriteInfo sprite_info;
     [System.NonSerialized]
     public bool initialized = false;
+
 
     #region IJsonInfoObject Implementation
     [SerializeField]
@@ -188,7 +219,7 @@ public class FighterInfo : IJsonInfoObject{
         {
             string json = File.ReadAllText(combinedPath);
             FighterInfo info = JsonUtility.FromJson<FighterInfo>(json);
-            info.GenerateMissingAttributes(); //In case new variables need to be initialized since the fighter was created
+            //info.GenerateMissingAttributes(); //In case new variables need to be initialized since the fighter was created
             if (info.displayName == null) return null; //If it doesn't have a display name it's not a fighter
             info.LoadDirectory(directory);
             return info;
@@ -221,41 +252,5 @@ public class FighterInfo : IJsonInfoObject{
             }
         }
         variables.Add(newData);
-    }
-
-    public void GenerateDefaultAttributes()
-    {
-        variables = new List<VarData>();
-        variables.Add(new VarData(TussleConstants.FighterAttributes.MAX_JUMPS, "1", VarType.INT));
-        variables.Add(new VarData(TussleConstants.FighterAttributes.WEIGHT, "100", VarType.FLOAT));
-        variables.Add(new VarData(TussleConstants.FighterAttributes.GRAVITY, "-5", VarType.FLOAT));
-        variables.Add(new VarData(TussleConstants.FighterAttributes.MAX_FALL_SPEED, "-20", VarType.FLOAT));
-        variables.Add(new VarData(TussleConstants.FighterAttributes.WALK_SPEED, "7", VarType.FLOAT));
-        variables.Add(new VarData(TussleConstants.FighterAttributes.RUN_SPEED, "11", VarType.FLOAT));
-        variables.Add(new VarData(TussleConstants.FighterAttributes.MAX_AIR_SPEED, "5.5", VarType.FLOAT));
-        variables.Add(new VarData(TussleConstants.FighterAttributes.DODGE_SPEED, "8.5", VarType.FLOAT));
-        variables.Add(new VarData(TussleConstants.FighterAttributes.FRICTION, "0.3", VarType.FLOAT));
-        variables.Add(new VarData(TussleConstants.FighterAttributes.AIR_RESISTANCE, "0.2", VarType.FLOAT));
-        variables.Add(new VarData(TussleConstants.FighterAttributes.AIR_CONTROL, "0.2", VarType.FLOAT));
-        variables.Add(new VarData(TussleConstants.FighterAttributes.JUMP_HEIGHT, "12.5", VarType.FLOAT));
-        variables.Add(new VarData(TussleConstants.FighterAttributes.SHORT_HOP_HEIGHT, "8.5", VarType.FLOAT));
-        variables.Add(new VarData(TussleConstants.FighterAttributes.AIR_JUMP_HEIGHT, "15", VarType.FLOAT));
-        variables.Add(new VarData(TussleConstants.FighterAttributes.FASTFALL_MULTIPLIER, "2", VarType.FLOAT));
-    }
-
-    /// <summary>
-    /// As attributes change, fighters might need to have defaults set for other code to work. This method is to make older fighters backwards compatible with things that
-    /// are needed later on.
-    /// </summary>
-    public void GenerateMissingAttributes(){
-        Dictionary<string,VarData> varDict = new Dictionary<string, VarData>();
-        foreach (VarData var in variables){
-            varDict.Add(var.name,var);
-        }
-        foreach (KeyValuePair<string,VarData> defaultData in AbstractFighter.DefaultVarDataStats){
-            if (!varDict.ContainsKey(defaultData.Key)){
-                variables.Add(defaultData.Value);
-            }
-        }
     }
 }
