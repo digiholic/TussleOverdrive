@@ -56,7 +56,8 @@ public class FileLoader {
             if (Tex2D.LoadImage(FileData))           // Load the imagedata into the texture (size is set automatically)
             {
                 Tex2D.filterMode = FilterMode.Point;
-                return Tex2D;                 // If data = readable -> return texture
+                Tex2D.wrapMode = TextureWrapMode.Repeat;
+                return Tex2D;
             }
 
         } else

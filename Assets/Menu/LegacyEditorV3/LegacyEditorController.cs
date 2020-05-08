@@ -37,7 +37,6 @@ public class LegacyEditorController : MonoBehaviour
     {
         if (undoStack.Count > 0)
         {
-            Debug.Log("Undo");
             UndoableCallback callback = undoStack.Pop();
             callback.Undo();
             redoStack.Push(callback);
@@ -48,7 +47,6 @@ public class LegacyEditorController : MonoBehaviour
     {
         if (redoStack.Count > 0)
         {
-            Debug.Log("Redo");
             UndoableCallback callback = redoStack.Pop();
             callback.Redo();
             undoStack.Push(callback);
@@ -57,7 +55,6 @@ public class LegacyEditorController : MonoBehaviour
 
     public static void ExecuteCallback(UndoableCallback callback)
     {
-        Debug.Log("Executing from: " + callback.gameObject.name, callback);
         current.redoStack.Clear();
         current.undoStack.Push(callback);
     }

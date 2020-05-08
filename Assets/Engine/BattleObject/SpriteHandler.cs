@@ -113,6 +113,8 @@ public class SpriteHandler : BattleComponent {
     /// <param name="startingFrame">The frame to start the animation on</param>
     public void ChangeAnimation(string animationName,int startingFrame)
     {
+        throw new System.NotImplementedException();
+        /*
         AnimationDefinition anim = sprite_info.getAnimationByName(animationName);
         currentAnimation = anim; //Animation can be null, but if it is, we don't set the sprite
         if (anim != AnimationDefinition.NullAnimation)
@@ -120,6 +122,7 @@ public class SpriteHandler : BattleComponent {
             anim.setFrame(startingFrame);
             ChangeSubimage(startingFrame);
         }
+        */
     }
     
     /// <summary>
@@ -128,11 +131,14 @@ public class SpriteHandler : BattleComponent {
     /// <param name="frame">The frame to change to</param>
     public void ChangeSubimage(int frame)
     {
+        throw new System.NotImplementedException();
+        /*
         if (currentAnimation != null && currentAnimation != AnimationDefinition.NullAnimation)
         {
             currentAnimation.setFrame(frame);
             sprite_renderer.sprite = sprite_info.getSpriteFromAnimation(currentAnimation.AnimationName, frame);
         }
+        */
     }
 
     /// <summary>
@@ -149,7 +155,8 @@ public class SpriteHandler : BattleComponent {
     /// </summary>
     /// <returns></returns>
     public ImageDefinition getCurrentSubimage(){
-        return sprite_info?.GetImageByName(currentAnimation.getCurrentSubimage(false));
+        throw new System.NotImplementedException();
+        //return sprite_info?.GetImageByName(currentAnimation.getCurrentSubimage(false));
     }
 
     /// <summary>
@@ -157,7 +164,8 @@ public class SpriteHandler : BattleComponent {
     /// </summary>
     /// <returns></returns>
     public List<ImageDefinition> getImages(){
-        return sprite_info.imageDefinitions;
+        throw new System.NotImplementedException();
+        //return sprite_info.imageDefinitions;
     }
 
     /// <summary>
@@ -173,7 +181,8 @@ public class SpriteHandler : BattleComponent {
     /// </summary>
     private void RenderSprite()
     {
-        sprite_renderer.sprite = sprite_info.getSpriteFromAnimation(currentAnimation.AnimationName);
+        throw new System.NotImplementedException();
+        //sprite_renderer.sprite = sprite_info.getSpriteFromAnimation(currentAnimation.AnimationName);
     }
 
     public void RotateSprite(float degrees)
