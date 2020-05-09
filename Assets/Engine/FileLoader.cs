@@ -37,6 +37,16 @@ public class FileLoader {
         return new DirectoryInfo(PathCombine(FighterPath, dirname));
     }
 
+    public static string GetFighterSubFilePath(string dirname, string filename)
+    {
+        return PathCombine(GetFighterPath(dirname), filename);
+    }
+
+    public static FileInfo GetFighterSubFile(string dirname, string filename)
+    {
+        return new FileInfo(PathCombine(GetFighterPath(dirname), filename));
+    }
+
     public static string GetStagePath(string dirname)
     {
         return PathCombine(StagePath, dirname);

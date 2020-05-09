@@ -11,16 +11,16 @@ public class PanelNavigator : MonoBehaviour
     {
         foreach(GameObject panel in subPanels)
         {
-            panel.SetActive(false);
+            panel?.SetActive(false);
         }
-        subPanels[currentIndex].SetActive(true);
+        subPanels[currentIndex]?.SetActive(true);
     }
 
     public void changeIndex(int newIndex)
     {
-        subPanels[currentIndex].SetActive(false);
+        subPanels[currentIndex]?.SetActive(false);
         currentIndex = newIndex;
-        subPanels[newIndex].SetActive(true);
+        subPanels[newIndex]?.SetActive(true);
     }
 
     public int getCurrentIndex() { return currentIndex; }

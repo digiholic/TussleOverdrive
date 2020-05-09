@@ -5,16 +5,16 @@ using UnityEngine;
 public class MonoSpriteInfo : MonoBehaviour
 {
     [SerializeField] private string spriteSheetFileName;
-    [SerializeField] private int numCols;
-    [SerializeField] private int numRows;
+    [SerializeField] private string numCols;
+    [SerializeField] private string numRows;
     [SerializeField] private string defaultAnimation;
     [SerializeField] private List<AnimationDefinition> animations;
 
     public TextAsset json_file;
 
     public string SpriteSheetFileName { get => spriteSheetFileName; set => spriteSheetFileName = value; }
-    public int NumCols { get => numCols; set => numCols = value; }
-    public int NumRows { get => numRows; set => numRows = value; }
+    public string NumCols { get => numCols; set => numCols = value; }
+    public string NumRows { get => numRows; set => numRows = value; }
     public string DefaultAnimation { get => defaultAnimation; set => defaultAnimation = value; }
     public List<AnimationDefinition> Animations { get => animations; set => animations = value; }
 
@@ -22,8 +22,8 @@ public class MonoSpriteInfo : MonoBehaviour
     {
         SpriteInfo info = new SpriteInfo();
         info.spriteSheetFileName = spriteSheetFileName;
-        info.numCols = numCols;
-        info.numRows = numRows;
+        info.numCols = int.Parse(numCols);
+        info.numRows = int.Parse(numRows);
         info.defaultAnimation = defaultAnimation;
         info.animations = animations;
         return info;
@@ -32,8 +32,8 @@ public class MonoSpriteInfo : MonoBehaviour
     public void FromSpriteInfo(SpriteInfo info)
     {
         spriteSheetFileName = info.spriteSheetFileName;
-        numCols = info.numCols;
-        numRows = info.numRows;
+        numCols = info.numCols.ToString();
+        numRows = info.numRows.ToString();
         defaultAnimation = info.defaultAnimation;
         animations = info.animations;
     }

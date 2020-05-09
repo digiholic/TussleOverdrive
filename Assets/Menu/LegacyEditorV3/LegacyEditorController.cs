@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class LegacyEditorController : MonoBehaviour
 {
     public static LegacyEditorController current;
 
-    public FighterInfo info;
+    public string workingDirectoryName;
+    public DirectoryInfo workingDirectory;
 
     public Stack<UndoableCallback> undoStack = new Stack<UndoableCallback>();
     public Stack<UndoableCallback> redoStack = new Stack<UndoableCallback>();
@@ -14,6 +16,8 @@ public class LegacyEditorController : MonoBehaviour
     void OnEnable()
     {
         current = this;
+        workingDirectory = FileLoader.GetFighterDir(workingDirectoryName);
+        Debug.Log(workingDirectory.FullName);
     }
 
     void Update()
