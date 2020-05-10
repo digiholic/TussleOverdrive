@@ -3,19 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using TMPro;
+using UnityEngine.UI;
+using UnityEngine.UI.Extensions;
 
 public class SpriteSheetDisplay : MonoBehaviour
 {
-    [SerializeField] private Camera displayCamera;
     [SerializeField] private TextMeshProUGUI errorMessageText;
+    [SerializeField] private Image image;
+    [SerializeField] private UIGridRenderer grid;
 
-    private SpriteRenderer spriteRenderer;
-    private BoxCollider collider;
+    private RectTransform rect;
+
+    public float scrollFactor;
 
     private void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        collider = GetComponent<BoxCollider>();
+        rect = GetComponent<RectTransform>();
     }
 
     public void UpdateSpriteFilePath(string newFilePath)
@@ -25,14 +28,17 @@ public class SpriteSheetDisplay : MonoBehaviour
         if (newspriteFile.Exists)
         {
             errorMessageText.gameObject.SetActive(false);
-            spriteRenderer.enabled = true;
-            collider.enabled = true;
+            image.enabled = true;
+            grid.enabled = true;
+
             UpdateSprite(FileLoader.LoadTexture(fullSpriteFilePath));
-        } else
+        }
+        else
         {
             errorMessageText.gameObject.SetActive(true);
-            spriteRenderer.enabled = false;
-            collider.enabled = false;
+            image.enabled = false;
+            grid.enabled = false;
+
             errorMessageText.text = "Could not load Sprite Sheet At " + fullSpriteFilePath;
         }
     }
@@ -40,44 +46,35 @@ public class SpriteSheetDisplay : MonoBehaviour
     private void UpdateSprite(Texture2D sourceTexture)
     {
         Sprite s = Sprite.Create(sourceTexture, new Rect(0, 0, sourceTexture.width, sourceTexture.height), new Vector2(0.5f,0.5f));
-        spriteRenderer.sprite = s;
-        collider.size = s.bounds.size;
+        image.sprite = s;
+        rect.sizeDelta = new Vector2(sourceTexture.width, sourceTexture.height);
     }
 
+
     private bool dragging;
-    private Vector3 clickPoint;
-    
+    private Vector3 lastScreenPoint;
+
     private void Update()
     {
         if (CentralPanel.isHovered)
         {
-            //Zoom
-            if (Mathf.Abs(Input.mouseScrollDelta.y) > 0)
-            {
-                displayCamera.orthographicSize -= Input.mouseScrollDelta.y * 0.5f;
-                displayCamera.orthographicSize = Mathf.Clamp(displayCamera.orthographicSize, 3, 50);
-            }
-        }
+            if (Input.mouseScrollDelta.y != 0) zoomSheet(Input.mouseScrollDelta.y);
 
-        Ray ray = displayCamera.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
-        {
-            if (hit.collider.gameObject == gameObject)
+            if (Input.GetMouseButtonDown(0))
             {
-                //Drag
-                if (Input.GetMouseButtonDown(0))
-                {
-                    Vector2 pixelSpace = new Vector2(hit.point.x * spriteRenderer.sprite.pixelsPerUnit, hit.point.y * spriteRenderer.sprite.pixelsPerUnit);
-                    dragging = true;
-                    clickPoint = hit.point - transform.localPosition;
-                }
+                dragging = true;
+                lastScreenPoint = Input.mousePosition;
             }
         }
 
         if (dragging && Input.GetMouseButton(0))
         {
-            Vector3 newPosition = displayCamera.ScreenToWorldPoint(Input.mousePosition) - clickPoint;
-            transform.localPosition = new Vector3(newPosition.x,newPosition.y,transform.localPosition.z);
+            Vector2 currentPosition = rect.position;
+            Vector3 diff = Input.mousePosition - lastScreenPoint;
+            currentPosition.x += diff.x;
+            currentPosition.y += diff.y;
+            rect.position = currentPosition;
+            lastScreenPoint = Input.mousePosition;
         }
 
         if (Input.GetMouseButtonUp(0))
@@ -86,7 +83,12 @@ public class SpriteSheetDisplay : MonoBehaviour
         }
     }
 
-    //Draw boxes over each frame
-
-    //Highlight boxes that are selected
+    private void zoomSheet(float delta)
+    {
+        float xScale = rect.sizeDelta.x;
+        float yScale = rect.sizeDelta.y;
+        xScale = Mathf.Clamp(xScale + delta * scrollFactor, 10, 2000);
+        yScale = Mathf.Clamp(yScale + delta * scrollFactor, 10, 2000);
+        rect.sizeDelta = new Vector2(xScale, yScale);
+    }
 }
