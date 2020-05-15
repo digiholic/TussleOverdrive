@@ -5,8 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public class AnimationDefinition
 {
-    public string _animationName = "";
-    public bool _loop = false;
+    public string animationName = "";
+    public bool loop = false;
     public int startIndex = 0;
     public int endIndex = 0;
     

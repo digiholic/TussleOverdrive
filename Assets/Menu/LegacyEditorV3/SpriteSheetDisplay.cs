@@ -91,4 +91,24 @@ public class SpriteSheetDisplay : MonoBehaviour
         yScale = Mathf.Clamp(yScale + delta * scrollFactor, 10, 2000);
         rect.sizeDelta = new Vector2(xScale, yScale);
     }
+
+    public void setGridColumns(string colString)
+    {
+        setGridColumns(int.Parse(colString));
+    }
+
+    public void setGridColumns(int cols)
+    {
+        grid.GridColumns = cols;
+    }
+
+    public void setGridRows(string rowString)
+    {
+        setGridRows(int.Parse(rowString));
+    }
+
+    public void setGridRows(int rows)
+    {
+        grid.GridRows = rows;
+    }
 }
