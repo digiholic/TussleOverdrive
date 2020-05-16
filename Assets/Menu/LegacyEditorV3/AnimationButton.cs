@@ -11,6 +11,40 @@ public class AnimationButton : MonoBehaviour
 
     public AnimationDefinition animation;
 
+    [SerializeField] private string animationName;
+    [SerializeField] private bool loop;
+    [SerializeField] private string startIndex;
+    [SerializeField] private string endIndex;
+
+    public string AnimationName { get => animationName;
+        set
+        {
+            animationName = value;
+            animation.animationName = value;
+        }
+    }
+    public bool Loop { get => loop;
+        set
+        {
+            loop = value;
+            animation.loop = value;
+        }
+    }
+    public string StartIndex { get => startIndex;
+        set
+        {
+            startIndex = value;
+            animation.startIndex = int.Parse(value);
+        }
+    }
+    public string EndIndex { get => endIndex;
+        set
+        {
+            endIndex = value;
+            animation.endIndex = int.Parse(value);
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
