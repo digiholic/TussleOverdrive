@@ -12,7 +12,28 @@
                 ],
                 "m_values": [
                     {
-                        "data": []
+                        "data": [
+                          {
+                            "order": 0,
+                            "SubactionName": "PrintDebug",
+                            "subType": 0,
+                            "arguments": {
+                              "m_keys": [
+                                "statement"
+                              ],
+                              "m_values": [
+                                {
+                                  "editable": false,
+                                  "name": "statement",
+                                  "source": 0,
+                                  "type": 0,
+                                  "data": "Test Data",
+                                  "description": "The data to print"
+                                }
+                              ]
+                            }
+                          }
+                        ]
                     },
                     {
                         "data": []

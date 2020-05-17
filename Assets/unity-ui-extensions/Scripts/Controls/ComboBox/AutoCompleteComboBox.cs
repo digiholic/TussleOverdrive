@@ -33,7 +33,7 @@ namespace UnityEngine.UI.Extensions
 
         private RectTransform _rectTransform;
 
-        private RectTransform _overlayRT;
+        [SerializeField] private RectTransform _overlayRT;
         private RectTransform _scrollPanelRT;
         private RectTransform _scrollBarRT;
         private RectTransform _slidingAreaRT;
@@ -147,7 +147,7 @@ namespace UnityEngine.UI.Extensions
 
 				//_arrow_Button = _rectTransform.FindChild ("ArrowBtn").GetComponent<Button> ();
 
-                _overlayRT = _rectTransform.Find("Overlay").GetComponent<RectTransform>();
+                if (_overlayRT == null) _overlayRT = _rectTransform.Find("Overlay").GetComponent<RectTransform>();
                 _overlayRT.gameObject.SetActive(false);
 
 

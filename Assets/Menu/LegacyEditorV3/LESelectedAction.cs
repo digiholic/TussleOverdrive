@@ -60,4 +60,9 @@ public class LESelectedAction: MonoBehaviour
             exitAction = newAction.exit_action;
         }
     }
+
+    public List<SubactionData> GetSubactions(string key)
+    {
+        return CurrentAction?.subactionCategories.GetIfKeyExists(key);
+    }
 }
