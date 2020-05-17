@@ -3,6 +3,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 
 namespace UnityEngine.UI.Extensions
 {
@@ -25,7 +26,7 @@ namespace UnityEngine.UI.Extensions
         private bool _isPanelActive = false;
         private bool _hasDrawnOnce = false;
 
-        private InputField _mainInput;
+        private TMP_InputField _mainInput;
         private RectTransform _inputRT;
 
 		//private Button _arrow_Button;
@@ -142,7 +143,7 @@ namespace UnityEngine.UI.Extensions
             {
                 _rectTransform = GetComponent<RectTransform>();
                 _inputRT = _rectTransform.Find("InputField").GetComponent<RectTransform>();
-                _mainInput = _inputRT.GetComponent<InputField>();
+                _mainInput = _inputRT.GetComponent<TMP_InputField>();
 
 				//_arrow_Button = _rectTransform.FindChild ("ArrowBtn").GetComponent<Button> ();
 
@@ -216,7 +217,7 @@ namespace UnityEngine.UI.Extensions
         /// <summary>
         /// Rebuilds the contents of the panel in response to items being added.
         /// </summary>
-        private void RebuildPanel()
+        public void RebuildPanel()
         {
             //panel starts with all options
             _panelItems.Clear();
@@ -246,7 +247,7 @@ namespace UnityEngine.UI.Extensions
                 if (i < AvailableOptions.Count)
                 {
                     itemObjs[i].name = "Item " + i + " " + _panelItems[i];
-                    itemObjs[i].transform.Find("Text").GetComponent<Text>().text = _panelItems[i]; //set the text value
+                    itemObjs[i].transform.Find("Text").GetComponent<TextMeshProUGUI>().text = _panelItems[i]; //set the text value
 
                     Button itemBtn = itemObjs[i].GetComponent<Button>();
                     itemBtn.onClick.RemoveAllListeners();

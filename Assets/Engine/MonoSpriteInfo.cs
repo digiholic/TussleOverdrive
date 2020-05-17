@@ -66,4 +66,11 @@ public class MonoSpriteInfo : MonoBehaviour
     {
         animations.Remove(animation);
     }
+
+    public List<string> GetAnimationNames()
+    {
+        List<string> names = new List<string>();
+        animations.ForEach(animation => names.Add(animation.animationName));
+        return names;
+    }
 }

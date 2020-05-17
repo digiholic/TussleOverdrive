@@ -7,7 +7,6 @@ public class MonoActionFile : MonoBehaviour
     [SerializeField] private List<DynamicAction> actions;
 
     public List<DynamicAction> Animations { get => actions; set => actions = value; }
-    public DynamicAction currentAction;
 
     public TextAsset json_file;
 
@@ -50,5 +49,12 @@ public class MonoActionFile : MonoBehaviour
     public void DeleteAction(DynamicAction action)
     {
         actions.Remove(action);
+    }
+
+    public List<string> GetActionNames()
+    {
+        List<string> names = new List<string>();
+        actions.ForEach(action => names.Add(action.name));
+        return names;
     }
 }

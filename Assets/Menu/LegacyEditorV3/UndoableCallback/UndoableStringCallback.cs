@@ -12,6 +12,7 @@ public class UndoableStringCallback : UndoableCallback
 
     public void Execute(string data)
     {
+        Debug.Log("Executing", this);
         redoList.Clear(); //Doing a new action blows up the redo stack
         undoList.Push(getValue.Invoke()); //Push the old value to the top of our undo stack
         setValue?.Invoke(data); //Set the value

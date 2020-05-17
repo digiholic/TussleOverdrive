@@ -9,7 +9,6 @@ public class ActionPane : MonoBehaviour
     public DynamicAction action;
 
     [SerializeField] private TextMeshProUGUI buttonText;
-    [SerializeField] private MonoActionFile actionFile;
 
     private Button button;
     private Image buttonImage;
@@ -25,14 +24,14 @@ public class ActionPane : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        buttonText.text = action.name;
         defaultColor = button.colors.normalColor;
         selectedColor = button.colors.pressedColor;
     }
 
     private void Update()
     {
-        if (actionFile.currentAction == action)
+        buttonText.text = action.name;
+        if (LESelectedAction.instance.CurrentAction == action)
         {
             buttonImage.color = selectedColor;
         } else
