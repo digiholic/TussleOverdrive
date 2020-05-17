@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class AnimationListDataBind : MonoBehaviour
+public class ActionListDataBind : MonoBehaviour
 {
-    public AnimationListCallback source;
-    public AnimationListEvent target;
+    public ActionListCallback source;
+    public ActionListEvent target;
 
     private int cachedResultsCount;
 
     void Update()
     {
-        List<AnimationDefinition> data = source.Invoke();
+        List<DynamicAction> data = source.Invoke();
         if (data.Count != cachedResultsCount)
         {
             target.Invoke(data);
@@ -22,7 +22,7 @@ public class AnimationListDataBind : MonoBehaviour
 }
 
 [System.Serializable]
-public class AnimationListCallback : SerializableCallback<List<AnimationDefinition>> { }
+public class ActionListCallback : SerializableCallback<List<DynamicAction>> { }
 
 [System.Serializable]
-public class AnimationListEvent : UnityEvent<List<AnimationDefinition>> { }
+public class ActionListEvent : UnityEvent<List<DynamicAction>> { }
