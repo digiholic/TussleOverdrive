@@ -2,8 +2,26 @@
   "spriteSheetFileName": "hitboxieTestSheet.png",
   "numRows": 4,
   "numCols": 4,
-  "default_sprite": "idle",
-  "spriteDirectory": "sprites",
-  "costumeName": "default",
-  "animations": []
+  "defaultAnimation": "idle",
+  "animations": [
+    {
+      "animationName": "test1",
+      "loop": false,
+      "startIndex": 0,
+      "endIndex": 3
+    },
+    {
+      "animationName": "test2",
+      "loop": false,
+      "startIndex": 4,
+      "endIndex": 7
+    },
+    {
+      "animationName": "test3",
+      "loop": false,
+      "startIndex": 8,
+      "endIndex": 11
+    }
+  ],
+  "JSONFile": { "instanceID": 0 }
 }

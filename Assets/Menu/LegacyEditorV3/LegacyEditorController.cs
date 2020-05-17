@@ -13,6 +13,15 @@ public class LegacyEditorController : MonoBehaviour
     public Stack<UndoableCallback> undoStack = new Stack<UndoableCallback>();
     public Stack<UndoableCallback> redoStack = new Stack<UndoableCallback>();
 
+    private MonoFighter fighter;
+    private MonoSpriteInfo spriteInfo;
+
+    private void Awake()
+    {
+        fighter = GetComponent<MonoFighter>();
+        spriteInfo = GetComponent<MonoSpriteInfo>();
+    }
+
     void OnEnable()
     {
         current = this;
@@ -24,17 +33,31 @@ public class LegacyEditorController : MonoBehaviour
     {
         if (Application.isEditor)
         {
-            if (Input.GetKeyDown(KeyCode.Z))
+            if (Input.GetKey(KeyCode.LeftAlt))
             {
-                Undo();
-            } else if (Input.GetKeyDown(KeyCode.Y))
-            {
-                Redo();
+                if (Input.GetKeyDown(KeyCode.Z))
+                {
+                    Undo();
+                }
+                else if (Input.GetKeyDown(KeyCode.Y))
+                {
+                    Redo();
+                }
+                if (Input.GetKeyDown(KeyCode.S))
+                {
+                    SaveAll();
+                }
             }
         } else
         {
 
         }
+    }
+
+    public void SaveAll()
+    {
+        Debug.Log(JsonUtility.ToJson(fighter.getFighterInfo()));
+        Debug.Log(JsonUtility.ToJson(spriteInfo.getSpriteInfo()));
     }
 
     public void Undo()

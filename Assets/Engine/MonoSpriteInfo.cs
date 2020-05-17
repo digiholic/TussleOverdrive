@@ -51,4 +51,19 @@ public class MonoSpriteInfo : MonoBehaviour
         SpriteInfo sprite_info = JsonUtility.FromJson<SpriteInfo>(json_file.text);
         FromSpriteInfo(sprite_info);
     }
+
+    public void AddAnimation()
+    {
+        animations.Add(new AnimationDefinition());
+    }
+
+    public void AddAnimation(AnimationDefinition anim)
+    {
+        animations.Add(anim);
+    }
+
+    public void DeleteAnimation(AnimationDefinition animation)
+    {
+        animations.Remove(animation);
+    }
 }
