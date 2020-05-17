@@ -668,6 +668,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actions: []
+  currentAction:
+    name: 
+    length: 0
+    animationName: 
+    exit_action: 
+    subactionCategories:
+      m_keys: []
+      m_values: []
   json_file: {fileID: 4900000, guid: 358769ece81bcac4491559f988313b81, type: 3}
 --- !u!1 &70509263
 GameObject:
@@ -17199,6 +17207,7 @@ GameObject:
   - component: {fileID: 1111249577}
   - component: {fileID: 1111249576}
   - component: {fileID: 1111249575}
+  - component: {fileID: 1111249579}
   m_Layer: 5
   m_Name: ActionButton
   m_TagString: Untagged
@@ -17247,6 +17256,7 @@ MonoBehaviour:
       m_keys: []
       m_values: []
   buttonText: {fileID: 1247909241}
+  actionFile: {fileID: 61576564}
 --- !u!114 &1111249576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17289,7 +17299,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1111249577}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1111249579}
+        m_MethodName: Execute
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1111249577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17327,6 +17348,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1111249573}
   m_CullTransparentMesh: 0
+--- !u!114 &1111249579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111249573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f20c90269061c0e4dbd0cffd17f2e95b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionSource: {fileID: 1111249575}
+  actionDestination: {fileID: 61576564}
 --- !u!1 &1116584584
 GameObject:
   m_ObjectHideFlags: 0

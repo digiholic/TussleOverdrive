@@ -7,6 +7,7 @@ public class MonoActionFile : MonoBehaviour
     [SerializeField] private List<DynamicAction> actions;
 
     public List<DynamicAction> Animations { get => actions; set => actions = value; }
+    public DynamicAction currentAction;
 
     public TextAsset json_file;
 
