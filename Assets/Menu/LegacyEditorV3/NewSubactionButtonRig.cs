@@ -9,8 +9,8 @@ public class NewSubactionButtonRig : MonoBehaviour
     private List<NewSubactionButton> myButtons = new List<NewSubactionButton>();
 
     //Can't null an enum. Don't want to make an "All" type, since that'd confuse a lot of other UI elements. So we set this bool if we're using all types
-    private bool allTypes;
-    private SubactionType currentType;
+    private bool allTypes = true;
+    private SubactionType currentType = SubactionType.CONTROL;
     private string searchText = "";
 
     public bool AllTypes {
