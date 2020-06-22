@@ -6,7 +6,18 @@ public class LESelectedAction: MonoBehaviour
 {
     public static LESelectedAction instance;
 
-    public DynamicAction CurrentAction;
+    public delegate void ActionSelectDelegate(DynamicAction newAction);
+    public static event ActionSelectDelegate OnActionSelected;
+
+    private DynamicAction currentAction;
+    public DynamicAction CurrentAction
+    {
+        get => currentAction; set
+        {
+            currentAction = value;
+            OnActionSelected.Invoke(currentAction);
+        }
+    }
 
     [SerializeField] private string actionName;
     [SerializeField] private string length;
