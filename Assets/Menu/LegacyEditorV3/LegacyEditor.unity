@@ -11054,6 +11054,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72170e497a3dec748a3edfeb2ecb9762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  navDictName: LeftPanel
   subPanels:
   - {fileID: 980084400}
   - {fileID: 521657809}
@@ -14459,7 +14460,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2100439797}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.5514743
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -15003,7 +15004,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 550015129}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.5514743
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -19530,7 +19531,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 535819563}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.5514743
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -20011,6 +20012,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72170e497a3dec748a3edfeb2ecb9762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  navDictName: FighterPanel
   subPanels:
   - {fileID: 526863476}
   - {fileID: 1782671325}
@@ -22353,6 +22355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72170e497a3dec748a3edfeb2ecb9762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  navDictName: RightPanel
   subPanels:
   - {fileID: 406454581}
   - {fileID: 909401}
@@ -27174,7 +27177,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 515082857}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.5514743
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -36874,7 +36877,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1477288634
 RectTransform:
   m_ObjectHideFlags: 0
@@ -37688,6 +37691,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72170e497a3dec748a3edfeb2ecb9762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  navDictName: ContextualPanel
   subPanels:
   - {fileID: 1319680816}
   - {fileID: 685780142}
@@ -40606,6 +40610,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72170e497a3dec748a3edfeb2ecb9762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  navDictName: ActionCategory
   subPanels:
   - {fileID: 1059735215}
   - {fileID: 732289877}
@@ -42569,7 +42574,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1127603716}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.5514743
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -48099,7 +48104,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 428809041}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.53977704
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -49616,6 +49621,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72170e497a3dec748a3edfeb2ecb9762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  navDictName: CenterPanel
   subPanels:
   - {fileID: 982966452}
   - {fileID: 2072034469}
