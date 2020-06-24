@@ -1140,6 +1140,20 @@ MonoBehaviour:
   length: 
   animationName: 
   exitAction: 
+  ActionSelectedCallbacks:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 728616189}
+        m_MethodName: OnActionSelected
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &70509263
 GameObject:
   m_ObjectHideFlags: 0
@@ -3255,7 +3269,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2009734425}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.45257193
+  m_Size: 0.47128585
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -14459,8 +14473,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2100439798}
   m_HandleRect: {fileID: 2100439797}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 0.5514743
+  m_Value: 1
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -15003,8 +15017,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 550015130}
   m_HandleRect: {fileID: 550015129}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 0.5514743
+  m_Value: 1
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -16634,6 +16648,7 @@ GameObject:
   - component: {fileID: 728616187}
   - component: {fileID: 728616186}
   - component: {fileID: 728616185}
+  - component: {fileID: 728616189}
   m_Layer: 5
   m_Name: Action Subcategory Dropdown
   m_TagString: Untagged
@@ -16745,7 +16760,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 728616187}
   m_Template: {fileID: 30713254}
   m_CaptionText: {fileID: 1300607913}
@@ -16822,6 +16837,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 728616183}
   m_CullTransparentMesh: 0
+--- !u!114 &728616189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728616183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 754bac2b0b144fa46883b548c4dc3ebd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropdown: {fileID: 728616186}
 --- !u!1 &732289877
 GameObject:
   m_ObjectHideFlags: 0
@@ -19530,8 +19558,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 535819564}
   m_HandleRect: {fileID: 535819563}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 0.5514743
+  m_Value: 1
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -27176,8 +27204,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 515082858}
   m_HandleRect: {fileID: 515082857}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 0.5514743
+  m_Value: 1
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -42573,8 +42601,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1127603717}
   m_HandleRect: {fileID: 1127603716}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 0.5514743
+  m_Value: 1
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -48103,8 +48131,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 428809042}
   m_HandleRect: {fileID: 428809041}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 0.53977704
+  m_Value: 1
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

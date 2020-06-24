@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class LESelectedAction: MonoBehaviour
 {
@@ -15,7 +16,8 @@ public class LESelectedAction: MonoBehaviour
         get => currentAction; set
         {
             currentAction = value;
-            OnActionSelected.Invoke(currentAction);
+            OnActionSelected?.Invoke(currentAction);
+            ActionSelectedCallbacks?.Invoke(currentAction);
         }
     }
 
@@ -23,6 +25,8 @@ public class LESelectedAction: MonoBehaviour
     [SerializeField] private string length;
     [SerializeField] private string animationName;
     [SerializeField] private string exitAction;
+
+    public DynamicActionCallback ActionSelectedCallbacks;
 
     private void OnEnable()
     {
@@ -77,3 +81,6 @@ public class LESelectedAction: MonoBehaviour
         return CurrentAction?.subactionCategories.GetIfKeyExists(key);
     }
 }
+
+[System.Serializable]
+public class DynamicActionCallback : UnityEvent<DynamicAction> { };
