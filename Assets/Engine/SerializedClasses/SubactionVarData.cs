@@ -8,10 +8,25 @@ public class SubactionVarData
     //[System.NonSerialized]
     public bool editable = true;
 
-    public string name; //The name of the variable in the subaction, so you can easily set arguments without needing to remember order
-    public SubactionSource source; //Constant, Owner, or Action. The source of the variable
-    public SubactionVarType type; //String, Int, Float, or Bool
-    public string data; //The string representation of the data or the name of the variable to use
+    /// <summary>
+    /// The name of the variable in the subaction, so you can easily set arguments without needing to remember order
+    /// </summary>
+    public string name;
+
+    /// <summary>
+    /// Constant, Owner, or Action. The source of the variable
+    /// </summary>
+    public SubactionSource source;
+
+    /// <summary>
+    /// String, Int, Float, or Bool
+    /// </summary>
+    public SubactionVarType type;
+
+    /// <summary>
+    /// The string representation of the data or the name of the variable to use
+    /// </summary>
+    public string data;
 
     [TextArea]
     public string description;
@@ -153,6 +168,7 @@ public class SubactionVarData
 
     public void SetTypeString(string typeString)
     {
+        typeString = typeString.ToLower();
         if (typeString == "string")
             type = SubactionVarType.STRING;
         if (typeString == "int")
@@ -168,15 +184,15 @@ public class SubactionVarData
 
 public enum SubactionSource
 {
-    CONSTANT,
-    OWNER,
-    ACTION
+    CONSTANT = 0,
+    OWNER = 1,
+    ACTION = 2
 }
 
 public enum SubactionVarType
 {
-    STRING,
-    BOOL,
-    INT,
-    FLOAT
+    STRING = 0,
+    BOOL = 1,
+    INT = 2,
+    FLOAT = 3
 }

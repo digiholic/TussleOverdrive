@@ -34,9 +34,3 @@ public class UndoableIntCallback : UndoableCallback
         setValue?.Invoke(data); //Set the value
     }
 }
-
-[System.Serializable]
-public class IntEvent : UnityEvent<int> { }
-
-[System.Serializable]
-public class IntCallback : SerializableCallback<int> { }

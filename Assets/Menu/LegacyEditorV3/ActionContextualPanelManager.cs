@@ -6,6 +6,7 @@ public class ActionContextualPanelManager : MonoBehaviour
 {
     public GameObject noActionSelectedPanel;
     public GameObject newSubactionPanel;
+    public GameObject defaultEditSubactionPanel;
 
     void OnActionSelected(DynamicAction newAction)
     {
@@ -18,15 +19,23 @@ public class ActionContextualPanelManager : MonoBehaviour
         newSubactionPanel.SetActive(categoryIndex != 0);
     }
 
+    void OnSubactionSelected(SubactionData data)
+    {
+        defaultEditSubactionPanel.SetActive(data != null);
+        newSubactionPanel.SetActive(data == null);
+    }
+
     private void OnEnable()
     {
         LESelectedAction.OnActionSelected += OnActionSelected;
         PanelNavigator.GetPanelEvent("ActionCategory").AddListener(OnActionCategoryChanged);
+        LESelectedSubaction.OnSubactionSelected += OnSubactionSelected;
     }
 
     private void OnDisable()
     {
         LESelectedAction.OnActionSelected -= OnActionSelected;
         PanelNavigator.GetPanelEvent("ActionCategory").RemoveListener(OnActionCategoryChanged);
+        LESelectedSubaction.OnSubactionSelected -= OnSubactionSelected;
     }
 }
