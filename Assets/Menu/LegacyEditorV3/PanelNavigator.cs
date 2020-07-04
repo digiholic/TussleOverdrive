@@ -34,7 +34,7 @@ public class PanelNavigator : MonoBehaviour
     }
 
     public int getCurrentIndex() { return currentIndex; }
-
+    public GameObject getCurrentPanel() { return subPanels[currentIndex]; }
     public static Dictionary<string, PanelEvent> PanelEvents = new Dictionary<string, PanelEvent>();
     public static PanelEvent GetPanelEvent(string panelName)
     {
