@@ -21,6 +21,7 @@ public class ActionContextualPanelManager : MonoBehaviour
 
     void OnSubactionSelected(SubactionData data)
     {
+        Debug.Log("Subaction Callback Fired");
         defaultEditSubactionPanel.SetActive(data != null);
         newSubactionPanel.SetActive(data == null);
     }

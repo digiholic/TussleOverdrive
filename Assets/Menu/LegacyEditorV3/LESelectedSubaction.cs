@@ -14,6 +14,7 @@ public class LESelectedSubaction : MonoBehaviour
     {
         get => currentSubaction; set
         {
+            Debug.Log("Subaction Selected");
             currentSubaction = value;
             OnSubactionSelected?.Invoke(currentSubaction);
         }
